@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-07 22:43+0100\n"
+"POT-Creation-Date: 2017-02-20 14:39+0000\n"
 "PO-Revision-Date: 2017-02-19 13:24+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -357,71 +357,71 @@ msgstr "A fájlrendszer nyelvi kódjainak egyedieknek kell lenniük"
 msgid "Pootle language mappings must be unique"
 msgstr "A Pootle nyelvleképezéseknek egyedieknek kell lenniük"
 
-#: apps/pootle_language/forms.py:27
+#: apps/pootle_language/forms.py:28
 msgid "Member"
 msgstr "Tag"
 
-#: apps/pootle_language/forms.py:28
+#: apps/pootle_language/forms.py:29
 msgid "Submitter"
 msgstr "Beküldő"
 
-#: apps/pootle_language/forms.py:29
+#: apps/pootle_language/forms.py:30
 msgid "Reviewer"
 msgstr "Átolvasó"
 
-#: apps/pootle_language/forms.py:30
+#: apps/pootle_language/forms.py:31
 msgid "Administrator"
 msgstr "Adminisztrátor"
 
-#: apps/pootle_language/forms.py:69
+#: apps/pootle_language/forms.py:70
 msgid "Administrators"
 msgstr "Adminisztrátorok"
 
-#: apps/pootle_language/forms.py:75
+#: apps/pootle_language/forms.py:76
 msgid "Reviewers"
 msgstr "Átolvasók"
 
-#: apps/pootle_language/forms.py:80
+#: apps/pootle_language/forms.py:81
 msgid "Submitters"
 msgstr "Beküldők"
 
-#: apps/pootle_language/forms.py:85
+#: apps/pootle_language/forms.py:86
 msgid "Members"
 msgstr "Tagok"
 
-#: apps/pootle_language/forms.py:89
+#: apps/pootle_language/forms.py:90
 msgid "New member"
 msgstr "Új tag"
 
-#: apps/pootle_language/forms.py:90
+#: apps/pootle_language/forms.py:91
 msgid "Add a user to this team"
 msgstr "Felhasználó hozzáadása a csapathoz"
 
-#: apps/pootle_language/forms.py:97
+#: apps/pootle_language/forms.py:98
 msgid "Role"
 msgstr "Szerep"
 
-#: apps/pootle_language/forms.py:128
+#: apps/pootle_language/forms.py:129
 msgid "Role is required when adding a new member"
 msgstr "A szerep kötelező új tag hozzáadásánál"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:184
+#: apps/pootle_language/forms.py:155 core/forms.py:184
 msgid "Reject"
 msgstr "Elutasítás"
 
-#: apps/pootle_language/forms.py:155 core/forms.py:185
+#: apps/pootle_language/forms.py:156 core/forms.py:185
 msgid "Accept"
 msgstr "Elfogadás"
 
-#: apps/pootle_language/forms.py:157
+#: apps/pootle_language/forms.py:158
 msgid "Filter by suggester"
 msgstr "Szűrés javaslattevőre"
 
-#: apps/pootle_language/forms.py:163
+#: apps/pootle_language/forms.py:164
 msgid "Filter by state"
 msgstr "Szűrés állapotra"
 
-#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:174 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Projekt"
@@ -478,11 +478,11 @@ msgstr "Többesszám-képlet"
 msgid "Unit"
 msgstr "Egység"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
 msgid "State"
 msgstr "Állapot"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
 msgid "Source"
 msgstr "Forrás"
 
@@ -862,23 +862,23 @@ msgstr "Keresés"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Keresés (Ctrl+Shift+S)<br/>Gépeljen, majd nyomjon Entert a kereséshez"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:440
 msgid "Exact Match"
 msgstr "Pontos egyezés"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:420
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:446
 msgid "Source Text"
 msgstr "Forrásszöveg"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:421
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:447
 msgid "Target Text"
 msgstr "Célszöveg"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:422
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:448
 msgid "Comments"
 msgstr "Megjegyzések"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:423
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:449
 msgid "Locations"
 msgstr "Helyek"
 
@@ -935,7 +935,8 @@ msgid "Quality Checks"
 msgstr "Minőség-ellenőrzés"
 
 #: apps/pootle_project/models.py:221
-msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
+#, fuzzy
+msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
 msgstr "A gnu/nem gnu fájlelrendezések automatikus felismerése (lassabb)"
 
 #: apps/pootle_project/models.py:222
@@ -990,19 +991,23 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "A fordítási projekt (%s) törölve"
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:63
 msgid "Target"
 msgstr "Cél"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "Comment"
 msgstr "Hozzászólás"
+
+#: apps/pootle_store/abstracts.py:250 apps/pootle_store/abstracts.py:257
+msgid "Path"
+msgstr "Elérési útvonal"
 
 #: apps/pootle_store/constants.py:65
 msgid "Obsolete"
 msgstr "Elavult"
 
-#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:212
+#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:213
 #: templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Munka szükséges"
@@ -1024,11 +1029,11 @@ msgstr "Elégtelen jogosultságok a javaslat mód eléréséhez."
 msgid "Insufficient rights to access translation mode."
 msgstr "Elégtelen jogosultságok a fordítási mód eléréséhez."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:672
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:644
 msgid "Insufficient rights to access review mode."
 msgstr "Elégtelen jogosultságok a lektorálási mód eléréséhez."
 
-#: apps/pootle_store/forms.py:101
+#: apps/pootle_store/forms.py:102
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
@@ -1036,17 +1041,13 @@ msgstr "Elégtelen jogosultságok a lektorálási mód eléréséhez."
 msgid "Plural Form %d"
 msgstr "%d. többes alak"
 
-#: apps/pootle_store/forms.py:268
+#: apps/pootle_store/forms.py:270
 msgid "Needs work flag must be cleared"
 msgstr "A munka szükséges jelzőt törölni kell"
 
-#: apps/pootle_store/forms.py:328
+#: apps/pootle_store/forms.py:354
 msgid "Translator comment"
 msgstr "Fordítói megjegyzés"
-
-#: apps/pootle_store/models.py:1005 apps/pootle_store/models.py:1012
-msgid "Path"
-msgstr "Elérési útvonal"
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -1082,36 +1083,36 @@ msgstr "Javaslat elutasítva tőle: %(author)s, megjegyzés: %(comment)s"
 msgid "Added suggestion"
 msgstr "Javaslat hozzáadva"
 
-#: apps/pootle_store/utils.py:65
+#: apps/pootle_store/utils.py:67
 msgid "Suggestion accepted with comment"
 msgstr "Javaslat elfogadva, megjegyzéssel"
 
-#: apps/pootle_store/utils.py:67
+#: apps/pootle_store/utils.py:69
 msgid "Suggestion rejected with comment"
 msgstr "Javaslat visszautasítva, megjegyzéssel"
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:105
+#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:105
 msgid "Path too long."
 msgstr "Az elérési út túl hosszú."
 
-#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:107
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:107
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "Hiányzó argumentumok."
 
-#: apps/pootle_store/views.py:235
+#: apps/pootle_store/views.py:233
 msgid "Failed to remove comment."
 msgstr "Nem sikerült eltávolítani a megjegyzést."
 
-#: apps/pootle_store/views.py:270
+#: apps/pootle_store/views.py:268
 msgid "Comment submission failed."
 msgstr "A megjegyzés beküldése sikertelen."
 
-#: apps/pootle_store/views.py:603
+#: apps/pootle_store/views.py:575
 msgid "Failed to process submission."
 msgstr "A beküldés feldolgozása nem sikerült."
 
-#: apps/pootle_store/views.py:643
+#: apps/pootle_store/views.py:615
 msgid "Failed to process suggestion."
 msgstr "A javaslat feldolgozása nem sikerült."
 
@@ -1238,7 +1239,7 @@ msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
 msgstr "További információk vagy utasítások. Engedélyezett jelölés %s"
 
-#: checks.py:62
+#: checks.py:64
 msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
@@ -1246,7 +1247,7 @@ msgstr ""
 "Egyes felhasználói fiókokhoz többszörös e-mailek tartoznak. Ez nem lesz "
 "engedélyezett a Pootle 2.8-ban."
 
-#: checks.py:64
+#: checks.py:66
 msgid ""
 "Try using 'pootle find_duplicate_emails', and then update user emails with "
 "'pootle update_user_email username email'. You might also want to consider "
@@ -1257,65 +1258,65 @@ msgstr ""
 "mail” paranccsal. Érdemes lehet használni a pootle merge_user vagy "
 "purge_user parancsokat is"
 
-#: checks.py:88
+#: checks.py:90
 msgid "Your version of Django is too old."
 msgstr "A Django verzió túl régi."
 
-#: checks.py:89
+#: checks.py:91
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
 msgstr "Adja ki a pip install --upgrade 'Django==%s' parancsot"
 
-#: checks.py:96
+#: checks.py:98
 msgid "Your version of lxml is too old."
 msgstr "Az lxml verziója túl régi."
 
-#: checks.py:97
+#: checks.py:99
 msgid "Try pip install --upgrade lxml"
 msgstr "Adja ki a pip install --upgrade lxml parancsot"
 
-#: checks.py:103
+#: checks.py:105
 msgid "Your version of Translate Toolkit is too old."
 msgstr "A Translate Toolkit verziója túl régi."
 
-#: checks.py:104
+#: checks.py:106
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr "Adja ki a pip install --upgrade translate-toolkit parancsot"
 
-#: checks.py:124
+#: checks.py:126
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr "Nem sikerült csatlakozni Redishez (%s)"
 
-#: checks.py:125
+#: checks.py:127
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr "Győződjön meg róla, hogy a Redis fut itt: %(host)s:%(port)s"
 
-#: checks.py:135
+#: checks.py:137
 msgid "Your version of Redis is too old."
 msgstr "A Redis verziója túl régi."
 
-#: checks.py:136
+#: checks.py:138
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
 msgstr "Frissítse a rendszer Redis kiszolgálócsomagját legalább %s verzióra"
 
 #. Translators: a worker processes background tasks
-#: checks.py:148
+#: checks.py:149
 msgid "No worker running."
 msgstr "Nem fut worker."
 
 #. Translators: a worker processes background tasks
-#: checks.py:150
+#: checks.py:151
 msgid "Run new workers with 'pootle rqworker'"
 msgstr "Új háttérfolyamatok indíthatók ezzel: „pootle rqworker”"
 
-#: checks.py:165
+#: checks.py:166
 msgid "Cache backend is not set to Redis."
 msgstr "A gyorsítótár háttérprogramja nem Redis-re van állítva."
 
-#: checks.py:166
+#: checks.py:167
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1325,15 +1326,15 @@ msgstr ""
 "RedisCache értékre\n"
 "Jelenlegi beállítások: %r"
 
-#: checks.py:176
+#: checks.py:177
 msgid "Could not initiate a Redis cache connection"
 msgstr "Nem sikerült Redis gyorsítótár-kapcsolatot kezdeményezni"
 
-#: checks.py:177 checks.py:191
+#: checks.py:178 checks.py:192
 msgid "Double-check your CACHES settings"
 msgstr "Ellenőrizze újra a CACHES beállításokat"
 
-#: checks.py:189
+#: checks.py:190
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
@@ -1341,28 +1342,28 @@ msgstr ""
 "Eltérő django_redis.cache.RedisCache beállítások szükségesek a „default”, "
 "„redis” és „lru” esetén."
 
-#: checks.py:197
+#: checks.py:198
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "A DEBUG (hibakeresési) mód bekapcsolva. Éles rendszeren ezt ne tegye!"
 
-#: checks.py:198
+#: checks.py:199
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "A Pootle beállításaiban állítsa be a DEBUG = False értéket"
 
-#: checks.py:204
+#: checks.py:205
 msgid "The sqlite database backend is unsupported"
 msgstr "Az sqlite adatbázis-háttérprogram nem támogatott"
 
-#: checks.py:205
+#: checks.py:206
 msgid "Set your default database engine to postgresql or mysql"
 msgstr ""
 "Állítsa az alapértelmezett adatbázismotort a postgresql vagy mysql egyikére"
 
-#: checks.py:212
+#: checks.py:213
 msgid "Not using cached_db as session engine"
 msgstr "A cached_db nem kerül felhasználásra munkamenetmotorként"
 
-#: checks.py:213
+#: checks.py:214
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1372,11 +1373,11 @@ msgstr ""
 "cached_db értékre\n"
 "Jelenlegi beállítások: %r"
 
-#: checks.py:221
+#: checks.py:222
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "A POOTLE_CONTACT_EMAIL nincs beállítva."
 
-#: checks.py:222
+#: checks.py:223
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1384,13 +1385,13 @@ msgstr ""
 "Állítsa be a POOTLE_CONTACT_EMAIL értéket, hogy a felhasználók felvehessék a "
 "kapcsolatot az adminisztrátorokkal a Pootle kapcsolatfelvételi űrlapon."
 
-#: checks.py:230
+#: checks.py:231
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr ""
 "A POOTLE_CONTACT_EMAIL a következő alapértelmezett beállítást használja: %r."
 
-#: checks.py:232
+#: checks.py:233
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1398,11 +1399,11 @@ msgstr ""
 "A POOTLE_CONTACT_EMAIL címre érkeznek a kapcsolatfelvételi űrlapon küldött "
 "üzenetek."
 
-#: checks.py:239
+#: checks.py:240
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "A DEFAULT_FROM_EMAIL nincs beállítva."
 
-#: checks.py:240 checks.py:250
+#: checks.py:241 checks.py:251
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1410,37 +1411,37 @@ msgstr ""
 "A DEFAULT_FROM_EMAIL az összes kimenő Pootle e-mailben megjelenik.\n"
 "Ne felejtse el ellenőrizni a levelezőkiszolgáló beállításait."
 
-#: checks.py:248
+#: checks.py:249
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
 "A DEFAULT_FROM_EMAIL a következő alapértelmezett beállítást használja: %r."
 
-#: checks.py:259
+#: checks.py:260
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "A POOTLE_MARKUP_FILTER hiányzik."
 
-#: checks.py:260
+#: checks.py:261
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Állítsa be a POOTLE_MARKUP_FILTER értékét."
 
-#: checks.py:265
+#: checks.py:266
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Érvénytelen érték a POOTLE_MARKUP_FILTER-ben."
 
-#: checks.py:266
+#: checks.py:267
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Állítson be érvényes értéket a POOTLE_MARKUP_FILTER-hez."
 
-#: checks.py:280
+#: checks.py:281
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "Érvénytelen jelölés a POOTLE_MARKUP_FILTER-ben."
 
-#: checks.py:281
+#: checks.py:282
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Állítson be érvényes jelölést a POOTLE_MARKUP_FILTER-ben."
 
-#: checks.py:286
+#: checks.py:287
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1449,67 +1450,67 @@ msgstr ""
 "A POOTLE_MARKUP_FILTER beállítva „%s” jelölésre, de az ezt biztosító csomag "
 "nem található."
 
-#: checks.py:288
+#: checks.py:289
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Telepítse a csomagot, vagy módosítsa a POOTLE_MARKUP_FILTER értékét."
 
-#: checks.py:299
+#: checks.py:300
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "POOTLE_TM_SERVER['%s']: nincs INDEX_NAME."
 
-#: checks.py:300
+#: checks.py:301
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "Állítson be egy INDEX_NAME értéket ehhez: POOTLE_TM_SERVER['%s']."
 
-#: checks.py:306
+#: checks.py:307
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr "Többször szereplő „%s” INDEX_NAME a POOTLE_TM_SERVER-ben."
 
-#: checks.py:308
+#: checks.py:309
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
 "Állítson be másik INDEX_NAME értéket minden kiszolgálóhoz a POOTLE_TM_SERVER-"
 "ben."
 
-#: checks.py:318
+#: checks.py:319
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "POOTLE_TM_SERVER['%s']: nincs ENGINE."
 
-#: checks.py:319
+#: checks.py:320
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "Állítsa be az ENGINE értékét ehhez: POOTLE_TM_SERVER['%s']."
 
-#: checks.py:326
+#: checks.py:327
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "POOTLE_TM_SERVER['%s']: nincs HOST."
 
-#: checks.py:327
+#: checks.py:328
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "Állítsa be a HOST értékét ehhez: POOTLE_TM_SERVER['%s']."
 
-#: checks.py:334
+#: checks.py:335
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "POOTLE_TM_SERVER['%s']: nincs PORT."
 
-#: checks.py:335
+#: checks.py:336
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "Állítsa be a PORT értékét ehhez: POOTLE_TM_SERVER['%s']."
 
-#: checks.py:344
+#: checks.py:345
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr "POOTLE_TM_SERVER['%s']: a WEIGHT kisebb mint 0.0 vagy nagyobb mint 1.0"
 
-#: checks.py:346
+#: checks.py:347
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
@@ -1517,40 +1518,40 @@ msgstr ""
 "Állítson be egy 0.0 és 1.0 közti (ezeket is beleértve) WEIGHT értéket ehhez: "
 "POOTLE_TM_SERVER['%s']."
 
-#: checks.py:354
+#: checks.py:355
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
 msgstr "POOTLE_SCORE_COEFFICIENTS: nincs %s."
 
-#: checks.py:355
+#: checks.py:356
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Állítsa be ezt: %s a POOTLE_SCORE_COEFFICIENTS-ben."
 
-#: checks.py:362
+#: checks.py:363
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Érvénytelen %s érték a POOTLE_SCORE_COEFFICIENTS-ben."
 
-#: checks.py:364
+#: checks.py:365
 #, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr ""
 "Állítson be érvényes értéket ehhez: %s a POOTLE_SCORE_COEFFICIENTS-ben."
 
-#: checks.py:386
+#: checks.py:387
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "Az alapértelmezett „admin” felhasználó jelszava még mindig „admin”."
 
-#: checks.py:388
+#: checks.py:389
 msgid "Remove the 'admin' user or change its password."
 msgstr "Törölje az „admin” felhasználót, vagy változtassa meg a jelszavát."
 
-#: checks.py:402
+#: checks.py:403
 msgid "Database connection uses transaction_hooks."
 msgstr "Az adatbázis-kapcsolat transaction_hooks modult használ."
 
-#: checks.py:403
+#: checks.py:404
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
@@ -1558,32 +1559,32 @@ msgstr ""
 "Állítsa be a DATABASES['default']['ENGINE'] értékét a django.db.backends "
 "egyik Django háttérprogramjára."
 
-#: checks.py:423
+#: checks.py:424
 msgid "Email server is not available."
 msgstr "Az e-mail kiszolgáló nem érhető el."
 
-#: checks.py:424
+#: checks.py:425
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "Ellenőrizze az e-mail beállításokat, és győződjön meg róla, hogy az e-mail "
 "kiszolgáló működik."
 
-#: checks.py:451
+#: checks.py:452
 msgid "Revision is missing or has an incorrect value."
 msgstr "A revision hiányzik, vagy értéke helytelen."
 
-#: checks.py:452
+#: checks.py:453
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 "Futtassa a „revision --restore” parancsot a revíziószámláló alaphelyzetbe "
 "állításához."
 
-#: checks.py:466
+#: checks.py:467
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 "Nincs megadva kanonikus URL és az alapértelmezett oldal az example.com."
 
-#: checks.py:468
+#: checks.py:469
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
@@ -1591,11 +1592,11 @@ msgstr ""
 "Állítsa be a „POOTLE_CANONICAL_URL”-t a beállításokban, vagy frissítse az "
 "alapértelmezett oldalt, ha a django.contrib.sites-t használja."
 
-#: checks.py:472
+#: checks.py:473
 msgid "Canonical URL is set to http://localhost."
 msgstr "A kanonikus URL a http://localhost értékre van beállítva."
 
-#: checks.py:474
+#: checks.py:475
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
@@ -1603,16 +1604,16 @@ msgstr ""
 "Állítsa be a „POOTLE_CANONICAL_URL”-t az oldalhoz megfelelő értékre, vagy "
 "hagyja üresen, ha a „django.contrib.sites”-t használja."
 
-#: checks.py:504
+#: checks.py:505
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "A POOTLE_FS_WORKING_PATH nincs beállítva."
 
-#: checks.py:508
+#: checks.py:509
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "A POOTLE_FS_WORKING_PATH által mutatott útvonal (%s) nem létezik."
 
-#: checks.py:510
+#: checks.py:511
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
@@ -1620,7 +1621,7 @@ msgstr ""
 "Hozza létre a „POOTLE_FS_WORKING_PATH” által mutatott könyvtárat, vagy "
 "módosítsa a beállítást."
 
-#: checks.py:515
+#: checks.py:516
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
@@ -1628,7 +1629,7 @@ msgstr ""
 "A POOTLE_FS_WORKING_PATH által mutatott útvonalat (%s) nem tudja írni a "
 "Pootle."
 
-#: checks.py:518
+#: checks.py:519
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
@@ -1636,9 +1637,21 @@ msgstr ""
 "Adjon írási jogosultságot a „POOTLE_FS_WORKING_PATH” könyvtárhoz, vagy "
 "módosítsa a beállítást."
 
-#: checks.py:537
+#: checks.py:538
 msgid "MySQL requires time zone settings."
 msgstr "A MySQL időzóna-beállításokat igényel."
+
+#: checks.py:558
+msgid "Pootle does not yet support Python 3."
+msgstr ""
+
+#: checks.py:559 checks.py:565
+msgid "Use a Python 2.7 virtualenv."
+msgstr ""
+
+#: checks.py:564
+msgid "Pootle no longer supports Python versions older than 2.7"
+msgstr ""
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37

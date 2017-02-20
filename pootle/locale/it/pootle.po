@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-07 22:43+0100\n"
+"POT-Creation-Date: 2017-02-20 14:39+0000\n"
 "PO-Revision-Date: 2017-02-06 15:54+0000\n"
 "Last-Translator: daniele_translator <daniel.translator@mail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -367,73 +367,73 @@ msgstr ""
 msgid "Pootle language mappings must be unique"
 msgstr "Pagina amministrazione lingue di Pootle"
 
-#: apps/pootle_language/forms.py:27
+#: apps/pootle_language/forms.py:28
 msgid "Member"
 msgstr "Membro"
 
-#: apps/pootle_language/forms.py:28
+#: apps/pootle_language/forms.py:29
 msgid "Submitter"
 msgstr "Contributore"
 
-#: apps/pootle_language/forms.py:29
+#: apps/pootle_language/forms.py:30
 msgid "Reviewer"
 msgstr "Revisore"
 
-#: apps/pootle_language/forms.py:30
+#: apps/pootle_language/forms.py:31
 msgid "Administrator"
 msgstr "Amministratore"
 
-#: apps/pootle_language/forms.py:69
+#: apps/pootle_language/forms.py:70
 msgid "Administrators"
 msgstr "Amministratori"
 
-#: apps/pootle_language/forms.py:75
+#: apps/pootle_language/forms.py:76
 msgid "Reviewers"
 msgstr "Revisori"
 
-#: apps/pootle_language/forms.py:80
+#: apps/pootle_language/forms.py:81
 msgid "Submitters"
 msgstr "Contributori"
 
-#: apps/pootle_language/forms.py:85
+#: apps/pootle_language/forms.py:86
 msgid "Members"
 msgstr "Membri"
 
-#: apps/pootle_language/forms.py:89
+#: apps/pootle_language/forms.py:90
 msgid "New member"
 msgstr "Nuovo membro"
 
-#: apps/pootle_language/forms.py:90
+#: apps/pootle_language/forms.py:91
 msgid "Add a user to this team"
 msgstr "Aggiungi un utente a questo team"
 
-#: apps/pootle_language/forms.py:97
+#: apps/pootle_language/forms.py:98
 msgid "Role"
 msgstr "Ruolo"
 
-#: apps/pootle_language/forms.py:128
+#: apps/pootle_language/forms.py:129
 msgid "Role is required when adding a new member"
 msgstr "Il ruolo è richiesto quando si aggiunge un nuovo membro"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:184
+#: apps/pootle_language/forms.py:155 core/forms.py:184
 msgid "Reject"
 msgstr "Rifiuta"
 
-#: apps/pootle_language/forms.py:155 core/forms.py:185
+#: apps/pootle_language/forms.py:156 core/forms.py:185
 msgid "Accept"
 msgstr "Accetta"
 
-#: apps/pootle_language/forms.py:157
+#: apps/pootle_language/forms.py:158
 #, fuzzy
 msgid "Filter by suggester"
 msgstr "Filtra suggerimenti"
 
-#: apps/pootle_language/forms.py:163
+#: apps/pootle_language/forms.py:164
 #, fuzzy
 msgid "Filter by state"
 msgstr "Filtro"
 
-#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:174 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Progetto"
@@ -490,11 +490,11 @@ msgstr "Equazione delle forme plurali"
 msgid "Unit"
 msgstr "Unità"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:65
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
 msgid "State"
 msgstr "Stato"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:63
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
 msgid "Source"
 msgstr "Sorgente"
 
@@ -877,23 +877,23 @@ msgstr "Cerca"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Cerca (Ctrl+Maiusc+S)<br/>Inserici e premi Invio per cercare"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:414
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:440
 msgid "Exact Match"
 msgstr "Corrispondenza esatta"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:420
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:446
 msgid "Source Text"
 msgstr "Testo sorgente"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:421
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:447
 msgid "Target Text"
 msgstr "Testo destinazione"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:422
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:448
 msgid "Comments"
 msgstr "Commenti"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:423
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:449
 msgid "Locations"
 msgstr "Posizioni"
 
@@ -951,7 +951,7 @@ msgstr "Controlli qualità"
 
 #: apps/pootle_project/models.py:221
 #, fuzzy
-msgid "Automatic detection of gnu/non-gnu file layouts (slower)"
+msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
 msgstr "Rilevazione automatica (più lento)"
 
 #: apps/pootle_project/models.py:222
@@ -1007,19 +1007,23 @@ msgstr ""
 msgid "Translation project (%s) has been deleted"
 msgstr "Pagina principale del progetto di traduzione"
 
-#: apps/pootle_statistics/models.py:64
+#: apps/pootle_statistics/models.py:63
 msgid "Target"
 msgstr "Destinazione"
 
-#: apps/pootle_statistics/models.py:66
+#: apps/pootle_statistics/models.py:65
 msgid "Comment"
 msgstr "Commento"
+
+#: apps/pootle_store/abstracts.py:250 apps/pootle_store/abstracts.py:257
+msgid "Path"
+msgstr "Percorso"
 
 #: apps/pootle_store/constants.py:65
 msgid "Obsolete"
 msgstr "Obsoleto"
 
-#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:212
+#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:213
 #: templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Necessita revisione"
@@ -1041,11 +1045,11 @@ msgstr "Permessi insufficienti per accedere alla modalità suggerimenti."
 msgid "Insufficient rights to access translation mode."
 msgstr "Permessi insufficienti per accedere alla modalità traduzione."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:672
+#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:644
 msgid "Insufficient rights to access review mode."
 msgstr "Permessi insufficienti per accedere alla modalità revisione."
 
-#: apps/pootle_store/forms.py:101
+#: apps/pootle_store/forms.py:102
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
@@ -1053,17 +1057,13 @@ msgstr "Permessi insufficienti per accedere alla modalità revisione."
 msgid "Plural Form %d"
 msgstr "Forma plurale %d"
 
-#: apps/pootle_store/forms.py:268
+#: apps/pootle_store/forms.py:270
 msgid "Needs work flag must be cleared"
 msgstr "Il flag 'Necessita revisione' deve essere tolto"
 
-#: apps/pootle_store/forms.py:328
+#: apps/pootle_store/forms.py:354
 msgid "Translator comment"
 msgstr "Commento del traduttore"
-
-#: apps/pootle_store/models.py:1005 apps/pootle_store/models.py:1012
-msgid "Path"
-msgstr "Percorso"
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -1099,37 +1099,37 @@ msgstr "È stato rifiutato il suggerimento di %s"
 msgid "Added suggestion"
 msgstr "Suggerimento inserito"
 
-#: apps/pootle_store/utils.py:65
+#: apps/pootle_store/utils.py:67
 #, fuzzy
 msgid "Suggestion accepted with comment"
 msgstr "Suggerimento accettato."
 
-#: apps/pootle_store/utils.py:67
+#: apps/pootle_store/utils.py:69
 msgid "Suggestion rejected with comment"
 msgstr "Suggerimento rifiutato con commento"
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:105
+#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:105
 msgid "Path too long."
 msgstr "Percorso troppo lungo."
 
-#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:107
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:107
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "Argomenti mancanti."
 
-#: apps/pootle_store/views.py:235
+#: apps/pootle_store/views.py:233
 msgid "Failed to remove comment."
 msgstr "Errore duramente la rimozione del commento."
 
-#: apps/pootle_store/views.py:270
+#: apps/pootle_store/views.py:268
 msgid "Comment submission failed."
 msgstr "L'invio del commento è fallito."
 
-#: apps/pootle_store/views.py:603
+#: apps/pootle_store/views.py:575
 msgid "Failed to process submission."
 msgstr "Errore durante il processo di invio."
 
-#: apps/pootle_store/views.py:643
+#: apps/pootle_store/views.py:615
 msgid "Failed to process suggestion."
 msgstr "Impossibile inviare la proposta."
 
@@ -1261,7 +1261,7 @@ msgid ""
 msgstr ""
 "Utile per dare maggiori informazioni o istruzioni. Markup consentito: %s"
 
-#: checks.py:62
+#: checks.py:64
 msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
@@ -1269,7 +1269,7 @@ msgstr ""
 "Ci sono dei profili utente con indirizzi email duplicati; Questo non è "
 "permesso in Pootle 2.8."
 
-#: checks.py:64
+#: checks.py:66
 msgid ""
 "Try using 'pootle find_duplicate_emails', and then update user emails with "
 "'pootle update_user_email username email'. You might also want to consider "
@@ -1280,46 +1280,46 @@ msgstr ""
 "Eventualmente puoi considerare l'utilizzo dei comandi pootle merge_user o "
 "purge_user"
 
-#: checks.py:88
+#: checks.py:90
 msgid "Your version of Django is too old."
 msgstr "La tua versione di Django è troppo vecchia."
 
-#: checks.py:89
+#: checks.py:91
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
 msgstr "Prova con pip install --upgrade 'Django==%s'"
 
-#: checks.py:96
+#: checks.py:98
 msgid "Your version of lxml is too old."
 msgstr "La tua versione di lxml è troppo vecchia."
 
-#: checks.py:97
+#: checks.py:99
 msgid "Try pip install --upgrade lxml"
 msgstr "Prova con pip install --upgrade lxml"
 
-#: checks.py:103
+#: checks.py:105
 msgid "Your version of Translate Toolkit is too old."
 msgstr "La tua versione del Translate Toolkit è troppo vecchia."
 
-#: checks.py:104
+#: checks.py:106
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr "Prova con pip install --upgrade translate-toolkit"
 
-#: checks.py:124
+#: checks.py:126
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr "Impossibile connettersi a Redis (%s)"
 
-#: checks.py:125
+#: checks.py:127
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr "Assicurati che Redis sia in esecuzione su %(host)s:%(port)s"
 
-#: checks.py:135
+#: checks.py:137
 msgid "Your version of Redis is too old."
 msgstr "La versione di Redis è troppo vecchia."
 
-#: checks.py:136
+#: checks.py:138
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
 msgstr ""
@@ -1327,22 +1327,22 @@ msgstr ""
 "%s"
 
 #. Translators: a worker processes background tasks
-#: checks.py:148
+#: checks.py:149
 #, fuzzy
 msgid "No worker running."
 msgstr "Nessun Worker RQ in esecuzione."
 
 #. Translators: a worker processes background tasks
-#: checks.py:150
+#: checks.py:151
 #, fuzzy
 msgid "Run new workers with 'pootle rqworker'"
 msgstr "Lancia nuovi worker con manage.py rqworker"
 
-#: checks.py:165
+#: checks.py:166
 msgid "Cache backend is not set to Redis."
 msgstr "Il backend di cache non è impostato su Redis."
 
-#: checks.py:166
+#: checks.py:167
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1351,43 +1351,43 @@ msgstr ""
 "Imposta il backend di cache di default a django_redis.cache.RedisCache\n"
 "Impostazioni correnti: %r"
 
-#: checks.py:176
+#: checks.py:177
 msgid "Could not initiate a Redis cache connection"
 msgstr "Errore nella connessione alla cache di Redis"
 
-#: checks.py:177 checks.py:191
+#: checks.py:178 checks.py:192
 msgid "Double-check your CACHES settings"
 msgstr "Controlla le tue impostazioni di CACHES"
 
-#: checks.py:189
+#: checks.py:190
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
 
-#: checks.py:197
+#: checks.py:198
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "La modalità DEBUG è attiva. Non farlo in produzione!"
 
-#: checks.py:198
+#: checks.py:199
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Imposta DEBUG = False nelle impostazioni di Pootle"
 
-#: checks.py:204
+#: checks.py:205
 msgid "The sqlite database backend is unsupported"
 msgstr "Il backend per il database sqlite non è supportato"
 
-#: checks.py:205
+#: checks.py:206
 #, fuzzy
 msgid "Set your default database engine to postgresql or mysql"
 msgstr ""
 "Imposta il tuo motore database di default a postgresql_psycopg2 o mysql"
 
-#: checks.py:212
+#: checks.py:213
 msgid "Not using cached_db as session engine"
 msgstr "cached_db non utilizzato come motore di sessione"
 
-#: checks.py:213
+#: checks.py:214
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1396,11 +1396,11 @@ msgstr ""
 "Imposta SESSION_ENGINE a django.contrib.sessions.backend.cached_db\n"
 "Impostazioni correnti: %r"
 
-#: checks.py:221
+#: checks.py:222
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "POOTLE_CONTACT_EMAIL non è impostato."
 
-#: checks.py:222
+#: checks.py:223
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1408,12 +1408,12 @@ msgstr ""
 "Imposta POOTLE_CONTACT_EMAIL per permettere agli utenti di contattare gli "
 "amministratori attraverso il modulo di contatto di Pootle."
 
-#: checks.py:230
+#: checks.py:231
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL utilizza le impostazioni di default %r."
 
-#: checks.py:232
+#: checks.py:233
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1421,11 +1421,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL è l'indirizzo che riceverà i messaggi inviati "
 "attraverso il modulo di contatto."
 
-#: checks.py:239
+#: checks.py:240
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "DEFAULT_FROM_EMAIL non è impostato."
 
-#: checks.py:240 checks.py:250
+#: checks.py:241 checks.py:251
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1434,36 +1434,36 @@ msgstr ""
 "Non dimenticare di controllare le impostazioni del server di posta "
 "elettronica."
 
-#: checks.py:248
+#: checks.py:249
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL utilizza le seguenti impostazioni di default %r."
 
-#: checks.py:259
+#: checks.py:260
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "Manca il POOTLE_MARKUP_FILTER."
 
-#: checks.py:260
+#: checks.py:261
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Imposta il POOTLE_MARKUP_FILTER."
 
-#: checks.py:265
+#: checks.py:266
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Valore non valido in POOTLE_MARKUP_FILTER."
 
-#: checks.py:266
+#: checks.py:267
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Imposta un valore valido per POOTLE_MARKUP_FILTER."
 
-#: checks.py:280
+#: checks.py:281
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "Markup non valido in POOTLE_MARKUP_FILTER."
 
-#: checks.py:281
+#: checks.py:282
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Imposta un markup valido per POOTLE_MARKUP_FILTER."
 
-#: checks.py:286
+#: checks.py:287
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1472,65 +1472,65 @@ msgstr ""
 "POOTLE_MARKUP_FILTER è impostato al markup '%s', ma non è possibile trovare "
 "il pacchetto che lo fornisce."
 
-#: checks.py:288
+#: checks.py:289
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Installa il pacchetto o modifica POOTLE_MARKUP_FILTER."
 
-#: checks.py:299
+#: checks.py:300
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "POOTLE_TM_SERVER['%s'] non ha un INDEX_NAME."
 
-#: checks.py:300
+#: checks.py:301
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "Imposta un INDEX_NAME per POOTLE_TM_SERVER['%s']."
 
-#: checks.py:306
+#: checks.py:307
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr "INDEX_NAME duplicato '%s' in POOTLE_TM_SERVER."
 
-#: checks.py:308
+#: checks.py:309
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr "Imposta un INDEX_NAME diverso per ogni server in POOTLE_TM_SERVER."
 
-#: checks.py:318
+#: checks.py:319
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "POOTLE_TM_SERVER['%s'] non ha nessun ENGINE."
 
-#: checks.py:319
+#: checks.py:320
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "Imposta un ENGINE per POOTLE_TM_SERVER['%s']."
 
-#: checks.py:326
+#: checks.py:327
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "POOTLE_TM_SERVER['%s'] non ha nessun HOST."
 
-#: checks.py:327
+#: checks.py:328
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "Imposta un HOST per POOTLE_TM_SERVER['%s']."
 
-#: checks.py:334
+#: checks.py:335
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "POOTLE_TM_SERVER['%s'] non ha nessun PORT."
 
-#: checks.py:335
+#: checks.py:336
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "Imposta un PORT per POOTLE_TM_SERVER['%s']."
 
-#: checks.py:344
+#: checks.py:345
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr "POOTLE_TM_SERVER['%s'] ha un WEIGHT minore di 0,0 o maggiore di 1,0"
 
-#: checks.py:346
+#: checks.py:347
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
@@ -1538,40 +1538,40 @@ msgstr ""
 "Imposta un WEIGHT compreso tra 0,0 e 1,0 (estremi inclusi) per "
 "POOTLE_TM_SERVER['%s']."
 
-#: checks.py:354
+#: checks.py:355
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
 msgstr ""
 
-#: checks.py:355
+#: checks.py:356
 #, python-format
 msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Imposta %s in POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:362
+#: checks.py:363
 #, fuzzy, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Valore non valido in POOTLE_MARKUP_FILTER."
 
-#: checks.py:364
+#: checks.py:365
 #, fuzzy, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "Imposta un valore valido per POOTLE_MARKUP_FILTER."
 
-#: checks.py:386
+#: checks.py:387
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "L'utente di default 'admin' ha ancora la password impostata a 'admin'."
 
-#: checks.py:388
+#: checks.py:389
 msgid "Remove the 'admin' user or change its password."
 msgstr "Elimina l'utente 'admin' o modifica la sua password."
 
-#: checks.py:402
+#: checks.py:403
 #, fuzzy
 msgid "Database connection uses transaction_hooks."
 msgstr "La connessione al database non implementa on_commit."
 
-#: checks.py:403
+#: checks.py:404
 #, fuzzy
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
@@ -1580,56 +1580,56 @@ msgstr ""
 "Imposta il DATABASES['default']['ENGINE'] in modo da utilizzare un backend "
 "tra quelli in transaction_hooks.backends."
 
-#: checks.py:423
+#: checks.py:424
 msgid "Email server is not available."
 msgstr "Il server delle email non è disponibile."
 
-#: checks.py:424
+#: checks.py:425
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "Controllare le impostazioni di posta elettronica ed assicurarsi che il "
 "server di posta elettronica stia funzionando."
 
-#: checks.py:451
+#: checks.py:452
 msgid "Revision is missing or has an incorrect value."
 msgstr "La revisione è mancante o ha un valore non valido."
 
-#: checks.py:452
+#: checks.py:453
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 "Esegui `revision --restore` per inizializzare il contatore delle revisioni."
 
-#: checks.py:466
+#: checks.py:467
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 
-#: checks.py:468
+#: checks.py:469
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
 
-#: checks.py:472
+#: checks.py:473
 msgid "Canonical URL is set to http://localhost."
 msgstr ""
 
-#: checks.py:474
+#: checks.py:475
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
 
-#: checks.py:504
+#: checks.py:505
 #, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "POOTLE_CONTACT_EMAIL non è impostato."
 
-#: checks.py:508
+#: checks.py:509
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "Il percorso ('%s') indicato in POOTLE_FS_WORKING_PATH non esiste."
 
-#: checks.py:510
+#: checks.py:511
 #, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
@@ -1637,7 +1637,7 @@ msgid ""
 msgstr ""
 "Crea la directory indicata in `POOTLE_FS_WORKING_PATH` o cambia il percorso."
 
-#: checks.py:515
+#: checks.py:516
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
@@ -1645,7 +1645,7 @@ msgstr ""
 "Pootle non ha i permessi di scrittura per il percorso ('%s') indicato in "
 "POOTLE_FS_WORKING_PATH."
 
-#: checks.py:518
+#: checks.py:519
 #, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
@@ -1654,9 +1654,21 @@ msgstr ""
 "Aggiungi il permesso di scrittura `POOTLE_FS_WORKING_PATH` o cambia le "
 "impostazioni"
 
-#: checks.py:537
+#: checks.py:538
 msgid "MySQL requires time zone settings."
 msgstr "MySQL richiede le impostazioni di fuso orario."
+
+#: checks.py:558
+msgid "Pootle does not yet support Python 3."
+msgstr ""
+
+#: checks.py:559 checks.py:565
+msgid "Use a Python 2.7 virtualenv."
+msgstr ""
+
+#: checks.py:564
+msgid "Pootle no longer supports Python versions older than 2.7"
+msgstr ""
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
