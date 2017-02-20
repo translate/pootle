@@ -28,7 +28,8 @@ from django.utils.http import urlquote
 
 from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import (
-    data_tool, format_syncers, format_updaters, frozen, terminology_matcher)
+    data_tool, format_syncers, format_updaters, frozen, terminology_matcher,
+    uniqueid)
 from pootle.core.log import (
     TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
     UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
@@ -253,6 +254,14 @@ class Unit(AbstractUnit):
         super(Unit, self).delete(*args, **kwargs)
 
     @property
+    def source_updated(self):
+        return self.source != self._frozen.source
+
+    @property
+    def context_updated(self):
+        return self.context != self._frozen.context
+
+    @property
     def changed(self):
         try:
             self.change
@@ -273,6 +282,10 @@ class Unit(AbstractUnit):
             kwargs.pop("comment_updated", None)
             or self._comment_updated)
         action = kwargs.pop("action", None) or getattr(self, "_save_action", None)
+
+        unitid = uniqueid.get(self.__class__)(self)
+        if unitid.changed:
+            self.unitid = unitid.getid()
 
         if not hasattr(self, '_log_user'):
             User = get_user_model()
