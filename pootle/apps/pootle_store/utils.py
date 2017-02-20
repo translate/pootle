@@ -13,7 +13,7 @@ from django.contrib.auth import get_user_model
 from django.template import loader
 from django.utils import timezone
 
-from pootle.core.delegate import site
+from pootle.core.delegate import site, unitid
 from pootle.core.mail import send_mail
 from pootle.core.signals import update_data
 from pootle.core.utils.timezone import make_aware
@@ -30,6 +30,50 @@ from .util import SuggestionStates
 User = get_user_model()
 
 
+class DefaultUnitid(object):
+
+    def __init__(self, unit):
+        self.unit = unit
+
+    @property
+    def changed(self):
+        return (
+            self.unit.source_updated
+            or self.unit.context_updated)
+
+    @property
+    def unit_sync_class(self):
+        return self.unit.store.syncer.unit_sync_class
+
+    def getid(self):
+        return self.unit_sync_class(self.unit).unitid
+
+
+class UnitUniqueId(object):
+
+    def __init__(self, unit):
+        self.unit = unit
+
+    @property
+    def format_name(self):
+        return self.unit.store.filetype.name
+
+    @property
+    def format_unitid(self):
+        format_unitids = unitid.gather(self.unit.__class__)
+        return (
+            format_unitids[self.format_name](self.unit)
+            if self.format_name in format_unitids
+            else format_unitids["default"](self.unit))
+
+    @property
+    def changed(self):
+        return self.format_unitid.changed
+
+    def getid(self):
+        return self.format_unitid.getid()
+
+
 class FrozenUnit(object):
     """Freeze unit vars for comparison"""
 
@@ -37,9 +81,14 @@ class FrozenUnit(object):
         self.unit = dict(
             source_f=unit.source_f,
             target_f=unit.target_f,
+            context=unit.context,
             submitter=unit.submitted_by,
             state=unit.state,
             translator_comment=unit.getnotes(origin="translator"))
+
+    @property
+    def context(self):
+        return self.unit["context"]
 
     @property
     def source(self):
