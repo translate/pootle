@@ -138,10 +138,16 @@ def test_update_from_ts(store0, test_fs):
 
 
 @pytest.mark.django_db
-def test_update_ts_plurals(store_po, test_fs):
+def test_update_ts_plurals(store_po, test_fs, ts):
+    project = store_po.translation_project.project
+    filetype_tool = project.filetype_tool
+    project.filetypes.add(ts)
+    filetype_tool.set_store_filetype(store_po, ts)
+
     with test_fs.open(['data', 'ts', 'add_plurals.ts']) as f:
         file_store = getclass(f)(f.read())
     store_po.update(file_store)
+
     assert store_po.units[0].hasplural()
 
     with test_fs.open(['data', 'ts', 'update_plurals.ts']) as f:
