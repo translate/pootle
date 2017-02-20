@@ -46,7 +46,8 @@ class DefaultUnitid(object):
         return self.unit.store.syncer.unit_sync_class
 
     def getid(self):
-        return self.unit_sync_class(self.unit).unitid
+        return self.unit_sync_class(
+            self.unit).convert().getid()
 
 
 class UnitUniqueId(object):
