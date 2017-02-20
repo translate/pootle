@@ -832,12 +832,16 @@ class Unit(AbstractUnit):
             sub_type = SubmissionTypes.MUTE_CHECK
         else:
             sub_type = SubmissionTypes.UNMUTE_CHECK
-
-        sub = Submission(creation_time=make_aware(timezone.now()),
-                         translation_project=self.store.translation_project,
-                         submitter=user, field=SubmissionFields.NONE,
-                         unit=self, store=self.store, type=sub_type,
-                         quality_check=check)
+        update_time = make_aware(timezone.now())
+        sub = Submission(
+            creation_time=update_time,
+            translation_project=self.store.translation_project,
+            submitter=user,
+            field=SubmissionFields.NONE,
+            unit=self,
+            store=self.store,
+            type=sub_type,
+            quality_check=check)
         sub.save()
         self.save(
             revision=Revision.incr(),
