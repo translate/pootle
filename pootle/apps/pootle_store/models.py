@@ -294,7 +294,7 @@ class Unit(AbstractUnit):
 
         unitid = uniqueid.get(self.__class__)(self)
         if unitid.changed:
-            self.unitid = unitid.getid()
+            self.setid(unitid.getid())
 
         if not hasattr(self, '_log_user'):
             User = get_user_model()
@@ -368,7 +368,7 @@ class Unit(AbstractUnit):
         super(Unit, self).save(*args, **kwargs)
         if created:
             unit_source = self.unit_source.model(unit=self)
-            unit_source.created_by = user
+            unit_source.created_by = submitted_by or user
             unit_source.created_with = changed_with
         elif source_updated:
             unit_source = self.unit_source.get()
