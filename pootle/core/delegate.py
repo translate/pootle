@@ -46,6 +46,8 @@ panels = Provider()
 serializers = Provider(providing_args=["instance"])
 deserializers = Provider(providing_args=["instance"])
 subcommands = Provider()
+uniqueid = Getter()
+unitid = Provider()
 url_patterns = Provider()
 
 # view.context_data
