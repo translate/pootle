@@ -283,6 +283,9 @@ class Unit(AbstractUnit):
             or self._comment_updated)
         action = kwargs.pop("action", None) or getattr(self, "_save_action", None)
 
+        if self.index is None:
+            self.index = self.store.max_index() + 1
+
         unitid = uniqueid.get(self.__class__)(self)
         if unitid.changed:
             self.unitid = unitid.getid()
