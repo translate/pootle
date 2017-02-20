@@ -298,6 +298,7 @@ def unit_form_factory(language, snplurals=None, request=None):
             return super(UnitForm, self).clean()
 
         def save(self, *args, **kwargs):
+            changed_with = kwargs.pop("changed_with", None)
             kwargs["commit"] = False
             unit = super(UnitForm, self).save(*args, **kwargs)
             with update_data_after(unit.store):
@@ -308,11 +309,18 @@ def unit_form_factory(language, snplurals=None, request=None):
                     unit.reviewed_by = None
                     unit.reviewed_on = None
                     unit._log_user = self.user
+                suggestion = self.cleaned_data["suggestion"]
+                user = (
+                    suggestion.user
+                    if suggestion
+                    else self.user)
                 unit.save(
+                    submitted_on=current_time,
+                    submitted_by=user,
+                    changed_with=changed_with,
                     action=self.cleaned_data.get("save_action"),
                     state_updated=self.cleaned_data.get("state_updated"),
                     target_updated=self.cleaned_data.get("target_updated"))
-                suggestion = self.cleaned_data["suggestion"]
                 translation_project = unit.store.translation_project
                 for field, old_value, new_value in self.updated_fields:
                     if field == SubmissionFields.TARGET and suggestion:
@@ -391,7 +399,6 @@ def unit_comment_form_factory(language):
                     new_value=self.cleaned_data['translator_comment']
                 )
                 sub.save()
-
             super(UnitCommentForm, self).save(**kwargs)
 
     return UnitCommentForm
