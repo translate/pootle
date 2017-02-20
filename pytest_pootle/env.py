@@ -477,8 +477,7 @@ class PootleTestEnv(object):
         suggestion, created_ = suggestion_review().add(
             unit,
             "Suggestion for %s" % (unit.target or unit.source),
-            user=member,
-            touch=False)
+            user=member)
         self._update_submission_times(unit, first_modified, created)
 
         # accept the suggestion 7 days later if not untranslated
@@ -498,8 +497,7 @@ class PootleTestEnv(object):
         suggestion2_, created_ = suggestion_review().add(
             unit,
             "Suggestion 2 for %s" % (unit.target or unit.source),
-            user=member2,
-            touch=False)
+            user=member2)
         self._update_submission_times(
             unit,
             first_modified + timedelta(days=14),
