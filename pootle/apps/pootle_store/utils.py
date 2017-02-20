@@ -248,6 +248,7 @@ class SuggestionsReview(object):
         unit._log_user = self.reviewer
         unit.save(
             submitted_by=suggestion.user,
+            submitted_on=current_time,
             changed_with=self.review_type,
             reviewed_by=self.reviewer,
             reviewed_on=make_aware(timezone.now()))
@@ -255,7 +256,7 @@ class SuggestionsReview(object):
     def reject_suggestion(self, suggestion):
         store = suggestion.unit.store
         suggestion.state = SuggestionStates.REJECTED
-        suggestion.review_time = timezone.now()
+        suggestion.review_time = make_aware(timezone.now())
         suggestion.reviewer = self.reviewer
         suggestion.save()
         self.create_submission(
@@ -263,7 +264,13 @@ class SuggestionsReview(object):
             SubmissionTypes.SUGG_REJECT,
             self.reviewer,
             creation_time=suggestion.review_time).save()
-
+        unit = suggestion.unit
+        if unit.changed:
+            # if the unit is translated and suggestion was rejected
+            # set the reviewer info
+            unit.change.reviewed_by = self.reviewer
+            unit.change.reviewed_on = suggestion.review_time
+            unit.change.save()
         update_data.send(store.__class__, instance=store)
 
     def accept_suggestions(self):
