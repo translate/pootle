@@ -181,6 +181,8 @@ class UnitUpdater(object):
     def save_unit(self):
         self.unit.save(
             revision=self.update.update_revision,
+            submitted_by=self.update.user,
+            submitted_on=self.at,
             changed_with=self.update.submission_type)
 
     def set_commented(self):
