@@ -275,6 +275,12 @@ class Unit(AbstractUnit):
         target_updated = kwargs.pop("target_updated", None) or self._target_updated
         state_updated = kwargs.pop("state_updated", None) or self._state_updated
         changed_with = kwargs.pop("changed_with", None) or SubmissionTypes.SYSTEM
+
+        reviewed_by = kwargs.pop("reviewed_by", None)
+        reviewed_on = kwargs.pop("reviewed_on", None)
+        submitted_by = kwargs.pop("submitted_by", None)
+        submitted_on = kwargs.pop("submitted_on", None)
+
         auto_translated = (
             kwargs.pop("auto_translated", None)
             or self._auto_translated)
@@ -380,10 +386,10 @@ class Unit(AbstractUnit):
                 unit=self,
                 changed_with=changed_with)
         if changed:
-            self.change.submitted_by = self.submitted_by
-            self.change.reviewed_by = self.reviewed_by
-            self.change.submitted_on = self.submitted_on
-            self.change.reviewed_on = self.reviewed_on
+            self.change.submitted_by = submitted_by
+            self.change.reviewed_by = reviewed_by
+            self.change.submitted_on = submitted_on
+            self.change.reviewed_on = reviewed_on
             self.change.save()
 
         if action and action == UNIT_ADDED:
