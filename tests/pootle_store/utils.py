@@ -15,7 +15,7 @@ from pootle.core.user import get_system_user
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 from pootle_store.constants import TRANSLATED
-from pootle_store.models import QualityCheck, Unit
+from pootle_store.models import QualityCheck, Unit, UnitChange
 from pootle_store.utils import UnitLifecycle
 
 
@@ -27,6 +27,45 @@ def test_frozen_unit(store0):
     assert frozen_unit.target == unit.target_f
     assert frozen_unit.state == unit.state
     assert frozen_unit.translator_comment == unit.getnotes(origin="translator")
+
+
+@pytest.mark.django_db
+def test_unit_create(store0, member):
+    unit = store0.UnitClass()
+    unit.store = store0
+    unit.source = multistring("Foo")
+    unit.index = store0.max_index() + 1
+    unit.save()
+    assert unit.submission_set.count() == 0
+    source = unit.unit_source.get()
+    assert source.created_by == get_system_user()
+    assert source.created_with == SubmissionTypes.SYSTEM
+    with pytest.raises(UnitChange.DoesNotExist):
+        unit.change
+
+    unit = store0.UnitClass()
+    unit.store = store0
+    unit.source = multistring("Foo2")
+    unit.index = store0.max_index() + 1
+    unit.save(submitted_by=member)
+    assert unit.submission_set.count() == 0
+    source = unit.unit_source.get()
+    assert source.created_by == member
+    assert source.created_with == SubmissionTypes.SYSTEM
+    with pytest.raises(UnitChange.DoesNotExist):
+        unit.change
+
+    unit = store0.UnitClass()
+    unit.store = store0
+    unit.source = multistring("Foo3")
+    unit.index = store0.max_index() + 1
+    unit.save(changed_with=SubmissionTypes.UPLOAD)
+    assert unit.submission_set.count() == 0
+    source = unit.unit_source.get()
+    assert source.created_by == get_system_user()
+    assert source.created_with == SubmissionTypes.UPLOAD
+    with pytest.raises(UnitChange.DoesNotExist):
+        unit.change
 
 
 @pytest.mark.django_db
@@ -51,6 +90,8 @@ def test_unit_lifecycle_create(store0):
     source = unit.unit_source.get()
     assert source.created_by == get_system_user()
     assert source.created_with == SubmissionTypes.SYSTEM
+    with pytest.raises(UnitChange.DoesNotExist):
+        unit.change
 
 
 @pytest.mark.django_db
@@ -62,6 +103,7 @@ def test_unit_lifecycle_update_state(store0, member):
     unit.state = TRANSLATED
     unit.reviewed_by = member
     unit.save()
+
     sub_state_update = lifecycle.get(Unit)(unit).sub_state_update()
     assert isinstance(sub_state_update, Submission)
     assert sub_state_update.unit == unit
