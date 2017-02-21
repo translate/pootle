@@ -288,24 +288,31 @@ def test_update_upload_defaults(store0, system):
     update_store(
         store0,
         [(unit_source, "%s UPDATED" % unit_source)],
-        user=system,
         store_revision=Revision.get() + 1)
     assert store0.units[0].submitted_by == system
+    assert store0.units[0].change.submitted_by == system
     assert (
         store0.units[0].submission_set.last().type
         == SubmissionTypes.SYSTEM)
 
 
 @pytest.mark.django_db
-def test_update_upload_member_user(store0, member):
+def test_update_upload_member_user(store0, system, member):
     store0.state = PARSED
-    unit_source = store0.units.first().source
+    original_unit = store0.units.first()
     update_store(
         store0,
-        [(unit_source, "%s UPDATED" % unit_source)],
+        [(original_unit.source, "%s UPDATED" % original_unit.source)],
         user=member,
-        store_revision=Revision.get() + 1)
-    assert store0.units[0].submitted_by == member
+        store_revision=Revision.get() + 1,
+        submission_type=SubmissionTypes.UPLOAD)
+    unit = store0.units[0]
+    assert unit.submitted_by == member
+    assert unit.change.submitted_by == member
+    assert unit.change.changed_with == SubmissionTypes.UPLOAD
+    unit_source = unit.unit_source.get()
+    unit_source.created_by == system
+    unit_source.created_with == SubmissionTypes.SYSTEM
 
 
 @pytest.mark.django_db
@@ -317,6 +324,12 @@ def test_update_upload_submission_type(store0):
         [(unit_source, "%s UPDATED" % unit_source)],
         submission_type=SubmissionTypes.UPLOAD,
         store_revision=Revision.get() + 1)
+    assert (
+        store0.units[0].unit_source.get().created_with
+        == SubmissionTypes.SYSTEM)
+    assert (
+        store0.units[0].change.changed_with
+        == SubmissionTypes.UPLOAD)
     assert (
         store0.units[0].submission_set.last().type
         == SubmissionTypes.UPLOAD)
@@ -356,38 +369,76 @@ def test_update_upload_again_new_revision(store0):
 
 
 @pytest.mark.django_db
-def test_update_upload_old_revision_unit_conflict(store0):
+def test_update_upload_old_revision_unit_conflict(store0, admin, member):
     original_revision = Revision.get()
+    original_unit = store0.units[0]
     update_store(
         store0,
         [("Hello, world", "Hello, world UPDATED")],
         submission_type=SubmissionTypes.UPLOAD,
-        store_revision=original_revision + 1)
+        store_revision=original_revision + 1,
+        user=admin)
+
+    assert store0.units[0].unit_source.get().created_by == admin
+    assert (
+        store0.units[0].unit_source.get().created_with
+        == SubmissionTypes.UPLOAD)
+
+    assert store0.units[0].change.submitted_by == admin
+    assert (
+        store0.units[0].change.changed_with
+        == SubmissionTypes.UPLOAD)
 
     # load update with expired revision and conflicting unit
     update_store(
         store0,
         [("Hello, world", "Hello, world CONFLICT")],
-        submission_type=SubmissionTypes.UPLOAD,
-        store_revision=original_revision)
+        submission_type=SubmissionTypes.SYSTEM,
+        store_revision=original_revision,
+        user=member)
 
     # unit target is not updated
     assert store0.units[0].target == "Hello, world UPDATED"
+    unit_source = original_unit.unit_source.get()
+    unit_source.created_by == admin
 
     # but suggestion is added
-    suggestion = store0.units[0].get_suggestions()[0].target
-    assert suggestion == "Hello, world CONFLICT"
+    suggestion = store0.units[0].get_suggestions()[0]
+    assert suggestion.target == "Hello, world CONFLICT"
+    assert suggestion.user == member
+
+    assert store0.units[0].unit_source.get().created_by == admin
+    assert (
+        store0.units[0].unit_source.get().created_with
+        == SubmissionTypes.UPLOAD)
+
+    assert store0.units[0].change.submitted_by == admin
+    assert (
+        store0.units[0].change.changed_with
+        == SubmissionTypes.UPLOAD)
 
 
 @pytest.mark.django_db
-def test_update_upload_new_revision_new_unit(store0):
+def test_update_upload_new_revision_new_unit(store0, member):
     file_name = "pytest_pootle/data/po/tutorial/en/tutorial_update_new_unit.po"
     store0.state = PARSED
-
-    _update_from_upload_file(store0, file_name)
-
+    _update_from_upload_file(
+        store0,
+        file_name,
+        user=member,
+        submission_type=SubmissionTypes.NORMAL)
+    unit = store0.units.last()
+    unit_source = unit.unit_source.get()
     # the new unit has been added
-    assert store0.units.last().target == 'Goodbye, world'
+    assert unit.target == 'Goodbye, world'
+    assert unit_source.created_by == member
+    assert (
+        unit_source.created_with
+        == SubmissionTypes.NORMAL)
+    assert unit.change.submitted_by == member
+    assert (
+        unit.change.changed_with
+        == SubmissionTypes.NORMAL)
 
 
 @pytest.mark.django_db
