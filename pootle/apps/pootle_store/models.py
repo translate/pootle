@@ -588,6 +588,7 @@ class Unit(AbstractUnit):
 
             changed = True
 
+        # this is problematic - it compares getid, but then sets getid *or* source
         if self.unitid != unit.getid():
             self.unitid = unicode(unit.getid()) or unicode(unit.source)
             self.unitid_hash = md5(self.unitid.encode("utf-8")).hexdigest()
