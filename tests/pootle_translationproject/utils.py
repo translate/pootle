@@ -158,6 +158,11 @@ def test_tp_tool_update(po_directory, tp0, templates):
     newunit.context = "something-else-again"
     unit.store.addunit(newunit)
 
+    update_unit = unit.store.units.exclude(
+        source_f__in=[unit.source_f, newunit.source_f]).first()
+    update_unit.target = "UPDATED TARGET"
+    update_unit.save()
+
     tp0_tool.update_from_tp(tp0, new_tp)
     _test_tp_match(tp0, new_tp, update=True)
 
