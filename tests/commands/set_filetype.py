@@ -103,8 +103,3 @@ def test_cmd_set_project_filetypes_bad():
             "set_filetype",
             "--project=project0",
             "FORMAT_DOES_NOT_EXIST")
-    with pytest.raises(CommandError):
-        call_command(
-            "set_filetype",
-            "--project=PROJECT_DOES_NOT_EXIST",
-            "po")

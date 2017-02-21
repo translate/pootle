@@ -39,14 +39,8 @@ class Command(PootleCommand):
     def get_projects(self):
         if not self.projects:
             return Project.objects.all()
-        projects = []
-        for project in self.projects:
-            # ensure all projects are valid before proceeding
-            try:
-                projects.append(Project.objects.get(code=project))
-            except Project.DoesNotExist:
-                raise CommandError("Unrecognized project '%s'" % project)
-        return projects
+
+        return Project.objects.filter(code__in=self.projects)
 
     def get_filetype(self, name):
         try:
