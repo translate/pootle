@@ -18,9 +18,9 @@ from translate.misc.multistring import multistring
 from pootle.core.exceptions import Http400
 from pootle_app.models.permissions import check_permission
 from pootle_comment import get_model as get_comment_model
-from pootle_store.constants import TRANSLATED, UNTRANSLATED
-from pootle_store.models import QualityCheck, Suggestion, Unit
 from pootle_statistics.models import Submission, SubmissionTypes
+from pootle_store.constants import TRANSLATED, UNTRANSLATED
+from pootle_store.models import QualityCheck, Suggestion, Unit, UnitChange
 from pootle_store.views import get_units, toggle_qualitycheck
 
 
@@ -59,7 +59,8 @@ def test_get_units_ordered(rf, default, admin, numbered_po):
 
 
 @pytest.mark.django_db
-def test_submit_with_suggestion_and_comment(client, request_users, settings):
+def test_submit_with_suggestion_and_comment(client, request_users,
+                                            settings, system):
     """Tests translation can be applied after suggestion is accepted."""
     settings.POOTLE_CAPTCHA_ENABLED = False
     Comment = get_comment_model()
@@ -87,6 +88,8 @@ def test_submit_with_suggestion_and_comment(client, request_users, settings):
         HTTP_X_REQUESTED_WITH='XMLHttpRequest'
     )
 
+    suggestion = Suggestion.objects.get(id=sugg.id)
+    unit = Unit.objects.get(id=unit.id)
     if check_permission('translate', response.wsgi_request):
         assert response.status_code == 200
 
@@ -95,21 +98,28 @@ def test_submit_with_suggestion_and_comment(client, request_users, settings):
         assert content['newtargets'] == [edited_target]
         assert content['user_score'] == response.wsgi_request.user.public_score
         assert content['checks'] is None
+        unit_source = unit.unit_source.get()
+        assert unit_source.created_by == system
+        assert unit_source.created_with == SubmissionTypes.SYSTEM
+        assert unit.change.submitted_by == suggestion.user
+        assert unit.change.reviewed_by == user
+        assert unit.change.changed_with == SubmissionTypes.NORMAL
 
-        accepted_suggestion = Suggestion.objects.get(id=sugg.id)
-        updated_unit = Unit.objects.get(id=unit.id)
-
-        assert accepted_suggestion.state == 'accepted'
-        assert str(updated_unit.target) == edited_target
+        assert suggestion.state == 'accepted'
+        assert str(unit.target) == edited_target
         assert (Comment.objects
-                       .for_model(accepted_suggestion)
+                       .for_model(suggestion)
                        .get().comment == comment)
     else:
         assert response.status_code == 403
+        assert suggestion.state == "pending"
+        assert unit.target == ""
+        with pytest.raises(UnitChange.DoesNotExist):
+            unit.change
 
 
 @pytest.mark.django_db
-def test_submit_with_suggestion(client, request_users, settings):
+def test_submit_with_suggestion(client, request_users, settings, system):
     """Tests translation can be applied after suggestion is accepted."""
     settings.POOTLE_CAPTCHA_ENABLED = False
     unit = Unit.objects.filter(suggestion__state='pending',
@@ -135,12 +145,18 @@ def test_submit_with_suggestion(client, request_users, settings):
         HTTP_X_REQUESTED_WITH='XMLHttpRequest'
     )
 
+    suggestion = Suggestion.objects.get(id=sugg.id)
+    unit = Unit.objects.get(id=unit.id)
     if check_permission('translate', response.wsgi_request):
         assert response.status_code == 200
-        accepted_suggestion = Suggestion.objects.get(id=sugg.id)
-        updated_unit = Unit.objects.get(id=unit.id)
-        assert accepted_suggestion.state == 'accepted'
-        assert str(updated_unit.target) == sugg.target_f
+        unit_source = unit.unit_source.get()
+        assert unit_source.created_by == system
+        assert unit_source.created_with == SubmissionTypes.SYSTEM
+        assert unit.change.submitted_by == suggestion.user
+        assert unit.change.reviewed_by == user
+        assert unit.change.changed_with == SubmissionTypes.NORMAL
+        assert suggestion.state == 'accepted'
+        assert str(unit.target) == sugg.target_f
         unit_submissions = unit_submissions.exclude(
             type=SubmissionTypes.SUGG_ACCEPT
         )
@@ -148,6 +164,10 @@ def test_submit_with_suggestion(client, request_users, settings):
 
     else:
         assert response.status_code == 403
+        assert suggestion.state == "pending"
+        assert unit.target == ""
+        with pytest.raises(UnitChange.DoesNotExist):
+            unit.change
 
 
 @pytest.mark.django_db
