@@ -18,6 +18,7 @@ from pytest_pootle.utils import create_store
 from import_export.exceptions import UnsupportedFiletypeError
 from import_export.utils import import_file
 from pootle_app.models.permissions import check_user_permission
+from pootle_statistics.models import SubmissionTypes
 from pootle_store.constants import NEW, OBSOLETE, PARSED, TRANSLATED
 from pootle_store.models import Store, Unit
 
@@ -104,6 +105,11 @@ def test_import_to_empty(project0_nongnu, import_tps, site_users):
                                                         tp.directory))
     if allow_add_and_obsolete:
         assert tp.stores.get(pootle_path=store.pootle_path).units.count() == 1
+        unit_source = store.units[0].unit_source.get()
+        assert unit_source.created_with == SubmissionTypes.UPLOAD
+        assert unit_source.created_by == user
+        assert store.units[0].change.changed_with == SubmissionTypes.UPLOAD
+        assert store.units[0].change.submitted_by == user
     else:
         assert tp.stores.get(pootle_path=store.pootle_path).units.count() == 0
 
@@ -133,6 +139,11 @@ def test_import_add_and_obsolete_units(project0_nongnu, import_tps,
     if allow_add_and_obsolete:
         assert Unit.objects.filter(store=store, state=OBSOLETE).count() == 1
         assert store.units.filter(state=TRANSLATED).count() == 1
+        unit_source = store.units[0].unit_source.get()
+        assert unit_source.created_with == SubmissionTypes.UPLOAD
+        assert unit_source.created_by == user
+        assert store.units[0].change.changed_with == SubmissionTypes.UPLOAD
+        assert store.units[0].change.submitted_by == user
         assert Unit.objects.filter(store=store).count() == 2
     else:
         assert store.units.all().count() == 1
