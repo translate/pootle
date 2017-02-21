@@ -118,9 +118,17 @@ class SuggestionsReview(object):
     reject_email_template = 'editor/email/suggestions_rejected_with_comment.txt'
     reject_email_subject = _(u"Suggestion rejected with comment")
 
-    def __init__(self, suggestions=None, reviewer=None):
+    def __init__(self, suggestions=None, reviewer=None, review_type=None):
         self.suggestions = suggestions
         self.reviewer = reviewer
+        self._review_type = review_type
+
+    @property
+    def review_type(self):
+        return (
+            SubmissionTypes.SYSTEM
+            if self._review_type is None
+            else self._review_type)
 
     @property
     def users_and_suggestions(self):
@@ -166,7 +174,7 @@ class SuggestionsReview(object):
                 user=user,
                 state=SuggestionStates.PENDING,
                 target=translation,
-                creation_time=timezone.now())
+                creation_time=make_aware(timezone.now()))
             self.create_submission(
                 suggestion,
                 SubmissionTypes.SUGG_ADD,
@@ -238,7 +246,11 @@ class SuggestionsReview(object):
         unit.reviewed_by = self.reviewer
         unit.reviewed_on = unit.submitted_on
         unit._log_user = self.reviewer
-        unit.save()
+        unit.save(
+            submitted_by=suggestion.user,
+            changed_with=self.review_type,
+            reviewed_by=self.reviewer,
+            reviewed_on=make_aware(timezone.now()))
 
     def reject_suggestion(self, suggestion):
         store = suggestion.unit.store
