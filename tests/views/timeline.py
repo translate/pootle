@@ -329,10 +329,9 @@ def test_timeline_view_unit_with_suggestion_and_comment(client, request_users,
 def test_timeline_view_unit_with_creation(client, request_users,
                                           system, admin, store0):
     # add a creation submission for a unit and test with that
-    index = max(store0.unit_set.values_list("index", flat=True)) + 1
     unit = Unit.objects.create(
         state=TRANSLATED, source_f="Foo", target_f="Bar",
-        store=store0, index=index)
+        store=store0)
     # save and get the unit to deal with mysql's microsecond issues
     unit.save()
     unit = Unit.objects.get(pk=unit.pk)

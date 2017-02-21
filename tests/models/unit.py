@@ -289,7 +289,7 @@ def test_unit_repr():
 
 @pytest.mark.django_db
 def test_unit_po_plurals(store_po):
-    unit = Unit(store=store_po, index=1)
+    unit = Unit(store=store_po)
     unit_po = pounit('bar')
     unit_po.msgid_plural = ['bars']
     unit.update(unit_po)
@@ -302,7 +302,7 @@ def test_unit_po_plurals(store_po):
 def test_unit_ts_plurals(store_po, test_fs):
     with test_fs.open(['data', 'ts', 'add_plurals.ts']) as f:
         file_store = getclass(f)(f.read())
-    unit = Unit(store=store_po, index=1)
+    unit = Unit(store=store_po)
     unit_ts = file_store.units[0]
     unit.update(unit_ts)
     assert unit.hasplural()

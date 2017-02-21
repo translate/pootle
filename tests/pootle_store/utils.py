@@ -34,7 +34,6 @@ def test_unit_lifecycle_instance(store0):
     unit = store0.UnitClass()
     unit.store = store0
     unit.source_f = multistring("Foo")
-    unit.index = store0.max_index() + 1
     unit.save()
     unit_lifecycle = lifecycle.get(Unit)(unit)
     assert isinstance(unit_lifecycle, UnitLifecycle)
@@ -48,7 +47,6 @@ def test_unit_lifecycle_create(store0):
     unit = store0.UnitClass()
     unit.store = store0
     unit.source_f = multistring("Foo")
-    unit.index = store0.max_index() + 1
     unit.save()
     source = unit.unit_source.get()
     assert source.created_by == get_system_user()
@@ -62,7 +60,6 @@ def test_unit_lifecycle_update_state(store0, member):
     unit.source_f = multistring("Foo")
     unit.target_f = multistring("Bar")
     unit.state = TRANSLATED
-    unit.index = store0.max_index() + 1
     unit.reviewed_by = member
     unit.save()
     sub_state_update = lifecycle.get(Unit)(unit).sub_state_update()
@@ -86,7 +83,6 @@ def test_unit_lifecycle_update_comment(store0, member):
     unit.source_f = multistring("Foo")
     unit.target_f = multistring("Bar")
     unit.comment = "SOME COMMENT"
-    unit.index = store0.max_index() + 1
     unit.commented_by = member
     unit.save()
     sub_comment_update = lifecycle.get(Unit)(unit).sub_comment_update()
@@ -110,7 +106,6 @@ def test_unit_lifecycle_update_source(store0, member):
     unit.source_f = multistring("Foo")
     unit.source_f = multistring("Bar")
     unit.state = TRANSLATED
-    unit.index = store0.max_index() + 1
     unit.submitted_by = member
     unit.save()
     sub_source_update = lifecycle.get(Unit)(unit).sub_source_update()
@@ -134,7 +129,6 @@ def test_unit_lifecycle_update_target(store0, member):
     unit.source_f = multistring("Foo")
     unit.target_f = multistring("Bar")
     unit.state = TRANSLATED
-    unit.index = store0.max_index() + 1
     unit.submitted_by = member
     unit.save()
     sub_target_update = lifecycle.get(Unit)(unit).sub_target_update()
@@ -156,7 +150,6 @@ def test_unit_lifecycle_mute_qc(store0, member):
     unit = store0.UnitClass()
     unit.store = store0
     unit.source_f = multistring("Foo")
-    unit.index = store0.max_index() + 1
     unit.save()
     unit_lifecycle = lifecycle.get(Unit)(unit)
 
@@ -194,7 +187,6 @@ def test_unit_lifecycle_unmute_qc(store0, member):
     unit = store0.UnitClass()
     unit.store = store0
     unit.source_f = multistring("Foo")
-    unit.index = store0.max_index() + 1
     unit.save()
     unit_lifecycle = lifecycle.get(Unit)(unit)
 
@@ -232,7 +224,6 @@ def test_unit_lifecycle_create_subs(store0, member):
     unit = store0.UnitClass()
     unit.store = store0
     unit.source_f = multistring("Foo")
-    unit.index = store0.max_index() + 1
     unit.save()
 
     class DummyUnitLifecycle(UnitLifecycle):
@@ -259,7 +250,6 @@ def test_unit_lifecycle_update(store0, member):
     unit = store0.UnitClass()
     unit.store = store0
     unit.source_f = multistring("Foo")
-    unit.index = store0.max_index() + 1
     unit.save()
 
     class DummyUnitLifecycle(UnitLifecycle):
