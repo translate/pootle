@@ -387,7 +387,7 @@ class Unit(AbstractUnit):
                 changed_with=changed_with)
         if changed:
             self.change.changed_with = changed_with
-            self.change.submitted_by = submitted_by
+            self.change.submitted_by = submitted_by or self.submitted_by
             self.change.reviewed_by = reviewed_by
             self.change.submitted_on = submitted_on
             self.change.reviewed_on = reviewed_on
