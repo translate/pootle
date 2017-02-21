@@ -1314,9 +1314,6 @@ class Store(AbstractStore):
             return units[0]
 
     def findid(self, id):
-        if hasattr(self, "id_index"):
-            return self.id_index.get(id, None)
-
         unitid_hash = md5(id.encode("utf-8")).hexdigest()
         try:
             return self.unit_set.get(unitid_hash=unitid_hash)
