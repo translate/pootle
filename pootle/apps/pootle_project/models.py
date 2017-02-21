@@ -59,6 +59,7 @@ PROJECT_CHECKERS = {
     "drupal": checks.DrupalChecker,
     "terminology": checks.TermChecker,
     "l20n": checks.L20nChecker,
+    "ios": checks.IOSChecker,
 }
 
 
