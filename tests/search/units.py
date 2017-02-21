@@ -120,7 +120,7 @@ def _test_units_contribution_filter(qs, user, unit_filter):
         expected = qs.filter(
             submission__submitter=user,
             submission__type__in=SubmissionTypes.EDIT_TYPES)
-        expected = expected.exclude(submitted_by=user).distinct()
+        expected = expected.exclude(change__submitted_by=user).distinct()
     assert (
         list(expected.order_by("pk"))
         == list(result.order_by("pk")))
