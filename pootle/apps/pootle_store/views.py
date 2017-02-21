@@ -38,6 +38,7 @@ from pootle_app.models.permissions import (check_permission,
 from pootle_comment.forms import UnsecuredCommentForm
 from pootle_language.models import Language
 from pootle_misc.util import ajax_required
+from pootle_statistics.models import SubmissionTypes
 
 from .decorators import get_unit_context
 from .forms import UnitSearchForm, unit_comment_form_factory, unit_form_factory
@@ -550,7 +551,10 @@ def submit(request, unit, **kwargs_):
     if form.is_valid():
         suggestion = form.cleaned_data['suggestion']
         if suggestion:
-            review.get(Suggestion)([suggestion], request.user).accept()
+            review.get(Suggestion)(
+                [suggestion],
+                request.user,
+                SubmissionTypes.NORMAL).accept()
             if form.cleaned_data['comment']:
                 kwargs = dict(
                     comment=form.cleaned_data['comment'],
@@ -564,7 +568,7 @@ def submit(request, unit, **kwargs_):
             # Update current unit instance's attributes
             # important to set these attributes after saving Submission
             # because we need to access the unit's state before it was saved
-            form.save()
+            form.save(changed_with=SubmissionTypes.NORMAL)
             json['checks'] = _get_critical_checks_snippet(request, unit)
 
         json['user_score'] = request.user.public_score
@@ -660,7 +664,9 @@ def accept_suggestion(request, unit, suggid, **kwargs_):
     except ObjectDoesNotExist:
         raise Http404
     review.get(Suggestion)(
-        [suggestion], request.user).accept(request.POST.get("comment"))
+        [suggestion],
+        request.user,
+        SubmissionTypes.NORMAL).accept(request.POST.get("comment"))
     json = {
         'udbid': unit.id,
         'sugid': suggid,
