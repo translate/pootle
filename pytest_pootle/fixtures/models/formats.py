@@ -17,6 +17,13 @@ def po():
 
 
 @pytest.fixture
+def ts():
+    from pootle_format.models import Format
+
+    return Format.objects.get(name="ts")
+
+
+@pytest.fixture
 def po2():
     from pootle.core.delegate import formats
 
