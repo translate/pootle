@@ -385,12 +385,18 @@ class Unit(AbstractUnit):
             self.change = UnitChange(
                 unit=self,
                 changed_with=changed_with)
+        submitted_by = submitted_by or self.submitted_by
         if changed:
-            self.change.changed_with = changed_with
-            self.change.submitted_by = submitted_by or self.submitted_by
-            self.change.reviewed_by = reviewed_by
-            self.change.submitted_on = submitted_on
-            self.change.reviewed_on = reviewed_on
+            if changed_with is not None:
+                self.change.changed_with = changed_with
+            if submitted_by is not None:
+                self.change.submitted_by = submitted_by
+            if reviewed_by is not None:
+                self.change.reviewed_by = reviewed_by
+            if submitted_on is not None:
+                self.change.submitted_on = submitted_on
+            if reviewed_on is not None:
+                self.change.reviewed_on = reviewed_on
             self.change.save()
 
         if action and action == UNIT_ADDED:
