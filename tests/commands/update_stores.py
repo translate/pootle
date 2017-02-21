@@ -8,7 +8,7 @@
 
 import pytest
 
-from django.core.management import call_command
+from django.core.management import CommandError, call_command
 
 
 @pytest.mark.cmd
@@ -42,3 +42,12 @@ def test_update_stores_project_tree_none(capfd, project0):
     out, err = capfd.readouterr()
     assert not out
     assert not err
+
+
+@pytest.mark.cmd
+@pytest.mark.django_db
+def test_update_stores_non_existent_lang_or_proj():
+    with pytest.raises(CommandError):
+        call_command("update_stores", "--project", "non_existent_project")
+    with pytest.raises(CommandError):
+        call_command("update_stores", "--language", "non_existent_language")
