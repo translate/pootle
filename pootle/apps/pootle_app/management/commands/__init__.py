@@ -12,6 +12,7 @@ import logging
 from django.core.management.base import BaseCommand, CommandError
 
 from pootle.runner import set_sync_mode
+from pootle_language.models import Language
 from pootle_project.models import Project
 
 
@@ -82,6 +83,26 @@ class PootleCommand(BaseCommand):
                              self.name, store.pootle_path)
                 self.handle_store(store, **options)
 
+    def check_projects(self, project_codes):
+        existing_projects = Project.objects.filter(
+            code__in=project_codes
+        ).values_list("code", flat=True)
+        if len(existing_projects) != len(project_codes):
+            unrecognized_projects = list(set(project_codes) -
+                                         set(existing_projects))
+            raise CommandError("Unrecognized projects: %s" %
+                               unrecognized_projects)
+
+    def check_languages(self, language_codes):
+        existing_languages = Language.objects.filter(
+            code__in=language_codes
+        ).values_list("code", flat=True)
+        if len(existing_languages) != len(language_codes):
+            unrecognized_languages = list(set(language_codes) -
+                                          set(existing_languages))
+            raise CommandError("Unrecognized languages: %s" %
+                               unrecognized_languages)
+
     def handle(self, **options):
         # adjust debug level to the verbosity option
         debug_levels = {
@@ -102,6 +123,10 @@ class PootleCommand(BaseCommand):
 
         self.projects = options.pop('projects', [])
         self.languages = options.pop('languages', [])
+        if self.projects:
+            self.check_projects(self.projects)
+        if self.languages:
+            self.check_languages(self.languages)
 
         # info start
         start = datetime.datetime.now()
