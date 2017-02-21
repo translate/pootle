@@ -107,15 +107,7 @@ class ReportFormView(ContactFormView):
             return initial
 
         abs_url = self.request.build_absolute_uri(self.unit.get_translate_url())
-        tp = self.unit.store.translation_project
         initial.update({
-            'email_subject': render_to_string(
-                'contact_form/report_form_subject.txt',
-                context={
-                    'unit': self.unit,
-                    'language': tp.language.code,
-                    'project': tp.project.code,
-                }),
             'body': render_to_string(
                 'contact_form/report_form_body.txt',
                 context={

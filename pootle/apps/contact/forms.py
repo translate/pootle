@@ -103,9 +103,33 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
 class ReportForm(ContactForm):
     """Contact form used to report errors on strings."""
 
+    subject_template_name = 'contact_form/report_form_subject.txt'
+
     def __init__(self, *args, **kwargs):
         self.unit = kwargs.pop('unit', None)
         super(ReportForm, self).__init__(*args, **kwargs)
+        del self.fields['email_subject']
+
+    def get_context(self):
+        """Get context to render the templates for email subject and body."""
+        ctx = super(ReportForm, self).get_context()
+
+        unit_pk = None
+        language_code = None
+        project_code = None
+
+        if self.unit:
+            unit_pk = self.unit.pk
+            language_code = self.unit.store.translation_project.language.code
+            project_code = self.unit.store.translation_project.project.code
+
+        ctx.update({
+            'server_name': settings.POOTLE_TITLE,
+            'unit': unit_pk,
+            'language': language_code,
+            'project': project_code,
+        })
+        return ctx
 
     def recipient_list(self):
         # Try to report string error to the report email for the project. If

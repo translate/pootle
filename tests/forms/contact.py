@@ -83,7 +83,8 @@ def _test_report_form(unit, recipient_email, user, rf, mailoutbox):
 
     # Get initial data for the form.
     subject_ctx = {
-        'unit': unit,
+        'server_name': settings.POOTLE_TITLE,
+        'unit': unit.pk,
         'language': unit.store.translation_project.language.code,
         'project': unit.store.translation_project.project.code,
     }
@@ -100,7 +101,6 @@ def _test_report_form(unit, recipient_email, user, rf, mailoutbox):
     data = {
         'name': user.full_name,
         'email': user.email,
-        'email_subject': subject,
         'body': body.strip(),
     }
 
@@ -114,12 +114,12 @@ def _test_report_form(unit, recipient_email, user, rf, mailoutbox):
     reply_to = u'%s <%s>' % (data['name'], data['email'])
     assert reply_to == message.extra_headers['Reply-To']
     assert [recipient_email] == message.recipients()
+    assert message.subject.startswith(u'[%s] ' % settings.POOTLE_TITLE)
     assert subject == message.subject
     assert data['body'] in message.body
 
 
 @pytest.mark.django_db
-@pytest.mark.xfail(reason="subject rendering is broken")
 def test_report_error_form_settings_email(admin, rf, mailoutbox):
     unit = Unit.objects.select_related(
         'store__translation_project__project',
@@ -132,7 +132,6 @@ def test_report_error_form_settings_email(admin, rf, mailoutbox):
 
 
 @pytest.mark.django_db
-@pytest.mark.xfail(reason="subject rendering is broken")
 def test_report_error_form_project_email(admin, rf, mailoutbox):
     unit = Unit.objects.select_related(
         'store__translation_project__project',
