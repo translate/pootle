@@ -221,8 +221,7 @@ class TPTool(object):
             self.set_parents(subdir, subdir, project)
 
     def update_children(self, source_dir, target_dir,
-                        allow_add_and_obsolete=True,
-                        resolve_conflict=SOURCE_WINS):
+                        allow_add_and_obsolete=True, overwrite=False):
         """Update a target Directory and its children from a given
         source Directory
         """
@@ -238,7 +237,7 @@ class TPTool(object):
                     store,
                     target_dir.child_stores.get(name=store.name),
                     allow_add_and_obsolete=allow_add_and_obsolete,
-                    resolve_conflict=resolve_conflict
+                    overwrite=overwrite,
                 )
             except target_dir.child_stores.model.DoesNotExist:
                 if allow_add_and_obsolete:
@@ -251,6 +250,7 @@ class TPTool(object):
                     subdir,
                     target_dir.child_dirs.get(name=subdir.name),
                     allow_add_and_obsolete=allow_add_and_obsolete,
+                    overwrite=overwrite,
                 )
             except target_dir.child_dirs.model.DoesNotExist:
                 self.clone_directory(subdir, target_dir)
@@ -260,19 +260,23 @@ class TPTool(object):
                 store.makeobsolete()
 
     def update_from_tp(self, source, target, allow_add_and_obsolete=True,
-                       resolve_conflict=SOURCE_WINS):
+                       overwrite=False):
         """Update one TP from another"""
         self.check_tp(source)
         self.update_children(
             source.directory, target.directory,
             allow_add_and_obsolete=allow_add_and_obsolete,
-            resolve_conflict=resolve_conflict
+            overwrite=overwrite,
         )
 
     def update_store(self, source, target, allow_add_and_obsolete=True,
-                     resolve_conflict=SOURCE_WINS):
+                     overwrite=False):
         """Update a target Store from a given source Store"""
-        source_revision = target.data.max_unit_revision + 1
+        if overwrite:
+            source_revision = target.data.max_unit_revision + 1
+        else:
+            source_revision = 0
+
         differ = StoreDiff(target, source, source_revision)
         diff = differ.diff()
         if diff is not None:
@@ -285,6 +289,6 @@ class TPTool(object):
                 update_revision,
                 system,
                 SubmissionTypes.SYSTEM,
-                resolve_conflict,
+                SOURCE_WINS,
                 allow_add_and_obsolete)
         self.update_muted_checks(source, target, check_target_translation=True)
