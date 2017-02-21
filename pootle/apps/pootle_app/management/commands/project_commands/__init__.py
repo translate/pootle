@@ -252,7 +252,6 @@ class UpdateCommand(TPToolSubCommand):
 
         for source_tp in tp_query:
             target_tps = self.tp_tool.get_tps(target_project)
-            resolve_conflict = SOURCE_WINS if options['overwrite'] else POOTLE_WINS
             target_language_code = source_tp.language.code
             if options['target_language']:
                 target_language_code = options['target_language']
@@ -262,7 +261,7 @@ class UpdateCommand(TPToolSubCommand):
                     source_tp,
                     target_tp,
                     allow_add_and_obsolete=not options['translations'],
-                    resolve_conflict=resolve_conflict,
+                    overwrite=options['overwrite'],
                 )
             except TranslationProject.DoesNotExist:
                 logging.warning(
