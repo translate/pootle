@@ -358,6 +358,7 @@ class PootleTestEnv(object):
     def setup_submissions(self):
         from pootle.core.contextmanagers import update_data_after
         from pootle_statistics.models import SubmissionTypes
+        from pootle_store.constants import UNTRANSLATED
         from pootle_store.models import Store, Unit, UnitChange
         from django.utils import timezone
 
@@ -373,7 +374,7 @@ class PootleTestEnv(object):
         UnitChange.objects.bulk_create(
             UnitChange(unit_id=unit_id, changed_with=SubmissionTypes.SYSTEM)
             for unit_id
-            in units.values_list("id", flat=True))
+            in units.filter(state__gt=UNTRANSLATED).values_list("id", flat=True))
 
         for store in stores.all():
             with update_data_after(store):
