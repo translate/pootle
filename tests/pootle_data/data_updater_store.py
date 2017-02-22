@@ -21,7 +21,7 @@ from pootle_data.store_data import StoreDataTool, StoreDataUpdater
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from pootle_store.models import Suggestion
 from pootle_store.util import SuggestionStates
-from pootle_store.models import QualityCheck
+from pootle_store.models import QualityCheck, Unit
 
 
 def _calc_word_counts(units):
@@ -337,8 +337,9 @@ def test_data_store_updater_checks(store0):
     for (category, name), count in checks.items():
         assert (category, name, count) in check_data
 
+    unit = Unit.objects.get(id=unit.id)
     unit.target = original_unit_target
-    unit.save(target_updated=True)
+    unit.save()
 
     check_data = store0.check_data.all().values_list("category", "name", "count")
 
