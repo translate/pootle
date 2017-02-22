@@ -27,7 +27,7 @@ def anon_submission_unit(nobody, store0):
         anon,
         SubmissionTypes.NORMAL,
         target_updated=True)
-    unit.save(target_updated=True)
+    unit.save()
 
 
 @pytest.fixture
