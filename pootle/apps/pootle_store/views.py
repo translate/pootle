@@ -600,11 +600,10 @@ def suggest(request, unit, **kwargs_):
     form_class = unit_form_factory(language, snplurals, request)
     form = form_class(request.POST, instance=unit, request=request)
 
+    unit_target = unit.target
     if form.is_valid():
-        if form.cleaned_data.get("target_updated"):
-            # TODO: Review if this hackish method is still necessary
-            # HACKISH: django 1.2 stupidly modifies instance on model form
-            # validation, reload unit from db
+        target = form.cleaned_data["target_f"]
+        if target and target != unit_target:
             unit = Unit.objects.get(id=unit.id)
             review.get(Suggestion)().add(
                 unit,
