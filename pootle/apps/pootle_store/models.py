@@ -366,10 +366,13 @@ class Unit(AbstractUnit):
             self.submitted_on = None
 
         super(Unit, self).save(*args, **kwargs)
+        submitted_by = submitted_by or self.submitted_by
+        submitted_on = submitted_on or self.submitted_on
         if created:
             unit_source = self.unit_source.model(unit=self)
             unit_source.created_by = submitted_by or user
             unit_source.created_with = changed_with
+            submitted_on = self.creation_time
         elif source_updated:
             unit_source = self.unit_source.get()
         if created or source_updated:
@@ -385,7 +388,6 @@ class Unit(AbstractUnit):
             self.change = UnitChange(
                 unit=self,
                 changed_with=changed_with)
-        submitted_by = submitted_by or self.submitted_by
         if changed:
             if changed_with is not None:
                 self.change.changed_with = changed_with
