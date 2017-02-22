@@ -443,7 +443,7 @@ class ScoreLog(models.Model):
         elif submission.field == SubmissionFields.STATE:
             if (int(submission.old_value) == FUZZY and
                 int(submission.new_value) == TRANSLATED and
-                not submission.unit._target_updated):
+                not submission.unit.target_updated):
                 submitter_score['action_code'] = \
                     TranslationActionCodes.REVIEWED
 

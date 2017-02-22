@@ -207,7 +207,6 @@ class Unit(AbstractUnit):
     @_source.setter
     def _source(self, value):
         self.source_f = value
-        self._source_updated = True
 
     @property
     def _target(self):
@@ -216,7 +215,6 @@ class Unit(AbstractUnit):
     @_target.setter
     def _target(self, value):
         self.target_f = value
-        self._target_updated = True
 
     # # # # # # # # # # # # # Class & static methods # # # # # # # # # # # # #
 
@@ -237,10 +235,7 @@ class Unit(AbstractUnit):
     def __init__(self, *args, **kwargs):
         super(Unit, self).__init__(*args, **kwargs)
         self._rich_source = None
-        self._source_updated = False
         self._rich_target = None
-        self._target_updated = False
-        self._state_updated = False
         self._comment_updated = False
         self._auto_translated = False
         self._encoding = 'UTF-8'
@@ -255,6 +250,10 @@ class Unit(AbstractUnit):
     @property
     def source_updated(self):
         return self.source != self._frozen.source
+
+    @property
+    def state_updated(self):
+        return self.state != self._frozen.state
 
     @property
     def target_updated(self):
@@ -274,11 +273,7 @@ class Unit(AbstractUnit):
 
     def save(self, *args, **kwargs):
         created = self.id is None
-        source_updated = kwargs.pop("source_updated", None) or self._source_updated
-        target_updated = kwargs.pop("target_updated", None) or self._target_updated
-        state_updated = kwargs.pop("state_updated", None) or self._state_updated
         changed_with = kwargs.pop("changed_with", None) or SubmissionTypes.SYSTEM
-
         reviewed_by = kwargs.pop("reviewed_by", None)
         reviewed_on = kwargs.pop("reviewed_on", None)
         submitted_by = kwargs.pop("submitted_by", None)
@@ -297,13 +292,13 @@ class Unit(AbstractUnit):
         if created:
             action = UNIT_ADDED
 
-        if source_updated:
+        if self.source_updated:
             # update source related fields
             self.source_hash = md5(self.source_f.encode("utf-8")).hexdigest()
             self.source_length = len(self.source_f)
             self.update_wordcount(auto_translate=True)
 
-        if target_updated:
+        if self.target_updated:
             # update target related fields
             self.target_wordcount = count_words(self.target_f.strings)
             self.target_length = len(self.target_f)
@@ -326,7 +321,7 @@ class Unit(AbstractUnit):
         revision = kwargs.pop('revision', None)
         if revision is not None and not auto_translated:
             self.revision = revision
-        elif target_updated or state_updated or comment_updated:
+        elif self.target_updated or self.state_updated or comment_updated:
             self.revision = Revision.incr()
 
         if not created and action:
@@ -338,9 +333,9 @@ class Unit(AbstractUnit):
                 translation=self.target_f,
                 path=self.store.pootle_path)
         was_fuzzy = (
-            state_updated and self.state == TRANSLATED
+            self.state_updated and self.state == TRANSLATED
             and action == TRANSLATION_CHANGED
-            and not target_updated)
+            and not self.target_updated)
         if was_fuzzy:
             # set reviewer data if FUZZY has been removed only and
             # translation hasn't been updated
@@ -366,16 +361,16 @@ class Unit(AbstractUnit):
             unit_source.created_by = submitted_by or user
             unit_source.created_with = changed_with
             submitted_on = self.creation_time
-        elif source_updated:
+        elif self.source_updated:
             unit_source = self.unit_source.get()
-        if created or source_updated:
+        if created or self.source_updated:
             unit_source.source_hash = self.source_hash
             unit_source.source_length = self.source_length
             unit_source.source_wordcount = self.source_wordcount
             unit_source.save()
         changed = (
-            (source_updated and not created)
-            or target_updated
+            (self.source_updated and not created)
+            or self.target_updated
             or comment_updated)
         if changed and not self.changed:
             self.change = UnitChange(
@@ -395,9 +390,6 @@ class Unit(AbstractUnit):
             self.change.save()
 
         # done processing source/target update remove flag
-        self._source_updated = False
-        self._target_updated = False
-        self._state_updated = False
         self._comment_updated = False
         self._auto_translated = False
         update_data.send(
@@ -790,7 +782,6 @@ class Unit(AbstractUnit):
         if value != (self.state == FUZZY):
             # when Unit toggles its FUZZY state the number of translated words
             # also changes
-            self._state_updated = True
             # that's additional check
             # but leave old value in case _save_action is set
             if not hasattr(self, '_save_action'):
@@ -820,7 +811,6 @@ class Unit(AbstractUnit):
     def makeobsolete(self):
         if self.state > OBSOLETE:
             # when Unit becomes obsolete the cache flags should be updated
-            self._state_updated = True
             self._save_action = UNIT_OBSOLETE
 
             self.state = OBSOLETE
@@ -842,7 +832,6 @@ class Unit(AbstractUnit):
 
         self.update_qualitychecks(keep_false_positives=True)
         self.index = self.store.max_index() + 1
-        self._state_updated = True
         self._save_action = UNIT_RESURRECTED
 
     def istranslated(self):

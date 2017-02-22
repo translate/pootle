@@ -18,6 +18,7 @@ from allauth.account.models import EmailAddress
 from allauth.account.utils import sync_user_email_addresses
 
 from pootle.core.contextmanagers import keep_data
+from pootle.core.models import Revision
 from pootle.core.signals import update_data
 from pootle_store.constants import FUZZY, UNTRANSLATED
 from pootle_store.util import SuggestionStates
@@ -264,8 +265,7 @@ class UserPurger(object):
                 logger.debug("Unit edit removed: %s", repr(unit))
 
             # Increment revision
-            unit._target_updated = True
-            unit.save()
+            unit.save(revision=Revision.incr())
         return stores
 
     @write_stdout(" * Reverting units reviewed by: %(user)s... ")
@@ -300,6 +300,7 @@ class UserPurger(object):
             stores.add(unit.store)
             reviews = unit.get_suggestion_reviews().exclude(
                 submitter=self.user)
+            revision = None
             if reviews.exists():
                 previous_review = reviews.latest('pk')
                 unit.reviewed_by_id = previous_review.submitter_id
@@ -310,9 +311,9 @@ class UserPurger(object):
                 unit.reviewed_on = None
 
                 # Increment revision
-                unit._target_updated = True
+                revision = Revision.incr()
                 logger.debug("Unit reviewed_by removed: %s", repr(unit))
-            unit.save()
+            unit.save(revision=revision)
         return stores
 
     @write_stdout(" * Reverting unit state changes by: %(user)s... ")
@@ -349,8 +350,7 @@ class UserPurger(object):
                 unit.state = new_state
 
                 # Increment revision
-                unit._state_updated = True
-                unit.save()
+                unit.save(revision=Revision.incr())
                 logger.debug("Unit state reverted: %s", repr(unit))
         return stores
 
