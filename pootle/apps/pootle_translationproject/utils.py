@@ -216,7 +216,7 @@ class TPTool(object):
         self.update_children(
             source.directory, target.directory, update_cache=update_cache)
 
-    def update_store(self, source, target):
+    def update_store(self, source, target, can_create=True, can_obsolete=True):
         """Update a target Store from a given source Store"""
         source_revision = target.data.max_unit_revision + 1
         differ = StoreDiff(target, source, source_revision)
@@ -233,4 +233,6 @@ class TPTool(object):
             system,
             SubmissionTypes.SYSTEM,
             SOURCE_WINS,
-            True)
+            can_create=can_create,
+            can_obsolete=can_obsolete
+        )

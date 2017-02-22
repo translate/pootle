@@ -258,7 +258,7 @@ class StoreUpdater(object):
 
     def update(self, store, user=None, store_revision=None,
                submission_type=None, resolve_conflict=POOTLE_WINS,
-               allow_add_and_obsolete=True):
+               can_create=True, can_obsolete=True):
         logging.debug(u"Updating %s", self.target_store.pootle_path)
         old_state = self.target_store.state
 
@@ -278,7 +278,7 @@ class StoreUpdater(object):
                     diff, update_revision,
                     user, submission_type,
                     resolve_conflict,
-                    allow_add_and_obsolete)
+                    can_create, can_obsolete)
         finally:
             if old_state < PARSED:
                 self.target_store.state = PARSED
@@ -296,10 +296,10 @@ class StoreUpdater(object):
     def update_from_diff(self, store, store_revision,
                          to_change, update_revision, user,
                          submission_type, resolve_conflict=POOTLE_WINS,
-                         allow_add_and_obsolete=True):
+                         can_create=True, can_obsolete=True):
         changes = {}
 
-        if allow_add_and_obsolete:
+        if can_create:
             # Update indexes
             for start, delta in to_change["index"]:
                 self.target_store.update_index(start=start, delta=delta)
@@ -314,7 +314,7 @@ class StoreUpdater(object):
                         changed_with=submission_type,
                         update_revision=update_revision)
             changes["added"] = len(to_change["add"])
-
+        if can_obsolete:
             # Obsolete units
             changes["obsoleted"] = self.target_store.mark_units_obsolete(
                 to_change["obsolete"],
@@ -327,7 +327,7 @@ class StoreUpdater(object):
             user=user,
             submission_type=submission_type,
             resolve_conflict=resolve_conflict,
-            change_indices=allow_add_and_obsolete,
+            change_indices=can_create,
             uids=update_dbids,
             indices=uid_index_map,
             store_revision=store_revision,
