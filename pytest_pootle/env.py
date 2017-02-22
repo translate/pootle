@@ -528,7 +528,7 @@ class PootleTestEnv(object):
                 member,
                 SubmissionTypes.NORMAL,
                 target_updated=True)
-            unit.save(target_updated=True)
+            unit.save()
 
     def setup_vfolders(self):
         from pytest_pootle.factories import VirtualFolderDBFactory
