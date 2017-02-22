@@ -241,7 +241,6 @@ def unit_form_factory(language, snplurals=None, request=None):
             value = self.cleaned_data['target_f']
 
             if self.instance.target != multistring(value or [u'']):
-                self.cleaned_data["target_updated"] = True
                 self._updated_fields.append((SubmissionFields.TARGET,
                                             to_db(self.instance.target),
                                             to_db(value)))
@@ -286,13 +285,11 @@ def unit_form_factory(language, snplurals=None, request=None):
                     self.cleaned_data["save_action"] = TRANSLATION_DELETED
 
             if old_state not in [new_state, OBSOLETE]:
-                self.cleaned_data["state_updated"] = True
                 self._updated_fields.append((SubmissionFields.STATE,
                                              old_state, new_state))
 
                 self.cleaned_data['state'] = new_state
             else:
-                self.cleaned_data["state_updated"] = False
                 self.cleaned_data['state'] = old_state
 
             return super(UnitForm, self).clean()
@@ -317,9 +314,7 @@ def unit_form_factory(language, snplurals=None, request=None):
                     submitted_on=current_time,
                     submitted_by=user,
                     changed_with=changed_with,
-                    action=self.cleaned_data.get("save_action"),
-                    state_updated=self.cleaned_data.get("state_updated"),
-                    target_updated=self.cleaned_data.get("target_updated"))
+                    action=self.cleaned_data.get("save_action"))
                 translation_project = unit.store.translation_project
                 for field, old_value, new_value in self.updated_fields:
                     if field == SubmissionFields.TARGET and suggestion:
