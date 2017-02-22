@@ -85,11 +85,16 @@ class FrozenUnit(object):
             context=unit.context,
             submitter=unit.submitted_by,
             state=unit.state,
+            pk=unit.pk,
             translator_comment=unit.getnotes(origin="translator"))
 
     @property
     def context(self):
         return self.unit["context"]
+
+    @property
+    def pk(self):
+        return self.unit["pk"]
 
     @property
     def source(self):

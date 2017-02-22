@@ -258,6 +258,10 @@ class Unit(AbstractUnit):
         return self.source != self._frozen.source
 
     @property
+    def target_updated(self):
+        return self.target != self._frozen.target
+
+    @property
     def context_updated(self):
         return self.context != self._frozen.context
 
@@ -401,19 +405,12 @@ class Unit(AbstractUnit):
                 self.change.reviewed_on = reviewed_on
             self.change.save()
 
-        if source_updated or target_updated:
-            if not (created and self.state == UNTRANSLATED):
-                self.update_qualitychecks()
-            if self.istranslated():
-                self.update_tmserver()
-
         # done processing source/target update remove flag
         self._source_updated = False
         self._target_updated = False
         self._state_updated = False
         self._comment_updated = False
         self._auto_translated = False
-
         update_data.send(
             self.store.__class__, instance=self.store)
 

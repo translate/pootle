@@ -12,7 +12,8 @@ from django.dispatch import receiver
 from pootle.core.log import UNIT_ADDED, action_log
 from pootle.core.signals import update_data
 
-from pootle_store.models import Suggestion, UnitSource
+from .constants import UNTRANSLATED
+from .models import Suggestion, UnitChange, UnitSource
 
 
 @receiver(post_save, sender=Suggestion)
@@ -37,3 +38,17 @@ def handle_unit_create(**kwargs):
         unit=unit.id,
         translation=unit.target_f,
         path=unit.store.pootle_path)
+
+
+@receiver(post_save, sender=UnitChange)
+def handle_unit_change(**kwargs):
+    unit_change = kwargs["instance"]
+    unit = unit_change.unit
+    if not unit.source_updated and not unit.target_updated:
+        return
+    created = not unit._frozen.pk
+    new_untranslated = (created and unit.state == UNTRANSLATED)
+    if not new_untranslated:
+        unit.update_qualitychecks()
+    if unit.istranslated():
+        unit.update_tmserver()
