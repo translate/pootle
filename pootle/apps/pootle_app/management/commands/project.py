@@ -14,7 +14,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle.core.management.subcommands import CommandWithSubcommands
 
-from .project_commands import UpdateCommand
+from .project_commands import (CloneCommand, MoveCommand, RemoveCommand,
+                               UpdateCommand)
 
 
 logger = logging.getLogger()
@@ -23,5 +24,8 @@ logger = logging.getLogger()
 class Command(CommandWithSubcommands):
     help = "Pootle project (via TPTool) API."
     subcommands = {
+        "clone": CloneCommand,
+        "move": MoveCommand,
+        "remove": RemoveCommand,
         "update": UpdateCommand,
     }
