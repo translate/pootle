@@ -12,6 +12,7 @@ from translate.filters.decorators import Category
 
 from django.db.models import Max
 
+from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import review
 from pootle_data.tp_data import TPDataTool, TPDataUpdater
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
@@ -53,7 +54,7 @@ def test_data_tp_util_wordcount(tp0):
     # make a translated unit fuzzy
     unit = units.filter(state=TRANSLATED).first()
     unit.state = FUZZY
-    unit.save(state_updated=True)
+    unit.save()
     updated_stats = _calc_word_counts(units.all())
     update_data = tp0.data_tool.updater.get_store_data()
     tp0.data.refresh_from_db()
@@ -86,7 +87,7 @@ def test_data_tp_util_max_unit_revision(tp0):
         == original_revision)
     unit = units.first()
     unit.target = "SOMETHING ELSE"
-    unit.save(target_updated=True)
+    unit.save()
     update_data = tp0.data_tool.updater.get_store_data()
     tp0.data.refresh_from_db()
     assert update_data["max_unit_revision"] == unit.revision
@@ -239,7 +240,7 @@ def test_data_tp_qc_stats(tp0):
         qualitycheck__isnull=True,
         qualitycheck__name__in=["xmltags", "endpunc"]).first()
     unit.target = "<foo></bar>;"
-    unit.save(target_updated=True)
+    unit.save()
     unit_critical = unit.qualitycheck_set.filter(
         category=Category.CRITICAL).count()
     store_data = tp0.data_tool.updater.get_store_data()
@@ -254,7 +255,8 @@ def test_data_tp_qc_stats(tp0):
     other_qc.false_positive = True
     other_qc.save()
     # trigger refresh
-    unit.save()
+    with update_data_after(unit.store):
+        unit.update_qualitychecks(keep_false_positives=True)
     store_data = tp0.data_tool.updater.get_store_data()
     tp0.data.refresh_from_db()
     assert (
@@ -282,7 +284,7 @@ def test_data_tp_checks(tp0):
         qualitycheck__isnull=True,
         qualitycheck__name__in=["xmltags", "endpunc"]).first()
     unit.target = "<foo></bar>;"
-    unit.save(target_updated=True)
+    unit.save()
     checks = _calculate_checks(qc_qs.all())
     check_data = tp0.check_data.all().values_list("category", "name", "count")
     assert len(check_data) == len(checks)

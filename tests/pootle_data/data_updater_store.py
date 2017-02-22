@@ -16,6 +16,7 @@ from translate.filters.decorators import Category
 
 from django.db.models import Max
 
+from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import review
 from pootle_data.store_data import StoreDataTool, StoreDataUpdater
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
@@ -56,7 +57,7 @@ def test_data_store_util_wordcount(store0):
     # make a translated unit fuzzy
     unit = store0.units.filter(state=TRANSLATED).first()
     unit.state = FUZZY
-    unit.save(state_updated=True)
+    unit.save()
     updated_stats = _calc_word_counts(store0.units)
     update_data = store0.data_tool.updater.get_store_data()
     for k in WORDCOUNT_KEYS:
@@ -85,7 +86,7 @@ def test_data_store_util_max_unit_revision(store0):
         == original_revision)
     unit = store0.units.first()
     unit.target = "SOMETHING ELSE"
-    unit.save(target_updated=True)
+    unit.save()
     update_data = store0.data_tool.updater.get_store_data()
     assert update_data["max_unit_revision"] == unit.revision
     assert store0.data.max_unit_revision == unit.revision
@@ -108,7 +109,7 @@ def test_data_store_util_max_unit_mtime(store0):
         == original_mtime)
     unit = store0.units.first()
     unit.target = "SOMETHING ELSE"
-    unit.save(target_updated=True)
+    unit.save()
     update_data = store0.data_tool.updater.get_store_data()
     assert (
         update_data["max_unit_mtime"].replace(microsecond=0)
@@ -241,7 +242,7 @@ def test_data_store_critical_checks(store0):
         qualitycheck__isnull=True,
         qualitycheck__name__in=["xmltags", "endpunc"]).first()
     unit.target = "<foo></bar>;"
-    unit.save(target_updated=True)
+    unit.save()
     unit_critical = unit.qualitycheck_set.filter(
         category=Category.CRITICAL).count()
 
@@ -255,7 +256,8 @@ def test_data_store_critical_checks(store0):
     other_qc.false_positive = True
     other_qc.save()
     # trigger refresh
-    unit.save()
+    with update_data_after(unit.store):
+        unit.update_qualitychecks(keep_false_positives=True)
     assert (
         store0.data.critical_checks
         == check_count + unit_critical - 1)
@@ -329,7 +331,7 @@ def test_data_store_updater_checks(store0):
         qualitycheck__name__in=["xmltags", "endpunc"]).first()
     original_unit_target = unit.target
     unit.target = "<foo></bar>;"
-    unit.save(target_updated=True)
+    unit.save()
     checks = _calculate_checks(qc_qs.all())
     check_data = store0.check_data.all().values_list("category", "name", "count")
 
