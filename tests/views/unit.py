@@ -171,7 +171,7 @@ def test_submit_with_suggestion(client, request_users, settings, system):
 
 
 @pytest.mark.django_db
-def test_accept_suggestion_with_comment(client, request_users, settings):
+def test_accept_suggestion_with_comment(client, request_users, settings, system):
     """Tests suggestion can be accepted with a comment."""
     settings.POOTLE_CAPTCHA_ENABLED = False
     Comment = get_comment_model()
@@ -194,18 +194,27 @@ def test_accept_suggestion_with_comment(client, request_users, settings):
         HTTP_X_REQUESTED_WITH='XMLHttpRequest'
     )
 
+    suggestion = Suggestion.objects.get(id=sugg.id)
+    unit = Unit.objects.get(id=unit.id)
     if check_permission('review', response.wsgi_request):
         assert response.status_code == 200
-        accepted_suggestion = Suggestion.objects.get(id=sugg.id)
-        updated_unit = Unit.objects.get(id=unit.id)
-
-        assert accepted_suggestion.state == 'accepted'
-        assert str(updated_unit.target) == str(sugg.target)
+        unit_source = unit.unit_source.get()
+        assert unit_source.created_by == system
+        assert unit_source.created_with == SubmissionTypes.SYSTEM
+        assert unit.change.submitted_by == suggestion.user
+        assert unit.change.reviewed_by == user
+        assert unit.change.changed_with == SubmissionTypes.NORMAL
+        assert suggestion.state == 'accepted'
+        assert str(unit.target) == str(suggestion.target)
         assert (Comment.objects
-                       .for_model(accepted_suggestion)
+                       .for_model(suggestion)
                        .get().comment == comment)
     else:
         assert response.status_code == 403
+        assert suggestion.state == "pending"
+        assert unit.target == ""
+        with pytest.raises(UnitChange.DoesNotExist):
+            unit.change
 
 
 @pytest.mark.django_db
@@ -233,16 +242,67 @@ def test_reject_suggestion_with_comment(client, request_users):
         check_permission('review', response.wsgi_request)
         or sugg.user.id == user.id
     )
+    suggestion = Suggestion.objects.get(id=sugg.id)
     if can_reject:
         assert response.status_code == 200
-        rejected_suggestion = Suggestion.objects.get(id=sugg.id)
-
-        assert rejected_suggestion.state == 'rejected'
+        assert suggestion.state == 'rejected'
+        assert unit.target == ""
+        # unit is untranslated so no change
+        with pytest.raises(UnitChange.DoesNotExist):
+            unit.change
         assert (Comment.objects
-                       .for_model(rejected_suggestion)
+                       .for_model(suggestion)
                        .get().comment == comment)
     else:
         assert response.status_code == 403
+        assert unit.target == ""
+        assert suggestion.state == "pending"
+        with pytest.raises(UnitChange.DoesNotExist):
+            unit.change
+
+
+@pytest.mark.django_db
+def test_reject_translated_suggestion(client, request_users, member, system):
+    """Tests suggestion can be rejected with a comment."""
+    unit = Unit.objects.filter(
+        suggestion__state='pending',
+        state=UNTRANSLATED)[0]
+    unit.target = "EXISTING TARGET"
+    unit.save(
+        submitted_by=member,
+        changed_with=SubmissionTypes.UPLOAD)
+    suggestion = Suggestion.objects.filter(
+        unit=unit,
+        state='pending')[0]
+    user = request_users["user"]
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+    url = (
+        '/xhr/units/%d/suggestions/%d/'
+        % (unit.id, suggestion.id))
+    response = client.delete(
+        url,
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    can_reject = (
+        check_permission('review', response.wsgi_request)
+        or suggestion.user.id == user.id)
+    unit.refresh_from_db()
+    unit.change.refresh_from_db()
+    unit_source = unit.unit_source.get()
+    suggestion.refresh_from_db()
+    if can_reject:
+        assert response.status_code == 200
+        assert suggestion.state == 'rejected'
+        assert unit_source.created_by == system
+        assert unit.change.changed_with == SubmissionTypes.UPLOAD
+        assert unit.change.submitted_by == member
+        assert unit.change.reviewed_by == user
+    else:
+        assert response.status_code == 403
+        assert unit.target == "EXISTING TARGET"
+        assert suggestion.state == "pending"
 
 
 @pytest.mark.django_db
@@ -282,6 +342,7 @@ def test_submit_unit_plural(client, unit_plural, request_users, settings):
             password=request_users["password"])
 
     url = '/xhr/units/%d/' % unit_plural.id
+    original_target = unit_plural.target
     target = [
         "%s" % unit_plural.target.strings[0],
         "%s changed" % unit_plural.target.strings[1]
@@ -295,13 +356,15 @@ def test_submit_unit_plural(client, unit_plural, request_users, settings):
         HTTP_X_REQUESTED_WITH='XMLHttpRequest'
     )
 
+    unit = Unit.objects.get(id=unit_plural.id)
     if check_permission('translate', response.wsgi_request):
         assert response.status_code == 200
-        changed = Unit.objects.get(id=unit_plural.id)
-        assert changed.target == multistring(target)
-
+        assert unit.target == multistring(target)
     else:
         assert response.status_code == 403
+        assert unit.target == original_target
+        with pytest.raises(UnitChange.DoesNotExist):
+            unit.change
 
 
 @pytest.mark.django_db
@@ -329,10 +392,12 @@ def test_add_suggestion(client, request_users, settings):
     changed = Unit.objects.get(id=unit.id)
     suggestion = changed.get_suggestions().order_by('id').last()
     assert suggestion.target == multistring(target)
+    with pytest.raises(UnitChange.DoesNotExist):
+        unit.change
 
 
 @pytest.mark.django_db
-def test_submit_unit(client, store0, request_users, settings):
+def test_submit_unit(client, store0, request_users, settings, system):
     """Tests translation can be applied after suggestion is accepted."""
     settings.POOTLE_CAPTCHA_ENABLED = False
     user = request_users["user"]
@@ -342,18 +407,26 @@ def test_submit_unit(client, store0, request_users, settings):
             username=user.username,
             password=request_users["password"])
     url = '/xhr/units/%d/' % unit.id
+    old_target = unit.target
     response = client.post(
         url,
         dict(target_f_0=("%s changed" % unit.target),
              sfn="PTL.editor.processSubmission"),
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    unit.refresh_from_db()
     if user.username == "nobody":
         assert response.status_code == 403
+        assert unit.target == ""
+        with pytest.raises(UnitChange.DoesNotExist):
+            unit.change
         return
     assert response.status_code == 200
-
-    old_target = unit.target
-    unit.refresh_from_db()
     assert unit.target == "%s changed" % old_target
     assert unit.state == TRANSLATED
     assert unit.store.data.last_submission.unit == unit
+    unit_source = unit.unit_source.get()
+    assert unit_source.created_by == system
+    assert unit_source.created_with == SubmissionTypes.SYSTEM
+    assert unit.change.changed_with == SubmissionTypes.NORMAL
+    assert unit.change.submitted_by == user
+    assert unit.change.reviewed_by is None
