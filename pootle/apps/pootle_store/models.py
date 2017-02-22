@@ -401,15 +401,6 @@ class Unit(AbstractUnit):
                 self.change.reviewed_on = reviewed_on
             self.change.save()
 
-        if action and action == UNIT_ADDED:
-            action_log(
-                user=self._log_user,
-                action=action,
-                lang=self.store.translation_project.language.code,
-                unit=self.id,
-                translation=self.target_f,
-                path=self.store.pootle_path)
-
         if source_updated or target_updated:
             if not (created and self.state == UNTRANSLATED):
                 self.update_qualitychecks()
