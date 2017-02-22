@@ -250,7 +250,6 @@ class SuggestionsReview(object):
         unit.submitted_on = current_time
         unit.reviewed_by = self.reviewer
         unit.reviewed_on = unit.submitted_on
-        unit._log_user = self.reviewer
         unit.save(
             submitted_by=suggestion.user,
             submitted_on=current_time,

@@ -292,10 +292,7 @@ class Unit(AbstractUnit):
             or self._comment_updated)
         action = kwargs.pop("action", None) or getattr(self, "_save_action", None)
 
-        if not hasattr(self, '_log_user'):
-            User = get_user_model()
-            self._log_user = User.objects.get_system_user()
-        user = kwargs.pop("user", self._log_user) or self._log_user
+        user = kwargs.pop("user", get_user_model().objects.get_system_user())
 
         if created:
             action = UNIT_ADDED
@@ -334,7 +331,7 @@ class Unit(AbstractUnit):
 
         if not created and action:
             action_log(
-                user=self._log_user,
+                user=user,
                 action=action,
                 lang=self.store.translation_project.language.code,
                 unit=self.id,
@@ -348,7 +345,7 @@ class Unit(AbstractUnit):
             # set reviewer data if FUZZY has been removed only and
             # translation hasn't been updated
             self.reviewed_on = timezone.now()
-            self.reviewed_by = self._log_user
+            self.reviewed_by = user
         elif self.state == FUZZY:
             # clear reviewer data if unit has been marked as FUZZY
             self.reviewed_on = None
@@ -869,7 +866,6 @@ class Unit(AbstractUnit):
         check.false_positive = false_positive
         check.save()
 
-        self._log_user = user
         if false_positive:
             self._save_action = MUTE_QUALITYCHECK
         else:

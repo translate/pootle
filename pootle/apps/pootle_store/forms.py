@@ -308,7 +308,6 @@ def unit_form_factory(language, snplurals=None, request=None):
                     unit.submitted_on = current_time
                     unit.reviewed_by = None
                     unit.reviewed_on = None
-                    unit._log_user = self.user
                 suggestion = self.cleaned_data["suggestion"]
                 user = (
                     suggestion.user
