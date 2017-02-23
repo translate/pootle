@@ -34,8 +34,8 @@ def test_schema_tool():
     if isinstance(schema_tool.schema_dumper, MySQLSchemaDumper):
         defaults = schema_tool.get_defaults()
         assert set(defaults.keys()) == TEST_MYSQL_SCHEMA_PARAM_NAMES['defaults']
-        for app_config in schema_tool.app_configs:
-            for table in schema_tool.get_app_tables(app_config):
+        for app_label in schema_tool.app_configs:
+            for table in schema_tool.get_app_tables(app_label):
                 row = schema_tool.get_table_fields(table)[0]
                 assert (
                     set([x.lower() for x in row.keys()]) ==

@@ -21,8 +21,8 @@ class SchemaTool(object):
             app_labels = [app_label.split('.')[-1]
                           for app_label in settings.INSTALLED_APPS]
 
-        self.app_configs = [apps.get_app_config(app_label)
-                            for app_label in app_labels]
+        self.app_configs = dict([(app_label, apps.get_app_config(app_label))
+                                for app_label in app_labels])
 
         with connection.cursor() as cursor:
             if hasattr(cursor.db, "mysql_version"):
@@ -31,11 +31,13 @@ class SchemaTool(object):
 
     def get_tables(self):
         tables = []
-        for app_config in self.app_configs:
-             tables += self.get_app_tables(app_config)
+        for app_label in self.app_configs:
+            tables += self.get_app_tables(app_label)
         return tables
 
-    def get_app_tables(self, app_config):
+
+    def get_app_tables(self, app_label):
+        app_config = self.app_configs[app_label]
         return [model._meta.db_table
                 for model in app_config.get_models(include_auto_created=True)]
 
