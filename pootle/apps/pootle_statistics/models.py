@@ -201,10 +201,14 @@ class Submission(models.Model):
     def needs_scorelog(self):
         """Returns ``True`` if the submission needs to log its score."""
         # Changing from untranslated state won't record a score change
-        if (self.field == SubmissionFields.STATE and
-            int(self.old_value) == UNTRANSLATED):
+        not_needed = (
+            (self.field == SubmissionFields.STATE
+             and int(self.old_value) == UNTRANSLATED)
+            or (self.submitter
+                and (self.submitter.username
+                     in get_user_model().objects.META_USERS)))
+        if not_needed:
             return False
-
         return True
 
     def get_submission_info(self):
@@ -309,8 +313,14 @@ class Submission(models.Model):
         if not self.needs_scorelog():
             return
 
+        meta_users = get_user_model().objects.META_USERS
+        system_users = get_user_model().objects.filter(
+            username__in=meta_users).values_list("id", flat=True)
+
         scorelogs_created = []
         for score in ScoreLog.get_scorelogs(submission=self):
+            if score.get("user") and score["user"].id in system_users:
+                continue
             if 'action_code' in score and score['user'] is not None:
                 scorelogs_created.append(ScoreLog(**score))
         if scorelogs_created:
