@@ -301,7 +301,7 @@ class Unit(AbstractUnit):
 
         user = kwargs.pop("user", get_user_model().objects.get_system_user())
 
-        if self.source_updated:
+        if created or self.source_updated:
             # update source related fields
             self.source_hash = md5(self.source_f.encode("utf-8")).hexdigest()
             self.source_length = len(self.source_f)
