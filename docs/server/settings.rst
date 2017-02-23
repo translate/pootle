@@ -501,7 +501,6 @@ Translation environment configuration settings.
   Current options:
 
   - Translate Toolkit (default) - translate.storage.statsdb.wordcount
-  - Pootle - pootle.core.utils.wordcount.wordcount
 
   Adding a custom function allows you to alter how words are counted.
 
