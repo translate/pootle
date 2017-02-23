@@ -286,16 +286,20 @@ class Unit(AbstractUnit):
             kwargs.pop("comment_updated", None)
             or self._comment_updated)
 
-        action = kwargs.pop("action", None) or getattr(self, "_save_action", None)
-        if self.state == OBSOLETE and self._frozen.state > OBSOLETE:
+        was_fuzzy = self._frozen.state == FUZZY
+        action = None
+        if "action" in kwargs:
+            action = kwargs.pop("action", None)
+        elif created:
+            action = UNIT_ADDED
+        elif self.state == OBSOLETE and self._frozen.state > OBSOLETE:
             action = UNIT_OBSOLETE
         elif self.state > OBSOLETE and self._frozen.state == OBSOLETE:
             action = UNIT_RESURRECTED
+        elif self.isfuzzy() != was_fuzzy:
+            action = TRANSLATION_CHANGED
 
         user = kwargs.pop("user", get_user_model().objects.get_system_user())
-
-        if created:
-            action = UNIT_ADDED
 
         if self.source_updated:
             # update source related fields
@@ -337,10 +341,6 @@ class Unit(AbstractUnit):
                 unit=self.id,
                 translation=self.target_f,
                 path=self.store.pootle_path)
-        was_fuzzy = (
-            self.state_updated and self.state == TRANSLATED
-            and action == TRANSLATION_CHANGED
-            and not self.target_updated)
         if was_fuzzy:
             # set reviewer data if FUZZY has been removed only and
             # translation hasn't been updated
@@ -783,15 +783,6 @@ class Unit(AbstractUnit):
     def markfuzzy(self, value=True):
         if self.state <= OBSOLETE:
             return
-
-        if value != (self.state == FUZZY):
-            # when Unit toggles its FUZZY state the number of translated words
-            # also changes
-            # that's additional check
-            # but leave old value in case _save_action is set
-            if not hasattr(self, '_save_action'):
-                self._save_action = TRANSLATION_CHANGED
-
         if value:
             self.state = FUZZY
         elif self.state <= FUZZY:
@@ -799,10 +790,6 @@ class Unit(AbstractUnit):
                 self.state = TRANSLATED
             else:
                 self.state = UNTRANSLATED
-                # that's additional check
-                # but leave old value in case _save_action is set
-                if not hasattr(self, '_save_action'):
-                    self._save_action = TRANSLATION_DELETED
 
     def hasplural(self):
         return (self.source is not None and
@@ -855,11 +842,6 @@ class Unit(AbstractUnit):
         check.false_positive = false_positive
         check.save()
 
-        if false_positive:
-            self._save_action = MUTE_QUALITYCHECK
-        else:
-            self._save_action = UNMUTE_QUALITYCHECK
-
         # create submission
         if false_positive:
             sub_type = SubmissionTypes.MUTE_CHECK
@@ -872,7 +854,12 @@ class Unit(AbstractUnit):
                          unit=self, store=self.store, type=sub_type,
                          quality_check=check)
         sub.save()
-        self.save(revision=Revision.incr())
+        self.save(
+            revision=Revision.incr(),
+            action=(
+                MUTE_QUALITYCHECK
+                if false_positive
+                else UNMUTE_QUALITYCHECK))
 
     def get_terminology(self):
         """get terminology suggestions"""
