@@ -285,7 +285,12 @@ class Unit(AbstractUnit):
         comment_updated = (
             kwargs.pop("comment_updated", None)
             or self._comment_updated)
+
         action = kwargs.pop("action", None) or getattr(self, "_save_action", None)
+        if self.state == OBSOLETE and self._frozen.state > OBSOLETE:
+            action = UNIT_OBSOLETE
+        elif self.state > OBSOLETE and self._frozen.state == OBSOLETE:
+            action = UNIT_RESURRECTED
 
         user = kwargs.pop("user", get_user_model().objects.get_system_user())
 
@@ -809,12 +814,8 @@ class Unit(AbstractUnit):
         return self.state == OBSOLETE
 
     def makeobsolete(self):
-        if self.state > OBSOLETE:
-            # when Unit becomes obsolete the cache flags should be updated
-            self._save_action = UNIT_OBSOLETE
-
-            self.state = OBSOLETE
-            self.index = 0
+        self.state = OBSOLETE
+        self.index = 0
 
     def resurrect(self, is_fuzzy=False):
         if self.state > OBSOLETE:
@@ -832,7 +833,6 @@ class Unit(AbstractUnit):
 
         self.update_qualitychecks(keep_false_positives=True)
         self.index = self.store.max_index() + 1
-        self._save_action = UNIT_RESURRECTED
 
     def istranslated(self):
         return self.state >= TRANSLATED
@@ -872,10 +872,7 @@ class Unit(AbstractUnit):
                          unit=self, store=self.store, type=sub_type,
                          quality_check=check)
         sub.save()
-
-        # update timestamp
-        # log user action
-        self.save()
+        self.save(revision=Revision.incr())
 
     def get_terminology(self):
         """get terminology suggestions"""
