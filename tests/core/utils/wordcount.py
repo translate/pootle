@@ -10,10 +10,7 @@ from translate.storage.statsdb import wordcount as ttk_wordcount
 
 from pytest_pootle.fixtures.core.utils.wordcount import WORDCOUNT_TESTS
 
-from pootle.core.utils.wordcount import wordcount as ptl_wordcount
-
 
 def test_param_wordcount(wordcount_names):
     this_test = WORDCOUNT_TESTS[wordcount_names]
     assert ttk_wordcount(this_test["string"]) == this_test["ttk"]
-    assert ptl_wordcount(this_test["string"]) == this_test["pootle"]
