@@ -11,6 +11,7 @@ import pytest
 from translate.storage import factory
 from translate.storage.factory import getclass
 from translate.storage.pypo import pounit
+from translate.storage.statsdb import wordcount
 
 from django.contrib.auth import get_user_model
 from django.utils import timezone
@@ -403,3 +404,25 @@ def test_unit_syncer_locations(unit_syncer):
     newunit = syncer.convert(unit_class)
     assert newunit.getlocations() == ["FOO"]
     _test_unit_syncer(unit, newunit)
+
+
+@pytest.mark.django_db
+def test_add_autotranslated_unit(settings, store0, admin):
+
+    def _test_wordcount(value):
+        return wordcount(value) - value.count('Pootle')
+
+    # monkeypatch the wordcount function
+    from pootle_store import models
+    orig_wc = models.wordcount_f
+    models.wordcount_f = _test_wordcount
+
+    unit = store0.addunit(store0.UnitClass(source_f='Pootle Pootle'),
+                          user=admin)
+
+    dbunit = store0.units.get(id=unit.id)
+    assert dbunit.state == FUZZY
+    assert dbunit.target_f == unit.source_f
+
+    # unmonkeypatch the wordcount function
+    models.wordcount_f = orig_wc
