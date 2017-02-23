@@ -237,7 +237,6 @@ class Unit(AbstractUnit):
         self._rich_source = None
         self._rich_target = None
         self._comment_updated = False
-        self._auto_translated = False
         self._encoding = 'UTF-8'
         self._frozen = frozen.get(Unit)(self)
 
@@ -278,10 +277,7 @@ class Unit(AbstractUnit):
         reviewed_on = kwargs.pop("reviewed_on", None)
         submitted_by = kwargs.pop("submitted_by", None)
         submitted_on = kwargs.pop("submitted_on", None)
-
-        auto_translated = (
-            kwargs.pop("auto_translated", None)
-            or self._auto_translated)
+        auto_translated = False
         comment_updated = (
             kwargs.pop("comment_updated", None)
             or self._comment_updated)
@@ -305,8 +301,12 @@ class Unit(AbstractUnit):
             # update source related fields
             self.source_hash = md5(self.source_f.encode("utf-8")).hexdigest()
             self.source_length = len(self.source_f)
-            self.update_wordcount(auto_translate=True)
-
+            wc = self.update_wordcount()
+            if not wc and not bool(filter(None, self.target_f.strings)):
+                # auto-translate untranslated strings
+                self.target = self.source
+                self.state = FUZZY
+                auto_translated = True
         if self.target_updated:
             # update target related fields
             self.target_wordcount = count_words(self.target_f.strings)
@@ -396,7 +396,6 @@ class Unit(AbstractUnit):
 
         # done processing source/target update remove flag
         self._comment_updated = False
-        self._auto_translated = False
         update_data.send(
             self.store.__class__, instance=self.store)
 
@@ -579,11 +578,8 @@ class Unit(AbstractUnit):
 
         return changed
 
-    def update_wordcount(self, auto_translate=False):
+    def update_wordcount(self):
         """Updates the source wordcount for a unit.
-
-        :param auto_translate: when set to `True`, it will copy the
-            source string into the target field.
         """
         self.source_wordcount = count_words(self.source_f.strings)
 
@@ -592,13 +588,8 @@ class Unit(AbstractUnit):
             # will essentially disappear from statistics thus for such
             # units set word count to 1
             self.source_wordcount = 1
-
-            if (auto_translate
-                and not bool(filter(None, self.target_f.strings))):
-                # auto-translate untranslated strings
-                self.target = self.source
-                self.state = FUZZY
-                self._auto_translated = True
+            return 0
+        return self.source_wordcount
 
     def update_qualitychecks(self, keep_false_positives=False):
         """Run quality checks and store result in the database.
