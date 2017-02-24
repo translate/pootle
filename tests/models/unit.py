@@ -11,12 +11,13 @@ import pytest
 from translate.storage import factory
 from translate.storage.factory import getclass
 from translate.storage.pypo import pounit
-from translate.storage.statsdb import wordcount
+from translate.storage.statsdb import wordcount as counter
 
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
-from pootle.core.delegate import review
+from pootle.core.delegate import review, wordcount
+from pootle.core.plugin import getter
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from pootle_store.models import Suggestion, Unit
 from pootle_store.syncer import UnitSyncer
@@ -408,20 +409,24 @@ def test_unit_syncer_locations(unit_syncer):
 @pytest.mark.django_db
 def test_add_autotranslated_unit(settings, store0, admin):
 
-    def _test_wordcount(value):
-        return wordcount(value) - value.count('Pootle')
+    class DummyWordcount(object):
 
-    # monkeypatch the wordcount function
-    from pootle_store import models
-    orig_wc = models.wordcount_f
-    models.wordcount_f = _test_wordcount
+        def count(self, value):
+            return counter(value) - value.count('Pootle')
 
-    unit = store0.addunit(store0.UnitClass(source_f='Pootle Pootle'),
-                          user=admin)
+    wc = DummyWordcount()
+    wc_receivers = wordcount.receivers
+    wordcount.receivers = []
+
+    @getter(wordcount, sender=Unit)
+    def temp_wc_getter(**kwargs_):
+        return wc
+
+    unit = store0.addunit(
+        store0.UnitClass(source_f='Pootle Pootle'),
+        user=admin)
 
     dbunit = store0.units.get(id=unit.id)
     assert dbunit.state == FUZZY
     assert dbunit.target_f == unit.source_f
-
-    # unmonkeypatch the wordcount function
-    models.wordcount_f = orig_wc
+    wordcount.receivers = wc_receivers
