@@ -49,6 +49,7 @@ subcommands = Provider()
 uniqueid = Getter()
 unitid = Provider()
 url_patterns = Provider()
+wordcount = Getter()
 
 # view.context_data
 context_data = Provider(providing_args=["view", "context"])
