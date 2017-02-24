@@ -27,6 +27,7 @@ def test_frozen_unit(store0):
     assert frozen_unit.target == unit.target_f
     assert frozen_unit.state == unit.state
     assert frozen_unit.translator_comment == unit.getnotes(origin="translator")
+    assert frozen_unit.revision == unit.revision
 
 
 @pytest.mark.django_db
