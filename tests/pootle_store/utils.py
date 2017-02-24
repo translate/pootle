@@ -47,7 +47,7 @@ def test_unit_create(store0, member):
     unit.store = store0
     unit.source = multistring("Foo2")
     unit.index = store0.max_index() + 1
-    unit.save(submitted_by=member)
+    unit.save(created_by=member)
     assert unit.submission_set.count() == 0
     source = unit.unit_source.get()
     assert source.created_by == member
