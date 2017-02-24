@@ -13,6 +13,7 @@ import factory
 from django.utils import timezone
 
 import pootle_store
+from pootle.core.delegate import wordcount
 from pootle.core.utils.timezone import make_aware
 
 
@@ -195,11 +196,17 @@ class UnitDBFactory(factory.django.DjangoModelFactory):
 
     @factory.lazy_attribute
     def source_wordcount(self):
-        return pootle_store.models.count_words(self.source_f)
+        from pootle_store.models import Unit
+
+        counter = wordcount.get(Unit)
+        return counter.count_words(self.source_f)
 
     @factory.lazy_attribute
     def target_wordcount(self):
-        return pootle_store.models.count_words(self.target_f)
+        from pootle_store.models import Unit
+
+        counter = wordcount.get(Unit)
+        return counter.count_words(self.target_f)
 
 
 class VirtualFolderDBFactory(factory.django.DjangoModelFactory):
