@@ -16,7 +16,6 @@ from collections import OrderedDict
 
 from translate.filters.decorators import Category
 
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
 from django.db.models import F
@@ -28,7 +27,8 @@ from django.utils.http import urlquote
 
 from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import (
-    data_tool, format_syncers, format_updaters, frozen, terminology_matcher)
+    data_tool, format_syncers, format_updaters, frozen, terminology_matcher,
+    wordcount)
 from pootle.core.log import (
     STORE_ADDED, STORE_DELETED, STORE_OBSOLETE, log, store_log)
 from pootle.core.models import Revision
@@ -41,7 +41,6 @@ from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.multistring import PLURAL_PLACEHOLDER, SEPARATOR
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle_misc.checks import check_names
-from pootle_misc.util import import_func
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
 
@@ -144,16 +143,10 @@ class Suggestion(AbstractSuggestion):
 
 # # # # # # # # Unit # # # # # # # # # #
 
-wordcount_f = import_func(settings.POOTLE_WORDCOUNT_FUNC)
-
 
 def count_words(strings):
-    wordcount = 0
-
-    for string in strings:
-        wordcount += wordcount_f(string)
-
-    return wordcount
+    counter = wordcount.get(Unit)
+    return sum(counter.count(string) for string in strings)
 
 
 def stringcount(string):
