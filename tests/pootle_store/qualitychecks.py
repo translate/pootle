@@ -20,3 +20,4 @@ def test_qualitycheck(store0):
     assert qc.unit == unit
     assert qc.name == "foo"
     assert qc.false_positive is False
+    assert str(qc) == "foo"
