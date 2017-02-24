@@ -30,6 +30,15 @@ from .util import SuggestionStates
 User = get_user_model()
 
 
+class UnitWordcount(object):
+
+    def __init__(self, counter):
+        self.counter = counter
+
+    def count(self, string):
+        return self.counter(string)
+
+
 class DefaultUnitid(object):
 
     def __init__(self, unit):
