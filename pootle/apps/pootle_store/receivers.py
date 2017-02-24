@@ -6,18 +6,14 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.db.models.signals import post_save, pre_delete, pre_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 
 from pootle.core.delegate import uniqueid
-from pootle.core.log import (
-    MUTE_QUALITYCHECK, UNIT_ADDED, UNIT_DELETED,
-    UNMUTE_QUALITYCHECK, action_log)
 from pootle.core.signals import update_data
 
 from .constants import UNTRANSLATED
-from .models import (
-    QualityCheck, Suggestion, Unit, UnitChange, UnitSource)
+from .models import Suggestion, Unit, UnitChange
 
 
 @receiver(post_save, sender=Suggestion)
@@ -29,18 +25,6 @@ def handle_suggestion_added(**kwargs):
     update_data.send(store.__class__, instance=store)
 
 
-@receiver(pre_delete, sender=Unit)
-def handle_unit_pre_delete(**kwargs):
-    unit = kwargs["instance"]
-    action_log(
-        user='system',
-        action=UNIT_DELETED,
-        lang=unit.store.translation_project.language.code,
-        unit=unit.id,
-        translation='',
-        path=unit.store.pootle_path)
-
-
 @receiver(pre_save, sender=Unit)
 def handle_unit_pre_save(**kwargs):
     unit = kwargs["instance"]
@@ -49,21 +33,6 @@ def handle_unit_pre_save(**kwargs):
     unitid = uniqueid.get(unit.__class__)(unit)
     if unitid.changed:
         unit.setid(unitid.getid())
-
-
-@receiver(post_save, sender=UnitSource)
-def handle_unit_create(**kwargs):
-    if not kwargs["created"]:
-        return
-    unit_source = kwargs["instance"]
-    unit = unit_source.unit
-    action_log(
-        user=unit_source.created_by,
-        action=UNIT_ADDED,
-        lang=unit.store.translation_project.language.code,
-        unit=unit.id,
-        translation=unit.target_f,
-        path=unit.store.pootle_path)
 
 
 @receiver(post_save, sender=UnitChange)
@@ -78,21 +47,3 @@ def handle_unit_change(**kwargs):
         unit.update_qualitychecks()
     if unit.istranslated():
         unit.update_tmserver()
-
-
-@receiver(post_save, sender=QualityCheck)
-def handle_qualitycheck_save(**kwargs):
-    if kwargs["created"]:
-        return
-    check = kwargs["instance"]
-    unit = check.unit
-    action_log(
-        user=unit.reviewed_by,
-        action=(
-            MUTE_QUALITYCHECK
-            if check.false_positive
-            else UNMUTE_QUALITYCHECK),
-        lang=unit.store.translation_project.language.code,
-        unit=unit.id,
-        translation=unit.target_f,
-        path=unit.store.pootle_path)
