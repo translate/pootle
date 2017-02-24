@@ -17,8 +17,6 @@ from django.utils import timezone
 from django.utils.translation import get_language
 
 from pootle.core.contextmanagers import update_data_after
-from pootle.core.log import (TRANSLATION_ADDED, TRANSLATION_CHANGED,
-                             TRANSLATION_DELETED)
 from pootle.core.url_helpers import split_pootle_path
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
@@ -270,20 +268,12 @@ def unit_form_factory(language, snplurals=None, request=None):
                                      'cleared')))
 
             if new_target:
-                if old_state == UNTRANSLATED:
-                    self.cleaned_data["save_action"] = TRANSLATION_ADDED
-                else:
-                    self.cleaned_data["save_action"] = TRANSLATION_CHANGED
-
                 if is_fuzzy:
                     new_state = FUZZY
                 else:
                     new_state = TRANSLATED
             else:
                 new_state = UNTRANSLATED
-                if old_state > FUZZY:
-                    self.cleaned_data["save_action"] = TRANSLATION_DELETED
-
             if old_state not in [new_state, OBSOLETE]:
                 self._updated_fields.append((SubmissionFields.STATE,
                                              old_state, new_state))
@@ -313,8 +303,7 @@ def unit_form_factory(language, snplurals=None, request=None):
                 unit.save(
                     submitted_on=current_time,
                     submitted_by=user,
-                    changed_with=changed_with,
-                    action=self.cleaned_data.get("save_action"))
+                    changed_with=changed_with)
                 translation_project = unit.store.translation_project
                 for field, old_value, new_value in self.updated_fields:
                     if field == SubmissionFields.TARGET and suggestion:
