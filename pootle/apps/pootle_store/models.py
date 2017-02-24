@@ -240,12 +240,6 @@ class Unit(AbstractUnit):
         self._encoding = 'UTF-8'
         self._frozen = frozen.get(Unit)(self)
 
-    def delete(self, *args, **kwargs):
-        action_log(user='system', action=UNIT_DELETED,
-                   lang=self.store.translation_project.language.code,
-                   unit=self.id, translation='', path=self.store.pootle_path)
-        super(Unit, self).delete(*args, **kwargs)
-
     @property
     def source_updated(self):
         return self.source != self._frozen.source

@@ -6,11 +6,11 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import post_save, pre_delete, pre_save
 from django.dispatch import receiver
 
 from pootle.core.delegate import uniqueid
-from pootle.core.log import UNIT_ADDED, action_log
+from pootle.core.log import UNIT_ADDED, UNIT_DELETED, action_log
 from pootle.core.signals import update_data
 
 from .constants import UNTRANSLATED
@@ -24,6 +24,18 @@ def handle_suggestion_added(**kwargs):
         return
     store = kwargs["instance"].unit.store
     update_data.send(store.__class__, instance=store)
+
+
+@receiver(pre_delete, sender=Unit)
+def handle_unit_pre_delete(**kwargs):
+    unit = kwargs["instance"]
+    action_log(
+        user='system',
+        action=UNIT_DELETED,
+        lang=unit.store.translation_project.language.code,
+        unit=unit.id,
+        translation='',
+        path=unit.store.pootle_path)
 
 
 @receiver(pre_save, sender=Unit)
