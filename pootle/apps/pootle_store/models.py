@@ -278,64 +278,13 @@ class Unit(AbstractUnit):
         reviewed_on = kwargs.pop("reviewed_on", None)
         submitted_by = kwargs.pop("submitted_by", None)
         submitted_on = kwargs.pop("submitted_on", None)
-        was_fuzzy = self._frozen.state == FUZZY
         sysuser = get_user_model().objects.get_system_user()
-        auto_translated = False
-
-        if self.source_updated:
-            # update source related fields
-            self.source_hash = md5(self.source_f.encode("utf-8")).hexdigest()
-            self.source_length = len(self.source_f)
-            wc = self.update_wordcount()
-            if not wc and not bool(filter(None, self.target_f.strings)):
-                # auto-translate untranslated strings
-                self.target = self.source
-                self.state = FUZZY
-                auto_translated = True
-        if self.target_updated:
-            # update target related fields
-            self.target_wordcount = self.counter.count_words(
-                self.target_f.strings)
-            self.target_length = len(self.target_f)
-            if filter(None, self.target_f.strings):
-                if self.state == UNTRANSLATED:
-                    self.state = TRANSLATED
-            else:
-                # if it was TRANSLATED then set to UNTRANSLATED
-                if self.state > FUZZY:
-                    self.state = UNTRANSLATED
-
-        # Updating unit from the .po file set its revision property to
-        # a new value (the same for all units during its store updated)
-        # since that change doesn't require further sync but note that
-        # auto_translated units require further sync
-        update_revision = (
-            self.revision is None
-            or (self.updated
-                and not auto_translated
-                and not self.revision_updated))
-        if update_revision:
-            self.revision = Revision.incr()
-
-        if was_fuzzy:
-            # set reviewer data if FUZZY has been removed only and
-            # translation hasn't been updated
-            self.reviewed_on = timezone.now()
-            self.reviewed_by = reviewed_by or sysuser
-        elif self.state == FUZZY:
-            # clear reviewer data if unit has been marked as FUZZY
-            self.reviewed_on = None
-            self.reviewed_by = None
-        elif self.state == UNTRANSLATED:
-            # clear reviewer and translator data if translation
-            # has been deleted
-            self.reviewed_on = None
-            self.reviewed_by = None
-            self.submitted_by = None
-            self.submitted_on = None
+        if reviewed_by:
+            self.reviewed_by = reviewed_by
+        if submitted_by:
+            self.submitted_by = submitted_by
 
         super(Unit, self).save(*args, **kwargs)
-        submitted_by = submitted_by or self.submitted_by
         submitted_on = submitted_on or self.submitted_on
         if created:
             unit_source = self.unit_source.model(unit=self)
