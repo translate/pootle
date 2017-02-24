@@ -232,9 +232,14 @@ class Unit(AbstractUnit):
         super(Unit, self).__init__(*args, **kwargs)
         self._rich_source = None
         self._rich_target = None
-        self._comment_updated = False
         self._encoding = 'UTF-8'
         self._frozen = frozen.get(Unit)(self)
+
+    @property
+    def comment_updated(self):
+        return (
+            self.translator_comment
+            != self._frozen.translator_comment)
 
     @property
     def source_updated(self):
@@ -265,13 +270,15 @@ class Unit(AbstractUnit):
         changed_with = kwargs.pop("changed_with", None) or SubmissionTypes.SYSTEM
         reviewed_by = kwargs.pop("reviewed_by", None)
         reviewed_on = kwargs.pop("reviewed_on", None)
+        revision = kwargs.pop('revision', None)
         submitted_by = kwargs.pop("submitted_by", None)
         submitted_on = kwargs.pop("submitted_on", None)
         auto_translated = False
-        comment_updated = (
-            kwargs.pop("comment_updated", None)
-            or self._comment_updated)
-
+        changed = (
+            (self.source_updated and not created)
+            or self.target_updated
+            or (self.state_updated and not created)
+            or (self.comment_updated and not created))
         was_fuzzy = self._frozen.state == FUZZY
 
         user = kwargs.pop("user", get_user_model().objects.get_system_user())
@@ -302,10 +309,9 @@ class Unit(AbstractUnit):
         # a new value (the same for all units during its store updated)
         # since that change doesn't require further sync but note that
         # auto_translated units require further sync
-        revision = kwargs.pop('revision', None)
         if revision is not None and not auto_translated:
             self.revision = revision
-        elif self.target_updated or self.state_updated or comment_updated:
+        elif changed:
             self.revision = Revision.incr()
 
         if was_fuzzy:
@@ -340,10 +346,6 @@ class Unit(AbstractUnit):
             unit_source.source_length = self.source_length
             unit_source.source_wordcount = self.source_wordcount
             unit_source.save()
-        changed = (
-            (self.source_updated and not created)
-            or self.target_updated
-            or comment_updated)
         if changed and not self.changed:
             self.change = UnitChange(
                 unit=self,
@@ -360,9 +362,6 @@ class Unit(AbstractUnit):
             if reviewed_on is not None:
                 self.change.reviewed_on = reviewed_on
             self.change.save()
-
-        # done processing source/target update remove flag
-        self._comment_updated = False
         update_data.send(
             self.store.__class__, instance=self.store)
 
@@ -513,7 +512,6 @@ class Unit(AbstractUnit):
             (self.translator_comment or notes)):
             self.translator_comment = notes or None
             changed = True
-            self._comment_updated = True
 
         locations = "\n".join(unit.getlocations())
         if self.locations != locations and (self.locations or locations):
