@@ -234,6 +234,10 @@ class Unit(AbstractUnit):
             != self._frozen.translator_comment)
 
     @property
+    def revision_updated(self):
+        return self.revision != self._frozen.revision
+
+    @property
     def source_updated(self):
         return self.source != self._frozen.source
 
@@ -250,6 +254,15 @@ class Unit(AbstractUnit):
         return self.context != self._frozen.context
 
     @property
+    def updated(self):
+        created = self._frozen.pk is None
+        return (
+            (self.source_updated and not created)
+            or self.target_updated
+            or (self.state_updated and not created)
+            or (self.comment_updated and not created))
+
+    @property
     def changed(self):
         try:
             self.change
@@ -263,17 +276,11 @@ class Unit(AbstractUnit):
         changed_with = kwargs.pop("changed_with", None) or SubmissionTypes.SYSTEM
         reviewed_by = kwargs.pop("reviewed_by", None)
         reviewed_on = kwargs.pop("reviewed_on", None)
-        revision = kwargs.pop('revision', None)
         submitted_by = kwargs.pop("submitted_by", None)
         submitted_on = kwargs.pop("submitted_on", None)
-        auto_translated = False
-        changed = (
-            (self.source_updated and not created)
-            or self.target_updated
-            or (self.state_updated and not created)
-            or (self.comment_updated and not created))
         was_fuzzy = self._frozen.state == FUZZY
         sysuser = get_user_model().objects.get_system_user()
+        auto_translated = False
 
         if self.source_updated:
             # update source related fields
@@ -302,9 +309,12 @@ class Unit(AbstractUnit):
         # a new value (the same for all units during its store updated)
         # since that change doesn't require further sync but note that
         # auto_translated units require further sync
-        if revision is not None and not auto_translated:
-            self.revision = revision
-        elif changed:
+        update_revision = (
+            self.revision is None
+            or (self.updated
+                and not auto_translated
+                and not self.revision_updated))
+        if update_revision:
             self.revision = Revision.incr()
 
         if was_fuzzy:
@@ -340,11 +350,11 @@ class Unit(AbstractUnit):
             unit_source.source_length = self.source_length
             unit_source.source_wordcount = self.source_wordcount
             unit_source.save()
-        if changed and not self.changed:
+        if self.updated and not self.changed:
             self.change = UnitChange(
                 unit=self,
                 changed_with=changed_with)
-        if changed:
+        if self.updated:
             if changed_with is not None:
                 self.change.changed_with = changed_with
             if submitted_by is not None:
