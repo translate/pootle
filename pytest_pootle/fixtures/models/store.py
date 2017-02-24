@@ -266,7 +266,6 @@ def _create_comment_on_unit(unit, user, comment):
         new_value=comment,
     )
     sub.save()
-    unit._comment_updated = True
     unit.save()
 
 
