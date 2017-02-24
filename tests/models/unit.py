@@ -414,6 +414,9 @@ def test_add_autotranslated_unit(settings, store0, admin):
         def count(self, value):
             return counter(value) - value.count('Pootle')
 
+        def count_words(self, strings):
+            return sum(self.count(string) for string in strings)
+
     wc = DummyWordcount()
     wc_receivers = wordcount.receivers
     wordcount.receivers = []
