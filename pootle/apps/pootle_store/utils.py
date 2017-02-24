@@ -38,6 +38,9 @@ class UnitWordcount(object):
     def count(self, string):
         return self.counter(string)
 
+    def count_words(self, strings):
+        return sum(self.count(string) for string in strings)
+
 
 class DefaultUnitid(object):
 

@@ -144,11 +144,6 @@ class Suggestion(AbstractSuggestion):
 # # # # # # # # Unit # # # # # # # # # #
 
 
-def count_words(strings):
-    counter = wordcount.get(Unit)
-    return sum(counter.count(string) for string in strings)
-
-
 def stringcount(string):
     try:
         return len(string.strings)
@@ -228,6 +223,10 @@ class Unit(AbstractUnit):
         self._encoding = 'UTF-8'
         self._frozen = frozen.get(Unit)(self)
 
+    @cached_property
+    def counter(self):
+        return wordcount.get(Unit)
+
     @property
     def comment_updated(self):
         return (
@@ -288,7 +287,8 @@ class Unit(AbstractUnit):
                 auto_translated = True
         if self.target_updated:
             # update target related fields
-            self.target_wordcount = count_words(self.target_f.strings)
+            self.target_wordcount = self.counter.count_words(
+                self.target_f.strings)
             self.target_length = len(self.target_f)
             if filter(None, self.target_f.strings):
                 if self.state == UNTRANSLATED:
@@ -540,7 +540,8 @@ class Unit(AbstractUnit):
     def update_wordcount(self):
         """Updates the source wordcount for a unit.
         """
-        self.source_wordcount = count_words(self.source_f.strings)
+        self.source_wordcount = self.counter.count_words(
+            self.source_f.strings)
 
         if self.source_wordcount == 0:
             # We can't set the actual wordcount to zero since the unit
