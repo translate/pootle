@@ -267,6 +267,7 @@ class Unit(AbstractUnit):
 
     def save(self, *args, **kwargs):
         created = self.id is None
+        created_by = kwargs.pop("created_by", None)
         changed_with = kwargs.pop("changed_with", None) or SubmissionTypes.SYSTEM
         reviewed_by = kwargs.pop("reviewed_by", None)
         reviewed_on = kwargs.pop("reviewed_on", None)
@@ -280,8 +281,7 @@ class Unit(AbstractUnit):
             or (self.state_updated and not created)
             or (self.comment_updated and not created))
         was_fuzzy = self._frozen.state == FUZZY
-
-        user = kwargs.pop("user", get_user_model().objects.get_system_user())
+        sysuser = get_user_model().objects.get_system_user()
 
         if self.source_updated:
             # update source related fields
@@ -318,7 +318,7 @@ class Unit(AbstractUnit):
             # set reviewer data if FUZZY has been removed only and
             # translation hasn't been updated
             self.reviewed_on = timezone.now()
-            self.reviewed_by = user
+            self.reviewed_by = reviewed_by or sysuser
         elif self.state == FUZZY:
             # clear reviewer data if unit has been marked as FUZZY
             self.reviewed_on = None
@@ -336,9 +336,10 @@ class Unit(AbstractUnit):
         submitted_on = submitted_on or self.submitted_on
         if created:
             unit_source = self.unit_source.model(unit=self)
-            unit_source.created_by = submitted_by or user
+            unit_source.created_by = created_by or sysuser
             unit_source.created_with = changed_with
             submitted_on = self.creation_time
+            submitted_by = unit_source.created_by
         elif self.source_updated:
             unit_source = self.unit_source.get()
         if created or self.source_updated:
@@ -1196,7 +1197,7 @@ class Store(AbstractStore):
         if self.id:
             newunit.save(
                 revision=update_revision,
-                user=user,
+                created_by=user,
                 changed_with=changed_with)
         return newunit
 
