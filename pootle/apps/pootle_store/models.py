@@ -30,10 +30,7 @@ from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import (
     data_tool, format_syncers, format_updaters, frozen, terminology_matcher)
 from pootle.core.log import (
-    TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
-    UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
-    STORE_ADDED, STORE_DELETED, STORE_OBSOLETE,
-    action_log, log, store_log)
+    STORE_ADDED, STORE_DELETED, STORE_OBSOLETE, log, store_log)
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
 from pootle.core.signals import update_data
@@ -276,17 +273,6 @@ class Unit(AbstractUnit):
             or self._comment_updated)
 
         was_fuzzy = self._frozen.state == FUZZY
-        action = None
-        if "action" in kwargs:
-            action = kwargs.pop("action", None)
-        elif created:
-            action = UNIT_ADDED
-        elif self.state == OBSOLETE and self._frozen.state > OBSOLETE:
-            action = UNIT_OBSOLETE
-        elif self.state > OBSOLETE and self._frozen.state == OBSOLETE:
-            action = UNIT_RESURRECTED
-        elif self.isfuzzy() != was_fuzzy:
-            action = TRANSLATION_CHANGED
 
         user = kwargs.pop("user", get_user_model().objects.get_system_user())
 
@@ -307,11 +293,7 @@ class Unit(AbstractUnit):
             if filter(None, self.target_f.strings):
                 if self.state == UNTRANSLATED:
                     self.state = TRANSLATED
-                    action = action or TRANSLATION_ADDED
-                else:
-                    action = action or TRANSLATION_CHANGED
             else:
-                action = TRANSLATION_DELETED
                 # if it was TRANSLATED then set to UNTRANSLATED
                 if self.state > FUZZY:
                     self.state = UNTRANSLATED
@@ -326,14 +308,6 @@ class Unit(AbstractUnit):
         elif self.target_updated or self.state_updated or comment_updated:
             self.revision = Revision.incr()
 
-        if not created and action:
-            action_log(
-                user=user,
-                action=action,
-                lang=self.store.translation_project.language.code,
-                unit=self.id,
-                translation=self.target_f,
-                path=self.store.pootle_path)
         if was_fuzzy:
             # set reviewer data if FUZZY has been removed only and
             # translation hasn't been updated
@@ -944,12 +918,6 @@ class Store(AbstractStore):
     def delete(self, *args, **kwargs):
         store_log(user='system', action=STORE_DELETED,
                   path=self.pootle_path, store=self.id)
-
-        lang = self.translation_project.language.code
-        for unit in self.unit_set.iterator():
-            action_log(user='system', action=UNIT_DELETED, lang=lang,
-                       unit=unit.id, translation='', path=self.pootle_path)
-
         super(Store, self).delete(*args, **kwargs)
 
     def calculate_priority(self):
@@ -977,15 +945,12 @@ class Store(AbstractStore):
 
     def makeobsolete(self):
         """Make this store and all its units obsolete."""
-        store_log(user='system', action=STORE_OBSOLETE,
-                  path=self.pootle_path, store=self.id)
-
-        lang = self.translation_project.language.code
+        store_log(
+            user='system',
+            action=STORE_OBSOLETE,
+            path=self.pootle_path,
+            store=self.id)
         unit_query = self.unit_set.filter(state__gt=OBSOLETE)
-        unit_ids = unit_query.values_list('id', flat=True)
-        for unit_id in unit_ids:
-            action_log(user='system', action=UNIT_OBSOLETE, lang=lang,
-                       unit=unit_id, translation='', path=self.pootle_path)
         unit_query.update(state=OBSOLETE, index=0)
         self.obsolete = True
         self.save()
