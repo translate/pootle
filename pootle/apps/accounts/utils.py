@@ -264,7 +264,8 @@ class UserPurger(object):
                 logger.debug("Unit edit removed: %s", repr(unit))
 
             # Increment revision
-            unit.save(revision=Revision.incr())
+            unit.revision = Revision.incr()
+            unit.save()
         return stores
 
     @write_stdout(" * Reverting units reviewed by: %(user)s... ")
@@ -312,7 +313,8 @@ class UserPurger(object):
                 # Increment revision
                 revision = Revision.incr()
                 logger.debug("Unit reviewed_by removed: %s", repr(unit))
-            unit.save(revision=revision)
+            unit.revision = revision
+            unit.save()
         return stores
 
     @write_stdout(" * Reverting unit state changes by: %(user)s... ")
@@ -349,7 +351,8 @@ class UserPurger(object):
                 unit.state = new_state
 
                 # Increment revision
-                unit.save(revision=Revision.incr())
+                unit.revision = Revision.incr()
+                unit.save()
                 logger.debug("Unit state reverted: %s", repr(unit))
         return stores
 

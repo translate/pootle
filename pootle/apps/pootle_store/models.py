@@ -800,8 +800,8 @@ class Unit(AbstractUnit):
         if check.false_positive == false_positive:
             return
 
+        self.revision = Revision.incr()
         self.save(
-            revision=Revision.incr(),
             reviewed_by=user)
         check.false_positive = false_positive
         check.save()
@@ -1017,7 +1017,8 @@ class Store(AbstractStore):
             unit.store = self
             if not unit.isobsolete():
                 unit.makeobsolete()
-                unit.save(revision=update_revision)
+                unit.revision = update_revision
+                unit.save()
                 obsoleted += 1
 
         return obsoleted
@@ -1199,8 +1200,8 @@ class Store(AbstractStore):
         newunit.update(unit, user=user)
 
         if self.id:
+            newunit.revision = update_revision
             newunit.save(
-                revision=update_revision,
                 created_by=user,
                 changed_with=changed_with)
         return newunit

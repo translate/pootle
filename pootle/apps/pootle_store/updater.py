@@ -179,9 +179,9 @@ class UnitUpdater(object):
             comment_updated=self.translator_comment_updated)
 
     def save_unit(self):
+        self.unit.revision = self.update.update_revision
         self.unit.save(
-            revision=self.update.update_revision,
-            submitted_by=self.update.user,
+            submitted_by=self.unit.submitted_by,
             submitted_on=self.at,
             changed_with=self.update.submission_type)
 
