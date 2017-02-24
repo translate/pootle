@@ -10,11 +10,14 @@ from django.db.models.signals import post_save, pre_delete, pre_save
 from django.dispatch import receiver
 
 from pootle.core.delegate import uniqueid
-from pootle.core.log import UNIT_ADDED, UNIT_DELETED, action_log
+from pootle.core.log import (
+    MUTE_QUALITYCHECK, UNIT_ADDED, UNIT_DELETED,
+    UNMUTE_QUALITYCHECK, action_log)
 from pootle.core.signals import update_data
 
 from .constants import UNTRANSLATED
-from .models import Suggestion, Unit, UnitChange, UnitSource
+from .models import (
+    QualityCheck, Suggestion, Unit, UnitChange, UnitSource)
 
 
 @receiver(post_save, sender=Suggestion)
@@ -75,3 +78,21 @@ def handle_unit_change(**kwargs):
         unit.update_qualitychecks()
     if unit.istranslated():
         unit.update_tmserver()
+
+
+@receiver(post_save, sender=QualityCheck)
+def handle_qualitycheck_save(**kwargs):
+    if kwargs["created"]:
+        return
+    check = kwargs["instance"]
+    unit = check.unit
+    action_log(
+        user=unit.reviewed_by,
+        action=(
+            MUTE_QUALITYCHECK
+            if check.false_positive
+            else UNMUTE_QUALITYCHECK),
+        lang=unit.store.translation_project.language.code,
+        unit=unit.id,
+        translation=unit.target_f,
+        path=unit.store.pootle_path)

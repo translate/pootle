@@ -33,7 +33,6 @@ from pootle.core.log import (
     TRANSLATION_ADDED, TRANSLATION_CHANGED, TRANSLATION_DELETED,
     UNIT_ADDED, UNIT_DELETED, UNIT_OBSOLETE, UNIT_RESURRECTED,
     STORE_ADDED, STORE_DELETED, STORE_OBSOLETE,
-    MUTE_QUALITYCHECK, UNMUTE_QUALITYCHECK,
     action_log, log, store_log)
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
@@ -824,6 +823,9 @@ class Unit(AbstractUnit):
         if check.false_positive == false_positive:
             return
 
+        self.save(
+            revision=Revision.incr(),
+            reviewed_by=user)
         check.false_positive = false_positive
         check.save()
 
@@ -843,12 +845,6 @@ class Unit(AbstractUnit):
             type=sub_type,
             quality_check=check)
         sub.save()
-        self.save(
-            revision=Revision.incr(),
-            action=(
-                MUTE_QUALITYCHECK
-                if false_positive
-                else UNMUTE_QUALITYCHECK))
 
     def get_terminology(self):
         """get terminology suggestions"""
