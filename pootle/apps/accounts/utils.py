@@ -233,7 +233,6 @@ class UserPurger(object):
                 logger.debug("Unit comment removed: %s", repr(unit))
 
             # Increment revision
-            unit._comment_updated = True
             unit.save()
         return stores
 
