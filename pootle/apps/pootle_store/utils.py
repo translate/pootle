@@ -95,6 +95,7 @@ class FrozenUnit(object):
             source_f=unit.source_f,
             target_f=unit.target_f,
             context=unit.context,
+            revision=unit.revision,
             submitter=unit.submitted_by,
             state=unit.state,
             pk=unit.pk,
@@ -107,6 +108,10 @@ class FrozenUnit(object):
     @property
     def pk(self):
         return self.unit["pk"]
+
+    @property
+    def revision(self):
+        return self.unit["revision"]
 
     @property
     def source(self):
