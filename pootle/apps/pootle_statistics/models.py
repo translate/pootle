@@ -190,6 +190,7 @@ class Submission(models.Model):
     store = models.ForeignKey('pootle_store.Store', blank=True, null=True,
                               db_index=True, on_delete=models.CASCADE)
 
+    action = models.IntegerField(null=True, blank=True, db_index=True)
     #: The field in the unit that changed
     field = models.IntegerField(null=True, blank=True, db_index=True)
     # how did this submission come about? (one of the constants above)
