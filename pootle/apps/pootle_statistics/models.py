@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from enum import Enum
+
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
@@ -23,6 +25,16 @@ from pootle_store.fields import to_python
 
 
 SIMILARITY_THRESHOLD = 0.5
+
+
+class SubmissionActions(Enum):
+    EDIT = 1
+    REVIEW = 2
+    ADD = 4
+    ACCEPT = 5
+    REJECT = 6
+    MUTE = 7
+    UNMUTE = 8
 
 
 #: These are the values for the 'type' field of Submission
@@ -53,6 +65,8 @@ class SubmissionFields(object):
     TARGET = 2  # pootle_store.models.Unit.target
     STATE = 3  # pootle_store.models.Unit.state
     COMMENT = 4  # pootle_store.models.Unit.translator_comment
+    CHECK = 5
+    SUGGESTION = 6
 
     TRANSLATION_FIELDS = [TARGET]
 
