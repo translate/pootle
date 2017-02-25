@@ -29,7 +29,6 @@ SIMILARITY_THRESHOLD = 0.5
 class SubmissionTypes(object):
     # None/0 = no information
     NORMAL = 1  # Interactive web editing
-    REVERT = 2  # Revert action on the web
     SUGG_ACCEPT = 3  # Accepting a suggestion
     UPLOAD = 4  # Uploading an offline file
     SYSTEM = 5  # Batch actions performed offline
