@@ -233,9 +233,9 @@ class SuggestionsReview(object):
         suggestion.review_time = current_time
         suggestion.save()
         create_subs = OrderedDict()
+        create_subs[SubmissionFields.TARGET] = [old_target, unit.target]
         if old_state != unit.state:
             create_subs[SubmissionFields.STATE] = [old_state, unit.state]
-        create_subs[SubmissionFields.TARGET] = [old_target, unit.target]
         subs_created = []
         for field in create_subs:
             kwargs = {
