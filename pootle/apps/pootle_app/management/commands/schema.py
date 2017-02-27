@@ -10,15 +10,21 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from django.core.management.base import BaseCommand, CommandError
-
+from pootle.core.management.subcommands import CommandWithSubcommands
 from pootle.core.schema.base import SchemaTool
 from pootle.core.utils.json import jsonify
 
+from .schema_commands import SchemaAppCommand, SchemaTableCommand
 
-class Command(BaseCommand):
-    help = "Print Pootle's current schema state."
+
+class Command(CommandWithSubcommands):
+    help = "Pootle schema state command."
     requires_system_checks = False
+
+    subcommands = {
+        "app": SchemaAppCommand,
+        "table": SchemaTableCommand,
+    }
 
     def add_arguments(self, parser):
 
