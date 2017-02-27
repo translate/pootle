@@ -138,6 +138,18 @@ class UnitUpdater(object):
                 and self.update.resolve_conflict == POOTLE_WINS))
 
     @cached_property
+    def should_update_source(self):
+        return (self.newunit
+                and self.unit.source != self.newunit.source)
+
+    @cached_property
+    def should_update_state(self):
+        # `fuzzy` state change is checked here.
+        # `translated` and `obsolete` states are handled separately.
+        return (self.newunit
+                and self.unit.isfuzzy() != self.newunit.isfuzzy())
+
+    @cached_property
     def target_updated(self):
         if not self.newunit:
             return False
@@ -216,7 +228,11 @@ class UnitUpdater(object):
     def update_unit(self):
         suggested = False
         updated = False
-        if self.should_unobsolete or self.should_update_target:
+        need_update = (self.should_unobsolete
+                       or self.should_update_target
+                       or self.should_update_source
+                       or self.should_update_state)
+        if need_update:
             updated = self.unit.update(
                 self.newunit, user=self.update.user)
         if self.should_update_index:
