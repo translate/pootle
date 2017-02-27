@@ -38,7 +38,8 @@ from pootle_format.formats.po import PoStoreSyncer
 from pootle_format.models import Format
 from pootle_language.models import Language
 from pootle_project.models import Project
-from pootle_statistics.models import SubmissionTypes
+from pootle_statistics.models import (
+    SubmissionFields, SubmissionTypes)
 from pootle_store.constants import (
     NEW, OBSOLETE, PARSED, POOTLE_WINS, TRANSLATED)
 from pootle_store.diff import DiffableStore, StoreDiff
@@ -105,6 +106,9 @@ def test_delete_mark_obsolete(project0_nongnu, project0, store0):
     assert not updated_store.units.exists()
     assert updated_store.unit_set.filter(state=OBSOLETE).exists()
 
+    obs_unit = updated_store.unit_set.filter(state=OBSOLETE).first()
+    obs_unit.submission_set.count() == 0
+
 
 @pytest.mark.django_db
 def test_sync(project0_nongnu, project0, store0):
@@ -144,6 +148,7 @@ def test_update_from_ts(store0, test_fs, member):
         user=member)
     assert not store0.units[orig_units].hasplural()
     unit = store0.units[orig_units + 1]
+    assert unit.submission_set.count() == 0
     assert unit.hasplural()
     assert unit.creation_time >= existing_created_at
     assert unit.creation_time >= existing_mtime
@@ -168,59 +173,81 @@ def test_update_ts_plurals(store_po, test_fs, ts):
     with test_fs.open(['data', 'ts', 'add_plurals.ts']) as f:
         file_store = getclass(f)(f.read())
     store_po.update(file_store)
-
-    assert store_po.units[0].hasplural()
+    unit = store_po.units[0]
+    assert unit.hasplural()
+    assert unit.submission_set.count() == 0
 
     with test_fs.open(['data', 'ts', 'update_plurals.ts']) as f:
         file_store = getclass(f)(f.read())
     store_po.update(file_store)
-    assert store_po.units[0].hasplural()
+    unit = store_po.units[0]
+    assert unit.hasplural()
+    assert unit.submission_set.count() == 1
+    update_sub = unit.submission_set.first()
+    assert update_sub.revision == unit.revision
+    assert update_sub.creation_time == unit.change.submitted_on
+    assert update_sub.submitter == unit.change.submitted_by
+    assert update_sub.new_value == unit.target
+    assert update_sub.type == unit.change.changed_with
+    assert update_sub.field == SubmissionFields.TARGET
+    # this fails 8(
+    # from pootle.core.utils.multistring import unparse_multistring
+    # assert (
+    #      unparse_multistring(update_sub.new_value)
+    #      == unparse_multistring(unit.target))
 
 
 @pytest.mark.django_db
 def test_update_with_non_ascii(store0, test_fs):
     store0.state = PARSED
     orig_units = store0.units.count()
-    with test_fs.open(['data', 'po', 'tutorial', 'en',
-                       'tutorial_non_ascii.po']) as f:
+    path = 'data', 'po', 'tutorial', 'en', 'tutorial_non_ascii.po'
+    with test_fs.open(path) as f:
         store = getclass(f)(f.read())
     store0.update(store)
-    assert store0.units[orig_units].target == "Hèḽḽě, ŵôrḽḓ"
+    last_unit = store0.units[orig_units]
+    updated_target = "Hèḽḽě, ŵôrḽḓ"
+    assert last_unit.target == updated_target
+    assert last_unit.submission_set.count() == 0
+    # last_unit.target = "foo"
+    # last_unit.save()
+    # this should now have a submission with the old target
+    # but it fails
+    # assert last_unit.submission_set.count() == 1
+    # update_sub = last_unit.submission_set.first()
+    # assert update_sub.old_value == updated_target
+    # assert update_sub.new_value == "foo"
 
 
 @pytest.mark.django_db
 def test_update_unit_order(project0_nongnu, ordered_po, ordered_update_ttk):
     """Tests unit order after a specific update.
     """
-
     # Set last sync revision
     ordered_po.sync()
     assert ordered_po.file.exists()
-
-    old_unit_list = ['1->2', '2->4', '3->3', '4->5']
-    updated_unit_list = list(
-        [unit.unitid for unit in ordered_po.units]
-    )
-    assert old_unit_list == updated_unit_list
-    current_revision = ordered_po.get_max_unit_revision()
-
+    expected_unit_list = ['1->2', '2->4', '3->3', '4->5']
+    updated_unit_list = [unit.unitid for unit in ordered_po.units]
+    assert expected_unit_list == updated_unit_list
+    original_revision = ordered_po.get_max_unit_revision()
     ordered_po.update(
         ordered_update_ttk,
-        store_revision=current_revision)
-
-    old_unit_list = [
+        store_revision=original_revision)
+    expected_unit_list = [
         'X->1', '1->2', '3->3', '2->4',
         '4->5', 'X->6', 'X->7', 'X->8']
-    updated_unit_list = list(
-        [unit.unitid for unit in ordered_po.units]
-    )
-    assert old_unit_list == updated_unit_list
+    updated_unit_list = [unit.unitid for unit in ordered_po.units]
+    assert expected_unit_list == updated_unit_list
+    unit = ordered_po.units.first()
+    assert unit.revision > original_revision
+    assert unit.submission_set.count() == 0
 
 
 @pytest.mark.django_db
 def test_update_save_changed_units(project0_nongnu, store0, member, system):
     """Tests that any update saves changed units only.
     """
+    # not sure if this is testing anything
     store = store0
     # Set last sync revision
     store.sync()
@@ -303,6 +330,9 @@ def test_update_set_last_sync_revision(project0_nongnu, tp0, store0, test_fs):
 def test_update_upload_defaults(store0, system):
     store0.state = PARSED
     unit = store0.units.first()
+    original_revision = unit.revision
+    last_sub_pk = unit.submission_set.order_by(
+        "id").values_list("id", flat=True).last()
     update_store(
         store0,
         [(unit.source, "%s UPDATED" % unit.source)],
@@ -314,12 +344,36 @@ def test_update_upload_defaults(store0, system):
     assert (
         unit.submission_set.last().type
         == SubmissionTypes.SYSTEM)
+    assert unit.revision > original_revision
+    new_subs = unit.submission_set.filter(id__gt=last_sub_pk).order_by("id")
+    # there should be 2 new subs - state_change and target_change
+    new_subs = unit.submission_set.filter(id__gt=last_sub_pk).order_by("id")
+    assert new_subs.count() == 2
+    state_sub = new_subs[0]
+    assert state_sub.old_value == "0"
+    assert state_sub.new_value == "200"
+    assert state_sub.field == SubmissionFields.STATE
+    assert state_sub.type == SubmissionTypes.SYSTEM
+    assert state_sub.submitter == system
+    assert state_sub.revision == unit.revision
+    assert state_sub.creation_time == unit.change.submitted_on
+    target_sub = new_subs[1]
+    assert target_sub.old_value == ""
+    assert target_sub.new_value == unit.target
+    assert target_sub.field == SubmissionFields.TARGET
+    assert target_sub.type == SubmissionTypes.SYSTEM
+    assert target_sub.submitter == system
+    assert target_sub.revision == unit.revision
+    assert target_sub.creation_time == unit.change.submitted_on
 
 
 @pytest.mark.django_db
 def test_update_upload_member_user(store0, system, member):
     store0.state = PARSED
     original_unit = store0.units.first()
+    original_revision = original_unit.revision
+    last_sub_pk = original_unit.submission_set.order_by(
+        "id").values_list("id", flat=True).last()
     update_store(
         store0,
         [(original_unit.source, "%s UPDATED" % original_unit.source)],
@@ -332,40 +386,65 @@ def test_update_upload_member_user(store0, system, member):
     assert unit.change.changed_with == SubmissionTypes.UPLOAD
     assert unit.change.submitted_on >= unit.creation_time
     assert unit.change.reviewed_on is None
+    assert unit.revision > original_revision
     unit_source = unit.unit_source.get()
     unit_source.created_by == system
     unit_source.created_with == SubmissionTypes.SYSTEM
+    # there should be 2 new subs - state_change and target_change
+    new_subs = unit.submission_set.filter(id__gt=last_sub_pk).order_by("id")
+    assert new_subs.count() == 2
+    state_sub = new_subs[0]
+    assert state_sub.old_value == "0"
+    assert state_sub.new_value == "200"
+    assert state_sub.field == SubmissionFields.STATE
+    assert state_sub.type == SubmissionTypes.UPLOAD
+    assert state_sub.submitter == member
+    assert state_sub.revision == unit.revision
+    assert state_sub.creation_time == unit.change.submitted_on
+    target_sub = new_subs[1]
+    assert target_sub.old_value == ""
+    assert target_sub.new_value == unit.target
+    assert target_sub.field == SubmissionFields.TARGET
+    assert target_sub.type == SubmissionTypes.UPLOAD
+    assert target_sub.submitter == member
+    assert target_sub.revision == unit.revision
+    assert target_sub.creation_time == unit.change.submitted_on
 
 
 @pytest.mark.django_db
 def test_update_upload_submission_type(store0):
     store0.state = PARSED
-    unit_source = store0.units.first().source
+    unit = store0.units.first()
+    last_sub_pk = unit.submission_set.order_by(
+        "id").values_list("id", flat=True).last()
     update_store(
         store0,
-        [(unit_source, "%s UPDATED" % unit_source)],
+        [(unit.source, "%s UPDATED" % unit.source)],
         submission_type=SubmissionTypes.UPLOAD,
         store_revision=Revision.get() + 1)
+    unit_source = store0.units[0].unit_source.get()
+    assert unit_source.created_with == SubmissionTypes.SYSTEM
+    assert unit.change.changed_with == SubmissionTypes.UPLOAD
+    # there should be 2 new subs - state_change and target_change
+    # and both should show as by UPLOAD
+    new_subs = unit.submission_set.filter(id__gt=last_sub_pk)
     assert (
-        store0.units[0].unit_source.get().created_with
-        == SubmissionTypes.SYSTEM)
-    assert (
-        store0.units[0].change.changed_with
-        == SubmissionTypes.UPLOAD)
-    assert (
-        store0.units[0].submission_set.last().type
-        == SubmissionTypes.UPLOAD)
+        list(new_subs.values_list("type", flat=True))
+        == [SubmissionTypes.UPLOAD] * 2)
 
 
 @pytest.mark.django_db
 def test_update_upload_new_revision(store0, member):
     original_revision = store0.data.max_unit_revision
+    old_unit = store0.units.first()
     update_store(
         store0,
         [("Hello, world", "Hello, world UPDATED")],
         submission_type=SubmissionTypes.UPLOAD,
         store_revision=Revision.get() + 1,
         user=member)
+    old_unit.refresh_from_db()
+    assert old_unit.state == OBSOLETE
     assert len(store0.units) == 1
     unit = store0.units[0]
     unit_source = unit.unit_source.get()
@@ -376,29 +455,38 @@ def test_update_upload_new_revision(store0, member):
     assert unit.change.reviewed_by is None
     assert unit.change.reviewed_on is None
     assert unit.target == "Hello, world UPDATED"
+    assert unit.submission_set.count() == 0
 
 
 @pytest.mark.django_db
 def test_update_upload_again_new_revision(store0, member, member2):
     store = store0
     assert store.state == NEW
+    original_unit = store0.units[0]
     update_store(
         store,
         [("Hello, world", "Hello, world UPDATED")],
         submission_type=SubmissionTypes.UPLOAD,
         store_revision=Revision.get() + 1,
         user=member)
-    store = Store.objects.get(pk=store.pk)
+    original_unit.refresh_from_db()
+    assert original_unit.state == OBSOLETE
+    store = Store.objects.get(pk=store0.pk)
     assert store.state == PARSED
-    assert store.units[0].target == "Hello, world UPDATED"
+    created_unit = store.units[0]
+    assert created_unit.target == "Hello, world UPDATED"
+    assert created_unit.state == TRANSLATED
+    assert created_unit.submission_set.count() == 0
     old_unit_revision = store.data.max_unit_revision
     update_store(
-        store,
+        store0,
         [("Hello, world", "Hello, world UPDATED AGAIN")],
         submission_type=SubmissionTypes.NORMAL,
         user=member2,
         store_revision=Revision.get() + 1)
-    store = Store.objects.get(pk=store.pk)
+    assert created_unit.submission_set.count() == 1
+    update_sub = created_unit.submission_set.first()
+    store = Store.objects.get(pk=store0.pk)
     assert store.state == PARSED
     unit = store.units[0]
     unit_source = unit.unit_source.get()
@@ -411,6 +499,13 @@ def test_update_upload_again_new_revision(store0, member, member2):
     assert unit.change.reviewed_by is None
     assert unit.change.reviewed_on is None
     assert unit.change.changed_with == SubmissionTypes.NORMAL
+    assert update_sub.creation_time == unit.change.submitted_on
+    assert update_sub.type == unit.change.changed_with
+    assert update_sub.field == SubmissionFields.TARGET
+    assert update_sub.submitter == unit.change.submitted_by
+    assert update_sub.old_value == created_unit.target
+    assert update_sub.new_value == unit.target
+    assert update_sub.revision == unit.revision
 
 
 @pytest.mark.django_db
@@ -426,6 +521,7 @@ def test_update_upload_old_revision_unit_conflict(store0, admin, member):
     unit = store0.units[0]
     unit_source = unit.unit_source.get()
     assert unit_source.created_by == admin
+    updated_revision = unit.revision
     assert (
         unit_source.created_with
         == SubmissionTypes.UPLOAD)
@@ -443,9 +539,12 @@ def test_update_upload_old_revision_unit_conflict(store0, admin, member):
         store_revision=original_revision,
         user=member)
     unit = store0.units[0]
+    assert unit.submission_set.count() == 1
+    update_sub = unit.submission_set.first()
     unit_source = unit.unit_source.get()
-    # unit target is not updated
+    # unit target is not updated and revision remains the same
     assert store0.units[0].target == "Hello, world UPDATED"
+    assert unit.revision == updated_revision
     unit_source = original_unit.unit_source.get()
     unit_source.created_by == admin
     assert unit_source.created_with == SubmissionTypes.SYSTEM
@@ -458,6 +557,17 @@ def test_update_upload_old_revision_unit_conflict(store0, admin, member):
     suggestion = store0.units[0].get_suggestions()[0]
     assert suggestion.target == "Hello, world CONFLICT"
     assert suggestion.user == member
+    # this should be upload when we add actions
+    # assert update_sub.type == SubmissionTypes.UPLOAD
+    # assert update_sub.type == SubmissionFields.SUGGESTION
+    assert update_sub.type == SubmissionTypes.SUGG_ADD
+    # currently it sets none as the field
+    assert update_sub.field is None
+    assert update_sub.old_value == ""
+    assert update_sub.new_value == ""
+    assert update_sub.revision == unit.revision
+    assert update_sub.submitter == member
+    assert update_sub.suggestion_id == suggestion.id
 
 
 @pytest.mark.django_db
@@ -473,6 +583,7 @@ def test_update_upload_new_revision_new_unit(store0, member):
     unit = store0.units.last()
     unit_source = unit.unit_source.get()
     # the new unit has been added
+    assert unit.submission_set.count() == 0
     assert unit.revision > old_unit_revision
     assert unit.target == 'Goodbye, world'
     assert unit_source.created_by == member
@@ -502,6 +613,7 @@ def test_update_upload_old_revision_new_unit(store0, member2):
     unit = store0.units.last()
     unit_source = unit.unit_source.get()
     # the new unit has been added
+    assert unit.submission_set.count() == 0
     assert unit.revision > old_unit_revision
     assert unit.target == 'Goodbye, world'
     assert unit_source.created_by == member2
