@@ -18,7 +18,8 @@ from translate.misc.multistring import multistring
 from pootle.core.exceptions import Http400
 from pootle_app.models.permissions import check_permission
 from pootle_comment import get_model as get_comment_model
-from pootle_statistics.models import Submission, SubmissionTypes
+from pootle_statistics.models import (
+    Submission, SubmissionFields, SubmissionTypes)
 from pootle_store.constants import TRANSLATED, UNTRANSLATED
 from pootle_store.models import QualityCheck, Suggestion, Unit, UnitChange
 from pootle_store.views import get_units, toggle_qualitycheck
@@ -64,10 +65,14 @@ def test_submit_with_suggestion_and_comment(client, request_users,
     """Tests translation can be applied after suggestion is accepted."""
     settings.POOTLE_CAPTCHA_ENABLED = False
     Comment = get_comment_model()
-    unit = Unit.objects.filter(suggestion__state='pending',
-                               state=UNTRANSLATED)[0]
+    unit = Unit.objects.filter(
+        suggestion__state='pending',
+        state=UNTRANSLATED)[0]
+    last_sub_pk = unit.submission_set.order_by(
+        "id").values_list("id", flat=True).last()
     sugg = Suggestion.objects.filter(unit=unit, state='pending')[0]
     user = request_users["user"]
+
     if user.username != "nobody":
         client.login(
             username=user.username,
@@ -90,11 +95,10 @@ def test_submit_with_suggestion_and_comment(client, request_users,
 
     suggestion = Suggestion.objects.get(id=sugg.id)
     unit = Unit.objects.get(id=unit.id)
+    new_subs = unit.submission_set.filter(id__gt=last_sub_pk).order_by("id")
     if check_permission('translate', response.wsgi_request):
         assert response.status_code == 200
-
         content = json.loads(response.content)
-
         assert content['newtargets'] == [edited_target]
         assert content['user_score'] == response.wsgi_request.user.public_score
         assert content['checks'] is None
@@ -110,10 +114,38 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         assert (Comment.objects
                        .for_model(suggestion)
                        .get().comment == comment)
+        assert new_subs.count() == 2
+        target_sub = new_subs[0]
+        assert target_sub.old_value == ""
+        assert target_sub.new_value == suggestion.target
+        assert target_sub.field == SubmissionFields.TARGET
+        assert target_sub.type == SubmissionTypes.SUGG_ACCEPT
+        assert target_sub.submitter == unit.change.reviewed_by
+
+        # THIS FAILS
+        # assert target_sub.revision == unit.revision
+        # assert target_sub.creation_time == unit.change.reviewed_on
+
+        state_sub = new_subs[1]
+
+        # Not sure why these are the case
+        assert state_sub.old_value == suggestion.target
+        assert state_sub.new_value == unit.target
+        assert state_sub.suggestion_id is None
+
+        assert state_sub.field == SubmissionFields.TARGET
+        assert state_sub.type == SubmissionTypes.NORMAL
+
+        assert state_sub.submitter == unit.change.reviewed_by
+        assert state_sub.revision == unit.revision
+
+        # this fails
+        # assert state_sub.creation_time == unit.change.reviewed_on
     else:
         assert response.status_code == 403
         assert suggestion.state == "pending"
         assert unit.target == ""
+        assert new_subs.count() == 0
         with pytest.raises(UnitChange.DoesNotExist):
             unit.change
 
