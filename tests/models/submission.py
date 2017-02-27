@@ -155,6 +155,8 @@ def test_accept_sugg_submission_ordering(client, request_users, settings):
     unit.save()
     sugg = Suggestion.objects.filter(unit=unit, state='pending')[0]
     user = request_users["user"]
+    last_sub_pk = unit.submission_set.order_by(
+        "-pk").values_list("pk", flat=True).first()
     if user.username != "nobody":
         client.login(
             username=user.username,
@@ -165,10 +167,14 @@ def test_accept_sugg_submission_ordering(client, request_users, settings):
         url,
         HTTP_X_REQUESTED_WITH='XMLHttpRequest'
     )
-
+    new_subs = unit.submission_set.filter(pk__gt=last_sub_pk)
     if check_permission('review', response.wsgi_request):
         assert response.status_code == 200
-        submission_field = Submission.objects.filter(unit=unit).latest().field
-        assert submission_field == SubmissionFields.TARGET
+        assert new_subs.count() == 2
+        target_sub = new_subs.order_by("pk").first()
+        assert target_sub.field == SubmissionFields.TARGET
+        state_sub = new_subs.order_by("pk").last()
+        assert state_sub.field == SubmissionFields.STATE
     else:
         assert response.status_code == 403
+        assert new_subs.count() == 0
