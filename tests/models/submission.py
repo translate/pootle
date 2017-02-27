@@ -36,36 +36,35 @@ def _create_comment_submission(unit, user, creation_time, comment):
 
 
 @pytest.mark.django_db
-def test_submission_ordering(en_tutorial_po, member, no_submissions):
+def test_submission_ordering(store0, member):
     """Submissions with same creation_time should order by pk
     """
 
     at_time = timezone.now()
-    unit = en_tutorial_po.units[0]
+    unit = store0.units[0]
+
+    last_sub_pk = unit.submission_set.order_by(
+        "-pk").values_list("pk", flat=True).first()
     _create_comment_submission(unit, member, at_time, "Comment 3")
     _create_comment_submission(unit, member, at_time, "Comment 2")
     _create_comment_submission(unit, member, at_time, "Comment 1")
-    unit = en_tutorial_po.units[0]
+    new_subs = unit.submission_set.filter(pk__gt=last_sub_pk)
 
     # Object manager test
-    assert Submission.objects.count() == 3
-    assert (Submission.objects.first().creation_time
-            == Submission.objects.last().creation_time)
-    assert (Submission.objects.latest().pk
-            > Submission.objects.earliest().pk)
-
-    # Related manager test
-    assert (unit.submission_set.latest().pk
-            > unit.submission_set.earliest().pk)
+    assert new_subs.count() == 3
+    assert (new_subs.first().creation_time
+            == new_subs.last().creation_time)
+    assert (new_subs.latest().pk
+            > new_subs.earliest().pk)
 
     # Passing field_name test
-    assert (unit.submission_set.earliest("new_value").new_value
+    assert (new_subs.earliest("new_value").new_value
             == "Comment 1")
-    assert (unit.submission_set.latest("new_value").new_value
+    assert (new_subs.latest("new_value").new_value
             == "Comment 3")
-    assert (unit.submission_set.earliest("pk").new_value
+    assert (new_subs.earliest("pk").new_value
             == "Comment 3")
-    assert (unit.submission_set.latest("pk").new_value
+    assert (new_subs.latest("pk").new_value
             == "Comment 1")
 
 
