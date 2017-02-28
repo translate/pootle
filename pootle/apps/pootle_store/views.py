@@ -631,7 +631,9 @@ def manage_suggestion(request, uid, sugg_id, **kwargs_):
 @get_unit_context()
 def reject_suggestion(request, unit, suggid, **kwargs_):
     try:
-        suggestion = unit.suggestion_set.get(id=suggid)
+        suggestion = unit.suggestion_set.filter(
+            state__name='pending'
+        ).get(id=suggid)
     except ObjectDoesNotExist:
         raise Http404
 
@@ -659,7 +661,9 @@ def reject_suggestion(request, unit, suggid, **kwargs_):
 @get_unit_context('review')
 def accept_suggestion(request, unit, suggid, **kwargs_):
     try:
-        suggestion = unit.suggestion_set.get(id=suggid)
+        suggestion = unit.suggestion_set.filter(
+            state__name='pending'
+        ).get(id=suggid)
     except ObjectDoesNotExist:
         raise Http404
     review.get(Suggestion)(
