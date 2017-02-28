@@ -300,21 +300,15 @@ class UserPurger(object):
 
         for unit in self.user.reviewed.iterator():
             stores.add(unit.store)
-            reviews = unit.get_suggestion_reviews().exclude(
-                submitter=self.user)
+            unit.suggestion_set.filter(reviewer=self.user).update(
+                state=SuggestionState.objects.get(name="pending"),
+                reviewer=None)
             revision = None
-            if reviews.exists():
-                previous_review = reviews.latest('pk')
-                unit.reviewed_by_id = previous_review.submitter_id
-                unit.reviewed_on = previous_review.creation_time
-                logger.debug("Unit reviewed_by reverted: %s", repr(unit))
-            else:
-                unit.reviewed_by = None
-                unit.reviewed_on = None
-
-                # Increment revision
-                revision = Revision.incr()
-                logger.debug("Unit reviewed_by removed: %s", repr(unit))
+            unit.reviewed_by = None
+            unit.reviewed_on = None
+            # Increment revision
+            revision = Revision.incr()
+            logger.debug("Unit reviewed_by removed: %s", repr(unit))
             unit.revision = revision
             unit.save()
         return stores
