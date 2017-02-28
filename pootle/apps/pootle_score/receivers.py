@@ -22,9 +22,7 @@ def handle_scorelog_save(**kwargs):
         TranslationActionCodes.SUGG_REVIEWED_ACCEPTED,
         TranslationActionCodes.REVIEWED,
         TranslationActionCodes.EDITED]
-    if scorelog.action_code == TranslationActionCodes.SUGG_ADDED:
-        changed["suggested"] = scorelog.wordcount
-    elif scorelog.translated_wordcount is not None:
+    if scorelog.translated_wordcount is not None:
         changed["translated"] = scorelog.translated_wordcount
     elif scorelog.action_code in review_actions:
         changed["reviewed"] = scorelog.wordcount
