@@ -16,7 +16,6 @@ from pootle.core.views.widgets import TableSelectMultiple
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_store.constants import OBSOLETE, STATES_MAP
 from pootle_store.models import Suggestion
-from pootle_store.util import SuggestionStates
 from pootle_translationproject.models import TranslationProject
 
 from .models import Language
@@ -222,7 +221,7 @@ class LanguageSuggestionAdminForm(LanguageTeamFormtableForm):
         tps = self.language.translationproject_set.exclude(
             project__disabled=True)
         tps = tps.filter(
-            stores__unit__suggestion__state=SuggestionStates.PENDING)
+            stores__unit__suggestion__state__name="pending")
         return tps.order_by("project__code").distinct()
 
     @property
