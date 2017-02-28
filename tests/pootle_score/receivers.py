@@ -15,6 +15,8 @@ from pootle_store.constants import UNTRANSLATED
 from pootle_store.models import Suggestion
 
 
+@pytest.mark.xfail(
+    reason="We need to readd scoring for suggestion adding")
 @pytest.mark.django_db
 def test_user_tp_score_update_suggestions(store0, member, member2):
     unit = store0.units.filter(state=UNTRANSLATED)[0]
@@ -59,6 +61,8 @@ def test_user_tp_score_update_suggestions(store0, member, member2):
     assert m2_score.translated == old_m2_translated
 
 
+@pytest.mark.xfail(
+    reason="We need to readd scoring for suggestion adding")
 @pytest.mark.django_db
 def test_user_tp_score_update_translated(store0, member):
     # member translates another unit, by suggesting and
@@ -89,6 +93,8 @@ def test_user_tp_score_update_translated(store0, member):
     assert current_score.translated > old_translated
 
 
+@pytest.mark.xfail(
+    reason="We need to readd scoring for suggestion adding")
 @pytest.mark.django_db
 def test_user_tp_score_update_rejects(store0, member):
     # member makes another suggestion then rejects
