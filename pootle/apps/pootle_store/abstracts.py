@@ -339,6 +339,13 @@ class AbstractSuggestion(models.Model, base.TranslationUnit):
     creation_time = models.DateTimeField(db_index=True, null=True)
     review_time = models.DateTimeField(null=True, db_index=True)
 
+    state = models.ForeignKey(
+        "pootle_store.SuggestionState",
+        null=True,
+        related_name='suggestions',
+        db_index=True,
+        on_delete=models.SET_NULL)
+
 
 class AbstractSuggestionState(models.Model):
     """Database cache of results of qualitychecks on unit."""
