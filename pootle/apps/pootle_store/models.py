@@ -609,9 +609,6 @@ class Unit(AbstractUnit):
     def get_state_changes(self):
         return self.submission_set.get_unit_state_changes()
 
-    def get_suggestion_reviews(self):
-        return self.submission_set.get_unit_suggestion_reviews()
-
 # # # # # # # # # # # TranslationUnit # # # # # # # # # # # # # #
 
     def update_tmserver(self):
