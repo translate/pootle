@@ -64,7 +64,6 @@ class SuggestionEvent(object):
             )
 
         description_dict = {
-            SubmissionTypes.SUGG_ADD: _(u'Added suggestion'),
             SubmissionTypes.SUGG_ACCEPT: sugg_accepted_desc,
             SubmissionTypes.SUGG_REJECT: sugg_rejected_desc,
         }
