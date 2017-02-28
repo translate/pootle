@@ -41,7 +41,8 @@ from pootle_misc.util import ajax_required
 from pootle_statistics.models import SubmissionTypes
 
 from .decorators import get_unit_context
-from .forms import UnitSearchForm, unit_comment_form_factory, unit_form_factory
+from .forms import (SuggestionReviewForm, UnitSearchForm,
+                    unit_comment_form_factory, unit_form_factory)
 from .models import Suggestion, Unit
 from .templatetags.store_tags import pluralize_source, pluralize_target
 from .unit.results import GroupedResults
@@ -622,21 +623,20 @@ def suggest(request, unit, **kwargs_):
 @require_http_methods(['POST', 'DELETE'])
 def manage_suggestion(request, uid, sugg_id, **kwargs_):
     """Dispatches the suggestion action according to the HTTP verb."""
-    if request.method == 'DELETE':
-        return reject_suggestion(request, uid, sugg_id)
-    elif request.method == 'POST':
-        return accept_suggestion(request, uid, sugg_id)
 
+    sugg_review_form = SuggestionReviewForm(data={'suggestion': sugg_id})
+
+    if sugg_review_form.is_valid():
+        suggestion = sugg_review_form.cleaned_data['suggestion']
+        if request.method == 'DELETE':
+            return reject_suggestion(request, uid, suggestion)
+        elif request.method == 'POST':
+            return accept_suggestion(request, uid, suggestion)
+
+    raise PermissionDenied(_('Suggestion cannot be reviewed.'))
 
 @get_unit_context()
-def reject_suggestion(request, unit, suggid, **kwargs_):
-    try:
-        suggestion = unit.suggestion_set.filter(
-            state__name='pending'
-        ).get(id=suggid)
-    except ObjectDoesNotExist:
-        raise Http404
-
+def reject_suggestion(request, unit, suggestion, **kwargs_):
     # In order to be able to reject a suggestion, users have to either:
     # 1. Have `review` rights, or
     # 2. Be the author of the suggestion being rejected
@@ -652,27 +652,21 @@ def reject_suggestion(request, unit, suggid, **kwargs_):
         request.user).reject(QueryDict(request.body).get("comment"))
     json = {
         'udbid': unit.id,
-        'sugid': suggid,
+        'sugid': suggestion.id,
         'user_score': request.user.public_score,
     }
     return JsonResponse(json)
 
 
 @get_unit_context('review')
-def accept_suggestion(request, unit, suggid, **kwargs_):
-    try:
-        suggestion = unit.suggestion_set.filter(
-            state__name='pending'
-        ).get(id=suggid)
-    except ObjectDoesNotExist:
-        raise Http404
+def accept_suggestion(request, unit, suggestion, **kwargs_):
     review.get(Suggestion)(
         [suggestion],
         request.user,
         SubmissionTypes.WEB).accept(request.POST.get("comment"))
     json = {
         'udbid': unit.id,
-        'sugid': suggid,
+        'sugid': suggestion.id,
         'user_score': request.user.public_score,
         'newtargets': [target for target in unit.target.strings],
         'checks': _get_critical_checks_snippet(request, unit),

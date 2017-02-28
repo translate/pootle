@@ -502,3 +502,9 @@ class UnitSearchForm(forms.Form):
         if can_view_path:
             return self.cleaned_data["path"]
         raise forms.ValidationError("Unrecognized path")
+
+
+class SuggestionReviewForm(forms.Form):
+    suggestion = forms.ModelChoiceField(
+        queryset=Suggestion.objects.filter(state__name='pending'),
+        required=True)
