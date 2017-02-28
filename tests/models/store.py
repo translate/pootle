@@ -333,7 +333,7 @@ def test_update_upload_defaults(store0, system):
         "id").values_list("id", flat=True).last() or 0
     update_store(
         store0,
-        [(unit.source, "%s UPDATED" % unit.source)],
+        [(unit.source, "%s UPDATED" % unit.source, False)],
         store_revision=Revision.get() + 1)
     unit = store0.units[0]
     assert unit.submitted_by == system
@@ -374,7 +374,7 @@ def test_update_upload_member_user(store0, system, member):
         "id").values_list("id", flat=True).last() or 0
     update_store(
         store0,
-        [(original_unit.source, "%s UPDATED" % original_unit.source)],
+        [(original_unit.source, "%s UPDATED" % original_unit.source, False)],
         user=member,
         store_revision=Revision.get() + 1,
         submission_type=SubmissionTypes.UPLOAD)
@@ -417,7 +417,7 @@ def test_update_upload_submission_type(store0):
         "id").values_list("id", flat=True).last() or 0
     update_store(
         store0,
-        [(unit.source, "%s UPDATED" % unit.source)],
+        [(unit.source, "%s UPDATED" % unit.source, False)],
         submission_type=SubmissionTypes.UPLOAD,
         store_revision=Revision.get() + 1)
     unit_source = store0.units[0].unit_source.get()
@@ -437,7 +437,7 @@ def test_update_upload_new_revision(store0, member):
     old_unit = store0.units.first()
     update_store(
         store0,
-        [("Hello, world", "Hello, world UPDATED")],
+        [("Hello, world", "Hello, world UPDATED", False)],
         submission_type=SubmissionTypes.UPLOAD,
         store_revision=Revision.get() + 1,
         user=member)
@@ -463,7 +463,7 @@ def test_update_upload_again_new_revision(store0, member, member2):
     original_unit = store0.units[0]
     update_store(
         store,
-        [("Hello, world", "Hello, world UPDATED")],
+        [("Hello, world", "Hello, world UPDATED", False)],
         submission_type=SubmissionTypes.UPLOAD,
         store_revision=Revision.get() + 1,
         user=member)
@@ -478,7 +478,7 @@ def test_update_upload_again_new_revision(store0, member, member2):
     old_unit_revision = store.data.max_unit_revision
     update_store(
         store0,
-        [("Hello, world", "Hello, world UPDATED AGAIN")],
+        [("Hello, world", "Hello, world UPDATED AGAIN", False)],
         submission_type=SubmissionTypes.WEB,
         user=member2,
         store_revision=Revision.get() + 1)
@@ -512,7 +512,7 @@ def test_update_upload_old_revision_unit_conflict(store0, admin, member):
     original_unit = store0.units[0]
     update_store(
         store0,
-        [("Hello, world", "Hello, world UPDATED")],
+        [("Hello, world", "Hello, world UPDATED", False)],
         submission_type=SubmissionTypes.UPLOAD,
         store_revision=original_revision + 1,
         user=admin)
@@ -532,7 +532,7 @@ def test_update_upload_old_revision_unit_conflict(store0, admin, member):
     # load update with expired revision and conflicting unit
     update_store(
         store0,
-        [("Hello, world", "Hello, world CONFLICT")],
+        [("Hello, world", "Hello, world CONFLICT", False)],
         submission_type=SubmissionTypes.WEB,
         store_revision=original_revision,
         user=member)
@@ -691,7 +691,7 @@ def _test_store_update_ordering(*test_args):
                     and unit.revision > store_revision)
         if add_unit:
             new_unit_list.append(unit.source)
-    for source, target_ in units_update:
+    for source, target_, is_fuzzy_ in units_update:
         if source in old_units:
             old_unit = old_units[source]
             should_add = (not old_unit.isobsolete()
@@ -733,8 +733,10 @@ def test_store_file_diff(store_diff_tests):
     assert diff.source_revision == store_revision
     assert (
         update_units
-        == [(x.source, x.target) for x in diff.source_store.units[1:]]
-        == [(v['source'], v['target']) for v in diff.source_units.values()])
+        == [(x.source, x.target, x.isfuzzy())
+            for x in diff.source_store.units[1:]]
+        == [(v['source'], v['target'], v['state'] == 50)
+            for v in diff.source_units.values()])
     assert diff.active_target_units == [x.source for x in store.units]
     assert diff.target_revision == store.get_max_unit_revision()
     assert (

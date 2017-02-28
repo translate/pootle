@@ -42,6 +42,13 @@ msgid "%(src)s"
 msgstr "%(target)s"
 """
 
+FUZZY_STRING_UNIT = """
+#: %(src)s
+#, fuzzy
+msgid "%(src)s"
+msgstr "%(target)s"
+"""
+
 
 def setup_store(pootle_path):
     from pootle.core.url_helpers import split_pootle_path
@@ -59,8 +66,12 @@ def setup_store(pootle_path):
 
 def create_store(pootle_path=None, store_revision=None, units=None):
     _units = []
-    for src, target in units or []:
-        _units.append(STRING_UNIT % {"src": src, "target": target})
+    for src, target, is_fuzzy in units or []:
+        if is_fuzzy:
+            _units.append(FUZZY_STRING_UNIT % {"src": src, "target": target})
+        else:
+            _units.append(STRING_UNIT % {"src": src, "target": target})
+
     units = "\n\n".join(_units)
     x_pootle_headers = ""
     if pootle_path and store_revision:

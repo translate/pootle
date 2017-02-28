@@ -377,7 +377,7 @@ def tp_uploads(request, client):
     language_team.get(Language)(tp.language).add_member(uploader, "submitter")
     client.login(username=submitter_name, password=password)
     updated_units = [
-        (unit.source_f, "%s UPDATED" % unit.target_f)
+        (unit.source_f, "%s UPDATED" % unit.target_f, False)
         for unit in store.units
     ]
     updated_store = create_store(store.pootle_path, "0", updated_units)

@@ -39,8 +39,8 @@ def _make_evil_member_updates(store, evil_member):
     #   - adds another unit
     member_suggestion = store.units[0].get_suggestions().first()
     evil_units = [
-        ("Hello, world", "Hello, world EVIL"),
-        ("Goodbye, world", "Goodbye, world EVIL")]
+        ("Hello, world", "Hello, world EVIL", False),
+        ("Goodbye, world", "Goodbye, world EVIL", False)]
     review.get(Suggestion)([member_suggestion], evil_member).reject()
     _create_submission_and_suggestion(store,
                                       evil_member,

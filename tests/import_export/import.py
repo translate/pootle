@@ -74,7 +74,7 @@ def test_import_new_file(project0_nongnu, import_tps, site_users):
     user = site_users["user"]
     store_pootle_path = tp.pootle_path + "import_new_file.po"
     filestore = create_store(store_pootle_path, "0",
-                             [("Unit Source", "Unit Target")])
+                             [("Unit Source", "Unit Target", False)])
 
     # New store can't be created via current import command. This test will
     # need to be adjusted if we allow to create new stores via import command.
@@ -93,7 +93,7 @@ def test_import_to_empty(project0_nongnu, import_tps, site_users):
     user = site_users["user"]
     store = StoreDBFactory(translation_project=tp, name="import_to_empty.po")
     filestore = create_store(store.pootle_path, "0",
-                             [("Unit Source", "Unit Target")])
+                             [("Unit Source", "Unit Target", False)])
     import_file(SimpleUploadedFile(store.name,
                                    str(filestore),
                                    "text/x-gettext-translation"), user)
@@ -126,7 +126,7 @@ def test_import_add_and_obsolete_units(project0_nongnu, import_tps,
     filestore = create_store(
         store.pootle_path,
         "0",
-        [(unit.source_f + " REPLACED", unit.target_f + " REPLACED")])
+        [(unit.source_f + " REPLACED", unit.target_f + " REPLACED", False)])
     import_file(SimpleUploadedFile("import_add_and_obsolete.po",
                                    str(filestore),
                                    "text/x-gettext-translation"), user)

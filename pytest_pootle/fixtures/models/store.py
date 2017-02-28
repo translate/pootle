@@ -22,27 +22,33 @@ from pytest_pootle.factories import (
 from pytest_pootle.utils import create_store, update_store
 
 
-DEFAULT_STORE_UNITS_1 = [("Unit 1", "Unit 1"),
-                         ("Unit 2", "Unit 2")]
+def _update_fuzzy(is_fuzzy, source):
+    if source == 'Unit 4':
+        return not is_fuzzy
+    return is_fuzzy
 
-DEFAULT_STORE_UNITS_2 = [("Unit 3", "Unit 3"),
-                         ("Unit 4", "Unit 4"),
-                         ("Unit 5", "Unit 5")]
 
-DEFAULT_STORE_UNITS_3 = [("Unit 6", "Unit 6"),
-                         ("Unit 7", "Unit 7"),
-                         ("Unit 8", "Unit 8")]
+DEFAULT_STORE_UNITS_1 = [("Unit 1", "Unit 1", False),
+                         ("Unit 2", "Unit 2", False)]
 
-UPDATED_STORE_UNITS_1 = [(src, "UPDATED %s" % target)
-                         for src, target
+DEFAULT_STORE_UNITS_2 = [("Unit 3", "Unit 3", False),
+                         ("Unit 4", "Unit 4", True),
+                         ("Unit 5", "Unit 5", False)]
+
+DEFAULT_STORE_UNITS_3 = [("Unit 6", "Unit 6", False),
+                         ("Unit 7", "Unit 7", True),
+                         ("Unit 8", "Unit 8", False)]
+
+UPDATED_STORE_UNITS_1 = [(src, "UPDATED %s" % target, is_fuzzy)
+                         for src, target, is_fuzzy
                          in DEFAULT_STORE_UNITS_1]
 
-UPDATED_STORE_UNITS_2 = [(src, "UPDATED %s" % target)
-                         for src, target
+UPDATED_STORE_UNITS_2 = [(src, "UPDATED %s" % target, _update_fuzzy(is_fuzzy, src))
+                         for src, target, is_fuzzy
                          in DEFAULT_STORE_UNITS_2]
 
-UPDATED_STORE_UNITS_3 = [(src, "UPDATED %s" % target)
-                         for src, target
+UPDATED_STORE_UNITS_3 = [(src, "UPDATED %s" % target, is_fuzzy)
+                         for src, target, is_fuzzy
                          in DEFAULT_STORE_UNITS_3]
 
 
@@ -235,7 +241,7 @@ def _create_submission_and_suggestion(store, user,
 
     # Update store as user
     if units is None:
-        units = [("Hello, world", "Hello, world UPDATED")]
+        units = [("Hello, world", "Hello, world UPDATED", False)]
     update_store(
         store,
         units,

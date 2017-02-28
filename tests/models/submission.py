@@ -99,7 +99,7 @@ def test_update_submission_ordering():
     store = create_store(
         unit.store.pootle_path,
         "0",
-        [(unit.source_f, "Translation for " + unit.source_f)]
+        [(unit.source_f, "Translation for " + unit.source_f, False)]
     )
     unit.store.update(store)
     submission_field = Submission.objects.filter(unit=unit).latest().field
