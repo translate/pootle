@@ -18,8 +18,8 @@ class PootleTestEnv(object):
 
     methods = (
         "redis", "case_sensitive_schema", "formats", "site_root",
-        "languages", "site_matrix", "system_users", "permissions",
-        "site_permissions", "tps", "templates",
+        "languages", "suggestion_states", "site_matrix", "system_users",
+        "permissions", "site_permissions", "tps", "templates",
         "disabled_project", "subdirs", "submissions", "announcements",
         "terminology", "fs", "vfolders", "complex_po")
 
@@ -56,6 +56,12 @@ class PootleTestEnv(object):
             translation_project=tp,
             name="complex.po")
         store.update(ttk)
+
+    def setup_suggestion_states(self):
+        from pootle_store.models import SuggestionState
+
+        for state in ["pending", "accepted", "rejected"]:
+            SuggestionState.objects.create(name=state)
 
     def setup_announcements(self):
         from pytest_pootle.factories import AnnouncementFactory
