@@ -539,8 +539,7 @@ def test_update_upload_old_revision_unit_conflict(store0, admin, member):
         store_revision=original_revision,
         user=member)
     unit = store0.units[0]
-    assert unit.submission_set.count() == 1
-    update_sub = unit.submission_set.first()
+    assert unit.submission_set.count() == 0
     unit_source = unit.unit_source.get()
     # unit target is not updated and revision remains the same
     assert store0.units[0].target == "Hello, world UPDATED"
@@ -557,17 +556,6 @@ def test_update_upload_old_revision_unit_conflict(store0, admin, member):
     suggestion = store0.units[0].get_suggestions()[0]
     assert suggestion.target == "Hello, world CONFLICT"
     assert suggestion.user == member
-    # this should be upload when we add actions
-    # assert update_sub.type == SubmissionTypes.UPLOAD
-    # assert update_sub.type == SubmissionFields.SUGGESTION
-    assert update_sub.type == SubmissionTypes.SUGG_ADD
-    # currently it sets none as the field
-    assert update_sub.field is None
-    assert update_sub.old_value == ""
-    assert update_sub.new_value == ""
-    assert update_sub.revision == unit.revision
-    assert update_sub.submitter == member
-    assert update_sub.suggestion_id == suggestion.id
 
 
 @pytest.mark.django_db

@@ -89,14 +89,6 @@ def test_needs_scorelog():
     )
     assert submission.needs_scorelog()
 
-    submission = SubmissionFactory.build(
-        field=SubmissionFields.TARGET,
-        type=SubmissionTypes.SUGG_ADD,
-        old_value=u'',
-        new_value=u'',
-    )
-    assert submission.needs_scorelog()
-
 
 @pytest.mark.django_db
 def test_update_submission_ordering():

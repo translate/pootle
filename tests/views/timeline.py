@@ -100,7 +100,6 @@ def _get_suggestion_description(submission):
         sugg_rejected_desc = _(u'Rejected suggestion from %(author)s', params)
 
     return {
-        SubmissionTypes.SUGG_ADD: _(u'Added suggestion'),
         SubmissionTypes.SUGG_ACCEPT: sugg_accepted_desc,
         SubmissionTypes.SUGG_REJECT: sugg_rejected_desc,
     }.get(submission['type'], None)
