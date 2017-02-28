@@ -14,12 +14,6 @@ from .constants import STATES_NAMES, TRANSLATED
 from .unit.altsrc import AltSrcUnits
 
 
-class SuggestionStates(object):
-    PENDING = 'pending'
-    ACCEPTED = 'accepted'
-    REJECTED = 'rejected'
-
-
 def add_trailing_slash(path):
     """If path does not end with /, add it and return."""
 
