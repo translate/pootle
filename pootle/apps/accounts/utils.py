@@ -21,7 +21,7 @@ from pootle.core.contextmanagers import keep_data
 from pootle.core.models import Revision
 from pootle.core.signals import update_data
 from pootle_store.constants import FUZZY, UNTRANSLATED
-from pootle_store.util import SuggestionStates
+from pootle_store.models import SuggestionState
 
 
 logger = logging.getLogger(__name__)
@@ -274,6 +274,8 @@ class UserPurger(object):
         """
 
         stores = set()
+        pending = SuggestionState.objects.get(name="pending")
+
         # Revert reviews by this user.
         for review in self.user.get_suggestion_reviews().iterator():
             suggestion = review.suggestion
@@ -287,7 +289,7 @@ class UserPurger(object):
                 # If the suggestion is showing as reviewed by the user, then
                 # set the suggestion back to pending and update
                 # reviewer/review_time.
-                suggestion.state = SuggestionStates.PENDING
+                suggestion.state = pending
                 suggestion.reviewer = None
                 suggestion.review_time = None
                 suggestion.save()
