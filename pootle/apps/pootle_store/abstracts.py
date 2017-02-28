@@ -24,7 +24,6 @@ from pootle_statistics.models import SubmissionTypes
 from .constants import NEW, UNTRANSLATED
 from .fields import MultiStringField, TranslationStoreField
 from .managers import StoreManager
-from .util import SuggestionStates
 from .validators import validate_no_slashes
 
 
@@ -323,18 +322,6 @@ class AbstractSuggestion(models.Model, base.TranslationUnit):
         on_delete=models.SET(get_system_user))
 
     translator_comment_f = models.TextField(null=True, blank=True)
-
-    state_choices = [
-        (SuggestionStates.PENDING, 'Pending'),
-        (SuggestionStates.ACCEPTED, 'Accepted'),
-        (SuggestionStates.REJECTED, 'Rejected')]
-
-    tmp_state = models.CharField(
-        max_length=16,
-        default=SuggestionStates.PENDING,
-        null=False,
-        choices=state_choices,
-        db_index=True)
 
     creation_time = models.DateTimeField(db_index=True, null=True)
     review_time = models.DateTimeField(null=True, db_index=True)
