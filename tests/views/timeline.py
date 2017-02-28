@@ -31,7 +31,6 @@ from pootle_store.constants import (
 from pootle_store.fields import to_python
 from pootle_store.models import (
     Suggestion, QualityCheck, Unit)
-from pootle_store.util import SuggestionStates
 
 
 class ProxyTimelineLanguage(object):
@@ -271,7 +270,7 @@ def test_timeline_view_unit_with_suggestion(client, request_users,
     # to get one
     suggestion = Suggestion.objects.filter(
         unit__store=store0,
-        state=SuggestionStates.PENDING,
+        state__name="pending",
         unit__state=UNTRANSLATED).first()
     unit = suggestion.unit
     unit.state = FUZZY
@@ -306,7 +305,7 @@ def test_timeline_view_unit_with_suggestion_and_comment(client, request_users,
     # to get one
     suggestion = Suggestion.objects.filter(
         unit__store=store0,
-        state=SuggestionStates.PENDING,
+        state__name="pending",
         unit__state=UNTRANSLATED).first()
     unit = suggestion.unit
     unit.state = FUZZY

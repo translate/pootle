@@ -21,7 +21,6 @@ from pootle.core.delegate import review
 from pootle_data.store_data import StoreDataTool, StoreDataUpdater
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from pootle_store.models import Suggestion
-from pootle_store.util import SuggestionStates
 from pootle_store.models import QualityCheck, Unit
 
 
@@ -186,7 +185,7 @@ def test_data_store_util_suggestion_count(store0, member):
     suggestions = Suggestion.objects.filter(
         unit__store=store0,
         unit__state__gt=OBSOLETE,
-        state=SuggestionStates.PENDING)
+        state__name="pending")
     original_suggestion_count = suggestions.count()
     update_data = store0.data_tool.updater.get_store_data()
     assert(
@@ -196,9 +195,9 @@ def test_data_store_util_suggestion_count(store0, member):
         == original_suggestion_count)
     unit = store0.units.filter(
         state__gt=OBSOLETE,
-        suggestion__state=SuggestionStates.PENDING).first()
+        suggestion__state__name="pending").first()
     unit_suggestion_count = unit.suggestion_set.filter(
-        state=SuggestionStates.PENDING).count()
+        state__name="pending").count()
     sugg, added = review.get(Suggestion)().add(
         unit,
         "Another suggestion for %s" % (unit.target or unit.source),
@@ -206,7 +205,7 @@ def test_data_store_util_suggestion_count(store0, member):
 
     # unit now has an extra suggestion
     assert (
-        unit.suggestion_set.filter(state=SuggestionStates.PENDING).count()
+        unit.suggestion_set.filter(state__name="pending").count()
         == unit_suggestion_count + 1)
     store0.data.refresh_from_db()
     update_data = store0.data_tool.updater.get_store_data()

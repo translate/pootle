@@ -276,7 +276,7 @@ def test_view_admin_language_suggestion_post(client, language0, request_users,
         response = client.post(admin_url, data=data)
     assert response.status_code == 302
     suggestion.refresh_from_db()
-    assert suggestion.state == "accepted"
+    assert suggestion.state.name == "accepted"
     assert len(mailoutbox) == 0
 
     # reject
@@ -287,7 +287,7 @@ def test_view_admin_language_suggestion_post(client, language0, request_users,
     response = client.post(admin_url, data=data)
     assert response.status_code == 302
     suggestion.refresh_from_db()
-    assert suggestion.state == "rejected"
+    assert suggestion.state.name == "rejected"
     assert len(mailoutbox) == 0
 
     # reject with comment
@@ -299,7 +299,7 @@ def test_view_admin_language_suggestion_post(client, language0, request_users,
     response = client.post(admin_url, data=data)
     assert response.status_code == 302
     suggestion.refresh_from_db()
-    assert suggestion.state == "accepted"
+    assert suggestion.state.name == "accepted"
     assert len(mailoutbox) == 1
 
     # reject with comment
@@ -311,7 +311,7 @@ def test_view_admin_language_suggestion_post(client, language0, request_users,
     response = client.post(admin_url, data=data)
     assert response.status_code == 302
     suggestion.refresh_from_db()
-    assert suggestion.state == "rejected"
+    assert suggestion.state.name == "rejected"
     assert len(mailoutbox) == 2
 
 

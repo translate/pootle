@@ -148,12 +148,12 @@ def test_new_translation_submission_ordering(client, request_users, settings):
 def test_accept_sugg_submission_ordering(client, request_users, settings):
     """Tests suggestion can be accepted with a comment."""
     settings.POOTLE_CAPTCHA_ENABLED = False
-    unit = Unit.objects.filter(suggestion__state='pending',
+    unit = Unit.objects.filter(suggestion__state__name='pending',
                                state=UNTRANSLATED)[0]
     unit.markfuzzy()
     unit.target = "Fuzzy Translation for " + unit.source_f
     unit.save()
-    sugg = Suggestion.objects.filter(unit=unit, state='pending')[0]
+    sugg = Suggestion.objects.filter(unit=unit, state__name='pending')[0]
     user = request_users["user"]
     last_sub_pk = unit.submission_set.order_by(
         "-pk").values_list("pk", flat=True).first()

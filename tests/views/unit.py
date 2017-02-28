@@ -66,11 +66,11 @@ def test_submit_with_suggestion_and_comment(client, request_users,
     settings.POOTLE_CAPTCHA_ENABLED = False
     Comment = get_comment_model()
     unit = Unit.objects.filter(
-        suggestion__state='pending',
+        suggestion__state__name='pending',
         state=UNTRANSLATED)[0]
     last_sub_pk = unit.submission_set.order_by(
         "id").values_list("id", flat=True).last()
-    sugg = Suggestion.objects.filter(unit=unit, state='pending')[0]
+    sugg = Suggestion.objects.filter(unit=unit, state__name='pending')[0]
     user = request_users["user"]
 
     if user.username != "nobody":
@@ -109,7 +109,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         assert unit.change.reviewed_by == user
         assert unit.change.changed_with == SubmissionTypes.NORMAL
 
-        assert suggestion.state == 'accepted'
+        assert suggestion.state.name == 'accepted'
         assert str(unit.target) == edited_target
         assert (Comment.objects
                        .for_model(suggestion)
@@ -143,7 +143,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         # assert state_sub.creation_time == unit.change.reviewed_on
     else:
         assert response.status_code == 403
-        assert suggestion.state == "pending"
+        assert suggestion.state.name == "pending"
         assert unit.target == ""
         assert new_subs.count() == 0
         with pytest.raises(UnitChange.DoesNotExist):
@@ -154,11 +154,11 @@ def test_submit_with_suggestion_and_comment(client, request_users,
 def test_submit_with_suggestion(client, request_users, settings, system):
     """Tests translation can be applied after suggestion is accepted."""
     settings.POOTLE_CAPTCHA_ENABLED = False
-    unit = Unit.objects.filter(suggestion__state='pending',
+    unit = Unit.objects.filter(suggestion__state__name='pending',
                                state=UNTRANSLATED).first()
     unit_submissions = Submission.objects.filter(unit=unit)
     unit_submissions_count = unit_submissions.count()
-    sugg = Suggestion.objects.filter(unit=unit, state='pending').first()
+    sugg = Suggestion.objects.filter(unit=unit, state__name='pending').first()
     user = request_users["user"]
     if user.username != "nobody":
         client.login(
@@ -187,7 +187,7 @@ def test_submit_with_suggestion(client, request_users, settings, system):
         assert unit.change.submitted_by == suggestion.user
         assert unit.change.reviewed_by == user
         assert unit.change.changed_with == SubmissionTypes.NORMAL
-        assert suggestion.state == 'accepted'
+        assert suggestion.state.name == 'accepted'
         assert str(unit.target) == sugg.target_f
         unit_submissions = unit_submissions.exclude(
             type=SubmissionTypes.SUGG_ACCEPT
@@ -196,7 +196,7 @@ def test_submit_with_suggestion(client, request_users, settings, system):
 
     else:
         assert response.status_code == 403
-        assert suggestion.state == "pending"
+        assert suggestion.state.name == "pending"
         assert unit.target == ""
         with pytest.raises(UnitChange.DoesNotExist):
             unit.change
@@ -207,9 +207,9 @@ def test_accept_suggestion_with_comment(client, request_users, settings, system)
     """Tests suggestion can be accepted with a comment."""
     settings.POOTLE_CAPTCHA_ENABLED = False
     Comment = get_comment_model()
-    unit = Unit.objects.filter(suggestion__state='pending',
+    unit = Unit.objects.filter(suggestion__state__name='pending',
                                state=UNTRANSLATED)[0]
-    sugg = Suggestion.objects.filter(unit=unit, state='pending')[0]
+    sugg = Suggestion.objects.filter(unit=unit, state__name='pending')[0]
     user = request_users["user"]
     if user.username != "nobody":
         client.login(
@@ -236,14 +236,14 @@ def test_accept_suggestion_with_comment(client, request_users, settings, system)
         assert unit.change.submitted_by == suggestion.user
         assert unit.change.reviewed_by == user
         assert unit.change.changed_with == SubmissionTypes.NORMAL
-        assert suggestion.state == 'accepted'
+        assert suggestion.state.name == 'accepted'
         assert str(unit.target) == str(suggestion.target)
         assert (Comment.objects
                        .for_model(suggestion)
                        .get().comment == comment)
     else:
         assert response.status_code == 403
-        assert suggestion.state == "pending"
+        assert suggestion.state.name == "pending"
         assert unit.target == ""
         with pytest.raises(UnitChange.DoesNotExist):
             unit.change
@@ -253,9 +253,9 @@ def test_accept_suggestion_with_comment(client, request_users, settings, system)
 def test_reject_suggestion_with_comment(client, request_users):
     """Tests suggestion can be rejected with a comment."""
     Comment = get_comment_model()
-    unit = Unit.objects.filter(suggestion__state='pending',
+    unit = Unit.objects.filter(suggestion__state__name='pending',
                                state=UNTRANSLATED)[0]
-    sugg = Suggestion.objects.filter(unit=unit, state='pending')[0]
+    sugg = Suggestion.objects.filter(unit=unit, state__name='pending')[0]
     comment = 'This is a comment!'
     user = request_users["user"]
     if user.username != "nobody":
@@ -277,7 +277,7 @@ def test_reject_suggestion_with_comment(client, request_users):
     suggestion = Suggestion.objects.get(id=sugg.id)
     if can_reject:
         assert response.status_code == 200
-        assert suggestion.state == 'rejected'
+        assert suggestion.state.name == 'rejected'
         assert unit.target == ""
         # unit is untranslated so no change
         with pytest.raises(UnitChange.DoesNotExist):
@@ -288,7 +288,7 @@ def test_reject_suggestion_with_comment(client, request_users):
     else:
         assert response.status_code == 403
         assert unit.target == ""
-        assert suggestion.state == "pending"
+        assert suggestion.state.name == "pending"
         with pytest.raises(UnitChange.DoesNotExist):
             unit.change
 
@@ -297,7 +297,7 @@ def test_reject_suggestion_with_comment(client, request_users):
 def test_reject_translated_suggestion(client, request_users, member, system):
     """Tests suggestion can be rejected with a comment."""
     unit = Unit.objects.filter(
-        suggestion__state='pending',
+        suggestion__state__name='pending',
         state=UNTRANSLATED)[0]
     unit.target = "EXISTING TARGET"
     unit.save(
@@ -305,7 +305,7 @@ def test_reject_translated_suggestion(client, request_users, member, system):
         changed_with=SubmissionTypes.UPLOAD)
     suggestion = Suggestion.objects.filter(
         unit=unit,
-        state='pending')[0]
+        state__name='pending')[0]
     user = request_users["user"]
     if user.username != "nobody":
         client.login(
@@ -326,7 +326,7 @@ def test_reject_translated_suggestion(client, request_users, member, system):
     suggestion.refresh_from_db()
     if can_reject:
         assert response.status_code == 200
-        assert suggestion.state == 'rejected'
+        assert suggestion.state.name == 'rejected'
         assert unit_source.created_by == system
         assert unit.change.changed_with == SubmissionTypes.UPLOAD
         assert unit.change.submitted_by == member
@@ -334,7 +334,7 @@ def test_reject_translated_suggestion(client, request_users, member, system):
     else:
         assert response.status_code == 403
         assert unit.target == "EXISTING TARGET"
-        assert suggestion.state == "pending"
+        assert suggestion.state.name == "pending"
 
 
 @pytest.mark.django_db

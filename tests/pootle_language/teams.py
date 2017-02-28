@@ -15,7 +15,6 @@ from pootle_language.models import Language
 from pootle_language.teams import LanguageTeam
 from pootle_store.constants import OBSOLETE
 from pootle_store.models import Suggestion
-from pootle_store.util import SuggestionStates
 
 
 @pytest.mark.django_db
@@ -155,7 +154,7 @@ def test_language_team_non_members(language0, member):
 def test_language_team_suggestions(language0):
     team = language_team.get(Language)(language0)
     suggestions = Suggestion.objects.filter(
-        state=SuggestionStates.PENDING,
+        state__name="pending",
         unit__state__gt=OBSOLETE,
         unit__store__translation_project__language=language0)
     assert (

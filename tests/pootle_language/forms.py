@@ -16,7 +16,6 @@ from pootle_language.forms import (
     LanguageTeamAdminForm, LanguageTeamNewMemberSearchForm)
 from pootle_language.teams import LanguageTeam
 from pootle_store.constants import FUZZY, OBSOLETE
-from pootle_store.util import SuggestionStates
 
 
 @pytest.mark.django_db
@@ -130,7 +129,7 @@ def test_form_language_suggestions(language0, admin):
     tps = form.language.translationproject_set.exclude(
         project__disabled=True)
     tps = tps.filter(
-        stores__unit__suggestion__state=SuggestionStates.PENDING)
+        stores__unit__suggestion__state__name="pending")
     assert (
         list(form.filter_tp_qs.values_list("id"))
         == list(tps.order_by("project__code").distinct().values_list("id")))
@@ -170,7 +169,7 @@ def test_form_language_suggestions_save(language0, admin):
         == list(suggestions))
     form.save()
     for suggestion in form.suggestions_to_save:
-        assert suggestion.state == "accepted"
+        assert suggestion.state.name == "accepted"
 
 
 @pytest.mark.django_db
@@ -189,7 +188,7 @@ def test_form_language_suggestions_save_all(language0, tp0, admin):
                 unit__store__translation_project=tp0)))
     form.save()
     for suggestion in form.suggestions_to_save:
-        assert suggestion.state == "rejected"
+        assert suggestion.state.name == "rejected"
 
 
 @pytest.mark.django_db
@@ -264,7 +263,7 @@ def test_form_language_suggestions_accept_comment(language0, tp0, admin,
                 unit__store__translation_project=tp0)))
     form.save()
     for suggestion in form.suggestions_to_save:
-        assert suggestion.state == "accepted"
+        assert suggestion.state.name == "accepted"
     assert len(mailoutbox) == 1
     for suggestion in form.suggestions_to_save:
         assert ("#%s" % suggestion.id) in mailoutbox[0].body
@@ -290,7 +289,7 @@ def test_form_language_suggestions_reject_comment(language0, tp0, admin,
                 unit__store__translation_project=tp0)))
     form.save()
     for suggestion in form.suggestions_to_save:
-        assert suggestion.state == "rejected"
+        assert suggestion.state.name == "rejected"
     assert len(mailoutbox) == 1
     for suggestion in form.suggestions_to_save:
         assert ("#%s" % suggestion.id) in mailoutbox[0].body

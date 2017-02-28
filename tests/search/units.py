@@ -15,7 +15,6 @@ from pootle_statistics.models import SubmissionTypes
 from pootle_store.getters import get_search_backend
 from pootle_store.constants import FUZZY, TRANSLATED, UNTRANSLATED
 from pootle_store.models import Unit
-from pootle_store.util import SuggestionStates
 from pootle_store.unit.filters import (
     FilterNotFound, UnitChecksFilter, UnitContributionFilter, UnitSearchFilter,
     UnitStateFilter, UnitTextSearch)
@@ -95,22 +94,22 @@ def _test_units_contribution_filter(qs, user, unit_filter):
         assert (
             result.count()
             == qs.filter(
-                suggestion__state=SuggestionStates.PENDING).distinct().count())
+                suggestion__state__name="pending").distinct().count())
         return
     elif not user:
         assert result.count() == 0
         return
     elif unit_filter in ["my_suggestions", "user_suggestions"]:
         expected = qs.filter(
-            suggestion__state=SuggestionStates.PENDING,
+            suggestion__state__name="pending",
             suggestion__user=user).distinct()
     elif unit_filter == "user_suggestions_accepted":
         expected = qs.filter(
-            suggestion__state=SuggestionStates.ACCEPTED,
+            suggestion__state__name="accepted",
             suggestion__user=user).distinct()
     elif unit_filter == "user_suggestions_rejected":
         expected = qs.filter(
-            suggestion__state=SuggestionStates.REJECTED,
+            suggestion__state__name="rejected",
             suggestion__user=user).distinct()
     elif unit_filter in ["my_submissions", "user_submissions"]:
         expected = qs.filter(
