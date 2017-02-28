@@ -336,5 +336,12 @@ class AbstractSuggestion(models.Model, base.TranslationUnit):
         choices=state_choices,
         db_index=True)
 
+    tmp_state = models.CharField(
+        max_length=16,
+        default=SuggestionStates.PENDING,
+        null=False,
+        choices=state_choices,
+        db_index=True)
+
     creation_time = models.DateTimeField(db_index=True, null=True)
     review_time = models.DateTimeField(null=True, db_index=True)
