@@ -329,13 +329,6 @@ class AbstractSuggestion(models.Model, base.TranslationUnit):
         (SuggestionStates.ACCEPTED, 'Accepted'),
         (SuggestionStates.REJECTED, 'Rejected')]
 
-    state = models.CharField(
-        max_length=16,
-        default=SuggestionStates.PENDING,
-        null=False,
-        choices=state_choices,
-        db_index=True)
-
     tmp_state = models.CharField(
         max_length=16,
         default=SuggestionStates.PENDING,
