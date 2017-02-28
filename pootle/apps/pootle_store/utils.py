@@ -197,10 +197,6 @@ class SuggestionsReview(object):
                 state_id=pending.id,
                 target=translation,
                 creation_time=make_aware(timezone.now()))
-            self.create_submission(
-                suggestion,
-                SubmissionTypes.SUGG_ADD,
-                user).save()
         return (suggestion, True)
 
     def create_submission(self, suggestion, suggestion_type, user, **kwargs):
