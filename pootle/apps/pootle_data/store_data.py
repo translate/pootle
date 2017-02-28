@@ -13,7 +13,6 @@ from django.db.models import Case, Count, Max, Q, When
 
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED
 from pootle_store.models import QualityCheck
-from pootle_store.util import SuggestionStates
 
 from .utils import DataTool, DataUpdater
 
@@ -126,5 +125,5 @@ class StoreDataUpdater(DataUpdater):
     def get_pending_suggestions(self, **kwargs):
         """Return the count of pending suggetions for the store"""
         return (
-            self.units.filter(suggestion__state=SuggestionStates.PENDING)
+            self.units.filter(suggestion__state__name="pending")
                       .values_list("suggestion").count())
