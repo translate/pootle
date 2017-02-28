@@ -12,13 +12,12 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Directory
 
 from .constants import OBSOLETE
-from .util import SuggestionStates
 
 
 class SuggestionManager(models.Manager):
 
     def pending(self):
-        return self.get_queryset().filter(state=SuggestionStates.PENDING)
+        return self.get_queryset().filter(state__name="pending")
 
 
 class UnitManager(models.Manager):
