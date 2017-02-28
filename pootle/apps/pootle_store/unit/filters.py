@@ -10,7 +10,6 @@ from django.db.models import Q
 
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.constants import FUZZY, TRANSLATED, UNTRANSLATED
-from pootle_store.util import SuggestionStates
 
 
 class FilterNotFound(Exception):
@@ -78,14 +77,14 @@ class UnitContributionFilter(BaseUnitFilter):
 
     def filter_suggestions(self):
         return self.qs.filter(
-            suggestion__state=SuggestionStates.PENDING).distinct()
+            suggestion__state__name="pending").distinct()
 
     def filter_user_suggestions(self):
         if not self.user:
             return self.qs.none()
         return self.qs.filter(
             suggestion__user=self.user,
-            suggestion__state=SuggestionStates.PENDING).distinct()
+            suggestion__state__name="pending").distinct()
 
     def filter_my_suggestions(self):
         return self.filter_user_suggestions()
@@ -95,14 +94,14 @@ class UnitContributionFilter(BaseUnitFilter):
             return self.qs.none()
         return self.qs.filter(
             suggestion__user=self.user,
-            suggestion__state=SuggestionStates.ACCEPTED).distinct()
+            suggestion__state__name="accepted").distinct()
 
     def filter_user_suggestions_rejected(self):
         if not self.user:
             return self.qs.none()
         return self.qs.filter(
             suggestion__user=self.user,
-            suggestion__state=SuggestionStates.REJECTED).distinct()
+            suggestion__state__name="rejected").distinct()
 
     def filter_user_submissions(self):
         if not self.user:
