@@ -278,11 +278,6 @@ class SuggestionsReview(object):
         suggestion.review_time = make_aware(timezone.now())
         suggestion.reviewer = self.reviewer
         suggestion.save()
-        self.create_submission(
-            suggestion,
-            SubmissionTypes.SUGG_REJECT,
-            self.reviewer,
-            creation_time=suggestion.review_time).save()
         unit = suggestion.unit
         if unit.changed:
             # if the unit is translated and suggestion was rejected
