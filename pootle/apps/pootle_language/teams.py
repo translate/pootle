@@ -12,7 +12,6 @@ from django.utils.functional import cached_property
 
 from pootle_store.constants import OBSOLETE
 from pootle_store.models import Suggestion
-from pootle_store.util import SuggestionStates
 
 
 User = get_user_model()
@@ -73,7 +72,7 @@ class LanguageTeam(object):
     @property
     def suggestions(self):
         suggestions = Suggestion.objects.filter(
-            state=SuggestionStates.PENDING,
+            state__name="pending",
             unit__state__gt=OBSOLETE,
             unit__store__translation_project__language=self.language)
         suggestions = suggestions.select_related(
