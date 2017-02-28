@@ -91,17 +91,11 @@ def _get_suggestion_description(submission):
             u'Accepted suggestion from %(author)s with comment: %(comment)s',
             params
         )
-        sugg_rejected_desc = _(
-            u'Rejected suggestion from %(author)s with comment: %(comment)s',
-            params
-        )
     else:
         sugg_accepted_desc = _(u'Accepted suggestion from %(author)s', params)
-        sugg_rejected_desc = _(u'Rejected suggestion from %(author)s', params)
 
     return {
         SubmissionTypes.SUGG_ACCEPT: sugg_accepted_desc,
-        SubmissionTypes.SUGG_REJECT: sugg_rejected_desc,
     }.get(submission['type'], None)
 
 

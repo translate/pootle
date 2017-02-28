@@ -332,7 +332,7 @@ def test_update_upload_defaults(store0, system):
     unit = store0.units.first()
     original_revision = unit.revision
     last_sub_pk = unit.submission_set.order_by(
-        "id").values_list("id", flat=True).last()
+        "id").values_list("id", flat=True).last() or 0
     update_store(
         store0,
         [(unit.source, "%s UPDATED" % unit.source)],
@@ -373,7 +373,7 @@ def test_update_upload_member_user(store0, system, member):
     original_unit = store0.units.first()
     original_revision = original_unit.revision
     last_sub_pk = original_unit.submission_set.order_by(
-        "id").values_list("id", flat=True).last()
+        "id").values_list("id", flat=True).last() or 0
     update_store(
         store0,
         [(original_unit.source, "%s UPDATED" % original_unit.source)],
@@ -416,7 +416,7 @@ def test_update_upload_submission_type(store0):
     store0.state = PARSED
     unit = store0.units.first()
     last_sub_pk = unit.submission_set.order_by(
-        "id").values_list("id", flat=True).last()
+        "id").values_list("id", flat=True).last() or 0
     update_store(
         store0,
         [(unit.source, "%s UPDATED" % unit.source)],

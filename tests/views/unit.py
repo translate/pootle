@@ -69,7 +69,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         suggestion__state__name='pending',
         state=UNTRANSLATED)[0]
     last_sub_pk = unit.submission_set.order_by(
-        "id").values_list("id", flat=True).last()
+        "id").values_list("id", flat=True).last() or 0
     sugg = Suggestion.objects.filter(unit=unit, state__name='pending')[0]
     user = request_users["user"]
 

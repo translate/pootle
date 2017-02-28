@@ -28,9 +28,7 @@ def _test_submission_proxy(proxy, sub, fields):
     assert proxy.type == sub.type
     is_suggestion = bool(
         proxy.suggestion
-        and proxy.type in (
-            SubmissionTypes.SUGG_ACCEPT,
-            SubmissionTypes.SUGG_REJECT))
+        and proxy.type == SubmissionTypes.SUGG_ACCEPT)
     assert proxy.is_suggestion == is_suggestion
     if sub.quality_check:
         assert proxy.qc_name == sub.quality_check.name

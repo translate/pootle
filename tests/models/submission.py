@@ -44,7 +44,7 @@ def test_submission_ordering(store0, member):
     unit = store0.units[0]
 
     last_sub_pk = unit.submission_set.order_by(
-        "-pk").values_list("pk", flat=True).first()
+        "-pk").values_list("pk", flat=True).first() or 0
     _create_comment_submission(unit, member, at_time, "Comment 3")
     _create_comment_submission(unit, member, at_time, "Comment 2")
     _create_comment_submission(unit, member, at_time, "Comment 1")
@@ -148,7 +148,7 @@ def test_accept_sugg_submission_ordering(client, request_users, settings):
     sugg = Suggestion.objects.filter(unit=unit, state__name='pending')[0]
     user = request_users["user"]
     last_sub_pk = unit.submission_set.order_by(
-        "-pk").values_list("pk", flat=True).first()
+        "-pk").values_list("pk", flat=True).first() or 0
     if user.username != "nobody":
         client.login(
             username=user.username,
