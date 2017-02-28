@@ -45,7 +45,6 @@ class SuggestionEvent(object):
             'author': self.user.author_link
         }
         sugg_accepted_desc = _(u'Accepted suggestion from %(author)s', params)
-        sugg_rejected_desc = _(u'Rejected suggestion from %(author)s', params)
 
         if self.comment:
             params.update({
@@ -57,15 +56,8 @@ class SuggestionEvent(object):
                 u'with comment: %(comment)s',
                 params
             )
-            sugg_rejected_desc = _(
-                u'Rejected suggestion from %(author)s '
-                u'with comment: %(comment)s',
-                params
-            )
-
         description_dict = {
             SubmissionTypes.SUGG_ACCEPT: sugg_accepted_desc,
-            SubmissionTypes.SUGG_REJECT: sugg_rejected_desc,
         }
 
         return description_dict.get(self.submission_type, None)

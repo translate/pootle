@@ -140,9 +140,7 @@ class SubmissionProxy(object):
     def is_suggestion(self):
         return bool(
             self.suggestion
-            and self.type in (
-                SubmissionTypes.SUGG_ACCEPT,
-                SubmissionTypes.SUGG_REJECT))
+            and self.type == SubmissionTypes.SUGG_ACCEPT)
 
     @cached_property
     def display_user(self):
