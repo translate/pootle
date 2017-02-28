@@ -34,15 +34,14 @@ class SubmissionTypes(object):
     SYSTEM = 5  # Batch actions performed offline
     MUTE_CHECK = 6  # Mute QualityCheck
     UNMUTE_CHECK = 7  # Unmute QualityCheck
-    SUGG_REJECT = 9  # Reject Suggestion
 
     # Combined types that rely on other types (useful for querying)
     # Please use the `_TYPES` suffix to make it clear they're not core
     # types that are stored in the DB
     EDIT_TYPES = [NORMAL, SYSTEM, UPLOAD]
     CONTRIBUTION_TYPES = [NORMAL, SYSTEM]
-    SUGGESTION_TYPES = [SUGG_ACCEPT, SUGG_REJECT]
-    REVIEW_TYPES = [SUGG_ACCEPT, SUGG_REJECT]
+    SUGGESTION_TYPES = [SUGG_ACCEPT]
+    REVIEW_TYPES = [SUGG_ACCEPT]
 
 
 #: Values for the 'field' field of Submission
@@ -232,10 +231,10 @@ class Submission(models.Model):
                                                           check_name),
                     'checks_url': reverse('pootle-checks-descriptions'),
                 })
-
-        if (self.suggestion and
-            self.type in (SubmissionTypes.SUGG_ACCEPT,
-                          SubmissionTypes.SUGG_REJECT)):
+        is_suggestion = (
+            self.suggestion
+            and (self.type == SubmissionTypes.SUGG_ACCEPT))
+        if is_suggestion:
             displayuser = self.suggestion.reviewer
         else:
             # Sadly we may not have submitter information in all the
@@ -470,12 +469,6 @@ class ScoreLog(models.Model):
             previous_reviewer_score['action_code'] = \
                 TranslationActionCodes.REVIEW_PENALTY
 
-        elif submission.type == SubmissionTypes.SUGG_REJECT:
-            submitter_score['action_code'] = \
-                TranslationActionCodes.SUGG_REVIEWED_REJECTED
-            suggester_score['action_code'] = \
-                TranslationActionCodes.SUGG_REJECTED
-
         if 'action_code' in previous_translator_score:
             previous_translator_score['user'] = submission.unit.submitted_by
         if 'action_code' in previous_reviewer_score:
@@ -563,8 +556,6 @@ class ScoreLog(models.Model):
             TranslationActionCodes.REVIEW_PENALTY: lambda: (-1) * reviewCost,
             TranslationActionCodes.SUGG_ACCEPTED: get_sugg_accepted,
             TranslationActionCodes.SUGG_REVIEWED_ACCEPTED: lambda: reviewCost,
-            TranslationActionCodes.SUGG_REJECTED: get_sugg_rejected,
-            TranslationActionCodes.SUGG_REVIEWED_REJECTED: lambda: analyzeCost,
         }.get(self.action_code, lambda: 0)()
 
     def get_suggested_wordcount(self):
