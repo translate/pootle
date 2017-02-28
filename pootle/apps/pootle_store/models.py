@@ -46,7 +46,7 @@ from pootle_statistics.models import (Submission, SubmissionFields,
 
 from .abstracts import (
     AbstractUnit, AbstractQualityCheck, AbstractStore, AbstractSuggestion,
-    AbstractUnitChange, AbstractUnitSource)
+    AbstractSuggestionState, AbstractUnitChange, AbstractUnitSource)
 from .constants import (
     DEFAULT_PRIORITY, FUZZY, OBSOLETE, POOTLE_WINS,
     TRANSLATED, UNTRANSLATED)
@@ -91,6 +91,14 @@ class QualityCheck(AbstractQualityCheck):
 
 
 # # # # # # # # # Suggestion # # # # # # # #
+
+
+class SuggestionState(AbstractSuggestionState):
+
+    class Meta(AbstractSuggestionState.Meta):
+        abstract = False
+        db_table = "pootle_store_suggestion_state"
+
 
 class Suggestion(AbstractSuggestion):
     """Suggested translation for a :cls:`~pootle_store.models.Unit`, provided
