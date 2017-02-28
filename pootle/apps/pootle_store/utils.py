@@ -23,8 +23,7 @@ from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 
 from .constants import FUZZY, TRANSLATED
-from .models import Suggestion
-from .util import SuggestionStates
+from .models import Suggestion, SuggestionState
 
 
 User = get_user_model()
@@ -184,6 +183,7 @@ class SuggestionsReview(object):
         if dont_add:
             return (None, False)
         user = user or User.objects.get_system_user()
+        pending = SuggestionState.objects.get(name="pending")
         try:
             suggestion = Suggestion.objects.pending().get(
                 unit=unit,
@@ -194,7 +194,7 @@ class SuggestionsReview(object):
             suggestion = Suggestion.objects.create(
                 unit=unit,
                 user=user,
-                state=SuggestionStates.PENDING,
+                state_id=pending.id,
                 target=translation,
                 creation_time=make_aware(timezone.now()))
             self.create_submission(
@@ -228,7 +228,8 @@ class SuggestionsReview(object):
             unit.state = TRANSLATED
 
         current_time = timezone.now()
-        suggestion.state = SuggestionStates.ACCEPTED
+        accepted = SuggestionState.objects.get(name="accepted")
+        suggestion.state_id = accepted.id
         suggestion.reviewer = self.reviewer
         suggestion.review_time = current_time
         suggestion.save()
@@ -276,7 +277,8 @@ class SuggestionsReview(object):
 
     def reject_suggestion(self, suggestion):
         store = suggestion.unit.store
-        suggestion.state = SuggestionStates.REJECTED
+        rejected = SuggestionState.objects.get(name="rejected")
+        suggestion.state_id = rejected.id
         suggestion.review_time = make_aware(timezone.now())
         suggestion.reviewer = self.reviewer
         suggestion.save()
