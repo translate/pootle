@@ -34,15 +34,14 @@ class SubmissionTypes(object):
     SYSTEM = 5  # Batch actions performed offline
     MUTE_CHECK = 6  # Mute QualityCheck
     UNMUTE_CHECK = 7  # Unmute QualityCheck
-    SUGG_ADD = 8  # Add new Suggestion
     SUGG_REJECT = 9  # Reject Suggestion
 
     # Combined types that rely on other types (useful for querying)
     # Please use the `_TYPES` suffix to make it clear they're not core
     # types that are stored in the DB
     EDIT_TYPES = [NORMAL, SYSTEM, UPLOAD]
-    CONTRIBUTION_TYPES = [NORMAL, SYSTEM, SUGG_ADD]
-    SUGGESTION_TYPES = [SUGG_ACCEPT, SUGG_ADD, SUGG_REJECT]
+    CONTRIBUTION_TYPES = [NORMAL, SYSTEM]
+    SUGGESTION_TYPES = [SUGG_ACCEPT, SUGG_REJECT]
     REVIEW_TYPES = [SUGG_ACCEPT, SUGG_REJECT]
 
 
@@ -463,9 +462,6 @@ class ScoreLog(models.Model):
                 previous_reviewer_score['action_code'] = \
                     TranslationActionCodes.REVIEW_PENALTY
 
-        elif submission.type == SubmissionTypes.SUGG_ADD:
-            submitter_score['action_code'] = TranslationActionCodes.SUGG_ADDED
-
         elif submission.type == SubmissionTypes.SUGG_ACCEPT:
             submitter_score['action_code'] = \
                 TranslationActionCodes.SUGG_REVIEWED_ACCEPTED
@@ -565,8 +561,6 @@ class ScoreLog(models.Model):
             TranslationActionCodes.MARKED_FUZZY: lambda: 0,
             TranslationActionCodes.DELETED: lambda: 0,
             TranslationActionCodes.REVIEW_PENALTY: lambda: (-1) * reviewCost,
-            TranslationActionCodes.SUGG_ADDED:
-                lambda: rawTranslationCost * SUGG_COEF,
             TranslationActionCodes.SUGG_ACCEPTED: get_sugg_accepted,
             TranslationActionCodes.SUGG_REVIEWED_ACCEPTED: lambda: reviewCost,
             TranslationActionCodes.SUGG_REJECTED: get_sugg_rejected,
@@ -575,9 +569,7 @@ class ScoreLog(models.Model):
 
     def get_suggested_wordcount(self):
         """Returns the suggested wordcount in the current action."""
-        if self.action_code == TranslationActionCodes.SUGG_ADDED:
-            return self.wordcount
-
+        # TODO: implement with suggestion
         return None
 
     def get_paid_wordcounts(self):
