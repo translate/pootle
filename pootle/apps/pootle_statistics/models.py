@@ -29,7 +29,6 @@ SIMILARITY_THRESHOLD = 0.5
 class SubmissionTypes(object):
     # None/0 = no information
     WEB = 1  # Interactive web editing
-    SUGG_ACCEPT = 3  # Accepting a suggestion
     UPLOAD = 4  # Uploading an offline file
     SYSTEM = 5  # Batch actions performed offline
     MUTE_CHECK = 6  # Mute QualityCheck
@@ -38,10 +37,9 @@ class SubmissionTypes(object):
     # Combined types that rely on other types (useful for querying)
     # Please use the `_TYPES` suffix to make it clear they're not core
     # types that are stored in the DB
+
     EDIT_TYPES = [WEB, SYSTEM, UPLOAD]
     CONTRIBUTION_TYPES = [WEB, SYSTEM]
-    SUGGESTION_TYPES = [SUGG_ACCEPT]
-    REVIEW_TYPES = [SUGG_ACCEPT]
 
 
 #: Values for the 'field' field of Submission
@@ -141,7 +139,7 @@ class SubmissionManager(models.Manager):
         # REVIEW_TYPES
         return (self.get_queryset().exclude(
             field=SubmissionFields.STATE).filter(
-                type__in=SubmissionTypes.REVIEW_TYPES))
+                suggestion__isnull=False))
 
 
 class Submission(models.Model):
@@ -229,20 +227,14 @@ class Submission(models.Model):
                                                           check_name),
                     'checks_url': reverse('pootle-checks-descriptions'),
                 })
-        is_suggestion = (
-            self.suggestion
-            and (self.type == SubmissionTypes.SUGG_ACCEPT))
-        if is_suggestion:
-            displayuser = self.suggestion.reviewer
+        # Sadly we may not have submitter information in all the
+        # situations yet
+        # TODO check if it is true
+        if self.submitter:
+            displayuser = self.submitter
         else:
-            # Sadly we may not have submitter information in all the
-            # situations yet
-            # TODO check if it is true
-            if self.submitter:
-                displayuser = self.submitter
-            else:
-                User = get_user_model()
-                displayuser = User.objects.get_nobody_user()
+            User = get_user_model()
+            displayuser = User.objects.get_nobody_user()
 
         result.update({
             "profile_url": displayuser.get_absolute_url(),
@@ -296,7 +288,8 @@ class Submission(models.Model):
             except AttributeError:
                 return result
 
-            result['translation_action_type'] = translation_action_type
+            if translation_action_type is not None:
+                result['translation_action_type'] = translation_action_type
 
         return result
 
@@ -441,14 +434,6 @@ class ScoreLog(models.Model):
                 previous_reviewer_score['action_code'] = \
                     TranslationActionCodes.REVIEW_PENALTY
 
-        elif submission.type == SubmissionTypes.SUGG_ACCEPT:
-            submitter_score['action_code'] = \
-                TranslationActionCodes.SUGG_REVIEWED_ACCEPTED
-            suggester_score['action_code'] = \
-                TranslationActionCodes.SUGG_ACCEPTED
-            previous_reviewer_score['action_code'] = \
-                TranslationActionCodes.REVIEW_PENALTY
-
         if 'action_code' in previous_translator_score:
             previous_translator_score['user'] = submission.unit.submitted_by
         if 'action_code' in previous_reviewer_score:
@@ -506,15 +491,10 @@ class ScoreLog(models.Model):
         """Returns the score change performed by the current action."""
         EDIT_COEF = settings.POOTLE_SCORE_COEFFICIENTS['EDIT']
         REVIEW_COEF = settings.POOTLE_SCORE_COEFFICIENTS['REVIEW']
-        SUGG_COEF = settings.POOTLE_SCORE_COEFFICIENTS['SUGGEST']
 
         ns = self.wordcount
         rawTranslationCost = ns * EDIT_COEF
         reviewCost = ns * REVIEW_COEF
-
-        def get_sugg_accepted():
-            rawTranslationCost = ns * EDIT_COEF
-            return rawTranslationCost * (1 - SUGG_COEF)
 
         return {
             TranslationActionCodes.NEW:
@@ -526,8 +506,6 @@ class ScoreLog(models.Model):
             TranslationActionCodes.MARKED_FUZZY: lambda: 0,
             TranslationActionCodes.DELETED: lambda: 0,
             TranslationActionCodes.REVIEW_PENALTY: lambda: (-1) * reviewCost,
-            TranslationActionCodes.SUGG_ACCEPTED: get_sugg_accepted,
-            TranslationActionCodes.SUGG_REVIEWED_ACCEPTED: lambda: reviewCost,
         }.get(self.action_code, lambda: 0)()
 
     def get_paid_wordcounts(self):
@@ -554,25 +532,6 @@ class ScoreLog(models.Model):
         translated_words = round(translated_words, 4)
         reviewed_words = ns
 
-        def get_sugg_reviewed_accepted():
-            suggester = self.submission.suggestion.user.pk
-            reviewer = self.submission.submitter.pk
-            if suggester == reviewer:
-                if self.submission.old_value == '':
-                    return translated_words, None
-            else:
-                return None, reviewed_words
-
-            return None, None
-
-        def get_sugg_accepted():
-            suggester = self.submission.suggestion.user.pk
-            reviewer = self.submission.submitter.pk
-            if suggester != reviewer and self.submission.old_value == '':
-                return translated_words, None
-
-            return None, None
-
         def get_edited():
             return None, reviewed_words
 
@@ -580,7 +539,4 @@ class ScoreLog(models.Model):
             TranslationActionCodes.NEW: lambda: (translated_words, None),
             TranslationActionCodes.EDITED: get_edited,
             TranslationActionCodes.REVIEWED: lambda: (None, reviewed_words),
-            TranslationActionCodes.SUGG_ACCEPTED: get_sugg_accepted,
-            TranslationActionCodes.SUGG_REVIEWED_ACCEPTED:
-                get_sugg_reviewed_accepted,
         }.get(self.action_code, lambda: (None, None))()
