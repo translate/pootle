@@ -12,11 +12,8 @@ from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django.urls import reverse
 from django.utils.functional import cached_property
-from django.utils.html import format_html
-from django.utils.safestring import mark_safe
 
 from accounts.proxy import DisplayUser
-from pootle.i18n.gettext import ugettext as _
 from pootle_comment import get_model as get_comment_model
 from pootle_misc.checks import check_names
 from pootle_statistics.models import (
@@ -38,29 +35,6 @@ class SuggestionEvent(object):
     @cached_property
     def user(self):
         return DisplayUser(self.username, self.full_name)
-
-    @property
-    def description(self):
-        params = {
-            'author': self.user.author_link
-        }
-        sugg_accepted_desc = _(u'Accepted suggestion from %(author)s', params)
-
-        if self.comment:
-            params.update({
-                'comment': format_html(u'<span class="comment">{}</span>',
-                                       self.comment),
-            })
-            sugg_accepted_desc = _(
-                u'Accepted suggestion from %(author)s '
-                u'with comment: %(comment)s',
-                params
-            )
-        description_dict = {
-            SubmissionTypes.SUGG_ACCEPT: sugg_accepted_desc,
-        }
-
-        return description_dict.get(self.submission_type, None)
 
 
 class TimelineEntry(object):
@@ -101,18 +75,7 @@ class TimelineEntry(object):
 
     def suggestion_entry(self):
         entry = self.entry_dict
-
-        suggestion_description = mark_safe(
-            SuggestionEvent(
-                self.submission.type,
-                self.submission.suggestion_username,
-                self.submission.suggestion_full_name,
-                self.submission.suggestion_comment,
-            ).description
-        )
-        entry.update(
-            {'suggestion_text': self.submission.suggestion_target,
-             'suggestion_description': suggestion_description})
+        entry.update({'suggestion_text': self.submission.suggestion_target})
         return entry
 
     @property
@@ -145,8 +108,7 @@ class Timeline(object):
     def submissions(self):
         submission_filter = (
             Q(field__in=[SubmissionFields.TARGET, SubmissionFields.STATE,
-                         SubmissionFields.COMMENT, SubmissionFields.NONE])
-            | Q(type__in=SubmissionTypes.SUGGESTION_TYPES))
+                         SubmissionFields.COMMENT, SubmissionFields.NONE]))
         return (
             Submission.objects.filter(unit=self.object)
                               .filter(submission_filter)

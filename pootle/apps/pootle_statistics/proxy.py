@@ -136,16 +136,8 @@ class SubmissionProxy(object):
             self.values["suggestion__reviewer__full_name"],
             self.values["suggestion__reviewer__email"])
 
-    @property
-    def is_suggestion(self):
-        return bool(
-            self.suggestion
-            and self.type == SubmissionTypes.SUGG_ACCEPT)
-
     @cached_property
     def display_user(self):
-        if self.is_suggestion:
-            return self.suggestion_reviewer_display
         return self.submitter_display
 
     @property
