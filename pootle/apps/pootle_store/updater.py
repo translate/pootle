@@ -157,7 +157,7 @@ class UnitUpdater(object):
             return True
         if self.unit.target == self.newunit.target:
             return False
-        edit_types = SubmissionTypes.EDIT_TYPES + [SubmissionTypes.SUGG_ACCEPT]
+        edit_types = SubmissionTypes.EDIT_TYPES
         prev_subs = self.unit.submission_set.filter(
             type__in=edit_types).filter(field=SubmissionFields.TARGET).filter(
                 revision__lte=self.update.store_revision)
