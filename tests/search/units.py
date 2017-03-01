@@ -11,10 +11,10 @@ import pytest
 from pootle.core.delegate import search_backend
 from pootle.core.plugin import getter
 from pootle_project.models import Project
-from pootle_statistics.models import SubmissionTypes
+from pootle_statistics.models import Submission, SubmissionTypes
 from pootle_store.getters import get_search_backend
 from pootle_store.constants import FUZZY, TRANSLATED, UNTRANSLATED
-from pootle_store.models import Unit
+from pootle_store.models import Suggestion, Unit
 from pootle_store.unit.filters import (
     FilterNotFound, UnitChecksFilter, UnitContributionFilter, UnitSearchFilter,
     UnitStateFilter, UnitTextSearch)
@@ -112,14 +112,22 @@ def _test_units_contribution_filter(qs, user, unit_filter):
             suggestion__state__name="rejected",
             suggestion__user=user).distinct()
     elif unit_filter in ["my_submissions", "user_submissions"]:
-        expected = qs.filter(
-            submission__submitter=user,
-            submission__type__in=SubmissionTypes.EDIT_TYPES).distinct()
+        expected = qs.filter(submitted_by=user)
     elif unit_filter in user_subs_overwritten:
+        # lets calc this long hand
+        # first submissions that have been added with no suggestion
+        user_edit_subs = Submission.objects.filter(
+            type__in=SubmissionTypes.EDIT_TYPES).filter(
+                suggestion__isnull=True).filter(
+                    submitter=user).values_list("unit_id", flat=True)
+        # next the suggestions that are accepted and the user is this user
+        user_suggestions = Suggestion.objects.filter(
+            state__name="accepted",
+            user=user).values_list("unit_id", flat=True)
         expected = qs.filter(
-            submission__submitter=user,
-            submission__type__in=SubmissionTypes.EDIT_TYPES)
-        expected = expected.exclude(submitted_by=user).distinct()
+            id__in=(
+                set(user_edit_subs)
+                | set(user_suggestions))).exclude(submitted_by=user)
     assert (
         list(expected.order_by("pk"))
         == list(result.order_by("pk")))
