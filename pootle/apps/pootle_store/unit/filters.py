@@ -114,10 +114,14 @@ class UnitContributionFilter(BaseUnitFilter):
     def filter_user_submissions_overwritten(self):
         if not self.user:
             return self.qs.none()
-        qs = self.qs.filter(
-            submitted_by=self.user,
-            submission__type__in=SubmissionTypes.EDIT_TYPES)
-        return qs.exclude(submitted_by=self.user).distinct()
+        qs = self.qs.exclude(submitted_by=self.user)
+        return (
+            qs.filter(suggestion__isnull=True).filter(
+                submission__submitter_id=self.user.id,
+                submission__type__in=SubmissionTypes.EDIT_TYPES)
+            | qs.filter(suggestion__isnull=False).filter(
+                suggestion__user_id=self.user.id,
+                suggestion__state__name="accepted")).distinct()
 
     def filter_my_submissions_overwritten(self):
         return self.filter_user_submissions_overwritten()
