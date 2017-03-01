@@ -20,4 +20,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(drop_reject_suggestion_subs),
     ]
