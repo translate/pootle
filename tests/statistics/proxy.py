@@ -8,7 +8,7 @@
 
 import pytest
 
-from pootle_statistics.models import Submission, SubmissionTypes
+from pootle_statistics.models import Submission
 from pootle_statistics.proxy import SubmissionProxy
 
 
@@ -26,10 +26,6 @@ def _test_submission_proxy(proxy, sub, fields):
         assert proxy.unit_pootle_path == sub.unit.store.pootle_path
         assert proxy.unit_state == sub.unit.state
     assert proxy.type == sub.type
-    is_suggestion = bool(
-        proxy.suggestion
-        and proxy.type == SubmissionTypes.SUGG_ACCEPT)
-    assert proxy.is_suggestion == is_suggestion
     if sub.quality_check:
         assert proxy.qc_name == sub.quality_check.name
     else:

@@ -16,16 +16,11 @@ from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django.template import loader
 from django.urls import reverse
-from django.utils.html import format_html
-from django.utils.safestring import mark_safe
 
 from pootle.core.delegate import review
-from pootle.i18n.gettext import ugettext_lazy as _
-from pootle_comment import get_model as get_comment_model
 from pootle_comment.forms import UnsecuredCommentForm
 from pootle_misc.checks import check_names
-from pootle_statistics.models import (
-    Submission, SubmissionFields, SubmissionTypes)
+from pootle_statistics.models import Submission, SubmissionFields
 from pootle_store.constants import (
     FUZZY, OBSOLETE, STATES_MAP, TRANSLATED, UNTRANSLATED)
 from pootle_store.fields import to_python
@@ -60,50 +55,10 @@ class ProxyTimelineUser(object):
             else self.submission["submitter__username"])
 
 
-def _get_suggestion_description(submission):
-    user_url = reverse(
-        'pootle-user-profile',
-        args=[submission["suggestion__user__username"]])
-    display_name = (
-        submission["suggestion__user__full_name"].strip()
-        if submission["suggestion__user__full_name"].strip()
-        else submission["suggestion__user__username"].strip())
-    params = {
-        'author': format_html(u'<a href="{}">{}</a>',
-                              user_url,
-                              display_name)
-    }
-    Comment = get_comment_model()
-    try:
-        comment = Comment.objects.for_model(Suggestion).get(
-            object_pk=submission["suggestion_id"],
-        )
-    except Comment.DoesNotExist:
-        comment = None
-    else:
-        params.update({
-            'comment': format_html(u'<span class="comment">{}</span>',
-                                   comment.comment),
-        })
-
-    if comment:
-        sugg_accepted_desc = _(
-            u'Accepted suggestion from %(author)s with comment: %(comment)s',
-            params
-        )
-    else:
-        sugg_accepted_desc = _(u'Accepted suggestion from %(author)s', params)
-
-    return {
-        SubmissionTypes.SUGG_ACCEPT: sugg_accepted_desc,
-    }.get(submission['type'], None)
-
-
 def _calculate_timeline(request, unit):
     submission_filter = (
         Q(field__in=[SubmissionFields.TARGET, SubmissionFields.STATE,
-                     SubmissionFields.COMMENT, SubmissionFields.NONE])
-        | Q(type__in=SubmissionTypes.SUGGESTION_TYPES))
+                     SubmissionFields.COMMENT, SubmissionFields.NONE]))
     timeline = (
         Submission.objects.filter(unit=unit)
                           .filter(submission_filter)
@@ -159,9 +114,7 @@ def _calculate_timeline(request, unit):
                 entry['new_value'] = STATES_MAP[int(to_python(item['new_value']))]
             elif item['suggestion_id']:
                 entry.update({
-                    'suggestion_text': item['suggestion__target_f'],
-                    'suggestion_description':
-                        mark_safe(_get_suggestion_description(item))})
+                    'suggestion_text': item['suggestion__target_f']})
             elif item['quality_check__name']:
                 check_name = item['quality_check__name']
                 check_url = (

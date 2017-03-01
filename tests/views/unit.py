@@ -18,8 +18,7 @@ from translate.misc.multistring import multistring
 from pootle.core.exceptions import Http400
 from pootle_app.models.permissions import check_permission
 from pootle_comment import get_model as get_comment_model
-from pootle_statistics.models import (
-    Submission, SubmissionFields, SubmissionTypes)
+from pootle_statistics.models import SubmissionFields, SubmissionTypes
 from pootle_store.constants import TRANSLATED, UNTRANSLATED
 from pootle_store.models import QualityCheck, Suggestion, Unit, UnitChange
 from pootle_store.views import get_units, toggle_qualitycheck
@@ -119,8 +118,9 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         assert target_sub.old_value == ""
         assert target_sub.new_value == suggestion.target
         assert target_sub.field == SubmissionFields.TARGET
-        assert target_sub.type == SubmissionTypes.SUGG_ACCEPT
+        assert target_sub.type == SubmissionTypes.WEB
         assert target_sub.submitter == unit.change.reviewed_by
+        assert target_sub.suggestion == suggestion
 
         # THIS FAILS
         # assert target_sub.revision == unit.revision
@@ -138,6 +138,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
 
         assert state_sub.submitter == unit.change.reviewed_by
         assert state_sub.revision == unit.revision
+        assert target_sub.suggestion == suggestion
 
         # this fails
         # assert state_sub.creation_time == unit.change.reviewed_on
@@ -156,8 +157,8 @@ def test_submit_with_suggestion(client, request_users, settings, system):
     settings.POOTLE_CAPTCHA_ENABLED = False
     unit = Unit.objects.filter(suggestion__state__name='pending',
                                state=UNTRANSLATED).first()
-    unit_submissions = Submission.objects.filter(unit=unit)
-    unit_submissions_count = unit_submissions.count()
+    last_sub_pk = unit.submission_set.order_by(
+        "-pk").values_list("pk", flat=True).first() or 0
     sugg = Suggestion.objects.filter(unit=unit, state__name='pending').first()
     user = request_users["user"]
     if user.username != "nobody":
@@ -179,6 +180,7 @@ def test_submit_with_suggestion(client, request_users, settings, system):
 
     suggestion = Suggestion.objects.get(id=sugg.id)
     unit = Unit.objects.get(id=unit.id)
+    new_subs = unit.submission_set.filter(id__gt=last_sub_pk)
     if check_permission('translate', response.wsgi_request):
         assert response.status_code == 200
         unit_source = unit.unit_source.get()
@@ -189,13 +191,14 @@ def test_submit_with_suggestion(client, request_users, settings, system):
         assert unit.change.changed_with == SubmissionTypes.WEB
         assert suggestion.state.name == 'accepted'
         assert str(unit.target) == sugg.target_f
-        unit_submissions = unit_submissions.exclude(
-            type=SubmissionTypes.SUGG_ACCEPT
-        )
-        assert (unit_submissions.count() - unit_submissions_count == 0)
-
+        assert new_subs.count() == 1
+        update_sub = new_subs[0]
+        assert update_sub.suggestion == suggestion
+        assert update_sub.field == SubmissionFields.TARGET
+        assert update_sub.type == SubmissionTypes.WEB
     else:
         assert response.status_code == 403
+        assert new_subs.count() == 0
         assert suggestion.state.name == "pending"
         assert unit.target == ""
         with pytest.raises(UnitChange.DoesNotExist):
