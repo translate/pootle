@@ -232,13 +232,11 @@ class SuggestionsReview(object):
                 'unit': unit,
                 'revision': unit.revision,
                 'field': field,
-                'type': SubmissionTypes.SUGG_ACCEPT,
+                'suggestion': suggestion,
+                'type': SubmissionTypes.WEB,
                 'old_value': create_subs[field][0],
                 'new_value': create_subs[field][1],
             }
-            if field == SubmissionFields.TARGET:
-                kwargs['suggestion'] = suggestion
-
             subs_created.append(Submission(**kwargs))
         if subs_created:
             unit.submission_set.add(*subs_created, bulk=False)
