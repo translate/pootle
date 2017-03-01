@@ -360,22 +360,6 @@ class TranslationActionCodes(object):
     }
 
 
-class ScoreLogManager(models.Manager):
-
-    def for_user_in_range(self, user, start, end):
-        """Returns all logged scores for `user` in the [`start`, `end`] date
-        range.
-        """
-        return ScoreLog.objects.select_related(
-            'submission__translation_project__project',
-            'submission__translation_project__language',
-        ).filter(
-            user=user,
-            creation_time__gte=start,
-            creation_time__lte=end,
-        )
-
-
 class ScoreLog(models.Model):
     creation_time = models.DateTimeField(db_index=True, null=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False,
@@ -392,8 +376,6 @@ class ScoreLog(models.Model):
     submission = models.ForeignKey(Submission, null=False,
                                    on_delete=models.CASCADE)
     translated_wordcount = models.PositiveIntegerField(null=True)
-
-    objects = ScoreLogManager()
 
     class Meta(object):
         unique_together = ('submission', 'action_code')
@@ -527,18 +509,10 @@ class ScoreLog(models.Model):
         EDIT_COEF = settings.POOTLE_SCORE_COEFFICIENTS['EDIT']
         REVIEW_COEF = settings.POOTLE_SCORE_COEFFICIENTS['REVIEW']
         SUGG_COEF = settings.POOTLE_SCORE_COEFFICIENTS['SUGGEST']
-        ANALYZE_COEF = settings.POOTLE_SCORE_COEFFICIENTS['ANALYZE']
 
         ns = self.wordcount
         rawTranslationCost = ns * EDIT_COEF
         reviewCost = ns * REVIEW_COEF
-        analyzeCost = ns * ANALYZE_COEF
-
-        def get_sugg_rejected():
-            result = 0
-            rawTranslationCost = ns * EDIT_COEF
-            result = (-1) * (rawTranslationCost * SUGG_COEF + analyzeCost)
-            return result
 
         def get_sugg_accepted():
             rawTranslationCost = ns * EDIT_COEF
@@ -557,11 +531,6 @@ class ScoreLog(models.Model):
             TranslationActionCodes.SUGG_ACCEPTED: get_sugg_accepted,
             TranslationActionCodes.SUGG_REVIEWED_ACCEPTED: lambda: reviewCost,
         }.get(self.action_code, lambda: 0)()
-
-    def get_suggested_wordcount(self):
-        """Returns the suggested wordcount in the current action."""
-        # TODO: implement with suggestion
-        return None
 
     def get_paid_wordcounts(self):
         """Returns the translated and reviewed wordcount in the current
