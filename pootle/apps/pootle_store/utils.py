@@ -199,16 +199,6 @@ class SuggestionsReview(object):
                 creation_time=make_aware(timezone.now()))
         return (suggestion, True)
 
-    def create_submission(self, suggestion, suggestion_type, user, **kwargs):
-        return Submission(
-            creation_time=kwargs.get("creation_time", suggestion.creation_time),
-            translation_project=suggestion.unit.store.translation_project,
-            submitter=user,
-            unit=suggestion.unit,
-            store=suggestion.unit.store,
-            type=suggestion_type,
-            suggestion=suggestion)
-
     def accept_suggestion(self, suggestion):
         unit = suggestion.unit
         translation_project = unit.store.translation_project
