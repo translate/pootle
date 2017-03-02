@@ -20,7 +20,7 @@ from pootle.core.utils.timezone import make_aware
 from pootle.i18n.gettext import ugettext as _
 from pootle_comment.forms import UnsecuredCommentForm
 from pootle_statistics.models import (
-    Submission, SubmissionFields, SubmissionTypes)
+    MUTED, UNMUTED, Submission, SubmissionFields, SubmissionTypes)
 
 from .constants import FUZZY, TRANSLATED
 from .models import Suggestion, SuggestionState
@@ -363,8 +363,10 @@ class UnitLifecycle(object):
         _kwargs = dict(
             creation_time=make_aware(timezone.now()),
             submitter=submitter,
-            field=SubmissionFields.NONE,
-            type=SubmissionTypes.MUTE_CHECK,
+            field=SubmissionFields.CHECK,
+            type=SubmissionTypes.WEB,
+            old_value=UNMUTED,
+            new_value=MUTED,
             quality_check=quality_check)
         _kwargs.update(kwargs)
         return self.create_submission(**_kwargs)
@@ -375,8 +377,10 @@ class UnitLifecycle(object):
         _kwargs = dict(
             creation_time=make_aware(timezone.now()),
             submitter=submitter,
-            field=SubmissionFields.NONE,
-            type=SubmissionTypes.UNMUTE_CHECK,
+            field=SubmissionFields.CHECK,
+            type=SubmissionTypes.WEB,
+            old_value=MUTED,
+            new_value=UNMUTED,
             quality_check=quality_check)
         _kwargs.update(kwargs)
         return self.create_submission(**_kwargs)
