@@ -11,6 +11,7 @@ from translate.filters.decorators import Category
 from django.db import models
 from django.db.models import Case, Count, Max, Q, When
 
+from pootle_statistics.models import Submission
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED
 from pootle_store.models import QualityCheck
 
@@ -114,7 +115,7 @@ class StoreDataUpdater(DataUpdater):
 
     def get_last_submission(self, **kwargs):
         """Last submission for this store"""
-        submissions = self.store.submission_set
+        submissions = Submission.objects.filter(unit__store_id=self.store)
         try:
             return (
                 submissions.values_list("pk", flat=True)
