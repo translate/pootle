@@ -28,7 +28,7 @@ SIMILARITY_THRESHOLD = 0.5
 #: These are the values for the 'type' field of Submission
 class SubmissionTypes(object):
     # None/0 = no information
-    NORMAL = 1  # Interactive web editing
+    WEB = 1  # Interactive web editing
     SUGG_ACCEPT = 3  # Accepting a suggestion
     UPLOAD = 4  # Uploading an offline file
     SYSTEM = 5  # Batch actions performed offline
@@ -38,8 +38,8 @@ class SubmissionTypes(object):
     # Combined types that rely on other types (useful for querying)
     # Please use the `_TYPES` suffix to make it clear they're not core
     # types that are stored in the DB
-    EDIT_TYPES = [NORMAL, SYSTEM, UPLOAD]
-    CONTRIBUTION_TYPES = [NORMAL, SYSTEM]
+    EDIT_TYPES = [WEB, SYSTEM, UPLOAD]
+    CONTRIBUTION_TYPES = [WEB, SYSTEM]
     SUGGESTION_TYPES = [SUGG_ACCEPT]
     REVIEW_TYPES = [SUGG_ACCEPT]
 

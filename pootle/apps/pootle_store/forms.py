@@ -315,7 +315,7 @@ def unit_form_factory(language, snplurals=None, request=None):
                         unit=unit,
                         store=unit.store,
                         field=field,
-                        type=SubmissionTypes.NORMAL,
+                        type=SubmissionTypes.WEB,
                         old_value=old_value,
                         new_value=new_value)
                     sub.save()
@@ -376,7 +376,7 @@ def unit_comment_form_factory(language):
                     unit=self.instance,
                     store=self.instance.store,
                     field=SubmissionFields.COMMENT,
-                    type=SubmissionTypes.NORMAL,
+                    type=SubmissionTypes.WEB,
                     old_value=self.previous_value,
                     new_value=self.cleaned_data['translator_comment']
                 )

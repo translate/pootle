@@ -554,7 +554,7 @@ def submit(request, unit, **kwargs_):
             review.get(Suggestion)(
                 [suggestion],
                 request.user,
-                SubmissionTypes.NORMAL).accept()
+                SubmissionTypes.WEB).accept()
             if form.cleaned_data['comment']:
                 kwargs = dict(
                     comment=form.cleaned_data['comment'],
@@ -568,7 +568,7 @@ def submit(request, unit, **kwargs_):
             # Update current unit instance's attributes
             # important to set these attributes after saving Submission
             # because we need to access the unit's state before it was saved
-            form.save(changed_with=SubmissionTypes.NORMAL)
+            form.save(changed_with=SubmissionTypes.WEB)
             json['checks'] = _get_critical_checks_snippet(request, unit)
 
         json['user_score'] = request.user.public_score
@@ -665,7 +665,7 @@ def accept_suggestion(request, unit, suggid, **kwargs_):
     review.get(Suggestion)(
         [suggestion],
         request.user,
-        SubmissionTypes.NORMAL).accept(request.POST.get("comment"))
+        SubmissionTypes.WEB).accept(request.POST.get("comment"))
     json = {
         'udbid': unit.id,
         'sugid': suggid,
