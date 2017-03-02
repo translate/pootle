@@ -565,4 +565,21 @@ def check_unsupported_python(app_configs=None, **kwargs):
             hint=_("Use a Python 2.7 virtualenv."),
             id="pootle.C024",
         ))
+
+    return errors
+
+
+@checks.register()
+def check_shema(app_configs=None, **kwargs):
+    from pootle.core.schema.base import SchemaTool
+    schema_mismatches = checks.Critical(
+        _("Schema settings are not matched to requirements"),
+        hint=("Run `pootle shchema` for more information."),
+        id="pootle.C023",
+    )
+    errors = []
+
+    if not SchemaTool().check():
+        errors.append(schema_mismatches)
+
     return errors
