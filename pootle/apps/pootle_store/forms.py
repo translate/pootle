@@ -12,15 +12,20 @@ from translate.misc.multistring import multistring
 
 from django import forms
 from django.contrib.auth import get_user_model
+from django.core.exceptions import PermissionDenied
 from django.urls import Resolver404, resolve
 from django.utils import timezone
 from django.utils.translation import get_language
 
 from pootle.core.contextmanagers import update_data_after
+from pootle.core.delegate import review
 from pootle.core.url_helpers import split_pootle_path
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
-from pootle_app.models.permissions import check_permission, check_user_permission
+from pootle_app.models.permissions import (check_permission,
+                                           check_user_permission,
+                                           get_matching_permissions)
+from pootle_comment.forms import UnsecuredCommentForm
 from pootle_misc.checks import CATEGORY_CODES, check_names
 from pootle_misc.util import get_date_interval
 from pootle_project.models import Project
@@ -504,7 +509,102 @@ class UnitSearchForm(forms.Form):
         raise forms.ValidationError("Unrecognized path")
 
 
-class SuggestionReviewForm(forms.Form):
-    suggestion = forms.ModelChoiceField(
-        queryset=Suggestion.objects.filter(state__name='pending'),
+class SuggestionReviewForm(UnsecuredCommentForm):
+    unit = forms.ModelChoiceField(
+        queryset=Unit.objects.live().select_related(
+            "store__translation_project",
+            "store__parent"),
         required=True)
+    action = forms.ChoiceField(
+        choices=[('accept', 'Accept'), ('reject', 'Reject')])
+
+    def __init__(self, target_object, data=None, *args, **kwargs):
+
+        return super(SuggestionReviewForm, self).__init__(
+            target_object,
+            data=data,
+            *args,
+            **kwargs
+        )
+
+
+    def clean_unit(self):
+        if self.cleaned_data['unit'].id != self.target_object.unit.id:
+            self.add_error(
+                'unit',
+                forms.ValidationError(_("Suggestion and unit are "
+                                        "not matched.")))
+
+        return self.cleaned_data['unit']
+
+    def clean(self):
+        if self.target_object.state.name != 'pending':
+            self.add_error(None,
+                           forms.ValidationError(_("This suggestion is "
+                                                    "already reviewed.")))
+
+        action_method = getattr(self, self.cleaned_data['action'] +
+                                '_permissions_check')
+        action_method()
+
+    def review_permissions_check(self):
+        unit = self.cleaned_data['unit']
+        tp = unit.store.translation_project
+        user = self.cleaned_data['user']
+        if user.is_superuser:
+            return True
+
+        permissions = get_matching_permissions(self.cleaned_data['user'],
+                                               tp.directory)
+
+        return 'review' in permissions or 'administrate' in permissions
+
+    def accept_permissions_check(self):
+        if not self.review_permissions_check():
+            raise PermissionDenied(
+                _('Insufficient rights to access review mode.'))
+
+    def reject_permissions_check(self):
+        user = self.cleaned_data['user']
+
+        # In order to be able to reject a suggestion, users have to either:
+        # 1. Have `review` rights, or
+        # 2. Be the author of the suggestion being rejected
+        has_permission = (
+            self.review_permissions_check()
+            or (not user.is_anonymous
+                and user == self.target_object.user))
+        if not has_permission:
+            raise PermissionDenied(
+                _('Insufficient rights to access review mode.'))
+
+    def save(self):
+        action_method = getattr(self, self.cleaned_data['action'] + '_suggestion')
+        return action_method(
+            self.cleaned_data['unit'],
+            self.target_object,
+            self.cleaned_data['user']
+        )
+
+    def reject_suggestion(self, unit, suggestion, user):
+        review.get(Suggestion)(
+            [suggestion],
+            user).reject(self.cleaned_data['comment'])
+
+        return {
+            'udbid': unit.id,
+            'sugid': suggestion.id,
+            'user_score': user.public_score,
+        }
+
+    def accept_suggestion(self, unit, suggestion, user):
+        review.get(Suggestion)(
+            [suggestion],
+            user,
+            SubmissionTypes.WEB).accept(self.cleaned_data['comment'])
+        return {
+            'udbid': unit.id,
+            'sugid': suggestion.id,
+            'user_score': user.public_score,
+            'newtargets': [target for target in unit.target.strings],
+        }
