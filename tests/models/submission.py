@@ -26,7 +26,6 @@ def _create_comment_submission(unit, user, creation_time, comment):
         translation_project=unit.store.translation_project,
         submitter=user,
         unit=unit,
-        store=unit.store,
         field=SubmissionFields.COMMENT,
         type=SubmissionTypes.WEB,
         new_value=comment,

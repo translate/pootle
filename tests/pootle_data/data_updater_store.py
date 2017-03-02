@@ -19,6 +19,7 @@ from django.db.models import Max
 from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import review
 from pootle_data.store_data import StoreDataTool, StoreDataUpdater
+from pootle_statistics.models import Submission
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from pootle_store.models import Suggestion
 from pootle_store.models import QualityCheck, Unit
@@ -159,7 +160,8 @@ def test_data_store_updater_last_created(store0):
 
 @pytest.mark.django_db
 def test_data_store_util_last_submission(store0):
-    original_submission = store0.submission_set.latest()
+    original_submission = Submission.objects.filter(
+        unit__store=store0).latest()
     update_data = store0.data_tool.updater.get_store_data()
     assert(
         update_data["last_submission"]

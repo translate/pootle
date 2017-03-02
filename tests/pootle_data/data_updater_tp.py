@@ -136,7 +136,7 @@ def test_data_tp_updater_last_created(tp0):
 @pytest.mark.django_db
 def test_data_tp_util_last_submission(tp0):
     submissions = Submission.objects.filter(
-        store__translation_project=tp0)
+        unit__store__translation_project=tp0)
 
     original_submission = submissions.latest()
     update_data = tp0.data_tool.updater.get_store_data()

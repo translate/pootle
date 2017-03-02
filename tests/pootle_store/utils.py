@@ -108,7 +108,6 @@ def test_unit_lifecycle_update_state(store0, member):
     sub_state_update = lifecycle.get(Unit)(unit).sub_state_update()
     assert isinstance(sub_state_update, Submission)
     assert sub_state_update.unit == unit
-    assert sub_state_update.store == store0
     assert sub_state_update.translation_project == store0.translation_project
     assert sub_state_update.revision == unit.revision
     assert sub_state_update.submitter == unit.reviewed_by
@@ -131,7 +130,6 @@ def test_unit_lifecycle_update_comment(store0, member):
     sub_comment_update = lifecycle.get(Unit)(unit).sub_comment_update()
     assert isinstance(sub_comment_update, Submission)
     assert sub_comment_update.unit == unit
-    assert sub_comment_update.store == store0
     assert sub_comment_update.translation_project == store0.translation_project
     assert sub_comment_update.revision == unit.revision
     assert sub_comment_update.submitter == unit.commented_by
@@ -154,7 +152,6 @@ def test_unit_lifecycle_update_source(store0, member):
     sub_source_update = lifecycle.get(Unit)(unit).sub_source_update()
     assert isinstance(sub_source_update, Submission)
     assert sub_source_update.unit == unit
-    assert sub_source_update.store == store0
     assert sub_source_update.translation_project == store0.translation_project
     assert sub_source_update.revision == unit.revision
     assert sub_source_update.submitter == unit.submitted_by
@@ -177,7 +174,6 @@ def test_unit_lifecycle_update_target(store0, member):
     sub_target_update = lifecycle.get(Unit)(unit).sub_target_update()
     assert isinstance(sub_target_update, Submission)
     assert sub_target_update.unit == unit
-    assert sub_target_update.store == store0
     assert sub_target_update.translation_project == store0.translation_project
     assert sub_target_update.revision == unit.revision
     assert sub_target_update.submitter == unit.submitted_by
@@ -215,7 +211,6 @@ def test_unit_lifecycle_mute_qc(store0, member):
         quality_check=qc, submitter=member)
 
     assert sub_mute_qc.unit == unit
-    assert sub_mute_qc.store == store0
     assert sub_mute_qc.translation_project == store0.translation_project
     assert sub_mute_qc.revision == unit.revision
     assert sub_mute_qc.type == SubmissionTypes.MUTE_CHECK
@@ -252,7 +247,6 @@ def test_unit_lifecycle_unmute_qc(store0, member):
         quality_check=qc, submitter=member)
 
     assert sub_unmute_qc.unit == unit
-    assert sub_unmute_qc.store == store0
     assert sub_unmute_qc.translation_project == store0.translation_project
     assert sub_unmute_qc.revision == unit.revision
     assert sub_unmute_qc.type == SubmissionTypes.UNMUTE_CHECK

@@ -25,7 +25,6 @@ def test_record_submission(member, submission_type, store0):
     unit = store.units.first()
 
     submission_params = {
-        'store': store,
         'unit': unit,
         'field': SubmissionFields.TARGET,
         'type': submission_type,
