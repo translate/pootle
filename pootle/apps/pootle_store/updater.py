@@ -193,18 +193,6 @@ class UnitUpdater(object):
                 self.original.target,
                 self.original.submitter)[1])
 
-    def record_submission(self):
-        self.unit.store.record_submissions(
-            self.unit,
-            self.original.target,
-            self.original.state,
-            self.at,
-            self.update.user,
-            self.update.submission_type,
-            state_updated=self.unit.state != self.original.state,
-            target_updated=self.unit.target != self.original.target,
-            comment_updated=self.translator_comment_updated)
-
     def save_unit(self):
         self.unit.revision = self.update.update_revision
         self.unit.save(
@@ -228,7 +216,6 @@ class UnitUpdater(object):
         if self.target_updated or self.resurrected:
             self.set_submitted()
         self.save_unit()
-        self.record_submission()
 
     @property
     def should_unobsolete(self):
