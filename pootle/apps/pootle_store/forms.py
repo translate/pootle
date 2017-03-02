@@ -25,8 +25,7 @@ from pootle_comment.forms import UnsecuredCommentForm
 from pootle_misc.checks import CATEGORY_CODES, check_names
 from pootle_misc.util import get_date_interval
 from pootle_project.models import Project
-from pootle_statistics.models import (Submission, SubmissionFields,
-                                      SubmissionTypes)
+from pootle_statistics.models import SubmissionFields, SubmissionTypes
 
 from .constants import ALLOWED_SORTS, FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from .fields import to_db
@@ -264,8 +263,9 @@ def unit_form_factory(language, snplurals=None, request=None):
             return super(UnitForm, self).clean()
 
         def save(self, *args, **kwargs):
+            if not self.updated_fields:
+                return
             changed_with = kwargs.pop("changed_with", None)
-            kwargs["commit"] = False
             suggestion = self.cleaned_data["suggestion"]
             with update_data_after(self.instance.store):
                 user = (
@@ -275,20 +275,6 @@ def unit_form_factory(language, snplurals=None, request=None):
                 self.instance.save(
                     user=user,
                     changed_with=changed_with)
-                translation_project = self.instance.store.translation_project
-                for field, old_value, new_value in self.updated_fields:
-                    if field == SubmissionFields.TARGET and suggestion:
-                        old_value = str(suggestion.target_f)
-                    sub = Submission(
-                        creation_time=self.instance.mtime,
-                        translation_project=translation_project,
-                        submitter=self.user,
-                        unit=self.instance,
-                        field=field,
-                        type=SubmissionTypes.WEB,
-                        old_value=old_value,
-                        new_value=new_value)
-                    sub.save()
             return self.instance
 
     return UnitForm
@@ -332,25 +318,6 @@ def unit_comment_form_factory(language):
                 return ''
 
             return self.cleaned_data['translator_comment']
-
-        def save(self, **kwargs):
-            """Register the submission and save the comment."""
-            super(UnitCommentForm, self).save(**kwargs)
-            if self.has_changed():
-                translation_project = self.request.translation_project
-
-                sub = Submission(
-                    creation_time=self.instance.mtime,
-                    translation_project=translation_project,
-                    submitter=self.request.user,
-                    unit=self.instance,
-                    field=SubmissionFields.COMMENT,
-                    type=SubmissionTypes.WEB,
-                    old_value=self.previous_value,
-                    new_value=self.cleaned_data['translator_comment']
-                )
-                sub.save()
-
     return UnitCommentForm
 
 
@@ -597,13 +564,8 @@ class SubmitForm(SubmitFormMixin, forms.Form):
 
     def save_unit(self):
         user = self.request_user
-        updated = []
         target = multistring(self.cleaned_data["target_f"] or [u''])
         if target != self.unit.target:
-            updated.append(
-                (SubmissionFields.TARGET,
-                 self.unit.target_f,
-                 self.cleaned_data["target_f"]))
             self.unit.target = self.cleaned_data["target_f"]
         if self.unit.target:
             if self.cleaned_data["is_fuzzy"]:
@@ -615,23 +577,6 @@ class SubmitForm(SubmitFormMixin, forms.Form):
         self.unit.save(
             user=user,
             changed_with=SubmissionTypes.WEB)
-        if self.unit.state_updated:
-            updated.append(
-                (SubmissionFields.STATE,
-                 self.unit._frozen.state,
-                 self.unit.state))
-        translation_project = self.unit.store.translation_project
-        for field, old_value, new_value in updated:
-            sub = Submission(
-                creation_time=self.unit.mtime,
-                translation_project=translation_project,
-                submitter=user,
-                unit=self.unit,
-                field=field,
-                type=SubmissionTypes.WEB,
-                old_value=old_value,
-                new_value=new_value)
-            sub.save()
 
     def save(self):
         with update_data_after(self.unit.store):
