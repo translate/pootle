@@ -12,8 +12,6 @@ import operator
 import os
 from hashlib import md5
 
-from collections import OrderedDict
-
 from translate.filters.decorators import Category
 
 from django.contrib.auth import get_user_model
@@ -314,7 +312,9 @@ class Unit(AbstractUnit):
                 self.change.submitted_on = timestamp
             is_review = (
                 reviewed_by != user
-                or self.state_updated and not self.target_updated)
+                or (self.state_updated and not self.target_updated)
+                or (self.state_updated
+                    and self.state == UNTRANSLATED))
             if is_review:
                 self.change.reviewed_by = reviewed_by
                 self.change.reviewed_on = timestamp
@@ -978,49 +978,6 @@ class Store(AbstractStore):
             syncers.get(self.filetype.name)
             or syncers.get("default"))
         return syncer_class(self)
-
-    def record_submissions(self, unit, old_target, old_state, current_time, user,
-                           submission_type=None, **kwargs):
-        """Records all applicable submissions for `unit`.
-        """
-        state_updated = kwargs.get("state_updated")
-        target_updated = kwargs.get("target_updated")
-        comment_updated = kwargs.get("comment_updated")
-        create_subs = OrderedDict()
-
-        if comment_updated:
-            create_subs[SubmissionFields.COMMENT] = [
-                '',
-                unit.translator_comment or '']
-
-        if target_updated:
-            create_subs[SubmissionFields.TARGET] = [
-                old_target,
-                unit.target_f]
-
-        if state_updated:
-            create_subs[SubmissionFields.STATE] = [
-                old_state,
-                unit.state]
-
-        if submission_type is None:
-            submission_type = SubmissionTypes.SYSTEM
-
-        subs_created = []
-        for field in create_subs:
-            subs_created.append(
-                Submission(
-                    creation_time=current_time,
-                    translation_project_id=self.translation_project_id,
-                    submitter=user,
-                    unit=unit,
-                    revision=unit.revision,
-                    field=field,
-                    type=submission_type,
-                    old_value=create_subs[field][0],
-                    new_value=create_subs[field][1]))
-        if subs_created:
-            unit.submission_set.add(*subs_created, bulk=False)
 
     def update(self, store, user=None, store_revision=None,
                submission_type=None, resolve_conflict=POOTLE_WINS,
