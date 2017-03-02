@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-02-09 17:02+0000\n"
+"PO-Revision-Date: 2017-02-21 16:51+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1486659739.000000\n"
+"X-POOTLE-MTIME: 1487695901.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -945,9 +945,8 @@ msgid "Quality Checks"
 msgstr "Kontroly kvality"
 
 #: apps/pootle_project/models.py:221
-#, fuzzy
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
-msgstr "Automatická detekce gnu/ne-gnu schémat souboru (pomalejší)"
+msgstr "Automatická detekce GNU/ne-GNU schémat souborů (pomalejší)"
 
 #: apps/pootle_project/models.py:222
 msgid "GNU style: files named by language code"
@@ -1644,15 +1643,15 @@ msgstr "MySQL vyžaduje nastavení časové zóny."
 
 #: checks.py:558
 msgid "Pootle does not yet support Python 3."
-msgstr ""
+msgstr "Pootle zatím ještě nepodporuje Python 3."
 
 #: checks.py:559 checks.py:565
 msgid "Use a Python 2.7 virtualenv."
-msgstr ""
+msgstr "Použijte Python 2.7 virtualenv."
 
 #: checks.py:564
 msgid "Pootle no longer supports Python versions older than 2.7"
-msgstr ""
+msgstr "Pootle již nadále nepodporuje verze Pythonu starší než 2.7"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37

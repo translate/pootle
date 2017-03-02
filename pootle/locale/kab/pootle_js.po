@@ -9,251 +9,260 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:44+0100\n"
-"PO-Revision-Date: 2017-02-21 02:00+0000\n"
-"Last-Translator: chaichen <luojiazhen@gmail.com>\n"
+"PO-Revision-Date: 2017-02-23 12:53+0000\n"
+"Last-Translator: nacyabrous <nacirabrous@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: zh_CN\n"
+"Language: kab\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1487642408.000000\n"
+"X-POOTLE-MTIME: 1487854421.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
-msgstr "保存成功。"
+msgstr "Yettwaskles akken iwata."
 
 #: static/js/admin/components/AdminController.js:144
 msgid "Deleted successfully."
-msgstr "删除成功。"
+msgstr "Yettwakkes akken iwata."
 
 #: static/js/admin/components/ItemDelete.js:53
 msgid "Delete"
-msgstr "删除"
+msgstr "Kkes"
 
 #: static/js/admin/components/Language/LanguageAdd.js:28
 #: static/js/admin/components/Language/LanguageEdit.js:33
 msgid "Add Language"
-msgstr "添加语言"
+msgstr "Rnu tutlayt"
 
 #: static/js/admin/components/Language/LanguageAdd.js:33
 #: static/js/admin/components/Project/ProjectAdd.js:33
 #: static/js/admin/components/User/UserAdd.js:33
 msgid "Cancel"
-msgstr "取消"
+msgstr "Sefsex"
 
 #: static/js/admin/components/Language/LanguageController.js:59
 #, python-format
 msgid "%(count)s language matches your query."
 msgid_plural "%(count)s languages match your query."
-msgstr[0] "%(count)s 种语言匹配您的查询。"
+msgstr[0] "%(count)s n tutlayt tcudd ar tuttra yinek."
+msgstr[1] "%(count)s n tutlayin cuddent ar tuttra yinek."
 
 #: static/js/admin/components/Language/LanguageController.js:63
 #, python-format
 msgid "There is %(count)s language."
 msgid_plural ""
 "There are %(count)s languages. Below are the most recently added ones."
-msgstr[0] "这里有 %(count)s 种语言。下面是最近添加的。"
+msgstr[0] "Tella %(count)s n tutlayt."
+msgstr[1] "Llant %(count)s n tutlayin. Daw-a tid yettwarnan tagara-agi."
 
 #: static/js/admin/components/Language/LanguageController.js:79
 msgid "Search Languages"
-msgstr "搜索语言"
+msgstr "Nadi tutlayin"
 
 #: static/js/admin/components/Language/LanguageController.js:80
 msgid "Find language by name, code"
-msgstr "按名称或代码查找语言"
+msgstr "Af-d tutlayt s yisem, tangalt"
 
 #: static/js/admin/components/Language/LanguageEdit.js:28
 msgid "Edit Language"
-msgstr "编辑语言"
+msgstr "Ẓreg tutlayt"
 
 #: static/js/admin/components/Language/LanguageEdit.js:38
 msgid ""
 "Use the search form to find the language, then click on a language to edit."
-msgstr "使用搜索表单查找语言，然后点击一个语言以编辑。"
+msgstr ""
+"Seqdec tiferkit n unadi tafeḍ-d tutlayt, ssakin sit ɣef tutlayt, ad "
+"tesẓergeḍ."
 
 #: static/js/admin/components/Language/LanguageForm.js:54
 #: static/js/admin/components/Project/ProjectForm.js:56
 msgid "Code"
-msgstr "代码"
+msgstr "Tangalt"
 
 #: static/js/admin/components/Language/LanguageForm.js:61
 #: static/js/admin/components/Project/ProjectForm.js:63
 #: static/js/admin/components/User/UserForm.js:91
 #: static/js/user/components/UserProfileForm.js:74
 msgid "Full Name"
-msgstr "全名"
+msgstr "Isem ummid"
 
 #: static/js/admin/components/Language/LanguageForm.js:68
 msgid "Special Characters"
-msgstr "特殊字符"
+msgstr "Isekkilen imeẓliyen"
 
 #: static/js/admin/components/Language/LanguageForm.js:78
 msgid "Number of Plurals"
-msgstr "复数形式数量"
+msgstr "Amḍan n usget"
 
 #: static/js/admin/components/Language/LanguageForm.js:85
 msgid "Plural Equation"
-msgstr "复数表达式"
+msgstr "Tagda n usget"
 
 #: static/js/admin/components/Language/LanguageForm.js:97
 #: static/js/admin/components/Project/ProjectForm.js:144
 #: static/js/admin/components/User/UserForm.js:156
 #: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
-msgstr "保存"
+msgstr "Sekles"
 
 #: static/js/admin/components/Language/LanguageForm.js:101
 #: static/js/admin/components/Project/ProjectForm.js:148
 msgid "Overview"
-msgstr "概览"
+msgstr "Agzul"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
 msgid "Team"
-msgstr "团队"
+msgstr "Tarbaɛt"
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
 msgid "Add Project"
-msgstr "添加项目"
+msgstr "Rnu asenfaṛ"
 
 #: static/js/admin/components/Project/ProjectController.js:59
 #, python-format
 msgid "%(count)s project matches your query."
 msgid_plural "%(count)s projects match your query."
-msgstr[0] "%(count)s 个项目匹配您的查询。"
+msgstr[0] "%(count)s n usefaṛ yenmeɣra akked tuttra yinek."
+msgstr[1] "%(count)s n isenfaṛen nmeɣran akked tuttra yinek."
 
 #: static/js/admin/components/Project/ProjectController.js:63
 #, python-format
 msgid "There is %(count)s project."
 msgid_plural ""
 "There are %(count)s projects. Below are the most recently added ones."
-msgstr[0] ""
-"这里有 %(count)s 个项目。这里有 %(count)s 个项目。以下项目按照最近添加时间排"
-"序。"
+msgstr[0] "Yella %(count)s  n usenfaṛ."
+msgstr[1] "Llan %(count)s  n isenfaṛen. Daw-a wid yettwarnan tagara-agi"
 
 #: static/js/admin/components/Project/ProjectController.js:79
 msgid "Search Projects"
-msgstr "搜索项目"
+msgstr "Nadi isenfaṛen"
 
 #: static/js/admin/components/Project/ProjectController.js:80
 msgid "Find project by name, code"
-msgstr "按名称或代码查找项目"
+msgstr "Af-d asenfaṛ s yisem, tangalt"
 
 #: static/js/admin/components/Project/ProjectEdit.js:28
 msgid "Edit Project"
-msgstr "编辑项目"
+msgstr "Ẓreg asenfaṛ"
 
 #: static/js/admin/components/Project/ProjectEdit.js:38
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
-msgstr "使用搜索表格来查找项目，然后点击一个项目以编辑。"
+msgstr ""
+"Seqdec tiferkit n unadi akken ad tafeḍ asenfaṛ, sakin sit ɣef usenfaṛ akked "
+"ad yettwaẓreg."
 
 #: static/js/admin/components/Project/ProjectForm.js:73
 msgid "Quality Checks"
-msgstr "质量检查"
+msgstr "Asenqed n tɣara"
 
 #: static/js/admin/components/Project/ProjectForm.js:84
 msgid "File types"
-msgstr "文件类型"
+msgstr "Anawen n ifuyla"
 
 #: static/js/admin/components/Project/ProjectForm.js:94
 msgid "Project Tree Style"
-msgstr "项目树样式"
+msgstr "Aɣanid n useklu n usenfaṛ"
 
 #: static/js/admin/components/Project/ProjectForm.js:104
 msgid "Source Language"
-msgstr "源语言"
+msgstr "Tutlayt n uɣbalu"
 
 #: static/js/admin/components/Project/ProjectForm.js:111
 msgid "Ignore Files"
-msgstr "忽略文件"
+msgstr "Zgel ifuyla"
 
 #: static/js/admin/components/Project/ProjectForm.js:119
 msgid "String Errors Contact"
-msgstr "字符串错误"
+msgstr "Anermis i tuccḍiwin deg izriren n isekkilen"
 
 #: static/js/admin/components/Project/ProjectForm.js:126
 msgid "Screenshot Search Prefix"
-msgstr "屏幕截图搜索前缀"
+msgstr "Azwir n unadi n unɣel n ugdil"
 
 #: static/js/admin/components/Project/ProjectForm.js:134
 msgid "Disabled"
-msgstr "已禁用"
+msgstr "Yensa"
 
 #: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
-msgstr "语言"
+msgstr "Tutlayin"
 
 #: static/js/admin/components/Project/ProjectForm.js:150
 msgid "Permissions"
-msgstr "权限"
+msgstr "Tisirag"
 
 #: static/js/admin/components/Project/ProjectForm.js:152
 msgid "Filesystems"
-msgstr "文件系统"
+msgstr "Anagraw n ifuyla"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
-msgstr "加载更多"
+msgstr "Sali-d ugar"
 
 #: static/js/admin/components/Search.js:93
 msgid "Loading..."
-msgstr "正在加载..."
+msgstr "Asali..."
 
 #: static/js/admin/components/User/UserAdd.js:28
 #: static/js/admin/components/User/UserEdit.js:33
 msgid "Add User"
-msgstr "添加用户"
+msgstr "Rnu aseqdac"
 
 #: static/js/admin/components/User/UserController.js:59
 #, python-format
 msgid "%(count)s user matches your query."
 msgid_plural "%(count)s users match your query."
-msgstr[0] ""
-"共有%(count)s 个用户符合您的查询条件。%(count)s 个用户符合您的查询条件。"
+msgstr[0] "%(count)s n useqdac yenmeɣra akked tuttra inek."
+msgstr[1] "%(count)s n iseqdacen nmeɣran akked tuttra inek."
 
 #: static/js/admin/components/User/UserController.js:63
 #, python-format
 msgid "There is %(count)s user."
 msgid_plural ""
 "There are %(count)s users. Below are the most recently added ones."
-msgstr[0] ""
-"这里有 %(count)s 个用户。这里有 %(count)s 个用户。下面显示的是最近注册的用"
-"户。"
+msgstr[0] "Yella %(count)s n useqdac."
+msgstr[1] "Llan %(count)s n iseqdacen. Daw-a wid yettwarnan tineggura agi."
 
 #: static/js/admin/components/User/UserController.js:79
 msgid "Search Users"
-msgstr "搜索用户"
+msgstr "Nadi iseqdacen"
 
 #: static/js/admin/components/User/UserController.js:80
 msgid "Find user by name, email, properties"
-msgstr "按名称、电子邮件地址或属性查找用户"
+msgstr "Af-d aseqdac s yisem, imayl, timeẓliyin"
 
 #: static/js/admin/components/User/UserEdit.js:28
 msgid "Edit User"
-msgstr "编辑用户"
+msgstr "Ẓreg aseqdac"
 
 #: static/js/admin/components/User/UserEdit.js:38
 msgid "Use the search form to find the user, then click on a user to edit."
-msgstr "使用搜索表单查找用户，然后点击用户以编辑。"
+msgstr ""
+"Seqdec tiferkit n unadi akken ad tafeḍ aseqdac, sakin sit ɣef useqdac akken "
+"ad yettwaẓreg."
 
 #: static/js/admin/components/User/UserForm.js:47
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
-msgstr "注意：删除用户将使其的贡献，如评论、建议和翻译归于匿名用户。"
+msgstr ""
+"Tazmilt: Tukksa n useqdac ad imudd akk attekki ines (iwenniten, isumar akked "
+"tsuqilin) i useqdac udrig."
 
 #: static/js/admin/components/User/UserForm.js:63
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr "用户名"
+msgstr "ISem n useqdac"
 
 #: static/js/admin/components/User/UserForm.js:73
 msgid "Active"
-msgstr "活跃"
+msgstr "Urmid"
 
 #: static/js/admin/components/User/UserForm.js:81
 #: static/js/auth/components/SignInForm.js:104
@@ -261,20 +270,20 @@ msgstr "活跃"
 #: static/js/auth/components/SocialVerification.js:99
 #: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
-msgstr "密码"
+msgstr "Awal uffir"
 
 #: static/js/admin/components/User/UserForm.js:82
 msgid "Set a new password"
-msgstr "设置新密码"
+msgstr "Sbadu awal uffir amaynut"
 
 #: static/js/admin/components/User/UserForm.js:98
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr "电子邮件地址"
+msgstr "Imayl"
 
 #: static/js/admin/components/User/UserForm.js:108
 msgid "Administrator"
-msgstr "管理员"
+msgstr "Anebdal"
 
 #: static/js/admin/components/User/UserForm.js:116
 #: static/js/user/components/UserProfileForm.js:92
@@ -283,7 +292,7 @@ msgstr "Twitter"
 
 #: static/js/admin/components/User/UserForm.js:118
 msgid "Twitter username"
-msgstr "Twitter 用户名"
+msgstr "Isem n useqdac Twitter"
 
 #: static/js/admin/components/User/UserForm.js:125
 #: static/js/user/components/UserProfileForm.js:101
@@ -292,222 +301,232 @@ msgstr "LinkedIn"
 
 #: static/js/admin/components/User/UserForm.js:127
 msgid "LinkedIn profile URL"
-msgstr "LinkedIn 个人资料网址"
+msgstr "Tansa URL n umaɣnu LinkedIn"
 
 #: static/js/admin/components/User/UserForm.js:133
 #: static/js/user/components/UserProfileForm.js:109
 msgid "Website"
-msgstr "网站"
+msgstr "Asmel Web"
 
 #: static/js/admin/components/User/UserForm.js:135
 msgid "Personal website URL"
-msgstr "个人网站网址"
+msgstr "Tansa yinek URL n usmell web udmawan"
 
 #: static/js/admin/components/User/UserForm.js:142
 #: static/js/user/components/UserProfileForm.js:118
 msgid "Short Bio"
-msgstr "个人简介"
+msgstr "Taseknudert tawezlant"
 
 #: static/js/admin/components/User/UserForm.js:144
 msgid "Personal description"
-msgstr "个人介绍"
+msgstr "Aglam udmawan"
 
 #: static/js/admin/components/User/UserForm.js:160
 msgid "Public Profile"
-msgstr "公开个人资料"
+msgstr "Amaɣnu azayez:"
 
 #: static/js/admin/components/User/UserForm.js:161
 msgid "Settings"
-msgstr "设置"
+msgstr "Iɣewaren"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr "预览将显示在这里。"
+msgstr "Taskant ad tettwasken dagi."
 
 #: static/js/auth/components/AccountActivation.js:33
 #, python-format, javascript-format
 msgid ""
 "We have sent an email containing the special link to <span>%s</span>. Please "
 "check your spam folder if you do not see the email."
-msgstr "我们已经发送了一封电子邮件，该邮件中包含了<span>%s</span>的链接。"
+msgstr ""
+"Nuzen imayl ighebren aseɣwen n urmad ar <span>%s</span>. Ma ulac aɣilif, "
+"wali akaram n ispamen ma yella ur tufid ara imayl-nni."
 
 #: static/js/auth/components/AccountActivation.js:41
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account. Please check your spam folder if you do not see the "
 "email."
-msgstr "我们已经发送了一封电子邮件，该邮件中含有用于注册该帐号的链接。"
+msgstr ""
+"Nuzen imayl igebren aseɣwen ameẓli ar tensa yettwaseqdacen deg umiḍan-agi. "
+"Ma ulac aɣilif, senqed  akaram inek n ispamen ma yella ur t-walaḍ ara."
 
 #: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
-msgstr "您的帐号需要激活。"
+msgstr "Amiḍan inek yessefk ad yettwarmed."
 
 #: static/js/auth/components/AccountActivation.js:49
 msgid "Please follow that link to continue the account creation."
-msgstr "请点击这个链接继续创建帐号。"
+msgstr "Ma ulac aɣilif, ddu ar useqwen akken ad ternuḍ amiḍan."
 
 #: static/js/auth/components/AccountActivation.js:64
 #: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
-msgstr "关闭"
+msgstr "mdel"
 
 #: static/js/auth/components/AccountInactive.js:29
 msgid "Your account is inactive because an administrator deactivated it."
-msgstr "您的帐号已被管理员停用。"
+msgstr "Amiḍan inek ur yermid ara acku anebdal isens-it."
 
 #: static/js/auth/components/AuthWindow.js:27
 msgid "Contact Us"
-msgstr "联系我们"
+msgstr "Nermes-aɣ-d"
 
 #: static/js/auth/components/EmailConfirmation.js:28
 msgid "This email confirmation link expired or is invalid."
-msgstr "这个确认链接已失效或是无效的"
+msgstr "Aseɣwen-agi n usentem n yimayl yezri yalan neq ahat mačči d ameɣtu."
 
 #: static/js/auth/components/PasswordResetForm.js:81
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
-msgstr "密码重置链接无效，可能是因为它已经被使用了。请重新重置密码。"
+msgstr ""
+"Aseɣwen n uwennez n wawal uffir mačči d ameɣtu, ahat yettwaseqdec yakan? Ma "
+"ulac aɣilif suter awennez tikelt-nniḍen n wawal inek uffir."
 
 #: static/js/auth/components/PasswordResetForm.js:89
 msgid "Reset Password"
-msgstr "重设密码"
+msgstr "Ales awennez n wawal uffir"
 
 #: static/js/auth/components/PasswordResetForm.js:101
 msgid "Password changed, signing in..."
-msgstr "密码已更改，正在登录..."
+msgstr "Awal uffir yettusnifel, tuqqna..."
 
 #: static/js/auth/components/PasswordResetForm.js:125
 #: static/js/auth/components/SignUpForm.js:110
 msgid "Repeat Password"
-msgstr "重复密码"
+msgstr "Ales awal uffir"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "Set New Password"
-msgstr "设置新密码"
+msgstr "Sbadu awal uffir amaynut"
 
 #: static/js/auth/components/PasswordResetForm.js:143
 msgid "After changing your password you will sign in automatically."
-msgstr "更改您的密码后，您将自动登录。"
+msgstr "Ticki tesnifled awal inek uffir, ad teqqneḍ s wudem awurman."
 
 #: static/js/auth/components/RequestPasswordResetProgress.js:24
 #, python-format, javascript-format
 msgid "Sending email to %s..."
-msgstr "正在向 %s 发送电子邮件"
+msgstr "Tuzna n yimayl ar %s..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid "Please follow that link to continue the password reset procedure."
-msgstr "请点击该链接继续密码重置过程。"
+msgstr ""
+"Ma ulac aɣilif, ḍfeṛ aseɣwen-agi akken ad tkemleḍ awennez n wawal uffir."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:51
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
-msgstr "没有收到邮件？请检查是不是被归类为垃圾邮件，或者请求再次发送"
+msgstr ""
+"Ur d-rmised ara imayl? Senqed ma yella yekcem ar ukaram n ispamen, neɣ ɛreḍ "
+"asuter n nɣel-nniḍen n yimayl. "
 
 #: static/js/auth/components/RequestPasswordResetSent.js:67
 msgid "Resend Email"
-msgstr "重发电子邮件"
+msgstr "Ales tuzna n yimayl"
 
 #: static/js/auth/components/SignInForm.js:83
 #: static/js/auth/components/RequestPasswordResetForm.js:122
 msgid "Sign up as a new user"
-msgstr "注册新账户"
+msgstr "qqen s yisem-nniḍen n useqdac"
 
 #: static/js/auth/components/SignInForm.js:113
 #: static/js/auth/components/SocialVerification.js:107
 msgid "I forgot my password"
-msgstr "我忘记了密码"
+msgstr "Ttuɣ awal-iw uffir"
 
 #: static/js/auth/components/SignInForm.js:124
 #: static/js/auth/components/SocialVerification.js:118
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
-msgstr "登录"
+msgstr "Qqen"
 
 #: static/js/auth/components/SignInPanel.js:47
 #: static/js/auth/components/SocialVerification.js:74
 msgid "Signed in. Redirecting..."
-msgstr "已登录。正在跳转..."
+msgstr "Yeqqen, Awelle..."
 
 #: static/js/auth/components/SignInPanel.js:60
 msgid "Social Services"
-msgstr "社交服务"
+msgstr "Iẓeḍwan n tmetti"
 
 #: static/js/auth/components/SignInPanel.js:63
 msgid "Login / Password"
-msgstr "登录/密码"
+msgstr "Asulay / Awal uffir"
 
 #: static/js/auth/components/SignUpForm.js:125
 #: static/js/auth/containers/Auth.js:96
 msgid "Sign Up"
-msgstr "注册"
+msgstr "Jerred"
 
 #: static/js/auth/components/SignUpForm.js:130
 msgid "Sign in as an existing user"
-msgstr "以现有用户登录"
+msgstr "Kcem s useqdac yellan"
 
 #: static/js/auth/components/SocialAuthError.js:30
 #, python-format, javascript-format
 msgid "An error occurred while attempting to sign in via %s."
-msgstr "试图通过%s登陆时发生了错误。"
+msgstr "Teḍra-d tuccḍa deg uɛraḍ n tuqqna s %s."
 
 #: static/js/auth/components/SocialAuthError.js:35
 msgid "An error occurred while attempting to sign in via your social account."
-msgstr "试图通过您的社交网络账户登陆时发生了错误。"
+msgstr "Tedra-d tuccḍa deg uɛraḍ n tuqqna s umiḍan inek n tmetti."
 
 #: static/js/auth/components/SocialAuthError.js:52
 msgid "Try again"
-msgstr "重试"
+msgstr "Eɛreḍ tikkelt-nniḍen"
 
 #: static/js/auth/components/SocialSignInForm.js:38
 #, python-format, javascript-format
 msgid "Sign In With %s"
-msgstr "使用%s登陆"
+msgstr "Qqen s %s"
 
 #: static/js/auth/components/SocialSignInForm.js:45
 msgid ""
 "Signing in with an external service for the first time will automatically "
 "create an account for you."
-msgstr "使用外部账户第一次登陆时会自动为您创建一个账户"
+msgstr ""
+"Tuqqna s umezlu azɣaray i tikelt tamezwarut ak-yernu amiḍan s wudem awurman."
 
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In With..."
-msgstr "通过其他方式登录"
+msgstr "Qqen s..."
 
 #: static/js/auth/containers/Auth.js:90
 msgid "Account Inactive"
-msgstr "账号已停用"
+msgstr "Amiḍan inek ur yermid ara."
 
 #: static/js/auth/containers/Auth.js:102
 msgid "Account Activation"
-msgstr "帐号激活"
+msgstr "Armad n umiḍan"
 
 #: static/js/auth/containers/Auth.js:108
 msgid "Email Confirmation"
-msgstr "电子邮件确认"
+msgstr "Asentem n yimayl"
 
 #: static/js/auth/containers/Auth.js:114 static/js/auth/containers/Auth.js:120
 #: static/js/auth/containers/Auth.js:126
 msgid "Reset Your Password"
-msgstr "重设您的密码"
+msgstr "Ales awennez n wawal inek uffir"
 
 #: static/js/auth/containers/Auth.js:132
 msgid "Oops..."
-msgstr "Oops..."
+msgstr "Ihuh..."
 
 #: static/js/auth/containers/Auth.js:138
 msgid "Social Verification"
-msgstr "社会验证"
+msgstr "Asenqed n tmetti"
 
 #: static/js/browser/components/Stats.js:54
 msgid "More..."
-msgstr "更多信息..."
+msgstr "Ugar..."
 
 #: static/js/browser/components/Stats.js:67
 msgid "Contributors, 30 Days"
-msgstr "贡献者，30天"
+msgstr "Imttekkiyen, 30 n wussan"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 #, python-format
@@ -521,207 +540,209 @@ msgstr "#%(position)s"
 
 #: static/js/browser/components/VisibilityToggle.js:46
 msgid "Show disabled"
-msgstr "显示已禁用"
+msgstr "Wali wid yensan"
 
 #: static/js/browser/components/VisibilityToggle.js:47
 msgid "Hide disabled"
-msgstr "隐藏已禁用"
+msgstr "ffer wid yensan"
 
 #: static/js/browser.js:286
 msgid "All Languages"
-msgstr "所有语言"
+msgstr "Akk tutlayin"
 
 #: static/js/browser.js:292
 msgid "All Projects"
-msgstr "所有项目"
+msgstr "Akk isenfaṛen"
 
 #: static/js/browser.js:297
 msgid "Entire Project"
-msgstr "整个项目"
+msgstr "Akk asenfar"
 
 #: static/js/common.js:139
 msgid "Updating data"
-msgstr "更新数据"
+msgstr "Aleqqem n isefka"
 
 #: static/js/editor/app.js:339 static/js/editor/app.js:658
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
-msgstr "你在这个单元有未保存的数据。离开会丢失这些数据。"
+msgstr ""
+"Ɣur-k isnifal ur yettwakelsen ara deg. Ma teddiḍ sanga-nniḍen isnifal inek "
+"ad ṛuḥen."
 
 #: static/js/editor/app.js:384
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
-"转到下一个字符串 (Ctrl+.)<br/><br/>也可以：<br/>下一页：Ctrl+Shift+.<br/>最后"
-"一页：Ctrl+Shift+End"
+"Ddu ar izirig d-iteddun (Ctrl+.)<br/><br/>Daɣen:<br/>Asebter d-iteddun: Ctrl"
+"+Shift+.<br/>Asebter aneggaru: Ctrl+Shift+End"
 
 #: static/js/editor/app.js:390
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
-"转到上一个字符串 (Ctrl+.)<br/><br/>也可以：<br/>上一页：Ctrl+Shift+,<br/>第一"
-"页：Ctrl+Shift+Home"
+"Ddu ar uzrir yezrin (Ctrl+,)<br/><br/>Daɣen:<br/>Asebter yezrin: Ctrl+Shift+,"
+"<br/>Asebter amezwaru: Ctrl+Shift+Home"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:515
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
-msgstr "%s 的待审建议"
+msgstr "Isumar yettraǧun n %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:518
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
-msgstr "%s 的获准建议"
+msgstr "Isumar yettwaqeblen n %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:521
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
-msgstr "%s 的被拒建议"
+msgstr "Isumar yettwagin n %s"
 
 #. Translators: '%s' is a username
 #: static/js/editor/app.js:524
 #, python-format, javascript-format
 msgid "%s's submissions"
-msgstr "%s 的提交"
+msgstr "Attekki n %s"
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
 #: static/js/editor/app.js:528
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
-msgstr "%s 的被覆盖的提交"
+msgstr "Ittekkiyen n %s yettwasfeɛjen"
 
 #: static/js/editor/app.js:1069
 msgid "Error while connecting to the server"
-msgstr "连接到服务器时出错"
+msgstr "Tuccḍan di tuqqna ar uqeddac"
 
 #: static/js/editor/app.js:1074
 msgid "Not found"
-msgstr "未找到"
+msgstr "Ulac-it"
 
 #: static/js/editor/app.js:1076
 msgid "Server error"
-msgstr "服务器错误"
+msgstr "Tuccḍa n uqeddac"
 
 #: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
-msgstr "服务器似乎宕机了。请您稍后重试。"
+msgstr "Aqeddac yettban yeɣli. Ɛreḍ tikelt-nniḍen."
 
 #: static/js/editor/app.js:1087
 msgid "This string no longer exists."
-msgstr "这个字符串已不存在。"
+msgstr "Azrir-agi ulac-it yakan."
 
 #: static/js/editor/app.js:1088
 msgid "Go back to browsing"
-msgstr "返回浏览"
+msgstr "Uɣal ar tunigin"
 
 #: static/js/editor/app.js:1090
 msgid "Reload page"
-msgstr "重新载入页面"
+msgstr "Ales asali n usebter"
 
 #: static/js/editor/app.js:2177
 msgid "some anonymous user"
-msgstr "一些匿名用户"
+msgstr "yiwen n useqdac udrig"
 
 #: static/js/editor/app.js:2179
 msgid "someone"
-msgstr "某人"
+msgstr "yiwen n useqdac"
 
 #: static/js/editor/app.js:2197 static/js/editor/app.js:2246
 msgid "Similar translations"
-msgstr "类似的翻译"
+msgstr "Tisuqilin yemgaraden"
 
 #: static/js/editor/components/EditorPluralFormHeader.js:26
 #: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
-msgstr "复数形式 %(index)s"
+msgstr "Talɣa n usget %(index)s"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr "如果必要的话请在接受前编辑此建议"
+msgstr "Ẓreg asumer send asentem, ma ilaq"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:107
 msgid "Provide optional comment (will be publicly visible)"
-msgstr "提供可选的评论（将会被公开看到）"
+msgstr "Mudd-d awennit afrayan (ad twalin yemdanen)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:119
 msgid "Accept"
-msgstr "接受"
+msgstr "Qbel"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:123
 msgid "Reject"
-msgstr "拒绝"
+msgstr "Aggi"
 
 #: static/js/editor/components/UploadTimeSince.js:35
 #, python-format
 msgid "%(timeSince)s via file upload"
-msgstr "%(timeSince)秒通过文件上传"
+msgstr "%(timeSince)s s tuzna n ufaylu"
 
 #: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
-msgstr "全部清除"
+msgstr "Sfeḍ akk"
 
 #: static/js/shared/components/FormSelectInput.js:40
 msgid "Clear value"
-msgstr "清除值"
+msgstr "Sfeḍ azal"
 
 #: static/js/shared/components/FormSelectInput.js:41
 msgid "No results found"
-msgstr "未找到结果"
+msgstr "Ulac agmuḍ"
 
 #: static/js/shared/components/FormSelectInput.js:43
 msgid "Select..."
-msgstr "选择..."
+msgstr "Fren..."
 
 #: static/js/shared/components/FormSelectInput.js:44
 msgid "Type to search"
-msgstr "输入进行搜索"
+msgstr "Aru akken ad tnadiḍ"
 
 #: static/js/shared/models/project.js:62
 msgid "disabled"
-msgstr "已禁用"
+msgstr "yensa"
 
 #: static/js/stats.js:30
 msgid "Congratulations! You have completed this task!"
-msgstr "祝贺您，您已完成全部项目！"
+msgstr "Ayuz! Tfukeḍ tawuri-agi!"
 
 #: static/js/stats.js:127
 msgid "Collapse details"
-msgstr "收起细节"
+msgstr "Ffer talqayt"
 
 #: static/js/stats.js:127
 msgid "Expand details"
-msgstr "展开细节"
+msgstr "Sken talqayt"
 
 #: static/js/user/components/UserProfileEdit.js:95
 msgid "Edit My Public Profile"
-msgstr "编辑我的公开个人资料"
+msgstr "Ẓreg amaɣnu inu azayez"
 
 #: static/js/user/components/UserProfileEdit.js:102
 msgid "My Public Profile"
-msgstr "我的公开个人资料"
+msgstr "Amaɣnu inu azayez"
 
 #: static/js/user/components/UserProfileEdit.js:117
 msgid "Discard changes."
-msgstr "舍弃更改"
+msgstr "Sefsex asnifel"
 
 #: static/js/user/components/UserProfileEdit.js:118
 msgid "Yes"
-msgstr "是"
+msgstr "Ih"
 
 #: static/js/user/components/UserProfileEdit.js:119
 msgid "No"
-msgstr "否"
+msgstr "Ala"
 
 #: static/js/user/components/UserProfileEdit.js:121
 msgid "There are unsaved changes. Do you want to discard them?"
-msgstr "尚有未保存的更改。您要舍弃它们吗？"
+msgstr "Llan isnifal ur yettwakelsen ara. Tebɣiḍ ad ten-tesfesxeḍ?"
 
 #: static/js/user/components/UserProfileForm.js:59
 #, python-format
@@ -729,62 +750,65 @@ msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
 msgstr ""
-"要设置或者更改将用于您的电子邮件地址 (%(email)s) 的头像，请访问 gravatar."
-"com。"
+"Akken ad tesbadud neq ad tesnifleḍ avatar n tensa yinek imayl (%(email)s), "
+"ddu ma ulac aɣilif ar gravatar.com."
 
 #: static/js/user/components/UserProfileForm.js:75
 msgid "Your Full Name"
-msgstr "您的全名"
+msgstr "Isem inek ummid"
 
 #: static/js/user/components/UserProfileForm.js:83
 msgid "Avatar"
-msgstr "头像"
+msgstr "Avatar"
 
 #: static/js/user/components/UserProfileForm.js:94
 msgid "Your Twitter username"
-msgstr "您的 Twitter 用户名"
+msgstr "Ẓreg isem-iw n Twitter"
 
 #: static/js/user/components/UserProfileForm.js:103
 msgid "Your LinkedIn profile URL"
-msgstr "您的 LinkedIn 个人资料网址"
+msgstr "Tansa inek URL n umaɣnu LinkedIn"
 
 #: static/js/user/components/UserProfileForm.js:111
 msgid "Your Personal website/blog URL"
-msgstr "您的个人网站/博客网址"
+msgstr "Tansa yinek URL n ublug.Asmel web udmawan"
 
 #: static/js/user/components/UserProfileForm.js:120
 msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
-msgstr "你为何成为了翻译项目的一员？介绍自己，激励他人！"
+msgstr ""
+"Acuɣer tettekkaḍ deg usenfaṛ-nneɣ n tsuqilt?Seglem iman-ik, mudd amedya i "
+"wiyaḍ!"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
-msgstr "电子邮件地址"
+msgstr "Tansa Imayl"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:97
 msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
-"请输入你的电子邮件地址，我们会把一封包含密码重置链接的邮件发送到你的邮箱里。"
+"Sekcem tansa yinek imayl sakin ak-d-nazen izen igebren aseɣwen imeẓli aken "
+"ad talseḍ awennez n wawal-ik uffir."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:108
 msgid "No, thanks"
-msgstr "不，谢了"
+msgstr "Ala, tanemmirt"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:116
 msgid "Send Email"
-msgstr "发送邮件"
+msgstr "Azen imayl"
 
 #: static/js/auth/components/RequestPasswordResetSent.js:44
 #, python-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
-msgstr "我们已经发送了一封电子邮件，该邮件中包含了<span>%s</span>的链接。"
+msgstr "Nuzen imayl igebren aseɣwen imeẓli ar <span>%s</span>"
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
-msgstr "不允许注册新用户。"
+msgstr "Timerna n imiḍanen-nniḍen n useqdac tegdel."
 
 #: static/js/auth/components/SocialVerification.js:81
 #, python-format
@@ -794,32 +818,33 @@ msgid ""
 "procedure, which will establish a link between your Pootle and %(provider)s "
 "accounts."
 msgstr ""
-"我们发现已经有一个用户使用 <span>%s</span> 的邮箱地址注册了。请输入密码来完成"
-"登陆。这只是个一次性的操作，之后你的Pootle账户将会和 %s 账户绑定。"
+"Nufa aseqdac s yimayl <span>%(email)s</span> deg unagraw-nneɣ. Ma ulac "
+"aɣilif, mudd-d awal uffir akken ad fakeḍ ajerred ar twuri-agi. D tagi i d "
+"tarrayt, ayen ara yeggen assaɣ gar Pootle inek akked imiḍanen n %(provider)s."
 
 #: static/js/editor/app.js:650
 msgid "No results."
-msgstr "没有结果。"
+msgstr "Ulac agmuḍ"
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr "项目 / 语言"
+msgstr "Asenfaṛ / Tutlayt"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
-msgstr "建议的"
+msgstr "Yettusumer"
 
 #: templates/admin/xhr_language_user_activity.html:8
 msgid "Translated"
-msgstr "已翻译"
+msgstr "Yettusuqel"
 
 #: templates/admin/xhr_language_user_activity.html:9
 msgid "Reviewed"
-msgstr "已审阅"
+msgstr "Yettwacegger"
 
 #: templates/admin/xhr_language_user_activity.html:10
 msgid "Score Change"
-msgstr "得分变化"
+msgstr "Asnifel n ugmuḍ"
 
 #: templates/admin/xhr_language_user_activity.html:20
 #: templates/admin/xhr_language_user_activity.html:24
@@ -832,31 +857,32 @@ msgstr "得分变化"
 #, python-format
 msgid "%s word"
 msgid_plural "%s words"
-msgstr[0] "%s 词 %s 词"
+msgstr[0] "%s awal"
+msgstr[1] "%s awalen"
 
 #: templates/admin/xhr_language_user_activity.html:69
 msgid "No activity recorded in a given period"
-msgstr "指定周期内没有活动记录"
+msgstr "Ulac armud yettwakelsen di twala d-ittunefken"
 
 #: templates/admin/xhr_language_user_activity.html:72
 msgid "Please select a valid user."
-msgstr "请选择一个有效的用户。"
+msgstr "Ma ulac aɣilif, fren aseqdac ameɣtu."
 
 #: templates/editor/units/xhr_edit_ctx.html:4
 msgid "More"
-msgstr "更多"
+msgstr "Ugar"
 
 #: templates/editor/units/xhr_edit_ctx.html:5
 msgid "Hide"
-msgstr "隐藏"
+msgstr "Ffer"
 
 #: templates/editor/units/xhr_edit_ctx.html:6
 msgid "Less"
-msgstr "更少"
+msgstr "Drus"
 
 #: templates/editor/units/xhr_edit_ctx.html:7
 msgid "Show"
-msgstr "显示"
+msgstr "Sken"
 
 #: templates/editor/units/xhr_tm.html:17
 #, python-format
@@ -864,8 +890,8 @@ msgid ""
 "Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
 "project %(time_ago)s"
 msgstr ""
-"由 %(fullname)s 翻译于 &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; 项目中 %(time_ago)s"
+"Isuqel-it %(fullname)s deg usenfaṛ « <span title=\"%(path)s\">%(project)s</"
+"span> » %(time_ago)s"
 
 #: templates/editor/units/xhr_tm.html:20
 #, python-format
@@ -873,276 +899,5 @@ msgid ""
 "Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
 "project"
 msgstr ""
-"已被 %(fullname)s 在 &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; 项目中翻译"
-
-#~ msgid "Registered Tasks"
-#~ msgstr "已注册的任务"
-
-#~ msgid "Datetime"
-#~ msgstr "日期时间"
-
-#~ msgid "Comment"
-#~ msgstr "备注"
-
-#~ msgid "Action"
-#~ msgstr "动作"
-
-#~ msgid "Amount"
-#~ msgstr "数量"
-
-#~ msgid "Rate"
-#~ msgstr "比率"
-
-#~ msgid "Subtotal"
-#~ msgstr "分类汇总"
-
-#, fuzzy
-#~ msgid "%s hour"
-#~ msgid_plural "%s hours"
-#~ msgstr[0] "小时"
-
-#~ msgid "Remove task"
-#~ msgstr "移除任务"
-
-#~ msgid "Comment on it"
-#~ msgstr "为它备注"
-
-#~ msgid "Summary"
-#~ msgstr "摘要"
-
-#~ msgid "Period"
-#~ msgstr "周期"
-
-#~ msgid "(registered tasks)"
-#~ msgstr "（已注册的任务）"
-
-#~ msgid "Total (%(currency)s)"
-#~ msgstr "总计 (%(currency)s)"
-
-#, fuzzy
-#~ msgid "%(user)s removed translation for %(sourceString)s"
-#~ msgstr "移除了${sourceString}的翻译"
-
-#, fuzzy
-#~ msgid "%(user)s accepted suggestion for %(sourceString)s"
-#~ msgstr "接受了关于${sourceString}的建议"
-
-#, fuzzy
-#~ msgid "%(user)s uploaded file"
-#~ msgstr "上传了文件"
-
-#, fuzzy
-#~ msgid "%(user)s muted %(check)s for %(sourceString)s"
-#~ msgstr "接受了关于${sourceString}的建议"
-
-#, fuzzy
-#~ msgid "%(user)s unmuted %(check)s for %(sourceString)s"
-#~ msgstr "接受了关于${sourceString}的建议"
-
-#, fuzzy
-#~ msgid "%(user)s added suggestion for %(sourceString)s"
-#~ msgstr "提出了关于${sourceString}的建议"
-
-#, fuzzy
-#~ msgid "%(user)s rejected suggestion for %(sourceString)s"
-#~ msgstr "拒绝了关于${sourceString}的建议"
-
-#, fuzzy
-#~ msgid "%(user)s translated %(sourceString)s"
-#~ msgstr "翻译了${sourceString}"
-
-#, fuzzy
-#~ msgid "%(user)s edited %(sourceString)s"
-#~ msgstr "编辑了${sourceString}"
-
-#, fuzzy
-#~ msgid "%(user)s pre-translated %(sourceString)s"
-#~ msgstr "翻译了${sourceString}"
-
-#, fuzzy
-#~ msgid "%(user)s reviewed %(sourceString)s"
-#~ msgstr "审阅了${sourceString}"
-
-#, fuzzy
-#~ msgid "%(user)s marked as needs work %(sourceString)s"
-#~ msgstr "把${sourceString}标记为尚需完善"
-
-#, fuzzy
-#~ msgid "A year ago"
-#~ msgstr "%s 年前"
-
-#, fuzzy
-#~ msgid "%(count)s year ago"
-#~ msgid_plural "%(count)s years ago"
-#~ msgstr[0] "%s 年前"
-
-#, fuzzy
-#~ msgid "A month ago"
-#~ msgstr "%s 分钟前"
-
-#, fuzzy
-#~ msgid "%(count)s month ago"
-#~ msgid_plural "%(count)s months ago"
-#~ msgstr[0] "%s 分钟前"
-
-#, fuzzy
-#~ msgid "A week ago"
-#~ msgstr "%s 周前"
-
-#, fuzzy
-#~ msgid "%(count)s week ago"
-#~ msgid_plural "%(count)s weeks ago"
-#~ msgstr[0] "%s 周前"
-
-#, fuzzy
-#~ msgid "Yesterday"
-#~ msgstr "%s 天前"
-
-#, fuzzy
-#~ msgid "%(count)s day ago"
-#~ msgid_plural "%(count)s days ago"
-#~ msgstr[0] "%s 年前"
-
-#, fuzzy
-#~ msgid "An hour ago"
-#~ msgstr "%s 小时前"
-
-#, fuzzy
-#~ msgid "%(count)s hour ago"
-#~ msgid_plural "%(count)s hours ago"
-#~ msgstr[0] "%s 小时前"
-
-#, fuzzy
-#~ msgid "A minute ago"
-#~ msgstr "%s 分钟前"
-
-#, fuzzy
-#~ msgid "%(count)s minute ago"
-#~ msgid_plural "%(count)s minutes ago"
-#~ msgstr[0] "%s 分钟前"
-
-#~ msgid "A few seconds ago"
-#~ msgstr "几秒钟前"
-
-#~ msgid "Statistics"
-#~ msgstr "统计"
-
-#~ msgid "Reports"
-#~ msgstr "报告"
-
-#~ msgid "Jan"
-#~ msgstr "一月"
-
-#~ msgid "Feb"
-#~ msgstr "二月"
-
-#~ msgid "Mar"
-#~ msgstr "三月"
-
-#~ msgid "Apr"
-#~ msgstr "四月"
-
-#~ msgid "May"
-#~ msgstr "五月"
-
-#~ msgid "Jun"
-#~ msgstr "六月"
-
-#~ msgid "Jul"
-#~ msgstr "七月"
-
-#~ msgid "Aug"
-#~ msgstr "八月"
-
-#~ msgid "Nov"
-#~ msgstr "11月"
-
-#~ msgid "Dec"
-#~ msgstr "十二月"
-
-#~ msgid "Sun"
-#~ msgstr "星期日"
-
-#~ msgid "Mon"
-#~ msgstr "星期一"
-
-#~ msgid "Tue"
-#~ msgstr "星期二"
-
-#~ msgid "Wed"
-#~ msgstr "星期三"
-
-#~ msgid "Thu"
-#~ msgstr "星期四"
-
-#~ msgid "Fri"
-#~ msgstr "星期五"
-
-#~ msgid "Sat"
-#~ msgstr "星期六"
-
-#~ msgid "%s second"
-#~ msgid_plural "%s seconds"
-#~ msgstr[0] "%s 秒"
-
-#~ msgid "word"
-#~ msgid_plural "words"
-#~ msgstr[0] "词"
-
-#~ msgid "Unknown error"
-#~ msgstr "未知错误"
-
-#~ msgid "Are you sure you want to continue?"
-#~ msgstr "您确定要继续吗？"
-
-#~ msgid "This operation cannot be undone."
-#~ msgstr "此操作无法撤销。"
-
-#~ msgid "Show tags"
-#~ msgstr "显示标签"
-
-#~ msgid "Hide tags"
-#~ msgstr "隐藏标签"
-
-#~ msgid "Hide filtering"
-#~ msgstr "隐藏过滤器"
-
-#~ msgid "Show filtering"
-#~ msgstr "显示过滤器"
-
-#~ msgid "Go to the next string (Ctrl+.)"
-#~ msgstr "转到下一个字符串 (Ctrl+.)"
-
-#~ msgid "Go to the previous string (Ctrl+,)"
-#~ msgstr "转到上一个字符串 (Ctrl+,)"
-
-#~ msgid "Export View"
-#~ msgstr "导出视图"
-
-#~ msgid "You reached the beginning of the list"
-#~ msgstr "您已到达列表的开头"
-
-#~ msgid "You reached the end of the list."
-#~ msgstr "您已到达列表的末尾。"
-
-#~ msgid "Return to the overview page."
-#~ msgstr "返回到概览页面。"
-
-#~ msgid "%s% match"
-#~ msgstr "%s% 项匹配"
-
-#~ msgid "<a href=\"%s\">String %s</a>"
-#~ msgstr "<a href=\"%s\">字符串 %s</a>"
-
-#~ msgid "Congratulations, you walked through all strings."
-#~ msgstr "祝贺您，您已遍历全部字符串。"
-
-#~ msgid "<a href=\"%s\">Unit %s</a>"
-#~ msgstr "<a href=\"%s\">单元 %s</a>"
-
-#~ msgid "You reached the end of the list"
-#~ msgstr "您已到达列表的末尾"
-
-#~ msgid "amaGama server"
-#~ msgstr "amaGama 服务器"
+"Iseqel-it %(fullname)s deg usenfaṛ “<span title=\"%(path)s\">%(project)s</"
+"span>”"

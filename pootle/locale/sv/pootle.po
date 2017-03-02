@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-02-08 16:52+0000\n"
+"PO-Revision-Date: 2017-02-26 14:59+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: sv\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1486572720.000000\n"
+"X-POOTLE-MTIME: 1488121144.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -935,9 +935,8 @@ msgid "Quality Checks"
 msgstr "Kvalitetskontroller"
 
 #: apps/pootle_project/models.py:221
-#, fuzzy
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
-msgstr "Automatisk identifiering av gnu/icke-gnu fillayouter (långsammare )"
+msgstr "Automatisk identifiering av gnu/icke-gnu fillayouter (långsammare)"
 
 #: apps/pootle_project/models.py:222
 msgid "GNU style: files named by language code"
@@ -1633,15 +1632,15 @@ msgstr "MySQL kräver tidszonsinställningar."
 
 #: checks.py:558
 msgid "Pootle does not yet support Python 3."
-msgstr ""
+msgstr "Pootle stöder ännu inte Python 3."
 
 #: checks.py:559 checks.py:565
 msgid "Use a Python 2.7 virtualenv."
-msgstr ""
+msgstr "Använd en Python 2.7 virtualenv."
 
 #: checks.py:564
 msgid "Pootle no longer supports Python versions older than 2.7"
-msgstr ""
+msgstr "Pootle stöder inte längre Python versioner äldre än 2.7"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37

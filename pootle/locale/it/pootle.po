@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-02-06 15:54+0000\n"
+"PO-Revision-Date: 2017-02-22 15:45+0000\n"
 "Last-Translator: daniele_translator <daniel.translator@mail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: it\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1486396447.000000\n"
+"X-POOTLE-MTIME: 1487778309.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -202,14 +202,14 @@ msgid "Upload as %(user)s"
 msgstr "Invia come %(user)s"
 
 #: apps/import_export/templates/browser/index.html:54
-#, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "Scarica per la traduzione offline"
+msgstr ""
+"Scarica la memoria di traduzione (TM) offline per il progetto di traduzione"
 
 #: apps/import_export/templates/browser/index.html:55
 #, fuzzy
 msgid "Download offline TM"
-msgstr "Scarica per la traduzione offline"
+msgstr "Scarica la memoria di traduzione (MT) offline"
 
 #: apps/import_export/utils.py:39
 #, python-format
@@ -250,8 +250,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
-"Non puoi rimuovere un tipo di file da un progetto, se ci sono archivi di "
-"questo tipo ('%s')"
+"Non puoi rimuovere un tipo di file da un progetto, se ci sono file di questo "
+"tipo ('%s')"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -357,10 +357,12 @@ msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
+"Percorso corrispondente alla traduzione che mappa i file localizzati sul "
+"file system nello schedario di Pootle."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "Il codice identificativo della lingua deve essere univoco"
 
 #: apps/pootle_fs/forms.py:185
 #, fuzzy
@@ -528,14 +530,14 @@ msgstr[1] "È stato accettato il suggerimento di %s"
 #, fuzzy, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
-msgstr[0] "Rifiutati %s suggerimenti"
+msgstr[0] "Rifiutato %s suggerimento"
 msgstr[1] "Rifiutati %s suggerimenti"
 
 #: apps/pootle_language/views.py:251
 #, fuzzy, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
-msgstr[0] "Accettati %s suggerimenti"
+msgstr[0] "Accettato %s suggerimento"
 msgstr[1] "Accettati %s suggerimenti"
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
@@ -677,7 +679,7 @@ msgstr "Solo punteggiatura"
 #: apps/pootle_misc/checks.py:72
 #, fuzzy
 msgid "Python brace placeholders"
-msgstr "Segnaposto di Python"
+msgstr "Parentesi segnapoto di Python"
 
 #: apps/pootle_misc/checks.py:73
 msgid "Number of sentences"
@@ -863,11 +865,12 @@ msgstr "Formato della data"
 
 #: apps/pootle_misc/checks.py:124
 msgid "Romanian: Avoid cedilla diacritics"
-msgstr ""
+msgstr "Rumeno: Evita i segni diacritici"
 
+# La traduzione di "niciun": http://www.wordreference.com/roen/niciun
 #: apps/pootle_misc/checks.py:125
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "Rumeno: usa \"nessuno\"/\"nient'altro\""
 
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
@@ -987,7 +990,7 @@ msgstr ""
 #. Translators: This is the URL prefix to search for context screenshots
 #: apps/pootle_project/models.py:248
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Prefisso di ricerca della schermata"
 
 #: apps/pootle_project/models.py:253
 msgid "Disabled"
@@ -1364,6 +1367,8 @@ msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
+"Sono richieste configurazioni di django_redis.cache.RedisCache separate per "
+"`default`, `redis` and `lru`."
 
 #: checks.py:198
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1541,7 +1546,7 @@ msgstr ""
 #: checks.py:355
 #, python-format
 msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
-msgstr ""
+msgstr "POOTLE_SCORE_COEFFICIENTS non ha %s."
 
 #: checks.py:356
 #, python-format
@@ -1601,23 +1606,27 @@ msgstr ""
 
 #: checks.py:467
 msgid "No canonical URL provided and default site set to example.com."
-msgstr ""
+msgstr "Nessun URL fornito e il sito di default è impostato a example.com."
 
 #: checks.py:469
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
+"Configura il `POOTLE_CANONICAL_URL` nelle impostazioni o aggiorna il sito di "
+"default se stai usando django.contrib.sites."
 
 #: checks.py:473
 msgid "Canonical URL is set to http://localhost."
-msgstr ""
+msgstr "L'URL è impostato a http://localhost."
 
 #: checks.py:475
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
+"Configura `POOTLE_CANONICAL_URL` con un valore appropriato per il tuo sito o "
+"lascialo vuoto se stai usando `django.contrib.sites`."
 
 #: checks.py:505
 #, fuzzy
@@ -1660,15 +1669,16 @@ msgstr "MySQL richiede le impostazioni di fuso orario."
 
 #: checks.py:558
 msgid "Pootle does not yet support Python 3."
-msgstr ""
+msgstr "Pootle non è ancora compatibile con Python 3."
 
 #: checks.py:559 checks.py:565
 msgid "Use a Python 2.7 virtualenv."
-msgstr ""
+msgstr "Usa un ambiente virtuale Python 2.7."
 
 #: checks.py:564
 msgid "Pootle no longer supports Python versions older than 2.7"
 msgstr ""
+"Pootle non è più compatibile con le versioni di Python precedenti alla 2.7"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1733,7 +1743,7 @@ msgstr "Non corretto"
 # Forse si voleva indicare "width selected" ovvero larghezza selezionata.
 #: core/forms.py:180
 msgid "With selected"
-msgstr ""
+msgstr "Larghezza selezionata."
 
 #: core/forms.py:187
 #, fuzzy
@@ -1799,12 +1809,12 @@ msgstr "%(user)s ha caricato un file"
 #: core/views/display.py:109
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(user)s ha silenziato %(check)s per %(source)s"
 
 #: core/views/display.py:111
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(user)s ha riattivato %(check)s per %(source)s"
 
 #: core/views/display.py:113
 #, python-format
@@ -1824,18 +1834,18 @@ msgstr "%(user)s ha tradotto %(source)s"
 #: core/views/display.py:120
 #, python-format
 msgid "%(user)s edited %(source)s"
-msgstr ""
+msgstr "%(user)s ha editato %(source)s"
 
 #. Translators: pre-translate is translating with first 100% TM match
 #: core/views/display.py:123
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr ""
+msgstr "%(user)s ha suggerito %(source)s"
 
 #: core/views/display.py:127
 #, python-format
 msgid "%(user)s reviewed %(source)s"
-msgstr ""
+msgstr "%(user)s ha revisionato %(source)s"
 
 #: core/views/display.py:129
 #, python-format
@@ -2084,7 +2094,7 @@ msgstr ""
 #: templates/admin/project_fs.html:26
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
+msgstr "Configuratione del filesystem: %(project_code)s"
 
 #: templates/admin/project_fs.html:28
 msgid ""
@@ -2098,7 +2108,7 @@ msgstr ""
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
-msgstr ""
+msgstr "Configurazione del sistema di destinazione"
 
 #: templates/admin/project_fs.html:48
 msgid "Update filesystem configuration"
@@ -2114,18 +2124,25 @@ msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
+"Solo `&lt;language_code&gt;` è richiesto, inoltre deve terminare con `.&lt;"
+"ext&gt;`"
 
 #: templates/admin/project_fs.html:65
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
+"Se si sta usando il sistema di destinazione localfs il corrispondente "
+"percorso di traduzione sarà combinato con il percorso specificato "
+"nell'indirizzo del sistema di destinazione"
 
 #: templates/admin/project_fs.html:71
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
 msgstr ""
+"Per altri sistemi di destinazione il percorso di traduzione corrispondente "
+"sarà relativo alla radice dell'archivio."
 
 #: templates/admin/project_fs.html:81
 #, fuzzy
@@ -2877,6 +2894,8 @@ msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
 msgstr ""
+"Un progetto di traduzione (%(tp)s) è stato creato all'indirizzo %(url)s, ed "
+"è stato aggiornato con successo."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
 #, fuzzy, python-format
@@ -3033,6 +3052,8 @@ msgid ""
 "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
 msgstr ""
+"Sono il #%(pos)s collaboratore per %(lang_name)s negli ultimi 30 giorni a "
+"%(server_title)s! "
 
 #: templates/user/profile.html:44
 #, fuzzy, python-format
@@ -3045,6 +3066,8 @@ msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
 "days"
 msgstr ""
+"#%(pos)s collaboratore per <a href=\"%(url)s\">%(lang_name)s</a> negli "
+"ultimi 30 giorni"
 
 #: templates/user/profile.html:59
 msgid "Latest activity:"

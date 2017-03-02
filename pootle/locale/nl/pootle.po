@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-02-07 11:09+0000\n"
+"PO-Revision-Date: 2017-02-22 01:02+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1486465780.000000\n"
+"X-POOTLE-MTIME: 1487725347.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -242,12 +242,12 @@ msgid "Source Language"
 msgstr "Brontaal"
 
 #: apps/pootle_app/forms.py:88
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
-"U kunt geen bestandstype uit een project verwijderen als er archieven van "
+"U kunt geen bestandstype uit een project verwijderen als er bestanden van "
 "dat bestandstype ('%s') bestaan"
 
 #: apps/pootle_app/forms.py:108
@@ -349,13 +349,12 @@ msgid "Translation path mapping"
 msgstr "Padtoewijzing van vertaling"
 
 #: apps/pootle_fs/forms.py:55
-#, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
 "Padtoewijzing van vertaling die de lokalisatiebestanden op het "
-"bestandssysteem naar archieven op Pootle verwijst."
+"bestandssysteem naar bestanden op Pootle verwijst."
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
@@ -422,14 +421,12 @@ msgid "Accept"
 msgstr "Accepteren"
 
 #: apps/pootle_language/forms.py:158
-#, fuzzy
 msgid "Filter by suggester"
-msgstr "Filtersuggestie"
+msgstr "Filteren op voorsteller"
 
 #: apps/pootle_language/forms.py:164
-#, fuzzy
 msgid "Filter by state"
-msgstr "Filterstatus"
+msgstr "Filteren op status"
 
 #: apps/pootle_language/forms.py:174 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -951,7 +948,6 @@ msgid "Quality Checks"
 msgstr "Kwaliteitscontroles"
 
 #: apps/pootle_project/models.py:221
-#, fuzzy
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
 msgstr "Automatische detectie van GNU/niet-GNU-bestandsindelingen (trager)"
 
@@ -993,13 +989,13 @@ msgid "Disabled"
 msgstr "Uitgeschakeld"
 
 #: apps/pootle_project/views.py:263
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
-"Vertaalproject (%s) is aangemaakt. We werken nu de opslagplaatsen ervan bij "
-"vanaf bestandssjablonen."
+"Vertaalproject (%s) is aangemaakt. We werken nu de bestanden ervan bij vanaf "
+"bestandssjablonen."
 
 #: apps/pootle_project/views.py:270
 #, python-format
@@ -1223,9 +1219,8 @@ msgid "Filter"
 msgstr "Filter"
 
 #: apps/virtualfolder/models.py:41
-#, fuzzy
 msgid "Filtering rules that tell which files this virtual folder comprises."
-msgstr "Filterregels die vertellen welke archieven deze virtuele map vormt."
+msgstr "Filterregels die vertellen welke bestanden deze virtuele map omvat."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
@@ -1324,9 +1319,8 @@ msgstr ""
 
 #. Translators: a worker processes background tasks
 #: checks.py:149
-#, fuzzy
 msgid "No worker running."
-msgstr "Er zijn geen RQ workers actief."
+msgstr "Er is geen worker actief."
 
 #. Translators: a worker processes background tasks
 #: checks.py:151
@@ -1627,7 +1621,6 @@ msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "Pad ('%s') waarnaar POOTLE_FS_WORKING_PATH verwijst bestaat niet."
 
 #: checks.py:511
-#, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
@@ -1644,7 +1637,6 @@ msgstr ""
 "door Pootle."
 
 #: checks.py:519
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
@@ -1658,15 +1650,15 @@ msgstr "MySQL vereist tijdzone-instellingen."
 
 #: checks.py:558
 msgid "Pootle does not yet support Python 3."
-msgstr ""
+msgstr "Pootle ondersteunt nog geen Python 3."
 
 #: checks.py:559 checks.py:565
 msgid "Use a Python 2.7 virtualenv."
-msgstr ""
+msgstr "Gebruik een Python 2.7-virtualenv."
 
 #: checks.py:564
 msgid "Pootle no longer supports Python versions older than 2.7"
-msgstr ""
+msgstr "Pootle ondersteunt geen oudere Python-versies dan 2.7 meer."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1894,7 +1886,6 @@ msgid "About This Pootle Server"
 msgstr "Over deze Pootle-server"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle — powerful web software to empower teams to do "
 "translation and translation management. This community tool is Free "
@@ -1902,10 +1893,10 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"Deze website gebruikt Pootle &ndash; krachtige websoftware waarmee teams "
-"kunnen vertalen en vertalingen kunnen beheren. Deze Vrije Software is door "
-"en voor de gemeenschap ontwikkeld, en elk team kan het gebruiken en aan de "
-"Pootle-gemeenschap bijdragen. Lees meer op de <a href=\"http://pootle."
+"Deze website gebruikt Pootle – krachtige websoftware waarmee teams kunnen "
+"vertalen en vertalingen kunnen beheren. Deze Vrije Software is door en voor "
+"de gemeenschap ontwikkeld, en elk team kan het gebruiken en aan de Pootle-"
+"gemeenschap bijdragen. Lees meer op de <a href=\"http://pootle."
 "translatehouse.org/\">website van het project</a>."
 
 #: templates/about.html:25
@@ -2756,9 +2747,8 @@ msgid "The reported error was:"
 msgstr "De gemelde fout was:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-#, fuzzy
 msgid "Previous page"
-msgstr "Vorige"
+msgstr "Vorige pagina"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2771,9 +2761,8 @@ msgid "Showing %(count)s results per page"
 msgstr "%(count)s resultaten per pagina getoond"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-#, fuzzy
 msgid "Next page"
-msgstr "Startpagina"
+msgstr "Volgende pagina"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
