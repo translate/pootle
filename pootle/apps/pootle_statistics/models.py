@@ -171,8 +171,6 @@ class Submission(models.Model):
     quality_check = models.ForeignKey('pootle_store.QualityCheck', blank=True,
                                       null=True, db_index=True,
                                       on_delete=models.CASCADE)
-    store = models.ForeignKey('pootle_store.Store', blank=True, null=True,
-                              db_index=True, on_delete=models.CASCADE)
 
     #: The field in the unit that changed
     field = models.IntegerField(null=True, blank=True, db_index=True)
