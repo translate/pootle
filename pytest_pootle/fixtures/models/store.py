@@ -262,7 +262,7 @@ def _create_comment_on_unit(unit, user, comment):
         unit=unit,
         store=unit.store,
         field=SubmissionFields.COMMENT,
-        type=SubmissionTypes.NORMAL,
+        type=SubmissionTypes.WEB,
         new_value=comment,
     )
     sub.save()
@@ -280,7 +280,7 @@ def _mark_unit_fuzzy(unit, user):
         unit=unit,
         store=unit.store,
         field=SubmissionFields.STATE,
-        type=SubmissionTypes.NORMAL,
+        type=SubmissionTypes.WEB,
         old_value=unit.state,
         new_value=FUZZY,
     )

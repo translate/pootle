@@ -532,7 +532,7 @@ class PootleTestEnv(object):
                 old_state,
                 current_time,
                 member,
-                SubmissionTypes.NORMAL,
+                SubmissionTypes.WEB,
                 target_updated=True)
             unit.save()
 

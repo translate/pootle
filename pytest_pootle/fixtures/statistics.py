@@ -25,7 +25,7 @@ def anon_submission_unit(nobody, store0):
         old_state,
         timezone.now(),
         anon,
-        SubmissionTypes.NORMAL,
+        SubmissionTypes.WEB,
         target_updated=True)
     unit.save()
 
