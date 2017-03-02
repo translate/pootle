@@ -205,18 +205,6 @@ class UnitUpdater(object):
                 self.original.target,
                 self.original_submitter)[1])
 
-    def record_submission(self):
-        self.unit.store.record_submissions(
-            self.unit,
-            self.original.target,
-            self.original.state,
-            self.unit.mtime,
-            self.update.user,
-            self.update.submission_type,
-            state_updated=self.unit.state != self.original.state,
-            target_updated=self.unit.target != self.original.target,
-            comment_updated=self.translator_comment_updated)
-
     def save_unit(self):
         self.unit.revision = self.update.update_revision
         self.unit.save(
@@ -252,7 +240,6 @@ class UnitUpdater(object):
                 self.unit.save(user=self.update.user)
         if updated:
             self.save_unit()
-            self.record_submission()
         if self.should_create_suggestion:
             suggested = self.create_suggestion()
         return (updated or reordered), suggested
