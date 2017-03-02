@@ -22,7 +22,9 @@ from pootle_store.constants import FUZZY, TRANSLATED, UNTRANSLATED
 from pootle_store.fields import to_python
 
 
+MUTED = "0"
 SIMILARITY_THRESHOLD = 0.5
+UNMUTED = "1"
 
 
 #: These are the values for the 'type' field of Submission
@@ -49,6 +51,7 @@ class SubmissionFields(object):
     TARGET = 2  # pootle_store.models.Unit.target
     STATE = 3  # pootle_store.models.Unit.state
     COMMENT = 4  # pootle_store.models.Unit.translator_comment
+    CHECK = 5
 
     TRANSLATION_FIELDS = [TARGET]
 
