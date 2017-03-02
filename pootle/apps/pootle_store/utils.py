@@ -231,7 +231,6 @@ class SuggestionsReview(object):
                 'submitter': self.reviewer,
                 'unit': unit,
                 'revision': unit.revision,
-                'store': unit.store,
                 'field': field,
                 'type': SubmissionTypes.SUGG_ACCEPT,
                 'old_value': create_subs[field][0],
@@ -356,7 +355,6 @@ class UnitLifecycle(object):
         _kwargs = dict(
             translation_project=self.unit.store.translation_project,
             unit=self.unit,
-            store=self.unit.store,
             revision=self.unit.revision)
         _kwargs.update(kwargs)
         return self.submission_model(**_kwargs)

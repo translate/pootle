@@ -772,7 +772,6 @@ class Unit(AbstractUnit):
             submitter=user,
             field=SubmissionFields.NONE,
             unit=self,
-            store=self.store,
             type=sub_type,
             quality_check=check)
         sub.save()
@@ -1033,7 +1032,6 @@ class Store(AbstractStore):
                     submitter=user,
                     unit=unit,
                     revision=unit.revision,
-                    store_id=self.id,
                     field=field,
                     type=submission_type,
                     old_value=create_subs[field][0],
