@@ -11,7 +11,7 @@ from hashlib import md5
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 
-from pootle.core.delegate import uniqueid
+from pootle.core.delegate import lifecycle, uniqueid
 from pootle.core.models import Revision
 from pootle.core.signals import update_data
 
@@ -25,6 +25,20 @@ def handle_suggestion_added(**kwargs):
     if not created:
         return
     store = kwargs["instance"].unit.store
+    update_data.send(store.__class__, instance=store)
+
+
+@receiver(post_save, sender=Suggestion)
+def handle_suggestion_accepted(**kwargs):
+    created = kwargs.get("created")
+    suggestion = kwargs["instance"]
+    if created or not suggestion.state.name == "accepted":
+        return
+    suggestion.submission_set.add(
+        *suggestion.unit.submission_set.filter(
+            revision=suggestion.unit.revision,
+            creation_time=suggestion.review_time))
+    store = suggestion.unit.store
     update_data.send(store.__class__, instance=store)
 
 
@@ -101,9 +115,12 @@ def handle_unit_pre_change(**kwargs):
 def handle_unit_change(**kwargs):
     unit_change = kwargs["instance"]
     unit = unit_change.unit
+    created = not unit._frozen.pk
+
+    if not created:
+        lifecycle.get(Unit)(unit).change()
     if not unit.source_updated and not unit.target_updated:
         return
-    created = not unit._frozen.pk
     new_untranslated = (created and unit.state == UNTRANSLATED)
     if not new_untranslated:
         unit.update_qualitychecks()
