@@ -28,7 +28,7 @@ def _create_comment_submission(unit, user, creation_time, comment):
         unit=unit,
         store=unit.store,
         field=SubmissionFields.COMMENT,
-        type=SubmissionTypes.NORMAL,
+        type=SubmissionTypes.WEB,
         new_value=comment,
     )
     sub.save()
@@ -73,7 +73,7 @@ def test_needs_scorelog():
     # Changing the STATE from UNTRANSLATED won't record any logs
     submission = SubmissionFactory.build(
         field=SubmissionFields.STATE,
-        type=SubmissionTypes.NORMAL,
+        type=SubmissionTypes.WEB,
         old_value=UNTRANSLATED,
         new_value=TRANSLATED,
     )
@@ -83,7 +83,7 @@ def test_needs_scorelog():
     # need to record a score log
     submission = SubmissionFactory.build(
         field=SubmissionFields.STATE,
-        type=SubmissionTypes.NORMAL,
+        type=SubmissionTypes.WEB,
         old_value=TRANSLATED,
         new_value=UNTRANSLATED,
     )

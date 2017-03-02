@@ -479,7 +479,7 @@ def test_update_upload_again_new_revision(store0, member, member2):
     update_store(
         store0,
         [("Hello, world", "Hello, world UPDATED AGAIN")],
-        submission_type=SubmissionTypes.NORMAL,
+        submission_type=SubmissionTypes.WEB,
         user=member2,
         store_revision=Revision.get() + 1)
     assert created_unit.submission_set.count() == 1
@@ -496,7 +496,7 @@ def test_update_upload_again_new_revision(store0, member, member2):
     assert unit.change.submitted_on >= unit.creation_time
     assert unit.change.reviewed_by is None
     assert unit.change.reviewed_on is None
-    assert unit.change.changed_with == SubmissionTypes.NORMAL
+    assert unit.change.changed_with == SubmissionTypes.WEB
     assert update_sub.creation_time == unit.change.submitted_on
     assert update_sub.type == unit.change.changed_with
     assert update_sub.field == SubmissionFields.TARGET
@@ -533,7 +533,7 @@ def test_update_upload_old_revision_unit_conflict(store0, admin, member):
     update_store(
         store0,
         [("Hello, world", "Hello, world CONFLICT")],
-        submission_type=SubmissionTypes.NORMAL,
+        submission_type=SubmissionTypes.WEB,
         store_revision=original_revision,
         user=member)
     unit = store0.units[0]
@@ -565,7 +565,7 @@ def test_update_upload_new_revision_new_unit(store0, member):
         store0,
         file_name,
         user=member,
-        submission_type=SubmissionTypes.NORMAL)
+        submission_type=SubmissionTypes.WEB)
     unit = store0.units.last()
     unit_source = unit.unit_source.get()
     # the new unit has been added
@@ -573,9 +573,9 @@ def test_update_upload_new_revision_new_unit(store0, member):
     assert unit.revision > old_unit_revision
     assert unit.target == 'Goodbye, world'
     assert unit_source.created_by == member
-    assert unit_source.created_with == SubmissionTypes.NORMAL
+    assert unit_source.created_with == SubmissionTypes.WEB
     assert unit.change.submitted_by == member
-    assert unit.change.changed_with == SubmissionTypes.NORMAL
+    assert unit.change.changed_with == SubmissionTypes.WEB
 
 
 @pytest.mark.django_db
@@ -593,7 +593,7 @@ def test_update_upload_old_revision_new_unit(store0, member2):
         store0,
         file_name,
         user=member2,
-        submission_type=SubmissionTypes.NORMAL)
+        submission_type=SubmissionTypes.WEB)
     # the unit has been added because its not already obsoleted
     assert store0.units.count() == 2
     unit = store0.units.last()
@@ -603,9 +603,9 @@ def test_update_upload_old_revision_new_unit(store0, member2):
     assert unit.revision > old_unit_revision
     assert unit.target == 'Goodbye, world'
     assert unit_source.created_by == member2
-    assert unit_source.created_with == SubmissionTypes.NORMAL
+    assert unit_source.created_with == SubmissionTypes.WEB
     assert unit.change.submitted_by == member2
-    assert unit.change.changed_with == SubmissionTypes.NORMAL
+    assert unit.change.changed_with == SubmissionTypes.WEB
 
 
 def _test_store_update_indexes(store, *test_args):

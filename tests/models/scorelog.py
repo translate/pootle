@@ -14,7 +14,7 @@ from pootle_statistics.models import (
     ScoreLog, SubmissionTypes, SubmissionFields)
 
 
-TEST_EDIT_TYPES = (SubmissionTypes.NORMAL, SubmissionTypes.SYSTEM,
+TEST_EDIT_TYPES = (SubmissionTypes.WEB, SubmissionTypes.SYSTEM,
                    SubmissionTypes.UPLOAD)
 
 

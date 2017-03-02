@@ -107,7 +107,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         assert unit_source.created_with == SubmissionTypes.SYSTEM
         assert unit.change.submitted_by == suggestion.user
         assert unit.change.reviewed_by == user
-        assert unit.change.changed_with == SubmissionTypes.NORMAL
+        assert unit.change.changed_with == SubmissionTypes.WEB
 
         assert suggestion.state.name == 'accepted'
         assert str(unit.target) == edited_target
@@ -134,7 +134,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         assert state_sub.suggestion_id is None
 
         assert state_sub.field == SubmissionFields.TARGET
-        assert state_sub.type == SubmissionTypes.NORMAL
+        assert state_sub.type == SubmissionTypes.WEB
 
         assert state_sub.submitter == unit.change.reviewed_by
         assert state_sub.revision == unit.revision
@@ -186,7 +186,7 @@ def test_submit_with_suggestion(client, request_users, settings, system):
         assert unit_source.created_with == SubmissionTypes.SYSTEM
         assert unit.change.submitted_by == suggestion.user
         assert unit.change.reviewed_by == user
-        assert unit.change.changed_with == SubmissionTypes.NORMAL
+        assert unit.change.changed_with == SubmissionTypes.WEB
         assert suggestion.state.name == 'accepted'
         assert str(unit.target) == sugg.target_f
         unit_submissions = unit_submissions.exclude(
@@ -235,7 +235,7 @@ def test_accept_suggestion_with_comment(client, request_users, settings, system)
         assert unit_source.created_with == SubmissionTypes.SYSTEM
         assert unit.change.submitted_by == suggestion.user
         assert unit.change.reviewed_by == user
-        assert unit.change.changed_with == SubmissionTypes.NORMAL
+        assert unit.change.changed_with == SubmissionTypes.WEB
         assert suggestion.state.name == 'accepted'
         assert str(unit.target) == str(suggestion.target)
         assert (Comment.objects
@@ -459,6 +459,6 @@ def test_submit_unit(client, store0, request_users, settings, system):
     unit_source = unit.unit_source.get()
     assert unit_source.created_by == system
     assert unit_source.created_with == SubmissionTypes.SYSTEM
-    assert unit.change.changed_with == SubmissionTypes.NORMAL
+    assert unit.change.changed_with == SubmissionTypes.WEB
     assert unit.change.submitted_by == user
     assert unit.change.reviewed_by is None
