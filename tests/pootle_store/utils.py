@@ -13,7 +13,7 @@ from translate.misc.multistring import multistring
 from pootle.core.delegate import frozen, lifecycle
 from pootle.core.user import get_system_user
 from pootle_statistics.models import (
-    Submission, SubmissionFields, SubmissionTypes)
+    MUTED, UNMUTED, Submission, SubmissionFields, SubmissionTypes)
 from pootle_store.constants import TRANSLATED
 from pootle_store.models import QualityCheck, Unit, UnitChange
 from pootle_store.utils import UnitLifecycle
@@ -213,10 +213,10 @@ def test_unit_lifecycle_mute_qc(store0, member):
     assert sub_mute_qc.unit == unit
     assert sub_mute_qc.translation_project == store0.translation_project
     assert sub_mute_qc.revision == unit.revision
-    assert sub_mute_qc.type == SubmissionTypes.MUTE_CHECK
-    assert sub_mute_qc.field == SubmissionFields.NONE
-    assert sub_mute_qc.new_value == ""
-    assert sub_mute_qc.old_value == ""
+    assert sub_mute_qc.type == SubmissionTypes.WEB
+    assert sub_mute_qc.field == SubmissionFields.CHECK
+    assert sub_mute_qc.new_value == MUTED
+    assert sub_mute_qc.old_value == UNMUTED
     assert not sub_mute_qc.pk
 
 
@@ -249,10 +249,10 @@ def test_unit_lifecycle_unmute_qc(store0, member):
     assert sub_unmute_qc.unit == unit
     assert sub_unmute_qc.translation_project == store0.translation_project
     assert sub_unmute_qc.revision == unit.revision
-    assert sub_unmute_qc.type == SubmissionTypes.UNMUTE_CHECK
-    assert sub_unmute_qc.field == SubmissionFields.NONE
-    assert sub_unmute_qc.new_value == ""
-    assert sub_unmute_qc.old_value == ""
+    assert sub_unmute_qc.type == SubmissionTypes.WEB
+    assert sub_unmute_qc.field == SubmissionFields.CHECK
+    assert sub_unmute_qc.new_value == UNMUTED
+    assert sub_unmute_qc.old_value == MUTED
     assert not sub_unmute_qc.pk
 
 
