@@ -41,8 +41,9 @@ from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.multistring import PLURAL_PLACEHOLDER, SEPARATOR
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle_misc.checks import check_names
-from pootle_statistics.models import (Submission, SubmissionFields,
-                                      SubmissionTypes)
+from pootle_statistics.models import (
+    MUTED, UNMUTED, Submission, SubmissionFields,
+    SubmissionTypes)
 
 from .abstracts import (
     AbstractUnit, AbstractQualityCheck, AbstractStore, AbstractSuggestion,
@@ -761,10 +762,12 @@ class Unit(AbstractUnit):
         check.save()
 
         # create submission
+        old_value = MUTED
+        new_value = UNMUTED
         if false_positive:
-            sub_type = SubmissionTypes.MUTE_CHECK
-        else:
-            sub_type = SubmissionTypes.UNMUTE_CHECK
+            old_value = UNMUTED
+            new_value = MUTED
+
         update_time = make_aware(timezone.now())
         sub = Submission(
             creation_time=update_time,
@@ -772,7 +775,9 @@ class Unit(AbstractUnit):
             submitter=user,
             field=SubmissionFields.NONE,
             unit=self,
-            type=sub_type,
+            type=SubmissionTypes.WEB,
+            old_value=old_value,
+            new_value=new_value,
             quality_check=check)
         sub.save()
 
