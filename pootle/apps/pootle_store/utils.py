@@ -443,3 +443,18 @@ class UnitLifecycle(object):
     def create_subs(self, **updates):
         for name, update in updates.items():
             yield getattr(self, "sub_%s" % name)(**update)
+
+    def calculate_change(self, **kwargs):
+        updates = OrderedDict()
+        if self.unit.comment_updated:
+            updates["comment_update"] = kwargs
+        if self.unit.source_updated:
+            updates["source_update"] = kwargs
+        if self.unit.target_updated:
+            updates["target_update"] = kwargs
+        if self.unit.state_updated:
+            updates["state_update"] = kwargs
+        return updates
+
+    def change(self):
+        self.update(self.calculate_change())
