@@ -297,6 +297,31 @@ def test_reject_suggestion_with_comment(client, request_users):
 
 
 @pytest.mark.django_db
+def test_non_pending_suggestion(client, request_users, member, system):
+    unit = Unit.objects.filter(
+        suggestion__state__name='accepted')[0]
+    unit.target = "EXISTING TARGET"
+    unit.save(
+        submitted_by=member,
+        changed_with=SubmissionTypes.UPLOAD)
+    suggestion = Suggestion.objects.filter(
+        unit=unit,
+        state__name='accepted')[0]
+    user = request_users["user"]
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+    url = (
+        '/xhr/units/%d/suggestions/%d/'
+        % (unit.id, suggestion.id))
+    response = client.delete(
+        url,
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    assert response.status_code == 403
+
+
+@pytest.mark.django_db
 def test_reject_translated_suggestion(client, request_users, member, system):
     """Tests suggestion can be rejected with a comment."""
     unit = Unit.objects.filter(
