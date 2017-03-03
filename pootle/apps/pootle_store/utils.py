@@ -19,9 +19,9 @@ from pootle.core.signals import update_data
 from pootle.core.utils.timezone import make_aware
 from pootle.i18n.gettext import ugettext as _
 from pootle_statistics.models import (
-    MUTED, UNMUTED, Submission, SubmissionFields, SubmissionTypes)
+    MUTED, UNMUTED, SubmissionFields, SubmissionTypes)
 
-from .constants import FUZZY, TRANSLATED
+from .constants import TRANSLATED
 from .models import Suggestion, SuggestionState
 
 
@@ -193,47 +193,18 @@ class SuggestionsReview(object):
 
     def update_unit_on_accept(self, suggestion):
         unit = suggestion.unit
-
-        # Save for later
-        old_state = unit.state
-        old_target = unit.target
-
-        # Update some basic attributes so we can create submissions. Note
-        # these do not conflict with `ScoreLog`'s interests, so it's safe
-        unit.target = suggestion.target
-        if unit.state == FUZZY:
-            unit.state = TRANSLATED
-        unit.submitted_by = suggestion.user
         unit.submitted_on = suggestion.review_time
         unit.reviewed_by = self.reviewer
         unit.reviewed_on = unit.submitted_on
+        unit.target = suggestion.target
+        if unit.isfuzzy():
+            unit.state = TRANSLATED
         unit.save(
             submitted_by=suggestion.user,
             submitted_on=suggestion.review_time,
             changed_with=self.review_type,
             reviewed_by=self.reviewer,
             reviewed_on=suggestion.review_time)
-        create_subs = OrderedDict()
-        create_subs[SubmissionFields.TARGET] = [old_target, unit.target]
-        if old_state != unit.state:
-            create_subs[SubmissionFields.STATE] = [old_state, unit.state]
-        subs_created = []
-        for field in create_subs:
-            kwargs = {
-                'creation_time': unit.change.reviewed_on,
-                'translation_project': unit.store.translation_project,
-                'submitter': self.reviewer,
-                'unit': unit,
-                'revision': unit.revision,
-                'field': field,
-                'suggestion': suggestion,
-                'type': SubmissionTypes.WEB,
-                'old_value': create_subs[field][0],
-                'new_value': create_subs[field][1],
-            }
-            subs_created.append(Submission(**kwargs))
-        if subs_created:
-            unit.submission_set.add(*subs_created, bulk=False)
 
     def accept_suggestion(self, suggestion, update_unit):
         accepted = SuggestionState.objects.get(name="accepted")
@@ -411,13 +382,14 @@ class UnitLifecycle(object):
         is_review = (
             self.unit.change.reviewed_on
             and (self.unit.change.reviewed_on
-                 >= self.unit.change.submitted_on))
+                 > self.unit.change.submitted_on))
         if is_review:
             submitter = self.unit.change.reviewed_by
             creation_time = self.unit.change.reviewed_on
         else:
             submitter = self.unit.change.submitted_by
             creation_time = self.unit.change.submitted_on
+
         _kwargs = dict(
             creation_time=creation_time,
             unit=self.unit,
