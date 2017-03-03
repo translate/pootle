@@ -17,10 +17,12 @@ from django.utils import timezone
 from django.utils.translation import get_language
 
 from pootle.core.contextmanagers import update_data_after
+from pootle.core.delegate import review
 from pootle.core.url_helpers import split_pootle_path
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission, check_user_permission
+from pootle_comment.forms import UnsecuredCommentForm
 from pootle_misc.checks import CATEGORY_CODES, check_names
 from pootle_misc.util import get_date_interval
 from pootle_project.models import Project
@@ -502,3 +504,61 @@ class UnitSearchForm(forms.Form):
         if can_view_path:
             return self.cleaned_data["path"]
         raise forms.ValidationError("Unrecognized path")
+
+
+class SuggestionReviewForm(UnsecuredCommentForm):
+
+    should_save = lambda self: True
+    action = forms.ChoiceField(
+        required=True,
+        choices=(
+            ("accept", "Accept"),
+            ("reject", "Reject")))
+
+    def __init__(self, *args, **kwargs):
+        super(SuggestionReviewForm, self).__init__(*args, **kwargs)
+        self.fields["comment"].required = False
+
+    @property
+    def review_type(self):
+        return SubmissionTypes.WEB
+
+    @property
+    def review(self):
+        return review.get(self.target_object.__class__)(
+            [self.target_object],
+            self.cleaned_data["user"],
+            review_type=self.review_type)
+
+    def clean_action(self):
+        if self.target_object.state.name != "pending":
+            raise forms.ValidationError(
+                _("Suggestion '%s' cannot be accepted/rejected twice!",
+                  self.target_object))
+        return self.data["action"]
+
+    def clean(self):
+        if self.errors:
+            return
+        self_review = (
+            self.cleaned_data["user"] == self.target_object.user
+            and self.cleaned_data["action"] == "reject")
+        permission = (
+            "view"
+            if self_review
+            else "review")
+        has_permission = check_user_permission(
+            self.cleaned_data["user"],
+            permission,
+            self.target_object.unit.store.parent)
+        if not has_permission:
+            raise forms.ValidationError(
+                _("Insufficient rights to access this page."))
+
+    def save(self):
+        if self.cleaned_data["action"] == "accept":
+            self.review.accept()
+        else:
+            self.review.reject()
+        if self.cleaned_data["comment"]:
+            super(SuggestionReviewForm, self).save()
