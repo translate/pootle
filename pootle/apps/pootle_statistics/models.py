@@ -356,10 +356,6 @@ class ScoreLog(models.Model):
     creation_time = models.DateTimeField(db_index=True, null=False)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False,
                              on_delete=models.CASCADE)
-    # current user’s new translation rate
-    rate = models.FloatField(null=False, default=0)
-    # current user’s review rate
-    review_rate = models.FloatField(null=False, default=0)
     # number of words in the original source string
     wordcount = models.PositiveIntegerField(null=False)
     # the final calculated score delta for the action
@@ -447,9 +443,6 @@ class ScoreLog(models.Model):
                 previous_reviewer_score, suggester_score]
 
     def save(self, *args, **kwargs):
-        # copy current user rate
-        self.rate = self.user.rate
-        self.review_rate = self.user.review_rate
         self.score_delta = self.get_score_delta()
         translated = self.get_paid_wordcounts()[0]
         self.translated_wordcount = translated
@@ -521,9 +514,6 @@ class ScoreLog(models.Model):
 
         rate = EDIT_COEF + REVIEW_COEF
         review_rate = REVIEW_COEF
-        if self.rate != 0:
-            rate = self.rate
-            review_rate = self.review_rate
         raw_rate = rate - review_rate
 
         # if similarity is zero then translated_words would be
