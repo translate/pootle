@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from collections import OrderedDict
+
 import pytest
 
 from translate.misc.multistring import multistring
@@ -303,3 +305,74 @@ def test_unit_lifecycle_update(store0, member):
     lc.update(**kwargs)
     assert lc._called_create == kwargs
     assert lc._called_save == [kwargs]
+
+
+@pytest.mark.django_db
+def test_unit_lifecycle_calc_change(store0, member):
+    unit = store0.units.first()
+    unit_lifecycle = lifecycle.get(Unit)(unit)
+    assert (
+        unit_lifecycle.calculate_change()
+        == OrderedDict())
+    original_target = unit.target
+    unit.state = 200
+    assert (
+        unit_lifecycle.calculate_change()
+        == OrderedDict((("state_update", {}),)))
+    unit.target = "changed target"
+    assert (
+        unit_lifecycle.calculate_change()
+        == OrderedDict(
+            (("target_update", {}),
+             ("state_update", {}))))
+    unit.translator_comment = "changed comment"
+    assert (
+        unit_lifecycle.calculate_change()
+        == OrderedDict(
+            (("comment_update", {}),
+             ("target_update", {}),
+             ("state_update", {}))))
+    unit.source = "changed source"
+    assert (
+        unit_lifecycle.calculate_change()
+        == OrderedDict(
+            (("comment_update", {}),
+             ("source_update", {}),
+             ("target_update", {}),
+             ("state_update", {}))))
+    assert (
+        unit_lifecycle.calculate_change(foo="bar")
+        == OrderedDict(
+            (("comment_update", dict(foo="bar")),
+             ("source_update", dict(foo="bar")),
+             ("target_update", dict(foo="bar")),
+             ("state_update", dict(foo="bar")))))
+    unit.target = original_target
+    assert (
+        unit_lifecycle.calculate_change()
+        == OrderedDict(
+            (("comment_update", {}),
+             ("source_update", {}),
+             ("state_update", {}))))
+
+
+@pytest.mark.django_db
+def test_unit_lifecycle_change(store0, member):
+    unit = store0.UnitClass()
+    unit.store = store0
+    unit.source_f = multistring("Foo")
+    unit.save()
+
+    class DummyUnitLifecycle(UnitLifecycle):
+
+        def update(self, updates):
+            self._called_update = updates
+
+        def calculate_change(self, **kwargs):
+            return kwargs
+
+    lc = DummyUnitLifecycle(unit)
+    lc.change()
+    assert lc._called_update == {}
+    lc.change(foo="bar")
+    assert lc._called_update == dict(foo="bar")
