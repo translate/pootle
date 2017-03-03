@@ -290,6 +290,7 @@ class Unit(AbstractUnit):
         submitted_by = kwargs.pop("submitted_by", None)
         submitted_on = kwargs.pop("submitted_on", None)
         sysuser = get_user_model().objects.get_system_user()
+        created_by = created_by or submitted_by
         if reviewed_by:
             self.reviewed_by = reviewed_by
         if submitted_by:
