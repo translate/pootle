@@ -283,6 +283,8 @@ class Unit(AbstractUnit):
         created = self.id is None
         created_by = kwargs.pop("created_by", None)
         changed_with = kwargs.pop("changed_with", None) or SubmissionTypes.SYSTEM
+        commented_by = kwargs.pop("commented_by", None)
+        commented_on = kwargs.pop("commented_on", None)
         reviewed_by = kwargs.pop("reviewed_by", None)
         reviewed_on = kwargs.pop("reviewed_on", None)
         submitted_by = kwargs.pop("submitted_by", None)
@@ -294,7 +296,7 @@ class Unit(AbstractUnit):
             self.submitted_by = submitted_by
 
         super(Unit, self).save(*args, **kwargs)
-        submitted_on = submitted_on or self.submitted_on
+        submitted_on = submitted_on or self.mtime
         if created:
             unit_source = self.unit_source.model(unit=self)
             unit_source.created_by = created_by or sysuser
@@ -308,21 +310,26 @@ class Unit(AbstractUnit):
             unit_source.source_length = self.source_length
             unit_source.source_wordcount = self.source_wordcount
             unit_source.save()
-        if self.updated and not self.changed:
+        if (self.updated or reviewed_by) and not self.changed:
             self.change = UnitChange(
                 unit=self,
                 changed_with=changed_with)
-        if self.updated:
+        if self.updated or reviewed_by:
             if changed_with is not None:
                 self.change.changed_with = changed_with
-            if submitted_by is not None:
-                self.change.submitted_by = submitted_by
-            if reviewed_by is not None:
-                self.change.reviewed_by = reviewed_by
-            if submitted_on is not None:
+            if self.comment_updated:
+                self.change.commented_by = commented_by or sysuser
+                self.change.commented_on = commented_on or submitted_on
+            update_submit = (
+                (self.target_updated or self.source_updated)
+                or not self.change.submitted_on)
+            if update_submit:
+                self.change.submitted_by = submitted_by or sysuser
                 self.change.submitted_on = submitted_on
-            if reviewed_on is not None:
-                self.change.reviewed_on = reviewed_on
+            if reviewed_by is not None:
+                self.change.reviewed_by = reviewed_by or submitted_by
+            if reviewed_on is not None or reviewed_by is not None:
+                self.change.reviewed_on = reviewed_on or submitted_on
             self.change.save()
         update_data.send(
             self.store.__class__, instance=self.store)
