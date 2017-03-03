@@ -105,14 +105,40 @@ def test_unit_lifecycle_update_state(store0, member):
     unit.target_f = multistring("Bar")
     unit.state = TRANSLATED
     unit.reviewed_by = member
-    unit.save()
-
+    unit.save(created_by=member)
     sub_state_update = lifecycle.get(Unit)(unit).sub_state_update()
     assert isinstance(sub_state_update, Submission)
     assert sub_state_update.unit == unit
     assert sub_state_update.translation_project == store0.translation_project
     assert sub_state_update.revision == unit.revision
-    assert sub_state_update.submitter == unit.reviewed_by
+    assert (
+        sub_state_update.submitter
+        == unit.change.submitted_by
+        == member)
+    assert sub_state_update.type == SubmissionTypes.SYSTEM
+    assert sub_state_update.field == SubmissionFields.STATE
+    assert sub_state_update.new_value == unit.state
+    assert sub_state_update.old_value == unit._frozen.state
+    assert not sub_state_update.pk
+
+
+@pytest.mark.django_db
+def test_unit_lifecycle_update_state_reviewed_by(store0, member2):
+    unit = store0.UnitClass()
+    unit.store = store0
+    unit.source_f = multistring("Foo")
+    unit.target_f = multistring("Bar")
+    unit.state = TRANSLATED
+    unit.save(reviewed_by=member2)
+    sub_state_update = lifecycle.get(Unit)(unit).sub_state_update()
+    assert isinstance(sub_state_update, Submission)
+    assert sub_state_update.unit == unit
+    assert sub_state_update.translation_project == store0.translation_project
+    assert sub_state_update.revision == unit.revision
+    assert (
+        sub_state_update.submitter
+        == unit.change.reviewed_by
+        == member2)
     assert sub_state_update.type == SubmissionTypes.SYSTEM
     assert sub_state_update.field == SubmissionFields.STATE
     assert sub_state_update.new_value == unit.state
@@ -126,19 +152,19 @@ def test_unit_lifecycle_update_comment(store0, member):
     unit.store = store0
     unit.source_f = multistring("Foo")
     unit.target_f = multistring("Bar")
-    unit.comment = "SOME COMMENT"
-    unit.commented_by = member
-    unit.save()
+    unit.translator_comment = "SOME COMMENT"
+    unit.save(commented_by=member)
     sub_comment_update = lifecycle.get(Unit)(unit).sub_comment_update()
     assert isinstance(sub_comment_update, Submission)
     assert sub_comment_update.unit == unit
     assert sub_comment_update.translation_project == store0.translation_project
     assert sub_comment_update.revision == unit.revision
-    assert sub_comment_update.submitter == unit.commented_by
+    assert sub_comment_update.submitter == member
     assert sub_comment_update.type == SubmissionTypes.SYSTEM
     assert sub_comment_update.field == SubmissionFields.COMMENT
     assert sub_comment_update.new_value == unit.translator_comment
-    assert sub_comment_update.old_value == unit._frozen.translator_comment
+    assert sub_comment_update.old_value == (
+        unit._frozen.translator_comment or "")
     assert not sub_comment_update.pk
 
 
@@ -151,6 +177,9 @@ def test_unit_lifecycle_update_source(store0, member):
     unit.state = TRANSLATED
     unit.submitted_by = member
     unit.save()
+    unit = Unit.objects.get(pk=unit.id)
+    unit.source = multistring("Foo23")
+    unit.save(submitted_by=member)
     sub_source_update = lifecycle.get(Unit)(unit).sub_source_update()
     assert isinstance(sub_source_update, Submission)
     assert sub_source_update.unit == unit
@@ -171,14 +200,16 @@ def test_unit_lifecycle_update_target(store0, member):
     unit.source_f = multistring("Foo")
     unit.target_f = multistring("Bar")
     unit.state = TRANSLATED
-    unit.submitted_by = member
-    unit.save()
+    unit.save(submitted_by=member)
     sub_target_update = lifecycle.get(Unit)(unit).sub_target_update()
     assert isinstance(sub_target_update, Submission)
     assert sub_target_update.unit == unit
     assert sub_target_update.translation_project == store0.translation_project
     assert sub_target_update.revision == unit.revision
-    assert sub_target_update.submitter == unit.submitted_by
+    assert (
+        sub_target_update.submitter
+        == unit.change.submitted_by
+        == member)
     assert sub_target_update.type == SubmissionTypes.SYSTEM
     assert sub_target_update.field == SubmissionFields.TARGET
     assert sub_target_update.new_value == unit.target_f
