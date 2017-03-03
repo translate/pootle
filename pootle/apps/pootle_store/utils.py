@@ -98,7 +98,7 @@ class FrozenUnit(object):
             submitter=unit.submitted_by,
             state=unit.state,
             pk=unit.pk,
-            translator_comment=unit.getnotes(origin="translator"))
+            translator_comment=unit.translator_comment)
 
     @property
     def context(self):
@@ -456,5 +456,5 @@ class UnitLifecycle(object):
             updates["state_update"] = kwargs
         return updates
 
-    def change(self):
-        self.update(self.calculate_change())
+    def change(self, **kwargs):
+        self.update(self.calculate_change(**kwargs))
