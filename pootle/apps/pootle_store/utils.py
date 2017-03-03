@@ -391,54 +391,64 @@ class UnitLifecycle(object):
 
     def sub_comment_update(self, **kwargs):
         _kwargs = dict(
-            creation_time=self.unit.mtime,
+            creation_time=self.unit.change.commented_on,
             unit=self.unit,
-            submitter=self.unit.commented_by,
+            submitter=self.unit.change.commented_by,
             field=SubmissionFields.COMMENT,
-            type=SubmissionTypes.SYSTEM,
-            old_value=self.original.translator_comment,
-            new_value=self.unit.translator_comment)
+            type=self.unit.change.changed_with,
+            old_value=self.original.translator_comment or "",
+            new_value=self.unit.translator_comment or "")
         _kwargs.update(kwargs)
         return self.create_submission(**_kwargs)
 
     def sub_source_update(self, **kwargs):
         _kwargs = dict(
-            creation_time=self.unit.mtime,
+            creation_time=self.unit.change.submitted_on,
             unit=self.unit,
-            submitter=self.unit.submitted_by,
+            submitter=self.unit.change.submitted_by,
             field=SubmissionFields.SOURCE,
-            type=SubmissionTypes.SYSTEM,
-            old_value=self.original.source,
+            type=self.unit.change.changed_with,
+            old_value=self.original.source or "",
             new_value=self.unit.source_f)
         _kwargs.update(kwargs)
         return self.create_submission(**_kwargs)
 
     def sub_target_update(self, **kwargs):
         _kwargs = dict(
-            creation_time=self.unit.mtime,
+            creation_time=self.unit.change.submitted_on,
             unit=self.unit,
-            submitter=self.unit.submitted_by,
+            submitter=self.unit.change.submitted_by,
             field=SubmissionFields.TARGET,
-            type=SubmissionTypes.SYSTEM,
-            old_value=self.original.target,
+            type=self.unit.change.changed_with,
+            old_value=self.original.target or "",
             new_value=self.unit.target_f)
         _kwargs.update(kwargs)
         return self.create_submission(**_kwargs)
 
     def sub_state_update(self, **kwargs):
+        is_review = (
+            self.unit.change.reviewed_on
+            and (self.unit.change.reviewed_on
+                 >= self.unit.change.submitted_on))
+        if is_review:
+            submitter = self.unit.change.reviewed_by
+            creation_time = self.unit.change.reviewed_on
+        else:
+            submitter = self.unit.change.submitted_by
+            creation_time = self.unit.change.submitted_on
         _kwargs = dict(
-            creation_time=self.unit.mtime,
+            creation_time=creation_time,
             unit=self.unit,
-            submitter=self.unit.reviewed_by,
+            submitter=submitter,
             field=SubmissionFields.STATE,
-            type=SubmissionTypes.SYSTEM,
+            type=self.unit.change.changed_with,
             old_value=self.original.state,
             new_value=self.unit.state)
         _kwargs.update(kwargs)
         return self.create_submission(**_kwargs)
 
-    def update(self, kwargs):
-        self.save_subs(self.create_subs(kwargs))
+    def update(self, updates):
+        self.save_subs(self.create_subs(updates))
 
     def create_subs(self, updates):
         for name, update in updates.items():
