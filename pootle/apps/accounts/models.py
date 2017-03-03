@@ -91,8 +91,6 @@ class User(AbstractBaseUser):
         verbose_name=_("Alternative Source Languages"))
 
     # Score-related fields
-    rate = models.FloatField('Rate', null=False, default=0)
-    review_rate = models.FloatField('Review Rate', null=False, default=0)
     score = models.FloatField(_('Score'), null=False, default=0)
     is_employee = models.BooleanField(_('Is employee?'), default=False)
     twitter = models.CharField(_('Twitter'), max_length=15, null=True,
