@@ -60,6 +60,9 @@ class User(AbstractBaseUser):
                            _('Enter a valid username.'),
                            'invalid')
         ],
+        error_messages={
+            'unique': _('A user with that username already exists.'),
+        },
     )
     email = models.EmailField(_('Email Address'), max_length=255)
     full_name = models.CharField(_('Full Name'), max_length=255, blank=True)
