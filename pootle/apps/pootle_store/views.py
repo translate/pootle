@@ -16,7 +16,7 @@ from django import forms
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
 from django.http import Http404, QueryDict
-from django.shortcuts import redirect
+from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -24,24 +24,28 @@ from django.utils.lru_cache import lru_cache
 from django.utils.translation import to_locale
 from django.utils.translation.trans_real import parse_accept_lang_header
 from django.views.decorators.http import require_http_methods
+from django.views.generic import FormView
 
+from pootle.core.views.decorators import requires_permission, set_permissions
 from pootle.core.delegate import review, search_backend
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle.core.utils import dateformat
 from pootle.core.views import PootleJSON
+from pootle.core.views.mixins import GatherContextMixin, PootleJSONMixin
 from pootle.i18n.dates import timesince
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models.directory import Directory
-from pootle_app.models.permissions import (check_permission,
-                                           check_user_permission)
+from pootle_app.models.permissions import check_user_permission
 from pootle_comment.forms import UnsecuredCommentForm
 from pootle_language.models import Language
 from pootle_misc.util import ajax_required
 from pootle_statistics.models import SubmissionTypes
 
 from .decorators import get_unit_context
-from .forms import UnitSearchForm, unit_comment_form_factory, unit_form_factory
+from .forms import (
+    SuggestionReviewForm, UnitSearchForm,
+    unit_comment_form_factory, unit_form_factory)
 from .models import Suggestion, Unit
 from .templatetags.store_tags import pluralize_source, pluralize_target
 from .unit.results import GroupedResults
@@ -618,62 +622,73 @@ def suggest(request, unit, **kwargs_):
     return JsonResponseBadRequest({'msg': _("Failed to process suggestion.")})
 
 
-@ajax_required
-@require_http_methods(['POST', 'DELETE'])
-def manage_suggestion(request, uid, sugg_id, **kwargs_):
-    """Dispatches the suggestion action according to the HTTP verb."""
-    if request.method == 'DELETE':
-        return reject_suggestion(request, uid, sugg_id)
-    elif request.method == 'POST':
-        return accept_suggestion(request, uid, sugg_id)
+class UnitSuggestionJSON(PootleJSONMixin, GatherContextMixin, FormView):
 
+    action = "accept"
+    form_class = SuggestionReviewForm
+    http_method_names = ['post', 'delete']
 
-@get_unit_context()
-def reject_suggestion(request, unit, suggid, **kwargs_):
-    try:
-        suggestion = unit.suggestion_set.get(id=suggid)
-    except ObjectDoesNotExist:
-        raise Http404
+    @property
+    def permission_context(self):
+        return self.get_object().unit.store.parent
 
-    # In order to be able to reject a suggestion, users have to either:
-    # 1. Have `review` rights, or
-    # 2. Be the author of the suggestion being rejected
-    has_permission = (
-        check_permission('review', request)
-        or (not request.user.is_anonymous
-            and request.user == suggestion.user))
-    if not has_permission:
-        raise PermissionDenied(
-            _('Insufficient rights to access review mode.'))
-    review.get(Suggestion)(
-        [suggestion],
-        request.user).reject(QueryDict(request.body).get("comment"))
-    json = {
-        'udbid': unit.id,
-        'sugid': suggid,
-        'user_score': request.user.public_score,
-    }
-    return JsonResponse(json)
+    @set_permissions
+    @requires_permission("view")
+    def dispatch(self, request, *args, **kwargs):
+        # get funky with the request 8/
+        return super(UnitSuggestionJSON, self).dispatch(request, *args, **kwargs)
 
+    @lru_cache()
+    def get_object(self):
+        return get_object_or_404(
+            Suggestion.objects.select_related(
+                "unit", "unit__store", "unit__store__parent"),
+            unit_id=self.request.resolver_match.kwargs["uid"],
+            id=self.request.resolver_match.kwargs["sugg_id"])
 
-@get_unit_context('review')
-def accept_suggestion(request, unit, suggid, **kwargs_):
-    try:
-        suggestion = unit.suggestion_set.get(id=suggid)
-    except ObjectDoesNotExist:
-        raise Http404
-    review.get(Suggestion)(
-        [suggestion],
-        request.user,
-        SubmissionTypes.WEB).accept(request.POST.get("comment"))
-    json = {
-        'udbid': unit.id,
-        'sugid': suggid,
-        'user_score': request.user.public_score,
-        'newtargets': [target for target in unit.target.strings],
-        'checks': _get_critical_checks_snippet(request, unit),
-    }
-    return JsonResponse(json)
+    def get_form_kwargs(self, **kwargs):
+        comment = (
+            QueryDict(self.request.body).get("comment")
+            if self.action == "reject"
+            else self.request.POST.get("comment"))
+        return dict(
+            target_object=self.get_object(),
+            data=dict(
+                comment=comment,
+                action=self.action,
+                user=self.request.user))
+
+    def delete(self, request, *args, **kwargs):
+        self.action = "reject"
+        return self.post(request, *args, **kwargs)
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(UnitSuggestionJSON, self).get_context_data(*args, **kwargs)
+        form = ctx["form"]
+        if form.is_valid():
+            result = dict(
+                udbid=form.target_object.unit.id,
+                sugid=form.target_object.id,
+                user_score=self.request.user.public_score)
+            if form.cleaned_data["action"] == "accept":
+                result.update(
+                    dict(
+                        newtargets=[
+                            target
+                            for target
+                            in form.target_object.unit.target.strings],
+                        checks=_get_critical_checks_snippet(
+                            self.request,
+                            form.target_object.unit)))
+            return result
+
+    def form_valid(self, form):
+        form.save()
+        return self.render_to_response(
+            self.get_context_data(form=form))
+
+    def form_invalid(self, form):
+        raise PermissionDenied(form.errors)
 
 
 @ajax_required

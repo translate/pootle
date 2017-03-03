@@ -39,7 +39,7 @@ unit_xhr_urlpatterns = [
         views.suggest,
         name='pootle-xhr-units-suggest'),
     url(r'^xhr/units/(?P<uid>[0-9]+)/suggestions/(?P<sugg_id>[0-9]+)/?$',
-        views.manage_suggestion,
+        views.UnitSuggestionJSON.as_view(),
         name='pootle-xhr-units-suggest-manage'),
 
     url(r'^xhr/units/(?P<uid>[0-9]+)/checks/(?P<check_id>[0-9]+)/toggle/?$',
