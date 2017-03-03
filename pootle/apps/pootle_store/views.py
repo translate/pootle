@@ -14,7 +14,7 @@ from translate.lang import data
 
 from django import forms
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404, QueryDict
 from django.shortcuts import redirect
 from django.template import loader
@@ -41,7 +41,8 @@ from pootle_misc.util import ajax_required
 from pootle_statistics.models import SubmissionTypes
 
 from .decorators import get_unit_context
-from .forms import UnitSearchForm, unit_comment_form_factory, unit_form_factory
+from .forms import (SuggestionReviewForm, UnitSearchForm,
+                    unit_comment_form_factory, unit_form_factory)
 from .models import Suggestion, Unit
 from .templatetags.store_tags import pluralize_source, pluralize_target
 from .unit.results import GroupedResults
@@ -622,58 +623,39 @@ def suggest(request, unit, **kwargs_):
 @require_http_methods(['POST', 'DELETE'])
 def manage_suggestion(request, uid, sugg_id, **kwargs_):
     """Dispatches the suggestion action according to the HTTP verb."""
+
+    action = None
+    comment = None
     if request.method == 'DELETE':
-        return reject_suggestion(request, uid, sugg_id)
+        action = 'reject'
+        comment = QueryDict(request.body).get("comment")
     elif request.method == 'POST':
-        return accept_suggestion(request, uid, sugg_id)
+        action = 'accept'
+        comment = request.POST.get("comment")
 
-
-@get_unit_context()
-def reject_suggestion(request, unit, suggid, **kwargs_):
     try:
-        suggestion = unit.suggestion_set.get(id=suggid)
-    except ObjectDoesNotExist:
+        suggestion = Suggestion.objects.get(id=sugg_id)
+    except Suggestion.DoesNotExist:
         raise Http404
 
-    # In order to be able to reject a suggestion, users have to either:
-    # 1. Have `review` rights, or
-    # 2. Be the author of the suggestion being rejected
-    has_permission = (
-        check_permission('review', request)
-        or (not request.user.is_anonymous
-            and request.user == suggestion.user))
-    if not has_permission:
-        raise PermissionDenied(
-            _('Insufficient rights to access review mode.'))
-    review.get(Suggestion)(
-        [suggestion],
-        request.user).reject(QueryDict(request.body).get("comment"))
-    json = {
-        'udbid': unit.id,
-        'sugid': suggid,
-        'user_score': request.user.public_score,
-    }
-    return JsonResponse(json)
+    sugg_review_form = SuggestionReviewForm(
+        suggestion,
+        data={
+            'unit': uid,
+            'action': action,
+            'user': request.user,
+            'comment': comment,
+        },
+    )
 
+    if sugg_review_form.is_valid():
+        json = sugg_review_form.save()
+        if action == 'accept':
+            unit = sugg_review_form.cleaned_data['unit']
+            json['checks'] = _get_critical_checks_snippet(request, unit)
+        return JsonResponse(json)
 
-@get_unit_context('review')
-def accept_suggestion(request, unit, suggid, **kwargs_):
-    try:
-        suggestion = unit.suggestion_set.get(id=suggid)
-    except ObjectDoesNotExist:
-        raise Http404
-    review.get(Suggestion)(
-        [suggestion],
-        request.user,
-        SubmissionTypes.WEB).accept(request.POST.get("comment"))
-    json = {
-        'udbid': unit.id,
-        'sugid': suggid,
-        'user_score': request.user.public_score,
-        'newtargets': [target for target in unit.target.strings],
-        'checks': _get_critical_checks_snippet(request, unit),
-    }
-    return JsonResponse(json)
+    return JsonResponseBadRequest({'msg': sugg_review_form.errors})
 
 
 @ajax_required

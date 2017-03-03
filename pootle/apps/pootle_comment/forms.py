@@ -28,7 +28,7 @@ class CommentForm(DjCommentForm):
     user = forms.ModelChoiceField(queryset=User.objects.all())
 
     def __init__(self, target_object, data=None, *args, **kwargs):
-        if data:
+        if data and 'object_pk' not in data:
             data["object_pk"] = str(target_object.pk)
             data["content_type"] = str(target_object._meta)
             if data.get("user"):
