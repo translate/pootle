@@ -437,10 +437,10 @@ class UnitLifecycle(object):
         _kwargs.update(kwargs)
         return self.create_submission(**_kwargs)
 
-    def update(self, **kwargs):
-        self.save_subs(self.create_subs(**kwargs))
+    def update(self, kwargs):
+        self.save_subs(self.create_subs(kwargs))
 
-    def create_subs(self, **updates):
+    def create_subs(self, updates):
         for name, update in updates.items():
             yield getattr(self, "sub_%s" % name)(**update)
 

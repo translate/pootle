@@ -275,13 +275,13 @@ def test_unit_lifecycle_create_subs(store0, member):
 
     lc = DummyUnitLifecycle(unit)
     kwargs = dict(x=1, y=2)
-    list(lc.create_subs(foo=kwargs))
+    list(lc.create_subs(dict(foo=kwargs)))
     assert lc._called_foo == kwargs
-    list(lc.create_subs(bar=kwargs))
+    list(lc.create_subs(dict(bar=kwargs)))
     assert lc._called_bar == kwargs
 
     with pytest.raises(AttributeError):
-        lc.update(baz=kwargs)
+        lc.update(dict(baz=kwargs))
 
 
 @pytest.mark.django_db
@@ -296,13 +296,13 @@ def test_unit_lifecycle_update(store0, member):
         def save_subs(self, subs):
             self._called_save = subs
 
-        def create_subs(self, **kwargs):
+        def create_subs(self, kwargs):
             self._called_create = kwargs
             return [kwargs]
 
     lc = DummyUnitLifecycle(unit)
-    kwargs = dict(x=1, y=2)
-    lc.update(**kwargs)
+    kwargs = OrderedDict((("x", 1), ("y", 2)))
+    lc.update(kwargs)
     assert lc._called_create == kwargs
     assert lc._called_save == [kwargs]
 
