@@ -20,7 +20,7 @@ unit_xhr_urlpatterns = [
 
     # XHR
     url(r'^xhr/units/(?P<uid>[0-9]+)/?$',
-        views.submit,
+        views.UnitSubmitJSON.as_view(),
         name='pootle-xhr-units-submit'),
     url(r'^xhr/units/(?P<uid>[0-9]+)/comment/?$',
         views.comment,

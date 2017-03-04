@@ -37,14 +37,12 @@ from pootle.i18n.dates import timesince
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import check_user_permission
-from pootle_comment.forms import UnsecuredCommentForm
 from pootle_language.models import Language
 from pootle_misc.util import ajax_required
-from pootle_statistics.models import SubmissionTypes
 
 from .decorators import get_unit_context
 from .forms import (
-    SuggestionReviewForm, UnitSearchForm,
+    SubmitForm, SuggestionReviewForm, SuggestionSubmitForm, UnitSearchForm,
     unit_comment_form_factory, unit_form_factory)
 from .models import Suggestion, Unit
 from .templatetags.store_tags import pluralize_source, pluralize_target
@@ -532,58 +530,6 @@ def permalink_redirect(request, unit):
 
 
 @ajax_required
-@get_unit_context('translate')
-def submit(request, unit, **kwargs_):
-    """Processes translation submissions and stores them in the database.
-
-    :return: An object in JSON notation that contains the previous and last
-             units for the unit next to unit ``uid``.
-    """
-    json = {}
-
-    translation_project = request.translation_project
-    language = translation_project.language
-
-    if unit.hasplural():
-        snplurals = len(unit.source.strings)
-    else:
-        snplurals = None
-
-    form_class = unit_form_factory(language, snplurals, request)
-    form = form_class(request.POST, instance=unit, request=request)
-
-    if form.is_valid():
-        suggestion = form.cleaned_data['suggestion']
-        if suggestion:
-            review.get(Suggestion)(
-                [suggestion],
-                request.user,
-                SubmissionTypes.WEB).accept()
-            if form.cleaned_data['comment']:
-                kwargs = dict(
-                    comment=form.cleaned_data['comment'],
-                    user=request.user,
-                )
-                comment_form = UnsecuredCommentForm(suggestion, kwargs)
-                if comment_form.is_valid():
-                    comment_form.save()
-
-        if form.updated_fields:
-            # Update current unit instance's attributes
-            # important to set these attributes after saving Submission
-            # because we need to access the unit's state before it was saved
-            form.save(changed_with=SubmissionTypes.WEB)
-            json['checks'] = _get_critical_checks_snippet(request, unit)
-
-        json['user_score'] = request.user.public_score
-        json['newtargets'] = [target for target in form.instance.target.strings]
-
-        return JsonResponse(json)
-
-    return JsonResponseBadRequest({'msg': _("Failed to process submission.")})
-
-
-@ajax_required
 @get_unit_context('suggest')
 def suggest(request, unit, **kwargs_):
     """Processes translation suggestions and stores them in the database.
@@ -702,3 +648,61 @@ def toggle_qualitycheck(request, unit, check_id, **kwargs_):
         raise Http404
 
     return JsonResponse({})
+
+
+class UnitSubmitJSON(UnitSuggestionJSON):
+
+    @set_permissions
+    @requires_permission("translate")
+    def dispatch(self, request, *args, **kwargs):
+        # get funky with the request 8/
+        return super(UnitSuggestionJSON, self).dispatch(request, *args, **kwargs)
+
+    @property
+    def form_class(self):
+        if self.get_suggestion():
+            return SuggestionSubmitForm
+        return SubmitForm
+
+    @property
+    def permission_context(self):
+        return self.get_object().store.parent
+
+    @lru_cache()
+    def get_object(self):
+        return get_object_or_404(
+            Unit,
+            id=self.request.resolver_match.kwargs["uid"])
+
+    @lru_cache()
+    def get_suggestion(self):
+        if "suggestion" in self.request.POST:
+            return get_object_or_404(
+                Suggestion,
+                unit_id=self.get_object().id,
+                id=self.request.POST["suggestion"])
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = dict(
+            unit=self.get_object(),
+            data=self.request.POST)
+        if self.get_suggestion():
+            kwargs["target_object"] = self.get_suggestion()
+            kwargs["data"]["comment"] = self.request.POST.get("comment")
+            kwargs["data"].update(
+                dict(user=self.request.user))
+        else:
+            kwargs["data"].update(
+                dict(user=self.request.user.id))
+        return kwargs
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(UnitSuggestionJSON, self).get_context_data(*args, **kwargs)
+        form = ctx["form"]
+        if form.is_valid():
+            form.unit.refresh_from_db()
+            result = dict(
+                checks=_get_critical_checks_snippet(self.request, form.unit),
+                user_score=self.request.user.public_score,
+                newtargets=[target for target in form.unit.target.strings])
+            return result
