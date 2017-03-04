@@ -199,9 +199,17 @@ class SuggestionsReview(object):
                 creation_time=make_aware(timezone.now()))
         return (suggestion, True)
 
-    def accept_suggestion(self, suggestion):
+    def accept_suggestion(self, suggestion, update_unit):
+        current_time = timezone.now()
+        accepted = SuggestionState.objects.get(name="accepted")
         unit = suggestion.unit
         translation_project = unit.store.translation_project
+        suggestion.state_id = accepted.id
+        suggestion.reviewer = self.reviewer
+        suggestion.review_time = current_time
+        suggestion.save()
+        if not update_unit:
+            return
 
         # Save for later
         old_state = unit.state
@@ -213,12 +221,6 @@ class SuggestionsReview(object):
         if unit.state == FUZZY:
             unit.state = TRANSLATED
 
-        current_time = timezone.now()
-        accepted = SuggestionState.objects.get(name="accepted")
-        suggestion.state_id = accepted.id
-        suggestion.reviewer = self.reviewer
-        suggestion.review_time = current_time
-        suggestion.save()
         create_subs = OrderedDict()
         create_subs[SubmissionFields.TARGET] = [old_target, unit.target]
         if old_state != unit.state:
@@ -274,12 +276,12 @@ class SuggestionsReview(object):
             unit.change.save()
         update_data.send(store.__class__, instance=store)
 
-    def accept_suggestions(self):
+    def accept_suggestions(self, update_unit):
         for suggestion in self.suggestions:
-            self.accept_suggestion(suggestion)
+            self.accept_suggestion(suggestion, update_unit)
 
-    def accept(self, comment=""):
-        self.accept_suggestions()
+    def accept(self, update_unit=True, comment=""):
+        self.accept_suggestions(update_unit)
         if self.should_notify(comment):
             self.notify_suggesters(rejected=False, comment=comment)
         if comment:
