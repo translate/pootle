@@ -116,32 +116,25 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         assert new_subs.count() == 2
         target_sub = new_subs[0]
         assert target_sub.old_value == ""
-        assert target_sub.new_value == suggestion.target
+        assert target_sub.new_value == unit.target
         assert target_sub.field == SubmissionFields.TARGET
         assert target_sub.type == SubmissionTypes.WEB
         assert target_sub.submitter == unit.change.reviewed_by
         assert target_sub.suggestion == suggestion
-
-        # THIS FAILS
-        # assert target_sub.revision == unit.revision
-        # assert target_sub.creation_time == unit.change.reviewed_on
+        assert target_sub.revision == unit.revision
+        assert target_sub.creation_time == unit.change.reviewed_on
 
         state_sub = new_subs[1]
+        assert state_sub.old_value == str(UNTRANSLATED)
+        assert state_sub.new_value == str(unit.state)
+        assert state_sub.suggestion == suggestion
 
-        # Not sure why these are the case
-        assert state_sub.old_value == suggestion.target
-        assert state_sub.new_value == unit.target
-        assert state_sub.suggestion_id is None
-
-        assert state_sub.field == SubmissionFields.TARGET
+        assert state_sub.field == SubmissionFields.STATE
         assert state_sub.type == SubmissionTypes.WEB
 
         assert state_sub.submitter == unit.change.reviewed_by
         assert state_sub.revision == unit.revision
-        assert target_sub.suggestion == suggestion
-
-        # this fails
-        # assert state_sub.creation_time == unit.change.reviewed_on
+        assert state_sub.creation_time == unit.change.reviewed_on
     else:
         assert response.status_code == 403
         assert suggestion.state.name == "pending"
@@ -191,11 +184,18 @@ def test_submit_with_suggestion(client, request_users, settings, system):
         assert unit.change.changed_with == SubmissionTypes.WEB
         assert suggestion.state.name == 'accepted'
         assert str(unit.target) == sugg.target_f
-        assert new_subs.count() == 1
-        update_sub = new_subs[0]
-        assert update_sub.suggestion == suggestion
-        assert update_sub.field == SubmissionFields.TARGET
-        assert update_sub.type == SubmissionTypes.WEB
+        assert new_subs.count() == 2
+        target_sub = new_subs[0]
+        assert target_sub.suggestion == suggestion
+        assert target_sub.field == SubmissionFields.TARGET
+        assert target_sub.type == SubmissionTypes.WEB
+        assert target_sub.submitter == user
+
+        state_sub = new_subs[1]
+        assert state_sub.suggestion == suggestion
+        assert state_sub.field == SubmissionFields.STATE
+        assert state_sub.type == SubmissionTypes.WEB
+        assert state_sub.submitter == user
     else:
         assert response.status_code == 403
         assert new_subs.count() == 0
