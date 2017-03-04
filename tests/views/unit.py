@@ -103,7 +103,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         unit_source = unit.unit_source.get()
         assert unit_source.created_by == system
         assert unit_source.created_with == SubmissionTypes.SYSTEM
-        assert unit.change.submitted_by == suggestion.user
+        assert unit.change.submitted_by == user
         assert unit.change.reviewed_by == user
         assert unit.change.changed_with == SubmissionTypes.WEB
 
