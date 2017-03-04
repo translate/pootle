@@ -167,5 +167,5 @@ def test_accept_sugg_submission_ordering(client, request_users, settings):
         state_sub = new_subs.order_by("pk").last()
         assert state_sub.field == SubmissionFields.STATE
     else:
-        assert response.status_code == 403
+        assert response.status_code == 404
         assert new_subs.count() == 0

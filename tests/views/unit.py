@@ -245,7 +245,7 @@ def test_accept_suggestion_with_comment(client, request_users, settings, system)
                        .for_model(suggestion)
                        .get().comment == comment)
     else:
-        assert response.status_code == 403
+        assert response.status_code == 404
         assert suggestion.state.name == "pending"
         assert unit.target == ""
         with pytest.raises(UnitChange.DoesNotExist):
@@ -289,7 +289,7 @@ def test_reject_suggestion_with_comment(client, request_users):
                        .for_model(suggestion)
                        .get().comment == comment)
     else:
-        assert response.status_code == 403
+        assert response.status_code == 404
         assert unit.target == ""
         assert suggestion.state.name == "pending"
         with pytest.raises(UnitChange.DoesNotExist):
@@ -318,7 +318,13 @@ def test_non_pending_suggestion(client, request_users, member, system):
     response = client.delete(
         url,
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
-    assert response.status_code == 403
+    can_review = (
+        check_permission('review', response.wsgi_request)
+        or suggestion.user.id == user.id)
+    if can_review:
+        assert response.status_code == 400
+    else:
+        assert response.status_code == 404
 
 
 @pytest.mark.django_db
@@ -360,7 +366,7 @@ def test_reject_translated_suggestion(client, request_users, member, system):
         assert unit.change.submitted_by == member
         assert unit.change.reviewed_by == user
     else:
-        assert response.status_code == 403
+        assert response.status_code == 404
         assert unit.target == "EXISTING TARGET"
         assert suggestion.state.name == "pending"
 
