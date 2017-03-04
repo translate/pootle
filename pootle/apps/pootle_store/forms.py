@@ -19,6 +19,7 @@ from django.utils.translation import get_language
 from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import review
 from pootle.core.url_helpers import split_pootle_path
+from pootle.core.utils.timezone import make_aware
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission, check_user_permission
@@ -506,17 +507,11 @@ class UnitSearchForm(forms.Form):
         raise forms.ValidationError("Unrecognized path")
 
 
-class SuggestionReviewForm(UnsecuredCommentForm):
-
+class BaseSuggestionForm(UnsecuredCommentForm):
     should_save = lambda self: True
-    action = forms.ChoiceField(
-        required=True,
-        choices=(
-            ("accept", "Accept"),
-            ("reject", "Reject")))
 
     def __init__(self, *args, **kwargs):
-        super(SuggestionReviewForm, self).__init__(*args, **kwargs)
+        super(BaseSuggestionForm, self).__init__(*args, **kwargs)
         self.fields["comment"].required = False
 
     @property
@@ -524,11 +519,20 @@ class SuggestionReviewForm(UnsecuredCommentForm):
         return SubmissionTypes.WEB
 
     @property
-    def review(self):
+    def suggestion_review(self):
         return review.get(self.target_object.__class__)(
             [self.target_object],
             self.cleaned_data["user"],
             review_type=self.review_type)
+
+
+class SuggestionReviewForm(BaseSuggestionForm):
+
+    action = forms.ChoiceField(
+        required=True,
+        choices=(
+            ("accept", "Accept"),
+            ("reject", "Reject")))
 
     def clean_action(self):
         if self.target_object.state.name != "pending":
@@ -557,8 +561,137 @@ class SuggestionReviewForm(UnsecuredCommentForm):
 
     def save(self):
         if self.cleaned_data["action"] == "accept":
-            self.review.accept()
+            self.suggestion_review.accept()
         else:
-            self.review.reject()
+            self.suggestion_review.reject()
         if self.cleaned_data["comment"]:
             super(SuggestionReviewForm, self).save()
+
+
+class SubmitFormMixin(object):
+
+    def __init__(self, *args, **kwargs):
+        self.unit = kwargs.pop("unit")
+        super(SubmitFormMixin, self).__init__(*args, **kwargs)
+        snplurals = (
+            len(self.unit.source.strings)
+            if self.unit.hasplural()
+            else None)
+        nplurals = (
+            self.unit.store.translation_project.language.nplurals
+            if snplurals
+            else 1)
+        self.fields["target_f"].widget = MultiStringWidget(
+            nplurals=nplurals,
+            attrs={
+                'lang': self.unit.store.translation_project.language.code,
+                'dir': self.unit.store.translation_project.language.direction,
+                'class': 'translation expanding focusthis js-translation-area',
+                'rows': 2,
+                'tabindex': 10})
+        self.fields['target_f'].widget.attrs[
+            'data-translation-aid'] = self['target_f'].value()
+        self.fields[
+            "target_f"].hidden_widget = HiddenMultiStringWidget(nplurals=nplurals)
+        self.fields["target_f"].fields = [
+            forms.CharField(strip=False) for i in range(nplurals)]
+
+
+class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
+
+    target_f = MultiStringFormField(required=False)
+
+    def save_unit(self):
+        user = self.cleaned_data["user"]
+        current_time = make_aware(timezone.now())
+        updated = []
+        self.suggestion_review.accept(
+            update_unit=(
+                False
+                if self.cleaned_data["target_f"]
+                else True))
+        if self.cleaned_data["target_f"]:
+            self.unit.target = self.cleaned_data["target_f"]
+            self.unit.save(
+                submitted_on=current_time,
+                submitted_by=self.target_object.user,
+                reviewed_on=current_time,
+                reviewed_by=user,
+                changed_with=SubmissionTypes.WEB)
+            updated.append(
+                (SubmissionFields.TARGET,
+                 self.unit._frozen.target,
+                 self.unit.target))
+        if self.unit.state_updated:
+            updated.append(
+                (SubmissionFields.STATE,
+                 self.unit._frozen.state,
+                 self.unit.state))
+        translation_project = self.unit.store.translation_project
+        for field, old_value, new_value in updated:
+            sub = Submission(
+                creation_time=current_time,
+                translation_project=translation_project,
+                suggestion=self.target_object,
+                submitter=user,
+                unit=self.unit,
+                field=field,
+                type=SubmissionTypes.WEB,
+                old_value=old_value,
+                new_value=new_value)
+            sub.save()
+
+    def save(self):
+        with update_data_after(self.unit.store):
+            self.save_unit()
+        if self.cleaned_data['comment']:
+            super(SuggestionSubmitForm, self).save()
+
+
+class SubmitForm(SubmitFormMixin, forms.Form):
+    user = forms.ModelChoiceField(queryset=get_user_model().objects.all())
+    state = UnitStateField(
+        required=False,
+        label=_('Needs work'))
+    target_f = MultiStringFormField(required=False)
+
+    def save_unit(self):
+        user = self.cleaned_data["user"]
+        current_time = make_aware(timezone.now())
+        updated = []
+        if multistring(self.cleaned_data["target_f"]) != self.unit.target:
+            self.unit.submitted_by = user
+            self.unit.submitted_on = current_time
+            self.unit.reviewed_by = None
+            self.unit.reviewed_on = None
+            updated.append(
+                (SubmissionFields.TARGET,
+                 self.unit.target_f,
+                 self.cleaned_data["target_f"]))
+            self.unit.target = self.cleaned_data["target_f"]
+        if self.cleaned_data["state"] != self.unit.state:
+            updated.append(
+                (SubmissionFields.STATE,
+                 self.unit.state,
+                 self.cleaned_data["state"]))
+            self.unit.state = self.cleaned_data["state"]
+        self.unit.save(
+            submitted_on=current_time,
+            submitted_by=user,
+            changed_with=SubmissionTypes.WEB)
+        translation_project = self.unit.store.translation_project
+        for field, old_value, new_value in updated:
+            sub = Submission(
+                creation_time=current_time,
+                translation_project=translation_project,
+                submitter=user,
+                unit=self.unit,
+                field=field,
+                type=SubmissionTypes.WEB,
+                old_value=old_value,
+                new_value=new_value)
+            sub.save()
+
+    def save(self):
+        with update_data_after(self.unit.store):
+            self.save_unit()
