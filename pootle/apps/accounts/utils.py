@@ -331,7 +331,7 @@ class UserPurger(object):
                 # If the unit has been changed more recently we don't need to
                 # revert the unit state.
                 submission.delete()
-                return
+                continue
             submission.delete()
             other_submissions = (unit.get_state_changes()
                                      .exclude(submitter=self.user))
