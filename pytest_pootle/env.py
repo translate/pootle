@@ -462,7 +462,6 @@ class PootleTestEnv(object):
 
     def _add_submissions(self, unit, created):
         from pootle.core.delegate import review
-        from pootle_statistics.models import SubmissionTypes
         from pootle_store.constants import UNTRANSLATED, FUZZY, OBSOLETE
         from pootle_store.models import Suggestion, Unit, UnitChange
 
@@ -492,11 +491,13 @@ class PootleTestEnv(object):
         if original_state == UNTRANSLATED:
             suggestion_review([suggestion], reviewer=admin).reject()
         else:
-            suggestion_review([suggestion], reviewer=admin).accept()
             Unit.objects.filter(pk=unit.pk).update(
                 submitted_on=next_time, mtime=next_time)
             UnitChange.objects.filter(
-                unit_id=unit.pk).update(submitted_on=next_time)
+                unit_id=unit.pk).update(
+                    reviewed_on=next_time,
+                    reviewed_by=admin)
+            suggestion_review([suggestion], reviewer=admin).accept()
         self._update_submission_times(
             unit, next_time, first_modified)
 
@@ -522,19 +523,10 @@ class PootleTestEnv(object):
             # Re-edit units with translations, adding some submissions
             # of SubmissionTypes.EDIT_TYPES
             old_target = unit.target
-            old_state = unit.state
             current_time = timezone.now() - timedelta(days=14)
 
             unit.target_f = "Updated %s" % old_target
-            unit.store.record_submissions(
-                unit,
-                old_target,
-                old_state,
-                current_time,
-                member,
-                SubmissionTypes.WEB,
-                target_updated=True)
-            unit.save()
+            unit.save(submitted_on=current_time)
 
     def setup_vfolders(self):
         from pytest_pootle.factories import VirtualFolderDBFactory

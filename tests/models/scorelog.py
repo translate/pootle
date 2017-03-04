@@ -8,10 +8,7 @@
 
 import pytest
 
-from pytest_pootle.factories import SubmissionFactory
-
-from pootle_statistics.models import (
-    ScoreLog, SubmissionTypes, SubmissionFields)
+from pootle_statistics.models import ScoreLog, SubmissionTypes
 
 
 TEST_EDIT_TYPES = (SubmissionTypes.WEB, SubmissionTypes.SYSTEM,
@@ -23,16 +20,5 @@ TEST_EDIT_TYPES = (SubmissionTypes.WEB, SubmissionTypes.SYSTEM,
 def test_record_submission(member, submission_type, store0):
     store = store0
     unit = store.units.first()
-
-    submission_params = {
-        'unit': unit,
-        'field': SubmissionFields.TARGET,
-        'type': submission_type,
-        'old_value': unit.target,
-        'new_value': 'New target',
-        'submitter': member,
-        'translation_project': store.translation_project,
-    }
-
-    sub = SubmissionFactory(**submission_params)
-    assert ScoreLog.objects.filter(submission=sub).count() == 1
+    assert ScoreLog.objects.filter(
+        submission=unit.submission_set.first()).count() == 1
