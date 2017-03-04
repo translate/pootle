@@ -1018,20 +1018,20 @@ class Store(AbstractStore):
         comment_updated = kwargs.get("comment_updated")
         create_subs = OrderedDict()
 
-        if state_updated:
-            create_subs[SubmissionFields.STATE] = [
-                old_state,
-                unit.state]
+        if comment_updated:
+            create_subs[SubmissionFields.COMMENT] = [
+                '',
+                unit.translator_comment or '']
 
         if target_updated:
             create_subs[SubmissionFields.TARGET] = [
                 old_target,
                 unit.target_f]
 
-        if comment_updated:
-            create_subs[SubmissionFields.COMMENT] = [
-                '',
-                unit.translator_comment or '']
+        if state_updated:
+            create_subs[SubmissionFields.STATE] = [
+                old_state,
+                unit.state]
 
         if submission_type is None:
             submission_type = SubmissionTypes.SYSTEM

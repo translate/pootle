@@ -347,15 +347,7 @@ def test_update_upload_defaults(store0, system):
     # there should be 2 new subs - state_change and target_change
     new_subs = unit.submission_set.filter(id__gt=last_sub_pk).order_by("id")
     assert new_subs.count() == 2
-    state_sub = new_subs[0]
-    assert state_sub.old_value == "0"
-    assert state_sub.new_value == "200"
-    assert state_sub.field == SubmissionFields.STATE
-    assert state_sub.type == SubmissionTypes.SYSTEM
-    assert state_sub.submitter == system
-    assert state_sub.revision == unit.revision
-    assert state_sub.creation_time == unit.change.submitted_on
-    target_sub = new_subs[1]
+    target_sub = new_subs[0]
     assert target_sub.old_value == ""
     assert target_sub.new_value == unit.target
     assert target_sub.field == SubmissionFields.TARGET
@@ -363,6 +355,14 @@ def test_update_upload_defaults(store0, system):
     assert target_sub.submitter == system
     assert target_sub.revision == unit.revision
     assert target_sub.creation_time == unit.change.submitted_on
+    state_sub = new_subs[1]
+    assert state_sub.old_value == "0"
+    assert state_sub.new_value == "200"
+    assert state_sub.field == SubmissionFields.STATE
+    assert state_sub.type == SubmissionTypes.SYSTEM
+    assert state_sub.submitter == system
+    assert state_sub.revision == unit.revision
+    assert state_sub.creation_time == unit.change.submitted_on
 
 
 @pytest.mark.django_db
@@ -391,15 +391,7 @@ def test_update_upload_member_user(store0, system, member):
     # there should be 2 new subs - state_change and target_change
     new_subs = unit.submission_set.filter(id__gt=last_sub_pk).order_by("id")
     assert new_subs.count() == 2
-    state_sub = new_subs[0]
-    assert state_sub.old_value == "0"
-    assert state_sub.new_value == "200"
-    assert state_sub.field == SubmissionFields.STATE
-    assert state_sub.type == SubmissionTypes.UPLOAD
-    assert state_sub.submitter == member
-    assert state_sub.revision == unit.revision
-    assert state_sub.creation_time == unit.change.submitted_on
-    target_sub = new_subs[1]
+    target_sub = new_subs[0]
     assert target_sub.old_value == ""
     assert target_sub.new_value == unit.target
     assert target_sub.field == SubmissionFields.TARGET
@@ -407,6 +399,14 @@ def test_update_upload_member_user(store0, system, member):
     assert target_sub.submitter == member
     assert target_sub.revision == unit.revision
     assert target_sub.creation_time == unit.change.submitted_on
+    state_sub = new_subs[1]
+    assert state_sub.old_value == "0"
+    assert state_sub.new_value == "200"
+    assert state_sub.field == SubmissionFields.STATE
+    assert state_sub.type == SubmissionTypes.UPLOAD
+    assert state_sub.submitter == member
+    assert state_sub.revision == unit.revision
+    assert state_sub.creation_time == unit.change.submitted_on
 
 
 @pytest.mark.django_db

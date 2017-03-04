@@ -103,7 +103,7 @@ def test_update_submission_ordering():
     )
     unit.store.update(store)
     submission_field = Submission.objects.filter(unit=unit).latest().field
-    assert submission_field == SubmissionFields.TARGET
+    assert submission_field == SubmissionFields.STATE
 
 
 @pytest.mark.django_db
