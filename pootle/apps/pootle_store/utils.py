@@ -18,7 +18,6 @@ from pootle.core.mail import send_mail
 from pootle.core.signals import update_data
 from pootle.core.utils.timezone import make_aware
 from pootle.i18n.gettext import ugettext as _
-from pootle_comment.forms import UnsecuredCommentForm
 from pootle_statistics.models import (
     MUTED, UNMUTED, Submission, SubmissionFields, SubmissionTypes)
 
@@ -159,13 +158,6 @@ class SuggestionsReview(object):
             users[suggestion.user].append(suggestion)
         return users
 
-    def add_comments(self, comment):
-        for suggestion in self.suggestions:
-            UnsecuredCommentForm(
-                suggestion,
-                dict(comment=comment,
-                     user=self.reviewer)).save()
-
     def add(self, unit, translation, user=None):
         """Adds a new suggestion to the unit.
 
@@ -284,8 +276,6 @@ class SuggestionsReview(object):
         self.accept_suggestions(update_unit)
         if self.should_notify(comment):
             self.notify_suggesters(rejected=False, comment=comment)
-        if comment:
-            self.add_comments(comment=comment)
 
     def build_absolute_uri(self, url):
         return site.get().build_absolute_uri(url)
@@ -318,8 +308,6 @@ class SuggestionsReview(object):
         self.reject_suggestions()
         if self.should_notify(comment):
             self.notify_suggesters(rejected=True, comment=comment)
-        if comment:
-            self.add_comments(comment)
 
     def send_mail(self, template, subject, suggester, suggestions, comment):
         send_mail(
