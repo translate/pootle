@@ -14,7 +14,7 @@ from translate.lang import data
 
 from django import forms
 from django.conf import settings
-from django.core.exceptions import ObjectDoesNotExist, PermissionDenied
+from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404, QueryDict
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
@@ -688,7 +688,9 @@ class UnitSuggestionJSON(PootleJSONMixin, GatherContextMixin, FormView):
             self.get_context_data(form=form))
 
     def form_invalid(self, form):
-        raise PermissionDenied(form.errors)
+        if form.non_field_errors():
+            raise Http404
+        raise Http400(form.errors)
 
 
 @ajax_required
