@@ -532,23 +532,23 @@ class SuggestionReviewForm(UnsecuredCommentForm):
 
     def clean_action(self):
         if self.target_object.state.name != "pending":
-            raise forms.ValidationError(
-                _("Suggestion '%s' cannot be accepted/rejected twice!",
-                  self.target_object))
+            self.add_error(
+                "action",
+                forms.ValidationError(
+                    _("Suggestion '%s' cannot be accepted/rejected twice!",
+                      self.target_object)))
         return self.data["action"]
 
     def clean(self):
-        if self.errors:
-            return
         self_review = (
             self.cleaned_data["user"] == self.target_object.user
-            and self.cleaned_data["action"] == "reject")
+            and self.cleaned_data.get("action") == "reject")
         permission = (
             "view"
             if self_review
             else "review")
         has_permission = check_user_permission(
-            self.cleaned_data["user"],
+            self.cleaned_data.get("user"),
             permission,
             self.target_object.unit.store.parent)
         if not has_permission:
