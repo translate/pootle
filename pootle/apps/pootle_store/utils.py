@@ -191,17 +191,8 @@ class SuggestionsReview(object):
                 creation_time=make_aware(timezone.now()))
         return (suggestion, True)
 
-    def accept_suggestion(self, suggestion, update_unit):
-        current_time = timezone.now()
-        accepted = SuggestionState.objects.get(name="accepted")
+    def update_unit_on_accept(self, suggestion):
         unit = suggestion.unit
-        translation_project = unit.store.translation_project
-        suggestion.state_id = accepted.id
-        suggestion.reviewer = self.reviewer
-        suggestion.review_time = current_time
-        suggestion.save()
-        if not update_unit:
-            return
 
         # Save for later
         old_state = unit.state
@@ -212,7 +203,16 @@ class SuggestionsReview(object):
         unit.target = suggestion.target
         if unit.state == FUZZY:
             unit.state = TRANSLATED
-
+        unit.submitted_by = suggestion.user
+        unit.submitted_on = suggestion.review_time
+        unit.reviewed_by = self.reviewer
+        unit.reviewed_on = unit.submitted_on
+        unit.save(
+            submitted_by=suggestion.user,
+            submitted_on=suggestion.review_time,
+            changed_with=self.review_type,
+            reviewed_by=self.reviewer,
+            reviewed_on=suggestion.review_time)
         create_subs = OrderedDict()
         create_subs[SubmissionFields.TARGET] = [old_target, unit.target]
         if old_state != unit.state:
@@ -220,8 +220,8 @@ class SuggestionsReview(object):
         subs_created = []
         for field in create_subs:
             kwargs = {
-                'creation_time': current_time,
-                'translation_project': translation_project,
+                'creation_time': unit.change.reviewed_on,
+                'translation_project': unit.store.translation_project,
                 'submitter': self.reviewer,
                 'unit': unit,
                 'revision': unit.revision,
@@ -235,22 +235,14 @@ class SuggestionsReview(object):
         if subs_created:
             unit.submission_set.add(*subs_created, bulk=False)
 
-        # FIXME: remove such a dependency on `ScoreLog`
-        # Update current unit instance's attributes
-        # important to set these attributes after saving Submission
-        # because in the `ScoreLog` we need to access the unit's certain
-        # attributes before it was saved
-        # THIS NEEDS TO GO ^^
-        unit.submitted_by = suggestion.user
-        unit.submitted_on = current_time
-        unit.reviewed_by = self.reviewer
-        unit.reviewed_on = unit.submitted_on
-        unit.save(
-            submitted_by=suggestion.user,
-            submitted_on=current_time,
-            changed_with=self.review_type,
-            reviewed_by=self.reviewer,
-            reviewed_on=make_aware(timezone.now()))
+    def accept_suggestion(self, suggestion, update_unit):
+        accepted = SuggestionState.objects.get(name="accepted")
+        suggestion.state_id = accepted.id
+        suggestion.reviewer = self.reviewer
+        suggestion.review_time = make_aware(timezone.now())
+        if update_unit:
+            self.update_unit_on_accept(suggestion)
+        suggestion.save()
 
     def reject_suggestion(self, suggestion):
         store = suggestion.unit.store
