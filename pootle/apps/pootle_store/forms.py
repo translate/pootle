@@ -670,15 +670,17 @@ class SubmitForm(SubmitFormMixin, forms.Form):
                  self.cleaned_data["target_f"]))
             self.unit.target = self.cleaned_data["target_f"]
         if self.cleaned_data["state"] != self.unit.state:
-            updated.append(
-                (SubmissionFields.STATE,
-                 self.unit.state,
-                 self.cleaned_data["state"]))
             self.unit.state = self.cleaned_data["state"]
         self.unit.save(
             submitted_on=current_time,
             submitted_by=user,
             changed_with=SubmissionTypes.WEB)
+        if self.unit.state_updated:
+            updated.append(
+                (SubmissionFields.STATE,
+                 self.unit.state,
+                 self.cleaned_data["state"]))
+            self.unit.state = self.cleaned_data["state"]
         translation_project = self.unit.store.translation_project
         for field, old_value, new_value in updated:
             sub = Submission(

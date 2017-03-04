@@ -130,7 +130,7 @@ def test_new_translation_submission_ordering(client, request_users, settings):
     if check_permission('translate', response.wsgi_request):
         assert response.status_code == 200
         submission_field = Submission.objects.filter(unit=unit).latest().field
-        assert submission_field == SubmissionFields.TARGET
+        assert submission_field == SubmissionFields.STATE
     else:
         assert response.status_code == 403
 
