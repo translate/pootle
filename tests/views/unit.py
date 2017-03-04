@@ -103,7 +103,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         unit_source = unit.unit_source.get()
         assert unit_source.created_by == system
         assert unit_source.created_with == SubmissionTypes.SYSTEM
-        assert unit.change.submitted_by == user
+        assert unit.change.submitted_by == suggestion.user
         assert unit.change.reviewed_by == user
         assert unit.change.changed_with == SubmissionTypes.WEB
 
@@ -118,7 +118,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         assert target_sub.new_value == unit.target
         assert target_sub.field == SubmissionFields.TARGET
         assert target_sub.type == SubmissionTypes.WEB
-        assert target_sub.submitter == unit.change.reviewed_by
+        assert target_sub.submitter == unit.change.submitted_by
         assert target_sub.suggestion == suggestion
         assert target_sub.revision == unit.revision
         assert target_sub.creation_time == unit.change.reviewed_on
@@ -131,7 +131,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         assert state_sub.field == SubmissionFields.STATE
         assert state_sub.type == SubmissionTypes.WEB
 
-        assert state_sub.submitter == unit.change.reviewed_by
+        assert state_sub.submitter == unit.change.submitted_by
         assert state_sub.revision == unit.revision
         assert state_sub.creation_time == unit.change.reviewed_on
     else:
@@ -188,13 +188,13 @@ def test_submit_with_suggestion(client, request_users, settings, system):
         assert target_sub.suggestion == suggestion
         assert target_sub.field == SubmissionFields.TARGET
         assert target_sub.type == SubmissionTypes.WEB
-        assert target_sub.submitter == user
+        assert target_sub.submitter == suggestion.user
 
         state_sub = new_subs[1]
         assert state_sub.suggestion == suggestion
         assert state_sub.field == SubmissionFields.STATE
         assert state_sub.type == SubmissionTypes.WEB
-        assert state_sub.submitter == user
+        assert state_sub.submitter == suggestion.user
     else:
         assert response.status_code == 403
         assert new_subs.count() == 0
