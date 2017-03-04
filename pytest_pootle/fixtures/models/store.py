@@ -271,7 +271,7 @@ def _create_comment_on_unit(unit, user, comment):
         new_value=comment,
     )
     sub.save()
-    unit.save()
+    unit.save(commented_by=user, commented_on=unit.commented_on)
 
 
 def _mark_unit_fuzzy(unit, user):
