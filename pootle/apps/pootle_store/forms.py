@@ -614,11 +614,6 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
     def save_unit(self):
         current_time = make_aware(timezone.now())
         updated = []
-        self.suggestion_review.accept(
-            update_unit=(
-                False
-                if self.cleaned_data["target_f"]
-                else True))
         if self.cleaned_data["target_f"]:
             self.unit.target = self.cleaned_data["target_f"]
             self.unit.save(
@@ -649,6 +644,11 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
                 old_value=old_value,
                 new_value=new_value)
             sub.save()
+        self.suggestion_review.accept(
+            update_unit=(
+                False
+                if self.cleaned_data["target_f"]
+                else True))
 
     def save(self):
         with update_data_after(self.unit.store):
