@@ -11,6 +11,7 @@
 {% assets "js_editor" %}
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 {% endassets %}
+{% include 'editor/_extra_scripts.html' %}
 <script type="text/javascript">
 $(function() {
   var options = {
