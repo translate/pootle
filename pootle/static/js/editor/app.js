@@ -2219,6 +2219,11 @@ PTL.editor = {
     if (!sText.length || src === tgt) {
       return;
     }
+    // Exit if source language is not supported by tm service.
+    if (this.settings.tmSourceLanguages === undefined ||
+        this.settings.tmSourceLanguages.indexOf(src) < 0) {
+      return;
+    }
 
     const pStyle = store.project_style;
     let tmUrl = `${this.settings.tmUrl}${src}/${tgt}/unit/` +

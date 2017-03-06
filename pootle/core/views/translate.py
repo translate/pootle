@@ -16,6 +16,7 @@ from pootle_misc.checks import (
     CATEGORY_IDS, check_names,
     get_qualitycheck_schema, get_qualitychecks)
 from pootle_misc.forms import make_search_form
+from pootle_store.constants import AMAGAMA_SOURCE_LANGUAGES
 
 from .base import PootleDetailView
 
@@ -83,5 +84,6 @@ class PootleTranslateView(PootleDetailView):
              'previous_url': get_previous_url(self.request),
              'POOTLE_MT_BACKENDS': settings.POOTLE_MT_BACKENDS,
              'AMAGAMA_URL': settings.AMAGAMA_URL,
+             'AMAGAMA_SOURCE_LANGUAGES': AMAGAMA_SOURCE_LANGUAGES,
              'editor_extends': self.template_extends})
         return ctx

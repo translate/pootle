@@ -1,4 +1,4 @@
-{% load assets store_tags %}
+{% load assets store_tags core %}
 <script id="tm_suggestions" type="text/template">
 {% include_raw "editor/units/xhr_tm.html" %}
 </script>
@@ -15,6 +15,9 @@
 $(function() {
   var options = {
     tmUrl: '{{ AMAGAMA_URL }}',
+  {% if AMAGAMA_URL %}
+    tmSourceLanguages: {{ AMAGAMA_SOURCE_LANGUAGES|to_js }},
+  {% endif %}
     pootlePath: '{{ pootle_path }}',
     vFolder: '{{ current_vfolder_pk }}',
     ctxPath: '{{ ctx_path }}',
