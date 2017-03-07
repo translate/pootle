@@ -9,7 +9,7 @@
 import json
 import pytest
 
-from django.http import Http404
+from django.http import Http404, QueryDict
 
 from pytest_pootle.utils import create_api_request
 
@@ -80,18 +80,17 @@ def test_submit_with_suggestion_and_comment(client, request_users,
     url = '/xhr/units/%d/' % unit.id
     edited_target = "Edited %s" % sugg.target_f
     comment = 'This is a comment!'
-
+    qdict = QueryDict(mutable=True)
+    qdict.update(
+        {'state': False,
+         'target_f_0': edited_target,
+         'suggestion': sugg.id,
+         'comment': comment})
+    qdict._mutable = False
     response = client.post(
         url,
-        {
-            'state': False,
-            'target_f_0': edited_target,
-            'suggestion': sugg.id,
-            'comment': comment
-        },
-        HTTP_X_REQUESTED_WITH='XMLHttpRequest'
-    )
-
+        qdict,
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
     suggestion = Suggestion.objects.get(id=sugg.id)
     unit = Unit.objects.get(id=unit.id)
     new_subs = unit.submission_set.filter(id__gt=last_sub_pk).order_by("id")
