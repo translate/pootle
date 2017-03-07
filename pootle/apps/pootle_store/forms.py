@@ -572,6 +572,7 @@ class SubmitFormMixin(object):
 
     def __init__(self, *args, **kwargs):
         self.unit = kwargs.pop("unit")
+        self.request_user = kwargs.pop("request_user")
         super(SubmitFormMixin, self).__init__(*args, **kwargs)
         snplurals = (
             len(self.unit.source.strings)
@@ -595,6 +596,12 @@ class SubmitFormMixin(object):
             "target_f"].hidden_widget = HiddenMultiStringWidget(nplurals=nplurals)
         self.fields["target_f"].fields = [
             forms.CharField(strip=False) for i in range(nplurals)]
+        for k in ["user", "name", "email"]:
+            if k in self.fields:
+                self.fields[k].required = False
+
+    def clean_user(self):
+        return self.request_user
 
 
 class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
