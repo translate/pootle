@@ -32,3 +32,10 @@ def po2():
     # register po2
     return registry.register(
         "special_po_2", "po2", template_extension="pot2")
+
+
+@pytest.fixture
+def xliff():
+    from pootle_format.models import Format
+
+    return Format.objects.get(name="xliff")

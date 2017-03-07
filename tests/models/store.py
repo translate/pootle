@@ -1716,3 +1716,23 @@ def test_store_update_with_state_change(store0, admin):
 
     for unit_id, unit in units.items():
         assert unit[2] == store0.units.get(id=unit_id).isfuzzy()
+
+
+@pytest.mark.django_db
+def test_update_xliff(store_po, test_fs, xliff):
+    project = store_po.translation_project.project
+    filetype_tool = project.filetype_tool
+    project.filetypes.add(xliff)
+    filetype_tool.set_store_filetype(store_po, xliff)
+
+    with test_fs.open(['data', 'xliff', 'welcome.xliff']) as f:
+        file_store = getclass(f)(f.read())
+    store_po.update(file_store)
+    unit = store_po.units[0]
+    assert unit.istranslated()
+
+    with test_fs.open(['data', 'xliff', 'updated_welcome.xliff']) as f:
+        file_store = getclass(f)(f.read())
+    store_po.update(file_store)
+    updated_unit = store_po.units.get(id=unit.id)
+    assert unit.source != updated_unit.source
