@@ -113,6 +113,7 @@ class UnitUpdater(object):
             and self.update.store_revision is not None
             and self.update.store_revision < self.unit.revision
             and (self.target_updated
+                 or self.state_updated
                  or self.unit.source != self.newunit.source))
 
     @property
