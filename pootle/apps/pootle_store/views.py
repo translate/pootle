@@ -685,15 +685,10 @@ class UnitSubmitJSON(UnitSuggestionJSON):
     def get_form_kwargs(self, **kwargs):
         kwargs = dict(
             unit=self.get_object(),
+            request_user=self.request.user,
             data=self.request.POST)
         if self.get_suggestion():
             kwargs["target_object"] = self.get_suggestion()
-            kwargs["data"]["comment"] = self.request.POST.get("comment")
-            kwargs["data"].update(
-                dict(user=self.request.user))
-        else:
-            kwargs["data"].update(
-                dict(user=self.request.user.id))
         return kwargs
 
     def get_context_data(self, *args, **kwargs):
