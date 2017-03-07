@@ -1701,3 +1701,18 @@ def test_store_sync_template(project0_nongnu, templates_project0, caplog):
     assert modified == os.stat(template.file.path).st_mtime
     template.sync(conservative=False)
     assert not modified == os.stat(template.file.path).st_mtime
+
+
+@pytest.mark.django_db
+def test_store_update_with_state_change(store0, admin):
+    units = dict([(x.id, (x.source, x.target, not x.isfuzzy()))
+                  for x in store0.units])
+
+    update_store(
+        store0,
+        units=units.values(),
+        store_revision=store0.data.max_unit_revision,
+        user=admin)
+
+    for unit_id, unit in units.items():
+        assert unit[2] == store0.units.get(id=unit_id).isfuzzy()
