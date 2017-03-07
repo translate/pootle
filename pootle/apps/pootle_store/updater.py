@@ -138,13 +138,22 @@ class UnitUpdater(object):
                 self.conflict_found
                 and self.update.resolve_conflict == POOTLE_WINS))
 
+    @property
+    def should_update_state(self):
+        return (
+            self.newunit
+            and self.state_updated
+            and not (
+                self.conflict_found
+                and self.update.resolve_conflict == POOTLE_WINS))
+
     @cached_property
     def should_update_source(self):
         return (self.newunit
                 and self.unit.source != self.newunit.source)
 
     @cached_property
-    def should_update_state(self):
+    def state_updated(self):
         # `fuzzy` state change is checked here.
         # `translated` and `obsolete` states are handled separately.
         return (self.newunit
