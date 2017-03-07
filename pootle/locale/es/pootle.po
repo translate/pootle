@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-02-08 08:29+0000\n"
+"PO-Revision-Date: 2017-03-06 13:42+0000\n"
 "Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1486542550.000000\n"
+"X-POOTLE-MTIME: 1488807767.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -933,22 +933,21 @@ msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
-"Un código corto para el proyecto. Debería contener sólo caracteres ASCII, "
-"números, y el carácter de guión bajo (_)."
+"Un código corto para el proyecto. Debería contener solo caracteres ASCII, "
+"números y el carácter de guion bajo (_)."
 
 #: apps/pootle_project/models.py:215
 msgid "Quality Checks"
-msgstr "Control de calidad"
+msgstr "Comprobaciones de calidad"
 
 #: apps/pootle_project/models.py:221
-#, fuzzy
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
 msgstr ""
 "Detección automática de disposiciones de archivos GNU/no GNU (más lenta)"
 
 #: apps/pootle_project/models.py:222
 msgid "GNU style: files named by language code"
-msgstr "El estilo GNU: archivos nombrados por código de idioma"
+msgstr "Estilo GNU: archivos nombrados por código de idioma"
 
 #: apps/pootle_project/models.py:223
 msgid "Non-GNU: Each language in its own directory"
@@ -969,7 +968,7 @@ msgstr "Ignorar archivos"
 
 #: apps/pootle_project/models.py:242
 msgid "Errors Report Email"
-msgstr "Dirección de correo e. para informes de errores"
+msgstr "Dirección de correo para informes de errores"
 
 #: apps/pootle_project/models.py:243
 msgid "An email address where issues with the source text can be reported."
@@ -1650,15 +1649,15 @@ msgstr "MySQL necesita la configuración de huso horario."
 
 #: checks.py:558
 msgid "Pootle does not yet support Python 3."
-msgstr ""
+msgstr "Pootle aún no admite Python 3."
 
 #: checks.py:559 checks.py:565
 msgid "Use a Python 2.7 virtualenv."
-msgstr ""
+msgstr "Utilice un entorno virtual virtualenv con Python 2.7."
 
 #: checks.py:564
 msgid "Pootle no longer supports Python versions older than 2.7"
-msgstr ""
+msgstr "Pootle ya no admite versiones de Python anteriores a la 2.7"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37

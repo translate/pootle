@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:44+0100\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2017-03-06 15:56+0000\n"
+"Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Translate Toolkit 1.9.1-pre\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1488815773.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -59,7 +60,7 @@ msgstr[1] ""
 
 #: static/js/admin/components/Language/LanguageController.js:79
 msgid "Search Languages"
-msgstr ""
+msgstr "Serĉi lingvojn"
 
 #: static/js/admin/components/Language/LanguageController.js:80
 msgid "Find language by name, code"
@@ -67,7 +68,7 @@ msgstr ""
 
 #: static/js/admin/components/Language/LanguageEdit.js:28
 msgid "Edit Language"
-msgstr ""
+msgstr "Redakti lingvon"
 
 #: static/js/admin/components/Language/LanguageEdit.js:38
 msgid ""
@@ -136,7 +137,7 @@ msgstr[1] ""
 
 #: static/js/admin/components/Project/ProjectController.js:79
 msgid "Search Projects"
-msgstr ""
+msgstr "Serĉi projektojn"
 
 #: static/js/admin/components/Project/ProjectController.js:80
 msgid "Find project by name, code"
@@ -144,7 +145,7 @@ msgstr ""
 
 #: static/js/admin/components/Project/ProjectEdit.js:28
 msgid "Edit Project"
-msgstr ""
+msgstr "Redakti projekton"
 
 #: static/js/admin/components/Project/ProjectEdit.js:38
 msgid ""
@@ -185,15 +186,15 @@ msgstr ""
 
 #: static/js/admin/components/Project/ProjectForm.js:149
 msgid "Languages"
-msgstr ""
+msgstr "Lingvoj"
 
 #: static/js/admin/components/Project/ProjectForm.js:150
 msgid "Permissions"
-msgstr ""
+msgstr "Permesoj"
 
 #: static/js/admin/components/Project/ProjectForm.js:152
 msgid "Filesystems"
-msgstr ""
+msgstr "Dosiersistemoj"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -249,7 +250,7 @@ msgstr ""
 #: static/js/auth/components/SignInForm.js:95
 #: static/js/auth/components/SignUpForm.js:84
 msgid "Username"
-msgstr ""
+msgstr "Uzantnomo"
 
 #: static/js/admin/components/User/UserForm.js:73
 msgid "Active"
@@ -261,7 +262,7 @@ msgstr ""
 #: static/js/auth/components/SocialVerification.js:99
 #: static/js/auth/components/PasswordResetForm.js:117
 msgid "Password"
-msgstr ""
+msgstr "Pasvorto"
 
 #: static/js/admin/components/User/UserForm.js:82
 msgid "Set a new password"
@@ -270,7 +271,7 @@ msgstr ""
 #: static/js/admin/components/User/UserForm.js:98
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr ""
+msgstr "Retpoŝtadreso"
 
 #: static/js/admin/components/User/UserForm.js:108
 msgid "Administrator"
@@ -279,7 +280,7 @@ msgstr ""
 #: static/js/admin/components/User/UserForm.js:116
 #: static/js/user/components/UserProfileForm.js:92
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: static/js/admin/components/User/UserForm.js:118
 msgid "Twitter username"
@@ -297,7 +298,7 @@ msgstr ""
 #: static/js/admin/components/User/UserForm.js:133
 #: static/js/user/components/UserProfileForm.js:109
 msgid "Website"
-msgstr ""
+msgstr "Retejo"
 
 #: static/js/admin/components/User/UserForm.js:135
 msgid "Personal website URL"
@@ -350,7 +351,7 @@ msgstr ""
 #: static/js/auth/components/AccountInactive.js:35
 #: static/js/auth/components/EmailConfirmation.js:34
 msgid "Close"
-msgstr ""
+msgstr "Fermi"
 
 #: static/js/auth/components/AccountInactive.js:29
 msgid "Your account is inactive because an administrator deactivated it."

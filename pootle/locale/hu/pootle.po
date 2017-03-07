@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-02-19 13:24+0000\n"
+"PO-Revision-Date: 2017-03-06 21:02+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hu\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1487510644.000000\n"
+"X-POOTLE-MTIME: 1488834133.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -935,9 +935,8 @@ msgid "Quality Checks"
 msgstr "Minőség-ellenőrzés"
 
 #: apps/pootle_project/models.py:221
-#, fuzzy
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
-msgstr "A gnu/nem gnu fájlelrendezések automatikus felismerése (lassabb)"
+msgstr "A GNU/nem GNU fájlelrendezések automatikus felismerése (lassabb)"
 
 #: apps/pootle_project/models.py:222
 msgid "GNU style: files named by language code"
@@ -1643,15 +1642,15 @@ msgstr "A MySQL időzóna-beállításokat igényel."
 
 #: checks.py:558
 msgid "Pootle does not yet support Python 3."
-msgstr ""
+msgstr "A Pootle még nem támogatja a Python 3-at."
 
 #: checks.py:559 checks.py:565
 msgid "Use a Python 2.7 virtualenv."
-msgstr ""
+msgstr "Használjon Python 2.7-es virtualenv-et."
 
 #: checks.py:564
 msgid "Pootle no longer supports Python versions older than 2.7"
-msgstr ""
+msgstr "A Pootle már nem támogatja a 2.7-nél régebbi Python verziókat"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -2385,11 +2384,11 @@ msgstr "Vissza a tallózáshoz"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
-msgstr "Javaslatok"
+msgstr "Saját javaslataim"
 
 #: templates/editor/_filters.html:13
 msgid "My submissions"
-msgstr "Beküldések"
+msgstr "Saját beküldéseim"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point

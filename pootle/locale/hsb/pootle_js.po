@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-07 22:44+0100\n"
-"PO-Revision-Date: 2017-02-25 17:29+0000\n"
+"PO-Revision-Date: 2017-03-05 10:07+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1488043747.000000\n"
+"X-POOTLE-MTIME: 1488708477.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -243,11 +243,11 @@ msgstr[3] "Je %(count)s wužiwarjow. Deleka su njedawno přidaći."
 
 #: static/js/admin/components/User/UserController.js:79
 msgid "Search Users"
-msgstr "Wužiwarjow přepytowaś"
+msgstr "Wužiwarjow přepytować"
 
 #: static/js/admin/components/User/UserController.js:80
 msgid "Find user by name, email, properties"
-msgstr "Wužiwar po mjenje, e-mejli abo kajkosćach pytać"
+msgstr "Wužiwarja po mjenje, e-mejli abo kajkosćach pytać"
 
 #: static/js/admin/components/User/UserEdit.js:28
 msgid "Edit User"
@@ -541,7 +541,7 @@ msgstr "Wjace..."
 
 #: static/js/browser/components/Stats.js:67
 msgid "Contributors, 30 Days"
-msgstr "Sobuskutkowarjo, 30 dnjow"
+msgstr "Přinošowarjo, 30 dnjow"
 
 #: static/js/browser/components/TopContributorsTable.js:17
 #, python-format
@@ -590,7 +590,7 @@ msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
-"Dźiće k přichodnemu znamješkowemu rjećazkej (Str+.)<br/><br/>Tež:<br/"
+"Dźi k přichodnemu znamješkowemu rjećazkej (Str+.)<br/><br/>Tež:<br/"
 ">Přichodna strona: Strg+Umsch+.<br/>Poslednja strona: Strg+Umsch+Ende"
 
 #: static/js/editor/app.js:390
@@ -598,7 +598,7 @@ msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
-"Dźiće k předchadnemu znamješkowemu rjećazkej (Str+,)<br/><br/>Tež:<br/"
+"Dźi k předchadnemu znamješkowemu rjećazkej (Str+,)<br/><br/>Tež:<br/"
 ">Předchadna strona: Strg+Umsch+,<br/>Prěnja strona: Strg+Umsch+Pos1"
 
 #. Translators: '%s' is a username
