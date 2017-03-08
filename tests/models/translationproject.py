@@ -17,6 +17,7 @@ from django.db import IntegrityError
 from pytest_pootle.factories import (
     LanguageDBFactory, ProjectDBFactory, TranslationProjectFactory)
 
+from pootle.core.delegate import revision
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.models import Store
@@ -175,3 +176,15 @@ def test_tp_create_with_none_treestyle(po_directory, english, templates, setting
         os.path.join(
             settings.POOTLE_TRANSLATION_DIRECTORY,
             project.code))
+
+
+@pytest.mark.django_db
+def test_tp_cache_on_delete(tp0):
+    proj_revision = revision.get(
+        tp0.project.directory.__class__)(
+            tp0.project.directory)
+    orig_revision = proj_revision.get("stats")
+    tp0.delete()
+    assert (
+        proj_revision.get("stats")
+        != orig_revision)
