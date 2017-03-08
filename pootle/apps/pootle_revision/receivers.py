@@ -13,6 +13,7 @@ from pootle.core.delegate import revision_updater
 from pootle_app.models import Directory
 from pootle_data.models import StoreData
 from pootle_store.models import Store
+from pootle_translationproject.models import TranslationProject
 
 
 @receiver(post_save, sender=StoreData)
@@ -35,3 +36,9 @@ def handle_directory_save(**kwargs):
 def handle_directory_delete(**kwargs):
     revision_updater.get(Directory)(
         context=kwargs["instance"].parent).update(keys=["stats", "checks"])
+
+
+@receiver(pre_delete, sender=TranslationProject)
+def handle_tp_delete(**kwargs):
+    revision_updater.get(Directory)(
+        context=kwargs["instance"].directory).update(keys=["stats", "checks"])
