@@ -24,22 +24,29 @@ from .signals import comment_was_saved
 User = get_user_model()
 
 
-class CommentForm(DjCommentForm):
+class RequestUserFormMixin(object):
+    def __init__(self, *args, **kwargs):
+        self.request_user = kwargs.pop("request_user")
+        super(RequestUserFormMixin, self).__init__(*args, **kwargs)
+        for k in ["user", "name", "email"]:
+            if k in self.fields:
+                self.fields[k].required = False
+
+    def clean_user(self):
+        return self.request_user
+
+
+class CommentForm(RequestUserFormMixin, DjCommentForm):
     user = forms.ModelChoiceField(queryset=User.objects.all())
 
     def __init__(self, target_object, data=None, *args, **kwargs):
-        if data:
-            data["object_pk"] = str(target_object.pk)
-            data["content_type"] = str(target_object._meta)
-            if data.get("user"):
-                data["user"] = str(data["user"].pk)
+        d = data
+        if data and not getattr(data, '_mutable', True):
+            d = data.copy()
+            d["object_pk"] = str(target_object.pk)
+            d["content_type"] = str(target_object._meta)
 
-        super(CommentForm, self).__init__(
-            target_object, data, *args, **kwargs)
-
-        if data and data.get("user"):
-            self.fields["name"].required = False
-            self.fields["email"].required = False
+        super(CommentForm, self).__init__(target_object, d, *args, **kwargs)
 
     @cached_property
     def comment(self):
@@ -69,5 +76,4 @@ class UnsecuredCommentForm(CommentForm):
     def __init__(self, target_object, data=None, *args, **kwargs):
         super(UnsecuredCommentForm, self).__init__(
             target_object, data, *args, **kwargs)
-        if data:
-            data.update(self.generate_security_data())
+        self.data.update(self.generate_security_data())
