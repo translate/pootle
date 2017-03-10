@@ -976,16 +976,17 @@ class Store(AbstractStore):
         :return: The number of units marked as obsolete.
         """
         obsoleted = 0
-        for unit in self.findid_bulk(uids_to_obsolete):
-            # Use the same (parent) object since units will
-            # accumulate the list of cache attributes to clear
-            # in the parent Store object
-            unit.store = self
-            if not unit.isobsolete():
-                unit.makeobsolete()
-                unit.revision = update_revision
-                unit.save()
-                obsoleted += 1
+        with update_data_after(self):
+            for unit in self.findid_bulk(uids_to_obsolete):
+                # Use the same (parent) object since units will
+                # accumulate the list of cache attributes to clear
+                # in the parent Store object
+                unit.store = self
+                if not unit.isobsolete():
+                    unit.makeobsolete()
+                    unit.revision = update_revision
+                    unit.save()
+                    obsoleted += 1
 
         return obsoleted
 
