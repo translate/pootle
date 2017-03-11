@@ -23,7 +23,7 @@ from pootle.core.utils.timezone import make_aware
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission, check_user_permission
-from pootle_comment.forms import UnsecuredCommentForm
+from pootle_comment.forms import RequestUserFormMixin, UnsecuredCommentForm
 from pootle_misc.checks import CATEGORY_CODES, check_names
 from pootle_misc.util import get_date_interval
 from pootle_project.models import Project
@@ -572,7 +572,6 @@ class SubmitFormMixin(object):
 
     def __init__(self, *args, **kwargs):
         self.unit = kwargs.pop("unit")
-        self.request_user = kwargs.pop("request_user")
         super(SubmitFormMixin, self).__init__(*args, **kwargs)
         snplurals = (
             len(self.unit.source.strings)
@@ -596,12 +595,6 @@ class SubmitFormMixin(object):
             "target_f"].hidden_widget = HiddenMultiStringWidget(nplurals=nplurals)
         self.fields["target_f"].fields = [
             forms.CharField(strip=False) for i in range(nplurals)]
-        for k in ["user", "name", "email"]:
-            if k in self.fields:
-                self.fields[k].required = False
-
-    def clean_user(self):
-        return self.request_user
 
 
 class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
@@ -655,7 +648,7 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
             super(SuggestionSubmitForm, self).save()
 
 
-class SubmitForm(SubmitFormMixin, forms.Form):
+class SubmitForm(RequestUserFormMixin, SubmitFormMixin, forms.Form):
     user = forms.ModelChoiceField(queryset=get_user_model().objects.all())
     state = UnitStateField(
         required=False,
