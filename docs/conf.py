@@ -437,16 +437,16 @@ extlinks = {
 
 # -- Dependency versions ----
 
-install_options = []
+install_options = set()
 requirements_dir = '../requirements'
 for requirement in os.listdir(requirements_dir):
     with open(os.path.join(requirements_dir, requirement)) as req:
         for line in req.readlines():
             if re.match(r'^\s*-e\s+', line):
-                install_options += ["--process-dependency-links"]
+                install_options.add("--process-dependency-links")
                 break
 if pootle_version.is_prerelease():
-    install_options += ["--pre"]
+    install_options.add("--pre")
 if install_options:
     install_options_string = " ".join(install_options)
 else:
