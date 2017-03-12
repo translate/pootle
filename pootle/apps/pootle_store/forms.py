@@ -511,7 +511,8 @@ class BaseSuggestionForm(UnsecuredCommentForm):
     should_save = lambda self: True
 
     def __init__(self, *args, **kwargs):
-        super(BaseSuggestionForm, self).__init__(*args, **kwargs)
+        kwargs["request_user"] = kwargs.get("request_user") or self.request_user
+        super(BaseSuggestionForm, self).__init__(**kwargs)
         self.fields["comment"].required = False
 
     @property
@@ -522,7 +523,7 @@ class BaseSuggestionForm(UnsecuredCommentForm):
     def suggestion_review(self):
         return review.get(self.target_object.__class__)(
             [self.target_object],
-            self.cleaned_data["user"],
+            self.request_user,
             review_type=self.review_type)
 
 
@@ -545,19 +546,21 @@ class SuggestionReviewForm(BaseSuggestionForm):
 
     def clean(self):
         self_review = (
-            self.cleaned_data["user"] == self.target_object.user
+            self.request_user == self.target_object.user
             and self.cleaned_data.get("action") == "reject")
         permission = (
             "view"
             if self_review
             else "review")
         has_permission = check_user_permission(
-            self.cleaned_data.get("user"),
+            self.request_user,
             permission,
             self.target_object.unit.store.parent)
         if not has_permission:
             raise forms.ValidationError(
                 _("Insufficient rights to access this page."))
+        if not self.errors:
+            super(SuggestionReviewForm, self).clean()
 
     def save(self):
         if self.cleaned_data["action"] == "accept":
@@ -609,7 +612,6 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
     target_f = MultiStringFormField(required=False)
 
     def save_unit(self):
-        user = self.cleaned_data["user"]
         current_time = make_aware(timezone.now())
         updated = []
         self.suggestion_review.accept(
@@ -623,7 +625,7 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
                 submitted_on=current_time,
                 submitted_by=self.target_object.user,
                 reviewed_on=current_time,
-                reviewed_by=user,
+                reviewed_by=self.request_user,
                 changed_with=SubmissionTypes.WEB)
             updated.append(
                 (SubmissionFields.TARGET,
@@ -640,7 +642,7 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
                 creation_time=current_time,
                 translation_project=translation_project,
                 suggestion=self.target_object,
-                submitter=user,
+                submitter=self.request_user,
                 unit=self.unit,
                 field=field,
                 type=SubmissionTypes.WEB,
@@ -656,14 +658,13 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
 
 
 class SubmitForm(SubmitFormMixin, forms.Form):
-    user = forms.ModelChoiceField(queryset=get_user_model().objects.all())
     state = UnitStateField(
         required=False,
         label=_('Needs work'))
     target_f = MultiStringFormField(required=False)
 
     def save_unit(self):
-        user = self.cleaned_data["user"]
+        user = self.request_user
         current_time = make_aware(timezone.now())
         updated = []
         if multistring(self.cleaned_data["target_f"]) != self.unit.target:

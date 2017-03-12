@@ -599,10 +599,10 @@ class UnitSuggestionJSON(PootleJSONMixin, GatherContextMixin, FormView):
             else self.request.POST.get("comment"))
         return dict(
             target_object=self.get_object(),
+            request_user=self.request.user,
             data=dict(
                 comment=comment,
-                action=self.action,
-                user=self.request.user))
+                action=self.action))
 
     def delete(self, request, *args, **kwargs):
         self.action = "reject"
