@@ -38,7 +38,10 @@ def test_comment_form_post(admin):
     form = CommentForm(unit)
     kwargs = dict(
         comment="Foo!",
-        user=admin,
+        object_pk=str(unit.pk),
+        content_type=str(unit._meta),
+        name=admin.display_name,
+        email=admin.email,
         timestamp=form.initial.get("timestamp"),
         security_hash=form.initial.get("security_hash"))
     post_form = CommentForm(unit, kwargs)
@@ -48,7 +51,7 @@ def test_comment_form_post(admin):
     assert comment.comment == "Foo!"
     assert ".".join(comment.content_type.natural_key()) == str(unit._meta)
     assert comment.object_pk == str(unit.pk)
-    assert comment.user == admin
+    assert comment.user is None
     assert comment.name == admin.display_name
     assert comment.email == admin.email
 
@@ -57,9 +60,10 @@ def test_comment_form_post(admin):
 def test_unsecured_comment_form_post(admin):
     unit = Unit.objects.first()
     kwargs = dict(
-        comment="Foo!",
-        user=admin)
-    post_form = UnsecuredCommentForm(unit, kwargs)
+        data=dict(comment="Foo!"),
+        target_object=unit,
+        request_user=admin)
+    post_form = UnsecuredCommentForm(**kwargs)
     if post_form.is_valid():
         post_form.save()
     comment = Comment.objects.first()
@@ -83,13 +87,16 @@ def test_unsecured_comment_form_should_save(admin):
                 return "You cant say '%s' round here" % bad_word
 
     kwargs = dict(
-        comment="google is foo!",
-        user=admin)
-    post_form = UnsecuredCommentForm(unit, kwargs)
+        data=dict(comment="google is foo!"),
+        target_object=unit,
+        request_user=admin)
+    post_form = UnsecuredCommentForm(**kwargs)
     assert not post_form.is_valid()
     assert post_form.errors["comment"] == ["You cant say 'google' round here"]
     kwargs = dict(
-        comment="You can say linux though, or gnu/linux if you prefer",
-        user=admin)
-    post_form = UnsecuredCommentForm(unit, kwargs)
+        data=dict(
+            comment="You can say linux though, or gnu/linux if you prefer"),
+        target_object=unit,
+        request_user=admin)
+    post_form = UnsecuredCommentForm(**kwargs)
     assert post_form.is_valid()
