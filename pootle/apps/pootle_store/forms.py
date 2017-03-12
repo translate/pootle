@@ -603,9 +603,6 @@ class SubmitFormMixin(object):
             if k in self.fields:
                 self.fields[k].required = False
 
-    def clean_user(self):
-        return self.request_user
-
 
 class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
 
