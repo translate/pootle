@@ -153,6 +153,13 @@ class UnitUpdater(object):
                 and self.unit.source != self.newunit.source)
 
     @cached_property
+    def resurrected(self):
+        return (
+            self.newunit
+            and not self.newunit.isobsolete()
+            and self.unit.isobsolete())
+
+    @cached_property
     def state_updated(self):
         # `fuzzy` state change is checked here.
         # `translated` and `obsolete` states are handled separately.
@@ -161,8 +168,6 @@ class UnitUpdater(object):
 
     @cached_property
     def target_updated(self):
-        if not self.newunit:
-            return False
         if not self.update.store_revision:
             return True
         if self.unit.target == self.newunit.target:
@@ -220,7 +225,7 @@ class UnitUpdater(object):
     def set_unit(self):
         if self.translator_comment_updated:
             self.set_commented()
-        if self.target_updated:
+        if self.target_updated or self.resurrected:
             self.set_submitted()
         self.save_unit()
         self.record_submission()
@@ -228,14 +233,15 @@ class UnitUpdater(object):
     @property
     def should_unobsolete(self):
         return (
-            self.unit.isobsolete()
-            and self.newunit
-            and not self.newunit.isobsolete()
+            self.newunit
+            and self.resurrected
+            and self.update.store_revision is not None
             and not (
                 self.unit.revision > self.update.store_revision
                 and self.update.resolve_conflict == POOTLE_WINS))
 
     def update_unit(self):
+        reordered = False
         suggested = False
         updated = False
         need_update = (self.should_unobsolete
@@ -247,12 +253,16 @@ class UnitUpdater(object):
                 self.newunit, user=self.update.user)
         if self.should_update_index:
             self.unit.index = self.update.get_index(self.uid)
-            updated = True
+            reordered = True
+            if not updated:
+                self.unit.save(
+                    submitted_on=self.unit.submitted_on,
+                    submitted_by=self.unit.submitted_by)
         if updated:
             self.set_unit()
         if self.should_create_suggestion:
             suggested = self.create_suggestion()
-        return updated, suggested
+        return (updated or reordered), suggested
 
 
 class StoreUpdater(object):
