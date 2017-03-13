@@ -272,8 +272,7 @@ class StoreUpdater(object):
         if count:
             # we update after here to trigger a stats update
             # for the store after doing Unit.objects.update()
-            with update_data_after(self.target_store):
-                units.update(revision=Revision.incr())
+            units.update(revision=Revision.incr())
         return count
 
     def units(self, uids):
@@ -331,14 +330,13 @@ class StoreUpdater(object):
                 self.target_store.update_index(start=start, delta=delta)
 
             # Add new units
-            with update_data_after(self.target_store):
-                for unit, new_unit_index in to_change["add"]:
-                    self.target_store.addunit(
-                        unit,
-                        new_unit_index,
-                        user=user,
-                        changed_with=submission_type,
-                        update_revision=update_revision)
+            for unit, new_unit_index in to_change["add"]:
+                self.target_store.addunit(
+                    unit,
+                    new_unit_index,
+                    user=user,
+                    changed_with=submission_type,
+                    update_revision=update_revision)
             changes["added"] = len(to_change["add"])
 
             # Obsolete units
@@ -371,6 +369,10 @@ class StoreUpdater(object):
         if not self.target_store.file:
             return changed
 
+        with update_data_after(self.target_store):
+            self._update_from_disk(overwrite)
+
+    def _update_from_disk(self, overwrite=False):
         if overwrite:
             store_revision = self.target_store.data.max_unit_revision
         else:
@@ -404,12 +406,11 @@ class StoreUpdater(object):
         suggestion_count = 0
         if not update.uids:
             return update_count, suggestion_count
-        with update_data_after(self.target_store):
-            for unit in self.units(update.uids):
-                updated, suggested = self.unit_updater_class(
-                    unit, update).update_unit()
-                if updated:
-                    update_count += 1
-                if suggested:
-                    suggestion_count += 1
+        for unit in self.units(update.uids):
+            updated, suggested = self.unit_updater_class(
+                unit, update).update_unit()
+            if updated:
+                update_count += 1
+            if suggested:
+                suggestion_count += 1
         return update_count, suggestion_count
