@@ -824,7 +824,7 @@ PTL.editor = {
   updateUnitDefaultProperties() {
     ReactEditor.setProps({ initialValues: ReactEditor.stateValues.slice() });
 
-    const checkbox = q('#id_state');
+    const checkbox = q('#id_is_fuzzy');
     checkbox.defaultChecked = checkbox.checked;
     this.handleTranslationChange();
   },
@@ -846,7 +846,7 @@ PTL.editor = {
     const suggestions = $('.js-user-suggestion').map(function getSuggestions() {
       return $(this).data('translation-aid');
     }).get();
-    const checkbox = q('#id_state');
+    const checkbox = q('#id_is_fuzzy');
     const stateChanged = checkbox.defaultChecked !== checkbox.checked;
 
     let needsReview = false;
@@ -1218,12 +1218,9 @@ PTL.editor = {
   },
 
   getCheckedStateData() {
-    const checkbox = document.querySelector('#id_state');
-    if (!checkbox.checked) {
-      return {};
-    }
+    const checkbox = document.querySelector('#id_is_fuzzy');
     return {
-      [checkbox.name]: checkbox.value,
+      [checkbox.name]: checkbox.checked ? 1 : 0,
     };
   },
 
@@ -1613,9 +1610,12 @@ PTL.editor = {
       this.checkSimilarTranslations();
     }
 
-    const body = assign({}, this.getCheckedStateData(), valueStateData,
-                        this.getReqData(),
-                        captchaCallbacks);
+    const body = assign(
+      {},
+      this.getCheckedStateData(),
+      valueStateData,
+      this.getReqData(),
+      captchaCallbacks);
 
     el.disabled = true;
 
@@ -1627,7 +1627,6 @@ PTL.editor = {
       };
       assign(body, suggData);
     }
-
     UnitAPI.addTranslation(this.units.getCurrent().id, body)
       .then(
         (data) => this.processSubmission(data),
