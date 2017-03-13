@@ -222,7 +222,7 @@ class SuggestionsReview(object):
             kwargs = {
                 'creation_time': unit.change.reviewed_on,
                 'translation_project': unit.store.translation_project,
-                'submitter': self.reviewer,
+                'submitter': suggestion.user,
                 'unit': unit,
                 'revision': unit.revision,
                 'field': field,

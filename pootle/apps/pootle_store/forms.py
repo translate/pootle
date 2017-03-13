@@ -612,7 +612,7 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
                 creation_time=current_time,
                 translation_project=translation_project,
                 suggestion=self.target_object,
-                submitter=self.request_user,
+                submitter=self.target_object.user,
                 unit=self.unit,
                 field=field,
                 type=SubmissionTypes.WEB,
