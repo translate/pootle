@@ -540,7 +540,7 @@ class SuggestionReviewForm(BaseSuggestionForm):
             self.add_error(
                 "action",
                 forms.ValidationError(
-                    _("Suggestion '%s' cannot be accepted/rejected twice!",
+                    _("Suggestion '%s' has already been accepted or rejected.",
                       self.target_object)))
         return self.data["action"]
 
