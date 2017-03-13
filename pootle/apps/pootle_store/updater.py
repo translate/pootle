@@ -215,6 +215,8 @@ class UnitUpdater(object):
             self.set_commented()
         if self.target_updated or self.resurrected:
             self.set_submitted()
+        if self.resurrected:
+            self.set_submitted()
         self.save_unit()
 
     @property
