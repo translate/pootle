@@ -414,12 +414,10 @@ def test_submit_unit_plural(client, unit_plural, request_users, settings):
     ]
     response = client.post(
         url,
-        {
-            'target_f_0': target[0],
-            'target_f_1': target[1],
-        },
-        HTTP_X_REQUESTED_WITH='XMLHttpRequest'
-    )
+        {'target_f_0': target[0],
+         'target_f_1': target[1],
+         'is_fuzzy': "0"},
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
     unit = Unit.objects.get(id=unit_plural.id)
     if check_permission('translate', response.wsgi_request):
@@ -476,6 +474,7 @@ def test_submit_unit(client, store0, request_users, settings, system):
     response = client.post(
         url,
         dict(target_f_0=("%s changed" % unit.target),
+             is_fuzzy="0",
              sfn="PTL.editor.processSubmission"),
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
     unit.refresh_from_db()

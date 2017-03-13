@@ -15,7 +15,6 @@ from translate.misc import multistring
 from pootle_app.models.permissions import get_matching_permissions
 from pootle_store.forms import (
     MultiStringFormField, MultiStringWidget, unit_form_factory)
-from pootle_store.constants import FUZZY
 
 
 def _create_post_request(rf, directory, user, url='/', data=None):
@@ -70,7 +69,7 @@ def test_submit_fuzzy(rf, po_directory, admin, default, store0):
         'id': unit.id,
         'index': unit.index,
         'target_f_0': unit.target_f,
-        'state': FUZZY,
+        'is_fuzzy': True,
     }
 
     request = _create_post_request(rf, directory, data=post_dict, user=admin)
@@ -80,7 +79,7 @@ def test_submit_fuzzy(rf, po_directory, admin, default, store0):
     request = _create_post_request(rf, directory, data=post_dict, user=default)
     user_form = _create_unit_form(request, language, unit)
     assert not user_form.is_valid()
-    assert 'state' in user_form.errors
+    assert 'is_fuzzy' in user_form.errors
 
 
 @pytest.mark.parametrize('nplurals, decompressed_value', [

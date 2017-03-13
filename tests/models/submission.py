@@ -115,18 +115,12 @@ def test_new_translation_submission_ordering(client, request_users, settings):
         client.login(
             username=user.username,
             password=request_users["password"])
-
     url = '/xhr/units/%d/' % unit.id
-
     response = client.post(
         url,
-        {
-            'state': False,
-            'target_f_0': "Translation for " + unit.source_f,
-        },
-        HTTP_X_REQUESTED_WITH='XMLHttpRequest'
-    )
-
+        {'is_fuzzy': "0",
+         'target_f_0': "Translation for " + unit.source_f},
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
     if check_permission('translate', response.wsgi_request):
         assert response.status_code == 200
         submission_field = Submission.objects.filter(unit=unit).latest().field
