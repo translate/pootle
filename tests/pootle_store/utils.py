@@ -16,7 +16,7 @@ from pootle.core.delegate import frozen, lifecycle
 from pootle.core.user import get_system_user
 from pootle_statistics.models import (
     MUTED, UNMUTED, Submission, SubmissionFields, SubmissionTypes)
-from pootle_store.constants import TRANSLATED
+from pootle_store.constants import FUZZY, TRANSLATED
 from pootle_store.models import QualityCheck, Unit, UnitChange
 from pootle_store.utils import UnitLifecycle
 
@@ -128,6 +128,8 @@ def test_unit_lifecycle_update_state_reviewed_by(store0, system, member2):
     unit.store = store0
     unit.source_f = multistring("Foo")
     unit.target_f = multistring("Bar")
+    unit.state = FUZZY
+    unit.save(submitted_by=system)
     unit.state = TRANSLATED
     unit.save(reviewed_by=member2)
     sub_state_update = lifecycle.get(Unit)(unit).sub_state_update()
@@ -137,8 +139,8 @@ def test_unit_lifecycle_update_state_reviewed_by(store0, system, member2):
     assert sub_state_update.revision == unit.revision
     assert (
         sub_state_update.submitter
-        == unit.change.submitted_by
-        == system)
+        == unit.change.reviewed_by
+        == member2)
     assert sub_state_update.type == SubmissionTypes.SYSTEM
     assert sub_state_update.field == SubmissionFields.STATE
     assert sub_state_update.new_value == unit.state
