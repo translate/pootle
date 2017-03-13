@@ -627,7 +627,7 @@ def _test_store_update_units_before(*test_args):
         if unit.source not in updates:
             # unit is not in update, target should be left unchanged
             assert updated_unit.target == unit.target
-            assert updated_unit.submitted_by == unit.submitted_by
+            assert updated_unit.change.submitted_by == unit.change.submitted_by
 
             # depending on unit/store_revision should be obsoleted
             if unit.isobsolete() or store_revision >= unit.revision:
@@ -653,27 +653,33 @@ def _test_store_update_units_before(*test_args):
                         assert updated_unit.submitted_by == member2
 
                         # damn mysql microsecond precision
-                        if unit.submitted_on.time().microsecond != 0:
+                        if updated_unit.change.submitted_on.time().microsecond != 0:
                             assert (
-                                updated_unit.submitted_on
-                                != unit.submitted_on)
+                                updated_unit.change.submitted_on
+                                != unit.change.submitted_on)
                     else:
-                        assert updated_unit.submitted_by == unit.submitted_by
-                        assert updated_unit.submitted_on == unit.submitted_on
+                        assert (
+                            updated_unit.change.submitted_by
+                            == unit.change.submitted_by)
+                        assert (
+                            updated_unit.change.submitted_on
+                            == unit.change.submitted_on)
                     assert updated_unit.get_suggestions().count() == 0
                 else:
                     # conflict found
                     suggestion = updated_unit.get_suggestions()[0]
                     if resolve_conflict == POOTLE_WINS:
                         assert updated_unit.target == unit.target
-                        assert updated_unit.submitted_by == unit.submitted_by
+                        assert (
+                            updated_unit.change.submitted_by
+                            == unit.change.submitted_by)
                         assert suggestion.target == updates[unit.source]
                         assert suggestion.user == member2
                     else:
                         assert updated_unit.target == updates[unit.source]
-                        assert updated_unit.submitted_by == member2
+                        assert updated_unit.change.submitted_by == member2
                         assert suggestion.target == unit.target
-                        assert suggestion.user == unit.submitted_by
+                        assert suggestion.user == unit.change.submitted_by
 
 
 def _test_store_update_ordering(*test_args):

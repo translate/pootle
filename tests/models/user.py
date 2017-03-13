@@ -42,10 +42,11 @@ def _make_evil_member_updates(store, evil_member):
         ("Hello, world", "Hello, world EVIL", False),
         ("Goodbye, world", "Goodbye, world EVIL", False)]
     review.get(Suggestion)([member_suggestion], evil_member).reject()
-    _create_submission_and_suggestion(store,
-                                      evil_member,
-                                      units=evil_units,
-                                      suggestion="EVIL SUGGESTION")
+    _create_submission_and_suggestion(
+        store,
+        evil_member,
+        units=evil_units,
+        suggestion="EVIL SUGGESTION")
     evil_suggestion = store.units[0].get_suggestions().first()
     review.get(Suggestion)([evil_suggestion], evil_member).accept()
     _create_comment_on_unit(store.units[0], evil_member, "EVIL COMMENT")
@@ -54,10 +55,10 @@ def _make_evil_member_updates(store, evil_member):
 def _test_user_merged(unit, src_user, target_user):
     # TODO: test reviews and comments
     if src_user.id:
-        assert src_user.submitted.count() == 0
+        assert src_user.units_submitted.count() == 0
         assert src_user.suggestions.count() == 0
 
-    assert unit in list(target_user.submitted.all())
+    assert unit.change in list(target_user.units_submitted.all())
     assert (
         unit.get_suggestions().first()
         in list(target_user.suggestions.all()))
@@ -71,7 +72,7 @@ def _test_before_evil_user_updated(store, member, teststate=False):
 
     # Unit target was updated.
     assert unit.target_f == "Hello, world UPDATED"
-    assert unit.submitted_by == member
+    assert unit.change.submitted_by == member
 
     # But member also added a suggestion to the unit.
     assert unit.get_suggestions().count() == 1
@@ -79,7 +80,7 @@ def _test_before_evil_user_updated(store, member, teststate=False):
 
     # And added a comment on the unit.
     assert unit.translator_comment == "NICE COMMENT"
-    assert unit.commented_by == member
+    assert unit.change.commented_by == member
 
     # Only 1 unit round here.
     assert store.units.count() == 1
@@ -87,25 +88,26 @@ def _test_before_evil_user_updated(store, member, teststate=False):
 
 def _test_after_evil_user_updated(store, evil_member):
     unit = store.units[0]
+    unit.change.refresh_from_db()
 
     # Unit state is TRANSLATED
     assert unit.state == TRANSLATED
 
     # Evil member has accepted their own suggestion.
     assert unit.target_f == "EVIL SUGGESTION"
-    assert unit.submitted_by == evil_member
+    assert unit.change.submitted_by == evil_member
 
     # And rejected member's.
     assert unit.get_suggestions().count() == 0
 
     # And added their own comment.
     assert unit.translator_comment == "EVIL COMMENT"
-    assert unit.commented_by == evil_member
+    assert unit.change.commented_by == evil_member
 
     # Evil member has added another unit.
     assert store.units.count() == 2
     assert store.units[1].target_f == "Goodbye, world EVIL"
-    assert store.units[1].submitted_by == evil_member
+    assert store.units[1].change.submitted_by == evil_member
 
 
 def _test_user_purging(store, member, evil_member, purge):
@@ -114,9 +116,9 @@ def _test_user_purging(store, member, evil_member, purge):
     unit = store.units[0]
 
     # Get intitial change times
-    initial_submission_time = unit.submitted_on
-    initial_comment_time = unit.commented_on
-    initial_review_time = unit.reviewed_on
+    initial_submission_time = unit.change.submitted_on
+    initial_comment_time = unit.change.commented_on
+    initial_review_time = unit.change.reviewed_on
 
     # Test state before evil user has updated.
     _test_before_evil_user_updated(store, member, True)
@@ -132,12 +134,12 @@ def _test_user_purging(store, member, evil_member, purge):
 
     # Test submitted/commented/reviewed times on the unit.  This is an
     # unreliable test on MySQL due to datetime precision
-    if unit.submitted_on.time().microsecond != 0:
+    if unit.change.submitted_on.time().microsecond != 0:
 
         # Times have changed
-        assert unit.submitted_on != initial_submission_time
-        assert unit.commented_on != initial_comment_time
-        assert unit.reviewed_on != initial_review_time
+        assert unit.change.submitted_on != initial_submission_time
+        assert unit.change.commented_on != initial_comment_time
+        assert unit.change.reviewed_on != initial_review_time
 
     # Test state after evil user has updated.
     _test_after_evil_user_updated(store, evil_member)
@@ -151,9 +153,9 @@ def _test_user_purging(store, member, evil_member, purge):
     unit = store.units[0]
 
     # Times are back to previous times - by any precision
-    assert unit.submitted_on == initial_submission_time
-    assert unit.commented_on == initial_comment_time
-    assert unit.reviewed_on == initial_review_time
+    assert unit.change.submitted_on == initial_submission_time
+    assert unit.change.commented_on == initial_comment_time
+    assert unit.change.reviewed_on == initial_review_time
 
     # State is be back to how it was before evil user updated.
     _test_before_evil_user_updated(store, member)

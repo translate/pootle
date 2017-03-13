@@ -123,7 +123,7 @@ def test_unit_lifecycle_update_state(store0, member):
 
 
 @pytest.mark.django_db
-def test_unit_lifecycle_update_state_reviewed_by(store0, member2):
+def test_unit_lifecycle_update_state_reviewed_by(store0, system, member2):
     unit = store0.UnitClass()
     unit.store = store0
     unit.source_f = multistring("Foo")
@@ -137,8 +137,8 @@ def test_unit_lifecycle_update_state_reviewed_by(store0, member2):
     assert sub_state_update.revision == unit.revision
     assert (
         sub_state_update.submitter
-        == unit.change.reviewed_by
-        == member2)
+        == unit.change.submitted_by
+        == system)
     assert sub_state_update.type == SubmissionTypes.SYSTEM
     assert sub_state_update.field == SubmissionFields.STATE
     assert sub_state_update.new_value == unit.state
@@ -185,7 +185,7 @@ def test_unit_lifecycle_update_source(store0, member):
     assert sub_source_update.unit == unit
     assert sub_source_update.translation_project == store0.translation_project
     assert sub_source_update.revision == unit.revision
-    assert sub_source_update.submitter == unit.submitted_by
+    assert sub_source_update.submitter == unit.change.submitted_by
     assert sub_source_update.type == SubmissionTypes.SYSTEM
     assert sub_source_update.field == SubmissionFields.SOURCE
     assert sub_source_update.new_value == unit.source_f

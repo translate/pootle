@@ -377,9 +377,11 @@ class ScoreLog(models.Model):
             'submission': submission,
         }
 
-        translator_id = submission.unit.submitted_by_id
-        if submission.unit.reviewed_by_id:
-            reviewer_id = submission.unit.reviewed_by_id
+        translator_id = (
+            submission.unit.changed
+            and submission.unit.change.submitted_by_id)
+        if submission.unit.changed and submission.unit.change.reviewed_by_id:
+            reviewer_id = submission.unit.change.reviewed_by_id
         else:
             reviewer_id = translator_id
 
@@ -432,13 +434,12 @@ class ScoreLog(models.Model):
                     TranslationActionCodes.REVIEW_PENALTY
 
         if 'action_code' in previous_translator_score:
-            previous_translator_score['user'] = submission.unit.submitted_by
+            previous_translator_score['user'] = submission.unit.change.submitted_by
         if 'action_code' in previous_reviewer_score:
-            if submission.unit.reviewed_by_id:
-                previous_reviewer_score['user'] = submission.unit.reviewed_by
-            else:
-                previous_reviewer_score['user'] = submission.unit.submitted_by
-
+            previous_reviewer_score['user'] = (
+                submission.unit.change.reviewed_by
+                if submission.unit.change.reviewed_by_id
+                else submission.unit.change.submitted_by)
         return [submitter_score, previous_translator_score,
                 previous_reviewer_score, suggester_score]
 

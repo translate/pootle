@@ -11,23 +11,11 @@ import pytest
 
 @pytest.fixture
 def anon_submission_unit(nobody, store0):
-    from django.utils import timezone
-    from pootle_statistics.models import SubmissionTypes
-
     anon = nobody
     unit = store0.units.first()
     old_target = unit.target
-    old_state = unit.state
     unit.target_f = "Updated %s" % old_target
-    unit.store.record_submissions(
-        unit,
-        old_target,
-        old_state,
-        timezone.now(),
-        anon,
-        SubmissionTypes.WEB,
-        target_updated=True)
-    unit.save()
+    unit.save(submitted_by=anon)
 
 
 @pytest.fixture

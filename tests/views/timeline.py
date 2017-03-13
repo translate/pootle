@@ -63,7 +63,7 @@ def _calculate_timeline(request, unit):
         Submission.objects.filter(unit=unit)
                           .filter(submission_filter)
                           .exclude(field=SubmissionFields.COMMENT,
-                                   creation_time=unit.commented_on)
+                                   creation_time=unit.change.commented_on)
                           .order_by("id"))
     User = get_user_model()
     entries_group = []

@@ -12,8 +12,6 @@ import operator
 import os
 from hashlib import md5
 
-from collections import OrderedDict
-
 from translate.filters.decorators import Category
 
 from django.contrib.auth import get_user_model
@@ -193,6 +191,14 @@ class Unit(AbstractUnit):
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 
     @property
+    def changed(self):
+        try:
+            self.change
+            return True
+        except UnitChange.DoesNotExist:
+            return False
+
+    @property
     def _source(self):
         return self.source_f
 
@@ -295,7 +301,21 @@ class Unit(AbstractUnit):
         if submitted_by:
             self.submitted_by = submitted_by
 
+        commented_by = commented_by or sysuser
+        commented_on = commented_on or submitted_on
+        submitted_by = submitted_by or sysuser
+
+        if submitted_on:
+            self.submitted_on = submitted_on
+        if commented_on:
+            self.commented_on = commented_on
+        if reviewed_by:
+            self.reviewed_on = reviewed_on or submitted_on
+        else:
+            reviewed_on = None
+
         super(Unit, self).save(*args, **kwargs)
+
         submitted_on = submitted_on or self.mtime
         if created:
             unit_source = self.unit_source.model(unit=self)
@@ -318,19 +338,23 @@ class Unit(AbstractUnit):
             if changed_with is not None:
                 self.change.changed_with = changed_with
             if self.comment_updated:
-                self.change.commented_by = commented_by or sysuser
-                self.change.commented_on = commented_on or submitted_on
+                self.change.commented_by = commented_by
+                self.change.commented_on = commented_on
             update_submit = (
                 (self.target_updated or self.source_updated)
                 or not self.change.submitted_on)
             if update_submit:
-                self.change.submitted_by = submitted_by or sysuser
+                self.change.submitted_by = submitted_by
                 self.change.submitted_on = submitted_on
             if reviewed_by is not None:
-                self.change.reviewed_by = reviewed_by or submitted_by
+                self.change.reviewed_by = reviewed_by
             if reviewed_on is not None or reviewed_by is not None:
-                self.change.reviewed_on = reviewed_on or submitted_on
+                self.change.reviewed_on = reviewed_on
+            if self.comment_updated:
+                self.change.commented_on = commented_on or submitted_on
+                self.change.commented_by = commented_by
             self.change.save()
+
         update_data.send(
             self.store.__class__, instance=self.store)
 
@@ -460,8 +484,6 @@ class Unit(AbstractUnit):
         if update_target:
             notempty = filter(None, self.target_f.strings)
             self.target = unit.target
-            self.submitted_by = user
-            self.submitted_on = timezone.now()
 
             if filter(None, self.target_f.strings) or notempty:
                 # FIXME: we need to do this cause we discard nplurals for empty
@@ -633,17 +655,17 @@ class Unit(AbstractUnit):
             'email_md5': '',
         }
 
-        if self.submitted_on:
+        if self.change.submitted_on:
             obj.update({
-                'iso_submitted_on': self.submitted_on.isoformat(),
-                'display_submitted_on': dateformat.format(self.submitted_on),
+                'iso_submitted_on': self.change.submitted_on.isoformat(),
+                'display_submitted_on': dateformat.format(self.change.submitted_on),
             })
 
-        if self.submitted_by:
+        if self.change.submitted_by:
             obj.update({
-                'username': self.submitted_by.username,
-                'fullname': self.submitted_by.full_name,
-                'email_md5': md5(self.submitted_by.email).hexdigest(),
+                'username': self.change.submitted_by.username,
+                'fullname': self.change.submitted_by.full_name,
+                'email_md5': md5(self.change.submitted_by.email).hexdigest(),
             })
 
         get_tm_broker().update(self.store.translation_project.language.code,
@@ -967,7 +989,8 @@ class Store(AbstractStore):
         Unit.objects.filter(store_id=self.id, index__gte=start).update(
             index=operator.add(F('index'), delta))
 
-    def mark_units_obsolete(self, uids_to_obsolete, update_revision=None):
+    def mark_units_obsolete(self, uids_to_obsolete, update_revision=None,
+                            reviewed_by=None):
         """Marks a bulk of units as obsolete.
 
         :param uids_to_obsolete: UIDs of the units to be marked as obsolete.
@@ -982,7 +1005,10 @@ class Store(AbstractStore):
             if not unit.isobsolete():
                 unit.makeobsolete()
                 unit.revision = update_revision
-                unit.save()
+                kwargs = dict(
+                    reviewed_on=make_aware(timezone.now()),
+                    reviewed_by=reviewed_by)
+                unit.save(**kwargs)
                 obsoleted += 1
         return obsoleted
 
@@ -1005,49 +1031,6 @@ class Store(AbstractStore):
             syncers.get(self.filetype.name)
             or syncers.get("default"))
         return syncer_class(self)
-
-    def record_submissions(self, unit, old_target, old_state, current_time, user,
-                           submission_type=None, **kwargs):
-        """Records all applicable submissions for `unit`.
-        """
-        state_updated = kwargs.get("state_updated")
-        target_updated = kwargs.get("target_updated")
-        comment_updated = kwargs.get("comment_updated")
-        create_subs = OrderedDict()
-
-        if comment_updated:
-            create_subs[SubmissionFields.COMMENT] = [
-                '',
-                unit.translator_comment or '']
-
-        if target_updated:
-            create_subs[SubmissionFields.TARGET] = [
-                old_target,
-                unit.target_f]
-
-        if state_updated:
-            create_subs[SubmissionFields.STATE] = [
-                old_state,
-                unit.state]
-
-        if submission_type is None:
-            submission_type = SubmissionTypes.SYSTEM
-
-        subs_created = []
-        for field in create_subs:
-            subs_created.append(
-                Submission(
-                    creation_time=current_time,
-                    translation_project_id=self.translation_project_id,
-                    submitter=user,
-                    unit=unit,
-                    revision=unit.revision,
-                    field=field,
-                    type=submission_type,
-                    old_value=create_subs[field][0],
-                    new_value=create_subs[field][1]))
-        if subs_created:
-            unit.submission_set.add(*subs_created, bulk=False)
 
     def update(self, store, user=None, store_revision=None,
                submission_type=None, resolve_conflict=POOTLE_WINS,

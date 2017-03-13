@@ -108,12 +108,15 @@ class Timeline(object):
     def submissions(self):
         submission_filter = (
             Q(field__in=[SubmissionFields.TARGET, SubmissionFields.STATE,
-                         SubmissionFields.COMMENT, SubmissionFields.NONE]))
+                         SubmissionFields.COMMENT, SubmissionFields.NONE])
+            | Q(type__in=SubmissionTypes.SUGGESTION_TYPES))
+        commented_on = self.object.change.commented_on
         return (
             Submission.objects.filter(unit=self.object)
                               .filter(submission_filter)
-                              .exclude(field=SubmissionFields.COMMENT,
-                                       creation_time=self.object.commented_on)
+                              .exclude(
+                                  field=SubmissionFields.COMMENT,
+                                  creation_time=commented_on)
                               .order_by("id"))
 
     @cached_property

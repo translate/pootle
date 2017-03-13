@@ -13,7 +13,7 @@ from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.utils import timezone
 
-from pootle.core.delegate import uniqueid
+from pootle.core.delegate import lifecycle, uniqueid
 from pootle.core.models import Revision
 from pootle.core.signals import update_data
 from pootle.core.utils.timezone import make_aware
@@ -99,11 +99,25 @@ def handle_unit_pre_save(**kwargs):
 def handle_unit_change(**kwargs):
     unit_change = kwargs["instance"]
     unit = unit_change.unit
+    created = not unit._frozen.pk
+
+    if not created:
+        lifecycle.get(Unit)(unit).change()
     if not unit.source_updated and not unit.target_updated:
         return
-    created = not unit._frozen.pk
     new_untranslated = (created and unit.state == UNTRANSLATED)
+
     if not new_untranslated:
         unit.update_qualitychecks()
     if unit.istranslated():
         unit.update_tmserver()
+
+
+@receiver(post_save, sender=Suggestion)
+def handle_suggestion_accepted(**kwargs):
+    suggestion = kwargs["instance"]
+    if suggestion.state.name != "accepted":
+        return
+    suggestion.unit.submission_set.filter(
+        revision=suggestion.unit.revision,
+        submitter=suggestion.user).update(suggestion_id=suggestion.id)

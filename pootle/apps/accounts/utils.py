@@ -100,14 +100,14 @@ class UserMerger(object):
     def merge_commented(self):
         """Merge commented_by attribute on units
         """
-        self.src_user.commented.update(commented_by=self.target_user)
+        self.src_user.units_commented.update(commented_by=self.target_user)
 
     @write_stdout(" * Merging units reviewed: "
                   "%(src_user)s --> %(target_user)s... ")
     def merge_reviewed(self):
         """Merge reviewed_by attribute on units
         """
-        self.src_user.reviewed.update(reviewed_by=self.target_user)
+        self.src_user.units_reviewed.update(reviewed_by=self.target_user)
 
     @write_stdout(" * Merging suggestion reviews: "
                   "%(src_user)s --> %(target_user)s... ")
@@ -136,7 +136,7 @@ class UserMerger(object):
     def merge_submitted(self):
         """Merge submitted_by attribute on units
         """
-        self.src_user.submitted.update(submitted_by=self.target_user)
+        self.src_user.units_submitted.update(submitted_by=self.target_user)
 
     @write_stdout(" * Merging suggestions: "
                   "%(src_user)s --> %(target_user)s... ")
@@ -212,7 +212,8 @@ class UserPurger(object):
         """
         stores = set()
         # Revert unit comments where self.user is latest commenter.
-        for unit in self.user.commented.iterator():
+        for change in self.user.units_commented.iterator():
+            unit = change.unit
             stores.add(unit.store)
 
             # Find comments by other self.users
@@ -223,16 +224,17 @@ class UserPurger(object):
                 # translator_comment, commented_by, and commented_on
                 last_comment = comments.latest('pk')
                 unit.translator_comment = last_comment.new_value
-                unit.commented_by_id = last_comment.submitter_id
-                unit.commented_on = last_comment.creation_time
+                unit.change.commented_by_id = last_comment.submitter_id
+                unit.change.commented_on = last_comment.creation_time
                 logger.debug("Unit comment reverted: %s", repr(unit))
             else:
                 unit.translator_comment = ""
-                unit.commented_by = None
-                unit.commented_on = None
+                unit.change.commented_by = None
+                unit.change.commented_on = None
                 logger.debug("Unit comment removed: %s", repr(unit))
 
             # Increment revision
+            unit.revision = Revision.incr()
             unit.save()
         return stores
 
@@ -242,30 +244,34 @@ class UserPurger(object):
         """
         stores = set()
         # Revert unit target where user is the last submitter.
-        for unit in self.user.submitted.iterator():
+        for change in self.user.units_submitted.iterator():
+            unit = change.unit
             stores.add(unit.store)
 
             # Find the last submission by different user that updated the
             # unit.target.
             edits = unit.get_edits().exclude(submitter=self.user)
-
+            user = None
+            submitted_on = None
             if edits.exists():
-                last_edit = edits.latest("pk")
+                last_edit = edits.order_by("-creation_time", "-pk").first()
                 unit.target_f = last_edit.new_value
-                unit.submitted_by_id = last_edit.submitter_id
-                unit.submitted_on = last_edit.creation_time
+                user = last_edit.submitter
+                unit.change.submitted_by_id = last_edit.submitter
+                unit.change.submitted_on = last_edit.creation_time
+                submitted_on = last_edit.creation_time
                 logger.debug("Unit edit reverted: %s", repr(unit))
             else:
                 # if there is no previous submissions set the target to "" and
                 # set the unit.submitted_by to None
                 unit.target_f = ""
-                unit.submitted_by = None
-                unit.submitted_on = unit.creation_time
+                unit.change.submitted_by = None
+                unit.change.submitted_on = unit.creation_time
                 logger.debug("Unit edit removed: %s", repr(unit))
 
             # Increment revision
             unit.revision = Revision.incr()
-            unit.save()
+            unit.save(user=user, submitted_on=submitted_on)
         return stores
 
     @write_stdout(" * Reverting units reviewed by: %(user)s... ")
@@ -298,18 +304,23 @@ class UserPurger(object):
             # Remove the review.
             review.delete()
 
-        for unit in self.user.reviewed.iterator():
+        for change in self.user.units_reviewed.iterator():
+            unit = change.unit
             stores.add(unit.store)
-            unit.suggestion_set.filter(reviewer=self.user).update(
-                state=SuggestionState.objects.get(name="pending"),
-                reviewer=None)
-            revision = None
-            unit.reviewed_by = None
-            unit.reviewed_on = None
-            # Increment revision
-            revision = Revision.incr()
-            logger.debug("Unit reviewed_by removed: %s", repr(unit))
-            unit.revision = revision
+            reviews = unit.get_suggestion_reviews().exclude(
+                submitter=self.user)
+            if reviews.exists():
+                previous_review = reviews.latest('pk')
+                unit.change.reviewed_by_id = previous_review.submitter_id
+                unit.change.reviewed_on = previous_review.creation_time
+                logger.debug("Unit reviewed_by reverted: %s", repr(unit))
+            else:
+                unit.change.reviewed_by = None
+                unit.change.reviewed_on = None
+
+                # Increment revision
+                unit.revision = Revision.incr()
+                logger.debug("Unit reviewed_by removed: %s", repr(unit))
             unit.save()
         return stores
 
@@ -331,7 +342,7 @@ class UserPurger(object):
                 # If the unit has been changed more recently we don't need to
                 # revert the unit state.
                 submission.delete()
-                return
+                continue
             submission.delete()
             other_submissions = (unit.get_state_changes()
                                      .exclude(submitter=self.user))
