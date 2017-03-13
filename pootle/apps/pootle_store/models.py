@@ -25,7 +25,6 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.http import urlquote
 
-from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import (
     data_tool, format_syncers, format_updaters, frozen, terminology_matcher,
     wordcount)
@@ -965,9 +964,8 @@ class Store(AbstractStore):
         return disk_mtime
 
     def update_index(self, start, delta):
-        with update_data_after(self):
-            Unit.objects.filter(store_id=self.id, index__gte=start).update(
-                index=operator.add(F('index'), delta))
+        Unit.objects.filter(store_id=self.id, index__gte=start).update(
+            index=operator.add(F('index'), delta))
 
     def mark_units_obsolete(self, uids_to_obsolete, update_revision=None):
         """Marks a bulk of units as obsolete.
@@ -976,18 +974,16 @@ class Store(AbstractStore):
         :return: The number of units marked as obsolete.
         """
         obsoleted = 0
-        with update_data_after(self):
-            for unit in self.findid_bulk(uids_to_obsolete):
-                # Use the same (parent) object since units will
-                # accumulate the list of cache attributes to clear
-                # in the parent Store object
-                unit.store = self
-                if not unit.isobsolete():
-                    unit.makeobsolete()
-                    unit.revision = update_revision
-                    unit.save()
-                    obsoleted += 1
-
+        for unit in self.findid_bulk(uids_to_obsolete):
+            # Use the same (parent) object since units will
+            # accumulate the list of cache attributes to clear
+            # in the parent Store object
+            unit.store = self
+            if not unit.isobsolete():
+                unit.makeobsolete()
+                unit.revision = update_revision
+                unit.save()
+                obsoleted += 1
         return obsoleted
 
     @cached_property
