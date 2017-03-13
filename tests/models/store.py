@@ -648,8 +648,8 @@ def _test_store_update_units_before(*test_args):
                 if store_revision >= unit.revision:
                     # file store wins outright
                     assert updated_unit.target == updates[unit.source]
-                    if unit.target != updates[unit.source]:
-                        # unit has changed
+                    if unit.target != updates[unit.source] or unit.isobsolete():
+                        # unit has changed, or was resurrected
                         assert updated_unit.submitted_by == member2
 
                         # damn mysql microsecond precision
