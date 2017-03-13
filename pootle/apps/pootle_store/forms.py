@@ -143,29 +143,6 @@ class MultiStringFormField(forms.MultiValueField):
         return data_list
 
 
-class UnitStateField(forms.BooleanField):
-
-    def to_python(self, value):
-        """Returns a Python boolean object.
-
-        It is necessary to customize the behavior because the default
-        ``BooleanField`` treats the string '0' as ``False``, but if the
-        unit is in ``UNTRANSLATED`` state (which would report '0' as a
-        value), we need the marked checkbox to be evaluated as ``True``.
-
-        :return: ``False`` for any unknown :cls:`~pootle_store.models.Unit`
-            states and for the 'False' string.
-        """
-        truthy_values = (str(s) for s in (UNTRANSLATED, FUZZY, TRANSLATED))
-        if (isinstance(value, basestring) and
-            (value.lower() == 'false' or value not in truthy_values)):
-            value = False
-        else:
-            value = bool(value)
-
-        return super(UnitStateField, self).to_python(value)
-
-
 def unit_form_factory(language, snplurals=None, request=None):
 
     if snplurals is not None:
@@ -202,21 +179,17 @@ def unit_form_factory(language, snplurals=None, request=None):
     class UnitForm(forms.ModelForm):
         class Meta(object):
             model = Unit
-            fields = ('target_f', 'state',)
+            fields = ('target_f', )
 
         target_f = MultiStringFormField(
             nplurals=tnplurals,
             required=False,
             attrs=target_attrs,
         )
-        state = UnitStateField(
+        is_fuzzy = forms.BooleanField(
             required=False,
-            label=_('Needs work'),
-            widget=forms.CheckboxInput(
-                attrs=fuzzy_attrs,
-                check_test=lambda x: x == FUZZY,
-            ),
-        )
+            label=_("Needs work"),
+            widget=forms.CheckboxInput(attrs=fuzzy_attrs))
         suggestion = forms.ModelChoiceField(
             queryset=Suggestion.objects.all(),
             required=False)
@@ -229,6 +202,7 @@ def unit_form_factory(language, snplurals=None, request=None):
             self._updated_fields = []
             self.fields['target_f'].widget.attrs['data-translation-aid'] = \
                 self['target_f'].value()
+            self.initial.update(dict(is_fuzzy=(self.instance.state == FUZZY)))
 
         @property
         def updated_fields(self):
@@ -248,9 +222,12 @@ def unit_form_factory(language, snplurals=None, request=None):
 
             return value
 
+        def clean_is_fuzzy(self):
+            return self.data.get("is_fuzzy", None) and True or False
+
         def clean(self):
             old_state = self.instance.state  # Integer
-            is_fuzzy = self.cleaned_data['state']  # Boolean
+            is_fuzzy = self.cleaned_data['is_fuzzy']  # Boolean
             new_target = self.cleaned_data['target_f']
 
             # If suggestion is provided set `old_state` should be `TRANSLATED`.
@@ -261,14 +238,15 @@ def unit_form_factory(language, snplurals=None, request=None):
                 # to submitted translation
                 if new_target == self.cleaned_data['suggestion'].target_f:
                     self._updated_fields = []
-
-            if (self.request is not None and
-                not check_permission('administrate', self.request) and
-                is_fuzzy):
-                self.add_error('state',
-                               forms.ValidationError(
-                                   _('Needs work flag must be '
-                                     'cleared')))
+            not_cleared = (
+                self.request is not None
+                and not check_permission('administrate', self.request)
+                and is_fuzzy)
+            if not_cleared:
+                self.add_error(
+                    'is_fuzzy',
+                    forms.ValidationError(
+                        _('Needs work flag must be cleared')))
 
             if new_target:
                 if is_fuzzy:
@@ -655,10 +633,13 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
 
 
 class SubmitForm(SubmitFormMixin, forms.Form):
-    state = UnitStateField(
-        required=False,
-        label=_('Needs work'))
+    is_fuzzy = forms.BooleanField(
+        initial=False,
+        label=_("Needs work"))
     target_f = MultiStringFormField(required=False)
+
+    def clean_is_fuzzy(self):
+        return self.data["is_fuzzy"] != "0"
 
     def save_unit(self):
         user = self.request_user
@@ -674,8 +655,13 @@ class SubmitForm(SubmitFormMixin, forms.Form):
                  self.unit.target_f,
                  self.cleaned_data["target_f"]))
             self.unit.target = self.cleaned_data["target_f"]
-        if self.cleaned_data["state"] != self.unit.state:
-            self.unit.state = self.cleaned_data["state"]
+        if self.unit.target:
+            if self.cleaned_data["is_fuzzy"]:
+                self.unit.state = FUZZY
+            else:
+                self.unit.state = TRANSLATED
+        else:
+            self.unit.state = UNTRANSLATED
         self.unit.save(
             submitted_on=current_time,
             submitted_by=user,
@@ -683,9 +669,8 @@ class SubmitForm(SubmitFormMixin, forms.Form):
         if self.unit.state_updated:
             updated.append(
                 (SubmissionFields.STATE,
-                 self.unit.state,
-                 self.cleaned_data["state"]))
-            self.unit.state = self.cleaned_data["state"]
+                 self.unit._frozen.state,
+                 self.unit.state))
         translation_project = self.unit.store.translation_project
         for field, old_value, new_value in updated:
             sub = Submission(
