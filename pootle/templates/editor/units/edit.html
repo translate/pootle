@@ -169,7 +169,7 @@
             <div class="translate-fuzzy-block js-fuzzy-block{% if not has_admin_access and not unit.isfuzzy %} hide{% endif %}"
               lang="{{ LANGUAGE_CODE }}"
               title="{% trans 'Mark this string as needing further work (Ctrl+Space)' %}">
-              {{ form.state }} {{ form.state|label_tag:'' }}
+              {{ form.is_fuzzy }} {{ form.is_fuzzy|label_tag:'' }}
             </div>
           </div>
           <!-- Translation -->
