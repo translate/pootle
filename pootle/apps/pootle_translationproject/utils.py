@@ -8,6 +8,7 @@
 
 from django.contrib.auth import get_user_model
 
+from pootle.core.contextmanagers import update_data_after
 from pootle.core.models import Revision
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.constants import SOURCE_WINS
@@ -225,12 +226,13 @@ class TPTool(object):
             return
         system = User.objects.get_system_user()
         update_revision = Revision.incr()
-        return target.updater.update_from_diff(
-            source,
-            source_revision,
-            diff,
-            update_revision,
-            system,
-            SubmissionTypes.SYSTEM,
-            SOURCE_WINS,
-            True)
+        with update_data_after(target):
+            return target.updater.update_from_diff(
+                source,
+                source_revision,
+                diff,
+                update_revision,
+                system,
+                SubmissionTypes.SYSTEM,
+                SOURCE_WINS,
+                True)
