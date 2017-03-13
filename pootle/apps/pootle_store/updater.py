@@ -230,10 +230,10 @@ class UnitUpdater(object):
         return (
             self.unit.isobsolete()
             and self.newunit
-            and self.update.store_revision is not None
-            and (self.update.store_revision > self.unit.revision
-                 and not self.update.resolve_conflict == POOTLE_WINS)
-            and not self.newunit.isobsolete())
+            and not self.newunit.isobsolete()
+            and not (
+                self.unit.revision > self.update.store_revision
+                and self.update.resolve_conflict == POOTLE_WINS))
 
     def update_unit(self):
         suggested = False
