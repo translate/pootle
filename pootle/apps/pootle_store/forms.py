@@ -645,7 +645,8 @@ class SubmitForm(SubmitFormMixin, forms.Form):
         user = self.request_user
         current_time = make_aware(timezone.now())
         updated = []
-        if multistring(self.cleaned_data["target_f"]) != self.unit.target:
+        target = multistring(self.cleaned_data["target_f"] or [u''])
+        if target != self.unit.target:
             self.unit.submitted_by = user
             self.unit.submitted_on = current_time
             self.unit.reviewed_by = None
