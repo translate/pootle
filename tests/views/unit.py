@@ -19,7 +19,7 @@ from pootle.core.exceptions import Http400
 from pootle_app.models.permissions import check_permission
 from pootle_comment import get_model as get_comment_model
 from pootle_statistics.models import SubmissionFields, SubmissionTypes
-from pootle_store.constants import TRANSLATED, UNTRANSLATED
+from pootle_store.constants import FUZZY, TRANSLATED, UNTRANSLATED
 from pootle_store.models import QualityCheck, Suggestion, Unit, UnitChange
 from pootle_store.views import get_units, toggle_qualitycheck
 
@@ -494,3 +494,63 @@ def test_submit_unit(client, store0, request_users, settings, system):
     assert unit.change.changed_with == SubmissionTypes.WEB
     assert unit.change.submitted_by == user
     assert unit.change.reviewed_by is None
+
+
+@pytest.mark.django_db
+def test_submit_fuzzy_unit(client, store0, request_users, settings, system):
+    """Test un/fuzzying units."""
+    settings.POOTLE_CAPTCHA_ENABLED = False
+    user = request_users["user"]
+    unit = store0.units.filter(state=UNTRANSLATED).first()
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+    url = '/xhr/units/%d/' % unit.id
+    old_target = unit.target
+    new_target = "%s changed" % unit.target
+    response = client.post(
+        url,
+        dict(target_f_0=(new_target),
+             is_fuzzy="1",
+             sfn="PTL.editor.processSubmission"),
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    unit.refresh_from_db()
+    if check_permission('translate', response.wsgi_request):
+        assert response.status_code == 200
+        assert unit.state == FUZZY
+        assert unit.target == new_target
+    else:
+        assert response.status_code == 403
+        assert unit.state == UNTRANSLATED
+        assert unit.target == old_target
+    response = client.post(
+        url,
+        dict(target_f_0=(new_target),
+             is_fuzzy="0",
+             sfn="PTL.editor.processSubmission"),
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    unit.refresh_from_db()
+    if check_permission('translate', response.wsgi_request):
+        assert response.status_code == 200
+        assert unit.state == TRANSLATED
+        assert unit.target == new_target
+    else:
+        assert response.status_code == 403
+        assert unit.state == UNTRANSLATED
+        assert unit.target == old_target
+    # state is always untranslated if target is empty
+    response = client.post(
+        url,
+        dict(target_f_0="",
+             is_fuzzy="1",
+             sfn="PTL.editor.processSubmission"),
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    unit.refresh_from_db()
+    if check_permission('translate', response.wsgi_request):
+        assert response.status_code == 200
+        assert unit.target == ""
+    else:
+        assert response.status_code == 403
+        assert unit.target == old_target
+    assert unit.state == UNTRANSLATED
