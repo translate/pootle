@@ -13,7 +13,7 @@ from datetime import timedelta
 from django.db.utils import IntegrityError
 from django.utils import timezone
 
-from pootle_score.models import UserTPScore
+from pootle_score.models import UserStoreScore, UserTPScore
 
 
 @pytest.mark.django_db
@@ -88,3 +88,23 @@ def test_user_tp_score_bad_dupe(tp0, member):
     with pytest.raises(IntegrityError):
         UserTPScore.objects.create(
             user=member, tp=tp0, score=3, date=theday)
+
+
+@pytest.mark.django_db
+def test_user_store_score_repr(store0, member):
+    score = UserStoreScore.objects.create(
+        user=member,
+        store=store0,
+        score=2,
+        date=timezone.now().date() + timedelta(days=5))
+    score_info = (
+        "%s(%s) %s score: %s, suggested: %s, translated: %s, reviewed: %s"
+        % (score.user.username,
+           score.store.pootle_path,
+           score.date,
+           score.score,
+           score.suggested,
+           score.translated,
+           score.reviewed))
+    assert str(score) == score_info
+    assert repr(score) == u"<UserStoreScore: %s>" % score_info
