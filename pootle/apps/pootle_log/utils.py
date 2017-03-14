@@ -46,6 +46,18 @@ class LogEvent(object):
             return -1
         return 0
 
+    def __unicode__(self):
+        revision = ""
+        if self.revision:
+            revision = "@%s" % str(self.revision)
+        return u"{0:<30} {1:<10} {2:<30} {3:<10} {4:<20} {5:<10}".format(
+            *[str(self.timestamp) or "",
+              revision,
+              self.unit.store.pootle_path,
+              str(self.unit.pk),
+              self.user.display_name or "",
+              (self.action or "")])
+
 
 class Log(object):
 
