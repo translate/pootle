@@ -45,3 +45,14 @@ class AbstractUserScore(models.Model):
         blank=False,
         default=0,
         db_index=True)
+
+    def __str__(self):
+        return (
+            "%s(%s) %s score: %s, suggested: %s, translated: %s, reviewed: %s"
+            % (self.user.username,
+               self.context.pootle_path,
+               self.date,
+               self.score,
+               self.suggested,
+               self.translated,
+               self.reviewed))
