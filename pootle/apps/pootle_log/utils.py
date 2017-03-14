@@ -252,6 +252,21 @@ class Log(object):
             yield event
 
 
+class UnitLog(Log):
+
+    def __init__(self, context, user=None):
+        self.context = context
+        self.user = user
+
+    @property
+    def unit(self):
+        return self.context
+
+    @property
+    def unit_source(self):
+        return self.unit.unit_source.get()
+
+
 class StoreLog(Log):
 
     def __init__(self, store):
@@ -280,3 +295,9 @@ class UserLog(Log):
 
     def __init__(self, user):
         self.user = user
+
+
+class ActivityLog(object):
+
+    def __init__(self, context):
+        self.context = context
