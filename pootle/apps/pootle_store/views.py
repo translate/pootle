@@ -597,10 +597,15 @@ class UnitSuggestionJSON(PootleJSONMixin, GatherContextMixin, FormView):
             QueryDict(self.request.body).get("comment")
             if self.action == "reject"
             else self.request.POST.get("comment"))
+        is_fuzzy = (
+            QueryDict(self.request.body).get("is_fuzzy")
+            if self.action == "reject"
+            else self.request.POST.get("is_fuzzy"))
         return dict(
             target_object=self.get_object(),
             request_user=self.request.user,
             data=dict(
+                is_fuzzy=is_fuzzy,
                 comment=comment,
                 action=self.action))
 
