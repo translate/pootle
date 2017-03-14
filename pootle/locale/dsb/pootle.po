@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-03-06 21:07+0000\n"
+"PO-Revision-Date: 2017-03-11 13:52+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1488834465.000000\n"
+"X-POOTLE-MTIME: 1489240351.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -40,7 +40,7 @@ msgstr ""
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
-"Zda se, až waš wužywaŕ jo se zgubił. Pšosym daj to mějarjam sedła k wěsći."
+"Zda se, až twój wužywaŕ jo se zgubił. Pšosym daj to mějarjam sedła k wěsći."
 
 #: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
@@ -1358,7 +1358,7 @@ msgid ""
 "`default`, `redis` and `lru`."
 msgstr ""
 "Rozdźělne konfiguracije django_redis.cache.RedisCache su trěbne za "
-"'default'. 'redis' a 'lru'."
+"'default', 'redis' a 'lru'."
 
 #: checks.py:198
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1386,27 +1386,33 @@ msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr ""
+"Nastaj SESSION_ENGINE na django.contrib.sessions.backend.cached_db\n"
+"Aktualne nastajenja: %r"
 
 #: checks.py:222
 msgid "POOTLE_CONTACT_EMAIL is not set."
-msgstr ""
+msgstr "POOTLE_CONTACT_EMAIL njejo nastajony."
 
 #: checks.py:223
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
 msgstr ""
+"Nastaj POOTLE_CONTACT_EMAIL, aby wužywarjam dowólił, administratory pśez "
+"kontaktny formular Pootle kontaktěrowaś."
 
 #: checks.py:231
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
-msgstr ""
+msgstr "POOTLE_CONTACT_EMAIL slědujuce standardne nastajenje %r wužywa."
 
 #: checks.py:233
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
 msgstr ""
+"POOTLE_CONTACT_EMAIL jo adresa, kótaraž powěsći dostawa, kótarež su se pśez "
+"kontaktny formular pósłali."
 
 #: checks.py:240
 msgid "DEFAULT_FROM_EMAIL is not set."
@@ -1455,44 +1461,46 @@ msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
+"POOTLE_MARKUP_FILTER jo na wobznamjenje '%s' nastajony, ale paket, kótaryž "
+"pódawa, njedajo se namakaś."
 
 #: checks.py:289
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Paket instalěrowaś abo POOTLE_MARKUP_FILTER změniś."
 
 #: checks.py:300
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] INDEX_NAME njama."
 
 #: checks.py:301
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Nastaj INDEX_NAME za POOTLE_TM_SERVER['%s']."
 
 #: checks.py:307
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "'%s' INDEX_NAME w POOTLE_TM_SERVER pódwójś."
 
 #: checks.py:309
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "Nastaj druge INDEX_NAME za wšykne serwery w POOTLE_TM_SERVER."
 
 #: checks.py:319
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] ENGINE njama."
 
 #: checks.py:320
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Nastaj ENGINE za POOTLE_TM_SERVER['%s']."
 
 #: checks.py:327
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] HOST njama."
 
 #: checks.py:328
 #, python-format
@@ -1536,118 +1544,133 @@ msgstr "Nastaj %s za POOTLE_SCORE_COEFFICIENTS."
 #: checks.py:363
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr ""
+msgstr "Njepłaśiwa gódnota za %s w POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:365
 #, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr ""
+msgstr "Nastaj płaśiwu gódnotu za %s w POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:387
 msgid "The default 'admin' user still has a password set to 'admin'."
-msgstr ""
+msgstr "Standardny wužywaŕ 'admin' ma hyšći gronidło 'admin'."
 
 #: checks.py:389
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "Wótwónoź wužywarja 'admin' abo změń gronidło."
 
 #: checks.py:403
 msgid "Database connection uses transaction_hooks."
-msgstr ""
+msgstr "Zwisk datoweje banki transaction_hooks wužywa."
 
 #: checks.py:404
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
+"Nastaj DATABASES['default']['ENGINE'], aby backend Django z django.db."
+"backends wužywał."
 
 #: checks.py:424
 msgid "Email server is not available."
-msgstr ""
+msgstr "E-mailowy serwer njejo k dispoziciji."
 
 #: checks.py:425
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
+"Pśeglěduj swóje e-mailowe nastajenja a zawěsć, zo twój e-mailowy serwer "
+"funkcioněrujo."
 
 #: checks.py:452
 msgid "Revision is missing or has an incorrect value."
-msgstr ""
+msgstr "Wersija felujo abo ma wopacnu gódnotu."
 
 #: checks.py:453
 msgid "Run `revision --restore` to reset the revision counter."
-msgstr ""
+msgstr "Wuwjeź 'revision --restore', aby wersijowy licak slědk stajił."
 
 #: checks.py:467
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
+"Njejo žeden kanoniski URL pódany a standardne sedło jo na example.com "
+"stajone."
 
 #: checks.py:469
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
+"Nastaj 'POOTLE_CANONICAL_URL' w nastajenjach abo aktualizěruj standardne "
+"sedło, jolic django.contrib.sites wužywaš."
 
 #: checks.py:473
 msgid "Canonical URL is set to http://localhost."
-msgstr ""
+msgstr "Kanoniski URL jo na http://localhost stajony."
 
 #: checks.py:475
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
+"Nastaj 'POOTLE_CANONICAL_URL' na góźecu se gódnotu za swójo sedło abo wóstaj "
+"jen prozny, jolic 'django.contrib.sites' wužywaš."
 
 #: checks.py:505
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
-msgstr ""
+msgstr "POOTLE_FS_WORKING_PATH njejo nastajony."
 
 #: checks.py:509
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr ""
+"Sćažka ('%s'), kótaraž se pśez POOTLE_FS_WORKING_PATH pódawa, njeeksistěrujo."
 
 #: checks.py:511
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
+"Załož zapis, na kótaryž 'POOTLE_FS_WORKING_PATH' pokazujo, abo změń "
+"nastajenje."
 
 #: checks.py:516
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
+"Sćažka ('%s'), kótaraž se pśez POOTLE_FS_WORKING_PATH pokazujo, njedajo se "
+"pśez Pootle pisaś."
 
 #: checks.py:519
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
-msgstr ""
+msgstr "Pśidaj `POOTLE_FS_WORKING_PATH` pisańske pšawo abo změń nastajenje."
 
 #: checks.py:538
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "MySQL se nastajenja casoweje cony pomina."
 
 #: checks.py:558
 msgid "Pootle does not yet support Python 3."
-msgstr ""
+msgstr "Pootle hyšći Python 3 njepódpěra."
 
 #: checks.py:559 checks.py:565
 msgid "Use a Python 2.7 virtualenv."
-msgstr ""
+msgstr "Wužywaj Python 2.7 virtualenv."
 
 #: checks.py:564
 msgid "Pootle no longer supports Python versions older than 2.7"
-msgstr ""
+msgstr "Pootle wěcej wersije Python starše ako 2.7 njepódpěra"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
 msgid "Progress"
-msgstr ""
+msgstr "Póstup"
 
 #: core/browser.py:42
 msgid "Last Activity"
-msgstr ""
+msgstr "Slědna aktiwita"
 
 #. Translators: The number of suggestions pending review
 #: core/browser.py:53 templates/browser/_actions.html:28
@@ -1655,164 +1678,167 @@ msgstr ""
 #: templates/languages/admin/language_team_suggestions.html:5
 #: templates/languages/admin/language_team_suggestions.html:9
 msgid "Suggestions"
-msgstr ""
+msgstr "Naraźenja"
 
 #: core/browser.py:58 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
-msgstr ""
+msgstr "Njedopołny"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
 #: core/browser.py:65 core/utils/stats.py:27
 msgid "Total"
-msgstr ""
+msgstr "Dogromady"
 
 #: core/browser.py:70
 msgid "Last updated"
-msgstr ""
+msgstr "Slědna aktualizacija"
 
 #: core/browser.py:119
 msgid "Back to language"
-msgstr ""
+msgstr "Slědk k rěcy"
 
 #: core/browser.py:121
 msgid "Back to parent folder"
-msgstr ""
+msgstr "Slědk k nadrědowanemu zarědnikoju"
 
 #: core/decorators.py:140 core/views/decorators.py:70
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "Njedosegajuce pšawa za pśistup na bok."
 
 #: core/decorators.py:153 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
-msgstr ""
+msgstr "Njamaš pšawa za administrěrowanje Pootle."
 
 #: core/forms.py:117
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "Cas za wótegrono jo wótběgnuł"
 
 #: core/forms.py:136
 msgid "Enter a number"
-msgstr ""
+msgstr "Zapódaj licbu"
 
 #: core/forms.py:151
 msgid "Incorrect"
-msgstr ""
+msgstr "Wopacny"
 
 #: core/forms.py:180
 msgid "With selected"
-msgstr ""
+msgstr "Z wubranymi"
 
 #: core/forms.py:187
 msgid "Add comment"
-msgstr ""
+msgstr "Komentar pśidaś"
 
 #: core/forms.py:193
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
+"Wubjeŕ wšykne zapiski, kótarež filtrowanskim kriterijam wótpowěduju, "
+"inkluziwnje te, kótarež se njepokazuju"
 
 #: core/forms.py:213
 msgid "You must specify an action to take"
-msgstr ""
+msgstr "Musyš akciju pódaś, kótaraž ma se wuwjasć"
 
 #: core/forms.py:214
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "Płaśiwe pytańske pólo musy se pódaś"
 
 #: core/initdb.py:127
 msgid "Can access a project"
-msgstr ""
+msgstr "Ma pśistup na projekt"
 
 #: core/initdb.py:131
 msgid "Cannot access a project"
-msgstr ""
+msgstr "Njama pśistup na projekt"
 
 #: core/initdb.py:135
 msgid "Can make a suggestion for a translation"
-msgstr ""
+msgstr "Móžo pśełožk naraźiś"
 
 #: core/initdb.py:139
 msgid "Can submit a translation"
-msgstr ""
+msgstr "Móžo pśełožk zapódaś"
 
 #: core/initdb.py:143
 msgid "Can review suggestions"
-msgstr ""
+msgstr "Móžo naraźenja pśeglědowaś"
 
 #: core/initdb.py:147
 msgid "Can perform administrative tasks"
-msgstr ""
+msgstr "Móžo administratiwne nadawki pśewjasć"
 
 #: core/views/display.py:103 core/views/display.py:125
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr ""
+msgstr "%(user)s jo pśełožk za %(source)s wótwónoźeł"
 
 #: core/views/display.py:105
 #, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr ""
+msgstr "%(user)s jo naraźenja za %(source)s akceptěrował"
 
 #: core/views/display.py:107
 #, python-format
 msgid "%(user)s uploaded file"
-msgstr ""
+msgstr "%(user)s jo dataju nagrał"
 
 #: core/views/display.py:109
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(user)s jo %(check)s za %(source)s znjemóžnił"
 
 #: core/views/display.py:111
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(user)s jo %(check)s za %(source)s zmóžnił"
 
 #: core/views/display.py:113
 #, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr ""
+msgstr "%(user)s jo naraźenje za %(source)s pśidał"
 
 #: core/views/display.py:115
 #, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr ""
+msgstr "%(user)s jo naraźenje za %(source)s wótpokazał"
 
 #: core/views/display.py:118
 #, python-format
 msgid "%(user)s translated %(source)s"
-msgstr ""
+msgstr "%(user)s jo %(source)s pśełožił"
 
 #: core/views/display.py:120
 #, python-format
 msgid "%(user)s edited %(source)s"
-msgstr ""
+msgstr "%(user)s jo %(source)s wobźěłał"
 
 #. Translators: pre-translate is translating with first 100% TM match
 #: core/views/display.py:123
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr ""
+msgstr "%(user)s jo %(source)s pśedpśełožył"
 
 #: core/views/display.py:127
 #, python-format
 msgid "%(user)s reviewed %(source)s"
-msgstr ""
+msgstr "%(user)s jo %(source)s pśeglědał"
 
 #: core/views/display.py:129
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
-msgstr ""
+msgstr "%(user)s jo %(source)s ako wobźěłanje pominajucy se wóznamjenił"
 
 #: core/views/mixins.py:66
 msgid "You cannot access this page."
-msgstr ""
+msgstr "Njamaš pśistup na toś ten bok."
 
 #: middleware/errorpages.py:83
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
+"Zmólka pśi pśistupje na %(filename)s, zmólka datajowego systema: %(errormsg)s"
 
 #: middleware/errorpages.py:119
 #, python-format
@@ -1820,44 +1846,46 @@ msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
 "access this page."
 msgstr ""
+"Musyš se <a class=\"js-login\" href=\"%(login_link)s\">pśizjawiś</a>, aby "
+"pśistup na toś ten bok měł."
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:39
 msgid "Privacy Policy"
-msgstr ""
+msgstr "Pšawidła priwatnosći"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:41
 msgid "Legal"
-msgstr ""
+msgstr "Pšawniske"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:43
 msgid "License"
-msgstr ""
+msgstr "Licenca"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:45
 msgid "Contributor License"
-msgstr ""
+msgstr "Licenca za sobustatkujuce"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:47
 msgid "Terms of Use"
-msgstr ""
+msgstr "Wužywańske wuměnjenja"
 
 #. Translators: Label that refers to the site's terms of service
 #: strings.py:49
 msgid "Terms of Service"
-msgstr ""
+msgstr "Słužbne wuměnjenja"
 
 #: templates/about.html:7 templates/layout.html:188
 msgid "About"
-msgstr ""
+msgstr "Wó"
 
 #: templates/about.html:13
 msgid "About This Pootle Server"
-msgstr ""
+msgstr "Wó toś tom serwerje Pootle"
 
 #: templates/about.html:16
 msgid ""
@@ -1867,6 +1895,11 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
+"Toś to sedło wužywa Pootle — mócna websoftware, kótaraž teamam zmóžnja, "
+"pśełožki napóraś a pśełožowanje zastojaś. Toś ten zgromaźeństwowy rěd jo "
+"licha software, a kuždy team móžo ju wužywaś a k zgromaźeństwoju Pootle "
+"pśinosowaś. Cytaj wěcej wó <a href=\"http://pootle.translatehouse.org/"
+"\">projektowem websedle</a>."
 
 #: templates/about.html:25
 #, python-format
@@ -1874,73 +1907,79 @@ msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
 msgstr ""
+"Pootle %(pootle_version)s Translate Toolkit %(toolkit_version)s wužywa."
 
 #: templates/account/email/email_confirmation_message.txt:2
 msgid "A Pootle account has been created for you using this email address."
-msgstr ""
+msgstr "Konto Pootle jo se z pomocu tuteje e-mailoweje adrese załožyło."
 
 #: templates/account/email/email_confirmation_message.txt:3
 msgid "To activate your account, follow this link:"
-msgstr ""
+msgstr "Aby swójo konto aktiwěrował, slěduj toś tomu wótkazoju:"
 
 #: templates/account/email/email_confirmation_message.txt:6
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
 msgstr ""
+"Toś ta powěsć jo se pósłała, aby pśespytowała, lěc e-mailowa adresa jo "
+"napšawdu pšawa. Jolic njejsćo kśěł konto registrěrowaś, móžoš powěsć "
+"jadnorje ignorěrowaś."
 
 #: templates/account/email/email_confirmation_subject.txt:2
 msgid "Pootle e-mail confirmation"
-msgstr ""
+msgstr "E-mailowe wobkšuśenje Pootle"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr ""
+msgstr "Smy požedanje dostali, aby wašo gronidło slědk stajili."
 
 #: templates/account/email/password_reset_key_message.txt:3
 msgid "To reset your password, follow this link:"
-msgstr ""
+msgstr "Aby swójo gronidło slědk stajił, slěduj toś tomu wótkazoju:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
 msgstr ""
+"Jolic njocoš swójo hesło slědk stajiś, móžoš powěsć jadnorje ignorěrowaś."
 
 #: templates/account/email/password_reset_key_subject.txt:2
 msgid "Pootle password reset e-mail"
-msgstr ""
+msgstr "Mejlka za slědkstajenje gronidła Pootle"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
 msgid "Registration Disabled"
-msgstr ""
+msgstr "Registracija jo znjemóžnjona"
 
 #: templates/account/signup_closed.html:14
 msgid "Registration is currently disabled. Please try again later."
 msgstr ""
+"Registracija jo tuchylu znjemóžnjona. Pšosym wopytaj pózdźej hyšći raz."
 
 #: templates/admin/_generic_formset.html:22
 #: templates/translation_projects/terminology/manage.html:54
 msgid "Save Changes"
-msgstr ""
+msgstr "Změny składowaś"
 
 #: templates/admin/_tabs.html:6
 msgid "Info"
-msgstr ""
+msgstr "Informacija"
 
 #: templates/admin/_tabs.html:11 templates/admin/dashboard.html:21
 #: templates/admin/users.html:4 templates/admin/users.html:7
 #: templates/user/base.html:4
 msgid "Users"
-msgstr ""
+msgstr "Wužywarje"
 
 #: templates/admin/_tabs.html:16 templates/admin/languages.html:4
 #: templates/admin/languages.html:7 templates/projects/_nav.html:23
 #: templates/projects/admin/languages.html:7
 #: templates/projects/all/_nav.html:19
 msgid "Languages"
-msgstr ""
+msgstr "Rěcy"
 
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
@@ -1948,7 +1987,7 @@ msgstr ""
 #: templates/languages/admin/language_team.html:89
 #: templates/projects/base.html:5
 msgid "Projects"
-msgstr ""
+msgstr "Projekty"
 
 #: templates/admin/_tabs.html:26 templates/admin/permissions.html:4
 #: templates/admin/permissions.html:7 templates/projects/_nav.html:30
@@ -1957,58 +1996,60 @@ msgstr ""
 #: templates/translation_projects/_nav.html:29
 #: templates/translation_projects/admin/permissions.html:5
 msgid "Permissions"
-msgstr ""
+msgstr "Pšawa"
 
 #: templates/admin/_tabs.html:31 templates/admin/staticpages/base.html:4
 #: templates/admin/staticpages/base.html:8
 msgid "Static Pages"
-msgstr ""
+msgstr "Statiske boki"
 
 #: templates/admin/base.html:4 templates/admin/base.html:7
 msgid "Administration"
-msgstr ""
+msgstr "Administracija"
 
 #: templates/admin/dashboard.html:7
 msgid "Server Statistics"
-msgstr ""
+msgstr "Serwerowe statistiki"
 
 #: templates/admin/dashboard.html:13
 msgid "Submissions"
-msgstr ""
+msgstr "Zapódaśa"
 
 #: templates/admin/dashboard.html:17
 msgid "Pending suggestions"
-msgstr ""
+msgstr "Njedocynjone naraźenja"
 
 #: templates/admin/dashboard.html:29
 msgid "Background Jobs"
-msgstr ""
+msgstr "Slězynowe nadawki"
 
 #: templates/admin/dashboard.html:35
 msgid "Status"
-msgstr ""
+msgstr "Status"
 
 #: templates/admin/dashboard.html:42
 msgid "Pending jobs"
-msgstr ""
+msgstr "Njedocynjone nadawki"
 
 #: templates/admin/dashboard.html:46
 msgid "Failed jobs"
-msgstr ""
+msgstr "Njewuspěšne nadawki"
 
 #: templates/admin/dashboard.html:56
 msgid "System Checks"
-msgstr ""
+msgstr "Systemowe kontrole"
 
 #: templates/admin/dashboard.html:66
 msgid "No issues have been detected. All is good!"
-msgstr ""
+msgstr "Problemy njejsu se namakali. Wšykno jo dobre!"
 
 #: templates/admin/permissions.html:10
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
+"How móžoš standardne pšawa za toś ten serwer Pootle pśidaś, wobźěłaś a "
+"wulašowaś."
 
 #: templates/admin/permissions.html:14
 #: templates/projects/admin/permissions.html:13
@@ -2019,11 +2060,15 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"Wužywaŕ “nobody” póśěgujo se na wužywarja, kenž njejo pśizjawjony (anonymny "
+"njeidentificěrowany wužywaŕ). Wužywaŕ “default” póśěgujo se na pšawa, "
+"kótarež wšykne pśizjawjone wužywarjo pó standarźe maju, snaźkuli su se jim "
+"druge wósebne pšawa pśipokazali."
 
 #: templates/admin/project_fs.html:26
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
+msgstr "Konfiguracija datajowego systema: %(project_code)s"
 
 #: templates/admin/project_fs.html:28
 msgid ""
@@ -2031,95 +2076,104 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"Pootle FS jo hyšći eksperimentelny, my by se wjaselili, gaž ty jen wužywaš, "
+"ale pomina se wěste wěcywuznaśe w lokalizaciji, Python a Pootle, jolic se "
+"něco njeraźi."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
-msgstr ""
+msgstr "Konfiguracija backenda"
 
 #: templates/admin/project_fs.html:48
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "Konfiguraciju datajowego systema aktualizěrowaś"
 
 #: templates/admin/project_fs.html:51
 msgid "Translation path mapping should be of the format:"
-msgstr ""
+msgstr "Pśirědowanje scažki pśełožka měło slědujucy format wužywaś:"
 
 #: templates/admin/project_fs.html:59
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
+"Jano `&lt;language_code&gt;` jo trěbny, lěcrownož dejał se na `.&lt;ext&gt;` "
+"kóńcyś"
 
 #: templates/admin/project_fs.html:65
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
+"Jolic backend localfs wužywaš, buźo se pśirědowanje sćažki pśełožka ze "
+"sćažku w URL backenda kombiněrowaś"
 
 #: templates/admin/project_fs.html:71
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
 msgstr ""
+"Za druge backendy buźo pśirědowanje sćažki pśełožka relatiwne ku kórjenjeju "
+"chowarnje."
 
 #: templates/admin/project_fs.html:81
 msgid "Language mapping configuration"
-msgstr ""
+msgstr "Konfiguracija pśirědowanja rěcy"
 
 #: templates/admin/project_fs.html:91
 msgid "Remove"
-msgstr ""
+msgstr "Wótwónoźeś"
 
 #: templates/admin/project_fs.html:92
 msgid "Pootle code"
-msgstr ""
+msgstr "Kod Pootle"
 
 #: templates/admin/project_fs.html:93
 msgid "Filesystem code"
-msgstr ""
+msgstr "Kod datajowego systema"
 
 #: templates/admin/project_fs.html:97
 #: templates/admin/staticpages/page_create.html:4
 msgid "Add"
-msgstr ""
+msgstr "Pśidaś"
 
 #: templates/admin/project_fs.html:104
 msgid "Update"
-msgstr ""
+msgstr "Aktualizěrowaś"
 
 #: templates/admin/reports/header.html:5
 msgid "User"
-msgstr ""
+msgstr "Wužywaŕ"
 
 #: templates/admin/reports/header.html:12
 msgid "Previous month"
-msgstr ""
+msgstr "Pjerwjejšny mjasec"
 
 #: templates/admin/reports/header.html:16
 msgid "Next month"
-msgstr ""
+msgstr "Pśiducy mjasec"
 
 #: templates/admin/reports/header.html:24
 msgid "Detailed Report"
-msgstr ""
+msgstr "Nadrobna rozpšawa"
 
 #: templates/admin/reports/header.html:26
 msgid "Detailed Statistics"
-msgstr ""
+msgstr "Nadrobne statistiki"
 
 #: templates/admin/staticpages/_form.html:7
 #: templates/translation_projects/terminology/manage.html:41
 msgid "Delete"
-msgstr ""
+msgstr "Lašowaś"
 
 #: templates/admin/staticpages/_form.html:21
 msgid "or"
-msgstr ""
+msgstr "abo"
 
 #: templates/admin/staticpages/_form.html:34
 #: templates/languages/admin/characters.html:20 templates/user/settings.html:39
 msgid "Save"
-msgstr ""
+msgstr "Składowaś"
 
 #: templates/admin/staticpages/_form.html:37
 msgid ""
@@ -2127,86 +2181,91 @@ msgid ""
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages."
 msgstr ""
+"Wužywaj kod <code>&lt;a href=\"<strong>#/slug-boka</strong>\"&gt;Tekst "
+"wótkaza&lt;/a&gt;</code>, aby wótkaze mjazy statiskimi bokami pódał. Take "
+"wótkaze se z połnymi sćažkami k statiskim bokam pśepišu."
 
 #: templates/admin/staticpages/_form.html:44
 msgid ""
 "In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
 "a dynamic language code."
 msgstr ""
+"Wužywaj na bokach pśipowěźenja <code><strong>/xx/</strong></code> w URL za "
+"dynamiski rěcny kod."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
-msgstr ""
+msgstr "Slědna změna"
 
 #: templates/admin/staticpages/_table.html:16
 msgid "Yes"
-msgstr ""
+msgstr "Jo"
 
 #: templates/admin/staticpages/_table.html:16
 msgid "No"
-msgstr ""
+msgstr "Ně"
 
 #: templates/admin/staticpages/_table.html:19
 #: templates/staticpages/_body.html:16
 msgid "edit"
-msgstr ""
+msgstr "wobźěłaś"
 
 #: templates/admin/staticpages/_table.html:24
 msgid "view"
-msgstr ""
+msgstr "pokazaś"
 
 #: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
-msgstr ""
+msgstr "Hyšći žedne boki."
 
 #: templates/admin/staticpages/page_list.html:7
 msgid "Legal Pages"
-msgstr ""
+msgstr "Pšawniske boki"
 
 #: templates/admin/staticpages/page_list.html:11
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Pšawniski bok pśidaś"
 
 #: templates/admin/staticpages/page_list.html:14
 msgid "Regular Pages"
-msgstr ""
+msgstr "Regularne boki"
 
 #: templates/admin/staticpages/page_list.html:18
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Regularny bok pśidaś"
 
 #: templates/admin/staticpages/page_list.html:21
 msgid "Announcements"
-msgstr ""
+msgstr "Pśipowěźenja"
 
 #: templates/admin/staticpages/page_list.html:25
 msgid "Add Announcement"
-msgstr ""
+msgstr "Pśipowěźenje pśidaś"
 
 #: templates/browser/_actions.html:8
 msgid "Fix critical errors"
-msgstr ""
+msgstr "Kritiske zmólki pórěźiś"
 
 #: templates/browser/_actions.html:13
 msgid "Critical errors"
-msgstr ""
+msgstr "Kritiske zmólki"
 
 #: templates/browser/_actions.html:23
 msgid "Review suggestions"
-msgstr ""
+msgstr "Naraźenja pśeglědowaś"
 
 #: templates/browser/_actions.html:38
 msgid "Continue translation"
-msgstr ""
+msgstr "Z pśełožowanim pókšacowaś"
 
 #: templates/browser/_actions.html:53
 msgid "View all"
-msgstr ""
+msgstr "Wše pokazaś"
 
 #. Translators: This refers to "All strings"
 #: templates/browser/_actions.html:58 templates/editor/_filters.html:6
 msgid "All"
-msgstr ""
+msgstr "Wše"
 
 #: templates/browser/_progressbar.html:3
 #, python-format
@@ -2214,11 +2273,15 @@ msgid ""
 "<span class='value translated'>%(translated_percent_display)s</span> "
 "translated"
 msgstr ""
+"Jo se pśełožyło: <span class='value translated'>"
+"%(translated_percent_display)s</span>"
 
 #: templates/browser/_progressbar.html:4
 #, python-format
 msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
 msgstr ""
+"Znamuškowe rjeśazki, kótarež muse se wobźěłaś: <span class='value fuzzy'>"
+"%(fuzzy_percent_display)s</span>"
 
 #: templates/browser/_progressbar.html:5
 #, python-format
@@ -2226,409 +2289,425 @@ msgid ""
 "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
 "untranslated"
 msgstr ""
+"Njepśełožone znamuškowe rjeśazki: <span class='value untranslated'>"
+"%(untranslated_percent_display)s</span>"
 
 #: templates/browser/index.html:20
 msgid "Expand details"
-msgstr ""
+msgstr "Drobnostki pokazaś"
 
 #: templates/browser/index.html:27
 msgid "Translation Statistics"
-msgstr ""
+msgstr "Pśełožowańska statistika"
 
 #: templates/browser/index.html:49
 msgid "Failing Checks"
-msgstr ""
+msgstr "Njeraźone kontrole"
 
 #: templates/browser/index.html:68
 msgid "More..."
-msgstr ""
+msgstr "Wěcej..."
 
 #: templates/browser/index.html:69
 msgid "Less..."
-msgstr ""
+msgstr "Mjenjej..."
 
 #: templates/browser/index.html:82
 msgid "Updates"
-msgstr ""
+msgstr "Aktualizacije"
 
 #: templates/browser/index.html:87
 msgid "Last updated:"
-msgstr ""
+msgstr "Slědna aktualizacija:"
 
 #: templates/browser/index.html:102
 msgid "Translations"
-msgstr ""
+msgstr "Pśełožki"
 
 #: templates/browser/index.html:106
 msgid "Last action:"
-msgstr ""
+msgstr "Slědna akcija:"
 
 #: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
-msgstr ""
+msgstr "Toś ten projekt jo znjemóžnjony a janož widobny za administratory."
 
 #: templates/contact_form/xhr_contact_form.html:8
 msgid "Please fill in all the fields."
-msgstr ""
+msgstr "Pšosym wupołni wše póla."
 
 #: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
-msgstr ""
+msgstr "Powěsć pósłaś"
 
 #: templates/contact_form/xhr_contact_form.html:24
 msgid "Thanks!"
-msgstr ""
+msgstr "Źěkujomy se!"
 
 #: templates/contact_form/xhr_contact_form.html:26
 msgid ""
 "We have received your message and will try to respond as soon as possible."
 msgstr ""
+"Smy twóju powěsć dostali a wopytajomy śi tak skoro ako móžno wótegroniś."
 
 #: templates/core/_top_scorers.html:9
 msgid "score"
-msgstr ""
+msgstr "gódnośenje"
 
 #: templates/core/_top_scorers.html:16 templates/core/_top_scorers_as_ul.html:8
 #, python-format
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(position)s"
 
 #: templates/core/_top_scorers.html:33
 msgid "No user contributions yet."
-msgstr ""
+msgstr "Hyšći žedne pśinoski."
 
 #: templates/core/_top_scorers_as_ul.html:3
 msgid "Top contributors:"
-msgstr ""
+msgstr "Głowne pśinosujuce:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html:7
 #: templates/core/xhr_captcha.html:14
 msgid "Are You Human?"
-msgstr ""
+msgstr "Sy luź?"
 
 #: templates/core/xhr_captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"Aby my serwer pśeśiwo napadam šćitali, musymy pśekontrolěrowaś, lěc luźece "
+"wužywarje su cynili zapódaśa."
 
 #: templates/core/xhr_captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Pšosym wótegroń na toś to pšašanje:"
 
 #: templates/core/xhr_captcha.html:19
 msgid "Confirm"
-msgstr ""
+msgstr "Wobkšuśiś"
 
 #: templates/editor/_actions.html:5
 msgid "Go back to browsing"
-msgstr ""
+msgstr "Pśeglěduj dalej"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
-msgstr ""
+msgstr "Móje naraźenja"
 
 #: templates/editor/_filters.html:13
 msgid "My submissions"
-msgstr ""
+msgstr "Móje zapódaśa"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
 #: templates/editor/_filters.html:17
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "Móje pśepisane zapódaśa"
 
 #: templates/editor/_filters.html:18
 msgid "Checks"
-msgstr ""
+msgstr "Kontrole"
 
 #: templates/editor/_filters.html:23
 msgid "Select type"
-msgstr ""
+msgstr "Typ wubraś"
 
 #: templates/editor/_toolbar.html:6
 msgid "Default order"
-msgstr ""
+msgstr "Standardny pórěd"
 
 #: templates/editor/_toolbar.html:8
 msgid "Important first"
-msgstr ""
+msgstr "Wažne ako prědne"
 
 #: templates/editor/_toolbar.html:10
 msgid "Newest first"
-msgstr ""
+msgstr "Nejnowše ako prědne"
 
 #: templates/editor/_toolbar.html:11
 msgid "Oldest first"
-msgstr ""
+msgstr "Nejstarše ako prědne"
 
 #: templates/editor/_toolbar.html:17
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "K pjerwjejšnemu znamuškowemu rjeśazkoju (Strg + šypka górjej)"
 
 #: templates/editor/_toolbar.html:20
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Aktualny numer znamuškowego rjeśazka (Strg+Umsch+U)<br/><br/>Zapódaj numer a "
+"tłoc zapódawańsku tastu<br/>, aby se k někakej poziciji dostał"
 
 #: templates/editor/_toolbar.html:22
 msgid "Total strings"
-msgstr ""
+msgstr "Znamuškowe rjeśazki dogromady"
 
 #: templates/editor/_toolbar.html:25
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "K pśiducemu znamuškowemu rjeśazkoju (Strg+šypka dołoj)"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:2
 msgid ""
 "The following suggestions submitted by you have been accepted with the "
 "comment:"
-msgstr ""
+msgstr "Slědujuce wót tebje zapódane naraźenja su se pśiwzeli z komentarom:"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
 msgid "We hope this feedback will help you improve your future contributions."
 msgstr ""
+"Naźejamy se, až toś ten komentar buźo wam pomagaś, swóje pśichodne pśinoski "
+"pólěpšyś."
 
 #: templates/editor/email/suggestions_rejected_with_comment.txt:2
 msgid ""
 "The following suggestions submitted by you have been rejected with the "
 "comment:"
-msgstr ""
+msgstr "Slědujuce wót tebje zapódane naraźenja su se wótpokazali z komentarom:"
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:12
 #: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
 #: templates/translation_projects/_nav.html:13
 msgid "Translate"
-msgstr ""
+msgstr "Pśełožyś"
 
 #: templates/editor/units/edit.html:12
 #, python-format
 msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">Zapisk #%(id)s</a>"
 
 #: templates/editor/units/edit.html:19
 msgid "Priority:"
-msgstr ""
+msgstr "Priorita:"
 
 #: templates/editor/units/edit.html:26
 msgid "Context:"
-msgstr ""
+msgstr "Kontekst:"
 
 #: templates/editor/units/edit.html:36
 msgid "Locations:"
-msgstr ""
+msgstr "Městna:"
 
 #: templates/editor/units/edit.html:56
 msgid "Terminology:"
-msgstr ""
+msgstr "Terminologija:"
 
 #: templates/editor/units/edit.html:59
 msgid "Insert the translated term into the editor"
-msgstr ""
+msgstr "Zapódaj pśełožone zapśimjeśe do editora"
 
 #: templates/editor/units/edit.html:72
 msgid "Comments:"
-msgstr ""
+msgstr "Komentary:"
 
 #: templates/editor/units/edit.html:82
 msgid "Click to open the image in a popup"
-msgstr ""
+msgstr "Klikni, aby wobraz we wuskokujucem woknje wócynił"
 
 #: templates/editor/units/edit.html:96
 msgid "Screenshots..."
-msgstr ""
+msgstr "Fota wobrazowki..."
 
 #: templates/editor/units/edit.html:120 templates/editor/units/edit.html:142
 msgid "Copy into translation"
-msgstr ""
+msgstr "Do pśełožka kopěrowaś"
 
 #: templates/editor/units/edit.html:136
 msgid "Report a problem with this string"
-msgstr ""
+msgstr "Problem z toś tym znamuškowym rjeśazkom k wěsći daś"
 
 #: templates/editor/units/edit.html:154 templates/editor/units/edit.html:165
 #: templates/editor/units/edit.html:252
 msgid "Submit"
-msgstr ""
+msgstr "Wótpósłaś"
 
 #: templates/editor/units/edit.html:155
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr ""
+"Pśełožk zapódaś a k pśiducemu znamuškowemu rjeśazkoju pśejś (Strg + enter)"
 
 #: templates/editor/units/edit.html:160 templates/editor/units/edit.html:166
 msgid "Suggest"
-msgstr ""
+msgstr "Naraźiś"
 
 #: templates/editor/units/edit.html:161
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr ""
+"Pśełožk naraźiś a k pśiducemu znamuškowemu rjeśazkoju pśejś (Strg+enter)"
 
 #: templates/editor/units/edit.html:165
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Pśełožowański modus pśešaltowaś (Strg+Umsch+prozne znamje)"
 
 #: templates/editor/units/edit.html:166
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "K naraźeńskemu modusojo pśejś (Strg+Umsch+prozne znamje)"
 
 #: templates/editor/units/edit.html:171
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr ""
+"Toś ten znamuškowy rjeśazk, dokulaž musy se dalej wobźěłaś (Strg+prozne "
+"znamje)"
 
 #: templates/editor/units/edit.html:209
 msgid "Show Timeline"
-msgstr ""
+msgstr "Casowy plan pokazaś"
 
 #: templates/editor/units/edit.html:211
 msgid "Add Comment"
-msgstr ""
+msgstr "Komentar pśidaś"
 
 #: templates/editor/units/edit.html:213
 msgid "Raw View"
-msgstr ""
+msgstr "Njeformatěrowane zwobraznjenje"
 
 #: templates/editor/units/edit.html:223
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr ""
+msgstr "wót <a href=\"%(profile_url)s\">%(reviewer)s</a> pśeglědany"
 
 #: templates/editor/units/edit.html:233
 #, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
+"Zapódaj %(character_name)s (gódnota Unicode %(character_code)s) do editora"
 
 #: templates/editor/units/edit.html:271
 msgid "User suggestions"
-msgstr ""
+msgstr "Wužywarske naraźenja"
 
 #: templates/editor/units/edit.html:291
 msgid "More options"
-msgstr ""
+msgstr "Dalšne nastajenja"
 
 #: templates/editor/units/edit.html:293
 msgid "Less options"
-msgstr ""
+msgstr "Mjenjej nastajenjow"
 
 #: templates/editor/units/edit.html:298
 msgid "Accept suggestion"
-msgstr ""
+msgstr "Naraźenje akceptěrowaś"
 
 #: templates/editor/units/edit.html:303
 msgid "Reject suggestion"
-msgstr ""
+msgstr "Naraźenje wótpokazaś"
 
 #: templates/editor/units/edit.html:309
 msgid "Remove suggestion"
-msgstr ""
+msgstr "Naraźenje wótwónoźeś"
 
 #: templates/editor/units/edit.html:321
 msgid "A long time ago"
-msgstr ""
+msgstr "Pśed dłujkim casom"
 
 #: templates/editor/units/term_edit.html:9
 msgid "Comment: "
-msgstr ""
+msgstr "Komentar: "
 
 #: templates/editor/units/xhr_checks.html:5
 msgid "Critical issues with the translation"
-msgstr ""
+msgstr "Kritiske problemy z pśełožkom"
 
 #: templates/editor/units/xhr_checks.html:5
 #: templates/languages/admin/language_team.html:108
 msgid "Critical errors:"
-msgstr ""
+msgstr "Kritiske zmólki:"
 
 #: templates/editor/units/xhr_checks.html:12
 #: templates/editor/units/xhr_checks.html:32
 msgid "Mute quality check"
-msgstr ""
+msgstr "Kwalitnu kontrolu znjemóžniś"
 
 #: templates/editor/units/xhr_checks.html:13
 #: templates/editor/units/xhr_checks.html:33
 msgid "Unmute quality check"
-msgstr ""
+msgstr "Kwalitnu kontrolu zmóžniś"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Possible issues with the translation"
-msgstr ""
+msgstr "Móžne problemy z pśełožkom"
 
 #: templates/editor/units/xhr_checks.html:25
 msgid "Watch out for:"
-msgstr ""
+msgstr "Źiwaj na:"
 
 #: templates/editor/units/xhr_comment.html:16
 msgid "Remove comment"
-msgstr ""
+msgstr "Komentar wótwónoźeś"
 
 #: templates/editor/units/xhr_comment.html:19
 msgid "Last comment:"
-msgstr ""
+msgstr "Slědny komentar:"
 
 #: templates/editor/units/xhr_timeline.html:3
 msgid "Timeline"
-msgstr ""
+msgstr "Casowy plan"
 
 #: templates/editor/units/xhr_timeline.html:38
 msgid "Last comment removed"
-msgstr ""
+msgstr "Slědny komentar wótwónoźony"
 
 #: templates/editor/units/xhr_timeline.html:44
 #, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
 msgstr ""
+"Kontrola <a href=\"%(check_url)s\">%(check_name)s</a> jo se znjemóžniła"
 
 #: templates/editor/units/xhr_timeline.html:48
 #, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
 msgstr ""
+"Kontrola <a href=\"%(check_url)s\">%(check_name)s</a> jo se zasej zmóžniła"
 
 #: templates/editor/units/xhr_timeline.html:60
 msgid "Unit created"
-msgstr ""
+msgstr "Zapisk jo se napórał"
 
 #: templates/errors/400.html:4 templates/errors/400.html:11
 msgid "Bad Request"
-msgstr ""
+msgstr "Zmólkate napšašowanje"
 
 #: templates/errors/400.html:12
 msgid "Error 400"
-msgstr ""
+msgstr "Zmólka 400"
 
 #: templates/errors/400.html:14
 msgid "The operation is not permitted."
-msgstr ""
+msgstr "Operacija njejo dowólona."
 
 #: templates/errors/403.html:4 templates/errors/403.html:8
 msgid "Permission Denied"
-msgstr ""
+msgstr "Pśistup wótpokazany"
 
 #: templates/errors/403.html:13
 msgid "You don't seem to have permissions to access this page."
-msgstr ""
+msgstr "Zda se, až njamaš pšawa za pśistup na toś ten bok."
 
 #: templates/errors/404.html:4 templates/errors/404.html:8
 msgid "Page Not Found"
-msgstr ""
+msgstr "Bok njejo se namakał"
 
 #: templates/errors/404.html:10
 msgid "We're sorry, but the requested page could not be found."
-msgstr ""
+msgstr "Jo nam luto, ale pominany bok njedajo se namakaś."
 
 #: templates/errors/500.html:4 templates/errors/500.html:8
 msgid "Server Error"
-msgstr ""
+msgstr "Serwerowa zmólka"
 
 #: templates/errors/500.html:10
 msgid "A server error has occurred. Thank you for your patience."
-msgstr ""
+msgstr "Serwerowa zmólka jo nastała. Źěkujomy se za twóju sćerpliwosć."
 
 #: templates/errors/500.html:16
 msgid "Exception:"
-msgstr ""
+msgstr "Wuwześe:"
 
 #: templates/errors/500.html:21
 #, python-format
@@ -2636,16 +2715,20 @@ msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
 "strong>."
 msgstr ""
+"Jolic pomoc trjebaš, móžoš na toś tu zmólku ako<strong>%(ref)s</strong> "
+"wótkazaś."
 
 #: templates/errors/db.html:4 templates/errors/db.html:8
 msgid "Database Error"
-msgstr ""
+msgstr "Zmólka datoweje banki"
 
 #: templates/errors/db.html:11
 msgid ""
 "Pootle can't connect to the database, the database is not initialized yet, "
 "or a schema upgrade is needed before continuing."
 msgstr ""
+"Pootle njamóžo z datoweju banku zwězaś, datowa banka hyšći njejo "
+"inicializěrowana abo šemowa aktualizacija jo pjerwjej trěbna."
 
 #: templates/errors/db.html:18
 #, python-format
@@ -2654,120 +2737,125 @@ msgid ""
 "installation and upgrade instructions. Contact the server administrator if "
 "you feel this is a mistake."
 msgstr ""
+"Pšosym cytaj <a href=\"%(url)s\">dokumentaciju Pootle</a> za instrukcije wó "
+"instalěrowanju a aktualizěrowanju. Staj se ze serwerowym administratorom do "
+"zwiska, jolic maš to za zmólku."
 
 #: templates/errors/db.html:26
 msgid "The reported error was:"
-msgstr ""
+msgstr "K wěsći data zmólka jo była:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
 msgid "Previous page"
-msgstr ""
+msgstr "Pjerwjejšny bok"
 
 #: templates/includes/formtable.html:22
 #, python-format
 msgid "Page %(page_number)s of %(page_count)s."
-msgstr ""
+msgstr "Bok %(page_number)s z %(page_count)s."
 
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Showing %(count)s results per page"
-msgstr ""
+msgstr "Wuslědki na bok: %(count)s"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
 msgid "Next page"
-msgstr ""
+msgstr "Dalšny bok"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
-msgstr ""
+msgstr "Wše wubraś"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
 #: templates/translation_projects/_nav.html:6
 msgid "Browse"
-msgstr ""
+msgstr "Pśepytowaś"
 
 #: templates/languages/_nav.html:21
 msgid "Team"
-msgstr ""
+msgstr "Team"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
 msgid "Filter suggestions"
-msgstr ""
+msgstr "Naraźenja filtrowaś"
 
 #: templates/languages/admin/language_team.html:5
 msgid "Language team"
-msgstr ""
+msgstr "Rěcny team"
 
 #. Translators: This refers to the management of language team members
 #: templates/languages/admin/language_team.html:16
 msgid "Member admin"
-msgstr ""
+msgstr "Administrator cłonkow"
 
 #: templates/languages/admin/language_team.html:30
 msgid "Add team member"
-msgstr ""
+msgstr "Teamowego cłonka pśidaś"
 
 #: templates/languages/admin/language_team.html:43
 #: templates/languages/admin/language_team.html:56
 #: templates/languages/admin/language_team.html:69
 #: templates/languages/admin/language_team.html:82
 msgid "Remove selected"
-msgstr ""
+msgstr "Wubrane wótwónoźeś"
 
 #: templates/languages/admin/language_team.html:103
 msgid "Unit and suggestions admin"
-msgstr ""
+msgstr "Administrator zapiskow a naraźenjow"
 
 #: templates/languages/admin/language_team.html:118
 msgid "Pending suggestions:"
-msgstr ""
+msgstr "Njedocynjone naraźenja:"
 
 #: templates/languages/admin/language_team.html:128
 msgid "Total words:"
-msgstr ""
+msgstr "Słowa dogromady:"
 
 #: templates/languages/admin/language_team.html:132
 msgid "Translated:"
-msgstr ""
+msgstr "Pśełožone:"
 
 #: templates/languages/admin/language_team.html:140
 msgid "Needs work:"
-msgstr ""
+msgstr "Pomina se wobźěłanje:"
 
 #: templates/layout.html:88
 msgid "Pootle requires JavaScript"
-msgstr ""
+msgstr "Pootle se JavaScript pomina"
 
 #: templates/layout.html:89
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
+"Pšosym zmóžni JavaScript w nastajenjach swójogo wobglědowaka a zacytajśo bok "
+"znowego."
 
 #: templates/layout.html:98
 msgid "skip to navigation"
-msgstr ""
+msgstr "k nawigaciji pśejś"
 
 #: templates/layout.html:131
 msgid "Public Profile"
-msgstr ""
+msgstr "Zjawny profil"
 
 #: templates/layout.html:132 templates/user/settings.html:4
 #: templates/user/settings.html:7
 msgid "Settings"
-msgstr ""
+msgstr "Nastajenja"
 
 #: templates/layout.html:134
 msgid "Admin"
-msgstr ""
+msgstr "Administrator"
 
 #: templates/layout.html:137
 msgid "Sign out"
-msgstr ""
+msgstr "Wótzjawiś"
 
 #: templates/layout.html:141
 msgid "Sign In"
-msgstr ""
+msgstr "Pśizjawiś"
 
 #: templates/projects/admin/email/translation_project_created.txt:2
 #, python-format
@@ -2775,6 +2863,8 @@ msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
 msgstr ""
+"Pśełožowański projekt (%(tp)s) jo se na %(url)s napórał a jo se "
+"zaktualizěrował."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
 #, python-format
@@ -2782,20 +2872,24 @@ msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
 msgstr ""
+"Při napóranju pśełožowańskego projekta (%(tp)s) jo zmólka nastała. Pšosym "
+"staj se ze swójim systemowym administratorom do zwiska."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr ""
+msgstr "How móžoš rěcy za toś ten projekt pśidaś, wobźěłaś abo wulašowaś."
 
 #: templates/projects/admin/languages.html:14
 msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
 msgstr ""
+"Pśedłogi za toś ten projekt njejsu, tak až pśidawanje nowych rěcow z toś "
+"teje wobrazowki jo znjemóžnjone."
 
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
-msgstr ""
+msgstr "Dołojce móžoš pšawa za toś ten projekt pśidaś, wobźěłaś a wulašowaś."
 
 #: templates/staticpages/_body.html:6
 #, python-format
@@ -2803,61 +2897,65 @@ msgid ""
 "This static page is inactive and visible to administrators only. You can "
 "activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
 msgstr ""
+"Statiski bok jo inaktiwny a jano widobny za administratory. <a href="
+"\"%(edit_url)s\">Wobźěłuj jogo kakosći</a>, aby jen aktiwěrował"
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
-msgstr ""
+msgstr "Akcija trěbna"
 
 #: templates/staticpages/agreement.html:4
 msgid "Before continuing, you must read and accept the following documents."
-msgstr ""
+msgstr "Nježli až pókšacujoš, musyš slědujuce dokumenty cytaś a akceptěrowaś."
 
 #: templates/staticpages/agreement.html:17
 msgid "No thanks. Sign out"
-msgstr ""
+msgstr "Ně, źěkujom se. Wótzjawiś"
 
 #: templates/staticpages/agreement.html:20
 msgid "Continue"
-msgstr ""
+msgstr "Pókšacowaś"
 
 #: templates/translation_projects/_nav.html:22
 msgid "Terminology"
-msgstr ""
+msgstr "Terminologija"
 
 #: templates/translation_projects/admin/permissions.html:9
 msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
 msgstr ""
+"Dołojce móžoš pšawa za toś ten pśełožowański projekt pśidaś, wobźěłaś a "
+"wulašowaś."
 
 #: templates/translation_projects/terminology/_term_edit.html:11
 msgid "Description..."
-msgstr ""
+msgstr "Wopisanje..."
 
 #: templates/translation_projects/terminology/_term_edit.html:18
 msgid "Details..."
-msgstr ""
+msgstr "Drobnostki..."
 
 #: templates/translation_projects/terminology/_term_edit.html:32
 msgid "Translator Comments"
-msgstr ""
+msgstr "Komentary pśełožowarja"
 
 #: templates/translation_projects/terminology/base.html:4
 msgid "Manage Terminology"
-msgstr ""
+msgstr "Terminologiju zastojaś"
 
 #: templates/translation_projects/terminology/manage.html:39
 msgid "Term"
-msgstr ""
+msgstr "Zapśimjeśe"
 
 #: templates/translation_projects/terminology/manage.html:40
 #: templates/user/settings.html:28
 msgid "Translation"
-msgstr ""
+msgstr "Pśełožk"
 
 #: templates/translation_projects/terminology/manage.html:63
 msgid "No terminology file has been found"
-msgstr ""
+msgstr "Terminologijowa dataja njejo se namakała"
 
 #. Translators: 'pootle-terminology' and 'Terminology' are not
 #. translated
@@ -2869,43 +2967,49 @@ msgid ""
 "project files.  This custom terminology will be used in addition to any "
 "terminology suggestions provided by the 'Terminology' project."
 msgstr ""
+"Aby terminologijowu funkciju wužywał, zawěsć, až se terminologijowa dataja "
+"pśełožowańskemu projektoju pśidawa. Terminologijowa dataja musy se 'pootle-"
+"terminology' groniś a ten samski datajowy sufiks (format) ako zbytk "
+"projektowych datajow wužywaś. Toś ta swójska terminologija buźo se pśidatnje "
+"k terminologijowym naraźenjam wužywaś, kótarež projekt 'Terminoligja' k "
+"dispoziciji staja."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
-msgstr ""
+msgstr "How móžoš zapśimjeśa w terminologijowych datajach zastojaś."
 
 #: templates/translation_projects/terminology/stores.html:14
 msgid "File"
-msgstr ""
+msgstr "Dataja"
 
 #: templates/translation_projects/terminology/stores.html:28
 msgid "Once you upload files, you will be able to add, edit and delete terms."
-msgstr ""
+msgstr "Gaž dataje nagrawaš, móžoš zapśimjeśa pśidaś, wobźěłaś a wulašowaś."
 
 #: templates/user/profile.html:13
 msgid "You can set or change your avatar image at www.gravatar.com"
-msgstr ""
+msgstr "Móžoš swój awatarowy wobraz na www.gravatar.com nastajiś abo změniś"
 
 #: templates/user/profile.html:16
 msgid "Anonymous User"
-msgstr ""
+msgstr "Anomymny wužywaŕ"
 
 #: templates/user/profile.html:28
 msgid "Score:"
-msgstr ""
+msgstr "Gódnośenje:"
 
 #: templates/user/profile.html:31
 #, python-format
 msgid "My current score at %(server_title)s is %(score)s "
-msgstr ""
+msgstr "Móje aktualne gódnośenje na %(server_title)s jo %(score)s "
 
 #: templates/user/profile.html:31 templates/user/profile.html:43
 msgid "Tweet this!"
-msgstr ""
+msgstr "Tweetuj to!"
 
 #: templates/user/profile.html:40
 msgid "No contributions in the last 30 days"
-msgstr ""
+msgstr "Žedne pśinoski za zachadne 30 dnjow"
 
 #: templates/user/profile.html:43
 #, python-format
@@ -2913,11 +3017,13 @@ msgid ""
 "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
 "%(server_title)s! "
 msgstr ""
+"Som pśinosujucy #%(pos)s za rěc %(lang_name)s za zachadne 30 dnjow na "
+"%(server_title)s! "
 
 #: templates/user/profile.html:44
 #, python-format
 msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr ""
+msgstr "Pśinosujucy #%(pos)s za rěc %(lang_name)s za zachadne 30 dnjow"
 
 #: templates/user/profile.html:49
 #, python-format
@@ -2925,75 +3031,85 @@ msgid ""
 "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
 "days"
 msgstr ""
+"Pśinosujucy #%(pos)s za rěc <a href=\"%(url)s\">%(lang_name)s</a> za "
+"zachadne 30 dnjow"
 
 #: templates/user/profile.html:59
 msgid "Latest activity:"
-msgstr ""
+msgstr "Slědna aktiwita:"
 
 #: templates/user/profile.html:73
 msgid "My Website"
-msgstr ""
+msgstr "Mójo websedło"
 
 #: templates/user/profile.html:79
 msgid "My LinkedIn Profile"
-msgstr ""
+msgstr "Mój profil LinkedIn"
 
 #: templates/user/profile.html:88
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
+"Pokaž drugim, chtož sy, wulicuj jim něco wó sebje<br/>a daj swójomu zjawnemu "
+"profiloju wjelicny naglěd!"
 
 #: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
+"Někotare pśełožki su se wót anonymnych dobrowólnikow zapódali. Toś te su pód "
+"wósebnym metakontom zregistrěrowane."
 
 #: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
 msgstr ""
+"Někotare pśełožki su se z eksternych datajow importěrowali. Toś te su pód "
+"toś tym wósebnym metakontom zregistrěrowane."
 
 #: templates/user/settings.html:12
 msgid "User Account"
-msgstr ""
+msgstr "Wužywarske konto"
 
 #: templates/user/settings.html:14
 msgid ""
 "Do you want to change your password? Click the 'Reset Password' button which "
 "will initiate the process of setting a new password."
 msgstr ""
+"Coš swójo gronidło změniś? Klikniśo na tłocašk 'Gronidło slědk stajiś', "
+"kótarež proces slědkstajanja nowego gronidła iniciěrujo."
 
 #: templates/user/settings.html:25
 msgid "Reset Password"
-msgstr ""
+msgstr "Gronidło slědk stajiś"
 
 #: templates/user/stats.html:13 templates/user/stats.html:17
 msgid "Statistics"
-msgstr ""
+msgstr "Statistika"
 
 #: templates/user/stats.html:27
 msgid "Daily activity"
-msgstr ""
+msgstr "Dnjowna aktiwita"
 
 #: templates/welcome.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "Witaj"
 
 #: templates/welcome.html:13
 msgid "Welcome to Pootle"
-msgstr ""
+msgstr "Witaj k Pootle"
 
 #: templates/welcome.html:14
 msgid "Come and join us!"
-msgstr ""
+msgstr "Pśizamkni se nam!"
 
 #: templates/welcome.html:19
 msgid "Sign in"
-msgstr ""
+msgstr "Pśizjawiś"
 
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
-msgstr ""
+msgstr "Głowne pśinosujuce za zachadne 30 dnjow"

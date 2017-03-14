@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-03-06 21:06+0000\n"
+"PO-Revision-Date: 2017-03-11 13:34+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1488834404.000000\n"
+"X-POOTLE-MTIME: 1489239274.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -39,7 +39,7 @@ msgstr ""
 #: apps/accounts/forms.py:59
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
-msgstr "Zda so, zo waš wužiwar je so zhubił. Prošu zdźěl to mějićelam sydła."
+msgstr "Zda so, zo twój wužiwar je so zhubił. Prošu zdźěl to mějićelam sydła."
 
 #: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
@@ -527,11 +527,10 @@ msgstr[3] "%s namjetow z komentarom akceptowane. Wužiwarjo dóstanu zdźělenku
 #, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
-msgstr[0] "%s namjet z komentarom akceptowany. Wužiwar dóstanje zdźělenku"
-msgstr[1] ""
-"%s namjetaj z komentarom akceptowanej. Wužiwarjej dóstanjetaj zdźělenku"
-msgstr[2] "%s namjety z komentarom akceptowane. Wužiwarjo dóstanu zdźělenku"
-msgstr[3] "%s namjetow z komentarom akceptowane. Wužiwarjo dóstanu zdźělenku"
+msgstr[0] "%s namjet wótpokazany"
+msgstr[1] "%s namjetaj wótpokazanej"
+msgstr[2] "%s namjety wótpokazane"
+msgstr[3] "%s namjetow wótpokazane"
 
 #: apps/pootle_language/views.py:251
 #, python-format
@@ -1356,7 +1355,7 @@ msgid ""
 "`default`, `redis` and `lru`."
 msgstr ""
 "Rozdźělne konfiguracije django_redis.cache.RedisCache su trěbne za "
-"'default'. 'redis' a 'lru'."
+"'default', 'redis' a 'lru'."
 
 #: checks.py:198
 msgid "DEBUG mode is on. Do not do this in production!"
@@ -1483,7 +1482,7 @@ msgstr "'%s' INDEX_NAME w POOTLE_TM_SERVER podwójić."
 
 #: checks.py:309
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
-msgstr "Nastaj druhe INDEX_NAME za wšě serwery w POOTL_TM_SERVER."
+msgstr "Nastaj druhe INDEX_NAME za wšě serwery w POOTLE_TM_SERVER."
 
 #: checks.py:319
 #, python-format
@@ -1554,7 +1553,7 @@ msgstr "Standardny wužiwar 'admin' ma hišće hesło 'admin'."
 
 #: checks.py:389
 msgid "Remove the 'admin' user or change its password."
-msgstr "Wotstrońće wužiwarja 'admin' abo změńće hesło."
+msgstr "Wotstroń wužiwarja 'admin' abo změń hesło."
 
 #: checks.py:403
 msgid "Database connection uses transaction_hooks."
@@ -1575,7 +1574,7 @@ msgstr "E-mejlowy serwer k dispoziciji njeje."
 #: checks.py:425
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
-"Přepruwujće swoje e-mejlowe nastajenja a zawěsćće, zo waš e-mejlowy serwer "
+"Přepruwuj swoje e-mejlowe nastajenja a zawěsć, zo twój e-mejlowy serwer "
 "funguje."
 
 #: checks.py:452
@@ -1584,12 +1583,12 @@ msgstr "Wersija faluje abo ma wopačnu hódnotu."
 
 #: checks.py:453
 msgid "Run `revision --restore` to reset the revision counter."
-msgstr "Wuwjedźće 'revision --restore', zo byšće wersijowy ličak wróćo stajił."
+msgstr "Wuwjedź 'revision --restore', zo by wersijowy ličak wróćo stajił."
 
 #: checks.py:467
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
-"Njeje žadyn kanonioski URL podaty a standardne sydło je na example.com "
+"Njeje žadyn kanoniski URL podaty a standardne sydło je na example.com "
 "stajene."
 
 #: checks.py:469
@@ -1597,7 +1596,7 @@ msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
-"Nastaj 'POOTLE_CANONICAL_URL' w nastajenjach abo aktualizujće standardne "
+"Nastaj 'POOTLE_CANONICAL_URL' w nastajenjach abo aktualizuj standardne "
 "sydło, jeli django.contrib.sites wužiwaš."
 
 #: checks.py:473
@@ -1627,7 +1626,7 @@ msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
-"Wutwor zapis, na kotryž 'POOTL_FS_WORKING_PATH' pokazuje, abo změń "
+"Wutwor zapis, na kotryž 'POOTLE_FS_WORKING_PATH' pokazuje, abo změń "
 "nastajenje."
 
 #: checks.py:516
@@ -1835,7 +1834,7 @@ msgstr "Nimaš přistup na tutu stronu."
 #, python-format
 msgid "Error accessing %(filename)s, Filesystem sent error: %(errormsg)s"
 msgstr ""
-"Zmylk při přistupje na %(filename)s, zmylk datajoweho system: %(errormsg)s"
+"Zmylk při přistupje na %(filename)s, zmylk datajoweho systema: %(errormsg)s"
 
 #: middleware/errorpages.py:119
 #, python-format
@@ -1896,7 +1895,7 @@ msgstr ""
 "přełožki wutworić a přełožowanje rjadować. Tutón zhromadźenstwowy nastroj je "
 "swobodna software, a kóždy team móže ju wužiwać a k zhromadźenstwu Pootle "
 "přinošować. Čitaj wjace wo <a href=\"http://pootle.translatehouse.org/"
-"\">projektowe websydło</a>."
+"\">projektowym websydle</a>."
 
 #: templates/about.html:25
 #, python-format
@@ -1938,7 +1937,7 @@ msgstr "Zo by swoje hesło wróćo stajił, slěduj tutomu wotkazej:"
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
-msgstr "Jeli nochceš swoje hesko wróćo stajić, móžeš powěsć prosće ignorować."
+msgstr "Jeli nochceš swoje hesło wróćo stajić, móžeš powěsć prosće ignorować."
 
 #: templates/account/email/password_reset_key_subject.txt:2
 msgid "Pootle password reset e-mail"
@@ -2033,7 +2032,7 @@ msgstr "Njewuspěšne nadawki"
 
 #: templates/admin/dashboard.html:56
 msgid "System Checks"
-msgstr "Systemkontrole"
+msgstr "Systemowe kontrole"
 
 #: templates/admin/dashboard.html:66
 msgid "No issues have been detected. All is good!"
@@ -2085,7 +2084,7 @@ msgstr "Konfiguraciju datajoweho systema aktualizować"
 
 #: templates/admin/project_fs.html:51
 msgid "Translation path mapping should be of the format:"
-msgstr "Přirjadowanje šcéžki překožka měło slědowacy format wužiwać:"
+msgstr "Přirjadowanje šcéžki přełožka měło slědowacy format wužiwać:"
 
 #: templates/admin/project_fs.html:59
 msgid ""
@@ -2227,7 +2226,7 @@ msgstr "Regularne strony"
 
 #: templates/admin/staticpages/page_list.html:18
 msgid "Add Regular Page"
-msgstr "Regularne strony"
+msgstr "Regularnu stronu přidać"
 
 #: templates/admin/staticpages/page_list.html:21
 msgid "Announcements"
@@ -2275,7 +2274,7 @@ msgstr ""
 #, python-format
 msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
 msgstr ""
-"Znamješkowe rjećazki, kotrež dyrbja os wobdźěłać. <span class='value fuzzy'>"
+"Znamješkowe rjećazki, kotrež dyrbja so wobdźěłać: <span class='value fuzzy'>"
 "%(fuzzy_percent_display)s</span>"
 
 #: templates/browser/_progressbar.html:5
@@ -2449,7 +2448,7 @@ msgstr "K přichodnemu znamješkowemu rjećazkej (Strg+šipk dele)"
 msgid ""
 "The following suggestions submitted by you have been accepted with the "
 "comment:"
-msgstr "Slědowace wot was zapodate namjety su so přiwzeli z komentarom:"
+msgstr "Slědowace wot tebje zapodate namjety su so přiwzeli z komentarom:"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
@@ -2462,7 +2461,7 @@ msgstr ""
 msgid ""
 "The following suggestions submitted by you have been rejected with the "
 "comment:"
-msgstr "Slědowace wot was zapodate namjety su so z komentarom wotpokazali:"
+msgstr "Slědowace wot tebje zapodate namjety su so z komentarom wotpokazali:"
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:12
 #: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
@@ -2505,7 +2504,7 @@ msgstr "Klikń, zo by wobraz we wuskakowacym woknje wočinił"
 
 #: templates/editor/units/edit.html:96
 msgid "Screenshots..."
-msgstr "Fota worazowki..."
+msgstr "Fota wobrazowki..."
 
 #: templates/editor/units/edit.html:120 templates/editor/units/edit.html:142
 msgid "Copy into translation"
@@ -2532,7 +2531,7 @@ msgstr "Namjetować"
 #: templates/editor/units/edit.html:161
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr ""
-"Překožk namjetować a k přichodnemu znamješkowemu rjećazkej přeńć (Strg+enter)"
+"Přełožk namjetować a k přichodnemu znamješkowemu rjećazkej přeńć (Strg+enter)"
 
 #: templates/editor/units/edit.html:165
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
@@ -2696,7 +2695,7 @@ msgstr "Serwerowy zmylk"
 
 #: templates/errors/500.html:10
 msgid "A server error has occurred. Thank you for your patience."
-msgstr "Serwerowy zmylk je wustupił. Dźakujumy so za twoju sćerpliwosć."
+msgstr "Serwerowy zmylk je wustupił. Dźakujemy so za twoju sćerpliwosć."
 
 #: templates/errors/500.html:16
 msgid "Exception:"
@@ -2720,7 +2719,7 @@ msgid ""
 "Pootle can't connect to the database, the database is not initialized yet, "
 "or a schema upgrade is needed before continuing."
 msgstr ""
-"Pootle njemóže z datowej banku zwjazać, datowa banko hišće njeje "
+"Pootle njemóže z datowej banku zwjazać, datowa banka hišće njeje "
 "inicializowana abo šemowa aktualizacija je prjedy trěbna."
 
 #: templates/errors/db.html:18
@@ -3015,7 +3014,7 @@ msgstr ""
 #: templates/user/profile.html:44
 #, python-format
 msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "Přinowošar #%(pos)s za rěč %(lang_name)s za zańdźene 30 dnjow"
+msgstr "Přinošowar #%(pos)s za rěč %(lang_name)s za zańdźene 30 dnjow"
 
 #: templates/user/profile.html:49
 #, python-format
@@ -3059,7 +3058,7 @@ msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
 msgstr ""
-"Někotre překožki su so z eksternych datajow importowali. Tute su pod tutym "
+"Někotre přełožki su so z eksternych datajow importowali. Tute su pod tutym "
 "wosebitym metakontom zregistrowane."
 
 #: templates/user/settings.html:12

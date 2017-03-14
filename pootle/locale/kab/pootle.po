@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-02-28 09:28+0000\n"
-"Last-Translator: Slimane  <Slimane.amiri@gmail.com>\n"
+"PO-Revision-Date: 2017-03-14 12:37+0000\n"
+"Last-Translator: belkacem77 <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1488274102.000000\n"
+"X-POOTLE-MTIME: 1489495024.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -535,7 +535,7 @@ msgstr "Uzɣin"
 
 #: apps/pootle_misc/checks.py:36
 msgid "Cosmetic"
-msgstr ""
+msgstr "Aḥennek"
 
 #: apps/pootle_misc/checks.py:37
 msgid "Functional"
@@ -836,7 +836,6 @@ msgid "Potential unwanted placeholders"
 msgstr ""
 
 #: apps/pootle_misc/checks.py:117
-#, fuzzy
 msgid "Double quotes in tags"
 msgstr "tuccar takniwin"
 
@@ -1129,7 +1128,7 @@ msgstr "Asenfar n usuɣel (%s)  yettwasnulfa"
 #: apps/pootle_translationproject/receivers.py:52
 #, python-format
 msgid "Translation project (%s) creation failed"
-msgstr ""
+msgstr "Asenfar n tsuqilt (%s) timerna ur réédition ara"
 
 #: apps/staticpages/forms.py:59
 #, python-format
@@ -1251,11 +1250,11 @@ msgid ""
 msgstr ""
 "Ɛreḍ aseqdec n 'pootle find_duplicate_emails', sakin leqqem imaylen n "
 "useqdac s 'pootle update_user_email username email'. Ahat yessefk daɣen ad "
-"twaliḍ ma tzemred ad tesqedceḍ  tiludna merge_user neɣ purge_user n pootle"
+"twaliḍ ma tzemred ad tesqedceḍ tiludna merge_user neɣ purge_user n pootle"
 
 #: checks.py:90
 msgid "Your version of Django is too old."
-msgstr "Tasenfelt-inek n Django bezzaf d taqburt."
+msgstr "Tasenfelt-inek n Django aṭas d taqburt."
 
 #: checks.py:91
 #, python-format
@@ -1286,7 +1285,7 @@ msgstr "Ulamek tuqqna ɣer Redis (%s)"
 #: checks.py:127
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
-msgstr ""
+msgstr "Ḍmen d akken Redis yettwaselkam di %(host)s:%(port)s"
 
 #: checks.py:137
 msgid "Your version of Redis is too old."
@@ -1295,7 +1294,7 @@ msgstr "Lqem inek n Redis d aqbuṛ."
 #: checks.py:138
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
-msgstr ""
+msgstr "Leqqem akemmus n uqeddac Redis n unagraw ɣarṣum ar lqem %s"
 
 #. Translators: a worker processes background tasks
 #: checks.py:149
@@ -1990,6 +1989,8 @@ msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
+"Ayagi ad isireg timerna, asnifel akked tukksa n tsirag timezwar deg uqeddac "
+"Pootle."
 
 #: templates/admin/permissions.html:14
 #: templates/projects/admin/permissions.html:13
@@ -2000,11 +2001,14 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
+"Aseqdac “nobody” yemmal-d yal aseqdac ur neqqin ara (aseqdac udrig). Aseqdac "
+"“amezwer” yemmal-d izerfan ara sɛun iseqdacen imezwar, skud izerfan "
+"imeẓliyen ur s-ttwanefken ara."
 
 #: templates/admin/project_fs.html:26
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
+msgstr "Tawila n unagraw n ifuyla: %(project_code)s"
 
 #: templates/admin/project_fs.html:28
 msgid ""
@@ -2225,7 +2229,7 @@ msgstr "Tidaddanin n tsuqilt"
 
 #: templates/browser/index.html:49
 msgid "Failing Checks"
-msgstr ""
+msgstr "Asenqed ur iddi ara"
 
 #: templates/browser/index.html:68
 msgid "More..."
@@ -2253,11 +2257,11 @@ msgstr "Tigawt taneggarut"
 
 #: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
-msgstr ""
+msgstr "Asenfaṛ-agi yensa udiɣ yettban-d kan i yinebdalen."
 
 #: templates/contact_form/xhr_contact_form.html:8
 msgid "Please fill in all the fields."
-msgstr ""
+msgstr "Ččaṛ akk urtan."
 
 #: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
@@ -2270,7 +2274,7 @@ msgstr "Tanemmirt!"
 #: templates/contact_form/xhr_contact_form.html:26
 msgid ""
 "We have received your message and will try to respond as soon as possible."
-msgstr ""
+msgstr "Nermes-d izen-ik udiɣ ak-d-nerr melmi nezmer."
 
 #: templates/core/_top_scorers.html:9
 msgid "score"
@@ -2283,11 +2287,11 @@ msgstr "#%(position)s"
 
 #: templates/core/_top_scorers.html:33
 msgid "No user contributions yet."
-msgstr ""
+msgstr "Ulac yakan ittekkiyen n useqdac."
 
 #: templates/core/_top_scorers_as_ul.html:3
 msgid "Top contributors:"
-msgstr ""
+msgstr "Imttekkiyen yufraren.:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html:7
 #: templates/core/xhr_captcha.html:14
@@ -2302,7 +2306,7 @@ msgstr ""
 
 #: templates/core/xhr_captcha.html:16
 msgid "Please answer this question:"
-msgstr ""
+msgstr "Err-d i usteqsi-agi:"
 
 #: templates/core/xhr_captcha.html:19
 msgid "Confirm"
@@ -2310,7 +2314,7 @@ msgstr "Sentem"
 
 #: templates/editor/_actions.html:5
 msgid "Go back to browsing"
-msgstr ""
+msgstr "Uɣal ar tunigin"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
@@ -2337,7 +2341,7 @@ msgstr "Fren anaw"
 
 #: templates/editor/_toolbar.html:6
 msgid "Default order"
-msgstr ""
+msgstr "Asmizzwer amezwer"
 
 #: templates/editor/_toolbar.html:8
 msgid "Important first"
@@ -2731,6 +2735,8 @@ msgstr "Pootle yesra JavaScript"
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
+"Ma ulac aɣilif, rmed JavaScript deg ismenyifen n iminig-ik sakin sali-d "
+"asebter."
 
 #: templates/layout.html:98
 msgid "skip to navigation"
@@ -2763,6 +2769,7 @@ msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
 msgstr ""
+"Asenfaṛ n tsuqilt (%(tp)s) yettwarna di %(url)s, udiq yettwalqem akken iwata."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
 #, python-format
@@ -2770,10 +2777,12 @@ msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
 msgstr ""
+"Teḍra-d tuccḍa deg usenfaṛ n tsuqilt (%(tp)s). Ma ulac aɣilif, nermes "
+"anebdal-il."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr ""
+msgstr "Tzemreḍ ad ternuḍ, ad tẓergeḍ neɣ ad tekkseḍ tutlayin i usenfaṛ-agi."
 
 #: templates/projects/admin/languages.html:14
 msgid ""
@@ -2794,6 +2803,8 @@ msgid ""
 "This static page is inactive and visible to administrators only. You can "
 "activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
 msgstr ""
+"Asebter-agi usbiḍ ur irmid ara udiɣ d umman kan i unebdal. Tzemred ad "
+"tremdeḍ s <a href=\"%(edit_url)s\">teẓrigt n tmeẓliyin-is</a>"
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
@@ -2801,7 +2812,7 @@ msgstr "Tigawt tettwasra"
 
 #: templates/staticpages/agreement.html:4
 msgid "Before continuing, you must read and accept the following documents."
-msgstr ""
+msgstr "Send ad teddud, ɣeṛ sakin qbel isemliyen-agi."
 
 #: templates/staticpages/agreement.html:17
 msgid "No thanks. Sign out"
@@ -2820,6 +2831,8 @@ msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
 msgstr ""
+"Daw-a, tzemreḍ ad ternuḍ, ad ẓergeḍ neɣ ad tekksed tisirag i usenfaṛ-agi n "
+"tsuqilt."
 
 #: templates/translation_projects/terminology/_term_edit.html:11
 msgid "Description..."
@@ -2860,10 +2873,15 @@ msgid ""
 "project files.  This custom terminology will be used in addition to any "
 "terminology suggestions provided by the 'Terminology' project."
 msgstr ""
+"Akken ad tesqedceḍ tamahilt-agi, wali ma tzemred ad ternuḍ afaylu n wawalen "
+"ar usenfaṛ n tsuqilt. Afaylu n umawal yessefk ad ittusemmi 'pootle-"
+"terminology' udiɣ ad iseqdec  asiɣzef-nni n ufaylu (amasal) am ifuyla nniḍen "
+"n ufensaṛ.  Amawal-agi udmawan ad ittuseqdec deg isumar n wawalen n usenfaṛ  "
+"'Terminology'."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
-msgstr ""
+msgstr "Dagi tzemreḍ ad sferkeḍ awalen n ifuyla n tsuqilt."
 
 #: templates/translation_projects/terminology/stores.html:14
 msgid "File"
@@ -2872,6 +2890,7 @@ msgstr "Afaylu"
 #: templates/translation_projects/terminology/stores.html:28
 msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr ""
+"Ticki tuzneḍ ifuyla, tzemred ad ternuḍ, ad tesnifleḍ neɣ ad tekkseḍ awalen."
 
 #: templates/user/profile.html:13
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -2890,7 +2909,7 @@ msgstr "Agmuḍ:"
 #: templates/user/profile.html:31
 #, python-format
 msgid "My current score at %(server_title)s is %(score)s "
-msgstr ""
+msgstr "Agmuḍ-iw amiran di %(server_title)s d %(score)s "
 
 #: templates/user/profile.html:31 templates/user/profile.html:43
 msgid "Tweet this!"
@@ -2940,18 +2959,23 @@ msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
+"Sken i wiyaḍ anwa-k, meslay af yiman-ik<br/> sakin err amaɣnu-ik azayez d "
+"ucbiḥ!"
 
 #: templates/user/profile.html:98
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
+"Kra n tsuqilin i d-mudden imttekkiyen udrigen. Ttwakelsent s waɣef amiḍan-gi."
 
 #: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
 msgstr ""
+"Kr n tsuqilin ttwaketrent seg ifuyla izɣarayen. TTwaskelsent s yiwem n waɣef "
+"amiḍan-agi."
 
 #: templates/user/settings.html:12
 msgid "User Account"
@@ -2962,6 +2986,8 @@ msgid ""
 "Do you want to change your password? Click the 'Reset Password' button which "
 "will initiate the process of setting a new password."
 msgstr ""
+"Tebɣiḍ ad tesnifleḍ awal-ik uffir? Sit ɣef tqeffalt 'Wennez awal uffir' "
+"akken ad tsenkreḍ akal n uwennez n wawal uffir amaynut."
 
 #: templates/user/settings.html:25
 msgid "Reset Password"
