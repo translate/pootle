@@ -8,12 +8,14 @@
 
 from django.contrib.auth import get_user_model
 
-from pootle.core.delegate import display, scores
+from pootle.core.delegate import display, scores, score_data_updater
 from pootle.core.plugin import getter
 from pootle_language.models import Language
 from pootle_project.models import Project, ProjectSet
+from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
+from .updater import UserStoreScoreDataUpdater
 from .display import TopScoreDisplay
 from .utils import (
     LanguageScores, ProjectScores, ProjectSetScores, Scores,
@@ -51,3 +53,8 @@ def get_tp_scores(**kwargs_):
 @getter(scores, sender=User)
 def get_user_scores(**kwargs_):
     return UserScores
+
+
+@getter(score_data_updater, sender=Store)
+def user_score_data_updater_getter(**kwargs_):
+    return UserStoreScoreDataUpdater
