@@ -241,3 +241,9 @@ class StoreLog(Log):
 
     def filter_store(self, qs, store=None, field="unit__store_id"):
         return qs
+
+
+class UserLog(Log):
+
+    def __init__(self, user):
+        self.user = user
