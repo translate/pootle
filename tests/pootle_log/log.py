@@ -8,6 +8,7 @@
 
 import pytest
 
+from pootle.core.delegate import lifecycle, review
 from pootle_log.utils import Log, LogEvent
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
@@ -354,3 +355,179 @@ def test_log_filtered_created_units(system, tp0, store0):
     assert (
         created_unit_log.filtered_created_units(path=tp0.pootle_path).count()
         == path_created_units.count())
+
+
+@pytest.mark.django_db
+def test_log_get_created_units(system, store0):
+    created_units = UnitSource.objects.all()
+    created_unit_log = Log()
+    created = created_unit_log.get_created_units()
+    assert type(created).__name__ == "generator"
+    assert len(list(created)) == created_units.count()
+    expected = created_units.filter(
+        created_by=system).filter(
+            unit__store=store0).in_bulk()
+    result = created_unit_log.get_created_units(
+        store=store0.pk, user=system)
+    for event in result:
+        created_unit = expected[event.value.pk]
+        assert isinstance(event, created_unit_log.event)
+        assert event.unit == created_unit.unit
+        assert event.user == created_unit.created_by
+        assert event.timestamp == created_unit.unit.creation_time
+        assert event.action == "unit_created"
+        assert event.value == created_unit
+
+
+@pytest.mark.django_db
+def test_log_get_submissions(member, store0):
+    submissions = Submission.objects.all()
+    submission_log = Log()
+    sub_events = submission_log.get_submissions()
+    unit0 = store0.units[0]
+    unit0.source = "new source"
+    unit0.save(submitted_by=member)
+    lifecycle.get(unit0.__class__)(unit0).change()
+    unit1 = store0.units[0]
+    unit1.translator_comment = "new comment"
+    unit1.save(commented_by=member)
+    lifecycle.get(unit1.__class__)(unit1).change()
+    qc = store0.units.filter(
+        qualitycheck__isnull=False)[0].qualitycheck_set.all()[0]
+    lifecycle.get(qc.unit.__class__)(qc.unit).sub_mute_qc(
+        submitter=member, quality_check=qc).save()
+    assert type(sub_events).__name__ == "generator"
+    assert len(list(sub_events)) == submissions.count()
+    expected = submissions.filter(
+        submitter=member).filter(
+            unit__store=store0).in_bulk()
+    result = submission_log.get_submissions(
+        store=store0.pk, user=member)
+    for event in result:
+        sub = expected[event.value.pk]
+        event_name = "state_changed"
+        if sub.field == SubmissionFields.CHECK:
+            event_name = (
+                "check_muted"
+                if sub.new_value == "0"
+                else "check_unmuted")
+        elif sub.field == SubmissionFields.TARGET:
+            event_name = "target_updated"
+        elif sub.field == SubmissionFields.SOURCE:
+            event_name = "source_updated"
+        elif sub.field == SubmissionFields.COMMENT:
+            event_name = "comment_updated"
+        assert isinstance(event, submission_log.event)
+        assert event.unit == sub.unit
+        assert event.user == sub.submitter
+        assert event.timestamp == sub.creation_time
+        assert event.action == event_name
+        assert event.value == sub
+
+
+@pytest.mark.django_db
+def test_log_get_suggestions(member, store0):
+    suggestions = Suggestion.objects.all()
+    sugg_start, sugg_end = _get_mid_times(suggestions)
+    sugg_log = Log()
+    sugg_events = sugg_log.get_suggestions()
+    assert type(sugg_events).__name__ == "generator"
+    user_time_suggestions = (
+        (sugg_log.filter_user(
+            sugg_log.suggestions,
+            member,
+            field="user_id")
+         & sugg_log.filter_timestamps(
+             sugg_log.suggestions,
+             start=sugg_start,
+             end=sugg_end))
+        | (sugg_log.filter_user(
+            sugg_log.suggestions,
+            member,
+            field="reviewer_id")
+           & sugg_log.filter_timestamps(
+               sugg_log.suggestions,
+               start=sugg_start,
+               end=sugg_end,
+               field="review_time")))
+    assert user_time_suggestions
+    pending = suggestions.filter(
+        creation_time__gte=sugg_start,
+        creation_time__lt=sugg_end,
+        state__name="pending").first()
+    review.get(Suggestion)([pending], member).accept()
+    pending = suggestions.filter(
+        creation_time__gte=sugg_start,
+        creation_time__lt=sugg_end,
+        state__name="pending").first()
+    review.get(Suggestion)([pending], member).reject()
+    pending.review_time = sugg_start
+    pending.save()
+    expected = {}
+    for suggestion in user_time_suggestions.all():
+        add_event = (
+            (suggestion.creation_time >= sugg_start)
+            and (suggestion.creation_time < sugg_end)
+            and (suggestion.user == member))
+        review_event = (
+            (suggestion.review_time >= sugg_start)
+            and (suggestion.review_time < sugg_end)
+            and (suggestion.reviewer == member))
+        expected[suggestion.id] = {}
+        if add_event:
+            expected[suggestion.id]["suggestion_created"] = (
+                sugg_log.event(
+                    suggestion.unit,
+                    suggestion.user,
+                    suggestion.creation_time,
+                    "suggestion_created",
+                    suggestion))
+        if review_event:
+            event_name = (
+                "suggestion_accepted"
+                if suggestion.state.name == "accepted"
+                else "suggestion_rejected")
+            expected[suggestion.id][event_name] = (
+                sugg_log.event(
+                    suggestion.unit,
+                    suggestion.reviewer,
+                    suggestion.review_time,
+                    event_name,
+                    suggestion))
+    result = sugg_log.get_suggestions(
+        start=sugg_start, end=sugg_end, user=member)
+    for event in result:
+        assert isinstance(event, sugg_log.event)
+        sugg_review = expected[event.value.pk][event.action]
+        assert event.unit == sugg_review.unit
+        assert event.action in [
+            "suggestion_created", "suggestion_accepted", "suggestion_rejected"]
+        assert event.user == (
+            sugg_review.value.user
+            if event.action == "suggestion_created"
+            else sugg_review.value.reviewer)
+        assert event.timestamp == (
+            sugg_review.value.creation_time
+            if event.action == "suggestion_created"
+            else sugg_review.value.review_time)
+        assert event.value == sugg_review.value
+
+
+@pytest.mark.django_db
+def test_log_get_events(site_users, store0):
+    user = site_users["user"]
+    event_log = Log()
+    kwargs = dict(user=user, store=store0)
+    result = sorted(
+        event_log.get_events(**kwargs),
+        key=(lambda ev: (ev.timestamp, ev.unit.pk)))
+    expected = sorted(
+        list(event_log.get_created_units(**kwargs))
+        + list(event_log.get_suggestions(**kwargs))
+        + list(event_log.get_submissions(**kwargs)),
+        key=(lambda ev: (ev.timestamp, ev.unit.pk)))
+    assert (
+        [(x.timestamp, x.unit, x.action)
+         for x in result]
+        == [(x.timestamp, x.unit, x.action)
+            for x in expected])
