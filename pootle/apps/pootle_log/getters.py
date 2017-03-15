@@ -6,16 +6,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import importlib
+from pootle.core.delegate import log
+from pootle.core.plugin import getter
+from pootle_store.models import Store
 
-from django.apps import AppConfig
+from .utils import StoreLog
 
 
-class PootleLogConfig(AppConfig):
-
-    name = "pootle_log"
-    verbose_name = "Pootle Log"
-    version = "0.0.1"
-
-    def ready(self):
-        importlib.import_module("pootle_log.getters")
+@getter(log, sender=Store)
+def store_log_getter(**kwargs_):
+    return StoreLog

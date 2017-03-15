@@ -217,3 +217,27 @@ class Log(object):
             yield event
         for event in self.get_submissions(**kwargs):
             yield event
+
+
+class StoreLog(Log):
+
+    def __init__(self, store):
+        self.store = store
+
+    @property
+    def created_units(self):
+        return super(
+            StoreLog, self).created_units.filter(unit__store_id=self.store.id)
+
+    @property
+    def suggestions(self):
+        return super(
+            StoreLog, self).suggestions.filter(unit__store_id=self.store.id)
+
+    @property
+    def submissions(self):
+        return super(
+            StoreLog, self).submissions.filter(unit__store_id=self.store.id)
+
+    def filter_store(self, qs, store=None, field="unit__store_id"):
+        return qs
