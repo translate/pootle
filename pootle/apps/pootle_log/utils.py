@@ -25,6 +25,27 @@ class LogEvent(object):
         self.old_value = old_value
         self.revision = revision
 
+    def __cmp__(self, other):
+        if self.timestamp and other.timestamp:
+            if self.timestamp > other.timestamp:
+                return 1
+            elif self.timestamp < other.timestamp:
+                return -1
+        elif other.timestamp:
+            return -1
+        if self.unit.pk > other.unit.pk:
+            return 1
+        elif self.unit.pk < other.unit.pk:
+            return -1
+        if self.revision is not None and other.revision is not None:
+            if self.revision > other.revision:
+                return 1
+            elif self.revision < other.revision:
+                return -1
+        elif other.revision is not None:
+            return -1
+        return 0
+
 
 class Log(object):
 
