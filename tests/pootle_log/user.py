@@ -10,11 +10,13 @@ import pytest
 
 from pootle.core.delegate import log
 
-from pootle_log.utils import UserLog
+from pootle_log.utils import LogEvent, UserLog
 
 
 @pytest.mark.django_db
 def test_user_log(member2):
     user_log = log.get(member2.__class__)(member2)
     assert isinstance(user_log, UserLog)
-    assert list(user_log.get_events())
+    activity = user_log.get_activity()
+    for event in activity:
+        assert isinstance(event, LogEvent)
