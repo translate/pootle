@@ -185,3 +185,172 @@ def test_log_filter_unit_create_timestamps(member):
             end=None,
             field="unit__creation_time")
         == unit_creates)
+
+
+@pytest.mark.django_db
+def test_log_filtered_suggestions(member, tp0, store0):
+    suggs = Suggestion.objects.all()
+    sugg_start, sugg_end = _get_mid_times(suggs)
+    sugg_log = Log()
+    # no filtering
+    assert (
+        sugg_log.filtered_suggestions().count()
+        == sugg_log.suggestions.count()
+        == suggs.count())
+    user_suggestions = (
+        sugg_log.filter_user(
+            sugg_log.suggestions,
+            member,
+            field="user_id")
+        | sugg_log.filter_user(
+            sugg_log.suggestions,
+            member,
+            field="reviewer_id"))
+    assert user_suggestions
+    assert (
+        list(user_suggestions.order_by("id"))
+        == list(sugg_log.filtered_suggestions(
+            user=member).order_by("id")))
+    time_suggestions = (
+        sugg_log.filter_timestamps(
+            sugg_log.suggestions,
+            start=sugg_start,
+            end=sugg_end)
+        | sugg_log.filter_timestamps(
+            sugg_log.suggestions,
+            start=sugg_start,
+            end=sugg_end,
+            field="review_time"))
+    assert time_suggestions
+    assert (
+        list(time_suggestions.order_by("id"))
+        == list(sugg_log.filtered_suggestions(
+            start=sugg_start, end=sugg_end).order_by("id")))
+    user_time_suggestions = (
+        (sugg_log.filter_user(
+            sugg_log.suggestions,
+            member,
+            field="user_id")
+         & sugg_log.filter_timestamps(
+             sugg_log.suggestions,
+             start=sugg_start,
+             end=sugg_end))
+        | (sugg_log.filter_user(
+            sugg_log.suggestions,
+            member,
+            field="reviewer_id")
+           & sugg_log.filter_timestamps(
+               sugg_log.suggestions,
+               start=sugg_start,
+               end=sugg_end,
+               field="review_time")))
+    assert user_time_suggestions
+    assert (
+        list(user_time_suggestions.order_by("id"))
+        == list(sugg_log.filtered_suggestions(
+            start=sugg_start, end=sugg_end, user=member).order_by("id")))
+    store_suggestions = sugg_log.filter_store(
+        sugg_log.suggestions, store0.pk)
+    assert store_suggestions
+    assert (
+        list(store_suggestions.order_by("id"))
+        == list(sugg_log.filtered_suggestions(
+            store=store0.id).order_by("id")))
+    path_suggestions = sugg_log.filter_path(
+        sugg_log.suggestions, tp0.pootle_path)
+    assert path_suggestions.count()
+    assert (
+        path_suggestions.count()
+        == sugg_log.filtered_suggestions(path=tp0.pootle_path).count())
+
+
+@pytest.mark.django_db
+def test_log_filtered_submissions(member, tp0, store0):
+    subs = Submission.objects.all()
+    sub_start, sub_end = _get_mid_times(subs)
+    sub_log = Log()
+    # no filtering
+    assert (
+        sub_log.filtered_submissions().count()
+        == sub_log.submissions.count()
+        == subs.count())
+    user_subs = (
+        sub_log.filter_user(
+            sub_log.submissions,
+            member))
+    assert user_subs.count()
+    assert (
+        list(user_subs)
+        == list(sub_log.filtered_submissions(user=member)))
+    time_subs = (
+        sub_log.filter_timestamps(
+            sub_log.submissions,
+            start=sub_start,
+            end=sub_end))
+    assert time_subs.count()
+    assert (
+        list(time_subs)
+        == list(sub_log.filtered_submissions(
+            start=sub_start, end=sub_end)))
+    store_subs = (
+        sub_log.filter_store(
+            sub_log.submissions,
+            store0.pk))
+    assert store_subs.count()
+    assert (
+        list(sub_log.submissions.filter(unit__store_id=store0.pk))
+        == list(store_subs))
+    path_subs = (
+        sub_log.filter_path(
+            sub_log.submissions,
+            tp0.pootle_path))
+    assert path_subs.count()
+    assert (
+        sub_log.submissions.filter(
+            unit__store__pootle_path__startswith=tp0.pootle_path).count()
+        == path_subs.count())
+
+
+@pytest.mark.django_db
+def test_log_filtered_created_units(system, tp0, store0):
+    created_units = UnitSource.objects.all()
+    created_unit_start, created_unit_end = _get_mid_times(
+        created_units, field="unit__creation_time")
+    created_unit_log = Log()
+    # no filtering
+    assert (
+        created_unit_log.filtered_created_units().count()
+        == created_unit_log.created_units.count()
+        == created_units.count())
+    user_created_units = created_unit_log.filter_user(
+        created_unit_log.created_units,
+        system.id,
+        field="created_by_id")
+    assert user_created_units.count()
+    assert (
+        list(user_created_units)
+        == list(created_unit_log.filtered_created_units(user=system)))
+    # using start and end seems to create empty - so only testing start
+    time_created_units = created_unit_log.filter_timestamps(
+        created_unit_log.created_units,
+        start=created_unit_start,
+        field="unit__creation_time")
+    assert time_created_units.count()
+    assert (
+        list(time_created_units)
+        == list(created_unit_log.filtered_created_units(
+            start=created_unit_start)))
+    store_created_units = created_unit_log.filter_store(
+        created_unit_log.created_units,
+        store0.pk)
+    assert store_created_units.count()
+    assert (
+        list(created_unit_log.filtered_created_units(store=store0.pk))
+        == list(store_created_units))
+    path_created_units = created_unit_log.filter_path(
+        created_unit_log.created_units,
+        tp0.pootle_path)
+    assert path_created_units.count()
+    assert (
+        created_unit_log.filtered_created_units(path=tp0.pootle_path).count()
+        == path_created_units.count())
