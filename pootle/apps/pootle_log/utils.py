@@ -32,7 +32,7 @@ class LogEvent(object):
 class ComparableLogEvent(BaseProxy):
 
     _special_names = (x for x in BaseProxy._special_names
-                      if x not in ["__lt__", "__gt__"])
+                      if x not in ["__lt__", "__gt__", "__call__"])
 
     def __cmp__(self, other):
         # valuable revisions are authoritative
@@ -73,17 +73,29 @@ class Log(object):
     include_meta = False
 
     @property
+    def source_qs(self):
+        return UnitSource.objects
+
+    @property
+    def suggestion_qs(self):
+        return Suggestion.objects
+
+    @property
+    def submission_qs(self):
+        return Submission.objects
+
+    @property
     def created_units(self):
-        return UnitSource.objects.select_related("unit", "created_by")
+        return self.source_qs.select_related("unit", "created_by")
 
     @property
     def suggestions(self):
-        return Suggestion.objects.select_related(
+        return self.suggestion_qs.select_related(
             "unit", "user", "reviewer", "state", "unit__unit_source")
 
     @property
     def submissions(self):
-        return Submission.objects.select_related(
+        return self.submission_qs.select_related(
             "unit", "submitter", "unit__unit_source")
 
     @cached_property
@@ -241,17 +253,21 @@ class Log(object):
         for suggestion in self.filtered_suggestions(**kwargs):
             add_event = (
                 ((not kwargs.get("start")
-                  or (suggestion.creation_time >= kwargs.get("start")))
+                  or (suggestion.creation_time
+                      and suggestion.creation_time >= kwargs.get("start")))
                  and (not kwargs.get("end")
-                      or (suggestion.creation_time < kwargs.get("end")))
+                      or (suggestion.creation_time
+                          and suggestion.creation_time < kwargs.get("end")))
                  and (not users
                       or (suggestion.user_id in users))))
             review_event = (
                 not suggestion.is_pending
                 and ((not kwargs.get("start")
-                      or (suggestion.review_time >= kwargs.get("start")))
+                      or (suggestion.review_time
+                          and suggestion.review_time >= kwargs.get("start")))
                      and (not kwargs.get("end")
-                          or (suggestion.review_time < kwargs.get("end")))
+                          or (suggestion.review_time
+                              and suggestion.review_time < kwargs.get("end")))
                      and (not users
                           or (suggestion.reviewer_id in users))))
             if add_event:
@@ -350,3 +366,21 @@ class GroupedEvents(object):
                                           users=users)), reverse=reverse)
         for event in events:
             yield event
+
+
+class UserLog(Log):
+
+    def __init__(self, user):
+        self.user = user
+
+    @property
+    def source_qs(self):
+        return self.user.created_units
+
+    @property
+    def suggestion_qs(self):
+        return (self.user.suggestions.all() | self.user.reviews.all())
+
+    @property
+    def submission_qs(self):
+        return self.user.submission_set
