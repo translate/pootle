@@ -50,6 +50,7 @@ urlpatterns += [
     url(r'', include('pootle_store.urls')),
     url(r'', include('pootle_language.urls')),
     url(r'', include('pootle_translationproject.urls')),
+    url(r'', include('pootle_activity.urls')),
 ]
 
 
