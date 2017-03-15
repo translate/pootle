@@ -143,3 +143,77 @@ class Log(object):
             end=kwargs.get("end"),
             field="unit__creation_time")
         return created_units
+
+    def get_created_units(self, **kwargs):
+        for created_unit in self.filtered_created_units(**kwargs):
+            yield self.event(
+                created_unit.unit,
+                created_unit.created_by,
+                created_unit.unit.creation_time,
+                "unit_created",
+                created_unit)
+
+    def get_submissions(self, **kwargs):
+        for submission in self.filtered_submissions(**kwargs):
+            event_name = "state_changed"
+            if submission.field == SubmissionFields.CHECK:
+                event_name = (
+                    "check_muted"
+                    if submission.new_value == "0"
+                    else "check_unmuted")
+            elif submission.field == SubmissionFields.TARGET:
+                event_name = "target_updated"
+            elif submission.field == SubmissionFields.SOURCE:
+                event_name = "source_updated"
+            elif submission.field == SubmissionFields.COMMENT:
+                event_name = "comment_updated"
+            yield self.event(
+                submission.unit,
+                submission.submitter,
+                submission.creation_time,
+                event_name,
+                submission)
+
+    def get_suggestions(self, **kwargs):
+        for suggestion in self.filtered_suggestions(**kwargs):
+            add_event = (
+                (not kwargs.get("start")
+                 or (suggestion.creation_time >= kwargs.get("start"))
+                 and (not kwargs.get("end")
+                      or (suggestion.creation_time < kwargs.get("end")))
+                 and (not kwargs.get("user")
+                      or (suggestion.user == kwargs.get("user")))))
+            review_event = (
+                not suggestion.state.name == "pending"
+                and (not kwargs.get("start")
+                     or (suggestion.review_time >= kwargs.get("start"))
+                     and (not kwargs.get("end")
+                          or (suggestion.review_time < kwargs.get("end")))
+                     and (not kwargs.get("user")
+                          or (suggestion.reviewer == kwargs.get("user")))))
+            if add_event:
+                yield self.event(
+                    suggestion.unit,
+                    suggestion.user,
+                    suggestion.creation_time,
+                    "suggestion_created",
+                    suggestion)
+            if review_event:
+                event_name = (
+                    "suggestion_accepted"
+                    if suggestion.state.name == "accepted"
+                    else "suggestion_rejected")
+                yield self.event(
+                    suggestion.unit,
+                    suggestion.reviewer,
+                    suggestion.review_time,
+                    event_name,
+                    suggestion)
+
+    def get_events(self, **kwargs):
+        for event in self.get_created_units(**kwargs):
+            yield event
+        for event in self.get_suggestions(**kwargs):
+            yield event
+        for event in self.get_submissions(**kwargs):
+            yield event
