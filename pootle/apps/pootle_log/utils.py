@@ -8,7 +8,9 @@
 
 from django.utils.functional import cached_property
 
-from pootle_statistics.models import SubmissionFields, SubmissionTypes
+from pootle_statistics.models import (
+    Submission, SubmissionFields, SubmissionTypes)
+from pootle_store.models import Suggestion, UnitSource
 
 
 class LogEvent(object):
@@ -25,6 +27,18 @@ class LogEvent(object):
 
 
 class Log(object):
+
+    @property
+    def created_units(self):
+        return UnitSource.objects.select_related("unit", "created_by")
+
+    @property
+    def suggestions(self):
+        return Suggestion.objects.select_related("unit", "user", "reviewer")
+
+    @property
+    def submissions(self):
+        return Submission.objects.select_related("unit", "submitter")
 
     @cached_property
     def event(self):
@@ -67,3 +81,65 @@ class Log(object):
             qs.filter(**{field: user})
             if user is not None
             else qs)
+
+    def filtered_suggestions(self, **kwargs):
+        suggestions = self.filter_store(
+            self.suggestions,
+            kwargs.get("store"))
+        suggestions = self.filter_path(
+            suggestions, kwargs.get("path"))
+        added_suggestions = (
+            self.filter_user(
+                suggestions,
+                kwargs.get("user"),
+                field="user_id")
+            & self.filter_timestamps(
+                suggestions,
+                start=kwargs.get("start"),
+                end=kwargs.get("end")))
+        reviewed_suggestions = (
+            self.filter_user(
+                suggestions,
+                kwargs.get("user"),
+                field="reviewer_id")
+            & self.filter_timestamps(
+                suggestions,
+                start=kwargs.get("start"),
+                end=kwargs.get("end"),
+                field="review_time"))
+        return added_suggestions | reviewed_suggestions
+
+    def filtered_submissions(self, **kwargs):
+        submissions = self.filter_store(
+            self.submissions,
+            kwargs.get("store"))
+        submissions = (
+            self.filter_user(
+                submissions,
+                kwargs.get("user")))
+        submissions = self.filter_path(
+            submissions, kwargs.get("path"))
+        submissions = (
+            self.filter_timestamps(
+                submissions,
+                start=kwargs.get("start"),
+                end=kwargs.get("end")))
+        return submissions
+
+    def filtered_created_units(self, **kwargs):
+        created_units = self.filter_store(
+            self.created_units,
+            kwargs.get("store"))
+        created_units = self.filter_user(
+            created_units,
+            kwargs.get("user"),
+            field="created_by_id")
+        created_units = self.filter_path(
+            created_units,
+            kwargs.get("path"))
+        created_units = self.filter_timestamps(
+            created_units,
+            start=kwargs.get("start"),
+            end=kwargs.get("end"),
+            field="unit__creation_time")
+        return created_units
