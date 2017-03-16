@@ -8,8 +8,8 @@
 
 import pytest
 
-from pootle.core.delegate import lifecycle, review
-from pootle_log.utils import Log, LogEvent
+from pootle.core.delegate import lifecycle, log, review
+from pootle_log.utils import Log, LogEvent, StoreLog
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 from pootle_store.models import Suggestion, UnitSource
@@ -531,3 +531,41 @@ def test_log_get_events(site_users, store0):
          for x in result]
         == [(x.timestamp, x.unit, x.action)
             for x in expected])
+
+
+@pytest.mark.django_db
+def test_log_store(store0):
+    store_log = log.get(store0.__class__)(store0)
+    assert isinstance(store_log, StoreLog)
+    assert store_log.store == store0
+    assert all(
+        x == store0.id
+        for x
+        in store_log.submissions.values_list(
+            "unit__store_id", flat=True))
+    assert (
+        store_log.submissions.count()
+        == Submission.objects.filter(
+            unit__store_id=store0.id).count())
+    assert all(
+        x == store0.id
+        for x
+        in store_log.suggestions.values_list(
+            "unit__store_id", flat=True))
+    assert (
+        store_log.suggestions.count()
+        == Suggestion.objects.filter(
+            unit__store_id=store0.id).count())
+    assert (
+        store_log.created_units.count()
+        == UnitSource.objects.filter(
+            unit__store_id=store0.id).count())
+    assert all(
+        x == store0.id
+        for x
+        in store_log.created_units.values_list(
+            "unit__store_id", flat=True))
+    subs = store_log.submissions
+    assert (
+        store_log.filter_store(subs, store=store0.id)
+        == subs)
