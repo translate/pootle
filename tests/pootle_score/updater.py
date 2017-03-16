@@ -24,14 +24,14 @@ from pootle_store.models import Store
 
 @pytest.mark.django_db
 def test_score_store_updater(store0, admin):
-    updater = score_updater.get(Store)(store=store0)
+    updater = score_updater.get(Store)(store0)
     assert updater.store == store0
     assert updater.user is None
     assert isinstance(updater, StoreScoreUpdater)
     assert isinstance(updater.logs, StoreLog)
     assert updater.event_class == LogEvent
     assert isinstance(updater.scoring, GatheredDict)
-    updater = score_updater.get(Store)(store=store0, user=admin)
+    updater = score_updater.get(Store)(store0, user=admin)
     assert updater.user == admin
 
 
@@ -67,7 +67,7 @@ def test_score_store_updater_event(store0, admin, member):
         def logs(self):
             return DummyLogs()
 
-    updater = DummyScoreUpdater(store=store0)
+    updater = DummyScoreUpdater(store0)
     result = updater.calculate()
     assert updater.logs._start == make_aware(
         datetime.combine(today, datetime.min.time()))
@@ -79,7 +79,7 @@ def test_score_store_updater_event(store0, admin, member):
     assert updater.logs._start == yesterday
     assert updater.logs._end == today
     assert result == {}
-    updater = DummyScoreUpdater(store=store0, user=admin)
+    updater = DummyScoreUpdater(store0, user=admin)
     updater.calculate()
     assert updater.logs._user == admin
 
@@ -117,7 +117,7 @@ def test_score_store_updater_event_score(store0, admin, member, member2):
         def logs(self):
             return DummyLogs()
 
-    updater = DummyScoreUpdater(store=store0)
+    updater = DummyScoreUpdater(store0)
     result = updater.calculate()
     assert result == {}
 
@@ -154,7 +154,7 @@ def test_score_store_updater_event_score(store0, admin, member, member2):
             action1=Action1Score,
             action2=Action2Score)
 
-    updater = DummyScoreUpdater(store=store0)
+    updater = DummyScoreUpdater(store0)
     result = updater.calculate()
     assert len(result) == 2
     assert len(result[today]) == 2
