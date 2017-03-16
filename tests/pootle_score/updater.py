@@ -15,7 +15,9 @@ from pootle_score.updater import StoreScoreUpdater
 
 @pytest.mark.django_db
 def test_score_store_updater(store0, admin):
-    updater = score_data_updater.get(Store)(store=store0, user=admin)
+    updater = score_data_updater.get(Store)(store=store0)
     assert updater.store == store0
-    assert updater.user == admin
+    assert updater.user is None
     assert isinstance(updater, StoreScoreUpdater)
+    updater = score_data_updater.get(Store)(store=store0, user=admin)
+    assert updater.user == admin

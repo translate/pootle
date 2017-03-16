@@ -11,4 +11,4 @@ class StoreScoreUpdater(object):
 
     def __init__(self, store, *args, **kwargs):
         self.store = store
-        self.user = kwargs['user']
+        self.user = kwargs.get('user')
