@@ -10,13 +10,12 @@ import pytest
 
 from pootle.core.delegate import score_data_updater
 from pootle_store.models import Store
-from pootle_score.updater import UserStoreScoreUpdater
+from pootle_score.updater import StoreScoreUpdater
 
 
 @pytest.mark.django_db
-def test_score_data_updater(store0, admin):
+def test_score_store_updater(store0, admin):
     updater = score_data_updater.get(Store)(store=store0, user=admin)
-
     assert updater.store == store0
     assert updater.user == admin
-    assert isinstance(updater, UserStoreScoreUpdater)
+    assert isinstance(updater, StoreScoreUpdater)

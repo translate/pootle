@@ -15,7 +15,7 @@ from pootle_project.models import Project, ProjectSet
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
-from .updater import UserStoreScoreUpdater
+from .updater import StoreScoreUpdater
 from .display import TopScoreDisplay
 from .utils import (
     LanguageScores, ProjectScores, ProjectSetScores, Scores,
@@ -56,5 +56,5 @@ def get_user_scores(**kwargs_):
 
 
 @getter(score_data_updater, sender=Store)
-def user_score_data_updater_getter(**kwargs_):
-    return UserStoreScoreUpdater
+def score_data_updater_getter(**kwargs_):
+    return StoreScoreUpdater

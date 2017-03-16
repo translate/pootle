@@ -7,7 +7,8 @@
 # AUTHORS file for copyright and authorship information.
 
 
-class UserStoreScoreUpdater(object):
-    def __init__(self, *args, **kwargs):
+class StoreScoreUpdater(object):
+
+    def __init__(self, store, *args, **kwargs):
+        self.store = store
         self.user = kwargs['user']
-        self.store = kwargs['store']
