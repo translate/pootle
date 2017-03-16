@@ -16,8 +16,9 @@ from pootle.core.delegate import event_score, score_data_updater
 from pootle.core.plugin import provider
 from pootle.core.plugin.results import GatheredDict
 from pootle_log.utils import LogEvent, StoreLog
-from pootle_store.models import Store
+from pootle_score.models import UserStoreScore
 from pootle_score.updater import StoreScoreUpdater
+from pootle_store.models import Store
 
 
 @pytest.mark.django_db
@@ -126,9 +127,9 @@ def test_score_store_updater_event_score(store0, admin, member, member2):
         def get_score(self):
             return dict(
                 score=(self.event.value * self.base_score),
-                translated_words=(7 * self.base_score),
-                reviewed_words=(23 * self.base_score),
-                suggested_words=(108 * self.base_score))
+                translated=(7 * self.base_score),
+                reviewed=(23 * self.base_score),
+                suggested=(108 * self.base_score))
 
     class Action0Score(DummyScore):
         base_score = 0
@@ -141,7 +142,7 @@ def test_score_store_updater_event_score(store0, admin, member, member2):
 
         def get_score(self):
             score = super(Action2Score, self).get_score()
-            score["reviewed_words"] = 0
+            score["reviewed"] = 0
             return score
 
     @provider(event_score, sender=LogEvent)
@@ -156,17 +157,32 @@ def test_score_store_updater_event_score(store0, admin, member, member2):
     assert len(result) == 2
     assert len(result[today]) == 2
     assert result[today][member.id] == {
-        'suggested_words': 432,
+        'suggested': 432,
         'score': 10,
-        'translated_words': 28}
+        'translated': 28}
     assert result[today][member2.id] == {
-        'suggested_words': 108,
+        'suggested': 108,
         'score': 1,
-        'translated_words': 7,
-        'reviewed_words': 23}
+        'translated': 7,
+        'reviewed': 23}
     assert len(result[yesterday]) == 1
     assert result[yesterday][admin.id] == {
-        'suggested_words': 108,
+        'suggested': 108,
         'score': 1,
-        'translated_words': 7,
-        'reviewed_words': 23}
+        'translated': 7,
+        'reviewed': 23}
+    updater.update()
+    mem_score = UserStoreScore.objects.filter(user=member)
+    assert mem_score.get(date=today).suggested == 432
+    assert mem_score.get(date=today).score == 10
+    assert mem_score.get(date=today).translated == 28
+    assert mem_score.get(date=today).reviewed == 0
+    today_score = mem_score.get(date=today)
+    today_score.reviewed = 99999
+    today_score.score = 0
+    today_score.save()
+    updater.update()
+    assert mem_score.get(date=today).suggested == 432
+    assert mem_score.get(date=today).score == 10
+    assert mem_score.get(date=today).translated == 28
+    assert mem_score.get(date=today).reviewed == 0
