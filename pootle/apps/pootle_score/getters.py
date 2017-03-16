@@ -8,7 +8,7 @@
 
 from django.contrib.auth import get_user_model
 
-from pootle.core.delegate import display, scores, score_data_updater
+from pootle.core.delegate import display, scores, score_updater
 from pootle.core.plugin import getter
 from pootle_language.models import Language
 from pootle_project.models import Project, ProjectSet
@@ -55,6 +55,6 @@ def get_user_scores(**kwargs_):
     return UserScores
 
 
-@getter(score_data_updater, sender=Store)
-def score_data_updater_getter(**kwargs_):
+@getter(score_updater, sender=Store)
+def score_updater_getter(**kwargs_):
     return StoreScoreUpdater

@@ -12,7 +12,7 @@ import pytest
 
 from django.utils.functional import cached_property
 
-from pootle.core.delegate import event_score, score_data_updater
+from pootle.core.delegate import event_score, score_updater
 from pootle.core.plugin import provider
 from pootle.core.plugin.results import GatheredDict
 from pootle_log.utils import LogEvent, StoreLog
@@ -23,14 +23,14 @@ from pootle_store.models import Store
 
 @pytest.mark.django_db
 def test_score_store_updater(store0, admin):
-    updater = score_data_updater.get(Store)(store=store0)
+    updater = score_updater.get(Store)(store=store0)
     assert updater.store == store0
     assert updater.user is None
     assert isinstance(updater, StoreScoreUpdater)
     assert isinstance(updater.logs, StoreLog)
     assert updater.event_class == LogEvent
     assert isinstance(updater.scoring, GatheredDict)
-    updater = score_data_updater.get(Store)(store=store0, user=admin)
+    updater = score_updater.get(Store)(store=store0, user=admin)
     assert updater.user == admin
 
 
