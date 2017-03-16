@@ -6,11 +6,12 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from datetime import date
+from datetime import date, datetime
 
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import log, event_score
+from pootle.core.utils.timezone import make_aware
 from pootle_log.utils import LogEvent
 from pootle_score.models import UserStoreScore
 
@@ -48,7 +49,12 @@ class StoreScoreUpdater(object):
                 calculated_scores[event.timestamp][event.user.id].get(k, 0)
                 + score)
 
-    def calculate(self, start=date.today(), end=None):
+    def calculate(self, start=None, end=None):
+        if start is None:
+            start = make_aware(
+                datetime.combine(
+                    date.today(),
+                    datetime.min.time()))
         calculated_scores = {}
         scored_events = self.logs.get_events(
             user=self.user, start=start, end=end)

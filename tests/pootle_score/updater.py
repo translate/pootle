@@ -6,7 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta
 
 import pytest
 
@@ -15,6 +15,7 @@ from django.utils.functional import cached_property
 from pootle.core.delegate import event_score, score_updater
 from pootle.core.plugin import provider
 from pootle.core.plugin.results import GatheredDict
+from pootle.core.utils.timezone import make_aware
 from pootle_log.utils import LogEvent, StoreLog
 from pootle_score.models import UserStoreScore
 from pootle_score.updater import StoreScoreUpdater
@@ -68,7 +69,8 @@ def test_score_store_updater_event(store0, admin, member):
 
     updater = DummyScoreUpdater(store=store0)
     result = updater.calculate()
-    assert updater.logs._start == today
+    assert updater.logs._start == make_aware(
+        datetime.combine(today, datetime.min.time()))
     assert updater.logs._end is None
     assert updater.logs._user is None
     # no score adapters
