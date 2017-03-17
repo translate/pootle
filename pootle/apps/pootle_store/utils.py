@@ -140,7 +140,7 @@ class SuggestionsReview(object):
 
     def __init__(self, suggestions=None, reviewer=None, review_type=None):
         self.suggestions = suggestions
-        self.reviewer = reviewer
+        self.reviewer = reviewer or User.objects.get_system_user()
         self._review_type = review_type
 
     @property
