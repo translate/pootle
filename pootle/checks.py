@@ -46,6 +46,16 @@ RQWORKER_WHITELIST = [
     "revision", "retry_failed_jobs", "check", "runserver",
 ]
 
+EXPECTED_POOTLE_SCORES = [
+    'SUGGESTION_ADD',
+    'SUGGESTION_ACCEPT',
+    'SUGGESTION_REJECT',
+    'COMMENT_UPDATED',
+    'TARGET_UPDATED',
+    'STATE_TRANSLATED',
+    'STATE_FUZZY',
+    'STATE_UNFUZZY']
+
 
 def _version_to_string(version, significance=None):
     if significance is not None:
@@ -349,24 +359,24 @@ def check_settings(app_configs=None, **kwargs):
                     id="pootle.W019",
                 ))
 
-    for coefficient_name in ['EDIT', 'REVIEW', 'SUGGEST', 'ANALYZE']:
-        if coefficient_name not in settings.POOTLE_SCORE_COEFFICIENTS:
+    for coefficient_name in EXPECTED_POOTLE_SCORES:
+        if coefficient_name not in settings.POOTLE_SCORES:
             errors.append(checks.Critical(
-                _("POOTLE_SCORE_COEFFICIENTS has no %s.", coefficient_name),
-                hint=_("Set %s in POOTLE_SCORE_COEFFICIENTS.", coefficient_name),
+                _("POOTLE_SCORES has no %s.", coefficient_name),
+                hint=_("Set %s in POOTLE_SCORES.",
+                       coefficient_name),
                 id="pootle.C014",
             ))
         else:
-            coef = settings.POOTLE_SCORE_COEFFICIENTS[coefficient_name]
-            if not isinstance(coef, float):
+            coef = settings.POOTLE_SCORES[coefficient_name]
+            if not isinstance(coef, (float, int)):
                 errors.append(checks.Critical(
-                    _("Invalid value for %s in POOTLE_SCORE_COEFFICIENTS.",
-                        coefficient_name),
-                    hint=_("Set a valid value for %s "
-                           "in POOTLE_SCORE_COEFFICIENTS.", coefficient_name),
-                    id="pootle.C015",
-                ))
-
+                    _("Invalid value for %s in POOTLE_SCORES.",
+                      coefficient_name),
+                    hint=_(
+                        "Set a valid value for %s "
+                        "in POOTLE_SCORES.", coefficient_name),
+                    id="pootle.C015"))
     return errors
 
 
