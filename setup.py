@@ -25,7 +25,7 @@ from pootle.core.utils import version
 
 
 def check_pep440_versions():
-    if require('setuptools')[0].parsed_version < parse_version('8.0'):
+    if require('setuptools')[0].parsed_version < parse_version('18.5'):
         exit("setuptools %s is incompatible with Pootle. Please upgrade "
              "using:\n"
              "'pip install --upgrade setuptools'"
