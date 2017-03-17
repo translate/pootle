@@ -29,6 +29,7 @@ class AbstractUserScore(models.Model):
     score = models.FloatField(
         null=False,
         blank=False,
+        default=0,
         db_index=True)
     reviewed = models.IntegerField(
         null=False,
