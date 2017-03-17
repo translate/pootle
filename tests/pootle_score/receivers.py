@@ -15,8 +15,6 @@ from pootle_store.constants import UNTRANSLATED
 from pootle_store.models import Suggestion
 
 
-@pytest.mark.xfail(
-    reason="We need to readd scoring for suggestion adding")
 @pytest.mark.django_db
 def test_user_tp_score_update_suggestions(store0, member, member2):
     unit = store0.units.filter(state=UNTRANSLATED)[0]
@@ -28,14 +26,18 @@ def test_user_tp_score_update_suggestions(store0, member, member2):
     current_score = member.scores.get(
         tp=store0.translation_project,
         date=timezone.now().date())
+    old_suggested = current_score.suggested
+
     old_score = current_score.score
     old_suggested = current_score.suggested
     old_translated = current_score.translated
     old_reviewed = current_score.reviewed
     sugg, added = suggestions().add(
         unit, suggestion_text, user=member)
-    current_score.refresh_from_db()
-    assert current_score.score > old_score
+    current_score = member.scores.get(
+        tp=store0.translation_project,
+        date=timezone.now().date())
+    assert current_score.score == old_score
     assert (
         current_score.suggested
         == old_suggested + unit.source_wordcount)
@@ -52,7 +54,9 @@ def test_user_tp_score_update_suggestions(store0, member, member2):
     old_m2_translated = m2_score.translated
     old_m2_reviewed = m2_score.reviewed
     suggestions([sugg], member2).accept()
-    m2_score.refresh_from_db()
+    m2_score = member2.scores.get(
+        tp=store0.translation_project,
+        date=timezone.now().date())
     assert m2_score.score > old_m2_score
     assert (
         m2_score.reviewed
