@@ -90,7 +90,9 @@ def test_score_store_updater_event_score(store0, admin, member, member2):
     unit0 = store0.units[0]
     unit1 = store0.units[1]
     today = date.today()
+    dt_today = datetime.combine(today, datetime.min.time())
     yesterday = today - timedelta(days=1)
+    dt_yesterday = datetime.combine(yesterday, datetime.min.time())
 
     class DummyLogs(object):
         _start = None
@@ -99,12 +101,12 @@ def test_score_store_updater_event_score(store0, admin, member, member2):
         @cached_property
         def _events(self):
             return [
-                LogEvent(unit0, admin, yesterday, "action0", 0),
-                LogEvent(unit0, admin, yesterday, "action1", 1),
-                LogEvent(unit0, admin, today, "action0", 0),
-                LogEvent(unit0, member2, today, "action1", 1),
-                LogEvent(unit0, member, today, "action2", 2),
-                LogEvent(unit1, member, today, "action2", 3)]
+                LogEvent(unit0, admin, dt_yesterday, "action0", 0),
+                LogEvent(unit0, admin, dt_yesterday, "action1", 1),
+                LogEvent(unit0, admin, dt_today, "action0", 0),
+                LogEvent(unit0, member2, dt_today, "action1", 1),
+                LogEvent(unit0, member, dt_today, "action2", 2),
+                LogEvent(unit1, member, dt_today, "action2", 3)]
 
         def get_events(self, start=None, end=None, **kwargs):
             self._start = start
@@ -174,8 +176,10 @@ def test_score_store_updater_event_score(store0, admin, member, member2):
         'score': 1,
         'translated': 7,
         'reviewed': 23}
+    store0.user_scores.all().delete()
     updater.update()
-    mem_score = UserStoreScore.objects.filter(user=member)
+    mem_score = UserStoreScore.objects.filter(
+        store=store0, user=member)
     assert mem_score.get(date=today).suggested == 432
     assert mem_score.get(date=today).score == 10
     assert mem_score.get(date=today).translated == 28
@@ -221,6 +225,8 @@ def test_score_tp_updater_update(store0, tp0, admin, member, member2):
                 translated=(7 * store.id * user.id),
                 reviewed=(8 * store.id * user.id))
         return data
+    tp0.user_scores.all().delete()
+    UserStoreScore.objects.filter(store__translation_project=tp0).delete()
     score_updater.get(Store)(store0).set_scores(_generate_data(store0))
     score_updater.get(Store)(store1).set_scores(_generate_data(store1))
     updater.update()
