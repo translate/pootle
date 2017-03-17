@@ -47,14 +47,14 @@ RQWORKER_WHITELIST = [
 ]
 
 EXPECTED_POOTLE_SCORES = [
-    'SUGGESTION_ADD',
-    'SUGGESTION_ACCEPT',
-    'SUGGESTION_REJECT',
-    'COMMENT_UPDATED',
-    'TARGET_UPDATED',
-    'STATE_TRANSLATED',
-    'STATE_FUZZY',
-    'STATE_UNFUZZY']
+    'suggestion_add',
+    'suggestion_accept',
+    'suggestion_reject',
+    'comment_updated',
+    'target_updated',
+    'state_translated',
+    'state_fuzzy',
+    'state_unfuzzy']
 
 
 def _version_to_string(version, significance=None):
