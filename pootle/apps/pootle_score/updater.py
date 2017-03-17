@@ -86,15 +86,15 @@ class StoreScoreUpdater(ScoreUpdater):
         scores = self.scoring[event.action](event).get_score()
         if not scores or not any(x > 0 for x in scores.values()):
             return
-        calculated_scores[event.timestamp] = (
-            calculated_scores.get(event.timestamp, {}))
-        calculated_scores[event.timestamp][event.user.id] = (
-            calculated_scores[event.timestamp].get(event.user.id, {}))
+        calculated_scores[event.timestamp.date()] = (
+            calculated_scores.get(event.timestamp.date(), {}))
+        calculated_scores[event.timestamp.date()][event.user.id] = (
+            calculated_scores[event.timestamp.date()].get(event.user.id, {}))
         for k, score in scores.items():
             if not score:
                 continue
-            calculated_scores[event.timestamp][event.user.id][k] = (
-                calculated_scores[event.timestamp][event.user.id].get(k, 0)
+            calculated_scores[event.timestamp.date()][event.user.id][k] = (
+                calculated_scores[event.timestamp.date()][event.user.id].get(k, 0)
                 + score)
 
     def calculate(self, start=None, end=None):
