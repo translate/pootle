@@ -19,4 +19,5 @@ class PootleScoreConfig(AppConfig):
 
     def ready(self):
         importlib.import_module("pootle_score.getters")
+        importlib.import_module("pootle_score.providers")
         importlib.import_module("pootle_score.receivers")
