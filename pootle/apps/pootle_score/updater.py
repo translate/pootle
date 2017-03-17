@@ -12,6 +12,7 @@ from django.db.models import Sum
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import log, event_score
+from pootle.core.signals import update_scores
 from pootle.core.utils.timezone import make_aware
 from pootle_log.utils import LogEvent
 from pootle_score.models import UserStoreScore, UserTPScore
@@ -114,6 +115,12 @@ class StoreScoreUpdater(ScoreUpdater):
         for timestamp, date_scores in scores.items():
             for user, user_scores in date_scores.items():
                 yield timestamp, user, user_scores
+
+    def update(self):
+        super(StoreScoreUpdater, self).update()
+        update_scores.send(
+            self.store.translation_project.__class__,
+            instance=self.store.translation_project)
 
 
 class TPScoreUpdater(ScoreUpdater):
