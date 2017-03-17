@@ -18,8 +18,9 @@ from pootle.core.plugin.results import GatheredDict
 from pootle.core.utils.timezone import make_aware
 from pootle_log.utils import LogEvent, StoreLog
 from pootle_score.models import UserStoreScore
-from pootle_score.updater import StoreScoreUpdater
+from pootle_score.updater import StoreScoreUpdater, TPScoreUpdater
 from pootle_store.models import Store
+from pootle_translationproject.models import TranslationProject
 
 
 @pytest.mark.django_db
@@ -188,3 +189,65 @@ def test_score_store_updater_event_score(store0, admin, member, member2):
     assert mem_score.get(date=today).score == 10
     assert mem_score.get(date=today).translated == 28
     assert mem_score.get(date=today).reviewed == 0
+
+
+@pytest.mark.django_db
+def test_score_tp_updater(tp0, admin, member, member2):
+    updater = score_updater.get(TranslationProject)(tp0)
+    assert updater.tp == tp0
+    assert isinstance(updater, TPScoreUpdater)
+
+
+@pytest.mark.django_db
+def test_score_tp_updater_update(store0, tp0, admin, member, member2):
+    today = date.today()
+    yesterday = today - timedelta(days=1)
+    updater = score_updater.get(TranslationProject)(tp0)
+    store1 = tp0.stores.exclude(id=store0.id).first()
+
+    def _generate_data(store):
+        data = {}
+        data[today] = dict()
+        data[yesterday] = dict()
+        for user in [admin, member, member2]:
+            data[today][user.id] = dict(
+                score=(store.id * user.id),
+                suggested=(2 * store.id * user.id),
+                translated=(3 * store.id * user.id),
+                reviewed=(4 * store.id * user.id))
+            data[yesterday][user.id] = dict(
+                score=(5 * store.id * user.id),
+                suggested=(6 * store.id * user.id),
+                translated=(7 * store.id * user.id),
+                reviewed=(8 * store.id * user.id))
+        return data
+    score_updater.get(Store)(store0).set_scores(_generate_data(store0))
+    score_updater.get(Store)(store1).set_scores(_generate_data(store1))
+    updater.update()
+    for user in [admin, member, member2]:
+        scores_today = tp0.user_scores.get(date=today, user=user)
+        assert scores_today.score == (
+            (store0.id * user.id)
+            + (store1.id * user.id))
+        assert scores_today.suggested == (
+            (2 * store0.id * user.id)
+            + (2 * store1.id * user.id))
+        assert scores_today.translated == (
+            (3 * store0.id * user.id)
+            + (3 * store1.id * user.id))
+        assert scores_today.reviewed == (
+            (4 * store0.id * user.id)
+            + (4 * store1.id * user.id))
+        scores_yesterday = tp0.user_scores.get(date=yesterday, user=user)
+        assert scores_yesterday.score == (
+            (5 * store0.id * user.id)
+            + (5 * store1.id * user.id))
+        assert scores_yesterday.suggested == (
+            (6 * store0.id * user.id)
+            + (6 * store1.id * user.id))
+        assert scores_yesterday.translated == (
+            (7 * store0.id * user.id)
+            + (7 * store1.id * user.id))
+        assert scores_yesterday.reviewed == (
+            (8 * store0.id * user.id)
+            + (8 * store1.id * user.id))
