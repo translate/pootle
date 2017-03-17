@@ -13,7 +13,6 @@ from django.db.models import F
 from django.template.defaultfilters import truncatechars
 from django.urls import reverse
 
-from pootle.core.log import SCORE_CHANGED, log
 from pootle.core.utils import dateformat
 from pootle.core.user import get_system_user
 from pootle.i18n.gettext import ugettext_lazy as _
@@ -453,33 +452,6 @@ class ScoreLog(models.Model):
         User.objects.filter(id=self.user.id).update(
             score=F('score') + self.score_delta
         )
-        self.log()
-
-    def log(self):
-        d = {
-            'user': self.user,
-            'action': SCORE_CHANGED,
-            'score_delta': self.score_delta,
-            'code': TranslationActionCodes.NAMES_MAP[self.action_code],
-            'unit': self.submission.unit.id,
-            'wordcount': self.wordcount,
-            'total': self.user.score,
-        }
-
-        params = ['%(user)s', '%(action)s', '%(score_delta)s',
-                  '%(code)s', '#%(unit)s']
-
-        zero_types = [
-            TranslationActionCodes.MARKED_FUZZY,
-            TranslationActionCodes.DELETED,
-        ]
-
-        if self.action_code not in zero_types:
-            params.append('NS=%(wordcount)s')
-
-        params.append('(total: %(total)s)')
-
-        log("\t".join(params) % d)
 
     def get_score_delta(self):
         """Returns the score change performed by the current action."""
