@@ -17,7 +17,7 @@ from pootle.core.plugin import provider
 from pootle.core.plugin.results import GatheredDict
 from pootle.core.utils.timezone import make_aware
 from pootle_log.utils import LogEvent, StoreLog
-from pootle_score.models import UserStoreScore
+from pootle_score.models import UserStoreScore, UserTPScore
 from pootle_score.updater import StoreScoreUpdater, TPScoreUpdater
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
@@ -177,7 +177,9 @@ def test_score_store_updater_event_score(store0, admin, member, member2):
         'translated': 7,
         'reviewed': 23}
     store0.user_scores.all().delete()
-    updater.update()
+    updates = updater.update()
+    assert len(updates) == 3
+    assert isinstance(updates[0], UserStoreScore)
     mem_score = UserStoreScore.objects.filter(
         store=store0, user=member)
     assert mem_score.get(date=today).suggested == 432
@@ -229,7 +231,9 @@ def test_score_tp_updater_update(store0, tp0, admin, member, member2):
     UserStoreScore.objects.filter(store__translation_project=tp0).delete()
     score_updater.get(Store)(store0).set_scores(_generate_data(store0))
     score_updater.get(Store)(store1).set_scores(_generate_data(store1))
-    updater.update()
+    updates = updater.update()
+    assert len(updates) == 6
+    assert isinstance(updates[0], UserTPScore)
     for user in [admin, member, member2]:
         scores_today = tp0.user_scores.get(date=today, user=user)
         assert scores_today.score == (
