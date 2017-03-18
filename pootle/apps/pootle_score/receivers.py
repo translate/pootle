@@ -12,8 +12,7 @@ from django.dispatch import receiver
 
 from pootle.core.delegate import score_updater
 from pootle.core.signals import update_scores
-from pootle_statistics.models import (
-    ScoreLog, Submission, TranslationActionCodes)
+from pootle_statistics.models import Submission
 from pootle_store.models import Store, Suggestion
 from pootle_translationproject.models import TranslationProject
 
@@ -74,37 +73,3 @@ def handle_submission_added(**kwargs):
     update_scores.send(
         submission.unit.store.__class__,
         instance=submission.unit.store)
-
-
-@receiver(post_save, sender=ScoreLog)
-def handle_scorelog_save(**kwargs):
-    scorelog = kwargs["instance"]
-    tp = scorelog.submission.translation_project
-    created = False
-    changed = dict(suggested=0, translated=0, reviewed=0)
-    review_actions = [
-        TranslationActionCodes.SUGG_REVIEWED_ACCEPTED,
-        TranslationActionCodes.REVIEWED,
-        TranslationActionCodes.EDITED]
-    if scorelog.translated_wordcount is not None:
-        changed["translated"] = scorelog.translated_wordcount
-    elif scorelog.action_code in review_actions:
-        changed["reviewed"] = scorelog.wordcount
-    try:
-        user_score = tp.user_scores.get(
-            date=scorelog.creation_time.date(),
-            user=scorelog.user)
-    except tp.user_scores.model.DoesNotExist:
-        user_score = tp.user_scores.create(
-            date=scorelog.creation_time.date(),
-            user=scorelog.user,
-            score=scorelog.score_delta,
-            **changed)
-        created = True
-    if not created:
-        user_score.score += scorelog.score_delta
-        for k, v in changed.items():
-            existing = getattr(user_score, k)
-            if v is not 0:
-                setattr(user_score, k, existing + v)
-        user_score.save()
