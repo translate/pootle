@@ -33,8 +33,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('directory', models.ForeignKey(related_name='permission_sets', to='pootle_app.Directory', on_delete=models.CASCADE)),
-                ('negative_permissions', models.ManyToManyField(related_name='permission_sets_negative', to=b'auth.Permission', db_index=True)),
-                ('positive_permissions', models.ManyToManyField(related_name='permission_sets_positive', to=b'auth.Permission', db_index=True)),
+                ('negative_permissions', models.ManyToManyField(related_name='permission_sets_negative', to='auth.Permission', db_index=True)),
+                ('positive_permissions', models.ManyToManyField(related_name='permission_sets_positive', to='auth.Permission', db_index=True)),
                 ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={

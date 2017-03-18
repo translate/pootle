@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
             name='FileExtension',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('name', models.CharField(unique=True, max_length=15, verbose_name=b'Format filetype extension', db_index=True)),
+                ('name', models.CharField(unique=True, max_length=15, verbose_name='Format filetype extension', db_index=True)),
             ],
             options={
                 'abstract': False,

@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
             name='Store',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('file', pootle_store.fields.TranslationStoreField(storage=pootle.core.storage.PootleFileSystemStorage(), upload_to=b'', max_length=255, editable=False, db_index=True)),
+                ('file', pootle_store.fields.TranslationStoreField(storage=pootle.core.storage.PootleFileSystemStorage(), upload_to='', max_length=255, editable=False, db_index=True)),
                 ('pootle_path', models.CharField(unique=True, max_length=255, verbose_name='Path', db_index=True)),
                 ('name', models.CharField(max_length=128, editable=False)),
                 ('file_mtime', models.DateTimeField(default=datetime.datetime(1, 1, 1, 0, 0, tzinfo=utc))),
@@ -83,7 +83,7 @@ class Migration(migrations.Migration):
                 ('target_f', pootle_store.fields.MultiStringField()),
                 ('target_hash', models.CharField(max_length=32, db_index=True)),
                 ('translator_comment_f', models.TextField(null=True, blank=True)),
-                ('state', models.CharField(default=b'pending', max_length=16, db_index=True, choices=[(b'pending', 'Pending'), (b'accepted', 'Accepted'), (b'rejected', 'Rejected')])),
+                ('state', models.CharField(default='pending', max_length=16, db_index=True, choices=[('pending', 'Pending'), ('accepted', 'Accepted'), ('rejected', 'Rejected')])),
                 ('creation_time', models.DateTimeField(null=True, db_index=True)),
                 ('review_time', models.DateTimeField(null=True, db_index=True)),
                 ('unit', models.ForeignKey(to='pootle_store.Unit', on_delete=models.CASCADE)),

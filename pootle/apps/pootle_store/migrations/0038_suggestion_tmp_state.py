@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='suggestion',
             name='tmp_state',
-            field=models.CharField(choices=[(b'pending', b'Pending'), (b'accepted', b'Accepted'), (b'rejected', b'Rejected')], db_index=True, default=b'pending', max_length=16),
+            field=models.CharField(choices=[('pending', 'Pending'), ('accepted', 'Accepted'), ('rejected', 'Rejected')], db_index=True, default='pending', max_length=16),
         ),
     ]

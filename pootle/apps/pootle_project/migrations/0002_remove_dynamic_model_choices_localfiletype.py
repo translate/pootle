@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='project',
             name='localfiletype',
-            field=models.CharField(default=b'po', max_length=50, verbose_name='File Type'),
+            field=models.CharField(default='po', max_length=50, verbose_name='File Type'),
             preserve_default=True,
         ),
     ]
