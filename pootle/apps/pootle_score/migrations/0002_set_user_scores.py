@@ -6,9 +6,28 @@ from django.db import migrations
 from django.db.models import functions, Case, IntegerField, Sum, When
 
 
+class TranslationActionCodes(object):
+    NEW = 0  # 'TA' unit translated
+    EDITED = 1  # 'TE' unit edited after someone else
+    EDITED_OWN = 2  # 'TX' unit edited after themselves
+    DELETED = 3  # 'TD' translation deleted by admin
+    REVIEWED = 4  # 'R' translation reviewed
+    MARKED_FUZZY = 5  # 'TF' translation’s fuzzy flag is set by admin
+    EDIT_PENALTY = 6  # 'XE' translation penalty [when translation deleted]
+    REVIEW_PENALTY = 7  # 'XR' translation penalty [when review canceled]
+    SUGG_ADDED = 8  # 'S' suggestion added
+    # 'SA' suggestion accepted (counted towards the suggestion author)
+    SUGG_ACCEPTED = 9
+    # 'SR' suggestion rejected (counted towards the suggestion author)
+    SUGG_REJECTED = 10
+    # 'RA' suggestion accepted (counted towards the reviewer)
+    SUGG_REVIEWED_ACCEPTED = 11
+    # 'RR' suggestion rejected (counted towards the reviewer)
+    SUGG_REVIEWED_REJECTED = 12
+
+
 def set_user_scores(apps, schema_editor):
     from accounts.models import User
-    from pootle_statistics.models import TranslationActionCodes
 
     UserTPScore = apps.get_model("pootle_score.UserTPScore")
     scorelogs = apps.get_model("pootle_statistics.ScoreLog").objects.exclude(
