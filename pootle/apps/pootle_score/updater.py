@@ -8,6 +8,7 @@
 
 from datetime import date, datetime
 
+from django.contrib.auth import get_user_model
 from django.db.models import Sum
 from django.utils.functional import cached_property
 
@@ -156,3 +157,29 @@ class TPScoreUpdater(ScoreUpdater):
                         translated=Sum("translated"),
                         reviewed=Sum("reviewed"),
                         suggested=Sum("suggested"))
+
+
+class UserScoreUpdater(ScoreUpdater):
+    tp_score_model = UserTPScore
+
+    def __init__(self, context=None, users=None, **kwargs):
+        self.context = context
+        self.users = users
+
+    @property
+    def user(self):
+        return self.context
+
+    def filter_users(self, qs):
+        user_filter = "__in" if not self.user else ""
+        users = self.users if not self.user else self.user
+        return qs.filter(**{"user%s" % user_filter: users})
+
+    def calculate(self, start=date.today(), end=None):
+        return self.filter_users(
+            self.tp_score_model.objects).order_by("user").values_list(
+                "user").annotate(score=Sum("score"))
+
+    def set_scores(self, calculated_scores):
+        for user, score in calculated_scores:
+            get_user_model().objects.filter(id=user).update(score=score)
