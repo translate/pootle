@@ -10,13 +10,12 @@ import pytest
 
 from django.utils import timezone
 
-from pytest_pootle.factories import SubmissionFactory
 from pytest_pootle.utils import create_store
 
 from pootle_app.models.permissions import check_permission
 from pootle_statistics.models import (Submission, SubmissionFields,
                                       SubmissionTypes)
-from pootle_store.constants import TRANSLATED, UNTRANSLATED
+from pootle_store.constants import UNTRANSLATED
 from pootle_store.models import Suggestion, Unit
 
 
@@ -65,28 +64,6 @@ def test_submission_ordering(store0, member):
             == "Comment 3")
     assert (new_subs.latest("pk").new_value
             == "Comment 1")
-
-
-def test_needs_scorelog():
-    """Tests if the submission needs to be logged or not."""
-    # Changing the STATE from UNTRANSLATED won't record any logs
-    submission = SubmissionFactory.build(
-        field=SubmissionFields.STATE,
-        type=SubmissionTypes.WEB,
-        old_value=UNTRANSLATED,
-        new_value=TRANSLATED,
-    )
-    assert not submission.needs_scorelog()
-
-    # Changing other fields (or even STATE, in a different direction) should
-    # need to record a score log
-    submission = SubmissionFactory.build(
-        field=SubmissionFields.STATE,
-        type=SubmissionTypes.WEB,
-        old_value=TRANSLATED,
-        new_value=UNTRANSLATED,
-    )
-    assert submission.needs_scorelog()
 
 
 @pytest.mark.django_db
