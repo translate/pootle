@@ -18,7 +18,8 @@ from pootle.core.plugin.results import GatheredDict
 from pootle.core.utils.timezone import make_aware
 from pootle_log.utils import LogEvent, StoreLog
 from pootle_score.models import UserStoreScore, UserTPScore
-from pootle_score.updater import StoreScoreUpdater, TPScoreUpdater
+from pootle_score.updater import (
+    StoreScoreUpdater, TPScoreUpdater, UserScoreUpdater)
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
@@ -261,3 +262,37 @@ def test_score_tp_updater_update(store0, tp0, admin, member, member2):
         assert scores_yesterday.reviewed == (
             (8 * store0.id * user.id)
             + (8 * store1.id * user.id))
+
+
+@pytest.mark.django_db
+def test_score_user_updater(tp0, admin, member):
+    user_updater = score_updater.get(admin.__class__)
+    admin.score = -999
+    admin.save()
+    member.score = -777
+    member.save()
+    assert user_updater == UserScoreUpdater
+    updater = user_updater(users=[admin, member])
+    assert updater.user is None
+    assert updater.users == [admin, member]
+    result = updater.calculate()
+    admin_score = round(
+        sum(admin.scores.values_list("score", flat=True)), 2)
+    member_score = round(
+        sum(member.scores.values_list("score", flat=True)), 2)
+    assert round(dict(result)[admin.pk], 2) == admin_score
+    assert round(dict(result)[member.pk], 2) == member_score
+    updater.set_scores(result)
+    admin.refresh_from_db()
+    member.refresh_from_db()
+    assert round(admin.score, 2) == admin_score
+    assert round(member.score, 2) == member_score
+    admin.score = -999
+    admin.save()
+    updater = user_updater(admin)
+    assert updater.user == admin
+    result = updater.calculate()
+    assert round(dict(result)[admin.pk], 2) == admin_score
+    updater.set_scores(result)
+    admin.refresh_from_db()
+    assert round(admin.score, 2) == admin_score
