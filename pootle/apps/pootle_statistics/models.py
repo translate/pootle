@@ -9,7 +9,6 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import models
-from django.db.models import F
 from django.template.defaultfilters import truncatechars
 from django.urls import reverse
 
@@ -17,7 +16,7 @@ from pootle.core.utils import dateformat
 from pootle.core.user import get_system_user
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_misc.checks import check_names
-from pootle_store.constants import FUZZY, TRANSLATED, UNTRANSLATED
+from pootle_store.constants import FUZZY, TRANSLATED
 from pootle_store.fields import to_python
 
 
@@ -191,19 +190,6 @@ class Submission(models.Model):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
                              unicode(self.submitter))
 
-    def needs_scorelog(self):
-        """Returns ``True`` if the submission needs to log its score."""
-        # Changing from untranslated state won't record a score change
-        not_needed = (
-            (self.field == SubmissionFields.STATE
-             and int(self.old_value) == UNTRANSLATED)
-            or (self.submitter
-                and (self.submitter.username
-                     in get_user_model().objects.META_USERS)))
-        if not_needed:
-            return False
-        return True
-
     def get_submission_info(self):
         """Returns a dictionary describing the submission.
 
@@ -297,209 +283,3 @@ class Submission(models.Model):
         if self.unit:
             self.revision = self.unit.revision
         super(Submission, self).save(*args, **kwargs)
-
-        if not self.needs_scorelog():
-            return
-
-        meta_users = get_user_model().objects.META_USERS
-        system_users = get_user_model().objects.filter(
-            username__in=meta_users).values_list("id", flat=True)
-
-        scorelogs_created = []
-        for score in ScoreLog.get_scorelogs(submission=self):
-            if score.get("user") and score["user"].id in system_users:
-                continue
-            if 'action_code' in score and score['user'] is not None:
-                scorelogs_created.append(ScoreLog(**score))
-        if scorelogs_created:
-            self.scorelog_set.add(*scorelogs_created, bulk=False)
-
-
-class TranslationActionCodes(object):
-    NEW = 0  # 'TA' unit translated
-    EDITED = 1  # 'TE' unit edited after someone else
-    EDITED_OWN = 2  # 'TX' unit edited after themselves
-    DELETED = 3  # 'TD' translation deleted by admin
-    REVIEWED = 4  # 'R' translation reviewed
-    MARKED_FUZZY = 5  # 'TF' translation’s fuzzy flag is set by admin
-    EDIT_PENALTY = 6  # 'XE' translation penalty [when translation deleted]
-    REVIEW_PENALTY = 7  # 'XR' translation penalty [when review canceled]
-    SUGG_ADDED = 8  # 'S' suggestion added
-    # 'SA' suggestion accepted (counted towards the suggestion author)
-    SUGG_ACCEPTED = 9
-    # 'SR' suggestion rejected (counted towards the suggestion author)
-    SUGG_REJECTED = 10
-    # 'RA' suggestion accepted (counted towards the reviewer)
-    SUGG_REVIEWED_ACCEPTED = 11
-    # 'RR' suggestion rejected (counted towards the reviewer)
-    SUGG_REVIEWED_REJECTED = 12
-
-    NAMES_MAP = {
-        NEW: 'TA',
-        EDITED: 'TE',
-        EDITED_OWN: 'TX',
-        DELETED: 'TD',
-        REVIEWED: 'R',
-        EDIT_PENALTY: 'XE',
-        REVIEW_PENALTY: 'XR',
-        MARKED_FUZZY: 'TF',
-        SUGG_ADDED: 'S',
-        SUGG_ACCEPTED: 'SA',
-        SUGG_REJECTED: 'SR',
-        SUGG_REVIEWED_ACCEPTED: 'RA',
-        SUGG_REVIEWED_REJECTED: 'RR',
-    }
-
-
-class ScoreLog(models.Model):
-    creation_time = models.DateTimeField(db_index=True, null=False)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=False,
-                             on_delete=models.CASCADE)
-    # number of words in the original source string
-    wordcount = models.PositiveIntegerField(null=False)
-    # the final calculated score delta for the action
-    score_delta = models.FloatField(null=False)
-    action_code = models.IntegerField(null=False)
-    submission = models.ForeignKey(Submission, null=False,
-                                   on_delete=models.CASCADE)
-    translated_wordcount = models.PositiveIntegerField(null=True)
-
-    class Meta(object):
-        unique_together = ('submission', 'action_code')
-
-    @classmethod
-    def get_scorelogs(cls, submission):
-        """Records a new log entry for ``submission``."""
-        score_dict = {
-            'creation_time': submission.creation_time,
-            'wordcount': submission.unit.source_wordcount,
-            'submission': submission,
-        }
-
-        translator_id = submission.unit.submitted_by_id
-        if submission.unit.reviewed_by_id:
-            reviewer_id = submission.unit.reviewed_by_id
-        else:
-            reviewer_id = translator_id
-
-        previous_translator_score = score_dict.copy()
-        previous_reviewer_score = score_dict.copy()
-        submitter_score = score_dict.copy()
-        submitter_score['user'] = submission.submitter
-        suggester_score = score_dict.copy()
-        if submission.suggestion is not None:
-            suggester_score['user'] = submission.suggestion.user
-
-        if (submission.field == SubmissionFields.TARGET and
-            submission.type in SubmissionTypes.EDIT_TYPES):
-            if submission.old_value == '' and submission.new_value != '':
-                submitter_score['action_code'] = TranslationActionCodes.NEW
-            else:
-                if submission.new_value == '':
-                    submitter_score['action_code'] = \
-                        TranslationActionCodes.DELETED
-
-                    previous_translator_score['action_code'] = \
-                        TranslationActionCodes.EDIT_PENALTY
-
-                    previous_reviewer_score['action_code'] = \
-                        TranslationActionCodes.REVIEW_PENALTY
-                else:
-                    if (reviewer_id is not None and
-                        submission.submitter_id == reviewer_id):
-                        submitter_score['action_code'] = \
-                            TranslationActionCodes.EDITED_OWN
-                    else:
-                        submitter_score['action_code'] = \
-                            TranslationActionCodes.EDITED
-
-                        previous_reviewer_score['action_code'] = \
-                            TranslationActionCodes.REVIEW_PENALTY
-
-        elif submission.field == SubmissionFields.STATE:
-            if (int(submission.old_value) == FUZZY and
-                int(submission.new_value) == TRANSLATED and
-                not submission.unit.target_updated):
-                submitter_score['action_code'] = \
-                    TranslationActionCodes.REVIEWED
-
-            elif (int(submission.old_value) == TRANSLATED and
-                  int(submission.new_value) == FUZZY):
-                submitter_score['action_code'] = \
-                    TranslationActionCodes.MARKED_FUZZY
-                previous_reviewer_score['action_code'] = \
-                    TranslationActionCodes.REVIEW_PENALTY
-
-        if 'action_code' in previous_translator_score:
-            previous_translator_score['user'] = submission.unit.submitted_by
-        if 'action_code' in previous_reviewer_score:
-            if submission.unit.reviewed_by_id:
-                previous_reviewer_score['user'] = submission.unit.reviewed_by
-            else:
-                previous_reviewer_score['user'] = submission.unit.submitted_by
-
-        return [submitter_score, previous_translator_score,
-                previous_reviewer_score, suggester_score]
-
-    def save(self, *args, **kwargs):
-        self.score_delta = self.get_score_delta()
-        translated = self.get_paid_wordcounts()[0]
-        self.translated_wordcount = translated
-
-        super(ScoreLog, self).save(*args, **kwargs)
-
-        User = get_user_model()
-        User.objects.filter(id=self.user.id).update(
-            score=F('score') + self.score_delta
-        )
-
-    def get_score_delta(self):
-        """Returns the score change performed by the current action."""
-        EDIT_COEF = settings.POOTLE_SCORE_COEFFICIENTS['EDIT']
-        REVIEW_COEF = settings.POOTLE_SCORE_COEFFICIENTS['REVIEW']
-
-        ns = self.wordcount
-        rawTranslationCost = ns * EDIT_COEF
-        reviewCost = ns * REVIEW_COEF
-
-        return {
-            TranslationActionCodes.NEW:
-                lambda: rawTranslationCost + reviewCost,
-            TranslationActionCodes.EDITED:
-                lambda: rawTranslationCost + reviewCost,
-            TranslationActionCodes.EDITED_OWN: lambda: rawTranslationCost,
-            TranslationActionCodes.REVIEWED: lambda: reviewCost,
-            TranslationActionCodes.MARKED_FUZZY: lambda: 0,
-            TranslationActionCodes.DELETED: lambda: 0,
-            TranslationActionCodes.REVIEW_PENALTY: lambda: (-1) * reviewCost,
-        }.get(self.action_code, lambda: 0)()
-
-    def get_paid_wordcounts(self):
-        """Returns the translated and reviewed wordcount in the current
-        action.
-        """
-
-        EDIT_COEF = settings.POOTLE_SCORE_COEFFICIENTS['EDIT']
-        REVIEW_COEF = settings.POOTLE_SCORE_COEFFICIENTS['REVIEW']
-
-        ns = self.wordcount
-
-        rate = EDIT_COEF + REVIEW_COEF
-        review_rate = REVIEW_COEF
-        raw_rate = rate - review_rate
-
-        # if similarity is zero then translated_words would be
-        # ns * (1 - s), that equals sum of raw_translation and
-        # review costs divided by translation_rate
-        translated_words = (ns * raw_rate + ns * review_rate) / rate
-        translated_words = round(translated_words, 4)
-        reviewed_words = ns
-
-        def get_edited():
-            return None, reviewed_words
-
-        return {
-            TranslationActionCodes.NEW: lambda: (translated_words, None),
-            TranslationActionCodes.EDITED: get_edited,
-            TranslationActionCodes.REVIEWED: lambda: (None, reviewed_words),
-        }.get(self.action_code, lambda: (None, None))()
