@@ -21,6 +21,14 @@ from pootle_translationproject.models import TranslationProject
 from .models import UserStoreScore
 
 
+@receiver(update_scores, sender=get_user_model())
+def update_user_scores_handler(**kwargs):
+    user = kwargs.get("instance")
+    users = kwargs.get("users")
+    score_updater.get(get_user_model())(
+        user, users=users).update()
+
+
 @receiver(update_scores, sender=TranslationProject)
 def update_tp_scores_handler(**kwargs):
     tp = kwargs["instance"]
