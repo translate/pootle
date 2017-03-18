@@ -8,6 +8,8 @@
 
 import pytest
 
+from django.contrib.auth import get_user_model
+
 from pootle.core.delegate import lifecycle, log, review
 from pootle_log.utils import Log, LogEvent, StoreLog
 from pootle_statistics.models import (
@@ -97,9 +99,37 @@ def test_log_filter_user(member):
         list(Log().filter_user(unit_sources, member.id, field="created_by_id"))
         == list(
             unit_sources.filter(created_by=member)))
-    for qs in [subs, suggestions, unit_sources]:
-        # None should return original qs
-        assert Log().filter_user(qs, None) == qs
+    # None should filter system users
+    assert (
+        list(Log().filter_user(unit_sources, None, field="created_by_id"))
+        == list(
+            unit_sources.exclude(
+                created_by__username__in=get_user_model().objects.META_USERS)))
+    # or return original qs otherwise
+    assert (
+        Log().filter_user(
+            unit_sources, None, field="created_by_id", include_meta=True)
+        == unit_sources)
+    # None should filter system users
+    assert (
+        list(Log().filter_user(suggestions, None, field="user_id"))
+        == list(
+            suggestions.exclude(
+                user__username__in=get_user_model().objects.META_USERS)))
+    # or return original qs otherwise
+    assert (
+        Log().filter_user(suggestions, None, field="user_id", include_meta=True)
+        == suggestions)
+    # None should filter system users
+    assert (
+        list(Log().filter_user(subs, None, field="submitter_id"))
+        == list(
+            subs.exclude(
+                submitter__username__in=get_user_model().objects.META_USERS)))
+    # or return original qs otherwise
+    assert (
+        Log().filter_user(subs, None, field="submitter_id", include_meta=True)
+        == subs)
 
 
 @pytest.mark.django_db
@@ -320,17 +350,19 @@ def test_log_filtered_created_units(system, tp0, store0):
     created_unit_log = Log()
     # no filtering
     assert (
-        created_unit_log.filtered_created_units().count()
+        created_unit_log.filtered_created_units(include_meta=True).count()
         == created_unit_log.created_units.count()
         == created_units.count())
     user_created_units = created_unit_log.filter_user(
         created_unit_log.created_units,
         system.id,
-        field="created_by_id")
+        field="created_by_id",
+        include_meta=True)
     assert user_created_units.count()
     assert (
         list(user_created_units)
-        == list(created_unit_log.filtered_created_units(user=system)))
+        == list(created_unit_log.filtered_created_units(
+            user=system)))
     # using start and end seems to create empty - so only testing start
     time_created_units = created_unit_log.filter_timestamps(
         created_unit_log.created_units,
@@ -340,20 +372,22 @@ def test_log_filtered_created_units(system, tp0, store0):
     assert (
         list(time_created_units)
         == list(created_unit_log.filtered_created_units(
-            start=created_unit_start)))
+            start=created_unit_start, include_meta=True)))
     store_created_units = created_unit_log.filter_store(
         created_unit_log.created_units,
         store0.pk)
     assert store_created_units.count()
     assert (
-        list(created_unit_log.filtered_created_units(store=store0.pk))
+        list(created_unit_log.filtered_created_units(
+            store=store0.pk, include_meta=True))
         == list(store_created_units))
     path_created_units = created_unit_log.filter_path(
         created_unit_log.created_units,
         tp0.pootle_path)
     assert path_created_units.count()
     assert (
-        created_unit_log.filtered_created_units(path=tp0.pootle_path).count()
+        created_unit_log.filtered_created_units(
+            path=tp0.pootle_path, include_meta=True).count()
         == path_created_units.count())
 
 
@@ -361,7 +395,8 @@ def test_log_filtered_created_units(system, tp0, store0):
 def test_log_get_created_units(system, store0):
     created_units = UnitSource.objects.all()
     created_unit_log = Log()
-    created = created_unit_log.get_created_units()
+    created = created_unit_log.get_created_units(
+        include_meta=True)
     assert type(created).__name__ == "generator"
     assert len(list(created)) == created_units.count()
     expected = created_units.filter(
