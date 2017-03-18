@@ -6,6 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from django.contrib.auth import get_user_model
 from django.utils.functional import cached_property
 
 from pootle_statistics.models import (
@@ -76,7 +77,11 @@ class Log(object):
             qs = qs.filter(**{"%s__lt" % field: end})
         return qs
 
-    def filter_user(self, qs, user=None, field="submitter_id"):
+    def filter_user(self, qs, user=None,
+                    field="submitter_id", include_meta=False):
+        if not user and not include_meta:
+            qs = qs.exclude(
+                **{"%s__username__in" % field: get_user_model().objects.META_USERS})
         return (
             qs.filter(**{field: user})
             if user is not None
@@ -92,7 +97,8 @@ class Log(object):
             self.filter_user(
                 suggestions,
                 kwargs.get("user"),
-                field="user_id")
+                field="user_id",
+                include_meta=kwargs.get("include_meta"))
             & self.filter_timestamps(
                 suggestions,
                 start=kwargs.get("start"),
@@ -101,7 +107,8 @@ class Log(object):
             self.filter_user(
                 suggestions,
                 kwargs.get("user"),
-                field="reviewer_id")
+                field="reviewer_id",
+                include_meta=kwargs.get("include_meta"))
             & self.filter_timestamps(
                 suggestions,
                 start=kwargs.get("start"),
@@ -116,7 +123,8 @@ class Log(object):
         submissions = (
             self.filter_user(
                 submissions,
-                kwargs.get("user")))
+                kwargs.get("user"),
+                include_meta=kwargs.get("include_meta")))
         submissions = self.filter_path(
             submissions, kwargs.get("path"))
         submissions = (
@@ -133,7 +141,8 @@ class Log(object):
         created_units = self.filter_user(
             created_units,
             kwargs.get("user"),
-            field="created_by_id")
+            field="created_by_id",
+            include_meta=kwargs.get("include_meta"))
         created_units = self.filter_path(
             created_units,
             kwargs.get("path"))
