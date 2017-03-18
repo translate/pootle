@@ -310,7 +310,7 @@ class Unit(AbstractUnit):
             unit_source.source_length = self.source_length
             unit_source.source_wordcount = self.source_wordcount
             unit_source.save()
-        if (self.updated or reviewed_by) and not self.changed:
+        if (self.updated or reviewed_by) and (created or not self.changed):
             self.change = UnitChange(
                 unit=self,
                 changed_with=changed_with)
