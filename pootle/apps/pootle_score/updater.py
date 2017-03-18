@@ -59,14 +59,14 @@ class ScoreUpdater(object):
                 **user_scores)
 
     def create_scores(self, scores):
-        self.score_model.objects.bulk_create(self.new_scores(scores))
+        return self.score_model.objects.bulk_create(self.new_scores(scores))
 
     def set_scores(self, calculated_scores):
         self.delete_scores(calculated_scores)
-        self.create_scores(calculated_scores)
+        return self.create_scores(calculated_scores)
 
     def update(self):
-        self.set_scores(self.calculate())
+        return self.set_scores(self.calculate())
 
 
 class StoreScoreUpdater(ScoreUpdater):
@@ -117,10 +117,11 @@ class StoreScoreUpdater(ScoreUpdater):
                 yield timestamp, user, user_scores
 
     def update(self):
-        super(StoreScoreUpdater, self).update()
+        updated = super(StoreScoreUpdater, self).update()
         update_scores.send(
             self.store.translation_project.__class__,
             instance=self.store.translation_project)
+        return updated
 
 
 class TPScoreUpdater(ScoreUpdater):
