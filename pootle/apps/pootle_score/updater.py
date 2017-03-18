@@ -158,6 +158,14 @@ class TPScoreUpdater(ScoreUpdater):
                         reviewed=Sum("reviewed"),
                         suggested=Sum("suggested"))
 
+    def update(self):
+        updated = super(TPScoreUpdater, self).update()
+        if updated:
+            update_scores.send(
+                get_user_model(),
+                users=set([x.user for x in updated]))
+        return updated
+
 
 class UserScoreUpdater(ScoreUpdater):
     tp_score_model = UserTPScore
