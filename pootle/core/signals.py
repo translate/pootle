@@ -17,4 +17,6 @@ update_data = Signal(providing_args=["instance"], use_caching=True)
 filetypes_changed = Signal(
     providing_args=["instance", "filetype"],
     use_caching=True)
-update_scores = Signal(providing_args=["instance"], use_caching=True)
+update_scores = Signal(
+    providing_args=["instance", "users"],
+    use_caching=True)
