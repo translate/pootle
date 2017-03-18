@@ -22,13 +22,13 @@ from .models import UserStoreScore
 
 
 @receiver(update_scores, sender=TranslationProject)
-def update_store_scores_handler(**kwargs):
+def update_tp_scores_handler(**kwargs):
     tp = kwargs["instance"]
     score_updater.get(tp.__class__)(tp).update()
 
 
 @receiver(update_scores, sender=Store)
-def update_tp_scores_handler(**kwargs):
+def update_store_scores_handler(**kwargs):
     store = kwargs["instance"]
     score_updater.get(store.__class__)(store).update()
 
