@@ -18,6 +18,7 @@ from allauth.account.models import EmailAddress
 from allauth.account.utils import sync_user_email_addresses
 
 from pootle.core.contextmanagers import keep_data
+from pootle.core.delegate import score_updater
 from pootle.core.models import Revision
 from pootle.core.signals import update_data
 from pootle_store.constants import FUZZY, UNTRANSLATED
@@ -124,9 +125,8 @@ class UserMerger(object):
         # Delete orphaned submissions.
         self.src_user.submission_set.filter(unit__isnull=True).delete()
 
-        # Before we can save we first have to remove existing score_logs for
-        # src_user - they will be recreated on save for target_user
-        self.src_user.scorelog_set.all().delete()
+        score_updater.get(
+            self.src_user.__class__)(users=[self.src_user.id]).clear()
 
         # Update submitter on submissions
         self.src_user.submission_set.update(submitter=self.target_user)
