@@ -530,7 +530,7 @@ def test_log_get_suggestions(member, store0):
                     event_name,
                     suggestion))
     result = sugg_log.get_suggestions(
-        start=sugg_start, end=sugg_end, users=[member])
+        start=sugg_start, end=sugg_end, users=[member.id])
     for event in result:
         assert isinstance(event, sugg_log.event)
         sugg_review = expected[event.value.pk][event.action]
