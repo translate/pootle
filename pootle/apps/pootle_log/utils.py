@@ -77,15 +77,19 @@ class Log(object):
             qs = qs.filter(**{"%s__lt" % field: end})
         return qs
 
-    def filter_user(self, qs, user=None,
-                    field="submitter_id", include_meta=False):
-        if not user and not include_meta:
-            qs = qs.exclude(
-                **{"%s__username__in" % field: get_user_model().objects.META_USERS})
+    def filter_users(self, qs, users=None,
+                     field="submitter_id", include_meta=False):
+        if not users:
+            meta_users = get_user_model().objects.META_USERS
+            return (
+                qs.exclude(
+                    **{"%s__username__in" % field: meta_users})
+                if not include_meta
+                else qs)
         return (
-            qs.filter(**{field: user})
-            if user is not None
-            else qs)
+            qs.filter(**{field: list(users).pop()})
+            if len(users) == 1
+            else qs.filter(**{"%s__in" % field: users}))
 
     def filtered_suggestions(self, **kwargs):
         suggestions = self.filter_store(
@@ -94,9 +98,9 @@ class Log(object):
         suggestions = self.filter_path(
             suggestions, kwargs.get("path"))
         added_suggestions = (
-            self.filter_user(
+            self.filter_users(
                 suggestions,
-                kwargs.get("user"),
+                kwargs.get("users"),
                 field="user_id",
                 include_meta=kwargs.get("include_meta"))
             & self.filter_timestamps(
@@ -104,9 +108,9 @@ class Log(object):
                 start=kwargs.get("start"),
                 end=kwargs.get("end")))
         reviewed_suggestions = (
-            self.filter_user(
+            self.filter_users(
                 suggestions,
-                kwargs.get("user"),
+                kwargs.get("users"),
                 field="reviewer_id",
                 include_meta=kwargs.get("include_meta"))
             & self.filter_timestamps(
@@ -121,9 +125,9 @@ class Log(object):
             self.submissions,
             kwargs.get("store"))
         submissions = (
-            self.filter_user(
+            self.filter_users(
                 submissions,
-                kwargs.get("user"),
+                kwargs.get("users"),
                 include_meta=kwargs.get("include_meta")))
         submissions = self.filter_path(
             submissions, kwargs.get("path"))
@@ -138,9 +142,9 @@ class Log(object):
         created_units = self.filter_store(
             self.created_units,
             kwargs.get("store"))
-        created_units = self.filter_user(
+        created_units = self.filter_users(
             created_units,
-            kwargs.get("user"),
+            kwargs.get("users"),
             field="created_by_id",
             include_meta=kwargs.get("include_meta"))
         created_units = self.filter_path(
@@ -184,22 +188,23 @@ class Log(object):
                 submission)
 
     def get_suggestions(self, **kwargs):
+        users = kwargs.get("users")
         for suggestion in self.filtered_suggestions(**kwargs):
             add_event = (
-                (not kwargs.get("start")
-                 or (suggestion.creation_time >= kwargs.get("start"))
+                ((not kwargs.get("start")
+                  or (suggestion.creation_time >= kwargs.get("start")))
                  and (not kwargs.get("end")
                       or (suggestion.creation_time < kwargs.get("end")))
-                 and (not kwargs.get("user")
-                      or (suggestion.user == kwargs.get("user")))))
+                 and (not users
+                      or (suggestion.user in users))))
             review_event = (
                 not suggestion.state.name == "pending"
-                and (not kwargs.get("start")
-                     or (suggestion.review_time >= kwargs.get("start"))
+                and ((not kwargs.get("start")
+                      or (suggestion.review_time >= kwargs.get("start")))
                      and (not kwargs.get("end")
                           or (suggestion.review_time < kwargs.get("end")))
-                     and (not kwargs.get("user")
-                          or (suggestion.reviewer == kwargs.get("user")))))
+                     and (not users
+                          or (suggestion.reviewer in users))))
             if add_event:
                 yield self.event(
                     suggestion.unit,
