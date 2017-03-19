@@ -15,7 +15,6 @@ from django.utils.functional import cached_property
 from pootle.core.delegate import event_score, score_updater
 from pootle.core.plugin import provider
 from pootle.core.plugin.results import GatheredDict
-from pootle.core.utils.timezone import make_aware
 from pootle_log.utils import LogEvent, StoreLog
 from pootle_score.models import UserStoreScore, UserTPScore
 from pootle_score.updater import (
@@ -56,10 +55,10 @@ def test_score_store_updater_event(store0, admin, member):
                 LogEvent(unit0, admin, yesterday, "action1", 1),
                 LogEvent(unit1, member, today, "action2", 2)]
 
-        def get_events(self, start=None, end=None, user=None, **kwargs):
+        def get_events(self, start=None, end=None, users=None, **kwargs):
             self._start = start
             self._end = end
-            self._user = user
+            self._users = users
             for event in self._events:
                 yield event
 
@@ -71,19 +70,20 @@ def test_score_store_updater_event(store0, admin, member):
 
     updater = DummyScoreUpdater(store0)
     result = updater.calculate()
-    assert updater.logs._start == make_aware(
-        datetime.combine(today, datetime.min.time()))
+    assert updater.logs._start is None
     assert updater.logs._end is None
-    assert updater.logs._user is None
+    assert updater.logs._users is None
     # no score adapters
     assert result == {}
     result = updater.calculate(start=yesterday, end=today)
     assert updater.logs._start == yesterday
     assert updater.logs._end == today
     assert result == {}
-    updater = DummyScoreUpdater(store0, user=admin)
-    updater.calculate()
-    assert updater.logs._user == admin
+    updater = DummyScoreUpdater(store0)
+    updater.calculate(users=(admin, ))
+    assert updater.logs._users == (admin, )
+    updater.calculate(users=(admin, member))
+    assert updater.logs._users == (admin, member)
 
 
 @pytest.mark.django_db
@@ -273,7 +273,6 @@ def test_score_user_updater(tp0, admin, member):
     member.save()
     assert user_updater == UserScoreUpdater
     updater = user_updater(users=[admin, member])
-    assert updater.user is None
     assert updater.users == [admin, member]
     result = updater.calculate()
     admin_score = round(
@@ -289,8 +288,8 @@ def test_score_user_updater(tp0, admin, member):
     assert round(member.score, 2) == member_score
     admin.score = -999
     admin.save()
-    updater = user_updater(admin)
-    assert updater.user == admin
+    updater = user_updater((admin, ))
+    assert updater.users == (admin, )
     result = updater.calculate()
     assert round(dict(result)[admin.pk], 2) == admin_score
     updater.set_scores(result)

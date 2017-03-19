@@ -79,56 +79,56 @@ def test_log_filter_path(tp0, store0):
 
 
 @pytest.mark.django_db
-def test_log_filter_user(member):
+def test_log_filter_users(member):
     subs = Submission.objects.all()
     suggestions = Suggestion.objects.all()
     unit_sources = UnitSource.objects.all()
     assert (
-        list(Log().filter_user(subs, member.id))
+        list(Log().filter_users(subs, [member.id]))
         == list(
             subs.filter(submitter=member)))
     assert (
-        list(Log().filter_user(suggestions, member.id, field="user_id"))
+        list(Log().filter_users(suggestions, [member.id], field="user_id"))
         == list(
             suggestions.filter(user=member)))
     assert (
-        list(Log().filter_user(suggestions, member.id, field="reviewer_id"))
+        list(Log().filter_users(suggestions, [member.id], field="reviewer_id"))
         == list(
             suggestions.filter(reviewer=member)))
     assert (
-        list(Log().filter_user(unit_sources, member.id, field="created_by_id"))
+        list(Log().filter_users(unit_sources, [member.id], field="created_by_id"))
         == list(
             unit_sources.filter(created_by=member)))
     # None should filter system users
     assert (
-        list(Log().filter_user(unit_sources, None, field="created_by_id"))
+        list(Log().filter_users(unit_sources, None, field="created_by_id"))
         == list(
             unit_sources.exclude(
                 created_by__username__in=get_user_model().objects.META_USERS)))
     # or return original qs otherwise
     assert (
-        Log().filter_user(
+        Log().filter_users(
             unit_sources, None, field="created_by_id", include_meta=True)
         == unit_sources)
     # None should filter system users
     assert (
-        list(Log().filter_user(suggestions, None, field="user_id"))
+        list(Log().filter_users(suggestions, None, field="user_id"))
         == list(
             suggestions.exclude(
                 user__username__in=get_user_model().objects.META_USERS)))
     # or return original qs otherwise
     assert (
-        Log().filter_user(suggestions, None, field="user_id", include_meta=True)
+        Log().filter_users(suggestions, None, field="user_id", include_meta=True)
         == suggestions)
     # None should filter system users
     assert (
-        list(Log().filter_user(subs, None, field="submitter_id"))
+        list(Log().filter_users(subs, None, field="submitter_id"))
         == list(
             subs.exclude(
                 submitter__username__in=get_user_model().objects.META_USERS)))
     # or return original qs otherwise
     assert (
-        Log().filter_user(subs, None, field="submitter_id", include_meta=True)
+        Log().filter_users(subs, None, field="submitter_id", include_meta=True)
         == subs)
 
 
@@ -229,19 +229,19 @@ def test_log_filtered_suggestions(member, tp0, store0):
         == sugg_log.suggestions.count()
         == suggs.count())
     user_suggestions = (
-        sugg_log.filter_user(
+        sugg_log.filter_users(
             sugg_log.suggestions,
-            member,
+            [member],
             field="user_id")
-        | sugg_log.filter_user(
+        | sugg_log.filter_users(
             sugg_log.suggestions,
-            member,
+            [member],
             field="reviewer_id"))
     assert user_suggestions
     assert (
         list(user_suggestions.order_by("id"))
         == list(sugg_log.filtered_suggestions(
-            user=member).order_by("id")))
+            users=[member]).order_by("id")))
     time_suggestions = (
         sugg_log.filter_timestamps(
             sugg_log.suggestions,
@@ -258,17 +258,17 @@ def test_log_filtered_suggestions(member, tp0, store0):
         == list(sugg_log.filtered_suggestions(
             start=sugg_start, end=sugg_end).order_by("id")))
     user_time_suggestions = (
-        (sugg_log.filter_user(
+        (sugg_log.filter_users(
             sugg_log.suggestions,
-            member,
+            [member],
             field="user_id")
          & sugg_log.filter_timestamps(
              sugg_log.suggestions,
              start=sugg_start,
              end=sugg_end))
-        | (sugg_log.filter_user(
+        | (sugg_log.filter_users(
             sugg_log.suggestions,
-            member,
+            [member],
             field="reviewer_id")
            & sugg_log.filter_timestamps(
                sugg_log.suggestions,
@@ -279,7 +279,7 @@ def test_log_filtered_suggestions(member, tp0, store0):
     assert (
         list(user_time_suggestions.order_by("id"))
         == list(sugg_log.filtered_suggestions(
-            start=sugg_start, end=sugg_end, user=member).order_by("id")))
+            start=sugg_start, end=sugg_end, users=[member]).order_by("id")))
     store_suggestions = sugg_log.filter_store(
         sugg_log.suggestions, store0.pk)
     assert store_suggestions
@@ -306,13 +306,13 @@ def test_log_filtered_submissions(member, tp0, store0):
         == sub_log.submissions.count()
         == subs.count())
     user_subs = (
-        sub_log.filter_user(
+        sub_log.filter_users(
             sub_log.submissions,
-            member))
+            users=[member]))
     assert user_subs.count()
     assert (
         list(user_subs)
-        == list(sub_log.filtered_submissions(user=member)))
+        == list(sub_log.filtered_submissions(users=[member])))
     time_subs = (
         sub_log.filter_timestamps(
             sub_log.submissions,
@@ -353,16 +353,16 @@ def test_log_filtered_created_units(system, tp0, store0):
         created_unit_log.filtered_created_units(include_meta=True).count()
         == created_unit_log.created_units.count()
         == created_units.count())
-    user_created_units = created_unit_log.filter_user(
+    user_created_units = created_unit_log.filter_users(
         created_unit_log.created_units,
-        system.id,
+        [system.id],
         field="created_by_id",
         include_meta=True)
     assert user_created_units.count()
     assert (
         list(user_created_units)
         == list(created_unit_log.filtered_created_units(
-            user=system)))
+            users=[system])))
     # using start and end seems to create empty - so only testing start
     time_created_units = created_unit_log.filter_timestamps(
         created_unit_log.created_units,
@@ -403,7 +403,7 @@ def test_log_get_created_units(system, store0):
         created_by=system).filter(
             unit__store=store0).in_bulk()
     result = created_unit_log.get_created_units(
-        store=store0.pk, user=system)
+        store=store0.pk, users=[system])
     for event in result:
         created_unit = expected[event.value.pk]
         assert isinstance(event, created_unit_log.event)
@@ -437,7 +437,7 @@ def test_log_get_submissions(member, store0):
         submitter=member).filter(
             unit__store=store0).in_bulk()
     result = submission_log.get_submissions(
-        store=store0.pk, user=member)
+        store=store0.pk, users=[member])
     for event in result:
         sub = expected[event.value.pk]
         event_name = "state_changed"
@@ -468,17 +468,17 @@ def test_log_get_suggestions(member, store0):
     sugg_events = sugg_log.get_suggestions()
     assert type(sugg_events).__name__ == "generator"
     user_time_suggestions = (
-        (sugg_log.filter_user(
+        (sugg_log.filter_users(
             sugg_log.suggestions,
-            member,
+            [member],
             field="user_id")
          & sugg_log.filter_timestamps(
              sugg_log.suggestions,
              start=sugg_start,
              end=sugg_end))
-        | (sugg_log.filter_user(
+        | (sugg_log.filter_users(
             sugg_log.suggestions,
-            member,
+            [member],
             field="reviewer_id")
            & sugg_log.filter_timestamps(
                sugg_log.suggestions,
@@ -530,7 +530,7 @@ def test_log_get_suggestions(member, store0):
                     event_name,
                     suggestion))
     result = sugg_log.get_suggestions(
-        start=sugg_start, end=sugg_end, user=member)
+        start=sugg_start, end=sugg_end, users=[member])
     for event in result:
         assert isinstance(event, sugg_log.event)
         sugg_review = expected[event.value.pk][event.action]
@@ -552,7 +552,7 @@ def test_log_get_suggestions(member, store0):
 def test_log_get_events(site_users, store0):
     user = site_users["user"]
     event_log = Log()
-    kwargs = dict(user=user, store=store0)
+    kwargs = dict(users=[user], store=store0)
     result = sorted(
         event_log.get_events(**kwargs),
         key=(lambda ev: (ev.timestamp, ev.unit.pk)))
