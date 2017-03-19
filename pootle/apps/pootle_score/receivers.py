@@ -42,7 +42,10 @@ def update_store_scores_handler(**kwargs):
 @receiver(post_save, sender=UserStoreScore)
 def handle_store_score_updated(**kwargs):
     tp = kwargs["instance"].store.translation_project
-    update_scores.send(tp.__class__, instance=tp)
+    update_scores.send(
+        tp.__class__,
+        instance=tp,
+        users=[kwargs["instance"].user_id])
 
 
 @receiver(post_save, sender=Suggestion)
@@ -59,7 +62,11 @@ def handle_suggestion_change(**kwargs):
         return
     update_scores.send(
         suggestion.unit.store.__class__,
-        instance=suggestion.unit.store)
+        instance=suggestion.unit.store,
+        users=[
+            suggestion.user.id
+            if suggestion.state.name == "pending"
+            else suggestion.reviewer.id])
 
 
 @receiver(post_save, sender=Submission)
@@ -72,4 +79,5 @@ def handle_submission_added(**kwargs):
         return
     update_scores.send(
         submission.unit.store.__class__,
-        instance=submission.unit.store)
+        instance=submission.unit.store,
+        users=[submission.submitter.id])
