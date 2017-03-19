@@ -236,18 +236,16 @@ class SuggestionsReview(object):
             unit.submission_set.add(*subs_created, bulk=False)
 
     def accept_suggestion(self, suggestion, update_unit):
-        accepted = SuggestionState.objects.get(name="accepted")
-        suggestion.state_id = accepted.id
+        suggestion.state = SuggestionState.objects.get(name="accepted")
         suggestion.reviewer = self.reviewer
         suggestion.review_time = make_aware(timezone.now())
+        suggestion.save()
         if update_unit:
             self.update_unit_on_accept(suggestion)
-        suggestion.save()
 
     def reject_suggestion(self, suggestion):
         store = suggestion.unit.store
-        rejected = SuggestionState.objects.get(name="rejected")
-        suggestion.state_id = rejected.id
+        suggestion.state = SuggestionState.objects.get(name="rejected")
         suggestion.review_time = make_aware(timezone.now())
         suggestion.reviewer = self.reviewer
         suggestion.save()
