@@ -65,10 +65,8 @@ def test_user_tp_score_update_suggestions(store0, member, member2):
     assert m2_score.translated == old_m2_translated
 
 
-@pytest.mark.xfail(
-    reason="We need to readd scoring for suggestion adding")
 @pytest.mark.django_db
-def test_user_tp_score_update_translated(store0, member):
+def test_user_tp_score_update_translated(store0, member, member2):
     # member translates another unit, by suggesting and
     # accepting own suggestion
     # score, suggested and translated increase
@@ -81,28 +79,42 @@ def test_user_tp_score_update_translated(store0, member):
     old_suggested = current_score.suggested
     old_translated = current_score.translated
     old_reviewed = current_score.reviewed
+    m2_score = member2.scores.get(
+        tp=store0.translation_project,
+        date=timezone.now().date())
+    m2_old_score = m2_score.score
+    m2_suggested = m2_score.suggested
+    m2_translated = m2_score.translated
+    m2_reviewed = m2_score.reviewed
     unit = store0.units.filter(state=UNTRANSLATED)[0]
     sugg, added = suggestions().add(
         unit, suggestion_text, user=member)
-    suggestions([sugg], member).accept()
-    current_score.refresh_from_db()
+    suggestions([sugg], member2).accept()
+    current_score = member.scores.get(
+        tp=store0.translation_project,
+        date=timezone.now().date())
     assert current_score.score > old_score
+    assert current_score.reviewed == old_reviewed
     assert (
         current_score.suggested
         == old_suggested + unit.source_wordcount)
-    assert current_score.reviewed == old_reviewed
-    # this should be a wordcount but its some "paid" stuff
-    # we need to change as i dont believe the value set here
-    # is meaningful
-    assert current_score.translated > old_translated
+    assert (
+        current_score.translated
+        == old_translated + unit.source_wordcount)
+    m2_score = member2.scores.get(
+        tp=store0.translation_project,
+        date=timezone.now().date())
+    assert m2_score.score > m2_old_score
+    assert m2_score.suggested == m2_suggested
+    assert m2_score.translated == m2_translated
+    assert (
+        m2_score.reviewed
+        == m2_reviewed + unit.source_wordcount)
 
 
-@pytest.mark.xfail(
-    reason="We need to readd scoring for suggestion adding")
 @pytest.mark.django_db
-def test_user_tp_score_update_rejects(store0, member):
-    # member makes another suggestion then rejects
-    # only suggested increases
+def test_user_tp_score_update_rejects(store0, member, member2):
+    # member makes another suggestion then member2 rejects
     suggestion_text = "made a suggestion!"
     suggestions = review.get(Suggestion)
     current_score = member.scores.get(
@@ -112,14 +124,32 @@ def test_user_tp_score_update_rejects(store0, member):
     old_suggested = current_score.suggested
     old_translated = current_score.translated
     old_reviewed = current_score.reviewed
+    m2_score = member2.scores.get(
+        tp=store0.translation_project,
+        date=timezone.now().date())
+    m2_old_score = m2_score.score
+    m2_suggested = m2_score.suggested
+    m2_translated = m2_score.translated
+    m2_reviewed = m2_score.reviewed
     unit = store0.units.filter(state=UNTRANSLATED)[0]
     sugg, added = suggestions().add(
         unit, suggestion_text, user=member)
-    suggestions([sugg], member).reject()
-    current_score.refresh_from_db()
+    suggestions([sugg], member2).reject()
+    current_score = member.scores.get(
+        tp=store0.translation_project,
+        date=timezone.now().date())
+    assert current_score.score == old_score
+    assert current_score.reviewed == old_reviewed
+    assert current_score.translated == old_translated
     assert (
         current_score.suggested
         == old_suggested + unit.source_wordcount)
-    assert current_score.score == old_score
-    assert current_score.translated == old_translated
-    assert current_score.reviewed == old_reviewed
+    m2_score = member2.scores.get(
+        tp=store0.translation_project,
+        date=timezone.now().date())
+    assert m2_score.score > m2_old_score
+    assert m2_score.suggested == m2_suggested
+    assert m2_score.translated == m2_translated
+    assert (
+        m2_score.reviewed
+        == m2_reviewed + unit.source_wordcount)
