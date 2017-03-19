@@ -177,6 +177,8 @@ class TPScoreUpdater(ScoreUpdater):
 
 class UserScoreUpdater(ScoreUpdater):
     tp_score_model = UserTPScore
+    store_score_model = UserStoreScore
+    score_model = get_user_model()
 
     def __init__(self, users=None, **kwargs):
         self.users = users
@@ -189,4 +191,16 @@ class UserScoreUpdater(ScoreUpdater):
 
     def set_scores(self, calculated_scores):
         for user, score in calculated_scores:
-            get_user_model().objects.filter(id=user).update(score=score)
+            self.score_model.objects.filter(id=user).update(score=score)
+
+    def clear(self):
+        tp_scores = self.tp_score_model.objects.all()
+        store_scores = self.store_score_model.objects.all()
+        scores = self.score_model.objects.all()
+        if self.users:
+            tp_scores = tp_scores.filter(user_id__in=self.users)
+            store_scores = store_scores.filter(user_id__in=self.users)
+            scores = scores.filter(id__in=self.users)
+        tp_scores.delete()
+        store_scores.delete()
+        scores.update(score=0)
