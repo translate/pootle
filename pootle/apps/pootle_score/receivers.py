@@ -66,7 +66,7 @@ def handle_suggestion_change(**kwargs):
         users=[
             suggestion.user.id
             if suggestion.state.name == "pending"
-            else suggestion.reviewer.id])
+            else suggestion.reviewer_id])
 
 
 @receiver(post_save, sender=Submission)
@@ -80,4 +80,4 @@ def handle_submission_added(**kwargs):
     update_scores.send(
         submission.unit.store.__class__,
         instance=submission.unit.store,
-        users=[submission.submitter.id])
+        users=[submission.submitter_id])
