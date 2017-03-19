@@ -37,7 +37,7 @@ def update_tp_scores_handler(**kwargs):
 @receiver(update_scores, sender=Store)
 def update_store_scores_handler(**kwargs):
     store = kwargs["instance"]
-    score_updater.get(store.__class__)(store).update()
+    score_updater.get(store.__class__)(store).update(users=kwargs.get("users"))
 
 
 @receiver(post_save, sender=UserStoreScore)
