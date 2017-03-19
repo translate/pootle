@@ -94,7 +94,7 @@ class FrozenUnit(object):
             target_f=unit.target_f,
             context=unit.context,
             revision=unit.revision,
-            submitter=unit.submitted_by,
+            submitter=unit.submitted_by_id,
             state=unit.state,
             pk=unit.pk,
             translator_comment=unit.translator_comment)
@@ -174,18 +174,20 @@ class SuggestionsReview(object):
             or translation == unit.target)
         if dont_add:
             return (None, False)
-        user = user or User.objects.get_system_user()
+        if isinstance(user, User):
+            user = user.id
+        user = user or User.objects.get_system_user().id
         pending = SuggestionState.objects.get(name="pending")
         try:
             suggestion = Suggestion.objects.pending().get(
                 unit=unit,
-                user=user,
+                user_id=user,
                 target_f=translation)
             return (suggestion, False)
         except Suggestion.DoesNotExist:
             suggestion = Suggestion.objects.create(
                 unit=unit,
-                user=user,
+                user_id=user,
                 state_id=pending.id,
                 target=translation,
                 creation_time=make_aware(timezone.now()))
