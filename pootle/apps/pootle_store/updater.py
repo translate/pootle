@@ -90,10 +90,43 @@ class UnitUpdater(object):
         return None if comment == '' else comment
 
     @property
+    def developer_comment(self):
+        comment = self.newunit.getnotes(origin="developer")
+        return None if comment == '' else comment
+
+    @property
+    def context(self):
+        context = self.newunit.getcontext()
+        return None if context == '' else context
+
+    @property
+    def locations(self):
+        locations = self.newunit.getlocations()
+        return None if locations == '' else locations
+
+    @property
     def translator_comment_updated(self):
         return (
             (self.original.translator_comment or self.translator_comment)
             and self.original.translator_comment != self.translator_comment)
+
+    @property
+    def developer_comment_updated(self):
+        return (
+            (self.original.developer_comment or self.developer_comment)
+            and self.original.developer_comment != self.developer_comment)
+
+    @property
+    def context_updated(self):
+        return (
+            (self.original.context or self.context)
+            and self.original.context != self.context)
+
+    @property
+    def locations_updated(self):
+        return (
+            (self.original.context or self.context)
+            and self.original.context != self.context)
 
     @cached_property
     def at(self):
@@ -153,6 +186,33 @@ class UnitUpdater(object):
         return (
             self.newunit
             and self.translator_comment_updated
+            and not (
+                self.conflict_found
+                and self.update.resolve_conflict == POOTLE_WINS))
+
+    @property
+    def should_update_context(self):
+        return (
+            self.newunit
+            and self.context_updated
+            and not (
+                self.conflict_found
+                and self.update.resolve_conflict == POOTLE_WINS))
+
+    @property
+    def should_update_developer_comment(self):
+        return (
+            self.newunit
+            and self.developer_comment_updated
+            and not (
+                self.conflict_found
+                and self.update.resolve_conflict == POOTLE_WINS))
+
+    @property
+    def should_update_locations(self):
+        return (
+            self.newunit
+            and self.locations_updated
             and not (
                 self.conflict_found
                 and self.update.resolve_conflict == POOTLE_WINS))
