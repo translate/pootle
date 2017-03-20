@@ -306,9 +306,6 @@ class Unit(AbstractUnit):
         elif self.source_updated:
             unit_source = self.unit_source
         if created or self.source_updated:
-            unit_source.source_hash = self.source_hash
-            unit_source.source_length = self.source_length
-            unit_source.source_wordcount = self.source_wordcount
             unit_source.save()
         if (self.updated or reviewed_by) and (created or not self.changed):
             self.change = UnitChange(
