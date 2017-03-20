@@ -1764,3 +1764,33 @@ def test_update_resurrect(store_po, test_fs):
     assert units.count() == len(obsolete_ids)
     for unit in units:
         assert not unit.isobsolete()
+
+
+@pytest.mark.django_db
+def test_store_comment_update(store0, member):
+    ttk = store0.deserialize(store0.serialize())
+    fileunit = ttk.units[-1]
+    fileunit.removenotes()
+    fileunit.addnote("A new comment")
+    unit = store0.findid(fileunit.getid())
+    last_sub_pk = unit.submission_set.order_by(
+        "id").values_list("id", flat=True).last() or 0
+    store0.update(
+        ttk, store_revision=store0.data.max_unit_revision + 1,
+        user=member
+    )
+    assert ttk.units[-1].getnotes("translator") == "A new comment"
+    unit = store0.units.get(id=unit.id)
+    assert unit.translator_comment == "A new comment"
+    assert unit.commented_by == member
+
+    new_subs = unit.submission_set.filter(id__gt=last_sub_pk).order_by("id")
+    assert new_subs.count() == 1
+    comment_sub = new_subs[0]
+    assert comment_sub.old_value == ""
+    assert comment_sub.new_value == "A new comment"
+    assert comment_sub.field == SubmissionFields.COMMENT
+    assert comment_sub.type == SubmissionTypes.SYSTEM
+    assert comment_sub.submitter == member
+    assert comment_sub.revision == unit.revision
+    assert comment_sub.creation_time == unit.change.commented_on
