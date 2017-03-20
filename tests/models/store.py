@@ -1764,3 +1764,16 @@ def test_update_resurrect(store_po, test_fs):
     assert units.count() == len(obsolete_ids)
     for unit in units:
         assert not unit.isobsolete()
+
+
+@pytest.mark.xfail(reason="Comment updating is broken")
+@pytest.mark.django_db
+def test_store_comment_update(store0):
+    ttk = store0.deserialize(store0.serialize())
+    fileunit = ttk.units[-1]
+    fileunit.removenotes()
+    fileunit.addnote("A new comment")
+    store0.update(
+        ttk, store_revision=store0.data.max_unit_revision + 1)
+    assert ttk.units[-1].getnotes("translator") == "A new comment"
+    assert store0.units.last().translator_comment == "A new comment"
