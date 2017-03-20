@@ -29,7 +29,7 @@ from pootle.core.delegate import (
     data_tool, format_syncers, format_updaters, frozen, terminology_matcher,
     wordcount)
 from pootle.core.log import (
-    STORE_ADDED, STORE_DELETED, STORE_OBSOLETE, log, store_log)
+    STORE_DELETED, STORE_OBSOLETE, log, store_log)
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
 from pootle.core.signals import update_data
@@ -871,7 +871,6 @@ class Store(AbstractStore):
         return str(self.syncer.convert())
 
     def save(self, *args, **kwargs):
-        created = not self.id
         self.pootle_path = self.parent.pootle_path + self.name
         self.tp_path = self.parent.tp_path + self.name
 
@@ -879,9 +878,6 @@ class Store(AbstractStore):
         self.full_clean()
 
         super(Store, self).save(*args, **kwargs)
-        if created:
-            store_log(user='system', action=STORE_ADDED,
-                      path=self.pootle_path, store=self.id)
 
     def delete(self, *args, **kwargs):
         store_log(user='system', action=STORE_DELETED,
