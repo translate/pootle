@@ -277,13 +277,9 @@ class StoreUpdater(object):
             'revision__gt': self.target_store.last_sync_revision,
             'revision__lt': update_revision,
             'state__gt': OBSOLETE}
-        units = self.target_store.unit_set.filter(**filter_by)
-        count = units.count()
-        if count:
-            # we update after here to trigger a stats update
-            # for the store after doing Unit.objects.update()
-            units.update(revision=Revision.incr())
-        return count
+        return self.target_store.unit_set.filter(
+            **filter_by).update(
+                revision=Revision.incr())
 
     def units(self, uids):
         unit_set = self.target_store.unit_set
