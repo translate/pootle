@@ -1176,7 +1176,8 @@ class Store(AbstractStore):
 
         # find using hash instead of index
         source_hash = md5(source.encode("utf-8")).hexdigest()
-        units = self.unit_set.filter(source_hash=source_hash)
+        units = self.unit_set.filter(
+            unit_source__source_hash=source_hash)
         if obsolete:
             units = units.filter(state=OBSOLETE)
         else:
