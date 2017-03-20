@@ -40,7 +40,7 @@ def test_user_tp_score_update_suggestions(store0, member, member2):
     assert current_score.score == old_score
     assert (
         current_score.suggested
-        == old_suggested + unit.source_wordcount)
+        == old_suggested + unit.unit_source.source_wordcount)
     assert current_score.translated == old_translated
     assert current_score.reviewed == old_reviewed
 
@@ -60,7 +60,7 @@ def test_user_tp_score_update_suggestions(store0, member, member2):
     assert m2_score.score > old_m2_score
     assert (
         m2_score.reviewed
-        == old_m2_reviewed + unit.source_wordcount)
+        == old_m2_reviewed + unit.unit_source.source_wordcount)
     assert m2_score.suggested == old_m2_suggested
     assert m2_score.translated == old_m2_translated
 
@@ -97,10 +97,10 @@ def test_user_tp_score_update_translated(store0, member, member2):
     assert current_score.reviewed == old_reviewed
     assert (
         current_score.suggested
-        == old_suggested + unit.source_wordcount)
+        == old_suggested + unit.unit_source.source_wordcount)
     assert (
         current_score.translated
-        == old_translated + unit.source_wordcount)
+        == old_translated + unit.unit_source.source_wordcount)
     m2_score = member2.scores.get(
         tp=store0.translation_project,
         date=timezone.now().date())
@@ -109,7 +109,7 @@ def test_user_tp_score_update_translated(store0, member, member2):
     assert m2_score.translated == m2_translated
     assert (
         m2_score.reviewed
-        == m2_reviewed + unit.source_wordcount)
+        == m2_reviewed + unit.unit_source.source_wordcount)
 
 
 @pytest.mark.django_db
@@ -143,7 +143,7 @@ def test_user_tp_score_update_rejects(store0, member, member2):
     assert current_score.translated == old_translated
     assert (
         current_score.suggested
-        == old_suggested + unit.source_wordcount)
+        == old_suggested + unit.unit_source.source_wordcount)
     m2_score = member2.scores.get(
         tp=store0.translation_project,
         date=timezone.now().date())
@@ -152,4 +152,4 @@ def test_user_tp_score_update_rejects(store0, member, member2):
     assert m2_score.translated == m2_translated
     assert (
         m2_score.reviewed
-        == m2_reviewed + unit.source_wordcount)
+        == m2_reviewed + unit.unit_source.source_wordcount)

@@ -183,17 +183,17 @@ def _test_object_stats(stats, stores):
 def _test_unit_stats(stats, units):
     wordcount = sum(
         units.filter(state__gt=OBSOLETE).values_list(
-            "source_wordcount",
+            "unit_source__source_wordcount",
             flat=True))
     assert stats["total"] == wordcount
     fuzzy_wordcount = sum(
         units.filter(state=FUZZY).values_list(
-            "source_wordcount",
+            "unit_source__source_wordcount",
             flat=True))
     assert stats["fuzzy"] == fuzzy_wordcount
     translated_wordcount = sum(
         units.filter(state=TRANSLATED).values_list(
-            "source_wordcount",
+            "unit_source__source_wordcount",
             flat=True))
     assert stats["translated"] == translated_wordcount
 

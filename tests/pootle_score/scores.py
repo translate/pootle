@@ -35,11 +35,11 @@ def test_score_event_suggestion_created(store0, admin, settings):
     assert score.suggestion == suggestion
     assert (
         score.score
-        == (unit.source_wordcount
+        == (unit.unit_source.source_wordcount
             * settings.POOTLE_SCORES["suggestion_add"]))
     assert score.translated == 0
     assert score.reviewed == 0
-    assert score.suggested == unit.source_wordcount
+    assert score.suggested == unit.unit_source.source_wordcount
 
 
 @pytest.mark.django_db
@@ -57,17 +57,17 @@ def test_score_event_suggestion_accepted(store0, admin, settings):
     assert score.suggestion == suggestion
     assert (
         score.score
-        == (unit.source_wordcount
+        == (unit.unit_source.source_wordcount
             * settings.POOTLE_SCORES["suggestion_accept"]))
     assert score.translated == 0
-    assert score.reviewed == unit.source_wordcount
+    assert score.reviewed == unit.unit_source.source_wordcount
     assert score.suggested == 0
     assert (
         score.get_score()
         == dict(
             score=score.score,
             translated=0,
-            reviewed=unit.source_wordcount,
+            reviewed=unit.unit_source.source_wordcount,
             suggested=0))
 
 
@@ -86,17 +86,17 @@ def test_score_event_suggestion_rejected(store0, admin, settings):
     assert score.suggestion == suggestion
     assert (
         score.score
-        == (unit.source_wordcount
+        == (unit.unit_source.source_wordcount
             * settings.POOTLE_SCORES["suggestion_reject"]))
     assert score.translated == 0
-    assert score.reviewed == unit.source_wordcount
+    assert score.reviewed == unit.unit_source.source_wordcount
     assert score.suggested == 0
     assert (
         score.get_score()
         == dict(
             score=score.score,
             translated=0,
-            reviewed=unit.source_wordcount,
+            reviewed=unit.unit_source.source_wordcount,
             suggested=0))
 
 
@@ -113,16 +113,16 @@ def test_score_event_target_updated(store0, admin, settings):
     assert score.unit == unit
     assert (
         score.score
-        == (unit.source_wordcount
+        == (unit.unit_source.source_wordcount
             * settings.POOTLE_SCORES["target_updated"]))
-    assert score.translated == unit.source_wordcount
+    assert score.translated == unit.unit_source.source_wordcount
     assert score.reviewed == 0
     assert score.suggested == 0
     assert (
         score.get_score()
         == dict(
             score=score.score,
-            translated=unit.source_wordcount,
+            translated=unit.unit_source.source_wordcount,
             reviewed=0,
             suggested=0))
 
@@ -148,16 +148,16 @@ def test_score_event_state_updated(store0, admin, settings):
     assert score.submission == sub
     assert (
         score.score
-        == (unit.source_wordcount
+        == (unit.unit_source.source_wordcount
             * settings.POOTLE_SCORES["state_translated"]))
-    assert score.translated == unit.source_wordcount
+    assert score.translated == unit.unit_source.source_wordcount
     assert score.reviewed == 0
     assert score.suggested == 0
     assert (
         score.get_score()
         == dict(
             score=score.score,
-            translated=unit.source_wordcount,
+            translated=unit.unit_source.source_wordcount,
             reviewed=0,
             suggested=0))
     sub = Submission.objects.create(
@@ -175,17 +175,17 @@ def test_score_event_state_updated(store0, admin, settings):
     assert score.submission == sub
     assert (
         score.score
-        == (unit.source_wordcount
+        == (unit.unit_source.source_wordcount
             * settings.POOTLE_SCORES["state_unfuzzy"]))
     assert score.translated == 0
-    assert score.reviewed == unit.source_wordcount
+    assert score.reviewed == unit.unit_source.source_wordcount
     assert score.suggested == 0
     assert (
         score.get_score()
         == dict(
             score=score.score,
             translated=0,
-            reviewed=unit.source_wordcount,
+            reviewed=unit.unit_source.source_wordcount,
             suggested=0))
     sub = Submission.objects.create(
         unit=unit,
@@ -202,15 +202,15 @@ def test_score_event_state_updated(store0, admin, settings):
     assert score.submission == sub
     assert (
         score.score
-        == (unit.source_wordcount
+        == (unit.unit_source.source_wordcount
             * settings.POOTLE_SCORES["state_fuzzy"]))
     assert score.translated == 0
-    assert score.reviewed == unit.source_wordcount
+    assert score.reviewed == unit.unit_source.source_wordcount
     assert score.suggested == 0
     assert (
         score.get_score()
         == dict(
             score=score.score,
             translated=0,
-            reviewed=unit.source_wordcount,
+            reviewed=unit.unit_source.source_wordcount,
             suggested=0))

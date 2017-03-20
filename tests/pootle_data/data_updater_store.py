@@ -29,11 +29,11 @@ def _calc_word_counts(units):
     expected = dict(
         total_words=0, translated_words=0, fuzzy_words=0)
     for unit in units:
-        expected["total_words"] += unit.source_wordcount
+        expected["total_words"] += unit.unit_source.source_wordcount
         if unit.state == TRANSLATED:
-            expected["translated_words"] += unit.source_wordcount
+            expected["translated_words"] += unit.unit_source.source_wordcount
         elif unit.state == FUZZY:
-            expected["fuzzy_words"] += unit.source_wordcount
+            expected["fuzzy_words"] += unit.unit_source.source_wordcount
     return expected
 
 
@@ -67,11 +67,13 @@ def test_data_store_util_wordcount(store0):
     assert (
         update_data["fuzzy_words"]
         == store0.data.fuzzy_words
-        == original_stats["fuzzy_words"] + unit.source_wordcount)
+        == (original_stats["fuzzy_words"]
+            + unit.unit_source.source_wordcount))
     assert (
         update_data["translated_words"]
         == store0.data.translated_words
-        == original_stats["translated_words"] - unit.source_wordcount)
+        == (original_stats["translated_words"]
+            - unit.unit_source.source_wordcount))
 
 
 @pytest.mark.django_db

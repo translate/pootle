@@ -64,11 +64,11 @@ def test_data_tp_util_wordcount(tp0):
     assert (
         update_data["fuzzy_words"]
         == tp0.data.fuzzy_words
-        == original_stats["fuzzy_words"] + unit.source_wordcount)
+        == original_stats["fuzzy_words"] + unit.unit_source.source_wordcount)
     assert (
         update_data["translated_words"]
         == tp0.data.translated_words
-        == original_stats["translated_words"] - unit.source_wordcount)
+        == original_stats["translated_words"] - unit.unit_source.source_wordcount)
 
 
 # improve me
