@@ -19,7 +19,7 @@ from pootle.core.signals import update_data
 from pootle.core.utils.timezone import make_aware
 
 from .constants import FUZZY, TRANSLATED, UNTRANSLATED
-from .models import Suggestion, Unit, UnitChange
+from .models import Suggestion, Unit, UnitChange, UnitSource
 
 
 @receiver(post_save, sender=Suggestion)
@@ -31,6 +31,20 @@ def handle_suggestion_added(**kwargs):
     update_data.send(store.__class__, instance=store)
 
 
+@receiver(pre_save, sender=UnitSource)
+def handle_unit_source_pre_save(**kwargs):
+    unit_source = kwargs["instance"]
+    created = not unit_source.pk
+    unit = unit_source.unit
+    if created or unit.source_updated:
+        unit_source.source_hash = md5(
+            unit.source_f.encode("utf-8")).hexdigest()
+        unit_source.source_length = len(
+            unit.source_f)
+        unit_source.source_wordcount = max(
+            1, (unit.counter.count_words(unit.source_f.strings) or 0))
+
+
 @receiver(pre_save, sender=Unit)
 def handle_unit_pre_save(**kwargs):
     unit = kwargs["instance"]
@@ -40,9 +54,7 @@ def handle_unit_pre_save(**kwargs):
 
     if unit.source_updated:
         # update source related fields
-        unit.source_hash = md5(unit.source_f.encode("utf-8")).hexdigest()
-        unit.source_length = len(unit.source_f)
-        wc = unit.update_wordcount()
+        wc = unit.counter.count_words(unit.source_f.strings)
         if not wc and not bool(filter(None, unit.target_f.strings)):
             # auto-translate untranslated strings
             unit.target = unit.source
