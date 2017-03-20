@@ -97,7 +97,9 @@ class FrozenUnit(object):
             submitter=unit.submitted_by_id,
             state=unit.state,
             pk=unit.pk,
-            translator_comment=unit.translator_comment)
+            translator_comment=unit.translator_comment,
+            developer_comment=unit.developer_comment,
+            locations=unit.locations)
 
     @property
     def context(self):
@@ -131,6 +133,13 @@ class FrozenUnit(object):
     def translator_comment(self):
         return self.unit["translator_comment"]
 
+    @property
+    def developer_comment(self):
+        return self.unit["developer_comment"]
+
+    @property
+    def locations(self):
+        return self.unit["locations"]
 
 class SuggestionsReview(object):
     accept_email_template = 'editor/email/suggestions_accepted_with_comment.txt'
