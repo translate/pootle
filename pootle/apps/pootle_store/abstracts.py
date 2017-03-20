@@ -132,12 +132,6 @@ class AbstractUnit(models.Model, base.TranslationUnit):
                                    editable=False)
 
     source_f = MultiStringField(null=True)
-    source_hash = models.CharField(max_length=32, db_index=True,
-                                   editable=False)
-    source_wordcount = models.SmallIntegerField(default=0, editable=False)
-    source_length = models.SmallIntegerField(db_index=True, default=0,
-                                             editable=False)
-
     target_f = MultiStringField(null=True, blank=True)
     target_wordcount = models.SmallIntegerField(default=0, editable=False)
     target_length = models.SmallIntegerField(db_index=True, default=0,
