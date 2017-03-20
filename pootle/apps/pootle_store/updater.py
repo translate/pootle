@@ -148,6 +148,15 @@ class UnitUpdater(object):
                 self.conflict_found
                 and self.update.resolve_conflict == POOTLE_WINS))
 
+    @property
+    def should_update_comment(self):
+        return (
+            self.newunit
+            and self.translator_comment_updated
+            and not (
+                self.conflict_found
+                and self.update.resolve_conflict == POOTLE_WINS))
+
     @cached_property
     def should_update_source(self):
         return (self.newunit
@@ -248,7 +257,8 @@ class UnitUpdater(object):
         need_update = (self.should_unobsolete
                        or self.should_update_target
                        or self.should_update_source
-                       or self.should_update_state)
+                       or self.should_update_state
+                       or self.should_update_comment)
         if need_update:
             updated = self.unit.update(
                 self.newunit, user=self.update.user)
