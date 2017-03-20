@@ -963,23 +963,33 @@ class Store(AbstractStore):
         Unit.objects.filter(store_id=self.id, index__gte=start).update(
             index=operator.add(F('index'), delta))
 
-    def mark_units_obsolete(self, uids_to_obsolete, update_revision=None):
+    def mark_units_obsolete(self, uids_to_obsolete, user, submission_type,
+                            update_revision=None):
         """Marks a bulk of units as obsolete.
 
         :param uids_to_obsolete: UIDs of the units to be marked as obsolete.
         :return: The number of units marked as obsolete.
         """
-        obsoleted = 0
-        for unit in self.findid_bulk(uids_to_obsolete):
-            # Use the same (parent) object since units will
-            # accumulate the list of cache attributes to clear
-            # in the parent Store object
-            unit.store = self
-            if not unit.isobsolete():
-                unit.makeobsolete()
-                unit.revision = update_revision
-                unit.save()
-                obsoleted += 1
+        subs_created = []
+        unit_qs = self.units.filter(id__in=uids_to_obsolete)
+        units = list(unit_qs.values('id', 'state'))
+        obsoleted = unit_qs.update(state=OBSOLETE, revision=update_revision)
+        current_time = timezone.now()
+        for unit in units:
+            subs_created.append(
+                Submission(
+                    creation_time=current_time,
+                    translation_project_id=self.translation_project_id,
+                    submitter=user,
+                    unit_id=unit['id'],
+                    revision=update_revision,
+                    field=SubmissionFields.STATE,
+                    type=submission_type,
+                    old_value=unit['state'],
+                    new_value=OBSOLETE))
+        if subs_created:
+            Submission.objects.bulk_create(subs_created)
+
         return obsoleted
 
     @cached_property

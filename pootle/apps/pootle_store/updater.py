@@ -352,6 +352,8 @@ class StoreUpdater(object):
             # Obsolete units
             changes["obsoleted"] = self.target_store.mark_units_obsolete(
                 to_change["obsolete"],
+                user,
+                submission_type,
                 update_revision)
 
         # Update units
