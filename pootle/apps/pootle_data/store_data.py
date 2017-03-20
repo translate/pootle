@@ -68,20 +68,20 @@ class StoreDataUpdater(DataUpdater):
             total_words=models.Sum(
                 Case(
                     When(Q(state__gt=OBSOLETE)
-                         & Q(source_wordcount__gt=0),
-                         then="source_wordcount"),
+                         & Q(unit_source__source_wordcount__gt=0),
+                         then="unit_source__source_wordcount"),
                     default=0)),
             translated_words=models.Sum(
                 Case(
                     When(Q(state=TRANSLATED)
-                         & Q(source_wordcount__gt=0),
-                         then="source_wordcount"),
+                         & Q(unit_source__source_wordcount__gt=0),
+                         then="unit_source__source_wordcount"),
                     default=0)),
             fuzzy_words=models.Sum(
                 Case(
                     When(Q(state=FUZZY)
-                         & Q(source_wordcount__gt=0),
-                         then="source_wordcount"),
+                         & Q(unit_source__source_wordcount__gt=0),
+                         then="unit_source__source_wordcount"),
                     default=0)))
 
     @property
