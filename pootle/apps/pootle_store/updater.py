@@ -86,7 +86,8 @@ class UnitUpdater(object):
 
     @property
     def translator_comment(self):
-        return self.unit.getnotes(origin="translator")
+        comment = self.newunit.getnotes(origin="translator")
+        return None if comment == '' else comment
 
     @property
     def translator_comment_updated(self):
