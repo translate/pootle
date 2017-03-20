@@ -82,10 +82,9 @@ class AbstractUnitSource(models.Model):
     class Meta(object):
         abstract = True
 
-    unit = models.ForeignKey(
+    unit = models.OneToOneField(
         "pootle_store.Unit",
         db_index=True,
-        unique=True,
         null=False,
         blank=False,
         related_name="unit_source",
