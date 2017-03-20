@@ -298,13 +298,13 @@ class Unit(AbstractUnit):
         super(Unit, self).save(*args, **kwargs)
         submitted_on = submitted_on or self.mtime
         if created:
-            unit_source = self.unit_source.model(unit=self)
+            unit_source = UnitSource(unit=self)
             unit_source.created_by = created_by or sysuser
             unit_source.created_with = changed_with
             submitted_on = self.creation_time
             submitted_by = unit_source.created_by
         elif self.source_updated:
-            unit_source = self.unit_source.get()
+            unit_source = self.unit_source
         if created or self.source_updated:
             unit_source.source_hash = self.source_hash
             unit_source.source_length = self.source_length
