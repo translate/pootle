@@ -41,10 +41,11 @@ from pootle_project.models import Project
 from pootle_statistics.models import (
     SubmissionFields, SubmissionTypes)
 from pootle_store.constants import (
-    NEW, OBSOLETE, PARSED, POOTLE_WINS, TRANSLATED)
+    NEW, OBSOLETE, PARSED, POOTLE_WINS, TRANSLATED, UNTRANSLATED)
 from pootle_store.diff import DiffableStore, StoreDiff
 from pootle_store.models import Store
 from pootle_store.util import parse_pootle_revision
+from pootle.core.utils.multistring import unparse_multistring
 from pootle_translationproject.models import TranslationProject
 
 
@@ -1807,3 +1808,47 @@ def test_store_comment_update(store0, member):
     assert comment_sub.submitter == member
     assert comment_sub.revision == unit.revision
     assert comment_sub.creation_time == unit.change.commented_on
+
+
+@pytest.mark.django_db
+def test_update_plurals_submission(store_po, test_fs, system):
+    with test_fs.open(['data', 'po', 'plurals', 'untranslated.po']) as f:
+        file_store = getclass(f)(f.read())
+    store_po.update(file_store)
+    unit = store_po.units.first()
+    old_target = unit.target
+    assert unit.hasplural()
+
+    last_sub_pk = unit.submission_set.order_by(
+        "id").values_list("id", flat=True).last() or 0
+
+    with test_fs.open(['data', 'po', 'plurals', 'translated.po']) as f:
+        file_store = getclass(f)(f.read())
+    store_po.update(file_store, store_revision=store_po.data.max_unit_revision)
+    unit = store_po.units.get(id=unit.id)
+    assert unit.istranslated()
+    new_subs = unit.submission_set.filter(id__gt=last_sub_pk).order_by("id")
+    assert new_subs.count() == 2
+    target_sub = new_subs.get(field=SubmissionFields.TARGET)
+    assert target_sub.type == SubmissionTypes.SYSTEM
+    assert target_sub.submitter == system
+    assert target_sub.revision == unit.revision
+    assert target_sub.creation_time == unit.change.submitted_on
+    assert unit.change.submitted_by == system
+
+    assert (
+        unparse_multistring(target_sub.new_value)
+        == unparse_multistring(unit.target))
+    assert (
+        unparse_multistring(target_sub.old_value)
+        == unparse_multistring(old_target))
+
+    state_sub = new_subs.get(field=SubmissionFields.STATE)
+    assert state_sub.type == SubmissionTypes.SYSTEM
+    assert state_sub.submitter == system
+    assert state_sub.revision == unit.revision
+    assert state_sub.creation_time == unit.change.submitted_on
+    assert unit.change.submitted_by == system
+
+    assert state_sub.old_value == '%d' % UNTRANSLATED
+    assert state_sub.new_value == '%d' % TRANSLATED
