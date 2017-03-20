@@ -195,13 +195,6 @@ class UnitDBFactory(factory.django.DjangoModelFactory):
         return ""
 
     @factory.lazy_attribute
-    def source_wordcount(self):
-        from pootle_store.models import Unit
-
-        counter = wordcount.get(Unit)
-        return counter.count_words(self.source_f)
-
-    @factory.lazy_attribute
     def target_wordcount(self):
         from pootle_store.models import Unit
 
