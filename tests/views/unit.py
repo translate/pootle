@@ -100,7 +100,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         assert content['newtargets'] == [edited_target]
         assert content['user_score'] == response.wsgi_request.user.public_score
         assert content['checks'] is None
-        unit_source = unit.unit_source.get()
+        unit_source = unit.unit_source
         assert unit_source.created_by == system
         assert unit_source.created_with == SubmissionTypes.SYSTEM
         assert unit.change.submitted_by == suggestion.user
@@ -175,7 +175,7 @@ def test_submit_with_suggestion(client, request_users, settings, system):
     new_subs = unit.submission_set.filter(id__gt=last_sub_pk)
     if check_permission('translate', response.wsgi_request):
         assert response.status_code == 200
-        unit_source = unit.unit_source.get()
+        unit_source = unit.unit_source
         assert unit_source.created_by == system
         assert unit_source.created_with == SubmissionTypes.SYSTEM
         assert unit.change.submitted_by == suggestion.user
@@ -232,7 +232,7 @@ def test_accept_suggestion_with_comment(client, request_users, settings, system)
     unit = Unit.objects.get(id=unit.id)
     if check_permission('review', response.wsgi_request):
         assert response.status_code == 200
-        unit_source = unit.unit_source.get()
+        unit_source = unit.unit_source
         assert unit_source.created_by == system
         assert unit_source.created_with == SubmissionTypes.SYSTEM
         assert unit.change.submitted_by == suggestion.user
@@ -355,7 +355,7 @@ def test_reject_translated_suggestion(client, request_users, member, system):
         or suggestion.user.id == user.id)
     unit.refresh_from_db()
     unit.change.refresh_from_db()
-    unit_source = unit.unit_source.get()
+    unit_source = unit.unit_source
     suggestion.refresh_from_db()
     if can_reject:
         assert response.status_code == 200
@@ -488,7 +488,7 @@ def test_submit_unit(client, store0, request_users, settings, system):
     assert unit.target == "%s changed" % old_target
     assert unit.state == TRANSLATED
     assert unit.store.data.last_submission.unit == unit
-    unit_source = unit.unit_source.get()
+    unit_source = unit.unit_source
     assert unit_source.created_by == system
     assert unit_source.created_with == SubmissionTypes.SYSTEM
     assert unit.change.changed_with == SubmissionTypes.WEB

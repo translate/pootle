@@ -150,7 +150,7 @@ def test_update_from_ts(store0, test_fs, member):
     assert unit.hasplural()
     assert unit.creation_time >= existing_created_at
     assert unit.creation_time >= existing_mtime
-    unit_source = unit.unit_source.get()
+    unit_source = unit.unit_source
     assert unit_source.created_with == SubmissionTypes.UPLOAD
     assert unit_source.created_by == member
     assert unit.change.changed_with == SubmissionTypes.UPLOAD
@@ -385,7 +385,7 @@ def test_update_upload_member_user(store0, system, member):
     assert unit.change.submitted_on >= unit.creation_time
     assert unit.change.reviewed_on is None
     assert unit.revision > original_revision
-    unit_source = unit.unit_source.get()
+    unit_source = unit.unit_source
     unit_source.created_by == system
     unit_source.created_with == SubmissionTypes.SYSTEM
     # there should be 2 new subs - state_change and target_change
@@ -420,7 +420,7 @@ def test_update_upload_submission_type(store0):
         [(unit.source, "%s UPDATED" % unit.source, False)],
         submission_type=SubmissionTypes.UPLOAD,
         store_revision=Revision.get() + 1)
-    unit_source = store0.units[0].unit_source.get()
+    unit_source = store0.units[0].unit_source
     assert unit_source.created_with == SubmissionTypes.SYSTEM
     assert unit.change.changed_with == SubmissionTypes.UPLOAD
     # there should be 2 new subs - state_change and target_change
@@ -445,7 +445,7 @@ def test_update_upload_new_revision(store0, member):
     assert old_unit.state == OBSOLETE
     assert len(store0.units) == 1
     unit = store0.units[0]
-    unit_source = unit.unit_source.get()
+    unit_source = unit.unit_source
     assert unit.revision > original_revision
     assert unit_source.created_by == member
     assert unit.change.submitted_by == member
@@ -487,7 +487,7 @@ def test_update_upload_again_new_revision(store0, member, member2):
     store = Store.objects.get(pk=store0.pk)
     assert store.state == PARSED
     unit = store.units[0]
-    unit_source = unit.unit_source.get()
+    unit_source = unit.unit_source
     assert unit.revision > old_unit_revision
     assert unit.target == "Hello, world UPDATED AGAIN"
     assert unit_source.created_by == member
@@ -517,7 +517,7 @@ def test_update_upload_old_revision_unit_conflict(store0, admin, member):
         store_revision=original_revision + 1,
         user=admin)
     unit = store0.units[0]
-    unit_source = unit.unit_source.get()
+    unit_source = unit.unit_source
     assert unit_source.created_by == admin
     updated_revision = unit.revision
     assert (
@@ -538,11 +538,11 @@ def test_update_upload_old_revision_unit_conflict(store0, admin, member):
         user=member)
     unit = store0.units[0]
     assert unit.submission_set.count() == 0
-    unit_source = unit.unit_source.get()
+    unit_source = unit.unit_source
     # unit target is not updated and revision remains the same
     assert store0.units[0].target == "Hello, world UPDATED"
     assert unit.revision == updated_revision
-    unit_source = original_unit.unit_source.get()
+    unit_source = original_unit.unit_source
     unit_source.created_by == admin
     assert unit_source.created_with == SubmissionTypes.SYSTEM
     unit.change.changed_with == SubmissionTypes.UPLOAD
@@ -567,7 +567,7 @@ def test_update_upload_new_revision_new_unit(store0, member):
         user=member,
         submission_type=SubmissionTypes.WEB)
     unit = store0.units.last()
-    unit_source = unit.unit_source.get()
+    unit_source = unit.unit_source
     # the new unit has been added
     assert unit.submission_set.count() == 0
     assert unit.revision > old_unit_revision
@@ -597,7 +597,7 @@ def test_update_upload_old_revision_new_unit(store0, member2):
     # the unit has been added because its not already obsoleted
     assert store0.units.count() == 2
     unit = store0.units.last()
-    unit_source = unit.unit_source.get()
+    unit_source = unit.unit_source
     # the new unit has been added
     assert unit.submission_set.count() == 0
     assert unit.revision > old_unit_revision

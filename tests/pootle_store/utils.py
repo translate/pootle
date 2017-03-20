@@ -40,7 +40,7 @@ def test_unit_create(store0, member):
     unit.index = store0.max_index() + 1
     unit.save()
     assert unit.submission_set.count() == 0
-    source = unit.unit_source.get()
+    source = unit.unit_source
     assert source.created_by == get_system_user()
     assert source.created_with == SubmissionTypes.SYSTEM
     with pytest.raises(UnitChange.DoesNotExist):
@@ -52,7 +52,7 @@ def test_unit_create(store0, member):
     unit.index = store0.max_index() + 1
     unit.save(created_by=member)
     assert unit.submission_set.count() == 0
-    source = unit.unit_source.get()
+    source = unit.unit_source
     assert source.created_by == member
     assert source.created_with == SubmissionTypes.SYSTEM
     with pytest.raises(UnitChange.DoesNotExist):
@@ -64,7 +64,7 @@ def test_unit_create(store0, member):
     unit.index = store0.max_index() + 1
     unit.save(changed_with=SubmissionTypes.UPLOAD)
     assert unit.submission_set.count() == 0
-    source = unit.unit_source.get()
+    source = unit.unit_source
     assert source.created_by == get_system_user()
     assert source.created_with == SubmissionTypes.UPLOAD
     with pytest.raises(UnitChange.DoesNotExist):
@@ -90,7 +90,7 @@ def test_unit_lifecycle_create(store0):
     unit.store = store0
     unit.source_f = multistring("Foo")
     unit.save()
-    source = unit.unit_source.get()
+    source = unit.unit_source
     assert source.created_by == get_system_user()
     assert source.created_with == SubmissionTypes.SYSTEM
     with pytest.raises(UnitChange.DoesNotExist):
