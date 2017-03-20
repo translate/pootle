@@ -874,8 +874,13 @@ class Store(AbstractStore):
         self.pootle_path = self.parent.pootle_path + self.name
         self.tp_path = self.parent.tp_path + self.name
 
-        # Force validation of fields.
-        self.full_clean()
+        # Force validation of required fields.
+        self.full_clean(
+            validate_unique=False,
+            exclude=[
+                "translation_project",
+                "parent",
+                "filetype"])
 
         super(Store, self).save(*args, **kwargs)
 
@@ -1145,6 +1150,7 @@ class Store(AbstractStore):
 
     def max_index(self):
         """Largest unit index"""
+
         return max_column(self.unit_set.all(), 'index', -1)
 
     def addunit(self, unit, index=None, user=None, update_revision=None,
