@@ -6,7 +6,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import logging
 import os
 import shutil
 from collections import OrderedDict
@@ -96,7 +95,6 @@ class ProjectManager(models.Manager):
                                                cache_params))
         projects = cache.get(cache_key)
         if not projects:
-            logging.debug('Cache miss for %s', cache_key)
             projects_dict = self.for_user(user).order_by('fullname') \
                                                .values('code', 'fullname',
                                                        'disabled')
@@ -282,8 +280,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
         if user_projects is not None:
             return user_projects
-
-        logging.debug(u'Cache miss for %s', key)
 
         # FIXME: use `cls.objects.cached_dict().keys()`
         ALL_PROJECTS = cls.objects.values_list('code', flat=True)

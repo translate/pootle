@@ -8,7 +8,6 @@
 
 """Fields required for handling translation files"""
 
-import logging
 import os
 
 from translate.misc.multistring import multistring
@@ -177,7 +176,6 @@ class TranslationStoreFieldFile(FieldFile):
                     # if file is modified act as if it doesn't exist in cache
                     raise KeyError
             except KeyError:
-                logging.debug(u"Cache miss for %s", self.path)
                 from translate.storage import factory
 
                 fileclass = self.instance.syncer.file_class
