@@ -1,11 +1,11 @@
 {% load i18n locale profile_tags common_tags %}
 <div class="extra-item-block js-comment-first">
   <div class="extra-item-content">
-    {% if unit.commented_by %}
+    {% if unit.change.commented_by %}
     <div class="extra-item-gravatar">
-      <a href="{% url 'pootle-user-profile' unit.commented_by.username %}"
-	 title="{{ unit.commented_by.display_name|force_escape|force_escape }}">
-	{% avatar unit.commented_by.username unit.commented_by.email_hash 20 %}
+      <a href="{% url 'pootle-user-profile' unit.change.commented_by.username %}"
+	 title="{{ unit.change.commented_by.display_name|force_escape|force_escape }}">
+	{% avatar unit.change.commented_by.username unit.change.commented_by.email_hash 20 %}
       </a>
     </div>
     {% endif %}
@@ -19,9 +19,9 @@
       <span class="sidetitle">{% trans "Last comment:" %}</span>
       <span class="extra-item-comment">{{ unit.translator_comment }}</span>
     </div>
-    {% if unit.commented_by and unit.commented_on %}
-    <time class="extra-item-meta js-relative-date" title="{{ unit.commented_on|dateformat }}"
-      datetime="{{ unit.commented_on.isoformat }}">&nbsp;</time>
+    {% if unit.change.commented_by and unit.change.commented_on %}
+    <time class="extra-item-meta js-relative-date" title="{{ unit.change.commented_on|dateformat }}"
+      datetime="{{ unit.change.commented_on.isoformat }}">&nbsp;</time>
     {% endif %}
   </div>
 </div>
