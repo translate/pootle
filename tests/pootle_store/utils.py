@@ -130,6 +130,8 @@ def test_unit_lifecycle_update_state_reviewed_by(store0, system, member2):
     unit.target_f = multistring("Bar")
     unit.state = FUZZY
     unit.save(submitted_by=system)
+    # force the unit to be refrozen
+    unit = unit.__class__.objects.get(id=unit.id)
     unit.state = TRANSLATED
     unit.save(reviewed_by=member2)
     sub_state_update = lifecycle.get(Unit)(unit).sub_state_update()
