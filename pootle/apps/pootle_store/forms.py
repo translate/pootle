@@ -13,13 +13,11 @@ from translate.misc.multistring import multistring
 from django import forms
 from django.contrib.auth import get_user_model
 from django.urls import Resolver404, resolve
-from django.utils import timezone
 from django.utils.translation import get_language
 
 from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import review
 from pootle.core.url_helpers import split_pootle_path
-from pootle.core.utils.timezone import make_aware
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission, check_user_permission
@@ -270,25 +268,20 @@ def unit_form_factory(language, snplurals=None, request=None):
             kwargs["commit"] = False
             unit = super(UnitForm, self).save(*args, **kwargs)
             with update_data_after(unit.store):
-                current_time = timezone.now()
-                if SubmissionFields.TARGET in (f[0] for f in self.updated_fields):
-                    unit.submitted_by = self.user
-                    unit.submitted_on = current_time
                 suggestion = self.cleaned_data["suggestion"]
                 user = (
                     suggestion.user
                     if suggestion
                     else self.user)
                 unit.save(
-                    submitted_on=current_time,
-                    submitted_by=user,
+                    user=user,
                     changed_with=changed_with)
                 translation_project = unit.store.translation_project
                 for field, old_value, new_value in self.updated_fields:
                     if field == SubmissionFields.TARGET and suggestion:
                         old_value = str(suggestion.target_f)
                     sub = Submission(
-                        creation_time=current_time,
+                        creation_time=unit.mtime,
                         translation_project=translation_project,
                         submitter=self.user,
                         unit=unit,
@@ -343,12 +336,12 @@ def unit_comment_form_factory(language):
 
         def save(self, **kwargs):
             """Register the submission and save the comment."""
+            super(UnitCommentForm, self).save(**kwargs)
             if self.has_changed():
-                creation_time = timezone.now()
                 translation_project = self.request.translation_project
 
                 sub = Submission(
-                    creation_time=creation_time,
+                    creation_time=self.instance.mtime,
                     translation_project=translation_project,
                     submitter=self.request.user,
                     unit=self.instance,
@@ -358,7 +351,6 @@ def unit_comment_form_factory(language):
                     new_value=self.cleaned_data['translator_comment']
                 )
                 sub.save()
-            super(UnitCommentForm, self).save(**kwargs)
 
     return UnitCommentForm
 
@@ -585,13 +577,11 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
     target_f = MultiStringFormField(required=False)
 
     def save_unit(self):
-        current_time = make_aware(timezone.now())
         updated = []
         if self.cleaned_data["target_f"]:
             self.unit.target = self.cleaned_data["target_f"]
             self.unit.save(
-                submitted_on=current_time,
-                submitted_by=self.target_object.user,
+                user=self.target_object.user,
                 reviewed_by=self.request_user,
                 changed_with=SubmissionTypes.WEB)
             updated.append(
@@ -640,12 +630,9 @@ class SubmitForm(SubmitFormMixin, forms.Form):
 
     def save_unit(self):
         user = self.request_user
-        current_time = make_aware(timezone.now())
         updated = []
         target = multistring(self.cleaned_data["target_f"] or [u''])
         if target != self.unit.target:
-            self.unit.submitted_by = user
-            self.unit.submitted_on = current_time
             updated.append(
                 (SubmissionFields.TARGET,
                  self.unit.target_f,
@@ -659,8 +646,7 @@ class SubmitForm(SubmitFormMixin, forms.Form):
         else:
             self.unit.state = UNTRANSLATED
         self.unit.save(
-            submitted_on=current_time,
-            submitted_by=user,
+            user=user,
             changed_with=SubmissionTypes.WEB)
         if self.unit.state_updated:
             updated.append(
