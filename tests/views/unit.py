@@ -104,7 +104,12 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         assert unit_source.created_by == system
         assert unit_source.created_with == SubmissionTypes.SYSTEM
         assert unit.change.submitted_by == suggestion.user
-        assert unit.change.reviewed_by == user
+        if user == suggestion.user:
+            assert unit.change.reviewed_by is None
+            assert unit.change.reviewed_on is None
+        else:
+            assert unit.change.reviewed_by == user
+            assert unit.change.reviewed_on == unit.mtime
         assert unit.change.changed_with == SubmissionTypes.WEB
 
         assert suggestion.state.name == 'accepted'
@@ -121,7 +126,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         assert target_sub.submitter == unit.change.submitted_by
         assert target_sub.suggestion == suggestion
         assert target_sub.revision == unit.revision
-        assert target_sub.creation_time == unit.change.reviewed_on
+        assert target_sub.creation_time == unit.mtime
 
         state_sub = new_subs[1]
         assert state_sub.old_value == str(UNTRANSLATED)
@@ -133,7 +138,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
 
         assert state_sub.submitter == unit.change.submitted_by
         assert state_sub.revision == unit.revision
-        assert state_sub.creation_time == unit.change.reviewed_on
+        assert state_sub.creation_time == unit.mtime
     else:
         assert response.status_code == 403
         assert suggestion.state.name == "pending"
@@ -179,7 +184,10 @@ def test_submit_with_suggestion(client, request_users, settings, system):
         assert unit_source.created_by == system
         assert unit_source.created_with == SubmissionTypes.SYSTEM
         assert unit.change.submitted_by == suggestion.user
-        assert unit.change.reviewed_by == user
+        if user == suggestion.user:
+            assert unit.change.reviewed_by is None
+        else:
+            assert unit.change.reviewed_by == user
         assert unit.change.changed_with == SubmissionTypes.WEB
         assert suggestion.state.name == 'accepted'
         assert str(unit.target) == sugg.target_f
