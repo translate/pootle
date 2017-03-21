@@ -19,10 +19,10 @@ class Migration(migrations.Migration):
             name='Revision',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('object_id', models.CharField(blank=True, max_length=255, null=True, verbose_name=b'object ID')),
-                ('key', models.CharField(blank=True, db_index=True, max_length=255, null=True, verbose_name=b'Revision key')),
-                ('value', models.CharField(default=b'', max_length=255, verbose_name=b'Revision hash or numeric marker')),
-                ('content_type', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='content_type_set_for_revision', to='contenttypes.ContentType', verbose_name=b'content type')),
+                ('object_id', models.CharField(blank=True, max_length=255, null=True, verbose_name='object ID')),
+                ('key', models.CharField(blank=True, db_index=True, max_length=255, null=True, verbose_name='Revision key')),
+                ('value', models.CharField(default='', max_length=255, verbose_name='Revision hash or numeric marker')),
+                ('content_type', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='content_type_set_for_revision', to='contenttypes.ContentType', verbose_name='content type')),
             ],
             options={
                 'ordering': ['pk'],

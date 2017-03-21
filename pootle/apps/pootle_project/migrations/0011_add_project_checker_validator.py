@@ -16,6 +16,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='project',
             name='checkstyle',
-            field=models.CharField(default=b'standard', max_length=50, validators=[pootle_project.models.validate_project_checker], verbose_name='Quality Checks'),
+            field=models.CharField(default='standard', max_length=50, validators=[pootle_project.models.validate_project_checker], verbose_name='Quality Checks'),
         ),
     ]

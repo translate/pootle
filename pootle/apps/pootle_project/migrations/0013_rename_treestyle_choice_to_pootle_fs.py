@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='project',
             name='treestyle',
-            field=models.CharField(choices=[(b'auto', 'Automatic detection of gnu/non-gnu file layouts (slower)'), (b'gnu', 'GNU style: files named by language code'), (b'nongnu', 'Non-GNU: Each language in its own directory'), (b'pootle_fs', 'Allow pootle_fs to manage filesystems')], default=b'auto', max_length=20, verbose_name='Project Tree Style'),
+            field=models.CharField(choices=[('auto', 'Automatic detection of gnu/non-gnu file layouts (slower)'), ('gnu', 'GNU style: files named by language code'), ('nongnu', 'Non-GNU: Each language in its own directory'), ('pootle_fs', 'Allow pootle_fs to manage filesystems')], default='auto', max_length=20, verbose_name='Project Tree Style'),
         ),
     ]

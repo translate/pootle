@@ -14,6 +14,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='directory',
             name='pootle_path',
-            field=models.CharField(default=b'/', unique=True, max_length=255, db_index=True),
+            field=models.CharField(default='/', unique=True, max_length=255, db_index=True),
         ),
     ]

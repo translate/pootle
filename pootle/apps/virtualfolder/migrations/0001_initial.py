@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('priority', models.FloatField(default=1, help_text='Number specifying importance. Greater priority means it is more important.', verbose_name='Priority')),
                 ('is_public', models.BooleanField(default=True, help_text='Whether this virtual folder is public or not.', verbose_name='Is public?')),
                 ('description', pootle.core.markup.fields.MarkupField(verbose_name='Description', blank=True)),
-                ('units', models.ManyToManyField(related_name='vfolders', to=b'pootle_store.Unit', db_index=True)),
+                ('units', models.ManyToManyField(related_name='vfolders', to='pootle_store.Unit', db_index=True)),
             ],
             options={
             },
@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
                 ('pootle_path', models.CharField(unique=True, max_length=255, editable=False, db_index=True)),
                 ('directory', models.ForeignKey(related_name='vf_treeitems', to='pootle_app.Directory', on_delete=models.CASCADE)),
                 ('parent', models.ForeignKey(related_name='child_vf_treeitems', to='virtualfolder.VirtualFolderTreeItem', null=True, on_delete=models.CASCADE)),
-                ('stores', models.ManyToManyField(related_name='parent_vf_treeitems', to=b'pootle_store.Store', db_index=True)),
+                ('stores', models.ManyToManyField(related_name='parent_vf_treeitems', to='pootle_store.Store', db_index=True)),
                 ('vfolder', models.ForeignKey(related_name='vf_treeitems', to='virtualfolder.VirtualFolder', on_delete=models.CASCADE)),
             ],
             options={

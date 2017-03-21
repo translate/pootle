@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                 ('last_sync_hash', models.CharField(max_length=64, null=True, blank=True)),
                 ('staged_for_removal', models.BooleanField(default=False)),
                 ('staged_for_merge', models.BooleanField(default=False)),
-                ('resolve_conflict', models.IntegerField(default=0, null=True, blank=True, choices=[(0, b''), (1, b'pootle'), (2, b'fs')])),
+                ('resolve_conflict', models.IntegerField(default=0, null=True, blank=True, choices=[(0, ''), (1, 'pootle'), (2, 'fs')])),
                 ('project', models.ForeignKey(related_name='store_fs', to='pootle_project.Project', on_delete=models.CASCADE)),
                 ('store', models.ForeignKey(related_name='fs', on_delete=django.db.models.deletion.SET_NULL, blank=True, to='pootle_store.Store', null=True)),
             ],

@@ -21,6 +21,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='project',
             name='checkstyle',
-            field=models.CharField(default=b'standard', max_length=50, verbose_name='Quality Checks', choices=[(b'creativecommons', b'creativecommons'), (b'drupal', b'drupal'), (b'gnome', b'gnome'), (b'kde', b'kde'), (b'libreoffice', b'libreoffice'), (b'mozilla', b'mozilla'), (b'openoffice', b'openoffice'), (b'standard', b'standard'), (b'terminology', b'terminology'), (b'wx', b'wx')]),
+            field=models.CharField(default='standard', max_length=50, verbose_name='Quality Checks', choices=[('creativecommons', 'creativecommons'), ('drupal', 'drupal'), ('gnome', 'gnome'), ('kde', 'kde'), ('libreoffice', 'libreoffice'), ('mozilla', 'mozilla'), ('openoffice', 'openoffice'), ('standard', 'standard'), ('terminology', 'terminology'), ('wx', 'wx')]),
         ),
     ]
