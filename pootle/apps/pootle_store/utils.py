@@ -205,11 +205,8 @@ class SuggestionsReview(object):
         unit.target = suggestion.target
         if unit.state == FUZZY:
             unit.state = TRANSLATED
-        unit.submitted_by = suggestion.user
-        unit.submitted_on = suggestion.review_time
         unit.save(
-            submitted_by=suggestion.user,
-            submitted_on=suggestion.review_time,
+            user=suggestion.user,
             changed_with=self.review_type,
             reviewed_by=self.reviewer)
         create_subs = OrderedDict()
