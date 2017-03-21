@@ -61,7 +61,7 @@ class AbstractUnitChange(models.Model):
     commented_by = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
-        related_name='units_commented',
+        related_name='commented',
         db_index=True,
         on_delete=models.SET(get_system_user))
     commented_on = models.DateTimeField(db_index=True, null=True)
@@ -165,7 +165,7 @@ class AbstractUnit(models.Model, base.TranslationUnit):
         settings.AUTH_USER_MODEL,
         null=True,
         db_index=True,
-        related_name='commented',
+        related_name='old_commented',
         on_delete=models.SET(get_system_user))
     commented_on = models.DateTimeField(db_index=True, null=True)
 
