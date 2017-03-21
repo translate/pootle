@@ -66,8 +66,8 @@ for details.
         :target: https://landscape.io/github/translate/pootle/master
         :alt: Code Health
 
-.. |coverage| image:: https://img.shields.io/coveralls/translate/pootle/master.svg?style=flat-square
-        :target: https://coveralls.io/github/translate/pootle?branch=master
+.. |coverage| image:: https://img.shields.io/codecov/c/github/translate/pootle/master.svg?style=flat-square
+        :target: https://codecov.io/gh/translate/pootle/branch/master
         :alt: Test Coverage
 
 .. |requirements| image:: https://img.shields.io/requires/github/translate/pootle/master.svg?style=flat-square
