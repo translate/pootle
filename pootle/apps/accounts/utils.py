@@ -21,6 +21,7 @@ from pootle.core.contextmanagers import keep_data
 from pootle.core.delegate import score_updater
 from pootle.core.models import Revision
 from pootle.core.signals import update_data
+from pootle_statistics.models import SubmissionFields
 from pootle_store.constants import FUZZY, UNTRANSLATED
 from pootle_store.models import SuggestionState
 
@@ -252,24 +253,25 @@ class UserPurger(object):
             # Find the last submission by different user that updated the
             # unit.target.
             edits = unit.get_edits().exclude(submitter=self.user)
-
+            updates = {}
             if edits.exists():
                 last_edit = edits.latest("pk")
-                unit.target_f = last_edit.new_value
-                unit.submitted_by_id = last_edit.submitter_id
-                unit.submitted_on = last_edit.creation_time
+                updates["target_f"] = last_edit.new_value
+                updates["submitted_by_id"] = last_edit.submitter_id
+                updates["submitted_on"] = last_edit.creation_time
                 logger.debug("Unit edit reverted: %s", repr(unit))
             else:
                 # if there is no previous submissions set the target to "" and
                 # set the unit.submitted_by to None
-                unit.target_f = ""
-                unit.submitted_by = None
-                unit.submitted_on = unit.creation_time
+                updates["target_f"] = ""
+                updates["submitted_by"] = None
+                updates["submitted_on"] = unit.creation_time
                 logger.debug("Unit edit removed: %s", repr(unit))
 
             # Increment revision
-            unit.revision = Revision.incr()
-            unit.save()
+            unit.__class__.objects.filter(id=unit.id).update(
+                revision=Revision.incr(),
+                **updates)
         return stores
 
     @write_stdout(" * Reverting units reviewed by: %(user)s... ")
@@ -302,19 +304,34 @@ class UserPurger(object):
             # Remove the review.
             review.delete()
 
-        for unit in self.user.reviewed.iterator():
+        for unit_change in self.user.reviewed.select_related("unit").iterator():
+            unit = unit_change.unit
             stores.add(unit.store)
             unit.suggestion_set.filter(reviewer=self.user).update(
                 state=SuggestionState.objects.get(name="pending"),
                 reviewer=None)
-            revision = None
-            unit.reviewed_by = None
-            unit.reviewed_on = None
-            # Increment revision
-            revision = Revision.incr()
+            unit_updates = {}
+            updates = {}
+            if not unit.target:
+                unit_updates["state"] = UNTRANSLATED
+                updates["reviewed_by"] = None
+                updates["reviewed_on"] = None
+            else:
+                old_state_sub = unit.submission_set.exclude(
+                    submitter=self.user).filter(
+                        field=SubmissionFields.STATE).order_by(
+                            "-creation_time", "-pk").first()
+                if old_state_sub:
+                    unit_updates["state"] = old_state_sub.new_value
+                    updates["reviewed_by"] = old_state_sub.submitter
+                    updates["reviewed_on"] = old_state_sub.creation_time
             logger.debug("Unit reviewed_by removed: %s", repr(unit))
-            unit.revision = revision
-            unit.save()
+            unit_change.__class__.objects.filter(id=unit_change.id).update(
+                **updates)
+            # Increment revision
+            unit.__class__.objects.filter(id=unit.id).update(
+                revision=Revision.incr(),
+                **unit_updates)
         return stores
 
     @write_stdout(" * Reverting unit state changes by: %(user)s... ")
@@ -351,8 +368,8 @@ class UserPurger(object):
                 unit.state = new_state
 
                 # Increment revision
-                unit.revision = Revision.incr()
-                unit.save()
+                unit.__class__.objects.filter(id=unit.id).update(
+                    revision=Revision.incr())
                 logger.debug("Unit state reverted: %s", repr(unit))
         return stores
 
