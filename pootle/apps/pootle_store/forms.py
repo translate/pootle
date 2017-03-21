@@ -274,8 +274,6 @@ def unit_form_factory(language, snplurals=None, request=None):
                 if SubmissionFields.TARGET in (f[0] for f in self.updated_fields):
                     unit.submitted_by = self.user
                     unit.submitted_on = current_time
-                    unit.reviewed_by = None
-                    unit.reviewed_on = None
                 suggestion = self.cleaned_data["suggestion"]
                 user = (
                     suggestion.user
@@ -594,7 +592,6 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
             self.unit.save(
                 submitted_on=current_time,
                 submitted_by=self.target_object.user,
-                reviewed_on=current_time,
                 reviewed_by=self.request_user,
                 changed_with=SubmissionTypes.WEB)
             updated.append(
@@ -609,7 +606,7 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
         translation_project = self.unit.store.translation_project
         for field, old_value, new_value in updated:
             sub = Submission(
-                creation_time=current_time,
+                creation_time=self.unit.mtime,
                 translation_project=translation_project,
                 suggestion=self.target_object,
                 submitter=self.target_object.user,
@@ -649,8 +646,6 @@ class SubmitForm(SubmitFormMixin, forms.Form):
         if target != self.unit.target:
             self.unit.submitted_by = user
             self.unit.submitted_on = current_time
-            self.unit.reviewed_by = None
-            self.unit.reviewed_on = None
             updated.append(
                 (SubmissionFields.TARGET,
                  self.unit.target_f,
@@ -675,7 +670,7 @@ class SubmitForm(SubmitFormMixin, forms.Form):
         translation_project = self.unit.store.translation_project
         for field, old_value, new_value in updated:
             sub = Submission(
-                creation_time=current_time,
+                creation_time=self.unit.mtime,
                 translation_project=translation_project,
                 submitter=user,
                 unit=self.unit,
