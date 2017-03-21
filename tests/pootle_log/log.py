@@ -425,7 +425,7 @@ def test_log_get_submissions(member, store0):
     lifecycle.get(unit0.__class__)(unit0).change()
     unit1 = store0.units[0]
     unit1.translator_comment = "new comment"
-    unit1.save(commented_by=member)
+    unit1.save(user=member)
     lifecycle.get(unit1.__class__)(unit1).change()
     qc = store0.units.filter(
         qualitycheck__isnull=False)[0].qualitycheck_set.all()[0]

@@ -155,7 +155,7 @@ def test_unit_lifecycle_update_comment(store0, member):
     unit.source_f = multistring("Foo")
     unit.target_f = multistring("Bar")
     unit.translator_comment = "SOME COMMENT"
-    unit.save(commented_by=member)
+    unit.save(user=member)
     sub_comment_update = lifecycle.get(Unit)(unit).sub_comment_update()
     assert isinstance(sub_comment_update, Submission)
     assert sub_comment_update.unit == unit
