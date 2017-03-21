@@ -207,14 +207,11 @@ class SuggestionsReview(object):
             unit.state = TRANSLATED
         unit.submitted_by = suggestion.user
         unit.submitted_on = suggestion.review_time
-        unit.reviewed_by = self.reviewer
-        unit.reviewed_on = unit.submitted_on
         unit.save(
             submitted_by=suggestion.user,
             submitted_on=suggestion.review_time,
             changed_with=self.review_type,
-            reviewed_by=self.reviewer,
-            reviewed_on=suggestion.review_time)
+            reviewed_by=self.reviewer)
         create_subs = OrderedDict()
         create_subs[SubmissionFields.TARGET] = [old_target, unit.target]
         if old_state != unit.state:
@@ -222,7 +219,7 @@ class SuggestionsReview(object):
         subs_created = []
         for field in create_subs:
             kwargs = {
-                'creation_time': unit.change.reviewed_on,
+                'creation_time': unit.mtime,
                 'translation_project': unit.store.translation_project,
                 'submitter': suggestion.user,
                 'unit': unit,
