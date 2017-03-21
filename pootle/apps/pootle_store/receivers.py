@@ -8,15 +8,12 @@
 
 from hashlib import md5
 
-from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
-from django.utils import timezone
 
 from pootle.core.delegate import uniqueid
 from pootle.core.models import Revision
 from pootle.core.signals import update_data
-from pootle.core.utils.timezone import make_aware
 
 from .constants import FUZZY, TRANSLATED, UNTRANSLATED
 from .models import Suggestion, Unit, UnitChange, UnitSource
@@ -49,8 +46,6 @@ def handle_unit_source_pre_save(**kwargs):
 def handle_unit_pre_save(**kwargs):
     unit = kwargs["instance"]
     auto_translated = False
-    was_fuzzy = unit._frozen.state == FUZZY
-    sysuser = get_user_model().objects.get_system_user()
 
     if unit.source_updated:
         # update source related fields
@@ -72,20 +67,9 @@ def handle_unit_pre_save(**kwargs):
             # if it was TRANSLATED then set to UNTRANSLATED
             if unit.state > FUZZY:
                 unit.state = UNTRANSLATED
-    if was_fuzzy:
-        # set reviewer data if FUZZY has been removed only and
-        # translation hasn't been updated
-        unit.reviewed_on = make_aware(timezone.now())
-        unit.reviewed_by = unit.reviewed_by or sysuser
-    elif unit.state == FUZZY:
-        # clear reviewer data if unit has been marked as FUZZY
-        unit.reviewed_on = None
-        unit.reviewed_by = None
-    elif unit.state == UNTRANSLATED:
+    if unit.state == UNTRANSLATED:
         # clear reviewer and translator data if translation
         # has been deleted
-        unit.reviewed_on = None
-        unit.reviewed_by = None
         unit.submitted_by = None
         unit.submitted_on = None
 
