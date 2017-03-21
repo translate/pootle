@@ -183,14 +183,11 @@ def test_unit_lifecycle_update_source(store0, member):
     unit = Unit.objects.get(pk=unit.id)
     unit.source = multistring("Foo23")
     unit.save(user=member)
-    # this is temporarily set in update
-    unit.refresh_from_db()
     sub_source_update = lifecycle.get(Unit)(unit).sub_source_update()
     assert isinstance(sub_source_update, Submission)
     assert sub_source_update.unit == unit
     assert sub_source_update.translation_project == store0.translation_project
     assert sub_source_update.revision == unit.revision
-    assert sub_source_update.submitter == unit.submitted_by
     assert sub_source_update.submitter == unit.change.submitted_by
     assert sub_source_update.type == SubmissionTypes.SYSTEM
     assert sub_source_update.field == SubmissionFields.SOURCE

@@ -336,7 +336,7 @@ def test_update_upload_defaults(store0, system):
         [(unit.source, "%s UPDATED" % unit.source, False)],
         store_revision=Revision.get() + 1)
     unit = store0.units[0]
-    assert unit.submitted_by == system
+    assert unit.change.submitted_by == system
     assert unit.change.submitted_on >= unit.creation_time
     assert unit.change.submitted_by == system
     assert (
@@ -379,7 +379,6 @@ def test_update_upload_member_user(store0, system, member):
         store_revision=Revision.get() + 1,
         submission_type=SubmissionTypes.UPLOAD)
     unit = store0.units[0]
-    assert unit.submitted_by == member
     assert unit.change.submitted_by == member
     assert unit.change.changed_with == SubmissionTypes.UPLOAD
     assert unit.change.submitted_on >= unit.creation_time
@@ -627,7 +626,6 @@ def _test_store_update_units_before(*test_args):
         if unit.source not in updates:
             # unit is not in update, target should be left unchanged
             assert updated_unit.target == unit.target
-            assert updated_unit.submitted_by == change.submitted_by
             assert updated_unit.change.submitted_by == change.submitted_by
 
             # depending on unit/store_revision should be obsoleted
@@ -651,14 +649,10 @@ def _test_store_update_units_before(*test_args):
                     assert updated_unit.target == updates[unit.source]
                     if unit.target != updates[unit.source]:
                         # unit has changed, or was resurrected
-                        assert updated_unit.submitted_by == member2
                         assert updated_unit.change.submitted_by == member2
 
                         # damn mysql microsecond precision
                         if change.submitted_on.time().microsecond != 0:
-                            assert (
-                                updated_unit.submitted_on
-                                != change.submitted_on)
                             assert (
                                 updated_unit.change.submitted_on
                                 != change.submitted_on)
@@ -668,7 +662,6 @@ def _test_store_update_units_before(*test_args):
 
                         # damn mysql microsecond precision
                         if change.reviewed_on.time().microsecond != 0:
-
                             assert (
                                 updated_unit.change.reviewed_on
                                 != change.reviewed_on)
@@ -692,10 +685,9 @@ def _test_store_update_units_before(*test_args):
                         assert suggestion.user == member2
                     else:
                         assert updated_unit.target == updates[unit.source]
-                        assert updated_unit.submitted_by == member2
                         assert updated_unit.change.submitted_by == member2
                         assert suggestion.target == unit.target
-                        assert suggestion.user == unit.submitted_by
+                        assert suggestion.user == change.submitted_by
 
 
 def _test_store_update_ordering(*test_args):
