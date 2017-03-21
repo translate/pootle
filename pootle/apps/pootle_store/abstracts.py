@@ -161,14 +161,6 @@ class AbstractUnit(models.Model, base.TranslationUnit):
         on_delete=models.SET(get_system_user))
     submitted_on = models.DateTimeField(db_index=True, null=True)
 
-    commented_by = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        null=True,
-        db_index=True,
-        related_name='old_commented',
-        on_delete=models.SET(get_system_user))
-    commented_on = models.DateTimeField(db_index=True, null=True)
-
     # reviewer: who has accepted suggestion or removed FUZZY
     # None if translation has been submitted by approved translator
     reviewed_by = models.ForeignKey(
