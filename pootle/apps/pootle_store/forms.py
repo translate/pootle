@@ -566,7 +566,7 @@ class SubmitFormMixin(object):
         self.fields[
             "target_f"].hidden_widget = HiddenMultiStringWidget(nplurals=nplurals)
         self.fields["target_f"].fields = [
-            forms.CharField(strip=False) for i in range(nplurals)]
+            forms.CharField(strip=False, required=False) for i in range(nplurals)]
         for k in ["user", "name", "email"]:
             if k in self.fields:
                 self.fields[k].required = False
@@ -574,7 +574,7 @@ class SubmitFormMixin(object):
 
 class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
 
-    target_f = MultiStringFormField(required=False)
+    target_f = MultiStringFormField(required=False, require_all_fields=False)
 
     def save_unit(self):
         updated = []
@@ -623,7 +623,7 @@ class SubmitForm(SubmitFormMixin, forms.Form):
     is_fuzzy = forms.BooleanField(
         initial=False,
         label=_("Needs work"))
-    target_f = MultiStringFormField(required=False)
+    target_f = MultiStringFormField(required=False, require_all_fields=False)
 
     def clean_is_fuzzy(self):
         return self.data["is_fuzzy"] != "0"
