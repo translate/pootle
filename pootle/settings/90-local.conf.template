@@ -245,7 +245,3 @@ POOTLE_MT_BACKENDS = [
 TEMPLATES[0]['DIRS'] = [
     # working_path(os.path.join('custom', 'templates')),
 ]
-
-SILENCED_SYSTEM_CHECKS = [
-    'fields.W342',  # pootle_store.UnitSource.unit: doesn't use OneToOneField
-]
