@@ -320,7 +320,10 @@ class Unit(AbstractUnit):
             if update_submit:
                 self.change.submitted_by = submitted_by or user
                 self.change.submitted_on = submitted_on
-            if self.state_updated and not self.target_updated:
+            is_review = (
+                reviewed_by != user
+                or self.state_updated and not self.target_updated)
+            if is_review:
                 self.change.reviewed_by = reviewed_by
                 self.change.reviewed_on = self.mtime
             self.change.save()
