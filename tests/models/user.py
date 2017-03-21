@@ -116,7 +116,7 @@ def _test_user_purging(store, member, evil_member, purge):
     # Get intitial change times
     initial_submission_time = unit.submitted_on
     initial_comment_time = unit.change.commented_on
-    initial_review_time = unit.reviewed_on
+    initial_review_time = unit.change.reviewed_on
 
     # Test state before evil user has updated.
     _test_before_evil_user_updated(store, member, True)
@@ -137,7 +137,7 @@ def _test_user_purging(store, member, evil_member, purge):
         # Times have changed
         assert unit.submitted_on != initial_submission_time
         assert unit.change.commented_on != initial_comment_time
-        assert unit.reviewed_on != initial_review_time
+        assert unit.change.reviewed_on != initial_review_time
 
     # Test state after evil user has updated.
     _test_after_evil_user_updated(store, evil_member)
@@ -153,7 +153,7 @@ def _test_user_purging(store, member, evil_member, purge):
     # Times are back to previous times - by any precision
     assert unit.submitted_on == initial_submission_time
     assert unit.change.commented_on == initial_comment_time
-    assert unit.reviewed_on == initial_review_time
+    assert unit.change.reviewed_on == initial_review_time
 
     # State is be back to how it was before evil user updated.
     _test_before_evil_user_updated(store, member)
