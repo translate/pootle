@@ -218,13 +218,10 @@ class UnitUpdater(object):
     def save_unit(self):
         self.unit.revision = self.update.update_revision
         self.unit.save(
+            user=self.update.user,
             submitted_by=self.unit.submitted_by,
             submitted_on=self.at,
             changed_with=self.update.submission_type)
-
-    def set_commented(self):
-        self.unit.change.commented_by = self.update.user
-        self.unit.change.commented_on = self.at
 
     def set_submitted(self):
         self.unit.submitted_by = self.update.user
@@ -233,8 +230,6 @@ class UnitUpdater(object):
         self.unit.reviewed_by = None
 
     def set_unit(self):
-        if self.translator_comment_updated:
-            self.set_commented()
         if self.target_updated or self.resurrected:
             self.set_submitted()
         self.save_unit()
