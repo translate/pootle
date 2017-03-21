@@ -29,7 +29,7 @@ class EventScore(object):
     def score(self):
         return (
             self.score_setting
-            * self.unit.source_wordcount)
+            * self.unit.unit_source.source_wordcount)
 
     def get_score(self):
         return dict(
@@ -50,7 +50,7 @@ class SuggestionReviewScore(BaseSuggestionScore):
 
     @property
     def reviewed(self):
-        return self.suggestion.unit.source_wordcount
+        return self.suggestion.unit.unit_source.source_wordcount
 
 
 class SuggestionCreatedScore(BaseSuggestionScore):
@@ -58,7 +58,7 @@ class SuggestionCreatedScore(BaseSuggestionScore):
 
     @property
     def suggested(self):
-        return self.suggestion.unit.source_wordcount
+        return self.suggestion.unit.unit_source.source_wordcount
 
 
 class SuggestionAcceptedScore(SuggestionReviewScore):
@@ -74,7 +74,7 @@ class TargetUpdatedScore(EventScore):
 
     @property
     def translated(self):
-        return self.unit.source_wordcount
+        return self.unit.unit_source.source_wordcount
 
 
 class SubmissionEventScore(EventScore):
@@ -101,7 +101,7 @@ class StateUpdatedScore(SubmissionEventScore):
     @property
     def translated(self):
         return (
-            self.unit.source_wordcount
+            self.unit.unit_source.source_wordcount
             if (self.submission.old_value == UNTRANSLATED
                 and self.submission.new_value == TRANSLATED)
             else 0)
@@ -113,7 +113,7 @@ class StateUpdatedScore(SubmissionEventScore):
     @property
     def reviewed(self):
         return (
-            self.unit.source_wordcount
+            self.unit.unit_source.source_wordcount
             if self.is_review
             else 0)
 
