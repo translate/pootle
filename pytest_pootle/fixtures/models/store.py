@@ -274,8 +274,10 @@ def _mark_unit_fuzzy(unit, user):
     from pootle_store.constants import FUZZY
     from pootle_statistics.models import (Submission, SubmissionFields,
                                           SubmissionTypes)
+    unit.markfuzzy()
+    unit.save()
     sub = Submission(
-        creation_time=unit.change.commented_on,
+        creation_time=unit.mtime,
         translation_project=unit.store.translation_project,
         submitter=user,
         unit=unit,
@@ -285,8 +287,6 @@ def _mark_unit_fuzzy(unit, user):
         new_value=FUZZY,
     )
     sub.save()
-    unit.markfuzzy()
-    unit.save()
 
 
 def _make_member_updates(store, member):
