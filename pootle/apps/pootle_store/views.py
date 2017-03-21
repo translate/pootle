@@ -222,8 +222,8 @@ def delete_comment(request, unit, **kwargs_):
     """Deletes a comment by blanking its contents and records a new
     submission.
     """
-    unit.commented_by = None
-    unit.commented_on = None
+    unit.change.commented_by = None
+    unit.change.commented_on = None
 
     language = request.translation_project.language
     comment_form_class = unit_comment_form_factory(language)
@@ -243,8 +243,8 @@ def save_comment(request, unit):
              An error message is returned otherwise.
     """
     # Update current unit instance's attributes
-    unit.commented_by = request.user
-    unit.commented_on = timezone.now().replace(microsecond=0)
+    unit.change.commented_by = request.user
+    unit.change.commented_on = timezone.now().replace(microsecond=0)
 
     language = request.translation_project.language
     form = unit_comment_form_factory(language)(request.POST, instance=unit,
