@@ -101,6 +101,7 @@ class UserMerger(object):
     def merge_commented(self):
         """Merge commented_by attribute on units
         """
+        # TODO: this need to update unitchange not unit
         self.src_user.commented.update(commented_by=self.target_user)
 
     @write_stdout(" * Merging units reviewed: "
@@ -212,28 +213,31 @@ class UserPurger(object):
         """
         stores = set()
         # Revert unit comments where self.user is latest commenter.
-        for unit in self.user.commented.iterator():
+        for unit_change in self.user.commented.select_related("unit").iterator():
+            unit = unit_change.unit
             stores.add(unit.store)
 
             # Find comments by other self.users
             comments = unit.get_comments().exclude(submitter=self.user)
-
+            change = {}
             if comments.exists():
                 # If there are previous comments by others update the
                 # translator_comment, commented_by, and commented_on
                 last_comment = comments.latest('pk')
-                unit.translator_comment = last_comment.new_value
-                unit.commented_by_id = last_comment.submitter_id
-                unit.commented_on = last_comment.creation_time
+                translator_comment = last_comment.new_value
+                change["commented_by_id"] = last_comment.submitter_id
+                change["commented_on"] = last_comment.creation_time
                 logger.debug("Unit comment reverted: %s", repr(unit))
             else:
-                unit.translator_comment = ""
-                unit.commented_by = None
-                unit.commented_on = None
+                translator_comment = ""
+                change["commented_by"] = None
+                change["commented_on"] = None
                 logger.debug("Unit comment removed: %s", repr(unit))
-
-            # Increment revision
-            unit.save()
+            unit_change.__class__.objects.filter(id=unit_change.id).update(
+                **change)
+            unit.__class__.objects.filter(id=unit.id).update(
+                translator_comment=translator_comment,
+                revision=Revision.incr())
         return stores
 
     @write_stdout(" * Reverting units edited by: %(user)s... ")
