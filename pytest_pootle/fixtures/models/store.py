@@ -15,8 +15,6 @@ import pytest
 
 from translate.storage.factory import getclass
 
-from django.utils import timezone
-
 from pytest_pootle.factories import (
     LanguageDBFactory, StoreDBFactory, TranslationProjectFactory)
 from pytest_pootle.utils import create_store, update_store
@@ -259,10 +257,9 @@ def _create_comment_on_unit(unit, user, comment):
                                           SubmissionTypes)
 
     unit.translator_comment = comment
-    unit.commented_on = timezone.now()
-    unit.commented_by = user
+    unit.save(user=user)
     sub = Submission(
-        creation_time=unit.commented_on,
+        creation_time=unit.change.commented_on,
         translation_project=unit.store.translation_project,
         submitter=user,
         unit=unit,
@@ -271,7 +268,6 @@ def _create_comment_on_unit(unit, user, comment):
         new_value=comment,
     )
     sub.save()
-    unit.save()
 
 
 def _mark_unit_fuzzy(unit, user):
@@ -279,7 +275,7 @@ def _mark_unit_fuzzy(unit, user):
     from pootle_statistics.models import (Submission, SubmissionFields,
                                           SubmissionTypes)
     sub = Submission(
-        creation_time=unit.commented_on,
+        creation_time=unit.change.commented_on,
         translation_project=unit.store.translation_project,
         submitter=user,
         unit=unit,
