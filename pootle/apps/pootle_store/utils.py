@@ -22,6 +22,7 @@ from pootle_statistics.models import (
     MUTED, UNMUTED, SubmissionFields, SubmissionTypes)
 
 from .constants import TRANSLATED
+from .fields import to_db
 from .models import Suggestion, SuggestionState
 
 
@@ -375,8 +376,8 @@ class UnitLifecycle(object):
             submitter=submitter,
             field=SubmissionFields.TARGET,
             type=self.unit.change.changed_with,
-            old_value=self.original.target or "",
-            new_value=self.unit.target_f)
+            old_value=to_db(self.original.target) or "",
+            new_value=to_db(self.unit.target_f))
         _kwargs.update(kwargs)
         return self.create_submission(**_kwargs)
 
