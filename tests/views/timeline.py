@@ -59,12 +59,14 @@ def _calculate_timeline(request, unit):
     submission_filter = (
         Q(field__in=[SubmissionFields.TARGET, SubmissionFields.STATE,
                      SubmissionFields.COMMENT, SubmissionFields.NONE]))
-    timeline = (
+    subs = (
         Submission.objects.filter(unit=unit)
-                          .filter(submission_filter)
-                          .exclude(field=SubmissionFields.COMMENT,
-                                   creation_time=unit.commented_on)
-                          .order_by("id"))
+                          .filter(submission_filter))
+    if unit.changed and unit.change.commented_on:
+        subs = subs.exclude(
+            field=SubmissionFields.COMMENT,
+            creation_time=unit.commented_on)
+    timeline = subs.order_by("id")
     User = get_user_model()
     entries_group = []
     context = {}
