@@ -50,7 +50,7 @@ def test_unit_create(store0, member):
     unit.store = store0
     unit.source = multistring("Foo2")
     unit.index = store0.max_index() + 1
-    unit.save(created_by=member)
+    unit.save(user=member)
     assert unit.submission_set.count() == 0
     source = unit.unit_source
     assert source.created_by == member
@@ -105,7 +105,7 @@ def test_unit_lifecycle_update_state(store0, member):
     unit.target_f = multistring("Bar")
     unit.state = TRANSLATED
     unit.reviewed_by = member
-    unit.save(created_by=member)
+    unit.save(user=member)
     sub_state_update = lifecycle.get(Unit)(unit).sub_state_update()
     assert isinstance(sub_state_update, Submission)
     assert sub_state_update.unit == unit
@@ -129,7 +129,7 @@ def test_unit_lifecycle_update_state_reviewed_by(store0, system, member2):
     unit.source_f = multistring("Foo")
     unit.target_f = multistring("Bar")
     unit.state = FUZZY
-    unit.save(submitted_by=system)
+    unit.save(user=system)
     # force the unit to be refrozen
     unit = unit.__class__.objects.get(id=unit.id)
     unit.state = TRANSLATED
@@ -179,17 +179,19 @@ def test_unit_lifecycle_update_source(store0, member):
     unit.source_f = multistring("Foo")
     unit.source_f = multistring("Bar")
     unit.state = TRANSLATED
-    unit.submitted_by = member
-    unit.save()
+    unit.save(user=member)
     unit = Unit.objects.get(pk=unit.id)
     unit.source = multistring("Foo23")
-    unit.save(submitted_by=member)
+    unit.save(user=member)
+    # this is temporarily set in update
+    unit.refresh_from_db()
     sub_source_update = lifecycle.get(Unit)(unit).sub_source_update()
     assert isinstance(sub_source_update, Submission)
     assert sub_source_update.unit == unit
     assert sub_source_update.translation_project == store0.translation_project
     assert sub_source_update.revision == unit.revision
     assert sub_source_update.submitter == unit.submitted_by
+    assert sub_source_update.submitter == unit.change.submitted_by
     assert sub_source_update.type == SubmissionTypes.SYSTEM
     assert sub_source_update.field == SubmissionFields.SOURCE
     assert sub_source_update.new_value == unit.source_f
@@ -204,7 +206,7 @@ def test_unit_lifecycle_update_target(store0, member):
     unit.source_f = multistring("Foo")
     unit.target_f = multistring("Bar")
     unit.state = TRANSLATED
-    unit.save(submitted_by=member)
+    unit.save(user=member)
     sub_target_update = lifecycle.get(Unit)(unit).sub_target_update()
     assert isinstance(sub_target_update, Submission)
     assert sub_target_update.unit == unit

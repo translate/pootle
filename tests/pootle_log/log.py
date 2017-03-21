@@ -421,7 +421,7 @@ def test_log_get_submissions(member, store0):
     sub_events = submission_log.get_submissions()
     unit0 = store0.units[0]
     unit0.source = "new source"
-    unit0.save(submitted_by=member)
+    unit0.save(user=member)
     lifecycle.get(unit0.__class__)(unit0).change()
     unit1 = store0.units[0]
     unit1.translator_comment = "new comment"

@@ -621,13 +621,14 @@ def _test_store_update_units_before(*test_args):
 
     updates = {unit[0]: unit[1] for unit in units_update}
 
-    for unit in units_before:
+    for unit, change in units_before:
         updated_unit = store.unit_set.get(unitid=unit.unitid)
 
         if unit.source not in updates:
             # unit is not in update, target should be left unchanged
             assert updated_unit.target == unit.target
-            assert updated_unit.submitted_by == unit.submitted_by
+            assert updated_unit.submitted_by == change.submitted_by
+            assert updated_unit.change.submitted_by == change.submitted_by
 
             # depending on unit/store_revision should be obsoleted
             if unit.isobsolete() or store_revision >= unit.revision:
@@ -648,30 +649,51 @@ def _test_store_update_units_before(*test_args):
                 if store_revision >= unit.revision:
                     # file store wins outright
                     assert updated_unit.target == updates[unit.source]
-                    if unit.target != updates[unit.source] or unit.isobsolete():
+                    if unit.target != updates[unit.source]:
                         # unit has changed, or was resurrected
                         assert updated_unit.submitted_by == member2
+                        assert updated_unit.change.submitted_by == member2
 
                         # damn mysql microsecond precision
-                        if unit.submitted_on.time().microsecond != 0:
+                        if change.submitted_on.time().microsecond != 0:
                             assert (
                                 updated_unit.submitted_on
-                                != unit.submitted_on)
+                                != change.submitted_on)
+                            assert (
+                                updated_unit.change.submitted_on
+                                != change.submitted_on)
+                    elif unit.isobsolete():
+                        # unit has changed, or was resurrected
+                        assert updated_unit.change.reviewed_by == member2
+
+                        # damn mysql microsecond precision
+                        if change.reviewed_on.time().microsecond != 0:
+
+                            assert (
+                                updated_unit.change.reviewed_on
+                                != change.reviewed_on)
                     else:
-                        assert updated_unit.submitted_by == unit.submitted_by
-                        assert updated_unit.submitted_on == unit.submitted_on
+                        assert (
+                            updated_unit.change.submitted_by
+                            == change.submitted_by)
+                        assert (
+                            updated_unit.change.submitted_on
+                            == change.submitted_on)
                     assert updated_unit.get_suggestions().count() == 0
                 else:
                     # conflict found
                     suggestion = updated_unit.get_suggestions()[0]
                     if resolve_conflict == POOTLE_WINS:
                         assert updated_unit.target == unit.target
-                        assert updated_unit.submitted_by == unit.submitted_by
+                        assert (
+                            updated_unit.change.submitted_by
+                            == change.submitted_by)
                         assert suggestion.target == updates[unit.source]
                         assert suggestion.user == member2
                     else:
                         assert updated_unit.target == updates[unit.source]
                         assert updated_unit.submitted_by == member2
+                        assert updated_unit.change.submitted_by == member2
                         assert suggestion.target == unit.target
                         assert suggestion.user == unit.submitted_by
 
@@ -681,11 +703,11 @@ def _test_store_update_ordering(*test_args):
      units_before, member_, member2_) = test_args
 
     updates = {unit[0]: unit[1] for unit in units_update}
-    old_units = {unit.source: unit for unit in units_before}
+    old_units = {unit.source: unit for unit, change in units_before}
 
     # test ordering
     new_unit_list = []
-    for unit in units_before:
+    for unit, change_ in units_before:
         add_unit = (not unit.isobsolete()
                     and unit.source not in updates
                     and unit.revision > store_revision)
@@ -709,7 +731,7 @@ def _test_store_update_units_now(*test_args):
 
     # test that all the current units should be there
     updates = {unit[0]: unit[1] for unit in units_update}
-    old_units = {unit.source: unit for unit in units_before}
+    old_units = {unit.source: unit for unit, change in units_before}
     for unit in store.units:
         assert (
             unit.source in updates

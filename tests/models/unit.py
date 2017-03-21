@@ -14,7 +14,6 @@ from translate.storage.pypo import pounit
 from translate.storage.statsdb import wordcount as counter
 
 from django.contrib.auth import get_user_model
-from django.utils import timezone
 
 from pootle.core.delegate import review, wordcount
 from pootle.core.plugin import getter
@@ -38,9 +37,7 @@ def _update_translation(store, item, new_values, sync=True):
     if 'translator_comment' in new_values:
         unit.translator_comment = new_values['translator_comment']
 
-    unit.submitted_on = timezone.now()
-    unit.submitted_by = User.objects.get_system_user()
-    unit.save()
+    unit.save(user=User.objects.get_system_user())
 
     if sync:
         store.sync()

@@ -309,7 +309,7 @@ def test_non_pending_suggestion(client, request_users, member, system):
         suggestion__state__name='accepted')[0]
     unit.target = "EXISTING TARGET"
     unit.save(
-        submitted_by=member,
+        user=member,
         changed_with=SubmissionTypes.UPLOAD)
     suggestion = Suggestion.objects.filter(
         unit=unit,
@@ -342,7 +342,7 @@ def test_reject_translated_suggestion(client, request_users, member, system):
         state=UNTRANSLATED)[0]
     unit.target = "EXISTING TARGET"
     unit.save(
-        submitted_by=member,
+        user=member,
         changed_with=SubmissionTypes.UPLOAD)
     suggestion = Suggestion.objects.filter(
         unit=unit,
