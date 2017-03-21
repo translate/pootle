@@ -223,8 +223,8 @@ class UnitUpdater(object):
             changed_with=self.update.submission_type)
 
     def set_commented(self):
-        self.unit.commented_by = self.update.user
-        self.unit.commented_on = self.at
+        self.unit.change.commented_by = self.update.user
+        self.unit.change.commented_on = self.at
 
     def set_submitted(self):
         self.unit.submitted_by = self.update.user
