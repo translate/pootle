@@ -280,9 +280,9 @@ class Unit(AbstractUnit):
 
     def save(self, *args, **kwargs):
         created = self.id is None
+        user = kwargs.pop("user", None)
         created_by = kwargs.pop("created_by", None)
         changed_with = kwargs.pop("changed_with", None) or SubmissionTypes.SYSTEM
-        commented_by = kwargs.pop("commented_by", None)
         commented_on = kwargs.pop("commented_on", None)
         reviewed_by = kwargs.pop("reviewed_by", None)
         reviewed_on = kwargs.pop("reviewed_on", None)
@@ -315,7 +315,7 @@ class Unit(AbstractUnit):
             if changed_with is not None:
                 self.change.changed_with = changed_with
             if self.comment_updated:
-                self.change.commented_by = commented_by or sysuser
+                self.change.commented_by = user
                 self.change.commented_on = commented_on or submitted_on
             update_submit = (
                 (self.target_updated or self.source_updated)
