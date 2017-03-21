@@ -1782,8 +1782,7 @@ def test_store_comment_update(store0, member):
     assert ttk.units[-1].getnotes("translator") == "A new comment"
     unit = store0.units.get(id=unit.id)
     assert unit.translator_comment == "A new comment"
-    assert unit.commented_by == member
-
+    assert unit.change.commented_by == member
     new_subs = unit.submission_set.filter(id__gt=last_sub_pk).order_by("id")
     assert new_subs.count() == 1
     comment_sub = new_subs[0]
