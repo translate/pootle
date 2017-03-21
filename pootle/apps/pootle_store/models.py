@@ -509,20 +509,6 @@ class Unit(AbstractUnit):
 
         return changed
 
-    def update_wordcount(self):
-        """Updates the source wordcount for a unit.
-        """
-        self.source_wordcount = self.counter.count_words(
-            self.source_f.strings)
-
-        if self.source_wordcount == 0:
-            # We can't set the actual wordcount to zero since the unit
-            # will essentially disappear from statistics thus for such
-            # units set word count to 1
-            self.source_wordcount = 1
-            return 0
-        return self.source_wordcount
-
     def update_qualitychecks(self, keep_false_positives=False):
         """Run quality checks and store result in the database.
 
