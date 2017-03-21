@@ -226,8 +226,6 @@ class UnitUpdater(object):
     def set_submitted(self):
         self.unit.submitted_by = self.update.user
         self.unit.submitted_on = self.at
-        self.unit.reviewed_on = None
-        self.unit.reviewed_by = None
 
     def set_unit(self):
         if self.target_updated or self.resurrected:
