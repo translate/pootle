@@ -11,6 +11,14 @@
   {% trans "Translate" %}
 </option>
 {% endif %}
+{% if user.is_superuser or request.permissions.createproject %}
+<option disabled></option>
+<option
+   value="admin-add" class="admin"
+   data-href="{% url 'pootle-project-admin-add' %}">
+  {% trans "Add Project" %}
+</option>
+{% endif %}
 {% if user.is_superuser or request.permissions.administrate %}
 <option disabled></option>
 <option
