@@ -360,3 +360,47 @@ class ProjectsBrowseView(ProjectsMixin, PootleBrowseView):
 
 class ProjectsTranslateView(ProjectsMixin, PootleTranslateView):
     required_permission = "administrate"
+
+
+class ProjectCreateView(PootleCreateView):
+
+    model = Project
+    required_permission = "createproject"
+    template_name = 'projects/create.html'
+    template_name_suffix = "_project_creation"
+    fields = [
+        "code", 
+        "fullname", 
+        "checkstyle", 
+        "filetypes", 
+        "treestyle", 
+        "source_language", 
+        "ignoredfiles", 
+        "directory"
+    ]
+
+    msg_form_error = _(
+        "There are errors in the form. Please review "
+        "the problems below.")
+    
+    @property
+    def permission_context(self):
+        return self.project.directory
+
+    def form_valid(self, form):
+        self.object = form.save()       
+        permissionset = PermissionSet.objects.create(
+            user=self.request.user, 
+            directory=self.object.directory
+        )
+		# TODO : Find the solution for this.
+        # permissionset.positive_permissions.add("administrate")
+        
+        self.request.user.permissionset_set.add(permissionset)
+
+		# TODO : Maybe use this method.
+        # self.request.user.permissionset_set.select_related("directory").filter(
+        #         directory=self.object.directory
+        #     ).add( ~~ Permission.objects.filter(name="administrate"))
+
+        return HttpResponseRedirect(self.get_success_url())
