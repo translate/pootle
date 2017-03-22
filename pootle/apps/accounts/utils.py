@@ -247,31 +247,35 @@ class UserPurger(object):
         """
         stores = set()
         # Revert unit target where user is the last submitter.
-        for unit in self.user.submitted.iterator():
+        for unit_change in self.user.submitted.select_related("unit").iterator():
+            unit = unit_change.unit
             stores.add(unit.store)
 
             # Find the last submission by different user that updated the
             # unit.target.
             edits = unit.get_edits().exclude(submitter=self.user)
             updates = {}
+            unit_updates = {}
             if edits.exists():
                 last_edit = edits.latest("pk")
-                updates["target_f"] = last_edit.new_value
+                unit_updates["target_f"] = last_edit.new_value
                 updates["submitted_by_id"] = last_edit.submitter_id
                 updates["submitted_on"] = last_edit.creation_time
                 logger.debug("Unit edit reverted: %s", repr(unit))
             else:
                 # if there is no previous submissions set the target to "" and
-                # set the unit.submitted_by to None
-                updates["target_f"] = ""
+                # set the unit.change.submitted_by to None
+                unit_updates["target_f"] = ""
                 updates["submitted_by"] = None
                 updates["submitted_on"] = unit.creation_time
                 logger.debug("Unit edit removed: %s", repr(unit))
 
             # Increment revision
+            unit_change.__class__.objects.filter(id=unit_change.id).update(
+                **updates)
             unit.__class__.objects.filter(id=unit.id).update(
                 revision=Revision.incr(),
-                **updates)
+                **unit_updates)
         return stores
 
     @write_stdout(" * Reverting units reviewed by: %(user)s... ")
