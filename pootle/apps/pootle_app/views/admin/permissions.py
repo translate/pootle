@@ -20,7 +20,7 @@ from pootle_misc.forms import GroupedModelChoiceField
 User = get_user_model()
 
 PERMISSIONS = {
-    'positive': ['view', 'suggest', 'translate', 'review', 'administrate'],
+    'positive': ['view', 'suggest', 'translate', 'review', 'administrate', 'createproject'],
     'negative': ['hide'],
 }
 
