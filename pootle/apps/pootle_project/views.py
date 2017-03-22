@@ -23,7 +23,8 @@ from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.paginator import paginate
 from pootle.core.url_helpers import split_pootle_path
 from pootle.core.views import (
-    PootleAdminView, PootleBrowseView, PootleTranslateView)
+    PootleAdminView, PootleBrowseView, PootleTranslateView,
+    PootleAddView, PootleEditView)
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
 from pootle_app.views.admin import util
@@ -362,11 +363,11 @@ class ProjectsTranslateView(ProjectsMixin, PootleTranslateView):
     required_permission = "administrate"
 
 
-class ProjectCreateView(PootleCreateView):
+class ProjectAddView(PootleAddView):
 
     model = Project
-    required_permission = "createproject"
-    template_name = 'projects/create.html'
+    required_permission = "addproject"
+    template_name = 'projects/admin/project.html'
     template_name_suffix = "_project_creation"
     fields = [
         "code", 
@@ -382,10 +383,6 @@ class ProjectCreateView(PootleCreateView):
     msg_form_error = _(
         "There are errors in the form. Please review "
         "the problems below.")
-    
-    @property
-    def permission_context(self):
-        return self.project.directory
 
     def form_valid(self, form):
         self.object = form.save()       
@@ -393,14 +390,65 @@ class ProjectCreateView(PootleCreateView):
             user=self.request.user, 
             directory=self.object.directory
         )
-		# TODO : Find the solution for this.
+        # TODO : Find the solution for this.
         # permissionset.positive_permissions.add("administrate")
         
         self.request.user.permissionset_set.add(permissionset)
 
-		# TODO : Maybe use this method.
+        # TODO : Maybe use this method.
         # self.request.user.permissionset_set.select_related("directory").filter(
         #         directory=self.object.directory
         #     ).add( ~~ Permission.objects.filter(name="administrate"))
+        url_kwargs = {
+            'project_code': self.object.code,
+            'dir_path': '',
+            'filename': ''
+        }
+        return HttpResponseRedirect(
+            reverse('pootle-project-browse',
+                    kwargs=url_kwargs)
+            )
 
-        return HttpResponseRedirect(self.get_success_url())
+
+class ProjectEditView(PootleEditView):
+
+    model = Project
+    required_permission = "editproject"
+    template_name = 'projects/admin/project.html'
+    template_name_suffix = "_project_edition"
+    fields = [
+        "fullname", 
+        "checkstyle", 
+        "filetypes", 
+        "treestyle", 
+        "source_language", 
+        "ignoredfiles", 
+        "directory"
+    ]
+
+    msg_form_error = _(
+        "There are errors in the form. Please review "
+        "the problems below.")
+    
+    @property
+    def permission_context(self):
+        return self.get_object().directory
+
+    @cached_property
+    def get_object(self, queryset=None):
+        instance = Project.objects.get(code=self.kwargs.get('project_code',''))
+        return instance
+
+    @property
+    def url_kwargs(self):
+        return {
+            'project_code': self.get_object().code,
+            'dir_path': '',
+            'filename': ''}
+
+    def form_valid(self, form):
+        super(ProjectEditView, self).form_valid(form)
+        return HttpResponseRedirect(
+            reverse('pootle-project-browse',
+                    kwargs=self.url_kwargs)
+            )
