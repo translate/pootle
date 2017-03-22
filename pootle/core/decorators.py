@@ -8,6 +8,7 @@
 
 from functools import wraps
 
+from django.conf import settings
 from django.core.exceptions import PermissionDenied
 from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
@@ -151,6 +152,30 @@ def admin_required(func):
         if not request.user.is_superuser:
             raise PermissionDenied(
                 _("You do not have rights to administer Pootle.")
+            )
+        return func(request, *args, **kwargs)
+
+    return wrapped
+
+
+def addprojectenabled_required(func):
+    @wraps(func)
+    def wrapped(request, *args, **kwargs):
+        if not settings.POOTLE_LOGGEDUSERS_CAN_ADDPROJECTS:
+            raise PermissionDenied(
+                _("You do not have rights to add project.")
+            )
+        return func(request, *args, **kwargs)
+
+    return wrapped
+
+
+def editprojectenabled_required(func):
+    @wraps(func)
+    def wrapped(request, *args, **kwargs):
+        if not settings.POOTLE_PROJECTADMIN_CAN_EDITPROJECTS:
+            raise PermissionDenied(
+                _("You do not have rights to edit project settings.")
             )
         return func(request, *args, **kwargs)
 
