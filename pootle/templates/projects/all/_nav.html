@@ -11,7 +11,7 @@
   {% trans "Translate" %}
 </option>
 {% endif %}
-{% if user.is_superuser or request.permissions.createproject %}
+{% if user.is_superuser or request.permissions.addproject %}
 <option disabled></option>
 <option
    value="admin-add" class="admin"
