@@ -174,11 +174,11 @@
           </div>
           <!-- Translation -->
           <div id="orig{{ unit.index }}" class="js-translate-translation translate-translation" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
-            {% if unit.submitted_by %}
+            {% if unit.change.submitted_by %}
             <div id="target-item-gravatar">
-	      <a href="{% url 'pootle-user-profile' unit.submitted_by.username %}"
-		 title="{{ unit.submitted_by.display_name|force_escape|force_escape }}">
-		{% avatar unit.submitted_by.username unit.submitted_by.email_hash 24 %}
+	      <a href="{% url 'pootle-user-profile' unit.change.submitted_by.username %}"
+		 title="{{ unit.change.submitted_by.display_name|force_escape|force_escape }}">
+		{% avatar unit.change.submitted_by.username unit.change.submitted_by.email_hash 24 %}
 	      </a>
             </div>
             {% endif %}
@@ -212,11 +212,11 @@
               {% endblock %}
               <a class="js-toggle-raw"><i class="icon-raw-mode" title="{% trans 'Raw View' %}"></i></a>
             </div>
-            {% if unit.submitted_by and unit.submitted_on %}
+            {% if unit.change.submitted_by and unit.change.submitted_on %}
             <div class="unit-meta">
               <time
-                title="{{ unit.submitted_on|dateformat }}"
-                datetime="{{ unit.submitted_on.isoformat }}">{{ unit.submitted_on|relative_datetime_format }}</time>
+                title="{{ unit.change.submitted_on|dateformat }}"
+                datetime="{{ unit.change.submitted_on.isoformat }}">{{ unit.change.submitted_on|relative_datetime_format }}</time>
               {% with reviewer=unit.change.reviewed_by %}
               {% if reviewer %}
               <br>
