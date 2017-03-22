@@ -8,8 +8,11 @@
 
 from django.urls import reverse
 from django.views.generic import FormView, TemplateView
+from django.views.generic.edit import CreateView
 
 from pootle.core.views.mixins import SuperuserRequiredMixin
+
+from .decorators import requires_permission, set_permissions
 
 
 class PootleFormView(FormView):
@@ -33,6 +36,14 @@ class PootleFormView(FormView):
 
     def add_success_message(self, form):
         pass
+
+
+class PootleCreateView(CreateView):
+
+    @set_permissions
+    @requires_permission("createproject")
+    def dispatch(self, request, *args, **kwargs):
+        return super(PootleCreateView, self).dispatch(request, *args, **kwargs)
 
 
 class PootleAdminView(SuperuserRequiredMixin, TemplateView):
