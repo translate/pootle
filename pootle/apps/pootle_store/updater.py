@@ -83,7 +83,8 @@ class UnitUpdater(object):
         self.unit = unit
         self.update = update
         self.original = frozen.get(unit.__class__)(unit)
-        self.original_submitter = unit.submitted_by
+        self.original_submitter = (
+            unit.changed and unit.change.submitted_by)
 
     @property
     def translator_comment(self):
