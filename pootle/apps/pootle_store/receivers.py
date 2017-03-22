@@ -67,11 +67,6 @@ def handle_unit_pre_save(**kwargs):
             # if it was TRANSLATED then set to UNTRANSLATED
             if unit.state > FUZZY:
                 unit.state = UNTRANSLATED
-    if unit.state == UNTRANSLATED:
-        # clear reviewer and translator data if translation
-        # has been deleted
-        unit.submitted_by = None
-        unit.submitted_on = None
 
     # Updating unit from the .po file set its revision property to
     # a new value (the same for all units during its store updated)
@@ -89,6 +84,17 @@ def handle_unit_pre_save(**kwargs):
     unitid = uniqueid.get(unit.__class__)(unit)
     if unitid.changed:
         unit.setid(unitid.getid())
+
+
+@receiver(pre_save, sender=UnitChange)
+def handle_unit_pre_change(**kwargs):
+    unit_change = kwargs["instance"]
+    unit = unit_change.unit
+    if unit.state == UNTRANSLATED:
+        # clear reviewer and translator data if translation
+        # has been deleted
+        unit_change.submitted_by = None
+        unit_change.submitted_on = None
 
 
 @receiver(post_save, sender=UnitChange)
