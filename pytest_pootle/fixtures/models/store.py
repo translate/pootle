@@ -142,7 +142,8 @@ def _setup_store_test(store, member, member2, test):
 
     store_revision, units_update = test["update_store"]
     units_before = [
-        unit for unit in store.unit_set.all().order_by("index")]
+        (unit, unit.change)
+        for unit in store.unit_set.select_related("change").all().order_by("index")]
 
     fs_wins = test.get("fs_wins", True)
     if fs_wins:
@@ -154,7 +155,7 @@ def _setup_store_test(store, member, member2, test):
         store_revision = store.get_max_unit_revision()
 
     elif store_revision == "MID":
-        revisions = [unit.revision for unit in units_before]
+        revisions = [unit.revision for unit, change in units_before]
         store_revision = sum(revisions) / len(revisions)
 
     return (store, units_update, store_revision, resolve_conflict,
