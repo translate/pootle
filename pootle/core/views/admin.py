@@ -8,7 +8,7 @@
 
 from django.urls import reverse
 from django.views.generic import FormView, TemplateView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from pootle.core.views.mixins import SuperuserRequiredMixin
 
@@ -38,12 +38,20 @@ class PootleFormView(FormView):
         pass
 
 
-class PootleCreateView(CreateView):
+class PootleAddView(CreateView):
 
     @set_permissions
-    @requires_permission("createproject")
+    @requires_permission("addproject")
     def dispatch(self, request, *args, **kwargs):
-        return super(PootleCreateView, self).dispatch(request, *args, **kwargs)
+        return super(PootleAddView, self).dispatch(request, *args, **kwargs)
+
+
+class PootleEditView(UpdateView):
+
+    @set_permissions
+    @requires_permission("editproject")
+    def dispatch(self, request, *args, **kwargs):
+        return super(PootleEditView, self).dispatch(request, *args, **kwargs)
 
 
 class PootleAdminView(SuperuserRequiredMixin, TemplateView):
