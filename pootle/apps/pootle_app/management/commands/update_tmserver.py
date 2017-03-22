@@ -59,7 +59,7 @@ class DBParser(BaseParser):
                         .filter(store__translation_project__pk=self.tp_pk)
                         .filter(revision__gt=self.last_indexed_revision))
         units_qs = units_qs.select_related(
-            'submitted_by',
+            'change__submitted_by',
             'store',
             'store__translation_project__project',
             'store__translation_project__language')
@@ -74,10 +74,10 @@ class DBParser(BaseParser):
             'revision',
             'source_f',
             'target_f',
-            'submitted_on',
-            'submitted_by__username',
-            'submitted_by__full_name',
-            'submitted_by__email',
+            'change__submitted_on',
+            'change__submitted_by__username',
+            'change__submitted_by__full_name',
+            'change__submitted_by__email',
             'store__translation_project__project__fullname',
             'store__pootle_path',
             'store__translation_project__language__code'
@@ -87,14 +87,14 @@ class DBParser(BaseParser):
 
     def get_unit_data(self, unit):
         """Return dict with data to import for a single unit."""
-        fullname = (unit['submitted_by__full_name'] or
-                    unit['submitted_by__username'])
+        fullname = (unit['change__submitted_by__full_name'] or
+                    unit['change__submitted_by__username'])
 
         email_md5 = None
         if unit['submitted_by__email']:
-            email_md5 = md5(unit['submitted_by__email']).hexdigest()
+            email_md5 = md5(unit['change__submitted_by__email']).hexdigest()
 
-        iso_submitted_on = unit.get('submitted_on', None)
+        iso_submitted_on = unit.get('change__submitted_on', None)
 
         display_submitted_on = None
         if iso_submitted_on:
@@ -109,7 +109,7 @@ class DBParser(BaseParser):
             'revision': int(unit['revision']),
             'project': unit['store__translation_project__project__fullname'],
             'path': unit['store__pootle_path'],
-            'username': unit['submitted_by__username'],
+            'username': unit['change__submitted_by__username'],
             'fullname': fullname,
             'email_md5': email_md5,
             'source': unit['source_f'],
