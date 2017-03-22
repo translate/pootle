@@ -12,7 +12,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.core.management.base import BaseCommand, CommandError
 
 from pootle.core.schema.base import SchemaTool, UnsupportedDBError
-from pootle.core.utils.json import jsonify
+from pootle.core.schema.dump import (SchemaAppDump, SchemaDump,
+                                     SchemaTableDump)
 
 
 class SchemaCommand(BaseCommand):
@@ -38,21 +39,22 @@ class SchemaCommand(BaseCommand):
         super(SchemaCommand, self).add_arguments(parser)
 
     def handle_table(self, table_name, **options):
-        result = {table_name: {}}
+        result = SchemaTableDump(table_name)
         all_options = (
             not options['fields']
             and not options['indices']
             and not options['constraints']
         )
         if options['fields'] or all_options:
-            result[table_name]['fields'] = \
-                self.schema_tool.get_table_fields(table_name)
+            result.load({
+                'fields': self.schema_tool.get_table_fields(table_name)})
         if options['indices'] or all_options:
-            result[table_name]['indices'] = \
-                self.schema_tool.get_table_indices(table_name)
+            result.load({
+                'indices': self.schema_tool.get_table_indices(table_name)})
         if options['constraints'] or all_options:
-            result[table_name]['constraints'] = \
-                self.schema_tool.get_table_constraints(table_name)
+            result.load({
+                'constraints':
+                    self.schema_tool.get_table_constraints(table_name)})
 
         return result
 
@@ -78,13 +80,18 @@ class SchemaTableCommand(SchemaCommand):
             raise CommandError("Unrecognized tables: %s" %
                                list(set(args) - set(all_tables)))
 
-        result = {}
+        result = SchemaDump()
         for table_name in args:
-            result.update(
-                self.handle_table(table_name, **options)
-            )
+            app_label = self.schema_tool.get_app_by_table(table_name)
+            if not result.app_exists(app_label):
+                app_result = SchemaAppDump(app_label)
+                result.add_app(app_result)
+            else:
+                app_result = result.get_app(app_label)
+            app_result.add_table(
+                self.handle_table(table_name, **options))
 
-        self.stdout.write(jsonify(result))
+        self.stdout.write(str(result))
 
 
 class SchemaAppCommand(SchemaCommand):
@@ -114,24 +121,19 @@ class SchemaAppCommand(SchemaCommand):
             raise CommandError(e)
 
         if options['tables']:
-            result = dict(apps={})
+            result = SchemaDump()
             for app_label in args:
-                result['apps'] = {
-                    'name': app_label,
-                    'tables': self.schema_tool.get_app_tables(app_label),
-                }
+                result.set_table_list(
+                    self.schema_tool.get_app_tables(app_label))
 
-            self.stdout.write(jsonify(result))
+            self.stdout.write(str(result))
         else:
-            result = dict(apps={})
+            result = SchemaDump()
             for app_label in args:
-                result['apps'][app_label] = {
-                    'name': app_label,
-                    'tables': {}
-                }
+                app_result = SchemaAppDump(app_label)
                 for table_name in self.schema_tool.get_app_tables(app_label):
-                    result['apps'][app_label]['tables'].update(
-                        self.handle_table(table_name, **options)
-                    )
+                    app_result.add_table(
+                        self.handle_table(table_name, **options))
+                result.add_app(app_result)
 
-            self.stdout.write(jsonify(result))
+            self.stdout.write(str(result))

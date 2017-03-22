@@ -46,6 +46,11 @@ class SchemaTool(object):
         return [model._meta.db_table
                 for model in app_config.get_models(include_auto_created=True)]
 
+    def get_app_by_table(self, table_name):
+        for app_label in self.app_configs:
+            if table_name in self.get_app_tables(app_label):
+                return app_label
+
     def get_defaults(self):
         if self.schema_dumper is not None:
             return self.schema_dumper.get_defaults()

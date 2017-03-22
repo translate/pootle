@@ -14,7 +14,8 @@ from django.core.management.base import CommandError
 
 from pootle.core.management.subcommands import CommandWithSubcommands
 from pootle.core.schema.base import SchemaTool, UnsupportedDBError
-from pootle.core.utils.json import jsonify
+from pootle.core.schema.dump import (SchemaAppDump, SchemaDump,
+                                     SchemaTableDump)
 
 from .schema_commands import SchemaAppCommand, SchemaTableCommand
 
@@ -53,8 +54,24 @@ class Command(CommandWithSubcommands):
         except UnsupportedDBError as e:
             raise CommandError(e)
 
+        result = SchemaDump()
         if options['tables']:
-            self.stdout.write(jsonify(schema_tool.get_tables()))
+            result.set_table_list(schema_tool.get_tables())
+            self.stdout.write(str(result))
         else:
-            json = schema_tool.get_defaults()
-            self.stdout.write(jsonify(json))
+            result.load({
+                'defaults': schema_tool.get_defaults()})
+            for app_label in schema_tool.app_configs:
+                app_dump = SchemaAppDump(app_label)
+                table_names = schema_tool.get_app_tables(app_label)
+                for table_name in table_names:
+                    table_dump = SchemaTableDump(table_name)
+                    table_dump.load({
+                        'fields': schema_tool.get_table_fields(table_name),
+                        'indices': schema_tool.get_table_indices(table_name),
+                        'constraints':
+                            schema_tool.get_table_constraints(table_name)})
+                    app_dump.add_table(table_dump)
+                if table_names:
+                    result.add_app(app_dump)
+            self.stdout.write(str(result))
