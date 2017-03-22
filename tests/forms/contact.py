@@ -87,7 +87,20 @@ def _test_report_form(unit, recipient_email, user, rf, mailoutbox):
 
 @pytest.mark.django_db
 @pytest.mark.xfail(reason="subject rendering is broken")
-def test_report_error_form(admin, rf, mailoutbox):
+def test_report_error_form_settings_email(admin, rf, mailoutbox):
+    unit = Unit.objects.select_related(
+        'store__translation_project__project',
+        'store__translation_project__language',
+    ).last()
+    recipient_email = getattr(settings, 'POOTLE_CONTACT_REPORT_EMAIL',
+                              settings.POOTLE_CONTACT_EMAIL)
+
+    _test_report_form(unit, recipient_email, admin, rf, mailoutbox)
+
+
+@pytest.mark.django_db
+@pytest.mark.xfail(reason="subject rendering is broken")
+def test_report_error_form_project_email(admin, rf, mailoutbox):
     unit = Unit.objects.select_related(
         'store__translation_project__project',
         'store__translation_project__language',
