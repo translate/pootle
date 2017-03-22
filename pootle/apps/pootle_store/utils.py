@@ -367,7 +367,7 @@ class UnitLifecycle(object):
 
     def sub_comment_update(self, **kwargs):
         _kwargs = dict(
-            creation_time=self.unit.change.commented_on,
+            creation_time=self.unit.mtime,
             unit=self.unit,
             submitter=self.unit.change.commented_by,
             field=SubmissionFields.COMMENT,
@@ -379,7 +379,7 @@ class UnitLifecycle(object):
 
     def sub_source_update(self, **kwargs):
         _kwargs = dict(
-            creation_time=self.unit.change.submitted_on,
+            creation_time=self.unit.mtime,
             unit=self.unit,
             submitter=self.unit.change.submitted_by,
             field=SubmissionFields.SOURCE,
@@ -391,7 +391,7 @@ class UnitLifecycle(object):
 
     def sub_target_update(self, **kwargs):
         _kwargs = dict(
-            creation_time=self.unit.change.submitted_on,
+            creation_time=self.unit.mtime,
             unit=self.unit,
             submitter=self.unit.change.submitted_by,
             field=SubmissionFields.TARGET,
@@ -408,12 +408,10 @@ class UnitLifecycle(object):
                  >= self.unit.change.submitted_on))
         if is_review:
             submitter = self.unit.change.reviewed_by
-            creation_time = self.unit.change.reviewed_on
         else:
             submitter = self.unit.change.submitted_by
-            creation_time = self.unit.change.submitted_on
         _kwargs = dict(
-            creation_time=creation_time,
+            creation_time=self.unit.mtime,
             unit=self.unit,
             submitter=submitter,
             field=SubmissionFields.STATE,
