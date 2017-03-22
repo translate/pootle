@@ -26,7 +26,6 @@ def test_contact_report_form_view(client, request_users, rf):
 
     assert response.status_code == 200
     assert 'contact_form_title' in response.context
-    url = reverse('pootle-contact-report-error')
     assert response.context['contact_form_url'] == url
     assert response.context['form'].unit == unit
     assert response.context['view'].unit == unit

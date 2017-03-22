@@ -86,9 +86,11 @@ class ReportFormView(ContactFormView):
         ctx = super(ReportFormView, self).get_context_data(**kwargs)
         # Provide the form action URL to use in the template that renders the
         # contact dialog.
+        unit_pk = self.unit.pk if self.unit else ''
+        url = "%s?report=%s" % (reverse('pootle-contact-report-error'), unit_pk)
         ctx.update({
             'contact_form_title': _('Report problem with string'),
-            'contact_form_url': reverse('pootle-contact-report-error'),
+            'contact_form_url': url,
         })
         return ctx
 
