@@ -280,26 +280,18 @@ class Unit(AbstractUnit):
 
     def save(self, *args, **kwargs):
         created = self.id is None
-        user = kwargs.pop("user", get_user_model().objects.get_system_user())
-        reviewed_by = kwargs.pop("reviewed_by", user)
-
-        created_by = kwargs.pop("created_by", None)
+        user = (
+            kwargs.pop("user", None)
+            or get_user_model().objects.get_system_user())
+        reviewed_by = kwargs.pop("reviewed_by", None) or user
         changed_with = kwargs.pop("changed_with", None) or SubmissionTypes.SYSTEM
-        commented_on = kwargs.pop("commented_on", None)
-        submitted_by = kwargs.pop("submitted_by", None)
-        submitted_on = kwargs.pop("submitted_on", None)
-        created_by = created_by or submitted_by
-        if submitted_by:
-            self.submitted_by = submitted_by
-
         super(Unit, self).save(*args, **kwargs)
-        submitted_on = submitted_on or self.mtime
+        timestamp = self.mtime
         if created:
             unit_source = UnitSource(unit=self)
-            unit_source.created_by = created_by or user
+            unit_source.created_by = user
             unit_source.created_with = changed_with
-            submitted_on = self.creation_time
-            submitted_by = unit_source.created_by
+            timestamp = self.creation_time
         elif self.source_updated:
             unit_source = self.unit_source
         if created or self.source_updated:
@@ -313,19 +305,23 @@ class Unit(AbstractUnit):
                 self.change.changed_with = changed_with
             if self.comment_updated:
                 self.change.commented_by = user
-                self.change.commented_on = commented_on or submitted_on
+                self.change.commented_on = timestamp
             update_submit = (
                 (self.target_updated or self.source_updated)
                 or not self.change.submitted_on)
             if update_submit:
-                self.change.submitted_by = submitted_by or user
-                self.change.submitted_on = submitted_on
+                self.change.submitted_by = user
+                self.change.submitted_on = timestamp
+                # this is temporary
+                self.__class__.objects.filter(id=self.id).update(
+                    submitted_by=user,
+                    submitted_on=timestamp)
             is_review = (
                 reviewed_by != user
                 or self.state_updated and not self.target_updated)
             if is_review:
                 self.change.reviewed_by = reviewed_by
-                self.change.reviewed_on = self.mtime
+                self.change.reviewed_on = timestamp
             self.change.save()
         update_data.send(
             self.store.__class__, instance=self.store)
@@ -456,8 +452,6 @@ class Unit(AbstractUnit):
         if update_target:
             notempty = filter(None, self.target_f.strings)
             self.target = unit.target
-            self.submitted_by = user
-            self.submitted_on = timezone.now()
 
             if filter(None, self.target_f.strings) or notempty:
                 # FIXME: we need to do this cause we discard nplurals for empty
@@ -614,7 +608,6 @@ class Unit(AbstractUnit):
             'fullname': '',
             'email_md5': '',
         }
-
         if self.submitted_on:
             obj.update({
                 'iso_submitted_on': self.submitted_on.isoformat(),
@@ -950,7 +943,8 @@ class Store(AbstractStore):
         Unit.objects.filter(store_id=self.id, index__gte=start).update(
             index=operator.add(F('index'), delta))
 
-    def mark_units_obsolete(self, uids_to_obsolete, update_revision=None):
+    def mark_units_obsolete(self, uids_to_obsolete,
+                            update_revision=None, user=None):
         """Marks a bulk of units as obsolete.
 
         :param uids_to_obsolete: UIDs of the units to be marked as obsolete.
@@ -965,7 +959,7 @@ class Store(AbstractStore):
             if not unit.isobsolete():
                 unit.makeobsolete()
                 unit.revision = update_revision
-                unit.save()
+                unit.save(user=user)
                 obsoleted += 1
         return obsoleted
 
@@ -1144,11 +1138,10 @@ class Store(AbstractStore):
             store=self,
             index=index)
         newunit.update(unit, user=user)
-
         if self.id:
             newunit.revision = update_revision
             newunit.save(
-                created_by=user,
+                user=user,
                 changed_with=changed_with)
         return newunit
 
