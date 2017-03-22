@@ -312,10 +312,6 @@ class Unit(AbstractUnit):
             if update_submit:
                 self.change.submitted_by = user
                 self.change.submitted_on = timestamp
-                # this is temporary
-                self.__class__.objects.filter(id=self.id).update(
-                    submitted_by=user,
-                    submitted_on=timestamp)
             is_review = (
                 reviewed_by != user
                 or self.state_updated and not self.target_updated)
@@ -608,17 +604,17 @@ class Unit(AbstractUnit):
             'fullname': '',
             'email_md5': '',
         }
-        if self.submitted_on:
+        if self.changed and self.change.submitted_on:
             obj.update({
-                'iso_submitted_on': self.submitted_on.isoformat(),
-                'display_submitted_on': dateformat.format(self.submitted_on),
+                'iso_submitted_on': self.change.submitted_on.isoformat(),
+                'display_submitted_on': dateformat.format(self.change.submitted_on),
             })
 
-        if self.submitted_by:
+        if self.changed and self.change.submitted_by:
             obj.update({
-                'username': self.submitted_by.username,
-                'fullname': self.submitted_by.full_name,
-                'email_md5': md5(self.submitted_by.email).hexdigest(),
+                'username': self.change.submitted_by.username,
+                'fullname': self.change.submitted_by.full_name,
+                'email_md5': md5(self.change.submitted_by.email).hexdigest(),
             })
 
         get_tm_broker().update(self.store.translation_project.language.code,
