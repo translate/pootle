@@ -1,1 +1,1 @@
-[{{ settings.POOTLE_TITLE }}] {{ email_subject }}
+[{{ server_name }}] {{ email_subject }}

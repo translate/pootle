@@ -82,9 +82,11 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
         """Get the context to render the templates for email subject and body.
 
         FIXME: this copies and adjusts upstream code to support Django 1.10+.
-        Remove once django-contact-form is fixed.
+        Adjust properly once django-contact-form is fixed.
         """
-        return dict(self.cleaned_data)
+        ctx = dict(self.cleaned_data)
+        ctx['server_name'] = settings.POOTLE_TITLE
+        return ctx
 
     def recipient_list(self):
         return [settings.POOTLE_CONTACT_EMAIL]
@@ -124,7 +126,6 @@ class ReportForm(ContactForm):
             project_code = self.unit.store.translation_project.project.code
 
         ctx.update({
-            'server_name': settings.POOTLE_TITLE,
             'unit': unit_pk,
             'language': language_code,
             'project': project_code,
