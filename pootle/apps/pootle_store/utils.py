@@ -202,14 +202,11 @@ class SuggestionsReview(object):
             changed_with=self.review_type,
             reviewed_by=self.reviewer)
 
-    def accept_suggestion(self, suggestion, update_unit, target=None):
+    def accept_suggestion(self, suggestion, target=None):
         suggestion.state = SuggestionState.objects.get(name="accepted")
         suggestion.reviewer = self.reviewer
-        if update_unit:
-            self.update_unit_on_accept(suggestion, target=target)
-            suggestion.review_time = suggestion.unit.mtime
-        else:
-            suggestion.review_time = make_aware(timezone.now())
+        self.update_unit_on_accept(suggestion, target=target)
+        suggestion.review_time = suggestion.unit.mtime
         suggestion.save()
 
     def reject_suggestion(self, suggestion):
@@ -227,12 +224,12 @@ class SuggestionsReview(object):
             unit.change.save()
         update_data.send(store.__class__, instance=store)
 
-    def accept_suggestions(self, update_unit, target=None):
+    def accept_suggestions(self, target=None):
         for suggestion in self.suggestions:
-            self.accept_suggestion(suggestion, update_unit, target=target)
+            self.accept_suggestion(suggestion, target=target)
 
-    def accept(self, update_unit=True, comment="", target=None):
-        self.accept_suggestions(update_unit, target=target)
+    def accept(self, comment="", target=None):
+        self.accept_suggestions(target=target)
         if self.should_notify(comment):
             self.notify_suggesters(rejected=False, comment=comment)
 
