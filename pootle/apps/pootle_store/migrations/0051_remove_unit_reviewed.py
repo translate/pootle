@@ -9,6 +9,10 @@ import pootle.core.user
 
 class Migration(migrations.Migration):
 
+    replaces = [
+        ('pootle_store', '0051_remove_unit_commented'),
+    ]
+
     dependencies = [
         ('pootle_store', '0050_set_change_reviewed'),
     ]
