@@ -192,7 +192,7 @@ class SuggestionsReview(object):
                 creation_time=make_aware(timezone.now()))
         return (suggestion, True)
 
-    def update_unit_on_accept(self, suggestion):
+    def update_unit_on_accept(self, suggestion, target):
         unit = suggestion.unit
 
         # Save for later
@@ -201,7 +201,7 @@ class SuggestionsReview(object):
 
         # Update some basic attributes so we can create submissions. Note
         # these do not conflict with `ScoreLog`'s interests, so it's safe
-        unit.target = suggestion.target
+        unit.target = target or suggestion.target
         if unit.state == FUZZY:
             unit.state = TRANSLATED
         unit.save(
@@ -230,13 +230,15 @@ class SuggestionsReview(object):
         if subs_created:
             unit.submission_set.add(*subs_created, bulk=False)
 
-    def accept_suggestion(self, suggestion, update_unit):
+    def accept_suggestion(self, suggestion, update_unit, target=None):
         suggestion.state = SuggestionState.objects.get(name="accepted")
         suggestion.reviewer = self.reviewer
-        suggestion.review_time = make_aware(timezone.now())
-        suggestion.save()
         if update_unit:
-            self.update_unit_on_accept(suggestion)
+            self.update_unit_on_accept(suggestion, target=target)
+            suggestion.review_time = suggestion.unit.mtime
+        else:
+            suggestion.review_time = make_aware(timezone.now())
+        suggestion.save()
 
     def reject_suggestion(self, suggestion):
         store = suggestion.unit.store
@@ -253,12 +255,12 @@ class SuggestionsReview(object):
             unit.change.save()
         update_data.send(store.__class__, instance=store)
 
-    def accept_suggestions(self, update_unit):
+    def accept_suggestions(self, update_unit, target=None):
         for suggestion in self.suggestions:
-            self.accept_suggestion(suggestion, update_unit)
+            self.accept_suggestion(suggestion, update_unit, target=target)
 
-    def accept(self, update_unit=True, comment=""):
-        self.accept_suggestions(update_unit)
+    def accept(self, update_unit=True, comment="", target=None):
+        self.accept_suggestions(update_unit, target=target)
         if self.should_notify(comment):
             self.notify_suggesters(rejected=False, comment=comment)
 
