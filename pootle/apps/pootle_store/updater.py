@@ -267,9 +267,13 @@ class StoreUpdater(object):
             unit.store = self.target_store
             yield unit
 
-    def update(self, store, user=None, store_revision=None,
-               submission_type=None, resolve_conflict=POOTLE_WINS,
-               allow_add_and_obsolete=True):
+    def update(self, *args, **kwargs):
+        with update_data_after(self.target_store):
+            return self._update(*args, **kwargs)
+
+    def _update(self, store, user=None, store_revision=None,
+                submission_type=None, resolve_conflict=POOTLE_WINS,
+                allow_add_and_obsolete=True):
         logging.debug(u"Updating %s", self.target_store.pootle_path)
         old_state = self.target_store.state
 
@@ -356,10 +360,6 @@ class StoreUpdater(object):
         if not self.target_store.file:
             return changed
 
-        with update_data_after(self.target_store):
-            self._update_from_disk(overwrite)
-
-    def _update_from_disk(self, overwrite=False):
         if overwrite:
             store_revision = self.target_store.data.max_unit_revision
         else:
