@@ -15,7 +15,7 @@ from django.utils import timezone
 
 from pootle.core.delegate import site, unitid
 from pootle.core.mail import send_mail
-from pootle.core.signals import update_data
+from pootle.core.signals import update_data, update_scores
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle.i18n.gettext import ugettext as _
 from pootle_statistics.models import (
@@ -363,8 +363,13 @@ class UnitLifecycle(object):
         return self.create_submission(**_kwargs)
 
     def save_subs(self, subs):
-        if subs:
-            self.unit.submission_set.bulk_create(subs)
+        if not subs:
+            return
+        self.unit.submission_set.bulk_create(subs)
+        update_scores.send(
+            self.unit.store.__class__,
+            instance=self.unit.store,
+            users=[sub.submitter_id for sub in subs])
 
     def sub_comment_update(self, **kwargs):
         _kwargs = dict(
