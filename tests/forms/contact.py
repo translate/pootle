@@ -41,6 +41,7 @@ def test_contact_form(admin, rf, mailoutbox):
     assert [recipient_email] == message.recipients()
     assert subject == message.subject
     assert data['body'] in message.body
+    assert "Your question or comment:" not in message.body
 
 
 @pytest.mark.django_db
@@ -91,21 +92,31 @@ def _test_report_form(unit, recipient_email, user, rf, mailoutbox):
     subject = render_to_string('contact_form/report_form_subject.txt',
                                context=subject_ctx)
     subject = subject.strip()
-    body_ctx = {
+    context_ctx = {
         'unit': unit,
         'unit_absolute_url':
             request.build_absolute_uri(unit.get_translate_url()),
     }
-    body = render_to_string('contact_form/report_form_body.txt',
-                            context=body_ctx)
+    context = render_to_string('contact_form/report_form_context.txt',
+                               context=context_ctx)
+    context = context.strip()
+    translator_comment = "The string is wrong"
     data = {
         'name': user.full_name,
         'email': user.email,
-        'body': body.strip(),
+        'context': context,
+        'body': translator_comment,
     }
+    email_body_ctx = {
+        'request': request,
+        'context': context,
+        'body': translator_comment,
+    }
+    email_body = render_to_string('contact_form/report_form.txt',
+                                  context=email_body_ctx)
 
     # Instantiate form and test.
-    form = ReportForm(request=request, data=data, unit=unit)
+    form = ReportForm(request=request, initial=data, data=data, unit=unit)
     assert form.is_valid()
     form.save()
     assert len(mailoutbox) == 1
@@ -116,7 +127,7 @@ def _test_report_form(unit, recipient_email, user, rf, mailoutbox):
     assert [recipient_email] == message.recipients()
     assert message.subject.startswith(u'[%s] ' % settings.POOTLE_TITLE)
     assert subject == message.subject
-    assert data['body'] in message.body
+    assert email_body in message.body
 
 
 @pytest.mark.django_db
@@ -145,7 +156,6 @@ def test_report_error_form_project_email(admin, rf, mailoutbox):
 
 
 @pytest.mark.django_db
-@pytest.mark.xfail(reason="context field not yet implemented")
 def test_report_error_form_context_cannot_be_altered(admin, rf, mailoutbox):
     request = rf.request()
     request.user = admin
@@ -198,5 +208,7 @@ def test_report_error_form_required_fields(admin, rf, mailoutbox):
     assert form.errors['email'] == [u'This field is required.']
     assert 'name' in form.errors
     assert form.errors['name'] == [u'This field is required.']
+    assert 'context' in form.errors
+    assert form.errors['context'] == [u'This field is required.']
     assert 'body' in form.errors
     assert form.errors['body'] == [u'This field is required.']

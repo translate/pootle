@@ -110,8 +110,8 @@ class ReportFormView(ContactFormView):
 
         abs_url = self.request.build_absolute_uri(self.unit.get_translate_url())
         initial.update({
-            'body': render_to_string(
-                'contact_form/report_form_body.txt',
+            'context': render_to_string(
+                'contact_form/report_form_context.txt',
                 context={
                     'unit': self.unit,
                     'unit_absolute_url': abs_url,

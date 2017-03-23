@@ -3,4 +3,4 @@ Current URL: {{ request.META.HTTP_REFERER }}
 IP address: {{ request.META.REMOTE_ADDR }}
 User-Agent: {{ request.META.HTTP_USER_AGENT }}
 
-{{ body|safe }}
+{% block email_body %}{{ body|safe }}{% endblock %}

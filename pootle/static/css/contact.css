@@ -22,6 +22,7 @@
 }
 
 #contact #id_email_subject,
+#contact #id_context,
 #contact #id_body
 {
     width: 40em;

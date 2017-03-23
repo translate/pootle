@@ -105,11 +105,27 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
 class ReportForm(ContactForm):
     """Contact form used to report errors on strings."""
 
+    field_order = ['name', 'email', 'context', 'body', 'captcha_answer',
+                   'captcha_token']
+
     subject_template_name = 'contact_form/report_form_subject.txt'
+    template_name = 'contact_form/report_form.txt'
+
+    context = forms.CharField(
+        label=_(u'String context'),
+        required=True,
+        disabled=True,
+        widget=forms.Textarea(attrs={'rows': 6}),
+    )
 
     def __init__(self, *args, **kwargs):
         self.unit = kwargs.pop('unit', None)
         super(ReportForm, self).__init__(*args, **kwargs)
+
+        self.fields['body'].label = _(u'Question or comment')
+        body_placeholder = _('Please enter your question or comment')
+        self.fields['body'].widget.attrs['placeholder'] = body_placeholder
+
         del self.fields['email_subject']
 
     def get_context(self):
