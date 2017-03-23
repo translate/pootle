@@ -94,7 +94,6 @@ class FrozenUnit(object):
             target_f=unit.target_f,
             context=unit.context,
             revision=unit.revision,
-            submitter=unit.submitted_by_id,
             state=unit.state,
             pk=unit.pk,
             translator_comment=unit.translator_comment)
