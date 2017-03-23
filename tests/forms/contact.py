@@ -43,25 +43,15 @@ def test_contact_form(admin, rf, mailoutbox):
     assert data['body'] in message.body
 
 
-@pytest.mark.django_db
-@pytest.mark.xfail(reason="subject rendering is broken")
-def test_report_error_form(admin, rf, mailoutbox):
+def _test_report_form(unit, recipient_email, user, rf, mailoutbox):
     request = rf.request()
-    request.user = admin
+    request.user = user
 
     # Get initial data for the form.
-    unit = Unit.objects.select_related(
-        'store__translation_project__project',
-        'store__translation_project__language',
-    ).last()
-    tp = unit.store.translation_project
-    recipient_email = "errors@example.net"
-    tp.project.report_email = recipient_email
-    tp.project.save()
     subject_ctx = {
         'unit': unit,
-        'language': tp.language.code,
-        'project': tp.project.code,
+        'language': unit.store.translation_project.language.code,
+        'project': unit.store.translation_project.project.code,
     }
     subject = render_to_string('contact_form/report_form_subject.txt',
                                context=subject_ctx)
@@ -74,8 +64,8 @@ def test_report_error_form(admin, rf, mailoutbox):
     body = render_to_string('contact_form/report_form_body.txt',
                             context=body_ctx)
     data = {
-        'name': admin.full_name,
-        'email': admin.email,
+        'name': user.full_name,
+        'email': user.email,
         'email_subject': subject,
         'body': body.strip(),
         'report_email': recipient_email,
@@ -93,3 +83,17 @@ def test_report_error_form(admin, rf, mailoutbox):
     assert [recipient_email] == message.recipients()
     assert subject == message.subject
     assert data['body'] in message.body
+
+
+@pytest.mark.django_db
+@pytest.mark.xfail(reason="subject rendering is broken")
+def test_report_error_form(admin, rf, mailoutbox):
+    unit = Unit.objects.select_related(
+        'store__translation_project__project',
+        'store__translation_project__language',
+    ).last()
+    project = unit.store.translation_project.project
+    project.report_email = "errors@example.net"
+    project.save()
+
+    _test_report_form(unit, project.report_email, admin, rf, mailoutbox)
