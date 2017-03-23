@@ -16,7 +16,7 @@ from django.utils import timezone
 from pootle.core.delegate import site, unitid
 from pootle.core.mail import send_mail
 from pootle.core.signals import update_data
-from pootle.core.utils.timezone import make_aware
+from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle.i18n.gettext import ugettext as _
 from pootle_statistics.models import (
     MUTED, UNMUTED, Submission, SubmissionFields, SubmissionTypes)
@@ -391,10 +391,14 @@ class UnitLifecycle(object):
         return self.create_submission(**_kwargs)
 
     def sub_target_update(self, **kwargs):
+        submitter = (
+            self.unit.change.submitted_by
+            if self.unit.change.submitted_by
+            else self.unit.change.reviewed_by)
         _kwargs = dict(
             creation_time=self.unit.mtime,
             unit=self.unit,
-            submitter=self.unit.change.submitted_by,
+            submitter=submitter,
             field=SubmissionFields.TARGET,
             type=self.unit.change.changed_with,
             old_value=self.original.target or "",
@@ -403,10 +407,13 @@ class UnitLifecycle(object):
         return self.create_submission(**_kwargs)
 
     def sub_state_update(self, **kwargs):
+        reviewed_on = self.unit.change.reviewed_on
+        submitted_on = (
+            self.unit.change.submitted_on
+            or datetime_min)
         is_review = (
-            self.unit.change.reviewed_on
-            and (self.unit.change.reviewed_on
-                 >= self.unit.change.submitted_on))
+            reviewed_on
+            and (reviewed_on > submitted_on))
         if is_review:
             submitter = self.unit.change.reviewed_by
         else:
