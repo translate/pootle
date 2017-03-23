@@ -86,12 +86,6 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
         """
         return dict(self.cleaned_data)
 
-    def from_email(self):
-        return u'%s <%s>' % (
-            self.cleaned_data['name'],
-            settings.DEFAULT_FROM_EMAIL,
-        )
-
     def recipient_list(self):
         return [settings.POOTLE_CONTACT_EMAIL]
 

@@ -32,6 +32,7 @@ def test_contact_form(admin, rf, mailoutbox):
     form.save()
     assert len(mailoutbox) == 1
     message = mailoutbox[0]
+    assert message.from_email == settings.DEFAULT_FROM_EMAIL
     reply_to = u'%s <%s>' % (data['name'], data['email'])
     assert reply_to == message.extra_headers['Reply-To']
     subject = u'[%s] %s' % (settings.POOTLE_TITLE, data['email_subject'])
@@ -76,6 +77,7 @@ def test_report_error_form(admin, rf, mailoutbox):
     form.save()
     assert len(mailoutbox) == 1
     message = mailoutbox[0]
+    assert message.from_email == settings.DEFAULT_FROM_EMAIL
     reply_to = u'%s <%s>' % (data['name'], data['email'])
     assert reply_to == message.extra_headers['Reply-To']
     subject = u'[%s] %s' % (settings.POOTLE_TITLE, data['email_subject'])
