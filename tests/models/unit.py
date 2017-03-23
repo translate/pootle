@@ -221,26 +221,6 @@ def test_add_suggestion(store0, system):
 
 
 @pytest.mark.django_db
-def test_accept_suggestion_no_update(store0, member):
-    """Tests adding new suggestions to units."""
-    unit = store0.units.filter(suggestion__state__name="pending").first()
-    original = unit._frozen
-    last_sub_pk = (
-        unit.submission_set.order_by(
-            "-pk").values_list("id", flat=True).first() or 0)
-    suggestion = unit.suggestion_set.filter(state__name="pending").last()
-    suggestion_review = review.get(Suggestion)([suggestion])
-    suggestion_review.accept(update_unit=False)
-    assert not unit.updated
-    unit.refresh_from_db()
-    assert not unit.changed
-    assert unit.target == original.target
-    assert unit.revision == original.revision
-    new_subs = unit.submission_set.filter(id__gt=last_sub_pk)
-    assert new_subs.count() == 0
-
-
-@pytest.mark.django_db
 def test_accept_suggestion_changes_state(issue_2401_po, system):
     """Tests that accepting a suggestion will change the state of the unit."""
     suggestions = review.get(Suggestion)()
