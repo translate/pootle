@@ -106,7 +106,7 @@ class UnitContributionFilter(BaseUnitFilter):
     def filter_user_submissions(self):
         if not self.user:
             return self.qs.none()
-        return self.qs.filter(submitted_by=self.user)
+        return self.qs.filter(change__submitted_by=self.user)
 
     def filter_my_submissions(self):
         return self.filter_user_submissions()
@@ -114,7 +114,7 @@ class UnitContributionFilter(BaseUnitFilter):
     def filter_user_submissions_overwritten(self):
         if not self.user:
             return self.qs.none()
-        qs = self.qs.exclude(submitted_by=self.user)
+        qs = self.qs.exclude(change__submitted_by=self.user)
         return (
             qs.filter(
                 submission__submitter_id=self.user.id,
