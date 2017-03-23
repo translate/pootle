@@ -266,31 +266,30 @@ def unit_form_factory(language, snplurals=None, request=None):
         def save(self, *args, **kwargs):
             changed_with = kwargs.pop("changed_with", None)
             kwargs["commit"] = False
-            unit = super(UnitForm, self).save(*args, **kwargs)
-            with update_data_after(unit.store):
-                suggestion = self.cleaned_data["suggestion"]
+            suggestion = self.cleaned_data["suggestion"]
+            with update_data_after(self.instance.store):
                 user = (
                     suggestion.user
                     if suggestion
                     else self.user)
-                unit.save(
+                self.instance.save(
                     user=user,
                     changed_with=changed_with)
-                translation_project = unit.store.translation_project
+                translation_project = self.instance.store.translation_project
                 for field, old_value, new_value in self.updated_fields:
                     if field == SubmissionFields.TARGET and suggestion:
                         old_value = str(suggestion.target_f)
                     sub = Submission(
-                        creation_time=unit.mtime,
+                        creation_time=self.instance.mtime,
                         translation_project=translation_project,
                         submitter=self.user,
-                        unit=unit,
+                        unit=self.instance,
                         field=field,
                         type=SubmissionTypes.WEB,
                         old_value=old_value,
                         new_value=new_value)
                     sub.save()
-            return unit
+            return self.instance
 
     return UnitForm
 
@@ -532,7 +531,8 @@ class SuggestionReviewForm(BaseSuggestionForm):
 
     def save(self):
         if self.cleaned_data["action"] == "accept":
-            self.suggestion_review.accept()
+            self.suggestion_review.accept(
+                target=self.cleaned_data.get("target_f"))
         else:
             self.suggestion_review.reject()
         if self.cleaned_data["comment"]:
@@ -577,40 +577,7 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
     target_f = MultiStringFormField(required=False, require_all_fields=False)
 
     def save_unit(self):
-        updated = []
-        if self.cleaned_data["target_f"]:
-            self.unit.target = self.cleaned_data["target_f"]
-            self.unit.save(
-                user=self.target_object.user,
-                reviewed_by=self.request_user,
-                changed_with=SubmissionTypes.WEB)
-            updated.append(
-                (SubmissionFields.TARGET,
-                 self.unit._frozen.target,
-                 self.unit.target))
-        if self.unit.state_updated:
-            updated.append(
-                (SubmissionFields.STATE,
-                 self.unit._frozen.state,
-                 self.unit.state))
-        translation_project = self.unit.store.translation_project
-        for field, old_value, new_value in updated:
-            sub = Submission(
-                creation_time=self.unit.mtime,
-                translation_project=translation_project,
-                suggestion=self.target_object,
-                submitter=self.target_object.user,
-                unit=self.unit,
-                field=field,
-                type=SubmissionTypes.WEB,
-                old_value=old_value,
-                new_value=new_value)
-            sub.save()
-        self.suggestion_review.accept(
-            update_unit=(
-                False
-                if self.cleaned_data["target_f"]
-                else True))
+        self.suggestion_review.accept(target=self.cleaned_data["target_f"])
 
     def save(self):
         with update_data_after(self.unit.store):
