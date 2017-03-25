@@ -44,6 +44,7 @@ class ProjectFSAdminForm(forms.Form):
         help_text=_(
             "The URL or path to your translation files"))
     translation_mapping_presets = forms.ChoiceField(
+        label=_("Translation mapping presets"),
         required=False,
         choices=(
             [("", "-----"), ]
