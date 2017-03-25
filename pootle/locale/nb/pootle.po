@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-01-27 00:13+0000\n"
+"PO-Revision-Date: 2017-03-24 05:22+0000\n"
 "Last-Translator: kingu <epost@anotheragency.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1485476031.000000\n"
+"X-POOTLE-MTIME: 1490332922.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -37,7 +37,8 @@ msgstr "Et problem inntraff under innlogging. Kontakt din systemadministrator"
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
-"Din brukerkonto ser ut til å ha forsvunnet. Rapporter dette til side-eierne."
+"Din brukerkonto ser ut til å ha forsvunnet. Rapporter dette til eierne av "
+"siden."
 
 #: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
@@ -1966,9 +1967,11 @@ msgstr ""
 "Hvis du ikke ønsker å tilbakestille passordet ditt kan du ignorere denne "
 "meldingen."
 
+# Bør endres
 #: templates/account/email/password_reset_key_subject.txt:2
+#, fuzzy
 msgid "Pootle password reset e-mail"
-msgstr "Nullstilling av passord mislyktes."
+msgstr "Tilbakestillingse-post fra Pootle"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8

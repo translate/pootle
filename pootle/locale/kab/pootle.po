@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-03-14 12:37+0000\n"
+"PO-Revision-Date: 2017-03-16 18:46+0000\n"
 "Last-Translator: belkacem77 <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1489495024.000000\n"
+"X-POOTLE-MTIME: 1489689973.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -825,7 +825,7 @@ msgstr "Amasal android"
 
 #: apps/pootle_misc/checks.py:114
 msgid "Tags differ"
-msgstr ""
+msgstr "Amgired n tṛekkizin"
 
 #: apps/pootle_misc/checks.py:115
 msgid "Curly braces"
@@ -929,6 +929,8 @@ msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
+"Tangalt wezzilen n usenfaṛ. Tezmer kan ad tegber isekkilen ASCII, izwilen "
+"akked usekkil n uderrer (_)."
 
 #: apps/pootle_project/models.py:215
 msgid "Quality Checks"
@@ -1027,7 +1029,7 @@ msgstr "Ulac izerfan ilaqen akken ad tkecmeḍ s uskar n usumer."
 
 #: apps/pootle_store/decorators.py:29
 msgid "Insufficient rights to access translation mode."
-msgstr ""
+msgstr "Xuṣṣent tsirag akken ad tedduḍ ar uskar n tsuqilt."
 
 #: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:644
 msgid "Insufficient rights to access review mode."
@@ -1135,7 +1137,7 @@ msgstr "Asenfar n tsuqilt (%s) timerna ur réédition ara"
 msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
-msgstr ""
+msgstr "Ɛriɣ u qebleɣ: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</a>"
 
 #: apps/staticpages/models.py:32
 msgid "Whether this page is active or not."
@@ -1165,12 +1167,12 @@ msgstr "Wellef ar tensa URL"
 
 #: apps/staticpages/models.py:52
 msgid "If set, this page will redirect to this URL"
-msgstr ""
+msgstr "Ma yettwasebded, asebter-agi ad ittuwelleh ar tensa-agi URL."
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
 msgid "URL or content must be provided."
-msgstr ""
+msgstr "Yessefk ad d-mleḍ tansa URL neɣ agbur."
 
 #: apps/staticpages/models.py:103
 msgid "Virtual path already in use."
@@ -1333,7 +1335,7 @@ msgstr ""
 
 #: checks.py:198
 msgid "DEBUG mode is on. Do not do this in production!"
-msgstr ""
+msgstr "Askar DEBUG yermed. UR seqdac ara ayagi deg ufares!"
 
 #: checks.py:199
 msgid "Set DEBUG = False in Pootle settings"
@@ -1345,7 +1347,7 @@ msgstr ""
 
 #: checks.py:206
 msgid "Set your default database engine to postgresql or mysql"
-msgstr ""
+msgstr "Sbadu amsedday n taffa n isefka amezwer ar postgresql neɣ mysql"
 
 #: checks.py:213
 msgid "Not using cached_db as session engine"
@@ -1407,7 +1409,7 @@ msgstr "Sbadu POOTLE_MARKUP_FILTER."
 
 #: checks.py:266
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Azal arameɣtu di POOTLE_MARKUP_FILTER."
 
 #: checks.py:267
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
@@ -1415,11 +1417,11 @@ msgstr "Sbadu azal ameɣtu i POOTLE_MARKUP_FILTER."
 
 #: checks.py:281
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Taṛekkizt tarameɣtut di POOTLE_MARKUP_FILTER."
 
 #: checks.py:282
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Sbadu taṛekkizt tameɣtut i POOTLE_MARKUP_FILTER."
 
 #: checks.py:287
 #, python-format
@@ -1430,7 +1432,7 @@ msgstr ""
 
 #: checks.py:289
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Sebded akemmus neɣ snifel POOTLE_MARKUP_FILTER."
 
 #: checks.py:300
 #, python-format
@@ -1474,7 +1476,7 @@ msgstr "Sbadu HOST i POOTLE_TM_SERVER['%s']."
 #: checks.py:335
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] ur ɣur-s ara TABBURT."
 
 #: checks.py:336
 #, python-format
@@ -1484,13 +1486,13 @@ msgstr "Sbadu PORT i POOTLE_TM_SERVER['%s']."
 #: checks.py:345
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] n TẒẒAYT daw n 0.0 neɣ ugar n 1.0"
 
 #: checks.py:347
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Sbadu TẒẒAYT gar 0.0 akked 1.0 (i sin ddan) i POOTLE_TM_SERVER['%s']."
 
 #: checks.py:355
 #, python-format
@@ -1505,7 +1507,7 @@ msgstr "Sbadu %s in POOTLE_SCORE_COEFFICIENTS."
 #: checks.py:363
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr ""
+msgstr "Azal arameɣtu i %s di POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:365
 #, python-format
@@ -1514,21 +1516,23 @@ msgstr "Sbadu azal ameɣtu i %s in POOTLE_SCORE_COEFFICIENTS."
 
 #: checks.py:387
 msgid "The default 'admin' user still has a password set to 'admin'."
-msgstr ""
+msgstr "Aseqdac amezwer 'admin' mazal ɣur-s awal uffir  'admin'."
 
 #: checks.py:389
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "Kkes aseqdac  'admin' neɣ snifel awal uffir."
 
 #: checks.py:403
 msgid "Database connection uses transaction_hooks."
-msgstr ""
+msgstr "Tuqqna ar taffa n isefka tseqdac transaction_hooks."
 
 #: checks.py:404
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
+"Sbadu DATABASES['default']['ENGINE'] akken ad iseqdec idis agilal n Django "
+"si django.db.backends."
 
 #: checks.py:424
 msgid "Email server is not available."
@@ -1537,6 +1541,7 @@ msgstr "Aqeddac n yimayl ulac-it"
 #: checks.py:425
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
+"Wali iɣewwaṛen n yimayl-ik sakin wali ma yella aqeddac n yimayl-ik iteddu."
 
 #: checks.py:452
 msgid "Revision is missing or has an incorrect value."
@@ -1942,7 +1947,7 @@ msgstr "Tisirag"
 #: templates/admin/_tabs.html:31 templates/admin/staticpages/base.html:4
 #: templates/admin/staticpages/base.html:8
 msgid "Static Pages"
-msgstr ""
+msgstr "Isebtar usbiden"
 
 #: templates/admin/base.html:4 templates/admin/base.html:7
 msgid "Administration"
@@ -2023,7 +2028,7 @@ msgstr ""
 
 #: templates/admin/project_fs.html:48
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "Aleqqem n twila n unagraw n ifuyla"
 
 #: templates/admin/project_fs.html:51
 msgid "Translation path mapping should be of the format:"
@@ -2072,7 +2077,7 @@ msgstr "Rnu"
 
 #: templates/admin/project_fs.html:104
 msgid "Update"
-msgstr ""
+msgstr "Leqqem"
 
 #: templates/admin/reports/header.html:5
 msgid "User"
@@ -2144,7 +2149,7 @@ msgstr "sken"
 
 #: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
-msgstr ""
+msgstr "Ulac isebtar yakan."
 
 #: templates/admin/staticpages/page_list.html:7
 msgid "Legal Pages"
@@ -2303,6 +2308,9 @@ msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
+"Akken ad ittumesten uqeddac mgal aẓdam awurman, yessefk ad tesneqdeḍ ma "
+"yella d imdanen i d-yettaznen (Tamawt: Tuzna n usefru Vogon ur yettwasireg "
+"ara)."
 
 #: templates/core/xhr_captcha.html:16
 msgid "Please answer this question:"
@@ -2353,42 +2361,46 @@ msgstr "Imaynuten d imezwura"
 
 #: templates/editor/_toolbar.html:11
 msgid "Oldest first"
-msgstr ""
+msgstr "Iqbuṛen d imezwura"
 
 #: templates/editor/_toolbar.html:17
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "Uɣal ar uzrir yezrin (Ctrl+Haut)"
 
 #: templates/editor/_toolbar.html:20
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Uṭṭun n uzrir amiran (Ctrl+Shift+U)<br/><br/>Aru uṭṭun sa kin senned ɣef "
+"KCem<br/> akken ad tedduḍ ar wadig tebɣiḍ."
 
 #: templates/editor/_toolbar.html:22
 msgid "Total strings"
-msgstr ""
+msgstr "Amḍan amatu n izriren"
 
 #: templates/editor/_toolbar.html:25
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "Ddu ar uzrir d-iteddun  (Ctrl+Bas)"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:2
 msgid ""
 "The following suggestions submitted by you have been accepted with the "
 "comment:"
-msgstr ""
+msgstr "Isumar-agi tebɣiḍ ad muddeḍ ttwaqeblen s uwennit:"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
 msgid "We hope this feedback will help you improve your future contributions."
 msgstr ""
+"Nessaram d akken tikti-agi ak-d-mudd tallalt n usenerni n ittekkiyen-ik d-"
+"iteddun."
 
 #: templates/editor/email/suggestions_rejected_with_comment.txt:2
 msgid ""
 "The following suggestions submitted by you have been rejected with the "
 "comment:"
-msgstr ""
+msgstr "Isumar-agi i d-uzneḍ ttwagin s uwennit:"
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:12
 #: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
@@ -2608,7 +2620,7 @@ msgstr "Ulac asebter"
 
 #: templates/errors/404.html:10
 msgid "We're sorry, but the requested page could not be found."
-msgstr ""
+msgstr "Ad nesḥissef imi asebter i d-sutreḍ ulac-it."
 
 #: templates/errors/500.html:4 templates/errors/500.html:8
 msgid "Server Error"
@@ -2628,6 +2640,8 @@ msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
 "strong>."
 msgstr ""
+"Ma tesriḍ tallalt, tzemreḍ ad tedduḍ ar tuccḍa-agi s <strong>%(ref)s</"
+"strong>."
 
 #: templates/errors/db.html:4 templates/errors/db.html:8
 msgid "Database Error"
@@ -2638,6 +2652,8 @@ msgid ""
 "Pootle can't connect to the database, the database is not initialized yet, "
 "or a schema upgrade is needed before continuing."
 msgstr ""
+"Pootle ur izmir ara ad yeqqen ar taffa n isefka, taffa ni sefka ur "
+"tettuwennez ara yakan, neɣ ahat lqem n uzenziɣ yettwasra send ad tkemleḍ."
 
 #: templates/errors/db.html:18
 #, python-format
@@ -2646,10 +2662,12 @@ msgid ""
 "installation and upgrade instructions. Contact the server administrator if "
 "you feel this is a mistake."
 msgstr ""
+"Ɣeṛ <a href=\"%(url)s\"> Tasemlit n Pootle</a> i tinaḍin n usebded akked "
+"uleqqem. Nermes anebdal n uqeddac ma tɣileḍ tella tuccḍa."
 
 #: templates/errors/db.html:26
 msgid "The reported error was:"
-msgstr ""
+msgstr "Tuccḍa i d-yuɣalen d:"
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
 msgid "Previous page"
@@ -2663,7 +2681,7 @@ msgstr "Asebter %(page_number)s n %(page_count)s."
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Showing %(count)s results per page"
-msgstr ""
+msgstr "Askan n %(count)s n igmaḍ deg usebter"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
 msgid "Next page"
@@ -2685,7 +2703,7 @@ msgstr "Tarbaɛt"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
 msgid "Filter suggestions"
-msgstr ""
+msgstr "Zizdeg isumar"
 
 #: templates/languages/admin/language_team.html:5
 msgid "Language team"
@@ -2713,7 +2731,7 @@ msgstr ""
 
 #: templates/languages/admin/language_team.html:118
 msgid "Pending suggestions:"
-msgstr ""
+msgstr "Isumar yettraǧun:"
 
 #: templates/languages/admin/language_team.html:128
 msgid "Total words:"
