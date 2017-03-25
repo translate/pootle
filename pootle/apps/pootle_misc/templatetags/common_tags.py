@@ -69,6 +69,13 @@ def display_table(table, can_translate):
     }
 
 
+@register.inclusion_tag('browser/_boxes.html')
+def display_boxes(table, can_translate):
+    return {
+        'can_translate': can_translate,
+        'table': table}
+
+
 @register.filter
 @template.defaultfilters.stringfilter
 def cssid(value):
