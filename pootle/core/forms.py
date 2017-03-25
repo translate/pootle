@@ -19,7 +19,7 @@ from django.conf import settings
 from django.core.paginator import Paginator
 from django.utils.safestring import mark_safe
 
-from pootle.i18n.gettext import ugettext as _
+from pootle.i18n.gettext import ugettext as _, ugettext_lazy
 
 from .utils.json import jsonify
 
@@ -177,19 +177,19 @@ class FormWithActionsMixin(forms.Form):
     select_all_field = "select_all"
     actions = forms.ChoiceField(
         required=False,
-        label=_("With selected"),
+        label=ugettext_lazy("With selected"),
         widget=forms.Select(attrs={'class': 'js-select2'}),
         choices=(
             ("", "----"),
             ("reject", _("Reject")),
             ("accept", _("Accept"))))
     comment = forms.CharField(
-        label=_("Add comment"),
+        label=ugettext_lazy("Add comment"),
         required=False,
         widget=forms.Textarea(attrs=dict(rows=2)))
     select_all = forms.BooleanField(
         required=False,
-        label=_(
+        label=ugettext_lazy(
             "Select all items matching filter criteria, including those not "
             "shown"),
         widget=forms.CheckboxInput(
