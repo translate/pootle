@@ -9,7 +9,7 @@
 from django.contrib import messages
 from django.forms.models import modelformset_factory
 from django.http import Http404
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.html import escape
@@ -27,6 +27,7 @@ from pootle.core.views import (
     PootleAddView, PootleEditView)
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
+from pootle_app.models.permissions import PermissionSet
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_misc.util import cmp_by_last_activity
@@ -376,8 +377,7 @@ class ProjectAddView(PootleAddView):
         "filetypes", 
         "treestyle", 
         "source_language", 
-        "ignoredfiles", 
-        "directory"
+        "ignoredfiles"
     ]
 
     msg_form_error = _(
@@ -404,7 +404,7 @@ class ProjectAddView(PootleAddView):
             'dir_path': '',
             'filename': ''
         }
-        return HttpResponseRedirect(
+        return redirect(
             reverse('pootle-project-browse',
                     kwargs=url_kwargs)
             )
@@ -448,7 +448,7 @@ class ProjectEditView(PootleEditView):
 
     def form_valid(self, form):
         super(ProjectEditView, self).form_valid(form)
-        return HttpResponseRedirect(
+        return redirect(
             reverse('pootle-project-browse',
                     kwargs=self.url_kwargs)
             )

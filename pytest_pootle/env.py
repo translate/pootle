@@ -208,6 +208,14 @@ class PootleTestEnv(object):
             'administrate',
             'Can administrate a TP',
             pootle_content_type)
+        _require_permission(
+            'addproject',
+            'Can add projects',
+            pootle_content_type)
+        _require_permission(
+            'editproject',
+            'Can edit projects',
+            pootle_content_type)
 
     def setup_fs(self):
         from pytest_pootle.utils import add_store_fs

@@ -147,6 +147,14 @@ class InitDB(object):
                 'name': _("Can perform administrative tasks"),
                 'codename': "administrate",
             },
+            {
+                'name': _("Can add projects"),
+                'codename': "addproject",
+            },
+            {
+                'name': _("Can edit projects"),
+                'codename': "editproject",
+            },
         ]
 
         criteria = {

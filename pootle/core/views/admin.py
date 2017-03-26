@@ -39,11 +39,11 @@ class PootleFormView(FormView):
 
 
 class PootleAddView(CreateView):
-
-    @set_permissions
-    @requires_permission("addproject")
-    def dispatch(self, request, *args, **kwargs):
-        return super(PootleAddView, self).dispatch(request, *args, **kwargs)
+    pass
+    # @set_permissions
+    # @requires_permission("addproject")
+    # def dispatch(self, request, *args, **kwargs):
+    #     return super(PootleAddView, self).dispatch(request, *args, **kwargs)
 
 
 class PootleEditView(UpdateView):
