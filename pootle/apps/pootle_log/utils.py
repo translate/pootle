@@ -255,3 +255,27 @@ class StoreLog(Log):
 
     def filter_store(self, qs, store=None, field="unit__store_id"):
         return qs
+
+
+class UnitLog(Log):
+
+    def __init__(self, unit):
+        self.unit = unit
+
+    @property
+    def created_units(self):
+        return super(
+            UnitLog, self).created_units.filter(unit_id=self.unit.id)
+
+    @property
+    def suggestions(self):
+        return super(
+            UnitLog, self).suggestions.filter(unit_id=self.unit.id)
+
+    @property
+    def submissions(self):
+        return super(
+            UnitLog, self).submissions.filter(unit_id=self.unit.id)
+
+    def filter_store(self, qs, store=None, field="unit__store_id"):
+        return qs
