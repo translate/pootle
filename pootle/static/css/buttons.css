@@ -97,11 +97,8 @@ a.btn:link
 .btn:hover,
 .btn:focus
 {
-    /* Webkit */
     -webkit-filter: brightness(120%);
-
-    /* Firefox: saturation more than 100% doesn't work; increase brightness instead */
-    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'saturate\'><feComponentTransfer><feFuncR type=\'linear\' slope=\'1.2\'/><feFuncG type=\'linear\' slope=\'1.2\'/><feFuncB type=\'linear\' slope=\'1.2\'/></feComponentTransfer></filter></svg>#saturate");
+    filter: brightness(120%);
 }
 
 .btn:disabled,
@@ -119,11 +116,8 @@ a.btn:link
     color: rgba(255, 255, 255, 0.75);
     opacity: 0.5;
 
-    /* Webkit */
     -webkit-filter: grayscale(50%);
-
-    /* Firefox */
-    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'saturate\' values=\'0.5\'/></filter></svg>#grayscale");
+    filter: grayscale(50%);
 }
 
 /* Zoom */
