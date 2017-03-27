@@ -12,7 +12,7 @@ from django.views.generic.edit import CreateView, UpdateView
 
 from pootle.core.views.mixins import SuperuserRequiredMixin
 
-from .decorators import requires_permission, set_permissions
+from pootle.core.views.decorators import requires_permission_class
 
 
 class PootleFormView(FormView):
@@ -39,17 +39,16 @@ class PootleFormView(FormView):
 
 
 class PootleAddView(CreateView):
-    pass
-    # @set_permissions
-    # @requires_permission("addproject")
-    # def dispatch(self, request, *args, **kwargs):
-    #     return super(PootleAddView, self).dispatch(request, *args, **kwargs)
+
+    @requires_permission_class("addproject")
+    def dispatch(self, request, *args, **kwargs):
+
+        return super(PootleAddView, self).dispatch(request, *args, **kwargs)
 
 
 class PootleEditView(UpdateView):
 
-    @set_permissions
-    @requires_permission("editproject")
+    @requires_permission_class("editproject")
     def dispatch(self, request, *args, **kwargs):
         return super(PootleEditView, self).dispatch(request, *args, **kwargs)
 
