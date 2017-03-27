@@ -32,9 +32,9 @@ def test_contact_report_form_view(client, request_users, rf):
 
 
 @pytest.mark.django_db
-def test_contact_report_form_view_no_unit(client, admin, rf):
+def test_contact_report_form_view_no_unit(client, member, rf):
     url = reverse('pootle-contact-report-error')
-    client.login(username=admin.username, password=admin.password)
+    client.login(username=member.username, password=member.password)
     response = client.get(url)
 
     assert response.status_code == 200
@@ -43,9 +43,9 @@ def test_contact_report_form_view_no_unit(client, admin, rf):
 
 
 @pytest.mark.django_db
-def test_contact_report_form_view_blank_unit(client, admin, rf):
+def test_contact_report_form_view_blank_unit(client, member, rf):
     url = '%s?report=' % reverse('pootle-contact-report-error')
-    client.login(username=admin.username, password=admin.password)
+    client.login(username=member.username, password=member.password)
     response = client.get(url)
 
     assert response.status_code == 200
@@ -53,9 +53,9 @@ def test_contact_report_form_view_blank_unit(client, admin, rf):
 
 
 @pytest.mark.django_db
-def test_contact_report_form_view_no_numeric_unit(client, admin, rf):
+def test_contact_report_form_view_no_numeric_unit(client, member, rf):
     url = '%s?report=STRING' % reverse('pootle-contact-report-error')
-    client.login(username=admin.username, password=admin.password)
+    client.login(username=member.username, password=member.password)
     response = client.get(url)
 
     assert response.status_code == 200
@@ -63,11 +63,11 @@ def test_contact_report_form_view_no_numeric_unit(client, admin, rf):
 
 
 @pytest.mark.django_db
-def test_contact_report_form_view_unexisting_unit(client, admin, rf):
+def test_contact_report_form_view_unexisting_unit(client, member, rf):
     unit_pk = 99999999
     Unit.objects.filter(id=unit_pk).delete()  # Ensure unit doesn't exist.
     url = '%s?report=%s' % (reverse('pootle-contact-report-error'), unit_pk)
-    client.login(username=admin.username, password=admin.password)
+    client.login(username=member.username, password=member.password)
     response = client.get(url)
 
     assert response.status_code == 200
