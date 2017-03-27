@@ -26,6 +26,39 @@ class LogEvent(object):
         self.old_value = old_value
         self.revision = revision
 
+    def __cmp__(self, other):
+        if self.timestamp and other.timestamp:
+            if self.timestamp > other.timestamp:
+                return 1
+            elif self.timestamp < other.timestamp:
+                return -1
+        elif other.timestamp:
+            return -1
+        if self.unit.pk > other.unit.pk:
+            return 1
+        elif self.unit.pk < other.unit.pk:
+            return -1
+        if self.revision is not None and other.revision is not None:
+            if self.revision > other.revision:
+                return 1
+            elif self.revision < other.revision:
+                return -1
+        elif other.revision is not None:
+            return -1
+        return 0
+
+    def __unicode__(self):
+        revision = ""
+        if self.revision:
+            revision = "@%s" % str(self.revision)
+        return u"{0:<30} {1:<10} {2:<30} {3:<10} {4:<20} {5:<10}".format(
+            *[str(self.timestamp) or "",
+              revision,
+              self.unit.store.pootle_path,
+              str(self.unit.pk),
+              self.user.display_name or "",
+              (self.action or "")])
+
 
 class Log(object):
 
@@ -233,6 +266,21 @@ class Log(object):
             yield event
 
 
+class UnitLog(Log):
+
+    def __init__(self, context, user=None):
+        self.context = context
+        self.user = user
+
+    @property
+    def unit(self):
+        return self.context
+
+    @property
+    def unit_source(self):
+        return self.unit.unit_source.get()
+
+
 class StoreLog(Log):
 
     def __init__(self, store):
@@ -255,3 +303,15 @@ class StoreLog(Log):
 
     def filter_store(self, qs, store=None, field="unit__store_id"):
         return qs
+
+
+class UserLog(Log):
+
+    def __init__(self, user):
+        self.user = user
+
+
+class ActivityLog(object):
+
+    def __init__(self, context):
+        self.context = context
