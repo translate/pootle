@@ -43,6 +43,40 @@ def test_contact_form(admin, rf, mailoutbox):
     assert data['body'] in message.body
 
 
+@pytest.mark.django_db
+def test_contact_form_subject(admin, rf, mailoutbox):
+    request = rf.request()
+    request.user = admin
+    data = {
+        'name': admin.full_name,
+        'email': admin.email,
+        'email_subject': "a" * 101,
+        'body': "Whatever",
+    }
+    form = ContactForm(request=request, data=data)
+    assert not form.is_valid()
+
+    data['email_subject'] = "a" * 100
+    form = ContactForm(request=request, data=data)
+    assert form.is_valid()
+
+
+@pytest.mark.django_db
+def test_contact_form_required_fields(admin, rf, mailoutbox):
+    request = rf.request()
+    request.user = admin
+    form = ContactForm(request=request, data={})
+    assert not form.is_valid()
+    assert 'email' in form.errors
+    assert form.errors['email'] == [u'This field is required.']
+    assert 'name' in form.errors
+    assert form.errors['name'] == [u'This field is required.']
+    assert 'email_subject' in form.errors
+    assert form.errors['email_subject'] == [u'This field is required.']
+    assert 'body' in form.errors
+    assert form.errors['body'] == [u'This field is required.']
+
+
 def _test_report_form(unit, recipient_email, user, rf, mailoutbox):
     request = rf.request()
     request.user = user
@@ -110,3 +144,56 @@ def test_report_error_form_project_email(admin, rf, mailoutbox):
     project.save()
 
     _test_report_form(unit, project.report_email, admin, rf, mailoutbox)
+
+
+@pytest.mark.django_db
+@pytest.mark.xfail(reason="context field not yet implemented")
+def test_report_error_form_context_cannot_be_altered(admin, rf, mailoutbox):
+    request = rf.request()
+    request.user = admin
+
+    unit = Unit.objects.select_related(
+        'store__translation_project__project',
+        'store__translation_project__language',
+    ).last()
+    context_ctx = {
+        'unit': unit,
+        'unit_absolute_url':
+            request.build_absolute_uri(unit.get_translate_url()),
+    }
+    context = render_to_string('contact_form/report_form_context.txt',
+                               context=context_ctx)
+    context = context.strip()
+    initial = {
+        'name': admin.full_name,
+        'email': admin.email,
+        'context': context,
+        'body': "The string is wrong",
+    }
+    data = initial.copy()
+    sent_context = "Different context"
+    data['context'] = sent_context
+
+    # Instantiate form and test.
+    form = ReportForm(request=request, initial=initial, data=data, unit=unit)
+    assert form.is_valid()
+    form.save()
+    assert len(mailoutbox) == 1
+    message = mailoutbox[0]
+    assert sent_context not in message.body
+
+
+@pytest.mark.django_db
+def test_report_error_form_required_fields(admin, rf, mailoutbox):
+    request = rf.request()
+    request.user = admin
+
+    # Instantiate form and test.
+    form = ReportForm(request=request, initial={}, data={})
+    assert not form.is_valid()
+    assert 'email' in form.errors
+    assert form.errors['email'] == [u'This field is required.']
+    assert 'name' in form.errors
+    assert form.errors['name'] == [u'This field is required.']
+    assert 'body' in form.errors
+    assert form.errors['body'] == [u'This field is required.']
