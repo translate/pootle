@@ -26,7 +26,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.core.management import call_command
 from django.core.management.base import CommandError, NoArgsCommand
 
-from pootle.__version__ import build as NEW_POOTLE_BUILD
+from pootle.__version__ import (build as NEW_POOTLE_BUILD,
+                                sver as pootle_version)
 from pootle_app.models.pootle_config import get_pootle_build
 
 
@@ -41,16 +42,17 @@ class Command(NoArgsCommand):
         current_buildversion = get_pootle_build()
 
         if not current_buildversion:
-            raise CommandError('Pootle 2.6.1 is not meant to be used in real '
+            raise CommandError('Pootle %s is not meant to be used in real '
                                'world deployments.'
                                '\n\n'
                                'If you want to install a fresh Pootle then '
                                'install Pootle 2.7.0 or later.'
                                '\n\n'
                                'Otherwise you are upgrading Pootle and you '
-                               'already have have upgraded up to the 2.6.1 '
+                               'already have have upgraded up to the %s '
                                'stage, so you must now proceed now with the '
-                               'final upgrade to Pootle 2.7.0 or later.')
+                               'final upgrade to Pootle 2.7.0 or later.' %
+                               (pootle_version, pootle_version))
         elif current_buildversion < 22000:
             # Trying to upgrade a deployment older than Pootle 2.5.0 for which
             # we don't provide a direct upgrade.
@@ -72,12 +74,14 @@ class Command(NoArgsCommand):
                             "pootle_translationproject", "staticpages")
 
                 for app in OLD_APPS:
-                    call_command("migrate", app, "0001", fake=True, interactive=False)
+                    call_command("migrate", app, "0001", fake=True,
+                                 interactive=False)
 
             call_command('migrate', interactive=False)
             call_command('upgrade')
 
-            logging.warning('\n\n\n    Warning: Pootle 2.6.1 is an interim '
+            logging.warning('\n\n\n    Warning: Pootle %s is an interim '
                             'release (a migration step to Pootle'
-                            '\n             2.7.0). Do not use Pootle 2.6.1 '
-                            'for any deployment.\n\n')
+                            '\n             2.7.0). Do not use Pootle %s '
+                            'for any deployment.\n\n' %
+                            (pootle_version, pootle_version))
