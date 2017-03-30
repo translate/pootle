@@ -290,6 +290,7 @@ def test_update_set_last_sync_revision(project0_nongnu, tp0, store0, test_fs):
         with open(store0.file.path, "wb") as targetf:
             targetf.write(sourcef.read())
 
+    store0 = Store.objects.get(pk=store0.pk)
     # any non-empty update sets last_sync_revision to next global revision
     next_revision = Revision.get() + 1
     store0.updater.update_from_disk()
@@ -315,6 +316,7 @@ def test_update_set_last_sync_revision(project0_nongnu, tp0, store0, test_fs):
     with open(store0.file.path, "wb") as targetf:
         targetf.write(orig)
 
+    store0 = Store.objects.get(pk=store0.pk)
     store0.updater.update_from_disk()
     assert store0.last_sync_revision == next_revision
     # Get unsynced unit in DB. Its revision should be greater
