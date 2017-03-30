@@ -80,8 +80,8 @@ class Command(NoArgsCommand):
             call_command('migrate', interactive=False)
             call_command('upgrade')
 
-            logging.warning('\n\n\n    Warning: Pootle %s is an interim '
+            logging.warning('\n\n\n    WARNING: Pootle %s is an interim '
                             'release (a migration step to Pootle'
-                            '\n             2.7.0). Do not use Pootle %s '
-                            'for any deployment.\n\n' %
+                            '\n             2.7.0 or later). Do not use '
+                            'Pootle %s for any deployment.\n\n' %
                             (pootle_version, pootle_version))
