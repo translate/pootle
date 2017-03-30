@@ -213,7 +213,7 @@ Some commands do accept arguments -- the argument name is followed by a colon
     $ fab production load_db:dumpfile=backup_mysql.sql  # Call load_db providing a database dump to load
 
 The previous call runs the :ref:`load_db <fabric-commands#load-db>` command
-providing the value ``backup_mysql.sql`` for its :option:`dumpfile` argument.
+providing the value ``backup_mysql.sql`` for its ``dumpfile`` argument.
 
 
 .. _fabric-deployment#tweak-the-environment:
@@ -231,7 +231,7 @@ before calling the commands:
 In the previous example :ref:`bootstrap <fabric-commands#bootstrap>` is run
 after setting the environment using :ref:`production
 <fabric-commands#production>` but changing the branch to work on, to be the
-value ``stable/2.5.0`` passed to the :option:`branch` argument.
+value ``stable/2.5.0`` passed to the ``branch`` argument.
 
 
 .. _fabric-deployment#run-several-commands-in-a-row:
@@ -343,7 +343,7 @@ When setting up the database there are several possible scenarios:
       $ fab production create_db  # Creates Pootle DB on MySQL
       $ fab production load_db:dumpfile=backup_mysql.sql # Populate DB from local dump
 
-  .. note:: The :option:`dumpfile` (for :ref:`load_db
+  .. note:: The ``dumpfile`` (for :ref:`load_db
      <fabric-commands#load-db>` and :ref:`dump_db <fabric-commands#dump-db>`)
      is local to the system where Fabric runs, and is automatically copied
      to/from the remote server.

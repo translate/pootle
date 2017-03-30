@@ -405,7 +405,7 @@ Quoting
   - Always use single quotes for Django template tags and template filters
     located inside HTML attribute values.
 
-    .. code-block:: html
+    .. code-block:: htmldjango
 
         <!-- Good -->
         <a href="{% url 'whatever' %}" class="highlight">

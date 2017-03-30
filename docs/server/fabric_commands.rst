@@ -453,7 +453,7 @@ This command:
    Note that some commands might require passing any or all of these arguments
    to this command in order to overwrite the default settings before calling
    those commands. For example the command :command:`stage_feature` requires
-   passing :option:`branch`, :option:`repo` and :option:`feature`.
+   passing ``branch``, ``repo`` and ``feature``.
 
 .. note::
    .. versionchanged:: 2.5.1 Added support for altering the settings based on
@@ -492,7 +492,7 @@ environment for calling :command:`bootstrap` afterwards.
 In the previous example :command:`production` is called to set up the
 environment for calling :command:`bootstrap` afterwards.
 
-The :option:`branch` argument overwrites the default branch in the settings,
+The ``branch`` argument overwrites the default branch in the settings,
 which are then used for all the subsequent commands (just :command:`bootstrap`
 in this example).
 
@@ -503,7 +503,7 @@ in this example).
 In the previous example :command:`production` is called to set up the
 environment for calling :command:`bootstrap` afterwards.
 
-The :option:`branch` and :option:`repo` arguments overwrite the default
+The ``branch`` and ``repo`` arguments overwrite the default
 settings, which are then used for all the subsequent commands (just
 :command:`bootstrap` in this example).
 
@@ -512,7 +512,7 @@ settings, which are then used for all the subsequent commands (just
     $ fab production:branch=feature/extension-actions,repo=git://github.com/unho/pootle.git,feature=yes stage_feature
 
 This example is like the previous one, with the addition of the
-:option:`feature` argument that triggers the altering of several settings. That
+``feature`` argument that triggers the altering of several settings. That
 altering is necessary for working with feature-staging servers.
 
 
@@ -609,7 +609,7 @@ This command:
    on this field must exist.
 
 .. warning:: This command requires using the ``staging`` environment passing to
-   it the :option:`feature` argument, the desired branch and optionally a
+   it the ``feature`` argument, the desired branch and optionally a
    repository URL.
 
 Examples:
@@ -638,7 +638,7 @@ This command:
    Note that some commands might require passing any or all of these arguments
    to this command in order to overwrite the default settings before calling
    those commands. For example the command :command:`stage_feature` requires
-   passing :option:`branch`, :option:`repo` and :option:`feature`.
+   passing ``branch``, ``repo`` and ``feature``.
 
 .. note::
    .. versionchanged:: 2.5.1 Added support for altering the settings based on
@@ -677,7 +677,7 @@ for calling :command:`bootstrap` afterwards.
 In the previous example :command:`staging` is called to set up the environment
 for calling :command:`bootstrap` afterwards.
 
-The :option:`branch` argument overwrites the default branch in the settings,
+The ``branch`` argument overwrites the default branch in the settings,
 which are then used for all the subsequent commands (just :command:`bootstrap`
 in this example).
 
@@ -688,7 +688,7 @@ in this example).
 In the previous example :command:`staging` is called to set up the environment
 for calling :command:`bootstrap` afterwards.
 
-The :option:`branch` and :option:`repo` arguments overwrite the default
+The ``branch`` and ``repo`` arguments overwrite the default
 settings, which are then used for all the subsequent commands (just
 :command:`bootstrap` in this example).
 
@@ -697,7 +697,7 @@ settings, which are then used for all the subsequent commands (just
     $ fab staging:branch=feature/extension-actions,repo=git://github.com/unho/pootle.git,feature=yes stage_feature
 
 This example is like the previous one, with the addition of the
-:option:`feature` argument that triggers the altering of several settings. That
+``feature`` argument that triggers the altering of several settings. That
 altering is necessary for working with feature-staging servers.
 
 
@@ -753,7 +753,7 @@ This command:
    using the :ref:`stage_feature <fabric-commands#stage-feature>` command.
 
 .. warning:: This command requires using the ``staging`` environment passing to
-   it the :option:`feature` argument and the desired branch.
+   it the ``feature`` argument and the desired branch.
 
 Examples:
 

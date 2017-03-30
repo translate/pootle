@@ -366,31 +366,31 @@ assign_permissions
 This command allows to assign permissions for a given user in a project,
 language or translation project.
 
-This command has two mandatory options: :option:`--permissions` and
-:option:`--user`. It is also mandatory to either provide :option:`--language`
-or :option:`--project`.
+This command has two mandatory options: ``--permissions`` and
+``--user``. It is also mandatory to either provide ``--language``
+or ``--project``.
 
-It is possible to provide both :option:`--language` and :option:`--project` at
+It is possible to provide both ``--language`` and ``--project`` at
 the same time to indicate that the permissions should be applied only for a
 given project inside a given language (i.e. for a given translation project).
 
 +---------------------------+-------------------------------+
 | Option                    | Accepted value                |
 +===========================+===============================+
-| :option:`--user`          | Valid username                |
+| ``--user``                | Valid username                |
 +---------------------------+-------------------------------+
-| :option:`--language`      | Valid language code           |
+| ``--language``            | Valid language code           |
 +---------------------------+-------------------------------+
-| :option:`--project`       | Valid project code            |
+| ``--project``             | Valid project code            |
 +---------------------------+-------------------------------+
-| :option:`--permissions`   | Comma separated list of valid |
+| ``--permissions``         | Comma separated list of valid |
 |                           | permission codenames          |
 +---------------------------+-------------------------------+
 
 Check the list of :ref:`available permissions
 <permissions#available_permissions>` to know which permissions you can use.
 
-.. note:: All of the options, including :option:`--language`, can only be
+.. note:: All of the options, including ``--language``, can only be
    provided once, and all of them accept only one value.
 
 
@@ -436,7 +436,7 @@ type:
     $ pootle create_local_tm
 
 
-Also you can run it providing the :option:`--project` and :option:`--language`
+Also you can run it providing the ``--project`` and ``--language``
 optional options:
 
 .. code-block:: bash
@@ -445,12 +445,12 @@ optional options:
 
 
 Despite these two options are optional, it is highly recommended to run this
-command using one :option:`--project` when dealing with a Pootle instance with
+command using one ``--project`` when dealing with a Pootle instance with
 projects that together have a lot of units. Also in the specific case where the
 given project has too many units it is recommended to provide one or several
-:option:`--language` options.
+``--language`` options.
 
-This command also has one optional option :option:`--drop-local-tm` which is
+This command also has one optional option ``--drop-local-tm`` which is
 used to tell whether the local TM (if it exists) should be dropped before
 recreating it:
 
@@ -522,8 +522,8 @@ translation project for the project as they are specified on the phaselist
 file. If any specified file does not exist for the template translation project
 on the given project then it is skipped.
 
-This command has two mandatory options: :option:`--project` and
-:option:`--filename`.
+This command has two mandatory options: ``--project`` and
+``--filename``.
 
 .. code-block:: bash
 
@@ -641,10 +641,10 @@ Performs post schema upgrade actions that are necessary to leave all the
 bits in place. It also serves as a trigger for any changes needed by
 Translate Toolkit version upgrades.
 
-Optionally, the command accepts the :option:`--calculate-stats` flag, which
+Optionally, the command accepts the ``--calculate-stats`` flag, which
 will calculate full translation statistics after doing the upgrade.
 
-Also, the :option:`--flush-checks` flag forces flushing the existing quality
+Also, the ``--flush-checks`` flag forces flushing the existing quality
 checks. This is useful when new quality checks have been added or existing
 ones have been updated, but take into account that **this operation is
 very expensive**.
@@ -661,8 +661,8 @@ collectstatic
 Running the Django admin :djadmin:`django:collectstatic` command finds
 and extracts static content such as images, CSS and JavaScript files used by
 the Pootle server, so that they can be served separately from a static
-webserver.  Typically, this is run with the :option:`--clear`
-:option:`--noinput` options, to flush any existing static data and use default
+webserver.  Typically, this is run with the ``--clear``
+``--noinput`` options, to flush any existing static data and use default
 answers for the content finders.
 
 .. _commands#assets:
