@@ -117,10 +117,6 @@ class PootleCommand(BaseCommand):
 
         # reduce size of parse pool early on
         self.name = self.__class__.__module__.split('.')[-1]
-        from pootle_store.fields import TranslationStoreFieldFile
-        TranslationStoreFieldFile._store_cache.maxsize = 2
-        TranslationStoreFieldFile._store_cache.cullsize = 2
-
         self.projects = options.pop('projects', [])
         self.languages = options.pop('languages', [])
         if self.projects:
