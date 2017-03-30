@@ -181,13 +181,14 @@ class Language(models.Model, TreeItem):
         self.directory = Directory.objects.root.get_or_make_subdir(self.code)
 
         # Do not repeat special chars.
-        special_chars = []
-        for special_char in self.specialchars:
-            if special_char in special_chars:
-                continue
-            special_chars.append(special_char)
-        self.specialchars = u"".join(special_chars)
-
+        self.specialchars = u"".join(
+            OrderedDict([
+                ((specialchar
+                  if isinstance(specialchar, unicode)
+                  else specialchar.decode("unicode_escape")),
+                 None)
+                for specialchar
+                in self.specialchars]).keys())
         super(Language, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
