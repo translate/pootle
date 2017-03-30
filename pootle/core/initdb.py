@@ -275,18 +275,12 @@ class InitDB(object):
 
         # import languages from toolkit
         for code in data.languages.keys():
-            try:
-                tk_lang = factory.getlanguage(code)
-                criteria = {
-                    'code': code,
-                    'fullname': tk_lang.fullname,
-                    'nplurals': tk_lang.nplurals,
-                    'pluralequation': tk_lang.pluralequation,
-                }
-                try:
-                    criteria['specialchars'] = tk_lang.specialchars
-                except AttributeError:
-                    pass
-                self._create_object(Language, **criteria)
-            except:
-                pass
+            ttk_lang = factory.getlanguage(code)
+            criteria = {
+                'code': code,
+                'fullname': ttk_lang.fullname,
+                'nplurals': ttk_lang.nplurals,
+                'pluralequation': ttk_lang.pluralequation}
+            if hasattr(ttk_lang, "specialchars"):
+                criteria['specialchars'] = ttk_lang.specialchars
+            self._create_object(Language, **criteria)
