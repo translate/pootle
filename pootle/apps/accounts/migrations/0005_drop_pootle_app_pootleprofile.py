@@ -8,15 +8,13 @@ from django.db import connection
 class Migration(SchemaMigration):
     depends_on = (
         ("pootle_tagging", "0003_del_tag__del_taggeditem"),
+        ("pootle_store", "0011_update_user_to_profile"),
     )
 
     no_dry_run = True
 
     def forwards(self, orm):
         # Deleting remnants of model 'PootleProfile'
-        db.delete_foreign_key('pootle_store_unit', 'commented_by_id')
-        db.delete_foreign_key('pootle_store_unit', 'submitted_by_id')
-        db.delete_foreign_key('pootle_app_submission', 'submitter_id')
         if u'pootle_app_pootleprofile' in connection.introspection.table_names():
             db.delete_table(u'pootle_app_pootleprofile')
 
