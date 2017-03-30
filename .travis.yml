@@ -6,9 +6,9 @@ python:
   - 2.7
 env:
   matrix:
-    - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=sqlite
-    - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=postgres
-    - DJANGO_VERSION=1.6.2 DATABASE_BACKEND=mysql
+    - DJANGO_VERSION=1.6.11 DATABASE_BACKEND=sqlite
+    - DJANGO_VERSION=1.6.11 DATABASE_BACKEND=postgres
+    - DJANGO_VERSION=1.6.11 DATABASE_BACKEND=mysql
   global:
     - PIP_DOWNLOAD_CACHE=".pip_download_cache"
 cache:
