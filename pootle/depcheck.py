@@ -32,7 +32,7 @@ TTK_MINIMUM_REQUIRED_VERSION = (1, 13, 0)
 DJANGO_MINIMUM_REQUIRED_VERSION = (1, 6, 5)
 
 # Minimum lxml version required for Pootle to run.
-LXML_MINIMUM_REQUIRED_VERSION = (2, 3, 6, 0)
+LXML_MINIMUM_REQUIRED_VERSION = (3, 5, 0, 0)
 
 
 ##########################
