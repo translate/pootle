@@ -18,7 +18,7 @@ from pootle_language.models import Language
 def test_language_repr():
     language = Language.objects.first()
     assert (
-        "<Language: %s>" % language.name
+        "<Language: %s - %s>" % (language.name, language.code)
         == repr(language))
 
 

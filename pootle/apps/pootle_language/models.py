@@ -172,9 +172,6 @@ class Language(models.Model, TreeItem):
     def __init__(self, *args, **kwargs):
         super(Language, self).__init__(*args, **kwargs)
 
-    def __repr__(self):
-        return u'<%s: %s>' % (self.__class__.__name__, self.fullname)
-
     def save(self, *args, **kwargs):
         # create corresponding directory object
         from pootle_app.models.directory import Directory
