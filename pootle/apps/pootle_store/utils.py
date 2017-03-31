@@ -176,7 +176,6 @@ class SuggestionsReview(object):
         if isinstance(user, User):
             user = user.id
         user = user or User.objects.get_system_user().id
-        pending = SuggestionState.objects.get(name="pending")
         try:
             suggestion = Suggestion.objects.pending().get(
                 unit=unit,
@@ -184,6 +183,7 @@ class SuggestionsReview(object):
                 target_f=translation)
             return (suggestion, False)
         except Suggestion.DoesNotExist:
+            pending = SuggestionState.objects.get(name="pending")
             suggestion = Suggestion.objects.create(
                 unit=unit,
                 user_id=user,
