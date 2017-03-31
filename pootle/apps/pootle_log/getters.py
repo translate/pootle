@@ -6,11 +6,11 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from pootle.core.delegate import comparable_event, log
+from pootle.core.delegate import comparable_event, grouped_events, log
 from pootle.core.plugin import getter
 from pootle_store.models import Store, Unit
 
-from .utils import ComparableLogEvent, Log, StoreLog, UnitLog
+from .utils import ComparableLogEvent, GroupedEvents, Log, StoreLog, UnitLog
 
 
 @getter(log, sender=Store)
@@ -26,3 +26,8 @@ def unit_log_getter(**kwargs_):
 @getter(comparable_event, sender=(Log, StoreLog, UnitLog))
 def comparable_event_getter(**kwargs_):
     return ComparableLogEvent
+
+
+@getter(grouped_events, sender=(Log, StoreLog, UnitLog))
+def grouped_log_events_getter(**kwargs_):
+    return GroupedEvents
