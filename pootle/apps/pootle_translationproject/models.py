@@ -19,6 +19,7 @@ from django.utils.functional import cached_property
 from pootle.core.contextmanagers import keep_data
 from pootle.core.delegate import data_tool
 from pootle.core.mixins import CachedTreeItem
+from pootle.core.signals import update_data, update_scores
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_app.project_tree import (does_not_exist, init_store_from_template,
@@ -437,7 +438,11 @@ def scan_languages(**kwargs):
         with keep_data():
             tp = create_translation_project(language, instance)
         if tp is not None:
-            tp.update_from_disk()
+            with keep_data(tp, suppress=(tp.__class__, )):
+                result = tp.update_from_disk()
+                if result:
+                    update_data.send(tp.__class__, instance=tp)
+                    update_scores.send(tp.__class__, instance=tp)
 
 
 @receiver(post_save, sender=Language)
