@@ -337,6 +337,7 @@ class UnitTimelineJSON(PootleUnitJSON):
 
     def get_queryset(self):
         return Unit.objects.get_translatable(self.request.user).select_related(
+            "change",
             "store__translation_project__language",
             "store__translation_project__project__directory")
 
@@ -458,6 +459,8 @@ class UnitEditJSON(PootleUnitJSON):
 
     def get_queryset(self):
         return Unit.objects.get_translatable(self.request.user).select_related(
+            "change",
+            "change__submitted_by",
             "store",
             "store__filetype",
             "store__parent",
@@ -588,7 +591,11 @@ class UnitSuggestionJSON(PootleJSONMixin, GatherContextMixin, FormView):
     def get_object(self):
         return get_object_or_404(
             Suggestion.objects.select_related(
-                "unit", "unit__store", "unit__store__parent"),
+                "unit",
+                "unit__store",
+                "unit__store__parent",
+                "unit__change",
+                "state"),
             unit_id=self.request.resolver_match.kwargs["uid"],
             id=self.request.resolver_match.kwargs["sugg_id"])
 
