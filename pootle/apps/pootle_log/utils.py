@@ -35,11 +35,13 @@ class Log(object):
 
     @property
     def suggestions(self):
-        return Suggestion.objects.select_related("unit", "user", "reviewer")
+        return Suggestion.objects.select_related(
+            "unit", "user", "reviewer", "state", "unit__unit_source")
 
     @property
     def submissions(self):
-        return Submission.objects.select_related("unit", "submitter")
+        return Submission.objects.select_related(
+            "unit", "submitter", "unit__unit_source")
 
     @cached_property
     def event(self):
