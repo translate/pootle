@@ -16,6 +16,7 @@ from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.functional import cached_property
 
+from pootle.core.contextmanagers import keep_data
 from pootle.core.delegate import data_tool
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
@@ -433,7 +434,8 @@ def scan_languages(**kwargs):
         return
 
     for language in Language.objects.iterator():
-        tp = create_translation_project(language, instance)
+        with keep_data():
+            tp = create_translation_project(language, instance)
         if tp is not None:
             tp.update_from_disk()
 
