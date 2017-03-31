@@ -9,6 +9,7 @@
 from django.contrib.auth import get_user_model
 from django.utils.functional import cached_property
 
+from pootle.core.proxy import BaseProxy
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 from pootle_store.models import Suggestion, UnitSource
@@ -25,6 +26,46 @@ class LogEvent(object):
         self.value = value
         self.old_value = old_value
         self.revision = revision
+
+
+class ComparableLogEvent(BaseProxy):
+
+    _special_names = (x for x in BaseProxy._special_names
+                      if x not in ["__lt__", "__gt__"])
+
+    def __cmp__(self, other):
+        # valuable revisions are authoritative
+        if self.revision is not None and other.revision is not None:
+            if self.revision > other.revision:
+                return 1
+            elif self.revision < other.revision:
+                return -1
+
+        # timestamps have the next priority
+        if self.timestamp and other.timestamp:
+            if self.timestamp > other.timestamp:
+                return 1
+            elif self.timestamp < other.timestamp:
+                return -1
+        elif self.timestamp:
+            return 1
+        elif other.timestamp:
+            return -1
+
+        # conditions below are applied for events with equal timestamps
+        # or without any
+        if self.action == other.action == 'suggestion_created':
+            if self.value.pk > other.value.pk:
+                return 1
+            else:
+                return -1
+
+        if self.unit.pk > other.unit.pk:
+            return 1
+        elif self.unit.pk < other.unit.pk:
+            return -1
+
+        return 0
 
 
 class Log(object):
