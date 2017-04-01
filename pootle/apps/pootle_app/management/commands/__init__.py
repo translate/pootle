@@ -14,6 +14,7 @@ from django.core.management.base import BaseCommand, CommandError
 from pootle.runner import set_sync_mode
 from pootle_language.models import Language
 from pootle_project.models import Project
+from pootle_translationproject.models import TranslationProject
 
 
 class SkipChecksMixin(object):
@@ -141,20 +142,21 @@ class PootleCommand(BaseCommand):
         if options["no_rq"]:
             set_sync_mode(options['noinput'])
 
-        if self.process_disabled_projects:
-            project_query = Project.objects.all()
-        else:
-            project_query = Project.objects.enabled()
+        tps = TranslationProject.objects.live().order_by(
+            "project__code", "language__code").select_related(
+                "project",
+                "language",
+                "directory",
+                "project__source_language")
+
+        if not self.process_disabled_projects:
+            tps = tps.exclude(project__disabled=True)
 
         if self.projects:
-            project_query = project_query.filter(code__in=self.projects)
+            tps = tps.filter(project__code__in=self.projects)
 
-        for project in project_query.iterator():
-            tp_query = project.translationproject_set.live() \
-                              .order_by('language__code')
+        if self.languages:
+            tps = tps.filter(language__code__in=self.languages)
 
-            if self.languages:
-                tp_query = tp_query.filter(language__code__in=self.languages)
-
-            for tp in tp_query.iterator():
-                self.do_translation_project(tp, **options)
+        for tp in tps.iterator():
+            self.do_translation_project(tp, **options)
