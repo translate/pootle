@@ -45,9 +45,11 @@ def create_or_resurrect_translation_project(language, project):
 
 def create_translation_project(language, project):
     if translation_project_dir_exists(language, project):
+        tps = TranslationProject.objects.all().select_related(
+            "data", "directory")
         try:
-            translation_project, __ = TranslationProject.objects.all() \
-                .get_or_create(language=language, project=project)
+            translation_project, __ = tps.get_or_create(
+                language=language, project=project)
             return translation_project
         except OSError:
             return None
@@ -328,7 +330,7 @@ class TranslationProject(models.Model, CachedTreeItem):
 
         stores = self.stores.live().select_related(
             "parent",
-            "filetype",
+            "data",
             "filetype__extension",
             "filetype__template_extension").exclude(file='')
         # Update store content from disk store
