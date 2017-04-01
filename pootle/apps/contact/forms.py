@@ -24,9 +24,9 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
 
     email_subject = forms.CharField(
         max_length=100,
-        label=_(u'Summary'),
+        label=_(u'Subject'),
         widget=forms.TextInput(
-            attrs={'placeholder': _('Please enter your message summary')}
+            attrs={'placeholder': _('Please enter a message subject')}
         ),
     )
 
