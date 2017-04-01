@@ -323,7 +323,11 @@ class TranslationProject(models.Model, CachedTreeItem):
         # Create new, make obsolete in-DB stores to reflect state on disk
         self.scan_files()
 
-        stores = self.stores.live().select_related('parent').exclude(file='')
+        stores = self.stores.live().select_related(
+            "parent",
+            "filetype",
+            "filetype__extension",
+            "filetype__template_extension").exclude(file='')
         # Update store content from disk store
         for store in stores.iterator():
             if not store.file:
