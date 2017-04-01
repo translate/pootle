@@ -495,6 +495,7 @@ def test_submit_unit(client, store0, request_users, settings, system):
     assert response.status_code == 200
     assert unit.target == "%s changed" % old_target
     assert unit.state == TRANSLATED
+    unit.store.data.refresh_from_db()
     assert unit.store.data.last_submission.unit == unit
     unit_source = unit.unit_source
     assert unit_source.created_by == system
