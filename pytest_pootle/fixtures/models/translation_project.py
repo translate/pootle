@@ -75,7 +75,7 @@ def tp0(language0, project0):
     """Require English Project0."""
     from pootle_translationproject.models import TranslationProject
 
-    tp0 = TranslationProject.objects.get(
+    tp0 = TranslationProject.objects.select_related("data").get(
         language=language0,
         project=project0)
     tp0.project = project0

@@ -539,6 +539,7 @@ def dummy_store_syncer():
 @pytest.fixture
 def store0(tp0):
     stores = tp0.stores.select_related(
+        "data",
         "filetype__extension",
         "filetype__template_extension")
     return stores.get(name="store0.po")
