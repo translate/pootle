@@ -13,7 +13,7 @@
     {% if has_admin_access or page != "translate" %}
     <option value=""></option>
     {% endif %}
-    {% for lang_code, lang_name in ALL_LANGUAGES.items %}
+    {% for lang_code, lang_name in all_languages.items %}
     <option
        value="{{ lang_code }}"
        {% if lang_code == language.code %}selected="selected"{% endif %}>{{ lang_name }}</option>
