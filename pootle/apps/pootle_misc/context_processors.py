@@ -7,10 +7,8 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.conf import settings
-from django.utils import translation
 
 from pootle.core.markup import get_markup_filter_name
-from pootle_language.models import Language
 from pootle_project.models import Project
 from staticpages.models import LegalPage
 
@@ -40,6 +38,7 @@ def _get_social_auth_providers(request):
 def pootle_context(request):
     """Exposes settings to templates."""
     # FIXME: maybe we should expose relevant settings only?
+
     return {
         'settings': {
             'POOTLE_CUSTOM_LOGO': getattr(settings, "POOTLE_CUSTOM_LOGO", ""),
@@ -54,8 +53,6 @@ def pootle_context(request):
             'DEBUG': settings.DEBUG,
         },
         'custom': settings.POOTLE_CUSTOM_TEMPLATE_CONTEXT,
-        'ALL_LANGUAGES': Language.live.cached_dict(translation.get_language(),
-                                                   request.user.is_superuser),
         'ALL_PROJECTS': Project.objects.cached_dict(request.user),
         'SOCIAL_AUTH_PROVIDERS': _get_social_auth_providers(request),
         'display_agreement': _agreement_context(request),
