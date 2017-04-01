@@ -6,74 +6,17 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import locale
 from collections import OrderedDict
 
-from django.conf import settings
-from django.core.cache import cache
 from django.db import models
-from django.db.models.signals import post_delete, post_save
-from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.functional import cached_property
 
-from pootle.core.cache import make_method_key
 from pootle.core.delegate import data_tool
 from pootle.core.mixins import TreeItem
 from pootle.core.url_helpers import get_editor_filter
 from pootle.i18n.gettext import language_dir, tr_lang, ugettext_lazy as _
 from staticpages.models import StaticPage
-
-
-class LiveLanguageManager(models.Manager):
-    """Manager that only considers `live` languages.
-
-    A live language is any language containing at least a project with
-    translatable files.
-    """
-
-    def get_queryset(self):
-        """Returns a queryset for all live languages for enabled projects."""
-        return super(LiveLanguageManager, self).get_queryset().filter(
-            translationproject__isnull=False,
-            translationproject__directory__obsolete=False,
-            translationproject__project__disabled=False,
-        ).distinct()
-
-    def get_all_queryset(self):
-        """Returns a queryset for all live languages for all projects."""
-        return super(LiveLanguageManager, self).get_queryset().filter(
-            translationproject__isnull=False,
-            translationproject__directory__obsolete=False,
-        ).distinct()
-
-    def cached_dict(self, locale_code='en-us', show_all=False):
-        """Retrieves a sorted list of live language codes and names.
-
-        By default only returns live languages for enabled projects, but it can
-        also return live languages for disabled projects if specified.
-
-        :param locale_code: the UI locale for which language full names need to
-            be localized.
-        :param show_all: tells whether to return all live languages (both for
-            disabled and enabled projects) or only live languages for enabled
-            projects.
-        :return: an `OrderedDict`
-        """
-        key_prefix = 'all_cached_dict' if show_all else 'cached_dict'
-        key = make_method_key(self, key_prefix, locale_code)
-        languages = cache.get(key, None)
-        if languages is None:
-            qs = self.get_all_queryset() if show_all else self.get_queryset()
-            languages = OrderedDict(
-                sorted([(lang[0], tr_lang(lang[1]))
-                        for lang in qs.values_list('code', 'fullname')],
-                       cmp=locale.strcoll,
-                       key=lambda x: x[1])
-            )
-            cache.set(key, languages, settings.POOTLE_CACHE_TIMEOUT)
-
-        return languages
 
 
 class Language(models.Model, TreeItem):
@@ -117,7 +60,6 @@ class Language(models.Model, TreeItem):
                                      editable=False, on_delete=models.CASCADE)
 
     objects = models.Manager()
-    live = LiveLanguageManager()
 
     class Meta(object):
         ordering = ['code']
@@ -225,17 +167,3 @@ class Language(models.Model, TreeItem):
     def get_announcement(self, user=None):
         """Return the related announcement, if any."""
         return StaticPage.get_announcement_for(self.pootle_path, user)
-
-
-@receiver([post_delete, post_save])
-def invalidate_language_list_cache(**kwargs):
-    instance = kwargs["instance"]
-    # XXX: maybe use custom signals or simple function calls?
-    if instance.__class__.__name__ not in ['Language', 'TranslationProject']:
-        return
-
-    key = make_method_key('LiveLanguageManager', 'cached_dict', '*')
-    cache.delete_pattern(key)
-
-    key = make_method_key('LiveLanguageManager', 'all_cached_dict', '*')
-    cache.delete_pattern(key)
