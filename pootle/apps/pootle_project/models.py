@@ -386,22 +386,15 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         :cls:`~pootle_store.models.Store` resource paths available for
         this :cls:`~pootle_project.models.Project` across all languages.
         """
-        cache_key = make_method_key(self, 'resources', self.code)
-        resources = cache.get(cache_key, None)
-        if resources is not None:
-            return resources
-
         stores = Store.objects.live().order_by().filter(
             translation_project__project_id=self.pk)
         dirs = Directory.objects.live().order_by().filter(tp__project_id=self.pk)
-        resources = sorted(
+        return sorted(
             {tp_path[1:]
              for tp_path
              in (set(stores.values_list("tp_path", flat=True))
                  | set(dirs.values_list("tp_path", flat=True)))},
             key=get_path_sortkey)
-        cache.set(cache_key, resources, settings.POOTLE_CACHE_TIMEOUT)
-        return resources
 
     # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
@@ -590,27 +583,6 @@ class ProjectSet(VirtualResource, ProjectURLMixin):
     @cached_property
     def data_tool(self):
         return data_tool.get(self.__class__)(self)
-
-
-@receiver([post_delete, post_save])
-def invalidate_resources_cache(**kwargs):
-    instance = kwargs["instance"]
-    if instance.__class__.__name__ not in ['Directory', 'Store']:
-        return
-
-    # Don't invalidate if the save didn't create new objects
-    no_new_objects = (
-        ('created' in kwargs
-         and 'raw' in kwargs)
-        and (not kwargs['created']
-             or kwargs['raw']))
-
-    if no_new_objects and instance.parent.get_children():
-        return
-
-    proj_code = split_pootle_path(instance.pootle_path)[1]
-    if proj_code is not None:
-        cache.delete(make_method_key(Project, 'resources', proj_code))
 
 
 @receiver([post_delete, post_save])
