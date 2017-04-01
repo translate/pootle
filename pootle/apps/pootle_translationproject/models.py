@@ -309,7 +309,9 @@ class TranslationProject(models.Model, CachedTreeItem):
         """Initializes the current translation project files using
         the templates TP ones.
         """
-        template_stores = self.templates_tp.stores.live().exclude(file="")
+        template_stores = self.templates_tp.stores.live().select_related(
+            "filetype__template_extension",
+            "filetype__extension").exclude(file="")
 
         for template_store in template_stores.iterator():
             init_store_from_template(self, template_store)
