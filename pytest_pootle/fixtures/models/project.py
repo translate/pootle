@@ -68,7 +68,8 @@ def project0():
     """project0 Project"""
     from pootle_project.models import Project
 
-    return Project.objects.get(code="project0")
+    return Project.objects.select_related(
+        "source_language").get(code="project0")
 
 
 @pytest.fixture
@@ -76,7 +77,8 @@ def project1():
     """project0 Project"""
     from pootle_project.models import Project
 
-    return Project.objects.get(code="project1")
+    return Project.objects.select_related(
+        "source_language").get(code="project1")
 
 
 @pytest.fixture

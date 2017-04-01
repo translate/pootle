@@ -75,19 +75,12 @@ def tp0(language0, project0):
     """Require English Project0."""
     from pootle_translationproject.models import TranslationProject
 
-    return TranslationProject.objects.get(
+    tp0 = TranslationProject.objects.get(
         language=language0,
         project=project0)
-
-
-@pytest.fixture
-def tp1(language1, project1):
-    """Returns the tp created by language1 and project1 fixtures."""
-    from pootle_translationproject.models import TranslationProject
-
-    return TranslationProject.objects.get(
-        language=language1,
-        project=project1)
+    tp0.project = project0
+    tp0.language = language0
+    return tp0
 
 
 @pytest.fixture
