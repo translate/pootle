@@ -50,8 +50,8 @@ class InitDB(object):
 
         formats.get().initialize()
 
-    def _create_object(self, model_klass, **criteria):
-        instance, created = model_klass.objects.get_or_create(**criteria)
+    def _create_object(self, model_objects, **criteria):
+        instance, created = model_objects.get_or_create(**criteria)
         if created:
             logger.debug(
                 "Created %s: '%s'",
@@ -63,15 +63,16 @@ class InitDB(object):
         return instance, created
 
     def _create_pootle_user(self, **criteria):
-        user, created = self._create_object(get_user_model(), **criteria)
+        user, created = self._create_object(get_user_model().objects, **criteria)
         if created:
             user.set_unusable_password()
             user.save()
         return user
 
     def _create_pootle_permission_set(self, permissions, **criteria):
-        permission_set, created = self._create_object(PermissionSet,
-                                                      **criteria)
+        permission_set, created = self._create_object(
+            PermissionSet.objects,
+            **criteria)
         if created:
             permission_set.positive_permissions.set(permissions)
             permission_set.save()
@@ -118,7 +119,7 @@ class InitDB(object):
             'model': "directory",
         }
 
-        pootle_content_type = self._create_object(ContentType, **args)[0]
+        pootle_content_type = self._create_object(ContentType.objects, **args)[0]
         pootle_content_type.save()
 
         # Create the permissions.
@@ -155,7 +156,7 @@ class InitDB(object):
 
         for permission in permissions:
             criteria.update(permission)
-            self._create_object(Permission, **criteria)
+            self._create_object(Permission.objects, **criteria)
 
     def create_pootle_permission_sets(self):
         """Create the default permission set for the 'nobody' and 'default' users.
@@ -202,13 +203,13 @@ class InitDB(object):
             'nplurals': 2,
             'pluralequation': "(n != 1)",
         }
-        en = self._create_object(Language, **criteria)[0]
+        en = self._create_object(Language.objects, **criteria)[0]
         return en
 
     def create_root_directories(self):
         """Create the root Directory items."""
-        root = self._create_object(Directory, **dict(name=""))[0]
-        self._create_object(Directory, **dict(name="projects", parent=root))
+        root = self._create_object(Directory.objects, **dict(name=""))[0]
+        self._create_object(Directory.objects, **dict(name="projects", parent=root))
 
     def create_template_languages(self):
         """Create the 'templates' and English languages.
@@ -217,7 +218,7 @@ class InitDB(object):
         untranslated template files.
         """
         self._create_object(
-            Language, **dict(code="templates", fullname="Templates"))
+            Language.objects, **dict(code="templates", fullname="Templates"))
         self.require_english()
 
     def create_terminology_project(self):
@@ -233,7 +234,7 @@ class InitDB(object):
             'checkstyle': "terminology",
         }
         po = Format.objects.get(name="po")
-        terminology = self._create_object(Project, **criteria)[0]
+        terminology = self._create_object(Project.objects, **criteria)[0]
         terminology.filetypes.add(po)
 
     def create_default_projects(self):
@@ -252,7 +253,7 @@ class InitDB(object):
             'checkstyle': "standard",
             'treestyle': "auto",
         }
-        tutorial = self._create_object(Project, **criteria)[0]
+        tutorial = self._create_object(Project.objects, **criteria)[0]
         tutorial.filetypes.add(po)
 
         criteria = {
@@ -267,7 +268,7 @@ class InitDB(object):
                 'guide</a>.</div>'),
             'virtual_path': "announcements/projects/"+tutorial.code,
         }
-        self._create_object(Announcement, **criteria)
+        self._create_object(Announcement.objects, **criteria)
 
     def create_default_languages(self):
         """Create the default languages."""
@@ -283,4 +284,6 @@ class InitDB(object):
                 'pluralequation': ttk_lang.pluralequation}
             if hasattr(ttk_lang, "specialchars"):
                 criteria['specialchars'] = ttk_lang.specialchars
-            self._create_object(Language, **criteria)
+            self._create_object(
+                Language.objects.select_related("directory"),
+                **criteria)
