@@ -9,6 +9,7 @@
 from django.contrib.auth import get_user_model
 from django.utils.functional import cached_property
 
+from pootle.core.delegate import comparable_event
 from pootle.core.proxy import BaseProxy
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
@@ -326,3 +327,13 @@ class UnitLog(Log):
 
     def filter_store(self, qs, store=None, field="unit__store_id"):
         return qs
+
+
+class GroupedEvents(object):
+    def __init__(self, log):
+        self.log = log
+
+    def sorted_events(self, reverse=False):
+        for event in sorted([comparable_event.get(self.log.__class__)(x)
+                             for x in self.log.get_events()], reverse=reverse):
+            yield event
