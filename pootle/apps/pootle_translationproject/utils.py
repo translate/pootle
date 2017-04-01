@@ -185,14 +185,17 @@ class TPTool(object):
         stores = []
         dirs = []
         source_stores = source_dir.child_stores.select_related(
-            "translation_project")
+            "filetype__extension",
+            "filetype__template_extension")
         for store in source_stores:
             store.parent = source_dir
             stores.append(store.name)
             try:
                 self.update_store(
                     store,
-                    target_dir.child_stores.get(name=store.name))
+                    target_dir.child_stores.select_related(
+                        "filetype__extension",
+                        "filetype__template_extension").get(name=store.name))
             except target_dir.child_stores.model.DoesNotExist:
                 self.clone_store(store, target_dir, update_cache=update_cache)
         for subdir in source_dir.child_dirs.live():
