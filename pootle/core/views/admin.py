@@ -42,7 +42,6 @@ class PootleAddView(CreateView):
 
     @requires_permission_class("addproject")
     def dispatch(self, request, *args, **kwargs):
-
         return super(PootleAddView, self).dispatch(request, *args, **kwargs)
 
 

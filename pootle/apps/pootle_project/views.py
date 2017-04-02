@@ -409,11 +409,20 @@ class ProjectAddView(PootleAddView):
                     kwargs=url_kwargs)
             )
 
+    def get_context_data(self, **kwargs_):
+        context_data = super(ProjectAddView, self).get_context_data(**kwargs_)
+        context_data["page_project_title"] = _("Create project")
+        context_data["page_project_description"] = _("Here you can create a new project.")
+        context_data["page_project_validation_form"] = _("Create project")
+        return context_data
+
 
 class ProjectEditView(PootleEditView):
 
     model = Project
     required_permission = "editproject"
+    slug_field = 'code'
+    slug_url_kwarg = 'project_code'
     template_name = 'projects/admin/project.html'
     template_name_suffix = "_project_edition"
     fields = [
@@ -422,8 +431,7 @@ class ProjectEditView(PootleEditView):
         "filetypes", 
         "treestyle", 
         "source_language", 
-        "ignoredfiles", 
-        "directory"
+        "ignoredfiles"
     ]
 
     msg_form_error = _(
@@ -434,10 +442,6 @@ class ProjectEditView(PootleEditView):
     def permission_context(self):
         return self.get_object().directory
 
-    @cached_property
-    def get_object(self, queryset=None):
-        instance = Project.objects.get(code=self.kwargs.get('project_code',''))
-        return instance
 
     @property
     def url_kwargs(self):
@@ -452,3 +456,10 @@ class ProjectEditView(PootleEditView):
             reverse('pootle-project-browse',
                     kwargs=self.url_kwargs)
             )
+
+    def get_context_data(self, **kwargs_):
+        context_data = super(ProjectEditView, self).get_context_data(**kwargs_)
+        context_data["page_project_title"] = _("Edit project")
+        context_data["page_project_description"] = _("Here you can edit a project.")
+        context_data["page_project_validation_form"] = _("Edit project")
+        return context_data
