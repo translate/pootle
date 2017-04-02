@@ -13,16 +13,6 @@
   {% trans "Translate" %}
 </option>
 {% endif %}
-{% if user.is_superuser or request.permissions.addproject %}
-<option disabled></option>
-<option
-   {% if page == 'pootle-project-admin-add' %}selected="selected"{% endif %}
-   value="admin-add"
-   class="admin"
-   data-href="{% url 'pootle-project-admin-add' %}">
-  {% trans "Add Project" %}
-</option>
-{% endif %}
 {% if user.is_superuser or request.permissions.administrate %}
 <option disabled></option>
   {% if settings.POOTLE_PROJECTADMIN_CAN_EDITPROJECTS %}
@@ -31,7 +21,7 @@
      value="admin-edit"
      class="admin"
      data-href="{% url 'pootle-project-admin-edit' project.code %}">
-    {% trans "Edit Project" %}
+    {% trans "Edit" %}
   </option>
   {% endif %}
 <option
