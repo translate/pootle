@@ -21,41 +21,19 @@ class FormatRegistry(object):
             self.register(filetype, **info)
 
     def register(self, name, extension, title=None, template_extension=None):
-        update = False
         template_extension = template_extension or extension
-        ext, created = FileExtension.objects.get_or_create(
-            name=extension)
-        if template_extension != extension:
-            template_ext, created = FileExtension.objects.get_or_create(
-                name=template_extension)
-        else:
-            template_ext = ext
-        try:
-            filetype = self.format_qs.get(name=name)
-        except Format.DoesNotExist:
-            filetype = None
-        if not filetype:
-            filetype = self.format_qs.create(
-                name=name, extension=ext, template_extension=template_ext)
-        if filetype.extension != ext:
-            filetype.extension = ext
-            update = True
-        if not filetype.title:
-            filetype.title = title or name.capitalize()
-            update = True
-        elif title and filetype.title != title:
-            filetype.title = title
-            update = True
-        extension = filetype.template_extension.name
-        if template_extension and extension != template_extension:
-            template_ext, created = FileExtension.objects.get_or_create(
-                name=template_extension)
-            filetype.extension = template_ext
-            update = True
-        if update:
-            filetype.save()
-        if update or created:
-            self.clear()
+        exts = {}
+        for ext in set([extension, template_extension]):
+            exts[ext], __ = FileExtension.objects.get_or_create(name=ext)
+        kwargs = dict(
+            name=name,
+            defaults=dict(
+                extension=exts[extension],
+                template_extension=exts[template_extension]))
+        if title:
+            kwargs["defaults"]["title"] = title
+        filetype, created = self.format_qs.update_or_create(**kwargs)
+        self.clear()
         return filetype
 
     def clear(self):
