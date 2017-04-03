@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-03-16 18:46+0000\n"
+"PO-Revision-Date: 2017-04-01 11:23+0000\n"
 "Last-Translator: belkacem77 <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1489689973.000000\n"
+"X-POOTLE-MTIME: 1491045829.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -539,7 +539,7 @@ msgstr "Aḥennek"
 
 #: apps/pootle_misc/checks.py:37
 msgid "Functional"
-msgstr ""
+msgstr "Amesγan"
 
 #: apps/pootle_misc/checks.py:38
 msgid "Extraction"
@@ -551,7 +551,7 @@ msgstr "Wayeḍ"
 
 #: apps/pootle_misc/checks.py:43
 msgid "Accelerators"
-msgstr ""
+msgstr "Inegzumen"
 
 #: apps/pootle_misc/checks.py:44
 msgid "Acronyms"
@@ -567,7 +567,7 @@ msgstr "Tacciwin"
 
 #: apps/pootle_misc/checks.py:47
 msgid "Compendium conflict"
-msgstr ""
+msgstr "Tilla di tkatut n umawal"
 
 #: apps/pootle_misc/checks.py:48
 msgid "Translator credits"
@@ -1570,6 +1570,8 @@ msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
+"Sbadu `POOTLE_CANONICAL_URL` ar wazal ilaqen i usmel-ik neɣ eǧǧ-it d ilem ma "
+"yella tseqdaceḍ `django.contrib.sites`."
 
 #: checks.py:505
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
@@ -1578,7 +1580,7 @@ msgstr "Aɣewwaṛ POOTLE_FS_WORKING_PATH setting ur ittuwennez ara."
 #: checks.py:509
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr ""
+msgstr "Abrid ('%s') i d-yemmal POOTLE_FS_WORKING_PATH ulac-it."
 
 #: checks.py:511
 msgid ""
@@ -1591,28 +1593,29 @@ msgstr ""
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
+"Abrid i d-yemmal POOTLE_FS_WORKING_PATH ur izmir ara ad yeru deg-s Pootle."
 
 #: checks.py:519
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
-msgstr ""
+msgstr "Rnu tasiregt n tira ar `POOTLE_FS_WORKING_PATH` neɣ snefli aɣewwaṛ."
 
 #: checks.py:538
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "MySQL isra iɣewwaṛen n izḍi usrig."
 
 #: checks.py:558
 msgid "Pootle does not yet support Python 3."
-msgstr ""
+msgstr "Pootle ur isefrak ara yakan Python 3."
 
 #: checks.py:559 checks.py:565
 msgid "Use a Python 2.7 virtualenv."
-msgstr ""
+msgstr "Seqdec Python 2.7 virtualenv."
 
 #: checks.py:564
 msgid "Pootle no longer supports Python versions older than 2.7"
-msgstr ""
+msgstr "Pootle ur isefrak ara tura ileqman Python daw n 2.7"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1656,7 +1659,7 @@ msgstr "Uɣal ar ukaram asaraw"
 
 #: core/decorators.py:140 core/views/decorators.py:70
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "Ulac deqs n izerfan akken ad tkecmeḍ ar usebter-agi."
 
 #: core/decorators.py:153 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
@@ -1664,7 +1667,7 @@ msgstr "Ur ɣur-k ara izerfan n tnedbelt Pootle."
 
 #: core/forms.py:117
 msgid "Time to answer has expired"
-msgstr ""
+msgstr "Tanzagt n tririt tɛedda"
 
 #: core/forms.py:136
 msgid "Enter a number"
@@ -2021,6 +2024,8 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"Pootle FS d armitan, a wi yufan ad t-iseqdec, acu kan yesra aswir n tmusni "
+"leqqayen deg usideg, Python akked Pootle ma yella yella wayen yeḍran."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
@@ -2119,6 +2124,9 @@ msgid ""
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages."
 msgstr ""
+"Seqdec <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;Link text&lt;/"
+"a&gt;</code> tangalt akken ad tmuddeḍ iseɣwan gar isebtar usbiḍen. Iseɣwan-"
+"agi ad ttwarun s iberdan iččuranen neɣ ummiden ar isebtar usbiḍen."
 
 #: templates/admin/staticpages/_form.html:44
 msgid ""
@@ -2161,19 +2169,19 @@ msgstr "Rnu asebter usḍif"
 
 #: templates/admin/staticpages/page_list.html:14
 msgid "Regular Pages"
-msgstr ""
+msgstr "Isebtar imagnuten"
 
 #: templates/admin/staticpages/page_list.html:18
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Rnu asebter amagnu"
 
 #: templates/admin/staticpages/page_list.html:21
 msgid "Announcements"
-msgstr ""
+msgstr "Ilɣuten"
 
 #: templates/admin/staticpages/page_list.html:25
 msgid "Add Announcement"
-msgstr ""
+msgstr "Rnu alɣu"
 
 #: templates/browser/_actions.html:8
 msgid "Fix critical errors"
@@ -2185,11 +2193,11 @@ msgstr ""
 
 #: templates/browser/_actions.html:23
 msgid "Review suggestions"
-msgstr ""
+msgstr "Wali isumar"
 
 #: templates/browser/_actions.html:38
 msgid "Continue translation"
-msgstr ""
+msgstr "Kemmel tasuqilt"
 
 #: templates/browser/_actions.html:53
 msgid "View all"
@@ -2226,7 +2234,7 @@ msgstr ""
 
 #: templates/browser/index.html:20
 msgid "Expand details"
-msgstr ""
+msgstr "Sken-d talqayt"
 
 #: templates/browser/index.html:27
 msgid "Translation Statistics"
@@ -2337,7 +2345,7 @@ msgstr "Tuzna inu"
 #. in time but have been overwritten by other users.
 #: templates/editor/_filters.html:17
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "Isumar-iw yettwasfeɛjen"
 
 #: templates/editor/_filters.html:18
 msgid "Checks"
@@ -2583,12 +2591,12 @@ msgstr "Awennit aneggaru yettwakksen"
 #: templates/editor/units/xhr_timeline.html:44
 #, python-format
 msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr ""
+msgstr "Sens asenqed n  <a href=\"%(check_url)s\">%(check_name)s</a>"
 
 #: templates/editor/units/xhr_timeline.html:48
 #, python-format
 msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr ""
+msgstr "Rmed asenqed n <a href=\"%(check_url)s\">%(check_name)s</a>"
 
 #: templates/editor/units/xhr_timeline.html:60
 msgid "Unit created"
@@ -2727,7 +2735,7 @@ msgstr "Kkes ayen yettwafernen"
 
 #: templates/languages/admin/language_team.html:103
 msgid "Unit and suggestions admin"
-msgstr ""
+msgstr "Tanendbelt n uferdis akked isumar"
 
 #: templates/languages/admin/language_team.html:118
 msgid "Pending suggestions:"
