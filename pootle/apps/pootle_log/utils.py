@@ -159,7 +159,7 @@ class Log(object):
             field="unit__creation_time")
         return created_units
 
-    def get_created_units(self, **kwargs):
+    def get_created_unit_events(self, **kwargs):
         for created_unit in self.filtered_created_units(**kwargs):
             yield self.event(
                 created_unit.unit,
@@ -168,7 +168,7 @@ class Log(object):
                 "unit_created",
                 created_unit)
 
-    def get_submissions(self, **kwargs):
+    def get_submission_events(self, **kwargs):
         for submission in self.filtered_submissions(**kwargs):
             event_name = "state_changed"
             if submission.field == SubmissionFields.CHECK:
@@ -189,7 +189,7 @@ class Log(object):
                 event_name,
                 submission)
 
-    def get_suggestions(self, **kwargs):
+    def get_suggestion_events(self, **kwargs):
         users = kwargs.get("users")
         for suggestion in self.filtered_suggestions(**kwargs):
             add_event = (
@@ -227,11 +227,11 @@ class Log(object):
                     suggestion)
 
     def get_events(self, **kwargs):
-        for event in self.get_created_units(**kwargs):
+        for event in self.get_created_unit_events(**kwargs):
             yield event
-        for event in self.get_suggestions(**kwargs):
+        for event in self.get_suggestion_events(**kwargs):
             yield event
-        for event in self.get_submissions(**kwargs):
+        for event in self.get_submission_events(**kwargs):
             yield event
 
 

@@ -396,14 +396,14 @@ def test_log_filtered_created_units(system, tp0, store0):
 def test_log_get_created_units(system, store0):
     created_units = UnitSource.objects.all()
     created_unit_log = Log()
-    created = created_unit_log.get_created_units(
+    created = created_unit_log.get_created_unit_events(
         include_meta=True)
     assert type(created).__name__ == "generator"
     assert len(list(created)) == created_units.count()
     expected = created_units.filter(
         created_by=system).filter(
             unit__store=store0).in_bulk()
-    result = created_unit_log.get_created_units(
+    result = created_unit_log.get_created_unit_events(
         store=store0.pk, users=[system])
     for event in result:
         created_unit = expected[event.value.pk]
@@ -419,7 +419,7 @@ def test_log_get_created_units(system, store0):
 def test_log_get_submissions(member, store0):
     submissions = Submission.objects.all()
     submission_log = Log()
-    sub_events = submission_log.get_submissions()
+    sub_events = submission_log.get_submission_events()
     unit0 = store0.units[0]
     unit0.source = "new source"
     unit0.save(user=member)
@@ -437,7 +437,7 @@ def test_log_get_submissions(member, store0):
     expected = submissions.filter(
         submitter=member).filter(
             unit__store=store0).in_bulk()
-    result = submission_log.get_submissions(
+    result = submission_log.get_submission_events(
         store=store0.pk, users=[member])
     for event in result:
         sub = expected[event.value.pk]
@@ -466,7 +466,7 @@ def test_log_get_suggestions(member, store0):
     suggestions = Suggestion.objects.all()
     sugg_start, sugg_end = _get_mid_times(suggestions)
     sugg_log = Log()
-    sugg_events = sugg_log.get_suggestions()
+    sugg_events = sugg_log.get_suggestion_events()
     assert type(sugg_events).__name__ == "generator"
     user_time_suggestions = (
         (sugg_log.filter_users(
@@ -530,7 +530,7 @@ def test_log_get_suggestions(member, store0):
                     suggestion.review_time,
                     event_name,
                     suggestion))
-    result = sugg_log.get_suggestions(
+    result = sugg_log.get_suggestion_events(
         start=sugg_start, end=sugg_end, users=[member.id])
     for event in result:
         assert isinstance(event, sugg_log.event)
@@ -558,9 +558,9 @@ def test_log_get_events(site_users, store0):
         event_log.get_events(**kwargs),
         key=(lambda ev: (ev.timestamp, ev.unit.pk)))
     expected = sorted(
-        list(event_log.get_created_units(**kwargs))
-        + list(event_log.get_suggestions(**kwargs))
-        + list(event_log.get_submissions(**kwargs)),
+        list(event_log.get_created_unit_events(**kwargs))
+        + list(event_log.get_suggestion_events(**kwargs))
+        + list(event_log.get_submission_events(**kwargs)),
         key=(lambda ev: (ev.timestamp, ev.unit.pk)))
     assert (
         [(x.timestamp, x.unit, x.action)
