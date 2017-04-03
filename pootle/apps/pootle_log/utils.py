@@ -28,6 +28,7 @@ class LogEvent(object):
 
 
 class Log(object):
+    include_meta = False
 
     @property
     def created_units(self):
@@ -80,14 +81,14 @@ class Log(object):
         return qs
 
     def filter_users(self, qs, users=None,
-                     field="submitter_id", include_meta=False):
+                     field="submitter_id", include_meta=None):
         if not users:
-            meta_users = get_user_model().objects.META_USERS
-            return (
-                qs.exclude(
-                    **{"%s__username__in" % field: meta_users})
-                if not include_meta
-                else qs)
+            if include_meta is None and self.include_meta or include_meta:
+                return qs
+            else:
+                meta_users = get_user_model().objects.META_USERS
+                return qs.exclude(**{"%s__username__in" % field: meta_users})
+
         return (
             qs.filter(**{field: list(users).pop()})
             if len(users) == 1
@@ -236,6 +237,7 @@ class Log(object):
 
 
 class StoreLog(Log):
+    include_meta = True
 
     def __init__(self, store):
         self.store = store
@@ -260,6 +262,7 @@ class StoreLog(Log):
 
 
 class UnitLog(Log):
+    include_meta = True
 
     def __init__(self, unit):
         self.unit = unit
