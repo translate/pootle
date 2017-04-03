@@ -8,13 +8,18 @@
 
 import pytest
 
-from django.contrib.auth import get_user_model
+from datetime import timedelta
 
-from pootle.core.delegate import lifecycle, log, review
-from pootle_log.utils import Log, LogEvent, StoreLog, UnitLog
+from django.contrib.auth import get_user_model
+from django.utils import timezone
+
+from pytest_pootle.utils import create_store
+
+from pootle.core.delegate import comparable_event, lifecycle, log, review
+from pootle_log.utils import ComparableLogEvent, Log, LogEvent, StoreLog, UnitLog
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
-from pootle_store.constants import TRANSLATED
+from pootle_store.constants import TRANSLATED, UNTRANSLATED
 from pootle_store.models import Suggestion, UnitSource
 
 
@@ -645,3 +650,83 @@ def test_log_unit(store0):
     assert (
         unit_log.filter_store(subs, store=unit.store.id)
         == subs)
+
+
+@pytest.mark.django_db
+def test_comparable_log(member, store0, store_po):
+    assert comparable_event.get(Log) == ComparableLogEvent
+
+    start = timezone.now().replace(microsecond=0)
+    unit = store0.units.filter(state=TRANSLATED).first()
+    unit.target += 'UPDATED IN TEST'
+    unit.save(user=member)
+    unit = store0.units.filter(state=TRANSLATED).first()
+    unit.target += 'UPDATED IN TEST AGAIN'
+    unit.save(user=member)
+    unit_log = log.get(unit.__class__)(unit)
+    event1, event2 = [ComparableLogEvent(x)
+                      for x in
+                      unit_log.get_events(users=[member.id], start=start)]
+    assert (event1 < event2) == (event1.revision < event2.revision)
+    assert (event2 < event1) == (event2.revision < event1.revision)
+
+    unit = store0.units.filter(state=UNTRANSLATED).first()
+    sugg1, created_ = review.get(Suggestion)().add(
+        unit,
+        unit.source_f + 'SUGGESTION',
+        user=member)
+    sugg2, created_ = review.get(Suggestion)().add(
+        unit,
+        unit.source_f + 'SUGGESTION AGAIN',
+        user=member)
+    Suggestion.objects.filter(id=sugg2.id).update(creation_time=sugg1.creation_time)
+    unit_log = log.get(unit.__class__)(unit)
+    event1, event2 = [ComparableLogEvent(x)
+                      for x in
+                      unit_log.get_events(users=[member.id], start=start)]
+    assert (event1 < event2) == (event1.value.pk < event2.value.pk)
+    assert (event2 < event1) == (event2.value.pk < event1.value.pk)
+
+    Suggestion.objects.filter(id=sugg2.id).update(creation_time=None)
+    sugg2 = Suggestion.objects.get(id=sugg2.id)
+    event1 = [ComparableLogEvent(x)
+              for x in
+              unit_log.get_events(users=[member.id], start=start)][0]
+    event2 = ComparableLogEvent(unit_log.event(sugg2.unit,
+                                               sugg2.user,
+                                               sugg2.creation_time,
+                                               "suggestion_created",
+                                               sugg2))
+    assert event2 < event1
+    assert not (event1 < event2)
+
+    units = [
+        ('Unit 0 Source', 'Unit 0 Target', False),
+        ('Unit 1 Source', '', False),
+    ]
+    store_po.update(create_store(units=units))
+    unit1, unit2 = store_po.units
+    unit2.__class__.objects.filter(id=unit2.id).update(
+        creation_time=unit1.creation_time)
+    store_log = log.get(store_po.__class__)(store_po)
+    event1, event2 = [ComparableLogEvent(x)
+                      for x in
+                      store_log.get_events()]
+    assert (event1 < event2) == (event1.unit.id < event2.unit.id)
+    assert (event2 < event1) == (event2.unit.id < event1.unit.id)
+
+    creation_time = unit1.creation_time + timedelta(seconds=1)
+    unit2.__class__.objects.filter(id=unit2.id).update(creation_time=creation_time)
+    event1, event2 = [ComparableLogEvent(x)
+                      for x in
+                      store_log.get_events()]
+    assert (event1 < event2) == (event1.timestamp < event2.timestamp)
+    assert (event2 < event1) == (event2.timestamp < event1.timestamp)
+
+    unit = store_po.units.filter(state=UNTRANSLATED)[0]
+    unit.target = 'Unit 1 Target'
+    unit.save()
+    unit_log = log.get(unit.__class__)(unit)
+    event1, event2 = [ComparableLogEvent(x)
+                      for x in unit_log.get_submission_events()]
+    assert not (event1 < event2) and not (event2 < event1)
