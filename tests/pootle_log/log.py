@@ -14,6 +14,7 @@ from pootle.core.delegate import lifecycle, log, review
 from pootle_log.utils import Log, LogEvent, StoreLog, UnitLog
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
+from pootle_store.constants import TRANSLATED
 from pootle_store.models import Suggestion, UnitSource
 
 
@@ -608,7 +609,7 @@ def test_log_store(store0):
 
 @pytest.mark.django_db
 def test_log_unit(store0):
-    unit = store0.units.first()
+    unit = store0.units.filter(state=TRANSLATED).first()
     unit_log = log.get(unit.__class__)(unit)
     assert isinstance(unit_log, UnitLog)
     assert unit_log.unit == unit
@@ -641,5 +642,5 @@ def test_log_unit(store0):
             "unit_id", flat=True))
     subs = unit_log.submissions
     assert (
-        unit_log.filter_store(subs, store=unit.id)
+        unit_log.filter_store(subs, store=unit.store.id)
         == subs)
