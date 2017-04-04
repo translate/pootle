@@ -133,7 +133,6 @@
               {% if user.is_superuser or request.permissions.addproject %}
               <li><a href="{% url 'pootle-project-admin-add' %}">{% trans "Add Project" %}</a></li>
               {% endif %}
-
               {% if user.is_superuser %}
               <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans 'Admin' %}</a></li>
               {% endif %}
