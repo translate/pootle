@@ -459,6 +459,7 @@ def test_log_get_submissions(member, store0):
         assert event.timestamp == sub.creation_time
         assert event.action == event_name
         assert event.value == sub
+        assert event.revision == sub.revision
 
 
 @pytest.mark.django_db

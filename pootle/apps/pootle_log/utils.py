@@ -188,7 +188,8 @@ class Log(object):
                 submission.submitter,
                 submission.creation_time,
                 event_name,
-                submission)
+                submission,
+                revision=submission.revision)
 
     def get_suggestion_events(self, **kwargs):
         users = kwargs.get("users")
