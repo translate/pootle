@@ -43,7 +43,7 @@ class Migration(SchemaMigration):
 
             # Update it with profile.user_id
             db.execute("""UPDATE %(t)s SET user_id =
-                          (select pootle_app_pootleprofile.user_id FROM pootle_app_pootleprofile
+                          (SELECT pootle_app_pootleprofile.user_id FROM pootle_app_pootleprofile
                            WHERE pootle_app_pootleprofile.id = %(t)s.pootleprofile_id)
                        """ % {"t": old_m2m_table_name})
 
