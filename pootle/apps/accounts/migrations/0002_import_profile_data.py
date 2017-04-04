@@ -19,10 +19,16 @@ class Migration(SchemaMigration):
                       keep_default=False)
 
         if "pootle_app_pootleprofile" in connection.introspection.table_names():
+            # There might be users with no profile, so set a default.
+            print("Set default accounts_user.unit_rows")
+            db.execute("UPDATE accounts_user SET unit_rows = 9")
+
+            # Pick the actual value from the profile, if profile exists.
             print("Importing old profile data")
             db.execute("""UPDATE accounts_user SET unit_rows =
                           (SELECT unit_rows FROM pootle_app_pootleprofile
                            WHERE pootle_app_pootleprofile.user_id = accounts_user.id)
+                          WHERE id IN (SELECT user_id FROM pootle_app_pootleprofile)
                        """)
 
         # Adding M2M table for field alt_src_langs on 'User'
