@@ -15,8 +15,10 @@ from django.utils import timezone
 
 from pytest_pootle.utils import create_store
 
-from pootle.core.delegate import comparable_event, lifecycle, log, review
-from pootle_log.utils import ComparableLogEvent, Log, LogEvent, StoreLog, UnitLog
+from pootle.core.delegate import (comparable_event, grouped_events,
+                                  lifecycle, log, review)
+from pootle_log.utils import (ComparableLogEvent, GroupedEvents, Log,
+                              LogEvent, StoreLog, UnitLog)
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 from pootle_store.constants import TRANSLATED, UNTRANSLATED
@@ -730,3 +732,32 @@ def test_comparable_log(member, store0, store_po):
     event1, event2 = [ComparableLogEvent(x)
                       for x in unit_log.get_submission_events()]
     assert not (event1 < event2) and not (event2 < event1)
+
+
+@pytest.mark.django_db
+def test_grouped_events(store_po):
+    assert grouped_events.get(Log) == GroupedEvents
+
+    units = [
+        ('Unit 0 Source', 'Unit 0 Target', False),
+        ('Unit 1 Source', '', False),
+        ('Unit 2 Source', 'Unit 2 Fuzzy Target', True),
+    ]
+    store_po.update(create_store(units=units))
+    units = [
+        ('Unit 0 Source', 'Unit 0 Target', False),
+        ('Unit 1 Source', 'Unit 1 Target', False),
+        ('Unit 2 Source', 'Unit 2 Target', False),
+    ]
+    store_po.update(create_store(units=units))
+    store_log = log.get(store_po.__class__)(store_po)
+    expected = [
+        (x.unit, x.user, x.timestamp, x.action, x.value, x.old_value, x.revision)
+        for x in sorted([
+            ComparableLogEvent(ev)
+            for ev in store_log.get_events()])]
+    result = [
+        (x.unit, x.user, x.timestamp, x.action, x.value, x.old_value, x.revision)
+        for x in GroupedEvents(store_log).sorted_events()]
+
+    assert expected == result
