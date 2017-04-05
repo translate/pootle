@@ -14,9 +14,10 @@ from django_rq.queues import get_queue
 
 from pootle.core.utils.db import useable_connection
 from pootle.i18n.gettext import ugettext as _
+from pootle_app.forms import ProjectForm
 from pootle_language.models import Language
 from pootle_misc.forms import LiberalModelChoiceField
-from pootle_project.models import Project
+from pootle_project.models import Project, PROJECT_CHECKERS
 from pootle_translationproject.models import TranslationProject
 from pootle_translationproject.signals import (tp_init_failed_async,
                                                tp_inited_async)
@@ -97,3 +98,10 @@ class TranslationProjectForm(forms.ModelForm):
                           response_url)
         connection.on_commit(_enqueue_job)
         return tp
+
+
+class CreationProjectForm(ProjectForm):
+    checkstyle = forms.ChoiceField(choices=[
+            (checker, checker)
+            for checker
+            in sorted(PROJECT_CHECKERS.keys())])

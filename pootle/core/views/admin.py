@@ -10,9 +10,9 @@ from django.urls import reverse
 from django.views.generic import FormView, TemplateView
 from django.views.generic.edit import CreateView, UpdateView
 
+from pootle_app.models.directory import Directory
+from pootle.core.views.decorators import set_permissions, requires_permission_class
 from pootle.core.views.mixins import SuperuserRequiredMixin
-
-from pootle.core.views.decorators import requires_permission_class
 
 
 class PootleFormView(FormView):
@@ -39,14 +39,24 @@ class PootleFormView(FormView):
 
 
 class PootleAddView(CreateView):
+    
+    @property
+    def permission_context(self):
+        return Directory.objects.root
 
+    @set_permissions
     @requires_permission_class("addproject")
     def dispatch(self, request, *args, **kwargs):
         return super(PootleAddView, self).dispatch(request, *args, **kwargs)
 
 
 class PootleEditView(UpdateView):
+    
+    @property
+    def permission_context(self):
+        return self.get_object().directory
 
+    @set_permissions
     @requires_permission_class("editproject")
     def dispatch(self, request, *args, **kwargs):
         return super(PootleEditView, self).dispatch(request, *args, **kwargs)

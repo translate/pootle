@@ -27,7 +27,7 @@ from pootle.core.views import (
     PootleAddView, PootleEditView)
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
-from pootle_app.models.permissions import PermissionSet
+from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_misc.util import cmp_by_last_activity
@@ -36,8 +36,8 @@ from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
 from .apps import PootleProjectConfig
-from .forms import TranslationProjectFormSet
-from .models import Project, ProjectResource, ProjectSet
+from .forms import TranslationProjectFormSet, CreationProjectForm
+from .models import PROJECT_CHECKERS, Project, ProjectResource, ProjectSet
 
 
 class ProjectMixin(object):
@@ -370,15 +370,16 @@ class ProjectAddView(PootleAddView):
     required_permission = "addproject"
     template_name = 'projects/admin/project.html'
     template_name_suffix = "_project_creation"
-    fields = [
-        "code", 
-        "fullname", 
-        "checkstyle", 
-        "filetypes", 
-        "treestyle", 
-        "source_language", 
-        "ignoredfiles"
-    ]
+    form_class = CreationProjectForm
+    # fields = [
+    #     "code", 
+    #     "fullname", 
+    #     "checkstyle", 
+    #     "filetypes", 
+    #     "treestyle", 
+    #     "source_language", 
+    #     "ignoredfiles"
+    # ]
 
     msg_form_error = _(
         "There are errors in the form. Please review "
@@ -390,6 +391,7 @@ class ProjectAddView(PootleAddView):
             user=self.request.user, 
             directory=self.object.directory
         )
+        permissionset.positive_permissions.add(get_pootle_permission("administrate"))
         # TODO : Find the solution for this.
         # permissionset.positive_permissions.add("administrate")
         
@@ -425,14 +427,15 @@ class ProjectEditView(PootleEditView):
     slug_url_kwarg = 'project_code'
     template_name = 'projects/admin/project.html'
     template_name_suffix = "_project_edition"
-    fields = [
-        "fullname", 
-        "checkstyle", 
-        "filetypes", 
-        "treestyle", 
-        "source_language", 
-        "ignoredfiles"
-    ]
+    form_class = CreationProjectForm
+    # fields = [
+    #     "fullname", 
+    #     "checkstyle", 
+    #     "filetypes", 
+    #     "treestyle", 
+    #     "source_language", 
+    #     "ignoredfiles"
+    # ]
 
     msg_form_error = _(
         "There are errors in the form. Please review "
