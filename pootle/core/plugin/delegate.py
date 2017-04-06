@@ -109,11 +109,19 @@ class Getter(Signal):
 
 
 def getter(signal, **kwargs):
+    def _connect(s, func, **kwargs):
+        senders = kwargs.pop('sender', None)
+        if isinstance(senders, (list, tuple)):
+            for sender in senders:
+                s.connect(func, sender=sender, **kwargs)
+        else:
+            s.connect(func, sender=senders, **kwargs)
+
     def _decorator(func):
         if isinstance(signal, (list, tuple)):
             for s in signal:
-                s.connect(func, **kwargs)
+                _connect(s, func, **kwargs)
         else:
-            signal.connect(func, **kwargs)
+            _connect(signal, func, **kwargs)
         return func
     return _decorator

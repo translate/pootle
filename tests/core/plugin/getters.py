@@ -88,6 +88,17 @@ def test_getter_handle_multi():
     assert get_test_2.get(str, foo="test 2") == "test 2"
 
 
+def test_getter_multi_sender():
+    get_test = Getter(providing_args=["foo"])
+
+    @getter(get_test, sender=(str, int))
+    def getter_for_get_test(sender, *args, **kwargs):
+        return kwargs["foo"]
+
+    assert get_test.get(str, foo="test") == "test"
+    assert get_test.get(int, foo="test") == "test"
+
+
 def test_getter_handle_order():
 
     get_test = Getter(providing_args=["foo"])
