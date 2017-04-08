@@ -20,6 +20,7 @@ from django.db.models import F
 from django.template.defaultfilters import truncatechars
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.encoding import force_bytes
 from django.utils.functional import cached_property
 from django.utils.http import urlquote
 
@@ -144,7 +145,7 @@ class Suggestion(AbstractSuggestion):
             string = self.target_f + SEPARATOR + string
         else:
             string = self.target_f
-        self.target_hash = md5(string.encode("utf-8")).hexdigest()
+        self.target_hash = md5(force_bytes(string)).hexdigest()
 
 
 # # # # # # # # Unit # # # # # # # # # #
@@ -493,7 +494,7 @@ class Unit(AbstractUnit):
         # this is problematic - it compares getid, but then sets getid *or* source
         if self.unitid != unit.getid():
             self.unitid = unicode(unit.getid()) or unicode(unit.source)
-            self.unitid_hash = md5(self.unitid.encode("utf-8")).hexdigest()
+            self.unitid_hash = md5(force_bytes(self.unitid)).hexdigest()
             changed = True
 
         return changed
@@ -614,7 +615,8 @@ class Unit(AbstractUnit):
             obj.update({
                 'username': self.change.submitted_by.username,
                 'fullname': self.change.submitted_by.full_name,
-                'email_md5': md5(self.change.submitted_by.email).hexdigest(),
+                'email_md5': md5(
+                    force_bytes(self.change.submitted_by.email)).hexdigest(),
             })
 
         get_tm_broker().update(self.store.translation_project.language.code,
@@ -653,7 +655,7 @@ class Unit(AbstractUnit):
 
     def setid(self, value):
         self.unitid = value
-        self.unitid_hash = md5(self.unitid.encode("utf-8")).hexdigest()
+        self.unitid_hash = md5(force_bytes(self.unitid)).hexdigest()
 
     def getlocations(self):
         if self.locations is None:
@@ -1103,7 +1105,7 @@ class Store(AbstractStore):
             return super(Store, self).findunits(source)
 
         # find using hash instead of index
-        source_hash = md5(source.encode("utf-8")).hexdigest()
+        source_hash = md5(force_bytes(source)).hexdigest()
         units = self.unit_set.filter(
             unit_source__source_hash=source_hash)
         if obsolete:
@@ -1119,7 +1121,7 @@ class Store(AbstractStore):
             return units[0]
 
     def findid(self, id):
-        unitid_hash = md5(id.encode("utf-8")).hexdigest()
+        unitid_hash = md5(force_bytes(id)).hexdigest()
         try:
             return self.unit_set.get(unitid_hash=unitid_hash)
         except Unit.DoesNotExist:

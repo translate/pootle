@@ -16,6 +16,7 @@ from django.contrib.auth import get_user_model
 from django.db.models import Q
 from django.template import loader
 from django.urls import reverse
+from django.utils.encoding import force_bytes
 
 from pootle.core.delegate import review
 from pootle_comment.forms import UnsecuredCommentForm
@@ -45,7 +46,7 @@ class ProxyTimelineUser(object):
 
     @property
     def email_hash(self):
-        return md5(self.submission['submitter__email']).hexdigest()
+        return md5(force_bytes(self.submission['submitter__email'])).hexdigest()
 
     @property
     def display_name(self):

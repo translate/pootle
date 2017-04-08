@@ -18,6 +18,7 @@ from translate.storage import factory
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.utils import dateparse
+from django.utils.encoding import force_bytes
 
 from pootle.core.utils import dateformat
 from pootle_store.models import Unit
@@ -92,7 +93,8 @@ class DBParser(BaseParser):
 
         email_md5 = None
         if unit['submitted_by__email']:
-            email_md5 = md5(unit['change__submitted_by__email']).hexdigest()
+            email_md5 = md5(
+                force_bytes(unit['change__submitted_by__email'])).hexdigest()
 
         iso_submitted_on = unit.get('change__submitted_on', None)
 

@@ -9,6 +9,7 @@
 from hashlib import md5
 
 from django.urls import reverse
+from django.utils.encoding import force_bytes
 from django.utils.html import format_html
 
 
@@ -35,7 +36,7 @@ class DisplayUser(object):
 
     @property
     def email_hash(self):
-        return md5(self.email).hexdigest()
+        return md5(force_bytes(self.email)).hexdigest()
 
     def get_absolute_url(self):
         return reverse(

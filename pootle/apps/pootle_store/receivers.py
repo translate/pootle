@@ -10,6 +10,7 @@ from hashlib import md5
 
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
+from django.utils.encoding import force_bytes
 
 from pootle.core.delegate import lifecycle, uniqueid
 from pootle.core.models import Revision
@@ -48,10 +49,8 @@ def handle_unit_source_pre_save(**kwargs):
     created = not unit_source.pk
     unit = unit_source.unit
     if created or unit.source_updated:
-        unit_source.source_hash = md5(
-            unit.source_f.encode("utf-8")).hexdigest()
-        unit_source.source_length = len(
-            unit.source_f)
+        unit_source.source_hash = md5(force_bytes(unit.source_f)).hexdigest()
+        unit_source.source_length = len(unit.source_f)
         unit_source.source_wordcount = max(
             1, (unit.counter.count_words(unit.source_f.strings) or 0))
 
