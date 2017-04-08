@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.db import models
+from django.utils import six
 
 from pootle_store.models import Unit
 
@@ -22,6 +23,7 @@ class UnitStem(models.Model):
     unit = models.ForeignKey(Unit)
 
 
+@six.python_2_unicode_compatible
 class Stem(AbstractStem):
 
     units = models.ManyToManyField(
@@ -32,7 +34,7 @@ class Stem(AbstractStem):
     class Meta(AbstractStem.Meta):
         db_table = "pootle_word_stem"
 
-    def __unicode__(self):
+    def __str__(self):
         return (
             "\"%s\", units: %s"
             % (self.root,

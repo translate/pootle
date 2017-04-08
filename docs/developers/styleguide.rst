@@ -81,7 +81,6 @@ Model's inner classes and methods should keep the following order:
 - ``def natural_key()`` (Because it is tightly related to model fields)
 - Properties
 - Any method decorated with ``@classmethod``
-- ``def __unicode__()``
 - ``def __str__()``
 - Any other method starting with ``__`` (for example ``__init__()``)
 - ``def save()``

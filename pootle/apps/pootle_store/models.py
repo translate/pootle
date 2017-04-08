@@ -19,7 +19,7 @@ from django.db import models
 from django.db.models import F
 from django.template.defaultfilters import truncatechars
 from django.urls import reverse
-from django.utils import timezone
+from django.utils import six, timezone
 from django.utils.functional import cached_property
 from django.utils.http import urlquote
 
@@ -67,6 +67,7 @@ def get_tm_broker():
 # # # # # # # # Quality Check # # # # # # #
 
 
+@six.python_2_unicode_compatible
 class QualityCheck(AbstractQualityCheck):
     """Database cache of results of qualitychecks on unit."""
 
@@ -74,7 +75,7 @@ class QualityCheck(AbstractQualityCheck):
         abstract = False
         db_table = "pootle_store_qualitycheck"
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     @property
@@ -98,6 +99,7 @@ class SuggestionState(AbstractSuggestionState):
         db_table = "pootle_store_suggestion_state"
 
 
+@six.python_2_unicode_compatible
 class Suggestion(AbstractSuggestion):
     """Suggested translation for a :cls:`~pootle_store.models.Unit`, provided
     by users or automatically generated after a merge.
@@ -135,7 +137,7 @@ class Suggestion(AbstractSuggestion):
 
     # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
-    def __unicode__(self):
+    def __str__(self):
         return unicode(self.target)
 
     def _set_hash(self):
@@ -171,6 +173,7 @@ class UnitSource(AbstractUnitSource):
         db_table = "pootle_store_unit_source"
 
 
+@six.python_2_unicode_compatible
 class Unit(AbstractUnit):
 
     objects = UnitManager()
@@ -215,7 +218,7 @@ class Unit(AbstractUnit):
 
     # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
-    def __unicode__(self):
+    def __str__(self):
         # FIXME: consider using unit id instead?
         return unicode(self.source)
 
@@ -776,6 +779,7 @@ class Unit(AbstractUnit):
 # # # # # # # # # # #  Store # # # # # # # # # # # # # #
 
 
+@six.python_2_unicode_compatible
 class Store(AbstractStore):
     """A model representing a translation store (i.e. a PO or XLIFF file)."""
 
@@ -835,7 +839,7 @@ class Store(AbstractStore):
     def __init__(self, *args, **kwargs):
         super(Store, self).__init__(*args, **kwargs)
 
-    def __unicode__(self):
+    def __str__(self):
         return unicode(self.pootle_path)
 
     def __str__(self):

@@ -10,6 +10,7 @@ from collections import OrderedDict
 
 from django.db import models
 from django.urls import reverse
+from django.utils import six
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import data_tool
@@ -19,6 +20,7 @@ from pootle.i18n.gettext import language_dir, tr_lang, ugettext_lazy as _
 from staticpages.models import StaticPage
 
 
+@six.python_2_unicode_compatible
 class Language(models.Model, TreeItem):
 
     # any changes to the `code` field may require updating the schema
@@ -108,7 +110,7 @@ class Language(models.Model, TreeItem):
             except cls.DoesNotExist:
                 return None
 
-    def __unicode__(self):
+    def __str__(self):
         return u"%s - %s" % (self.name, self.code)
 
     def __init__(self, *args, **kwargs):

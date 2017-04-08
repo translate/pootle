@@ -12,6 +12,7 @@ from django.db import models
 from django.db.models import Q
 from django.db.models.aggregates import Max
 from django.urls import reverse
+from django.utils import six
 from django.utils.timezone import now
 
 from pootle.core.markup import MarkupField, get_markup_filter_display_name
@@ -24,6 +25,7 @@ ANN_TYPE = u'announcements'
 ANN_VPATH = ANN_TYPE + u'/'
 
 
+@six.python_2_unicode_compatible
 class AbstractPage(models.Model):
 
     active = models.BooleanField(
@@ -61,7 +63,7 @@ class AbstractPage(models.Model):
     class Meta(object):
         abstract = True
 
-    def __unicode__(self):
+    def __str__(self):
         return self.virtual_path
 
     def save(self, **kwargs):
@@ -139,6 +141,7 @@ class StaticPage(AbstractPage):
         return reverse('pootle-staticpages-edit', args=[page_type, self.pk])
 
 
+@six.python_2_unicode_compatible
 class Agreement(models.Model):
     """Tracks who agreed a specific legal document and when."""
 
@@ -153,7 +156,7 @@ class Agreement(models.Model):
     class Meta(object):
         unique_together = ('user', 'document',)
 
-    def __unicode__(self):
+    def __str__(self):
         return u'%s (%s@%s)' % (self.document, self.user, self.agreed_on)
 
     def save(self, **kwargs):
