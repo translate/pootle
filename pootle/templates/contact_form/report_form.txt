@@ -1,0 +1,7 @@
+{% extends "contact_form/contact_form.txt" %}
+
+{% block email_body %}{{ context|safe }}
+
+Your question or comment:
+
+{{ block.super }}{% endblock %}

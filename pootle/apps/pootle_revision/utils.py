@@ -156,25 +156,38 @@ class RevisionUpdater(object):
             key__in=keys or [""],
             object_id__in=parents)
 
-    def create_revisions(self, parents, keys=None):
-        new_revision = self.new_revision
-        for parent in parents:
-            for key in keys or [""]:
-                yield Revision(
-                    content_type_id=self.content_type_id,
-                    object_id=parent,
-                    key=key,
-                    value=new_revision)
-
     def update(self, keys=None):
         parents = list(self.parents.values_list("id", flat=True))
         revisions = self.get_revisions(parents, keys=keys)
-        # manually get the list of ids and delete those to prevent
-        # django race condition
-        revision_ids = list(revisions.values_list("id", flat=True))
-        revisions.filter(id__in=revision_ids).delete()
-        Revision.objects.bulk_create(
-            self.create_revisions(parents, keys=keys))
+        missing_revisions = []
+        existing_ids = []
+        revision_map = {
+            '%s-%s' % (x['object_id'], x['key']): x['id']
+            for x in revisions.values("id", "object_id", "key")}
+        for parent in parents:
+            for key in keys or [""]:
+                id = '%s-%s' % (parent, key)
+                if id in revision_map:
+                    existing_ids.append(revision_map[id])
+                else:
+                    missing_revisions.append(dict(
+                        object_id=parent,
+                        key=key))
+
+        new_revision = self.new_revision
+        revisions.filter(id__in=existing_ids).update(
+            value=new_revision)
+        if missing_revisions:
+            Revision.objects.bulk_create(
+                self.create_missing_revisions(missing_revisions, new_revision))
+
+    def create_missing_revisions(self, missing_revisions, new_revision):
+        for revision in missing_revisions:
+            yield Revision(
+                content_type_id=self.content_type_id,
+                object_id=revision['object_id'],
+                key=revision['key'],
+                value=new_revision)
 
 
 class UnitRevisionUpdater(RevisionUpdater):

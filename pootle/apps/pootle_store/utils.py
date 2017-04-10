@@ -15,13 +15,13 @@ from django.utils import timezone
 
 from pootle.core.delegate import site, unitid
 from pootle.core.mail import send_mail
-from pootle.core.signals import update_data
-from pootle.core.utils.timezone import make_aware
+from pootle.core.signals import update_data, update_scores
+from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle.i18n.gettext import ugettext as _
 from pootle_statistics.models import (
-    MUTED, UNMUTED, Submission, SubmissionFields, SubmissionTypes)
+    MUTED, UNMUTED, SubmissionFields, SubmissionTypes)
 
-from .constants import FUZZY, TRANSLATED
+from .constants import TRANSLATED
 from .models import Suggestion, SuggestionState
 
 
@@ -94,7 +94,6 @@ class FrozenUnit(object):
             target_f=unit.target_f,
             context=unit.context,
             revision=unit.revision,
-            submitter=unit.submitted_by_id,
             state=unit.state,
             pk=unit.pk,
             translator_comment=unit.translator_comment)
@@ -177,7 +176,6 @@ class SuggestionsReview(object):
         if isinstance(user, User):
             user = user.id
         user = user or User.objects.get_system_user().id
-        pending = SuggestionState.objects.get(name="pending")
         try:
             suggestion = Suggestion.objects.pending().get(
                 unit=unit,
@@ -185,6 +183,7 @@ class SuggestionsReview(object):
                 target_f=translation)
             return (suggestion, False)
         except Suggestion.DoesNotExist:
+            pending = SuggestionState.objects.get(name="pending")
             suggestion = Suggestion.objects.create(
                 unit=unit,
                 user_id=user,
@@ -193,51 +192,22 @@ class SuggestionsReview(object):
                 creation_time=make_aware(timezone.now()))
         return (suggestion, True)
 
-    def update_unit_on_accept(self, suggestion):
+    def update_unit_on_accept(self, suggestion, target=None):
         unit = suggestion.unit
-
-        # Save for later
-        old_state = unit.state
-        old_target = unit.target
-
-        # Update some basic attributes so we can create submissions. Note
-        # these do not conflict with `ScoreLog`'s interests, so it's safe
-        unit.target = suggestion.target
-        if unit.state == FUZZY:
+        unit.target = target or suggestion.target
+        if unit.isfuzzy():
             unit.state = TRANSLATED
         unit.save(
             user=suggestion.user,
             changed_with=self.review_type,
             reviewed_by=self.reviewer)
-        create_subs = OrderedDict()
-        create_subs[SubmissionFields.TARGET] = [old_target, unit.target]
-        if old_state != unit.state:
-            create_subs[SubmissionFields.STATE] = [old_state, unit.state]
-        subs_created = []
-        for field in create_subs:
-            kwargs = {
-                'creation_time': unit.mtime,
-                'translation_project': unit.store.translation_project,
-                'submitter': suggestion.user,
-                'unit': unit,
-                'revision': unit.revision,
-                'field': field,
-                'suggestion': suggestion,
-                'type': SubmissionTypes.WEB,
-                'old_value': create_subs[field][0],
-                'new_value': create_subs[field][1],
-            }
-            subs_created.append(Submission(**kwargs))
-        if subs_created:
-            unit.submission_set.add(*subs_created, bulk=False)
 
-    def accept_suggestion(self, suggestion, update_unit):
+    def accept_suggestion(self, suggestion, target=None):
         suggestion.state = SuggestionState.objects.get(name="accepted")
         suggestion.reviewer = self.reviewer
-        suggestion.review_time = make_aware(timezone.now())
+        self.update_unit_on_accept(suggestion, target=target)
+        suggestion.review_time = suggestion.unit.mtime
         suggestion.save()
-        if update_unit:
-            self.update_unit_on_accept(suggestion)
 
     def reject_suggestion(self, suggestion):
         store = suggestion.unit.store
@@ -254,12 +224,12 @@ class SuggestionsReview(object):
             unit.change.save()
         update_data.send(store.__class__, instance=store)
 
-    def accept_suggestions(self, update_unit):
+    def accept_suggestions(self, target=None):
         for suggestion in self.suggestions:
-            self.accept_suggestion(suggestion, update_unit)
+            self.accept_suggestion(suggestion, target=target)
 
-    def accept(self, update_unit=True, comment=""):
-        self.accept_suggestions(update_unit)
+    def accept(self, comment="", target=None):
+        self.accept_suggestions(target=target)
         if self.should_notify(comment):
             self.notify_suggesters(rejected=False, comment=comment)
 
@@ -362,12 +332,17 @@ class UnitLifecycle(object):
         return self.create_submission(**_kwargs)
 
     def save_subs(self, subs):
-        if subs:
-            self.unit.submission_set.bulk_create(subs)
+        if not subs:
+            return
+        self.unit.submission_set.bulk_create(subs)
+        update_scores.send(
+            self.unit.store.__class__,
+            instance=self.unit.store,
+            users=[sub.submitter_id for sub in subs])
 
     def sub_comment_update(self, **kwargs):
         _kwargs = dict(
-            creation_time=self.unit.change.commented_on,
+            creation_time=self.unit.mtime,
             unit=self.unit,
             submitter=self.unit.change.commented_by,
             field=SubmissionFields.COMMENT,
@@ -379,7 +354,7 @@ class UnitLifecycle(object):
 
     def sub_source_update(self, **kwargs):
         _kwargs = dict(
-            creation_time=self.unit.change.submitted_on,
+            creation_time=self.unit.mtime,
             unit=self.unit,
             submitter=self.unit.change.submitted_by,
             field=SubmissionFields.SOURCE,
@@ -390,10 +365,14 @@ class UnitLifecycle(object):
         return self.create_submission(**_kwargs)
 
     def sub_target_update(self, **kwargs):
+        submitter = (
+            self.unit.change.submitted_by
+            if self.unit.change.submitted_by
+            else self.unit.change.reviewed_by)
         _kwargs = dict(
-            creation_time=self.unit.change.submitted_on,
+            creation_time=self.unit.mtime,
             unit=self.unit,
-            submitter=self.unit.change.submitted_by,
+            submitter=submitter,
             field=SubmissionFields.TARGET,
             type=self.unit.change.changed_with,
             old_value=self.original.target or "",
@@ -402,18 +381,19 @@ class UnitLifecycle(object):
         return self.create_submission(**_kwargs)
 
     def sub_state_update(self, **kwargs):
+        reviewed_on = self.unit.change.reviewed_on
+        submitted_on = (
+            self.unit.change.submitted_on
+            or datetime_min)
         is_review = (
-            self.unit.change.reviewed_on
-            and (self.unit.change.reviewed_on
-                 >= self.unit.change.submitted_on))
+            reviewed_on
+            and (reviewed_on > submitted_on))
         if is_review:
             submitter = self.unit.change.reviewed_by
-            creation_time = self.unit.change.reviewed_on
         else:
             submitter = self.unit.change.submitted_by
-            creation_time = self.unit.change.submitted_on
         _kwargs = dict(
-            creation_time=creation_time,
+            creation_time=self.unit.mtime,
             unit=self.unit,
             submitter=submitter,
             field=SubmissionFields.STATE,

@@ -12,11 +12,15 @@ from django.dispatch import receiver
 from pootle.core.delegate import terminology
 from pootle_store.constants import TRANSLATED
 from pootle_store.models import Unit
+from pootle_statistics.models import Submission, SubmissionFields
 
 
-@receiver(post_save, sender=Unit)
+@receiver(post_save, sender=Submission)
 def handle_unit_save(**kwargs):
-    unit = kwargs["instance"]
+    sub = kwargs["instance"]
+    if sub.type != SubmissionFields.TARGET:
+        return
+    unit = sub.unit
     if unit.state != TRANSLATED:
         return
     is_terminology = (

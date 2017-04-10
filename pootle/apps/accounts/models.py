@@ -19,6 +19,7 @@ from django.db.models import ProtectedError, Q
 from django.forms.models import model_to_dict
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.encoding import force_bytes
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
@@ -133,7 +134,7 @@ class User(AbstractBaseUser):
     @cached_property
     def email_hash(self):
         try:
-            return md5(self.email).hexdigest()
+            return md5(force_bytes(self.email)).hexdigest()
         except UnicodeEncodeError:
             return None
 

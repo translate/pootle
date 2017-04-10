@@ -10,8 +10,9 @@ from hashlib import md5
 
 from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
+from django.utils.encoding import force_bytes
 
-from pootle.core.delegate import uniqueid
+from pootle.core.delegate import lifecycle, uniqueid
 from pootle.core.models import Revision
 from pootle.core.signals import update_data
 
@@ -28,16 +29,28 @@ def handle_suggestion_added(**kwargs):
     update_data.send(store.__class__, instance=store)
 
 
+@receiver(post_save, sender=Suggestion)
+def handle_suggestion_accepted(**kwargs):
+    created = kwargs.get("created")
+    suggestion = kwargs["instance"]
+    if created or not suggestion.state.name == "accepted":
+        return
+    suggestion.submission_set.add(
+        *suggestion.unit.submission_set.filter(
+            revision=suggestion.unit.revision,
+            creation_time=suggestion.review_time))
+    store = suggestion.unit.store
+    update_data.send(store.__class__, instance=store)
+
+
 @receiver(pre_save, sender=UnitSource)
 def handle_unit_source_pre_save(**kwargs):
     unit_source = kwargs["instance"]
     created = not unit_source.pk
     unit = unit_source.unit
     if created or unit.source_updated:
-        unit_source.source_hash = md5(
-            unit.source_f.encode("utf-8")).hexdigest()
-        unit_source.source_length = len(
-            unit.source_f)
+        unit_source.source_hash = md5(force_bytes(unit.source_f)).hexdigest()
+        unit_source.source_length = len(unit.source_f)
         unit_source.source_wordcount = max(
             1, (unit.counter.count_words(unit.source_f.strings) or 0))
 
@@ -67,11 +80,6 @@ def handle_unit_pre_save(**kwargs):
             # if it was TRANSLATED then set to UNTRANSLATED
             if unit.state > FUZZY:
                 unit.state = UNTRANSLATED
-    if unit.state == UNTRANSLATED:
-        # clear reviewer and translator data if translation
-        # has been deleted
-        unit.submitted_by = None
-        unit.submitted_on = None
 
     # Updating unit from the .po file set its revision property to
     # a new value (the same for all units during its store updated)
@@ -91,13 +99,27 @@ def handle_unit_pre_save(**kwargs):
         unit.setid(unitid.getid())
 
 
+@receiver(pre_save, sender=UnitChange)
+def handle_unit_pre_change(**kwargs):
+    unit_change = kwargs["instance"]
+    unit = unit_change.unit
+    if unit.state == UNTRANSLATED:
+        # clear reviewer and translator data if translation
+        # has been deleted
+        unit_change.submitted_by = None
+        unit_change.submitted_on = None
+
+
 @receiver(post_save, sender=UnitChange)
 def handle_unit_change(**kwargs):
     unit_change = kwargs["instance"]
     unit = unit_change.unit
+    created = not unit._frozen.pk
+
+    if not created:
+        lifecycle.get(Unit)(unit).change()
     if not unit.source_updated and not unit.target_updated:
         return
-    created = not unit._frozen.pk
     new_untranslated = (created and unit.state == UNTRANSLATED)
     if not new_untranslated:
         unit.update_qualitychecks()

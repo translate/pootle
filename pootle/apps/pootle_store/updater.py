@@ -83,6 +83,8 @@ class UnitUpdater(object):
         self.unit = unit
         self.update = update
         self.original = frozen.get(unit.__class__)(unit)
+        self.original_submitter = (
+            unit.changed and unit.change.submitted_by)
 
     @property
     def translator_comment(self):
@@ -201,37 +203,13 @@ class UnitUpdater(object):
             else suggestion_review.add(
                 self.unit,
                 self.original.target,
-                self.original.submitter)[1])
-
-    def record_submission(self):
-        self.unit.store.record_submissions(
-            self.unit,
-            self.original.target,
-            self.original.state,
-            self.at,
-            self.update.user,
-            self.update.submission_type,
-            state_updated=self.unit.state != self.original.state,
-            target_updated=self.unit.target != self.original.target,
-            comment_updated=self.translator_comment_updated)
+                self.original_submitter)[1])
 
     def save_unit(self):
         self.unit.revision = self.update.update_revision
         self.unit.save(
             user=self.update.user,
-            submitted_by=self.unit.submitted_by,
-            submitted_on=self.at,
             changed_with=self.update.submission_type)
-
-    def set_submitted(self):
-        self.unit.submitted_by = self.update.user
-        self.unit.submitted_on = self.at
-
-    def set_unit(self):
-        if self.target_updated or self.resurrected:
-            self.set_submitted()
-        self.save_unit()
-        self.record_submission()
 
     @property
     def should_unobsolete(self):
@@ -259,11 +237,9 @@ class UnitUpdater(object):
             self.unit.index = self.update.get_index(self.uid)
             reordered = True
             if not updated:
-                self.unit.save(
-                    submitted_on=self.unit.submitted_on,
-                    submitted_by=self.unit.submitted_by)
+                self.unit.save(user=self.update.user)
         if updated:
-            self.set_unit()
+            self.save_unit()
         if self.should_create_suggestion:
             suggested = self.create_suggestion()
         return (updated or reordered), suggested
@@ -291,9 +267,13 @@ class StoreUpdater(object):
             unit.store = self.target_store
             yield unit
 
-    def update(self, store, user=None, store_revision=None,
-               submission_type=None, resolve_conflict=POOTLE_WINS,
-               allow_add_and_obsolete=True):
+    def update(self, *args, **kwargs):
+        with update_data_after(self.target_store):
+            return self._update(*args, **kwargs)
+
+    def _update(self, store, user=None, store_revision=None,
+                submission_type=None, resolve_conflict=POOTLE_WINS,
+                allow_add_and_obsolete=True):
         logging.debug(u"Updating %s", self.target_store.pootle_path)
         old_state = self.target_store.state
 
@@ -352,7 +332,8 @@ class StoreUpdater(object):
             # Obsolete units
             changes["obsoleted"] = self.target_store.mark_units_obsolete(
                 to_change["obsolete"],
-                update_revision)
+                update_revision,
+                user=user)
 
         # Update units
         update_dbids, uid_index_map = to_change['update']
@@ -379,10 +360,6 @@ class StoreUpdater(object):
         if not self.target_store.file:
             return changed
 
-        with update_data_after(self.target_store):
-            self._update_from_disk(overwrite)
-
-    def _update_from_disk(self, overwrite=False):
         if overwrite:
             store_revision = self.target_store.data.max_unit_revision
         else:

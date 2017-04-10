@@ -11,6 +11,7 @@ from hashlib import md5
 import factory
 
 from django.utils import timezone
+from django.utils.encoding import force_bytes
 
 import pootle_store
 from pootle.core.delegate import wordcount
@@ -166,7 +167,7 @@ class UnitDBFactory(factory.django.DjangoModelFactory):
 
     @factory.lazy_attribute
     def unitid_hash(self):
-        return md5(self.unitid.encode("utf-8")).hexdigest()
+        return md5(force_bytes(self.unitid)).hexdigest()
 
     @factory.lazy_attribute
     def source_f(self):

@@ -57,7 +57,7 @@ def _test_user_merged(unit, src_user, target_user):
         assert src_user.submitted.count() == 0
         assert src_user.suggestions.count() == 0
 
-    assert unit in list(target_user.submitted.all())
+    assert unit.change in list(target_user.submitted.all())
     assert (
         unit.get_suggestions().first()
         in list(target_user.suggestions.all()))
@@ -71,7 +71,7 @@ def _test_before_evil_user_updated(store, member, teststate=False):
 
     # Unit target was updated.
     assert unit.target_f == "Hello, world UPDATED"
-    assert unit.submitted_by == member
+    assert unit.change.submitted_by == member
 
     # But member also added a suggestion to the unit.
     assert unit.get_suggestions().count() == 1
@@ -93,7 +93,7 @@ def _test_after_evil_user_updated(store, evil_member):
 
     # Evil member has accepted their own suggestion.
     assert unit.target_f == "EVIL SUGGESTION"
-    assert unit.submitted_by == evil_member
+    assert unit.change.submitted_by == evil_member
 
     # And rejected member's.
     assert unit.get_suggestions().count() == 0
@@ -105,7 +105,7 @@ def _test_after_evil_user_updated(store, evil_member):
     # Evil member has added another unit.
     assert store.units.count() == 2
     assert store.units[1].target_f == "Goodbye, world EVIL"
-    assert store.units[1].submitted_by == evil_member
+    assert store.units[1].change.submitted_by == evil_member
 
 
 def _test_user_purging(store, member, evil_member, purge):
@@ -114,7 +114,7 @@ def _test_user_purging(store, member, evil_member, purge):
     unit = store.units[0]
 
     # Get intitial change times
-    initial_submission_time = unit.submitted_on
+    initial_submission_time = unit.change.submitted_on
     initial_comment_time = unit.change.commented_on
     initial_review_time = unit.change.reviewed_on
 
@@ -132,10 +132,10 @@ def _test_user_purging(store, member, evil_member, purge):
 
     # Test submitted/commented/reviewed times on the unit.  This is an
     # unreliable test on MySQL due to datetime precision
-    if unit.submitted_on.time().microsecond != 0:
+    if unit.change.submitted_on.time().microsecond != 0:
 
         # Times have changed
-        assert unit.submitted_on != initial_submission_time
+        assert unit.change.submitted_on != initial_submission_time
         assert unit.change.commented_on != initial_comment_time
         assert unit.change.reviewed_on != initial_review_time
 
@@ -151,7 +151,7 @@ def _test_user_purging(store, member, evil_member, purge):
     unit = store.units[0]
 
     # Times are back to previous times - by any precision
-    assert unit.submitted_on == initial_submission_time
+    assert unit.change.submitted_on == initial_submission_time
     assert unit.change.commented_on == initial_comment_time
     assert unit.change.reviewed_on == initial_review_time
 

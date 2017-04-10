@@ -142,7 +142,8 @@ def _setup_store_test(store, member, member2, test):
 
     store_revision, units_update = test["update_store"]
     units_before = [
-        unit for unit in store.unit_set.all().order_by("index")]
+        (unit, unit.change)
+        for unit in store.unit_set.select_related("change").all().order_by("index")]
 
     fs_wins = test.get("fs_wins", True)
     if fs_wins:
@@ -154,7 +155,7 @@ def _setup_store_test(store, member, member2, test):
         store_revision = store.get_max_unit_revision()
 
     elif store_revision == "MID":
-        revisions = [unit.revision for unit in units_before]
+        revisions = [unit.revision for unit, change in units_before]
         store_revision = sum(revisions) / len(revisions)
 
     return (store, units_update, store_revision, resolve_conflict,
@@ -537,12 +538,11 @@ def dummy_store_syncer():
 
 @pytest.fixture
 def store0(tp0):
-    return tp0.stores.get(name="store0.po")
-
-
-@pytest.fixture
-def store1(tp1):
-    return tp1.stores.get(name="store1.po")
+    stores = tp0.stores.select_related(
+        "data",
+        "filetype__extension",
+        "filetype__template_extension")
+    return stores.get(name="store0.po")
 
 
 @pytest.fixture

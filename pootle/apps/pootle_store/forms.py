@@ -25,8 +25,7 @@ from pootle_comment.forms import UnsecuredCommentForm
 from pootle_misc.checks import CATEGORY_CODES, check_names
 from pootle_misc.util import get_date_interval
 from pootle_project.models import Project
-from pootle_statistics.models import (Submission, SubmissionFields,
-                                      SubmissionTypes)
+from pootle_statistics.models import SubmissionFields, SubmissionTypes
 
 from .constants import ALLOWED_SORTS, FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from .fields import to_db
@@ -264,33 +263,19 @@ def unit_form_factory(language, snplurals=None, request=None):
             return super(UnitForm, self).clean()
 
         def save(self, *args, **kwargs):
+            if not self.updated_fields:
+                return
             changed_with = kwargs.pop("changed_with", None)
-            kwargs["commit"] = False
-            unit = super(UnitForm, self).save(*args, **kwargs)
-            with update_data_after(unit.store):
-                suggestion = self.cleaned_data["suggestion"]
+            suggestion = self.cleaned_data["suggestion"]
+            with update_data_after(self.instance.store):
                 user = (
                     suggestion.user
                     if suggestion
                     else self.user)
-                unit.save(
+                self.instance.save(
                     user=user,
                     changed_with=changed_with)
-                translation_project = unit.store.translation_project
-                for field, old_value, new_value in self.updated_fields:
-                    if field == SubmissionFields.TARGET and suggestion:
-                        old_value = str(suggestion.target_f)
-                    sub = Submission(
-                        creation_time=unit.mtime,
-                        translation_project=translation_project,
-                        submitter=self.user,
-                        unit=unit,
-                        field=field,
-                        type=SubmissionTypes.WEB,
-                        old_value=old_value,
-                        new_value=new_value)
-                    sub.save()
-            return unit
+            return self.instance
 
     return UnitForm
 
@@ -333,25 +318,6 @@ def unit_comment_form_factory(language):
                 return ''
 
             return self.cleaned_data['translator_comment']
-
-        def save(self, **kwargs):
-            """Register the submission and save the comment."""
-            super(UnitCommentForm, self).save(**kwargs)
-            if self.has_changed():
-                translation_project = self.request.translation_project
-
-                sub = Submission(
-                    creation_time=self.instance.mtime,
-                    translation_project=translation_project,
-                    submitter=self.request.user,
-                    unit=self.instance,
-                    field=SubmissionFields.COMMENT,
-                    type=SubmissionTypes.WEB,
-                    old_value=self.previous_value,
-                    new_value=self.cleaned_data['translator_comment']
-                )
-                sub.save()
-
     return UnitCommentForm
 
 
@@ -532,7 +498,8 @@ class SuggestionReviewForm(BaseSuggestionForm):
 
     def save(self):
         if self.cleaned_data["action"] == "accept":
-            self.suggestion_review.accept()
+            self.suggestion_review.accept(
+                target=self.cleaned_data.get("target_f"))
         else:
             self.suggestion_review.reject()
         if self.cleaned_data["comment"]:
@@ -566,7 +533,7 @@ class SubmitFormMixin(object):
         self.fields[
             "target_f"].hidden_widget = HiddenMultiStringWidget(nplurals=nplurals)
         self.fields["target_f"].fields = [
-            forms.CharField(strip=False) for i in range(nplurals)]
+            forms.CharField(strip=False, required=False) for i in range(nplurals)]
         for k in ["user", "name", "email"]:
             if k in self.fields:
                 self.fields[k].required = False
@@ -574,43 +541,10 @@ class SubmitFormMixin(object):
 
 class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
 
-    target_f = MultiStringFormField(required=False)
+    target_f = MultiStringFormField(required=False, require_all_fields=False)
 
     def save_unit(self):
-        updated = []
-        if self.cleaned_data["target_f"]:
-            self.unit.target = self.cleaned_data["target_f"]
-            self.unit.save(
-                user=self.target_object.user,
-                reviewed_by=self.request_user,
-                changed_with=SubmissionTypes.WEB)
-            updated.append(
-                (SubmissionFields.TARGET,
-                 self.unit._frozen.target,
-                 self.unit.target))
-        if self.unit.state_updated:
-            updated.append(
-                (SubmissionFields.STATE,
-                 self.unit._frozen.state,
-                 self.unit.state))
-        translation_project = self.unit.store.translation_project
-        for field, old_value, new_value in updated:
-            sub = Submission(
-                creation_time=self.unit.mtime,
-                translation_project=translation_project,
-                suggestion=self.target_object,
-                submitter=self.target_object.user,
-                unit=self.unit,
-                field=field,
-                type=SubmissionTypes.WEB,
-                old_value=old_value,
-                new_value=new_value)
-            sub.save()
-        self.suggestion_review.accept(
-            update_unit=(
-                False
-                if self.cleaned_data["target_f"]
-                else True))
+        self.suggestion_review.accept(target=self.cleaned_data["target_f"])
 
     def save(self):
         with update_data_after(self.unit.store):
@@ -623,20 +557,15 @@ class SubmitForm(SubmitFormMixin, forms.Form):
     is_fuzzy = forms.BooleanField(
         initial=False,
         label=_("Needs work"))
-    target_f = MultiStringFormField(required=False)
+    target_f = MultiStringFormField(required=False, require_all_fields=False)
 
     def clean_is_fuzzy(self):
         return self.data["is_fuzzy"] != "0"
 
     def save_unit(self):
         user = self.request_user
-        updated = []
         target = multistring(self.cleaned_data["target_f"] or [u''])
         if target != self.unit.target:
-            updated.append(
-                (SubmissionFields.TARGET,
-                 self.unit.target_f,
-                 self.cleaned_data["target_f"]))
             self.unit.target = self.cleaned_data["target_f"]
         if self.unit.target:
             if self.cleaned_data["is_fuzzy"]:
@@ -648,23 +577,6 @@ class SubmitForm(SubmitFormMixin, forms.Form):
         self.unit.save(
             user=user,
             changed_with=SubmissionTypes.WEB)
-        if self.unit.state_updated:
-            updated.append(
-                (SubmissionFields.STATE,
-                 self.unit._frozen.state,
-                 self.unit.state))
-        translation_project = self.unit.store.translation_project
-        for field, old_value, new_value in updated:
-            sub = Submission(
-                creation_time=self.unit.mtime,
-                translation_project=translation_project,
-                submitter=user,
-                unit=self.unit,
-                field=field,
-                type=SubmissionTypes.WEB,
-                old_value=old_value,
-                new_value=new_value)
-            sub.save()
 
     def save(self):
         with update_data_after(self.unit.store):

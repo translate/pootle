@@ -9,14 +9,16 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"PO-Revision-Date: 2017-03-24 01:21+0000\n"
+"Last-Translator: 7 <sebastian@utzerath.eu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: bm\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Translate Toolkit 1.10.0-rc1\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1490318460.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -34,6 +36,7 @@ msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
 
+# test
 #: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr ""
@@ -247,7 +250,6 @@ msgstr ""
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
 msgstr[0] ""
-msgstr[1] ""
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:62
@@ -483,28 +485,24 @@ msgstr ""
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
 msgstr[0] ""
-msgstr[1] ""
 
 #: apps/pootle_language/views.py:241
 #, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
 msgstr[0] ""
-msgstr[1] ""
 
 #: apps/pootle_language/views.py:246
 #, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
 msgstr[0] ""
-msgstr[1] ""
 
 #: apps/pootle_language/views.py:251
 #, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
 msgstr[0] ""
-msgstr[1] ""
 
 #: apps/pootle_misc/checks.py:35 core/browser.py:47
 msgid "Critical"

@@ -28,7 +28,7 @@ def test_user_tp_score_update_suggestions(store0, member, member2):
         date=timezone.now().date())
     old_suggested = current_score.suggested
 
-    old_score = current_score.score
+    old_score = round(current_score.score, 2)
     old_suggested = current_score.suggested
     old_translated = current_score.translated
     old_reviewed = current_score.reviewed
@@ -37,7 +37,7 @@ def test_user_tp_score_update_suggestions(store0, member, member2):
     current_score = member.scores.get(
         tp=store0.translation_project,
         date=timezone.now().date())
-    assert current_score.score == old_score
+    assert round(current_score.score, 2) == old_score
     assert (
         current_score.suggested
         == old_suggested + unit.unit_source.source_wordcount)
@@ -49,7 +49,7 @@ def test_user_tp_score_update_suggestions(store0, member, member2):
     m2_score = member2.scores.get(
         tp=store0.translation_project,
         date=timezone.now().date())
-    old_m2_score = m2_score.score
+    old_m2_score = round(m2_score.score, 2)
     old_m2_suggested = m2_score.suggested
     old_m2_translated = m2_score.translated
     old_m2_reviewed = m2_score.reviewed
@@ -57,7 +57,7 @@ def test_user_tp_score_update_suggestions(store0, member, member2):
     m2_score = member2.scores.get(
         tp=store0.translation_project,
         date=timezone.now().date())
-    assert m2_score.score > old_m2_score
+    assert round(m2_score.score, 2) > old_m2_score
     assert (
         m2_score.reviewed
         == old_m2_reviewed + unit.unit_source.source_wordcount)
@@ -75,14 +75,14 @@ def test_user_tp_score_update_translated(store0, member, member2):
     current_score = member.scores.get(
         tp=store0.translation_project,
         date=timezone.now().date())
-    old_score = current_score.score
+    old_score = round(current_score.score, 2)
     old_suggested = current_score.suggested
     old_translated = current_score.translated
     old_reviewed = current_score.reviewed
     m2_score = member2.scores.get(
         tp=store0.translation_project,
         date=timezone.now().date())
-    m2_old_score = m2_score.score
+    m2_old_score = round(m2_score.score, 2)
     m2_suggested = m2_score.suggested
     m2_translated = m2_score.translated
     m2_reviewed = m2_score.reviewed
@@ -93,7 +93,7 @@ def test_user_tp_score_update_translated(store0, member, member2):
     current_score = member.scores.get(
         tp=store0.translation_project,
         date=timezone.now().date())
-    assert current_score.score > old_score
+    assert round(current_score.score, 2) > old_score
     assert current_score.reviewed == old_reviewed
     assert (
         current_score.suggested
@@ -104,7 +104,7 @@ def test_user_tp_score_update_translated(store0, member, member2):
     m2_score = member2.scores.get(
         tp=store0.translation_project,
         date=timezone.now().date())
-    assert m2_score.score > m2_old_score
+    assert round(m2_score.score, 2) > m2_old_score
     assert m2_score.suggested == m2_suggested
     assert m2_score.translated == m2_translated
     assert (
@@ -120,14 +120,14 @@ def test_user_tp_score_update_rejects(store0, member, member2):
     current_score = member.scores.get(
         tp=store0.translation_project,
         date=timezone.now().date())
-    old_score = current_score.score
+    old_score = round(current_score.score, 2)
     old_suggested = current_score.suggested
     old_translated = current_score.translated
     old_reviewed = current_score.reviewed
     m2_score = member2.scores.get(
         tp=store0.translation_project,
         date=timezone.now().date())
-    m2_old_score = m2_score.score
+    m2_old_score = round(m2_score.score, 2)
     m2_suggested = m2_score.suggested
     m2_translated = m2_score.translated
     m2_reviewed = m2_score.reviewed
@@ -138,7 +138,7 @@ def test_user_tp_score_update_rejects(store0, member, member2):
     current_score = member.scores.get(
         tp=store0.translation_project,
         date=timezone.now().date())
-    assert current_score.score == old_score
+    assert round(current_score.score, 2) == old_score
     assert current_score.reviewed == old_reviewed
     assert current_score.translated == old_translated
     assert (
@@ -147,7 +147,7 @@ def test_user_tp_score_update_rejects(store0, member, member2):
     m2_score = member2.scores.get(
         tp=store0.translation_project,
         date=timezone.now().date())
-    assert m2_score.score > m2_old_score
+    assert round(m2_score.score, 2) > m2_old_score
     assert m2_score.suggested == m2_suggested
     assert m2_score.translated == m2_translated
     assert (

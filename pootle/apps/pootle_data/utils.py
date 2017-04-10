@@ -7,7 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.db import models
-from django.db.models import Max, Sum
+from django.db.models import Sum
 from django.utils.functional import cached_property
 
 from pootle.core.decorators import persistent_property
@@ -70,17 +70,6 @@ class DataTool(object):
     def update(self, **kwargs):
         if self.updater:
             return self.updater.update(**kwargs)
-
-    def get_last_submission(self, **kwargs):
-        return kwargs["last_submission"]
-
-    def get_last_created(self, **kwargs):
-        last_created = (
-            kwargs.get("last_created_unit")
-            and Unit.objects.select_related(
-                "store").get(pk=kwargs["last_created_unit"]).get_last_created_info()
-            or None)
-        return last_created
 
 
 class DataUpdater(object):
@@ -369,11 +358,6 @@ class RelatedStoresDataTool(DataTool):
     @property
     def filename(self):
         return split_pootle_path(self.context.pootle_path)[3]
-
-    @property
-    def max_unit_revision(self):
-        return self.all_stat_data.aggregate(
-            rev=Max("max_unit_revision"))["rev"]
 
     @persistent_property
     def object_stats(self):

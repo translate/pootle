@@ -13,6 +13,7 @@ from django.utils.translation import get_language
 from django.views.decorators.cache import never_cache
 from django.views.generic import DetailView
 
+from pootle.core.delegate import site_languages
 from pootle.core.url_helpers import get_path_parts
 from pootle_app.models.permissions import check_permission
 from pootle_misc.util import ajax_required
@@ -86,12 +87,21 @@ class PootleDetailView(GatherContextMixin, DetailView):
         # get funky with the request 8/
         return super(PootleDetailView, self).dispatch(request, *args, **kwargs)
 
+    @property
+    def languages(self):
+        languages = site_languages.get()
+        return (
+            languages.all_languages
+            if self.has_admin_access
+            else languages.languages)
+
     def get_context_data(self, *args, **kwargs):
         return {
             'object': self.object,
             'pootle_path': self.pootle_path,
             'project': self.project,
             'language': self.language,
+            "all_languages": self.languages,
             'translation_project': self.tp,
             'has_admin_access': self.has_admin_access,
             'resource_path': self.resource_path,

@@ -112,7 +112,7 @@ def _test_units_contribution_filter(qs, user, unit_filter):
             suggestion__state__name="rejected",
             suggestion__user=user).distinct()
     elif unit_filter in ["my_submissions", "user_submissions"]:
-        expected = qs.filter(submitted_by=user)
+        expected = qs.filter(change__submitted_by=user)
     elif unit_filter in user_subs_overwritten:
         # lets calc this long hand
         # first submissions that have been added with no suggestion
@@ -127,7 +127,7 @@ def _test_units_contribution_filter(qs, user, unit_filter):
         expected = qs.filter(
             id__in=(
                 set(user_edit_subs)
-                | set(user_suggestions))).exclude(submitted_by=user)
+                | set(user_suggestions))).exclude(change__submitted_by=user)
     assert (
         list(expected.order_by("pk"))
         == list(result.order_by("pk")))

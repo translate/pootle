@@ -84,11 +84,11 @@ def calculate_search_results(kwargs, user):
             category=get_category_id(category))
         # filter by modified
         if modified_since:
-            qs = qs.filter(submitted_on__gt=modified_since).distinct()
+            qs = qs.filter(change__submitted_on__gt=modified_since).distinct()
         if month is not None:
             qs = qs.filter(
-                submitted_on__gte=month[0],
-                submitted_on__lte=month[1]).distinct()
+                change__submitted_on__gte=month[0],
+                change__submitted_on__lte=month[1]).distinct()
         # sort results
         if unit_filter in ["my-suggestions", "user-suggestions"]:
             sort_on = "suggestions"

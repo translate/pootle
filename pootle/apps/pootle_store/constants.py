@@ -15,8 +15,8 @@ from pootle.i18n.gettext import ugettext_lazy as _
 ALLOWED_SORTS = {
     'units': {
         'priority': '-store__priority',
-        'oldest': 'submitted_on',
-        'newest': '-submitted_on',
+        'oldest': 'change__submitted_on',
+        'newest': '-change__submitted_on',
     },
     'suggestions': {
         'oldest': 'suggestion__creation_time',

@@ -4,6 +4,12 @@ from __future__ import unicode_literals
 from django.db import migrations, models
 
 
+def drop_vfti_ctype(apps, schema_editor):
+    ContentType = apps.get_model('contenttypes.ContentType')
+    ContentType.objects.filter(app_label='virtualfolder',
+                               model='virtualfoldertreeitem').delete()
+
+
 class Migration(migrations.Migration):
 
     dependencies = [
@@ -34,4 +40,5 @@ class Migration(migrations.Migration):
         migrations.DeleteModel(
             name='VirtualFolderTreeItem',
         ),
+        migrations.RunPython(drop_vfti_ctype),
     ]

@@ -45,9 +45,11 @@ def create_or_resurrect_translation_project(language, project):
 
 def create_translation_project(language, project):
     if translation_project_dir_exists(language, project):
+        tps = TranslationProject.objects.all().select_related(
+            "data", "directory")
         try:
-            translation_project, __ = TranslationProject.objects.all() \
-                .get_or_create(language=language, project=project)
+            translation_project, __ = tps.get_or_create(
+                language=language, project=project)
             return translation_project
         except OSError:
             return None
@@ -222,9 +224,13 @@ class TranslationProject(models.Model, CachedTreeItem):
     def disabled(self):
         return self.project.disabled
 
+    @cached_property
+    def templates_tp(self):
+        return self.project.get_template_translationproject()
+
     @property
     def is_template_project(self):
-        return self == self.project.get_template_translationproject()
+        return self == self.templates_tp
 
     # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
@@ -295,10 +301,9 @@ class TranslationProject(models.Model, CachedTreeItem):
         # doesn't exist. So it won't work if the translation project is already
         # saved the database because the translation project directory is
         # auto-created in `save()` method.
-        template_tp = self.project.get_template_translationproject()
         return (
             not self.is_template_project
-            and template_tp is not None
+            and self.templates_tp is not None
             and not translation_project_dir_exists(self.language,
                                                    self.project))
 
@@ -306,9 +311,9 @@ class TranslationProject(models.Model, CachedTreeItem):
         """Initializes the current translation project files using
         the templates TP ones.
         """
-
-        template_tp = self.project.get_template_translationproject()
-        template_stores = template_tp.stores.live().exclude(file="")
+        template_stores = self.templates_tp.stores.live().select_related(
+            "filetype__template_extension",
+            "filetype__extension").exclude(file="")
 
         for template_store in template_stores.iterator():
             init_store_from_template(self, template_store)
@@ -323,7 +328,11 @@ class TranslationProject(models.Model, CachedTreeItem):
         # Create new, make obsolete in-DB stores to reflect state on disk
         self.scan_files()
 
-        stores = self.stores.live().select_related('parent').exclude(file='')
+        stores = self.stores.live().select_related(
+            "parent",
+            "data",
+            "filetype__extension",
+            "filetype__template_extension").exclude(file='')
         # Update store content from disk store
         for store in stores.iterator():
             if not store.file:

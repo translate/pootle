@@ -14,6 +14,7 @@ from translate.misc.multistring import multistring
 
 from django.db import models
 from django.db.models.fields.files import FieldFile, FileField
+from django.utils.functional import cached_property
 
 from pootle.core.utils.multistring import (parse_multistring,
                                            unparse_multistring)
@@ -102,28 +103,10 @@ class MultiStringField(models.Field):
 # # # # # # # # # File # # # # # # # # # # # # # # # #
 
 
-class StoreTuple(object):
-    """Encapsulates toolkit stores in the in memory cache, needed
-    since LRUCachingDict is based on a weakref.WeakValueDictionary
-    which cannot reference normal tuples
-    """
-
-    def __init__(self, store, mod_info, realpath):
-        self.store = store
-        self.mod_info = mod_info
-        self.realpath = realpath
-
-
 class TranslationStoreFieldFile(FieldFile):
     """FieldFile is the file-like object of a FileField, that is found in a
     TranslationStoreField.
     """
-
-    from translate.misc.lru import LRUCachingDict
-    from django.conf import settings
-
-    _store_cache = LRUCachingDict(settings.PARSE_POOL_SIZE,
-                                  settings.PARSE_POOL_CULL_FREQUENCY)
 
     def getpomtime(self):
         file_stat = os.stat(self.realpath)
@@ -133,83 +116,29 @@ class TranslationStoreFieldFile(FieldFile):
     def filename(self):
         return os.path.basename(self.name)
 
-    def _get_realpath(self):
-        """Return realpath resolving symlinks if necessary."""
-        if not hasattr(self, "_realpath"):
-            # Django's db.models.fields.files.FieldFile raises ValueError if
-            # if the file field has no name - and tests "if self" to check
-            if self:
-                self._realpath = os.path.realpath(self.path)
-            else:
-                self._realpath = ''
-        return self._realpath
-
-    @property
+    @cached_property
     def realpath(self):
         """Get real path from cache before attempting to check for symlinks."""
-        if not hasattr(self, "_store_tuple"):
-            return self._get_realpath()
+        if self:
+            return os.path.realpath(self.path)
         else:
-            return self._store_tuple.realpath
+            return ''
 
-    @property
+    @cached_property
     def store(self):
         """Get translation store from dictionary cache, populate if store not
         already cached.
         """
-        self._update_store_cache()
-        return self._store_tuple.store
+        from translate.storage import factory
 
-    def _update_store_cache(self):
-        """Add translation store to dictionary cache, replace old cached
-        version if needed.
-        """
-        if self.exists():
-            mod_info = self.getpomtime()
-        else:
-            mod_info = 0
-        if (not hasattr(self, "_store_tuple") or
-            self._store_tuple.mod_info != mod_info):
-            try:
-                self._store_tuple = self._store_cache[self.path]
-                if self._store_tuple.mod_info != mod_info:
-                    # if file is modified act as if it doesn't exist in cache
-                    raise KeyError
-            except KeyError:
-                from translate.storage import factory
-
-                fileclass = self.instance.syncer.file_class
-                classes = {
-                    str(self.instance.filetype.extension): fileclass,
-                    str(self.instance.filetype.template_extension): fileclass}
-                store_obj = factory.getobject(self.path,
-                                              ignore=self.field.ignore,
-                                              classes=classes)
-                self._store_tuple = StoreTuple(store_obj, mod_info,
-                                               self.realpath)
-                self._store_cache[self.path] = self._store_tuple
-
-    def _touch_store_cache(self):
-        """Update stored mod_info without reparsing file."""
-        if hasattr(self, "_store_tuple"):
-            mod_info = self.getpomtime()
-            if self._store_tuple.mod_info != mod_info:
-                self._store_tuple.mod_info = mod_info
-        else:
-            # FIXME: do we really need that?
-            self._update_store_cache()
-
-    def _delete_store_cache(self):
-        """Remove translation store from cache."""
-        try:
-            del self._store_cache[self.path]
-        except KeyError:
-            pass
-
-        try:
-            del self._store_tuple
-        except AttributeError:
-            pass
+        fileclass = self.instance.syncer.file_class
+        classes = {
+            str(self.instance.filetype.extension): fileclass,
+            str(self.instance.filetype.template_extension): fileclass}
+        return factory.getobject(
+            self.path,
+            ignore=self.field.ignore,
+            classes=classes)
 
     def exists(self):
         return os.path.exists(self.realpath)
@@ -224,16 +153,19 @@ class TranslationStoreFieldFile(FieldFile):
         os.close(tmpfile)
         self.store.savefile(tmpfilename)
         shutil.move(tmpfilename, self.realpath)
-        self._touch_store_cache()
+        if "store" in self.__dict__:
+            del self.__dict__["store"]
 
     def save(self, name, content, save=True):
         # FIXME: implement save to tmp file then move instead of directly
         # saving
         super(TranslationStoreFieldFile, self).save(name, content, save)
-        self._delete_store_cache()
+        if "store" in self.__dict__:
+            del self.__dict__["store"]
 
     def delete(self, save=True):
-        self._delete_store_cache()
+        if "store" in self.__dict__:
+            del self.__dict__["store"]
         if save:
             super(TranslationStoreFieldFile, self).delete(save)
 

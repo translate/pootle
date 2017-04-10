@@ -24,9 +24,9 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
 
     email_subject = forms.CharField(
         max_length=100,
-        label=_(u'Summary'),
+        label=_(u'Subject'),
         widget=forms.TextInput(
-            attrs={'placeholder': _('Please enter your message summary')}
+            attrs={'placeholder': _('Please enter a message subject')}
         ),
     )
 
@@ -82,15 +82,11 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
         """Get the context to render the templates for email subject and body.
 
         FIXME: this copies and adjusts upstream code to support Django 1.10+.
-        Remove once django-contact-form is fixed.
+        Adjust properly once django-contact-form is fixed.
         """
-        return dict(self.cleaned_data)
-
-    def from_email(self):
-        return u'%s <%s>' % (
-            self.cleaned_data['name'],
-            settings.DEFAULT_FROM_EMAIL,
-        )
+        ctx = dict(self.cleaned_data)
+        ctx['server_name'] = settings.POOTLE_TITLE
+        return ctx
 
     def recipient_list(self):
         return [settings.POOTLE_CONTACT_EMAIL]
@@ -109,19 +105,58 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
 class ReportForm(ContactForm):
     """Contact form used to report errors on strings."""
 
-    report_email = forms.EmailField(
-        max_length=254,
-        required=False,
-        widget=forms.HiddenInput(),
+    field_order = ['name', 'email', 'context', 'body', 'captcha_answer',
+                   'captcha_token']
+
+    subject_template_name = 'contact_form/report_form_subject.txt'
+    template_name = 'contact_form/report_form.txt'
+
+    context = forms.CharField(
+        label=_(u'String context'),
+        required=True,
+        disabled=True,
+        widget=forms.Textarea(attrs={'rows': 6}),
     )
 
+    def __init__(self, *args, **kwargs):
+        self.unit = kwargs.pop('unit', None)
+        super(ReportForm, self).__init__(*args, **kwargs)
+
+        self.fields['body'].label = _(u'Question or comment')
+        body_placeholder = _('Please enter your question or comment')
+        self.fields['body'].widget.attrs['placeholder'] = body_placeholder
+
+        del self.fields['email_subject']
+
+    def get_context(self):
+        """Get context to render the templates for email subject and body."""
+        ctx = super(ReportForm, self).get_context()
+
+        unit_pk = None
+        language_code = None
+        project_code = None
+
+        if self.unit:
+            unit_pk = self.unit.pk
+            language_code = self.unit.store.translation_project.language.code
+            project_code = self.unit.store.translation_project.project.code
+
+        ctx.update({
+            'unit': unit_pk,
+            'language': language_code,
+            'project': project_code,
+        })
+        return ctx
+
     def recipient_list(self):
-        # Try to report string error to the report email for the project
-        # (injected in the 'report_email' field with initial values). If the
-        # project doesn't have a report email then fall back to the global
+        # Try to report string error to the report email for the project. If
+        # the project doesn't have a report email then fall back to the global
         # string errors report email.
-        if self.cleaned_data['report_email']:
-            return [self.cleaned_data['report_email']]
+        if self.unit:
+            report_email = (
+                self.unit.store.translation_project.project.report_email)
+            if report_email:
+                return [report_email]
 
         report_email = getattr(settings, 'POOTLE_CONTACT_REPORT_EMAIL',
                                settings.POOTLE_CONTACT_EMAIL)

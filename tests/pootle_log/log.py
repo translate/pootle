@@ -8,12 +8,20 @@
 
 import pytest
 
-from django.contrib.auth import get_user_model
+from datetime import timedelta
 
-from pootle.core.delegate import lifecycle, log, review
-from pootle_log.utils import Log, LogEvent, StoreLog
+from django.contrib.auth import get_user_model
+from django.utils import timezone
+
+from pytest_pootle.utils import create_store
+
+from pootle.core.delegate import (comparable_event, grouped_events,
+                                  lifecycle, log, review)
+from pootle_log.utils import (ComparableLogEvent, GroupedEvents, Log,
+                              LogEvent, StoreLog, UnitLog)
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
+from pootle_store.constants import TRANSLATED, UNTRANSLATED
 from pootle_store.models import Suggestion, UnitSource
 
 
@@ -395,14 +403,14 @@ def test_log_filtered_created_units(system, tp0, store0):
 def test_log_get_created_units(system, store0):
     created_units = UnitSource.objects.all()
     created_unit_log = Log()
-    created = created_unit_log.get_created_units(
+    created = created_unit_log.get_created_unit_events(
         include_meta=True)
     assert type(created).__name__ == "generator"
     assert len(list(created)) == created_units.count()
     expected = created_units.filter(
         created_by=system).filter(
             unit__store=store0).in_bulk()
-    result = created_unit_log.get_created_units(
+    result = created_unit_log.get_created_unit_events(
         store=store0.pk, users=[system])
     for event in result:
         created_unit = expected[event.value.pk]
@@ -418,10 +426,10 @@ def test_log_get_created_units(system, store0):
 def test_log_get_submissions(member, store0):
     submissions = Submission.objects.all()
     submission_log = Log()
-    sub_events = submission_log.get_submissions()
+    sub_events = submission_log.get_submission_events()
     unit0 = store0.units[0]
     unit0.source = "new source"
-    unit0.save(submitted_by=member)
+    unit0.save(user=member)
     lifecycle.get(unit0.__class__)(unit0).change()
     unit1 = store0.units[0]
     unit1.translator_comment = "new comment"
@@ -436,7 +444,7 @@ def test_log_get_submissions(member, store0):
     expected = submissions.filter(
         submitter=member).filter(
             unit__store=store0).in_bulk()
-    result = submission_log.get_submissions(
+    result = submission_log.get_submission_events(
         store=store0.pk, users=[member])
     for event in result:
         sub = expected[event.value.pk]
@@ -458,6 +466,7 @@ def test_log_get_submissions(member, store0):
         assert event.timestamp == sub.creation_time
         assert event.action == event_name
         assert event.value == sub
+        assert event.revision == sub.revision
 
 
 @pytest.mark.django_db
@@ -465,7 +474,7 @@ def test_log_get_suggestions(member, store0):
     suggestions = Suggestion.objects.all()
     sugg_start, sugg_end = _get_mid_times(suggestions)
     sugg_log = Log()
-    sugg_events = sugg_log.get_suggestions()
+    sugg_events = sugg_log.get_suggestion_events()
     assert type(sugg_events).__name__ == "generator"
     user_time_suggestions = (
         (sugg_log.filter_users(
@@ -529,7 +538,7 @@ def test_log_get_suggestions(member, store0):
                     suggestion.review_time,
                     event_name,
                     suggestion))
-    result = sugg_log.get_suggestions(
+    result = sugg_log.get_suggestion_events(
         start=sugg_start, end=sugg_end, users=[member.id])
     for event in result:
         assert isinstance(event, sugg_log.event)
@@ -557,9 +566,9 @@ def test_log_get_events(site_users, store0):
         event_log.get_events(**kwargs),
         key=(lambda ev: (ev.timestamp, ev.unit.pk)))
     expected = sorted(
-        list(event_log.get_created_units(**kwargs))
-        + list(event_log.get_suggestions(**kwargs))
-        + list(event_log.get_submissions(**kwargs)),
+        list(event_log.get_created_unit_events(**kwargs))
+        + list(event_log.get_suggestion_events(**kwargs))
+        + list(event_log.get_submission_events(**kwargs)),
         key=(lambda ev: (ev.timestamp, ev.unit.pk)))
     assert (
         [(x.timestamp, x.unit, x.action)
@@ -604,3 +613,151 @@ def test_log_store(store0):
     assert (
         store_log.filter_store(subs, store=store0.id)
         == subs)
+
+
+@pytest.mark.django_db
+def test_log_unit(store0):
+    unit = store0.units.filter(state=TRANSLATED).first()
+    unit_log = log.get(unit.__class__)(unit)
+    assert isinstance(unit_log, UnitLog)
+    assert unit_log.unit == unit
+    assert all(
+        x == unit.id
+        for x
+        in unit_log.submissions.values_list(
+            "unit_id", flat=True))
+    assert (
+        unit_log.submissions.count()
+        == Submission.objects.filter(
+            unit_id=unit.id).count())
+    assert all(
+        x == unit.id
+        for x
+        in unit_log.suggestions.values_list(
+            "unit_id", flat=True))
+    assert (
+        unit_log.suggestions.count()
+        == Suggestion.objects.filter(
+            unit_id=unit.id).count())
+    assert (
+        unit_log.created_units.count()
+        == UnitSource.objects.filter(
+            unit_id=unit.id).count())
+    assert all(
+        x == unit.id
+        for x
+        in unit_log.created_units.values_list(
+            "unit_id", flat=True))
+    subs = unit_log.submissions
+    assert (
+        unit_log.filter_store(subs, store=unit.store.id)
+        == subs)
+
+
+@pytest.mark.django_db
+def test_comparable_log(member, store0, store_po):
+    assert comparable_event.get(Log) == ComparableLogEvent
+
+    start = timezone.now().replace(microsecond=0)
+    unit = store0.units.filter(state=TRANSLATED).first()
+    unit.target += 'UPDATED IN TEST'
+    unit.save(user=member)
+    unit = store0.units.filter(state=TRANSLATED).first()
+    unit.target += 'UPDATED IN TEST AGAIN'
+    unit.save(user=member)
+    unit_log = log.get(unit.__class__)(unit)
+    event1, event2 = [ComparableLogEvent(x)
+                      for x in
+                      unit_log.get_events(users=[member.id], start=start)]
+    assert (event1 < event2) == (event1.revision < event2.revision)
+    assert (event2 < event1) == (event2.revision < event1.revision)
+
+    unit = store0.units.filter(state=UNTRANSLATED).first()
+    sugg1, created_ = review.get(Suggestion)().add(
+        unit,
+        unit.source_f + 'SUGGESTION',
+        user=member)
+    sugg2, created_ = review.get(Suggestion)().add(
+        unit,
+        unit.source_f + 'SUGGESTION AGAIN',
+        user=member)
+    Suggestion.objects.filter(id=sugg2.id).update(creation_time=sugg1.creation_time)
+    unit_log = log.get(unit.__class__)(unit)
+    event1, event2 = [ComparableLogEvent(x)
+                      for x in
+                      unit_log.get_events(users=[member.id], start=start)]
+    assert (event1 < event2) == (event1.value.pk < event2.value.pk)
+    assert (event2 < event1) == (event2.value.pk < event1.value.pk)
+
+    Suggestion.objects.filter(id=sugg2.id).update(creation_time=None)
+    sugg2 = Suggestion.objects.get(id=sugg2.id)
+    event1 = [ComparableLogEvent(x)
+              for x in
+              unit_log.get_events(users=[member.id], start=start)][0]
+    event2 = ComparableLogEvent(unit_log.event(sugg2.unit,
+                                               sugg2.user,
+                                               sugg2.creation_time,
+                                               "suggestion_created",
+                                               sugg2))
+    assert event2 < event1
+    assert not (event1 < event2)
+
+    units = [
+        ('Unit 0 Source', 'Unit 0 Target', False),
+        ('Unit 1 Source', '', False),
+    ]
+    store_po.update(create_store(units=units))
+    unit1, unit2 = store_po.units
+    unit2.__class__.objects.filter(id=unit2.id).update(
+        creation_time=unit1.creation_time)
+    store_log = log.get(store_po.__class__)(store_po)
+    event1, event2 = [ComparableLogEvent(x)
+                      for x in
+                      store_log.get_events()]
+    assert (event1 < event2) == (event1.unit.id < event2.unit.id)
+    assert (event2 < event1) == (event2.unit.id < event1.unit.id)
+
+    creation_time = unit1.creation_time + timedelta(seconds=1)
+    unit2.__class__.objects.filter(id=unit2.id).update(creation_time=creation_time)
+    event1, event2 = [ComparableLogEvent(x)
+                      for x in
+                      store_log.get_events()]
+    assert (event1 < event2) == (event1.timestamp < event2.timestamp)
+    assert (event2 < event1) == (event2.timestamp < event1.timestamp)
+
+    unit = store_po.units.filter(state=UNTRANSLATED)[0]
+    unit.target = 'Unit 1 Target'
+    unit.save()
+    unit_log = log.get(unit.__class__)(unit)
+    event1, event2 = [ComparableLogEvent(x)
+                      for x in unit_log.get_submission_events()]
+    assert not (event1 < event2) and not (event2 < event1)
+
+
+@pytest.mark.django_db
+def test_grouped_events(store_po):
+    assert grouped_events.get(Log) == GroupedEvents
+
+    units = [
+        ('Unit 0 Source', 'Unit 0 Target', False),
+        ('Unit 1 Source', '', False),
+        ('Unit 2 Source', 'Unit 2 Fuzzy Target', True),
+    ]
+    store_po.update(create_store(units=units))
+    units = [
+        ('Unit 0 Source', 'Unit 0 Target', False),
+        ('Unit 1 Source', 'Unit 1 Target', False),
+        ('Unit 2 Source', 'Unit 2 Target', False),
+    ]
+    store_po.update(create_store(units=units))
+    store_log = log.get(store_po.__class__)(store_po)
+    expected = [
+        (x.unit, x.user, x.timestamp, x.action, x.value, x.old_value, x.revision)
+        for x in sorted([
+            ComparableLogEvent(ev)
+            for ev in store_log.get_events()])]
+    result = [
+        (x.unit, x.user, x.timestamp, x.action, x.value, x.old_value, x.revision)
+        for x in GroupedEvents(store_log).sorted_events()]
+
+    assert expected == result

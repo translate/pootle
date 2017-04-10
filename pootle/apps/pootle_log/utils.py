@@ -9,6 +9,8 @@
 from django.contrib.auth import get_user_model
 from django.utils.functional import cached_property
 
+from pootle.core.delegate import comparable_event
+from pootle.core.proxy import BaseProxy
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 from pootle_store.models import Suggestion, UnitSource
@@ -27,7 +29,48 @@ class LogEvent(object):
         self.revision = revision
 
 
+class ComparableLogEvent(BaseProxy):
+
+    _special_names = (x for x in BaseProxy._special_names
+                      if x not in ["__lt__", "__gt__"])
+
+    def __cmp__(self, other):
+        # valuable revisions are authoritative
+        if self.revision is not None and other.revision is not None:
+            if self.revision > other.revision:
+                return 1
+            elif self.revision < other.revision:
+                return -1
+
+        # timestamps have the next priority
+        if self.timestamp and other.timestamp:
+            if self.timestamp > other.timestamp:
+                return 1
+            elif self.timestamp < other.timestamp:
+                return -1
+        elif self.timestamp:
+            return 1
+        elif other.timestamp:
+            return -1
+
+        # conditions below are applied for events with equal timestamps
+        # or without any
+        if self.action == other.action == 'suggestion_created':
+            if self.value.pk > other.value.pk:
+                return 1
+            else:
+                return -1
+
+        if self.unit.pk > other.unit.pk:
+            return 1
+        elif self.unit.pk < other.unit.pk:
+            return -1
+
+        return 0
+
+
 class Log(object):
+    include_meta = False
 
     @property
     def created_units(self):
@@ -35,11 +78,13 @@ class Log(object):
 
     @property
     def suggestions(self):
-        return Suggestion.objects.select_related("unit", "user", "reviewer")
+        return Suggestion.objects.select_related(
+            "unit", "user", "reviewer", "state", "unit__unit_source")
 
     @property
     def submissions(self):
-        return Submission.objects.select_related("unit", "submitter")
+        return Submission.objects.select_related(
+            "unit", "submitter", "unit__unit_source")
 
     @cached_property
     def event(self):
@@ -78,14 +123,14 @@ class Log(object):
         return qs
 
     def filter_users(self, qs, users=None,
-                     field="submitter_id", include_meta=False):
+                     field="submitter_id", include_meta=None):
         if not users:
-            meta_users = get_user_model().objects.META_USERS
-            return (
-                qs.exclude(
-                    **{"%s__username__in" % field: meta_users})
-                if not include_meta
-                else qs)
+            if include_meta is None and self.include_meta or include_meta:
+                return qs
+            else:
+                meta_users = get_user_model().objects.META_USERS
+                return qs.exclude(**{"%s__username__in" % field: meta_users})
+
         return (
             qs.filter(**{field: list(users).pop()})
             if len(users) == 1
@@ -157,7 +202,7 @@ class Log(object):
             field="unit__creation_time")
         return created_units
 
-    def get_created_units(self, **kwargs):
+    def get_created_unit_events(self, **kwargs):
         for created_unit in self.filtered_created_units(**kwargs):
             yield self.event(
                 created_unit.unit,
@@ -166,7 +211,7 @@ class Log(object):
                 "unit_created",
                 created_unit)
 
-    def get_submissions(self, **kwargs):
+    def get_submission_events(self, **kwargs):
         for submission in self.filtered_submissions(**kwargs):
             event_name = "state_changed"
             if submission.field == SubmissionFields.CHECK:
@@ -185,9 +230,10 @@ class Log(object):
                 submission.submitter,
                 submission.creation_time,
                 event_name,
-                submission)
+                submission,
+                revision=submission.revision)
 
-    def get_suggestions(self, **kwargs):
+    def get_suggestion_events(self, **kwargs):
         users = kwargs.get("users")
         for suggestion in self.filtered_suggestions(**kwargs):
             add_event = (
@@ -225,15 +271,16 @@ class Log(object):
                     suggestion)
 
     def get_events(self, **kwargs):
-        for event in self.get_created_units(**kwargs):
+        for event in self.get_created_unit_events(**kwargs):
             yield event
-        for event in self.get_suggestions(**kwargs):
+        for event in self.get_suggestion_events(**kwargs):
             yield event
-        for event in self.get_submissions(**kwargs):
+        for event in self.get_submission_events(**kwargs):
             yield event
 
 
 class StoreLog(Log):
+    include_meta = True
 
     def __init__(self, store):
         self.store = store
@@ -255,3 +302,38 @@ class StoreLog(Log):
 
     def filter_store(self, qs, store=None, field="unit__store_id"):
         return qs
+
+
+class UnitLog(Log):
+    include_meta = True
+
+    def __init__(self, unit):
+        self.unit = unit
+
+    @property
+    def created_units(self):
+        return super(
+            UnitLog, self).created_units.filter(unit_id=self.unit.id)
+
+    @property
+    def suggestions(self):
+        return super(
+            UnitLog, self).suggestions.filter(unit_id=self.unit.id)
+
+    @property
+    def submissions(self):
+        return super(
+            UnitLog, self).submissions.filter(unit_id=self.unit.id)
+
+    def filter_store(self, qs, store=None, field="unit__store_id"):
+        return qs
+
+
+class GroupedEvents(object):
+    def __init__(self, log):
+        self.log = log
+
+    def sorted_events(self, reverse=False):
+        for event in sorted([comparable_event.get(self.log.__class__)(x)
+                             for x in self.log.get_events()], reverse=reverse):
+            yield event

@@ -1,5 +1,5 @@
 from django.forms import CheckboxInput, SelectMultiple
-from django.utils.encoding import force_unicode
+from django.utils.encoding import force_text
 from django.utils.html import escape
 from django.utils.safestring import SafeText, mark_safe
 
@@ -45,7 +45,7 @@ class TableSelectMultiple(SelectMultiple):
         final_attrs = self.build_attrs(attrs, name=name)
         output = []
         # Normalize to strings.
-        str_values = set([force_unicode(v) for v in value])
+        str_values = set([force_text(v) for v in value])
         for i, (option_value, item) in enumerate(self.choices):
             # If an ID attribute was given, add a numeric index as a suffix,
             # so that the checkboxes don't all have the same ID attribute.
@@ -54,7 +54,7 @@ class TableSelectMultiple(SelectMultiple):
             cb = CheckboxInput(
                 final_attrs,
                 check_test=lambda value: value in str_values)
-            option_value = force_unicode(option_value)
+            option_value = force_text(option_value)
             rendered_cb = cb.render(name, option_value)
             output.append(u'<tr>')
             output.append(u'<td class="row-select">%s</td>' % rendered_cb)

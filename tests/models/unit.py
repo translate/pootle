@@ -14,7 +14,6 @@ from translate.storage.pypo import pounit
 from translate.storage.statsdb import wordcount as counter
 
 from django.contrib.auth import get_user_model
-from django.utils import timezone
 
 from pootle.core.delegate import review, wordcount
 from pootle.core.plugin import getter
@@ -38,9 +37,7 @@ def _update_translation(store, item, new_values, sync=True):
     if 'translator_comment' in new_values:
         unit.translator_comment = new_values['translator_comment']
 
-    unit.submitted_on = timezone.now()
-    unit.submitted_by = User.objects.get_system_user()
-    unit.save()
+    unit.save(user=User.objects.get_system_user())
 
     if sync:
         store.sync()
@@ -221,26 +218,6 @@ def test_add_suggestion(store0, system):
     assert sugg is not None
     assert added
     assert len(untranslated_unit.get_suggestions()) == initial_suggestions + 1
-
-
-@pytest.mark.django_db
-def test_accept_suggestion_no_update(store0, member):
-    """Tests adding new suggestions to units."""
-    unit = store0.units.filter(suggestion__state__name="pending").first()
-    original = unit._frozen
-    last_sub_pk = (
-        unit.submission_set.order_by(
-            "-pk").values_list("id", flat=True).first() or 0)
-    suggestion = unit.suggestion_set.filter(state__name="pending").last()
-    suggestion_review = review.get(Suggestion)([suggestion])
-    suggestion_review.accept(update_unit=False)
-    assert not unit.updated
-    unit.refresh_from_db()
-    assert not unit.changed
-    assert unit.target == original.target
-    assert unit.revision == original.revision
-    new_subs = unit.submission_set.filter(id__gt=last_sub_pk)
-    assert new_subs.count() == 0
 
 
 @pytest.mark.django_db
