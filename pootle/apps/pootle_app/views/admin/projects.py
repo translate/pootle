@@ -6,16 +6,20 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import json
+
 from django.views.generic import TemplateView
 
 from pootle.core.delegate import formats
+from pootle.core.http import JsonResponse
 from pootle.core.views import APIView
 from pootle.core.views.decorators import (set_permissions, 
             requires_permission_class)
 from pootle.core.views.mixins import SuperuserRequiredMixin
 from pootle_app.forms import ProjectForm
 from pootle_app.models.directory import Directory
-from pootle_app.models.permissions import check_user_permission
+from pootle_app.models.permissions import (check_user_permission, 
+                                get_pootle_permission, PermissionSet)
 from pootle_language.models import Language
 from pootle_project.models import PROJECT_CHECKERS, Project
 
@@ -88,5 +92,31 @@ class ProjectAPIView(APIView):
                                             request.user, 
                                             project.code, 
                                             project.directory)]
-            self.base_queryset = self.base_queryset.exclude(pk__in=exclude_projects)
-        return super(ProjectAPIView, self).dispatch(request, *args, **kwargs)
+            self.base_queryset = self.base_queryset.exclude(
+                                            pk__in=exclude_projects)
+        return super(ProjectAPIView, self).dispatch(request, 
+                                                    *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        try:
+            request_dict = json.loads(request.body)
+        except ValueError:
+            return self.status_msg('Invalid JSON data', status=400)
+
+        form = self.add_form_class(request_dict)
+
+        if form.is_valid():
+            new_object = form.save()
+            permissionset = PermissionSet.objects.create(
+                user=request.user, 
+                directory=new_object.directory
+            )
+            permissionset.positive_permissions.add(get_pootle_permission("administrate"))
+            request.user.permissionset_set.add(permissionset)
+            
+            wrapper_qs = self.base_queryset.filter(pk=new_object.pk)
+            return JsonResponse(
+                self.qs_to_values(wrapper_qs, single_object=True)
+            )
+
+        return self.form_invalid(form)
