@@ -158,30 +158,6 @@ def admin_required(func):
     return wrapped
 
 
-def addprojectenabled_required(func):
-    @wraps(func)
-    def wrapped(request, *args, **kwargs):
-        if not settings.POOTLE_LOGGEDUSERS_CAN_ADDPROJECTS:
-            raise PermissionDenied(
-                _("You do not have rights to add project.")
-            )
-        return func(request, *args, **kwargs)
-
-    return wrapped
-
-
-def editprojectenabled_required(func):
-    @wraps(func)
-    def wrapped(request, *args, **kwargs):
-        if not settings.POOTLE_PROJECTADMIN_CAN_EDITPROJECTS:
-            raise PermissionDenied(
-                _("You do not have rights to edit project settings.")
-            )
-        return func(request, *args, **kwargs)
-
-    return wrapped
-
-
 class persistent_property(object):
     """
     Similar to cached_property, except it caches in the memory cache rather
