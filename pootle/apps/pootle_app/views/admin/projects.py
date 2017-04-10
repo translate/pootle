@@ -86,7 +86,7 @@ class ProjectAPIView(APIView):
                                 for project in self.base_queryset.all()
                                 if not check_user_permission(
                                             request.user, 
-                                            project.codename, 
+                                            project.code, 
                                             project.directory)]
             self.base_queryset = self.base_queryset.exclude(pk__in=exclude_projects)
         return super(ProjectAPIView, self).dispatch(request, *args, **kwargs)
