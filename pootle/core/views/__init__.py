@@ -13,13 +13,12 @@ from django.views.defaults import (permission_denied as django_403,
 from .api import APIView
 from .base import PootleAdminView, PootleJSON
 from .browse import PootleBrowseView
-from .admin import PootleAddView, PootleEditView
 from .translate import PootleTranslateView
 
 
 __all__ = (
     'APIView', 'PootleJSON', 'PootleAdminView', 'PootleBrowseView',
-    'PootleTranslateView', 'PootleAddView', 'PootleEditView')
+    'PootleTranslateView')
 
 
 def permission_denied(request, exception):
