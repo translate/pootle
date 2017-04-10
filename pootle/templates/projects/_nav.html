@@ -17,10 +17,10 @@
 <option disabled></option>
   {% if settings.POOTLE_PROJECTADMIN_CAN_EDITPROJECTS %}
   <option
-     {% if page == 'pootle-project-admin-edit' %}selected="selected"{% endif %}
-     value="admin-edit"
+     {% if page == 'pootle-user-project-edit' %}selected="selected"{% endif %}
+     value="user-edit"
      class="admin"
-     data-href="{% url 'pootle-project-admin-edit' project.code %}">
+     data-href="{% url 'pootle-user-project-edit' project.code %}">
     {% trans "Edit" %}
   </option>
   {% endif %}
