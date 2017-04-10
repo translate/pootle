@@ -23,8 +23,7 @@ from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.paginator import paginate
 from pootle.core.url_helpers import split_pootle_path
 from pootle.core.views import (
-    PootleAdminView, PootleBrowseView, PootleTranslateView,
-    PootleAddView, PootleEditView)
+        PootleAdminView, PootleBrowseView, PootleTranslateView)
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
