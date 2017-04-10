@@ -9,7 +9,7 @@
 from django.contrib import messages
 from django.forms.models import modelformset_factory
 from django.http import Http404
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.html import escape
@@ -23,7 +23,7 @@ from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.paginator import paginate
 from pootle.core.url_helpers import split_pootle_path
 from pootle.core.views import (
-        PootleAdminView, PootleBrowseView, PootleTranslateView)
+    PootleAdminView, PootleBrowseView, PootleTranslateView)
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
 from pootle_app.views.admin import util
@@ -35,7 +35,7 @@ from pootle_translationproject.models import TranslationProject
 
 from .apps import PootleProjectConfig
 from .forms import TranslationProjectFormSet
-from .models import PROJECT_CHECKERS, Project, ProjectResource, ProjectSet
+from .models import Project, ProjectResource, ProjectSet
 
 
 class ProjectMixin(object):

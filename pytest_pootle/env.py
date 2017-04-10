@@ -209,12 +209,8 @@ class PootleTestEnv(object):
             'Can administrate a TP',
             pootle_content_type)
         _require_permission(
-            'addproject',
+            'add_project',
             'Can add projects',
-            pootle_content_type)
-        _require_permission(
-            'editproject',
-            'Can edit projects',
             pootle_content_type)
 
     def setup_fs(self):

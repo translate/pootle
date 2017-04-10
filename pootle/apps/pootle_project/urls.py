@@ -24,7 +24,6 @@ urlpatterns = [
         ProjectsTranslateView.as_view(),
         name='pootle-projects-translate'),
 
-
     # Admin
     url(r'^(?P<project_code>[^/]*)/admin/languages/$',
         ProjectAdminView.as_view(),
