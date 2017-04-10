@@ -14,6 +14,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.urls import reverse
+from django.utils import six
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import data_tool
@@ -141,6 +142,7 @@ class TranslationProjectManager(models.Manager):
                 language__code=language_code)
 
 
+@six.python_2_unicode_compatible
 class TranslationProject(models.Model, CachedTreeItem):
 
     language = models.ForeignKey(
@@ -234,7 +236,7 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
-    def __unicode__(self):
+    def __str__(self):
         return self.pootle_path
 
     def __init__(self, *args, **kwargs):

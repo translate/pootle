@@ -11,6 +11,7 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.template.defaultfilters import truncatechars
 from django.urls import reverse
+from django.utils import six
 
 from pootle.core.utils import dateformat
 from pootle.core.user import get_system_user
@@ -141,6 +142,7 @@ class SubmissionManager(models.Manager):
                 suggestion__isnull=False))
 
 
+@six.python_2_unicode_compatible
 class Submission(models.Model):
     class Meta(object):
         ordering = ["creation_time", "pk"]
@@ -186,7 +188,7 @@ class Submission(models.Model):
         db_index=True,
         blank=True)
 
-    def __unicode__(self):
+    def __str__(self):
         return u"%s (%s)" % (self.creation_time.strftime("%Y-%m-%d %H:%M"),
                              unicode(self.submitter))
 

@@ -11,6 +11,7 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.utils import six
 
 from .directory import Directory
 
@@ -123,6 +124,7 @@ def check_permission(permission_codename, request):
             permission_codename in request.permissions)
 
 
+@six.python_2_unicode_compatible
 class PermissionSet(models.Model):
 
     class Meta(object):
@@ -139,7 +141,7 @@ class PermissionSet(models.Model):
     negative_permissions = models.ManyToManyField(
         Permission, db_index=True, related_name='permission_sets_negative')
 
-    def __unicode__(self):
+    def __str__(self):
         return "%s : %s" % (self.user.username,
                             self.directory.pootle_path)
 

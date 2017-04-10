@@ -8,6 +8,7 @@
 
 from django.core.exceptions import ValidationError
 from django.db import models
+from django.utils import six
 from django.utils.functional import cached_property
 
 from pootle.core.markup import MarkupField, get_markup_filter_display_name
@@ -19,6 +20,7 @@ from pootle_store.models import Store
 from .delegate import path_matcher
 
 
+@six.python_2_unicode_compatible
 class VirtualFolder(models.Model):
 
     # any changes to the `name` field may require updating the schema
@@ -77,7 +79,7 @@ class VirtualFolder(models.Model):
     def path_matcher(self):
         return path_matcher.get(self.__class__)(self)
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     def save(self, *args, **kwargs):

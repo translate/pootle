@@ -18,7 +18,7 @@ from django.db import models
 from django.db.models import ProtectedError, Q
 from django.forms.models import model_to_dict
 from django.urls import reverse
-from django.utils import timezone
+from django.utils import six, timezone
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
@@ -41,6 +41,7 @@ __all__ = ('User', )
 CURRENCIES = (('USD', 'USD'), ('EUR', 'EUR'), ('CNY', 'CNY'), ('JPY', 'JPY'))
 
 
+@six.python_2_unicode_compatible
 class User(AbstractBaseUser):
     """The Pootle User.
 
@@ -137,7 +138,7 @@ class User(AbstractBaseUser):
         except UnicodeEncodeError:
             return None
 
-    def __unicode__(self):
+    def __str__(self):
         return self.username
 
     def save(self, *args, **kwargs):

@@ -10,6 +10,7 @@ from django.contrib.contenttypes.fields import GenericRelation
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.urls import reverse
+from django.utils import six
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import data_tool
@@ -42,6 +43,7 @@ def validate_no_slashes(value):
         raise ValidationError('Directory name cannot contain "\\" characters')
 
 
+@six.python_2_unicode_compatible
 class Directory(models.Model, CachedTreeItem):
 
     # any changes to the `name` field may require updating the schema
@@ -109,7 +111,7 @@ class Directory(models.Model, CachedTreeItem):
 
     # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
-    def __unicode__(self):
+    def __str__(self):
         return self.pootle_path
 
     def __init__(self, *args, **kwargs):

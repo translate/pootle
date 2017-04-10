@@ -14,6 +14,7 @@ from lxml.html.clean import clean_html
 from django.conf import settings
 from django.core.cache import cache
 from django.db import models
+from django.utils import six
 from django.utils.safestring import mark_safe
 
 from .filters import apply_markup_filter
@@ -30,6 +31,7 @@ _rendered_cache_key = lambda obj, pk, field: '_%s_%s_%s_rendered' % \
                                              (obj, pk, field)
 
 
+@six.python_2_unicode_compatible
 class Markup(object):
 
     def __init__(self, instance, field_name, rendered_cache_key):
@@ -57,7 +59,7 @@ class Markup(object):
 
         return rendered
 
-    def __unicode__(self):
+    def __str__(self):
         try:
             return mark_safe(clean_html(self.rendered))
         except ParserError:

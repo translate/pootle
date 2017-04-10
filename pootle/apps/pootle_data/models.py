@@ -7,10 +7,12 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.db import models
+from django.utils import six
 
 from .abstracts import AbstractPootleChecksData, AbstractPootleData
 
 
+@six.python_2_unicode_compatible
 class StoreData(AbstractPootleData):
 
     class Meta(object):
@@ -22,10 +24,11 @@ class StoreData(AbstractPootleData):
         db_index=True,
         related_name="data")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.store.pootle_path
 
 
+@six.python_2_unicode_compatible
 class StoreChecksData(AbstractPootleChecksData):
 
     class Meta(AbstractPootleChecksData.Meta):
@@ -41,10 +44,11 @@ class StoreChecksData(AbstractPootleChecksData):
         db_index=True,
         related_name="check_data")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.store.pootle_path
 
 
+@six.python_2_unicode_compatible
 class TPData(AbstractPootleData):
 
     class Meta(object):
@@ -56,10 +60,11 @@ class TPData(AbstractPootleData):
         db_index=True,
         related_name="data")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.tp.pootle_path
 
 
+@six.python_2_unicode_compatible
 class TPChecksData(AbstractPootleChecksData):
 
     class Meta(AbstractPootleChecksData.Meta):
@@ -75,5 +80,5 @@ class TPChecksData(AbstractPootleChecksData):
         db_index=True,
         related_name="check_data")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.tp.pootle_path

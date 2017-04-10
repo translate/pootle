@@ -22,6 +22,7 @@ from django.db.models import Q
 from django.db.models.signals import post_delete, post_save
 from django.dispatch import receiver
 from django.urls import reverse
+from django.utils import six
 from django.utils.encoding import iri_to_uri
 from django.utils.functional import cached_property
 
@@ -190,6 +191,7 @@ def validate_project_checker(value):
         )
 
 
+@six.python_2_unicode_compatible
 class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     code_help_text = _('A short code for the project. This should only '
@@ -398,7 +400,7 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
     # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
-    def __unicode__(self):
+    def __str__(self):
         return self.fullname
 
     def save(self, *args, **kwargs):
