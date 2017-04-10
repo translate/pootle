@@ -17,7 +17,7 @@ __all__ = ('ProjectUserView',)
 
 
 class ProjectUserView(ProjectGenericAdminView):
-    template_name = 'projects/admin/user.html'
+    template_name = 'projects/user/projects.html'
     page_code = 'user-projects'
 
 
