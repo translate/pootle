@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^projects/$',
         ProjectUserView.as_view(),
         name='pootle-user-projects'),
-    url(r'^projects/(?P<id>[0-9]+)/?$',
+    url(r'^projects/(?P<id>[0-9]*)/?$',
         ProjectUserView.as_view(),
         name='pootle-user-project-edit'),
 ]
@@ -25,7 +25,7 @@ api_patterns = [
     url(r'^projects/?$',
         ProjectAPIView.as_view(),
         name='pootle-xhr-user-projects'),
-    url(r'^projects/(?P<id>[0-9]+)/?$',
+    url(r'^projects/(?P<id>[0-9]*)/?$',
         ProjectAPIView.as_view(),
         name='pootle-xhr-user-project'),
 ]
