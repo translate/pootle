@@ -149,11 +149,7 @@ class InitDB(object):
             },
             {
                 'name': _("Can add projects"),
-                'codename': "addproject",
-            },
-            {
-                'name': _("Can edit projects"),
-                'codename': "editproject",
+                'codename': "add_project",
             },
         ]
 
