@@ -2453,6 +2453,13 @@ form.pootle-fs-config-form
     padding: 0.3em;
 }
 
+html[dir="rtl"] .pagination .pagination-right
+{
+    right: auto;
+    left: 0;
+    text-align: left;
+}
+
 .pagination .pagination-center
 {
     width: 100%;
@@ -2486,6 +2493,13 @@ form.pootle-fs-config-form
     height: 2.4em;
     padding: 0.3em;
     z-index: 1000;
+}
+
+html[dir="rtl"] .pagination .pagination-left
+{
+    left: auto;
+    right: 0;
+    text-align: right;
 }
 
 form.formtable .disabled

@@ -12,9 +12,9 @@
 	  <div class="aligned-center pagination">
 	    <div class="pagination-left js-pagination-previous">
 	      {% if formtable.page.has_previous %}
-	      <a href="?page={{ formtable.page.previous_page_number }}">{% trans "Previous page" %}</a>
+	      <a href="?page={{ formtable.page.previous_page_number }}">&lt;&lt;&lt;</a>
 	      {% else %}
-	      <span class="disabled">{% trans "Previous page" %}</span>
+	      <span class="disabled">&lt;&lt;&lt;</span>
 	      {% endif %}
 	    </div>
 	    <div class="pagination-center">
@@ -33,9 +33,9 @@
 	    </div>
 	    <div class="pagination-right js-pagination-next">
 	      {% if formtable.page.has_next %}
-	      <a href="?page={{ formtable.page.next_page_number }}">{% trans "Next page" %}</a>
+	      <a href="?page={{ formtable.page.next_page_number }}">&gt;&gt;&gt;</a>
 	      {% else %}
-	      <span class="disabled">{% trans "Next page" %}</span>
+	      <span class="disabled">&gt;&gt;&gt;</span>
 	      {% endif %}
 	    </div>
 	  </div>
