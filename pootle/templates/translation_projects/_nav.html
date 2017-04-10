@@ -19,7 +19,7 @@
    {% if page == 'pootle-user-project-edit' %}selected="selected"{% endif %}
    value="edit"
    class="admin"
-   data-href="{% url 'pootle-user-project-edit' project.code %}">
+   data-href="{% url 'pootle-user-project-edit' project.pk %}">
   {% trans "Edit Project" %}
 </option>
 {% endif %}
