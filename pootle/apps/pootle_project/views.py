@@ -26,7 +26,6 @@ from pootle.core.views import (
         PootleAdminView, PootleBrowseView, PootleTranslateView)
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
-from pootle_app.models.permissions import PermissionSet, get_pootle_permission
 from pootle_app.views.admin import util
 from pootle_app.views.admin.permissions import admin_permissions
 from pootle_misc.util import cmp_by_last_activity
