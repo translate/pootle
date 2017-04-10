@@ -10,6 +10,9 @@ from django.views.generic import TemplateView
 
 from pootle.core.delegate import formats
 from pootle.core.views import APIView
+from pootle.core.views.decorators import set_permissions, 
+                                        requires_permission_class,
+                                        check_user_permission
 from pootle.core.views.mixins import SuperuserRequiredMixin
 from pootle_app.forms import ProjectForm
 from pootle_language.models import Language
@@ -19,8 +22,9 @@ from pootle_project.models import PROJECT_CHECKERS, Project
 __all__ = ('ProjectAdminView', 'ProjectAPIView')
 
 
-class ProjectAdminView(SuperuserRequiredMixin, TemplateView):
+class ProjectGenericAdminView(TemplateView):
     template_name = 'admin/projects.html'
+    page_code = 'admin-projects'
 
     def get_context_data(self, **kwargs):
         languages = Language.objects.exclude(code='templates')
@@ -42,7 +46,7 @@ class ProjectAdminView(SuperuserRequiredMixin, TemplateView):
             in sorted(PROJECT_CHECKERS.keys())]
 
         return {
-            'page': 'admin-projects',
+            'page': self.page_code,
             'form_choices': {
                 'checkstyle': project_checker_choices,
                 'filetypes': filetypes,
@@ -55,7 +59,11 @@ class ProjectAdminView(SuperuserRequiredMixin, TemplateView):
         }
 
 
-class ProjectAPIView(SuperuserRequiredMixin, APIView):
+class ProjectAdminView(ProjectGenericAdminView, SuperuserRequiredMixin):
+    pass
+
+
+class ProjectAPIView(APIView):
     model = Project
     base_queryset = Project.objects.order_by('-id')
     add_form_class = ProjectForm
@@ -63,3 +71,16 @@ class ProjectAPIView(SuperuserRequiredMixin, APIView):
     page_size = 10
     search_fields = ('code', 'fullname', 'disabled')
     m2m = ("filetypes", )
+
+    @set_permissions
+    @requires_permission_class("add_project")
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_superuser:
+            exclude_projects = [project.pk 
+                                for project in self.base_queryset.all()
+                                if not check_user_permission(
+                                            request.user, 
+                                            project.codename, 
+                                            project.directory)]
+            self.base_queryset = self.base_queryset.exclude(pk__in=exclude_projects)
+        return super(ProjectAPIView, self).dispatch(request, *args, **kwargs)
