@@ -10,11 +10,12 @@ from django.views.generic import TemplateView
 
 from pootle.core.delegate import formats
 from pootle.core.views import APIView
-from pootle.core.views.decorators import set_permissions, 
-                                        requires_permission_class,
-                                        check_user_permission
+from pootle.core.views.decorators import (set_permissions, 
+            requires_permission_class)
 from pootle.core.views.mixins import SuperuserRequiredMixin
 from pootle_app.forms import ProjectForm
+from pootle_app.models.directory import Directory
+from pootle_app.models.permissions import check_user_permission
 from pootle_language.models import Language
 from pootle_project.models import PROJECT_CHECKERS, Project
 
@@ -71,6 +72,11 @@ class ProjectAPIView(APIView):
     page_size = 10
     search_fields = ('code', 'fullname', 'disabled')
     m2m = ("filetypes", )
+
+    @property
+    def permission_context(self):
+        return Directory.objects.root
+
 
     @set_permissions
     @requires_permission_class("add_project")
