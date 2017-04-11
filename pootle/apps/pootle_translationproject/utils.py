@@ -10,9 +10,12 @@ from django.contrib.auth import get_user_model
 
 from pootle.core.contextmanagers import update_data_after
 from pootle.core.models import Revision
+from pootle.core.contextmanagers import keep_data
+from pootle.core.signals import update_checks, update_data
 from pootle_statistics.models import SubmissionTypes
-from pootle_store.constants import SOURCE_WINS
+from pootle_store.constants import OBSOLETE, SOURCE_WINS
 from pootle_store.diff import StoreDiff
+from pootle_store.models import QualityCheck
 
 
 User = get_user_model()
@@ -96,11 +99,41 @@ class TPTool(object):
         cloned = target_dir.child_stores.create(
             name=store.name,
             translation_project=target_dir.translation_project)
-        cloned.update(cloned.deserialize(store.serialize()))
-        cloned.state = store.state
-        cloned.filetype = store.filetype
-        cloned.save()
+
+        with keep_data(signals=(update_checks, update_data)):
+            cloned.update(cloned.deserialize(store.serialize()))
+            cloned.state = store.state
+            cloned.filetype = store.filetype
+            cloned.save()
+
+            self.clone_checks(store, cloned)
+        update_data.send(cloned.__class__, instance=cloned)
         return cloned
+
+    def clone_checks(self, source_store, target_store):
+        """Clone checks from source store to target store."""
+        fields = ('unit__unitid_hash', 'category', 'name',
+                  'false_positive', 'message')
+        checks = QualityCheck.objects.filter(
+            unit__store=source_store,
+            unit__state__gt=OBSOLETE,
+        ).values(*fields)
+        unitid_hashes = [x['unit__unitid_hash'] for x in checks]
+        units = target_store.units.filter(unitid_hash__in=unitid_hashes)
+        unit_map = {
+            x['unitid_hash']: x['id']
+            for x in units.values('id', 'unitid_hash')}
+
+        cloned_checks = []
+        for check in checks:
+            cloned_checks.append(QualityCheck(
+                unit_id=unit_map[check['unit__unitid_hash']],
+                category=check['category'],
+                name=check['name'],
+                false_positive=check['false_positive'],
+                message=check['message']))
+
+        QualityCheck.objects.bulk_create(cloned_checks)
 
     def create_tp(self, language, project=None):
         """Create a TP for a given language"""
