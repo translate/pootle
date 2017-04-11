@@ -11,7 +11,7 @@ from django.contrib.auth import get_user_model
 from pootle.core.models import Revision
 from pootle.core.contextmanagers import keep_data
 from pootle.core.paths import Paths
-from pootle.core.signals import create, update_checks
+from pootle.core.signals import create, update_checks, update_data
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.constants import OBSOLETE, SOURCE_WINS
 from pootle_store.diff import StoreDiff
@@ -112,12 +112,14 @@ class TPTool(object):
         cloned = target_dir.child_stores.create(
             name=store.name,
             translation_project=target_dir.translation_project)
-        with keep_data(signals=(update_checks, )):
+
+        with keep_data(signals=(update_checks, update_data)):
             cloned.update(cloned.deserialize(store.serialize()))
             cloned.state = store.state
             cloned.filetype = store.filetype
             cloned.save()
         self.clone_checks(store, cloned)
+        update_data.send(cloned.__class__, instance=cloned)
         return cloned
 
     def clone_checks(self, source_store, target_store):
