@@ -31,7 +31,7 @@ from pootle.core.log import (
     STORE_DELETED, STORE_OBSOLETE, log, store_log)
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
-from pootle.core.signals import update_data
+from pootle.core.signals import update_checks, update_data
 from pootle.core.url_helpers import (
     get_editor_filter, split_pootle_path, to_tp_relative_path)
 from pootle.core.utils import dateformat
@@ -714,7 +714,8 @@ class Unit(AbstractUnit):
         else:
             self.state = UNTRANSLATED
 
-        self.update_qualitychecks(keep_false_positives=True)
+        update_checks.send(self.__class__, instance=self,
+                           keep_false_positives=True)
         self.index = self.store.max_index() + 1
 
     def istranslated(self):
