@@ -10,7 +10,10 @@ from collections import OrderedDict
 
 import pytest
 
+from translate.filters.decorators import Category
 from translate.misc.multistring import multistring
+
+from pytest_pootle.utils import create_store
 
 from pootle.core.delegate import frozen, lifecycle
 from pootle.core.user import get_system_user
@@ -410,3 +413,27 @@ def test_unit_lifecycle_change(store0, member):
     assert lc._called_update == {}
     lc.change(foo="bar")
     assert lc._called_update == dict(foo="bar")
+
+
+@pytest.mark.django_db
+def test_mute_qualitycheck(store_po, member):
+    store = create_store(pootle_path=store_po.pootle_path, units=[
+        ("Hello", "", False)
+    ])
+    store.units[1].target = "Hello\n\nHello"
+    store_po.update(store)
+    unit = store_po.units.first()
+    unit.save()
+    check_qs = unit.qualitycheck_set.filter(
+        category=Category.CRITICAL,
+        false_positive=False)
+    assert check_qs.count() == 1
+    assert store_po.data.critical_checks == 1
+    check_id = check_qs[0].id
+    unit.toggle_qualitycheck(check_id=check_id, false_positive=True,
+                             user=member)
+    assert unit.qualitycheck_set.get(id=check_id).false_positive
+    assert store_po.data.critical_checks == 0
+
+    sub = unit.submission_set.get(quality_check__id=check_id)
+    assert sub.submitter == member
