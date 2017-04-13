@@ -24,6 +24,7 @@ from pootle_store.util import absolute_real_path, relative_real_path
 LANGCODE_RE = re.compile('^[a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?$',
                          re.IGNORECASE)
 #: Case insensitive match for language codes as postfix
+# match de, ca-valencia, kmr-Latn, en_AU
 LANGCODE_POSTFIX_RE = re.compile(
     '^.*?[-_.]([a-z]{2,3}([_-][a-z]{2,3})?(@[a-z0-9]+)?)$', re.IGNORECASE)
 
@@ -36,6 +37,10 @@ def direct_language_match_filename(language_code, path_name):
     # Check file doesn't match another language.
     if Language.objects.filter(code__iexact=name).count():
         return False
+
+    if name.endswith(("-"+language_code, "_"+language_code)):
+        logging.debug(u"MATCH - code: »%s«, pn: »%s«, name: »%s«", language_code, path_name, name)
+        return True
 
     detect = LANGCODE_POSTFIX_RE.split(name)
     return (len(detect) > 1 and
