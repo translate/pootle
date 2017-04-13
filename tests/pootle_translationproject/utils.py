@@ -10,7 +10,9 @@ import pytest
 
 from pytest_pootle.factories import (
     LanguageDBFactory, ProjectDBFactory, TranslationProjectFactory)
+from pytest_pootle.utils import create_store
 
+from translate.filters.decorators import Category
 from translate.misc.multistring import multistring
 
 from pootle.core.plugin import getter
@@ -248,3 +250,29 @@ def test_tp_tool_clone_project_same_lang(tp0, english):
         tp0,
         tp_tool.clone(tp0, tp0.language, new_proj),
         new_proj)
+
+
+@pytest.mark.django_db
+def test_tp_tool_store_clone_with_checks(store_po, system):
+    store_po.update(create_store(pootle_path=store_po.pootle_path, units=[
+        ("Hello", "", False)
+    ]))
+    unit = store_po.units.first()
+    unit.target = "Hello\n\nHello"
+    unit.save()
+    check_qs = unit.qualitycheck_set.filter(
+        category=Category.CRITICAL,
+        false_positive=False)
+    assert check_qs.count() == 1
+    check_id = check_qs[0].id
+    unit.toggle_qualitycheck(check_id=check_id, false_positive=True,
+                             user=system)
+    assert unit.qualitycheck_set.get(id=check_id).false_positive
+
+    tool = tp_tool.get(Project)(store_po.translation_project.project)
+    directory = store_po.translation_project.directory.child_dirs.first()
+    cloned_store = tool.clone_store(store_po, directory)
+    cloned_unit = cloned_store.units[0]
+    check_qs = cloned_unit.qualitycheck_set.filter(category=Category.CRITICAL)
+    assert check_qs.count() == 1
+    assert check_qs[0].false_positive
