@@ -23,3 +23,6 @@ filetypes_changed = Signal(
 update_scores = Signal(
     providing_args=["instance", "users"],
     use_caching=True)
+toggle = Signal(
+    providing_args=["instance", "false_positive"],
+    use_caching=True)
