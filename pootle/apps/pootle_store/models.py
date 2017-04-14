@@ -299,7 +299,7 @@ class Unit(AbstractUnit):
             self.change = UnitChange(
                 unit=self,
                 changed_with=changed_with)
-        if self.updated:
+        if self.updated or reviewed_by != user:
             if changed_with is not None:
                 self.change.changed_with = changed_with
             if self.comment_updated:
