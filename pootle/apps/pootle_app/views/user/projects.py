@@ -24,7 +24,6 @@ class ProjectUserView(ProjectGenericAdminView):
     def permission_context(self):
         return Directory.objects.root
 
-
     @set_permissions
     @requires_permission_class("add_project")
     def dispatch(self, request, *args, **kwargs):
