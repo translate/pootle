@@ -8,6 +8,8 @@
 
 import pytest
 
+from pytest_pootle.utils import create_store
+
 
 @pytest.mark.django_db
 def test_store_update_new_unit_order(store0):
@@ -23,3 +25,16 @@ def test_store_update_new_unit_order(store0):
     assert (
         list(store0.units.values_list("unitid", flat=True))
         == [u.getid() for u in new_store.units[1:]])
+
+
+@pytest.mark.django_db
+def test_store_update_with_obsolete(store_po):
+    units = [('source1', 'target1', False)]
+    file_store = create_store(store_po.pootle_path, units=units)
+    store_po.update(file_store)
+    unit = store_po.units[0]
+    assert not unit.isobsolete()
+    file_store.units[1].makeobsolete()
+    store_po.update(file_store)
+    unit = store_po.UnitClass.objects.get(id=unit.id)
+    assert unit.isobsolete()
