@@ -268,6 +268,7 @@ def test_no_root_hide_permissions(po_directory, nobody, default, admin, hide,
 def test_root_hide_permissions(po_directory, nobody, default, admin, hide,
                                view, no_permission_sets, no_projects,
                                project_foo, project_bar, root):
+
     """Tests user-accessible projects when there are `hide` permissions
     set at the root.
     """
