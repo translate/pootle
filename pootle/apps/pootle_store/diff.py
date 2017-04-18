@@ -311,7 +311,8 @@ class StoreDiff(object):
 
     def get_units_to_obsolete(self):
         return [unit['id'] for unitid, unit in self.target_units.items()
-                if (unitid not in self.source_units
+                if ((unitid not in self.source_units
+                     or self.source_units[unitid]['state'] == OBSOLETE)
                     and unitid in self.active_target_units
                     and unitid not in self.updated_target_units)]
 
