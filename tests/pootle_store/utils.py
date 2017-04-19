@@ -12,13 +12,13 @@ import pytest
 
 from translate.misc.multistring import multistring
 
-from pootle.core.delegate import frozen, lifecycle
+from pootle.core.delegate import data_tool, frozen, lifecycle
 from pootle.core.user import get_system_user
 from pootle_statistics.models import (
     MUTED, UNMUTED, Submission, SubmissionFields, SubmissionTypes)
 from pootle_store.constants import FUZZY, TRANSLATED
 from pootle_store.models import QualityCheck, Unit, UnitChange
-from pootle_store.utils import UnitLifecycle
+from pootle_store.utils import UnitLifecycle, move_store_within_tp
 
 
 @pytest.mark.django_db
@@ -410,3 +410,18 @@ def test_unit_lifecycle_change(store0, member):
     assert lc._called_update == {}
     lc.change(foo="bar")
     assert lc._called_update == dict(foo="bar")
+
+
+@pytest.mark.django_db
+def test_move_store_within_tp(store0, tp0):
+    directory = tp0.directory.child_dirs.first()
+    directory_data_tool = data_tool.get(directory.__class__)(directory)
+    old_stats = directory_data_tool.get_stats()
+
+    move_store_within_tp(store0, directory, 'moved_' + store0.name)
+
+    assert store0.parent == directory
+    stats = directory_data_tool.get_stats()
+    assert stats['total'] == old_stats['total'] + store0.data.total_words
+    assert (stats['critical'] ==
+            old_stats['critical'] + store0.data.critical_checks)

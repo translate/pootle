@@ -13,7 +13,7 @@ from django.contrib.auth import get_user_model
 from django.template import loader
 from django.utils import timezone
 
-from pootle.core.delegate import site, unitid
+from pootle.core.delegate import site, unitid, revision_updater
 from pootle.core.mail import send_mail
 from pootle.core.signals import update_data, update_scores
 from pootle.core.utils.timezone import datetime_min, make_aware
@@ -424,3 +424,19 @@ class UnitLifecycle(object):
 
     def change(self, **kwargs):
         self.update(self.calculate_change(**kwargs))
+
+
+def move_store_within_tp(store, target_dir, name=None):
+    if store.translation_project != target_dir.translation_project:
+        return
+    store_parent = store.parent
+
+    store.parent = target_dir
+    if name is not None:
+        store.name = name
+    store.save()
+
+    revision_updater.get(
+        store_parent.__class__)(store_parent).update(keys=['stats', 'checks'])
+    revision_updater.get(
+        store.__class__)(store).update(keys=['stats', 'checks'])
