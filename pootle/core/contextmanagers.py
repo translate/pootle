@@ -16,6 +16,7 @@ def suppress_signal(signal):
     handlers = signal.receivers
     receiver_cache = signal.sender_receivers_cache.copy()
     signal.receivers = []
+    signal.sender_receivers_cache.clear()
     try:
         yield
     finally:
