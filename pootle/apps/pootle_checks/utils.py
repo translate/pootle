@@ -15,9 +15,10 @@ from translate.lang import data
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
+from pootle.core.contextmanagers import keep_data
 from pootle.core.signals import update_data
 from pootle_store.constants import UNTRANSLATED
-from pootle_store.models import QualityCheck, Unit
+from pootle_store.models import QualityCheck, Store, Unit
 from pootle_store.unit import UnitProxy
 from pootle_translationproject.models import TranslationProject
 
@@ -87,7 +88,7 @@ class UnitQualityCheck(object):
     def delete_checks(self, checks):
         """Delete checks that are no longer used.
         """
-        return self.checks_qs.filter(name__in=checks).delete()
+        return self.checks_qs.filter(name__in=checks)
 
     def update(self):
         """Update QualityChecks for a Unit, deleting and unmuting as appropriate.
@@ -99,14 +100,13 @@ class UnitQualityCheck(object):
         deleted = (
             self.original_checks and self.delete_checks(self.original_checks))
 
-        return (updated or deleted)
+        return updated, deleted
 
     def update_checks(self):
         """Compare self.original_checks to the Units calculated QualityCheck failures.
 
         Removes members of self.original_checks as they have been compared.
         """
-        updated = False
         new_checks = []
         for name in self.check_failures.iterkeys():
             if name in self.original_checks:
@@ -120,13 +120,12 @@ class UnitQualityCheck(object):
                     name=name,
                     message=self.check_failures[name]['message'],
                     category=self.check_failures[name]['category']))
-            updated = True
-        if new_checks:
-            self.checks_qs.bulk_create(new_checks)
-        return updated
+        return new_checks
 
 
 class QualityCheckUpdater(object):
+    _updated = False
+    _deleted = False
 
     def __init__(self, check_names=None, translation_project=None,
                  stores=None, units=None):
@@ -143,6 +142,7 @@ class QualityCheckUpdater(object):
         self._units = units
         self._store_to_expire = None
         self._updated_stores = {}
+        self._units = units
 
     @cached_property
     def checks(self):
@@ -201,6 +201,8 @@ class QualityCheckUpdater(object):
         """Return the site QualityChecker or the QualityCheck associated with
         the a Unit's TP otherwise.
         """
+        if self.translation_project:
+            return self.translation_project.checker
         try:
             return TranslationProject.objects.get(id=tp_pk).checker
         except TranslationProject.DoesNotExist:
@@ -225,7 +227,9 @@ class QualityCheckUpdater(object):
             return
 
         # remember the new store_pk
+        old_pk = self._store_to_expire
         self._store_to_expire = store_pk
+        return old_pk
 
     @property
     def tp_qs(self):
@@ -281,17 +285,28 @@ class QualityCheckUpdater(object):
             return True
         return False
 
+    def set_checks(self, to_update, to_delete):
+        if self._updated:
+            count = self.checks_qs.bulk_create(to_update)
+            logger.debug("updated %s", len(count))
+        if self._deleted:
+            count = to_delete.delete()
+            logger.debug("deleted %s", count[0])
+        self._updated = False
+        self._deleted = False
+        return [], self.checks_qs.none()
+
     def update_translated(self):
         """Update checks for translated Units
         """
         unit_fields = [
-            "id", "source_f", "target_f", "locations", "store__id",
-            "store__translation_project__language__code",
-        ]
+            "id", "source_f", "target_f", "locations", "store__id"]
 
         tp_key = "store__translation_project__id"
+        lang_code_key = "store__translation_project__language__code"
         if self.translation_project is None:
             unit_fields.append(tp_key)
+            unit_fields.append(lang_code_key)
 
         checker = None
         if self.translation_project is not None:
@@ -300,18 +315,54 @@ class QualityCheckUpdater(object):
         translated = (
             self.units.filter(state__gt=UNTRANSLATED)
                       .order_by("store", "index"))
-        updated_count = 0
+        _to_update = []
+        _to_delete = self.checks_qs.none()
+        _updated_stores = set()
         for unit in translated.values(*unit_fields).iterator():
             if self.translation_project is not None:
                 # if TP is set then manually add TP.id to the Unit value dict
                 unit[tp_key] = self.translation_project.id
             elif checker is None:
                 checker = self.get_checker(unit[tp_key])
-            if checker and self.update_translated_unit(unit, checker=checker):
-                updated_count += 1
-        # clear the cache of the remaining Store
-        self.expire_store_cache()
-        return updated_count
+            if not checker:
+                continue
+            update, delete = self.update_translated_unit(
+                unit, checker=checker)
+            if update:
+                _to_update += update
+                self._updated = True
+            if delete:
+                _to_delete |= delete
+                self._deleted = True
+            _last_store = unit["store__id"]
+        expire_last = self._updated or self._deleted
+        if expire_last:
+            self.set_checks(_to_update, _to_delete)
+            _updated_stores.add(_last_store)
+        _updated_tps = set()
+        if _updated_stores:
+            if self.translation_project:
+                stores = self.translation_project.stores.select_related(
+                    "data",
+                    "parent")
+            else:
+                stores = Store.objects.select_related(
+                    "data",
+                    "parent",
+                    "translation_project",
+                    "translation_project__data")
+            stores = stores.filter(pk__in=_updated_stores)
+            for store in stores.iterator():
+                with keep_data(suppress=(TranslationProject, )):
+                    update_data.send(Store, instance=store)
+                _updated_tps.add(store.translation_project)
+            if self.translation_project:
+                update_data.send(
+                    TranslationProject,
+                    instance=self.translation_project)
+            else:
+                for tp in _updated_tps:
+                    update_data.send(TranslationProject, instance=tp)
 
     def update_store(self, tp, store):
         self._updated_stores[tp] = (
