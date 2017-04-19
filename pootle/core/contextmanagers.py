@@ -10,7 +10,7 @@ from contextlib import contextmanager, nested
 
 from django.dispatch.dispatcher import _make_id
 
-from pootle.core.signals import update_data, update_scores
+from pootle.core.signals import update_checks, update_data, update_scores
 
 
 @contextmanager
@@ -32,7 +32,8 @@ def suppress_signal(signal, suppress=None):
 
 
 @contextmanager
-def keep_data(keep=True, signals=(update_data, update_scores), suppress=None):
+def keep_data(keep=True, signals=(update_checks, update_data, update_scores),
+              suppress=None):
     if keep:
         with nested(*[suppress_signal(s, suppress) for s in signals]):
             yield
@@ -42,7 +43,7 @@ def keep_data(keep=True, signals=(update_data, update_scores), suppress=None):
 
 @contextmanager
 def update_data_after(sender, **kwargs):
-    signals = kwargs.get("signals", [update_data, update_scores])
+    signals = kwargs.get("signals", [update_checks, update_data, update_scores])
     with keep_data(signals=signals, suppress=kwargs.get("suppress")):
         yield
     if "kwargs" in kwargs:
