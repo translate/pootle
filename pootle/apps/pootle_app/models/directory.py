@@ -138,7 +138,7 @@ class Directory(models.Model, CachedTreeItem):
 
     def save(self, *args, **kwargs):
         # Force validation of fields.
-        self.full_clean()
+        self.clean()
 
         super(Directory, self).save(*args, **kwargs)
 

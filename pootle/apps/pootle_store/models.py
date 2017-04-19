@@ -822,7 +822,7 @@ class Store(AbstractStore):
 
     def save(self, *args, **kwargs):
         self.pootle_path = self.parent.pootle_path + self.name
-        self.tp_path = self.parent.tp_path + self.name
+        self.tp_path = (self.parent.tp_path or "") + self.name
 
         # Force validation of required fields.
         self.full_clean(
@@ -899,12 +899,15 @@ class Store(AbstractStore):
                      args=split_pootle_path(self.pootle_path)),
              get_editor_filter(**kwargs)])
 
-    def findid_bulk(self, ids, unit_set=None):
+    def findid_bulk(self, ids, unit_set=None, iterate=True):
         chunks = 200
         for i in xrange(0, len(ids), chunks):
             units = (unit_set or self.unit_set).filter(id__in=ids[i:i+chunks])
-            for unit in units.iterator():
-                yield unit
+            if not iterate:
+                yield units
+            else:
+                for unit in units.iterator():
+                    yield unit
 
     def get_file_mtime(self):
         disk_mtime = datetime.datetime.fromtimestamp(self.file.getpomtime()[0])

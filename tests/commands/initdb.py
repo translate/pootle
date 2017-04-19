@@ -10,6 +10,7 @@ import pytest
 
 from django.core.management import call_command
 
+from pootle_app.models import Directory
 from pootle_format.models import Format
 from pootle_project.models import Project
 
@@ -41,7 +42,7 @@ def test_cmd_initdb(capfd, po_directory, no_permission_sets, no_permissions,
                     no_users, no_projects, templates):
     """Initialise the database with initdb
     """
-    templates.delete()
+    # Directory.objects.all().delete()
     call_command('initdb')
     out, err = capfd.readouterr()
     assert "Successfully populated the database." in out

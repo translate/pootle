@@ -19,7 +19,7 @@ from django.utils.functional import cached_property
 from pootle.core.contextmanagers import keep_data
 from pootle.core.delegate import data_tool
 from pootle.core.mixins import CachedTreeItem
-from pootle.core.signals import update_data, update_scores
+from pootle.core.signals import update_checks, update_data, update_scores
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_app.project_tree import (does_not_exist, init_store_from_template,
@@ -328,28 +328,32 @@ class TranslationProject(models.Model, CachedTreeItem):
 
         logging.info(u"Scanning for new files in %s", self)
         # Create new, make obsolete in-DB stores to reflect state on disk
-        self.scan_files()
 
-        stores = self.stores.live().select_related(
-            "parent",
-            "data",
-            "filetype__extension",
-            "filetype__template_extension").exclude(file='')
-        # Update store content from disk store
-        for store in stores.iterator():
-            if not store.file:
-                continue
-            disk_mtime = store.get_file_mtime()
-            if not force and disk_mtime == store.file_mtime:
-                # The file on disk wasn't changed since the last sync
-                logging.debug(u"File didn't change since last sync, "
-                              u"skipping %s", store.pootle_path)
-                continue
+        stores, dirs_ = self.scan_files()
 
-            changed = (
-                store.updater.update_from_disk(overwrite=overwrite)
-                or changed)
-
+        with keep_data():
+            # Update store content from disk store
+            for store in stores:
+                store.translation_project = self
+                if not store.file:
+                    continue
+                disk_mtime = store.get_file_mtime()
+                if not force and disk_mtime == store.file_mtime:
+                    # The file on disk wasn't changed since the last sync
+                    logging.debug(u"File didn't change since last sync, "
+                                  u"skipping %s", store.pootle_path)
+                    continue
+                changed = (
+                    store.updater.update_from_disk(overwrite=overwrite)
+                    or changed)
+        if changed:
+            update_checks.send(self.__class__, instance=self)
+            with keep_data(suppress=(TranslationProject, )):
+                for store in stores:
+                    update_data.send(store.__class__, instance=store)
+                    update_scores.send(store.__class__, instance=store)
+            update_data.send(self.__class__, instance=self)
+            update_scores.send(self.__class__, instance=self)
         return changed
 
     def sync(self, conservative=True, skip_missing=False, only_newer=True):
@@ -375,22 +379,31 @@ class TranslationProject(models.Model, CachedTreeItem):
         """
         return not does_not_exist(self.abs_real_path)
 
+    @cached_property
+    def filetype_extensions(self):
+        filetypes = self.project.filetype_tool
+        return filetypes.filetype_extensions
+
+    @cached_property
+    def template_extensions(self):
+        filetypes = self.project.filetype_tool
+        return filetypes.filetype_extensions
+
     def scan_files(self):
         """Scans the file system and returns a list of translation files.
         """
         projects = [p.strip() for p in self.project.ignoredfiles.split(',')]
         ignored_files = set(projects)
-
-        filetypes = self.project.filetype_tool
-        exts = filetypes.filetype_extensions
+        exts = self.filetype_extensions
 
         # Scan for pots if template project
         if self.is_template_project:
-            exts = filetypes.template_extensions
+            exts = self.template_extensions
 
-        from pootle_app.project_tree import (add_files,
-                                             match_template_filename,
-                                             direct_language_match_filename)
+        from pootle_app.project_tree import (
+            add_files,
+            match_template_filename,
+            direct_language_match_filename)
 
         all_files = []
         new_files = []
@@ -404,16 +417,13 @@ class TranslationProject(models.Model, CachedTreeItem):
                     self.language.code, filename,)
         else:
             file_filter = lambda filename: True
-
         all_files, new_files, __ = add_files(
             self,
             ignored_files,
             exts,
             self.real_path,
             self.directory,
-            file_filter,
-        )
-
+            file_filter)
         return all_files, new_files
 
     ###########################################################################

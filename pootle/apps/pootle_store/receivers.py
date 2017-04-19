@@ -12,12 +12,15 @@ from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from django.utils.encoding import force_bytes
 
+from pootle.core.checks.checker import QualityCheckUpdater
 from pootle.core.delegate import lifecycle, uniqueid
 from pootle.core.models import Revision
 from pootle.core.signals import toggle, update_checks, update_data
+from pootle_translationproject.models import TranslationProject
 
 from .constants import FUZZY, TRANSLATED, UNTRANSLATED
-from .models import QualityCheck, Suggestion, Unit, UnitChange, UnitSource
+from .models import (
+    QualityCheck, Store, Suggestion, Unit, UnitChange, UnitSource)
 
 
 @receiver(post_save, sender=Suggestion)
@@ -155,3 +158,21 @@ def handle_toggle_quality_check(**kwargs):
     unit_lifecycle.save_subs(subs=subs)
     store = unit.store
     update_data.send(store.__class__, instance=store)
+
+
+@receiver(update_checks, sender=Store)
+def handle_store_checks(**kwargs):
+    store = kwargs["instance"]
+    units = store.units
+    if kwargs.get("units"):
+        units = units.filter(id__in=kwargs["units"])
+    QualityCheckUpdater(units=units).update()
+
+
+@receiver(update_checks, sender=TranslationProject)
+def handle_tp_checks(**kwargs):
+    tp = kwargs["instance"]
+    units = Unit.objects.filter(store__translation_project=tp)
+    if kwargs.get("units"):
+        units = units.filter(id__in=kwargs["units"])
+    QualityCheckUpdater(translation_project=tp, units=units).update()

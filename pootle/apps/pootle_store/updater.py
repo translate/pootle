@@ -7,21 +7,133 @@
 # AUTHORS file for copyright and authorship information.
 
 import logging
+from hashlib import md5
 
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.utils.functional import cached_property
 
-from pootle.core.contextmanagers import update_data_after
-from pootle.core.delegate import frozen, review
+from pootle.core.contextmanagers import keep_data
+from pootle.core.delegate import frozen, review, wordcount
 from pootle.core.log import log
 from pootle.core.models import Revision
-from pootle_statistics.models import SubmissionFields, SubmissionTypes
+from pootle.core.signals import update_checks, update_data, update_scores
+from pootle.core.utils.multistring import unparse_multistring, PLURAL_PLACEHOLDER
+from pootle.core.utils.timezone import make_aware
+from pootle_statistics.models import Submission, SubmissionFields, SubmissionTypes
 
-from .constants import OBSOLETE, PARSED, POOTLE_WINS
+from .constants import FUZZY, OBSOLETE, PARSED, POOTLE_WINS, TRANSLATED, UNTRANSLATED
 from .diff import StoreDiff
-from .models import Suggestion
+from .models import Suggestion, Unit, UnitSource, UnitChange
 from .util import get_change_str
+
+
+counter = wordcount.get(Unit)
+
+
+class BulkCreator(object):
+
+    def __init__(self, store, update_revision, user, submission_type):
+        self.store = store
+        self.update_revision = update_revision
+        self.user = user
+        self.submission_type = submission_type or SubmissionTypes.SYSTEM
+
+    def _get_state(self, unit):
+        if unit.isobsolete():
+            return OBSOLETE
+        if unit.isfuzzy():
+            return FUZZY
+        if unit.target:
+            return TRANSLATED
+        return UNTRANSLATED
+
+    def _get_source(self, unit):
+        source = unit.source
+        if unit.hasplural() and len(unit.source.strings) == 1:
+            source = [unit.source, PLURAL_PLACEHOLDER]
+        return unparse_multistring(source)
+
+    def add_units(self, units):
+        # Add new units
+        self.store.unit_set.bulk_create(
+            Unit(index=new_unit_index,
+                 store_id=self.store.id,
+                 source_f=self._get_source(unit),
+                 target_f=unparse_multistring(unit.target),
+                 revision=self.update_revision,
+                 state=self._get_state(unit),
+                 context=unit.getcontext() or None,
+                 unitid=unit.getid(),
+                 unitid_hash=md5(unit.getid().encode("utf-8")).hexdigest())
+            for unit, new_unit_index
+            in units)
+        return list(
+            self.store.unit_set.filter(
+                unitid__in=[
+                    unit[0].getid()
+                    for unit
+                    in units]).values_list("id", "source_f", "target_f", "state", "creation_time"))
+
+    def add_source(self, unit_id, source, target, state, mtime):
+        return UnitSource(
+            unit_id=unit_id,
+            created_with=self.submission_type,
+            created_by=self.user,
+            source_hash = md5(
+                source.encode("utf-8")).hexdigest(),
+            source_length=len(source),
+            source_wordcount=max(
+                1, (counter.count_words(source.strings) or 0)))
+
+    def add_unit_change(self, unit_id, source, target, state, mtime):
+        return UnitChange(
+            unit_id=unit_id,
+            changed_with=self.submission_type,
+            submitted_on=mtime,
+            submitted_by=self.user)
+
+    def get_submissions(self, unit_id, source, target, state, mtime):
+        return [
+            Submission(
+                unit_id=unit_id,
+                creation_time=mtime,
+                submitter=self.user,
+                revision=self.update_revision,
+                old_value="",
+                new_value=target,
+                field=SubmissionFields.TARGET,
+                translation_project=self.store.translation_project,
+                type=self.submission_type),
+            Submission(
+                unit_id=unit_id,
+                creation_time=mtime,
+                submitter=self.user,
+                revision=self.update_revision,
+                old_value=UNTRANSLATED,
+                new_value=state,
+                field=SubmissionFields.STATE,
+                translation_project=self.store.translation_project,
+                type=self.submission_type)]
+
+    def create(self, units):
+        sources = []
+        unit_changes = []
+        subs = []
+        pks = []
+        for unit in self.add_units(units):
+            sources.append(self.add_source(*unit))
+            pks.append(unit[0])
+            if not unit[2] or (unit[3] == OBSOLETE):
+                continue
+            unit_changes.append(self.add_unit_change(*unit))
+            subs += self.get_submissions(*unit)
+        UnitSource.objects.bulk_create(sources)
+        if subs:
+            Submission.objects.bulk_create(subs)
+        if unit_changes:
+            UnitChange.objects.bulk_create(unit_changes)
+        return pks
 
 
 class StoreUpdate(object):
@@ -180,17 +292,11 @@ class UnitUpdater(object):
 
     @cached_property
     def target_updated(self):
-        if not self.update.store_revision:
+        if self.update.store_revision is None:
             return True
         if self.unit.target == self.newunit.target:
             return False
-        edit_types = SubmissionTypes.EDIT_TYPES
-        prev_subs = self.unit.submission_set.filter(
-            type__in=edit_types).filter(field=SubmissionFields.TARGET).filter(
-                revision__lte=self.update.store_revision)
-        last_subs = prev_subs.order_by("-revision")
-        old_target = last_subs.values_list("new_value", flat=True).first()
-        return old_target != self.newunit.target
+        return True
 
     def create_suggestion(self):
         suggestion_review = review.get(Suggestion)()
@@ -222,6 +328,9 @@ class UnitUpdater(object):
                 and self.update.resolve_conflict == POOTLE_WINS))
 
     def update_unit(self):
+        return self._update_unit()
+
+    def _update_unit(self):
         reordered = False
         suggested = False
         updated = False
@@ -268,8 +377,20 @@ class StoreUpdater(object):
             yield unit
 
     def update(self, *args, **kwargs):
-        with update_data_after(self.target_store):
-            return self._update(*args, **kwargs)
+        with keep_data(self.target_store):
+            revision, changes, changed = self._update(*args, **kwargs)
+        if changed:
+            update_checks.send(
+                self.target_store.__class__,
+                instance=self.target_store,
+                units=changed)
+            update_data.send(
+                self.target_store.__class__,
+                instance=self.target_store)
+            update_scores.send(
+                self.target_store.__class__,
+                instance=self.target_store)
+        return revision, changes
 
     def _update(self, store, user=None, store_revision=None,
                 submission_type=None, resolve_conflict=POOTLE_WINS,
@@ -283,11 +404,12 @@ class StoreUpdater(object):
 
         update_revision = None
         changes = {}
+        changed = None
         try:
             diff = StoreDiff(self.target_store, store, store_revision).diff()
             if diff is not None:
                 update_revision = Revision.incr()
-                changes = self.update_from_diff(
+                changes, changed = self.update_from_diff(
                     store,
                     store_revision,
                     diff, update_revision,
@@ -306,35 +428,30 @@ class StoreUpdater(object):
                     % (get_change_str(changes),
                        self.target_store.pootle_path,
                        (self.target_store.data.max_unit_revision or 0)))
-        return update_revision, changes
+        return update_revision, changes, changed
 
     def update_from_diff(self, store, store_revision,
                          to_change, update_revision, user,
                          submission_type, resolve_conflict=POOTLE_WINS,
                          allow_add_and_obsolete=True):
         changes = {}
-
+        added = None
         if allow_add_and_obsolete:
             # Update indexes
             for start, delta in to_change["index"]:
                 self.target_store.update_index(start=start, delta=delta)
-
-            # Add new units
-            for unit, new_unit_index in to_change["add"]:
-                self.target_store.addunit(
-                    unit,
-                    new_unit_index,
-                    user=user,
-                    changed_with=submission_type,
-                    update_revision=update_revision)
+            if to_change["add"]:
+                added = BulkCreator(
+                    self.target_store,
+                    update_revision,
+                    user,
+                    submission_type).create(to_change["add"])
             changes["added"] = len(to_change["add"])
-
             # Obsolete units
             changes["obsoleted"] = self.target_store.mark_units_obsolete(
                 to_change["obsolete"],
                 update_revision,
                 user=user)
-
         # Update units
         update_dbids, uid_index_map = to_change['update']
         update = StoreUpdate(
@@ -348,7 +465,7 @@ class StoreUpdater(object):
             store_revision=store_revision,
             update_revision=update_revision)
         changes['updated'], changes['suggested'] = self.update_units(update)
-        return changes
+        return changes, added
 
     def update_from_disk(self, overwrite=False):
         """Update DB with units from the disk Store.
@@ -385,7 +502,7 @@ class StoreUpdater(object):
                 logging.info(u"[update] unsynced %d units in %s "
                              "[revision: %d]", update_unsynced,
                              self.target_store.pootle_path, update_revision)
-        self.target_store.save()
+            self.target_store.save()
         return changed
 
     def update_units(self, update):
@@ -393,7 +510,9 @@ class StoreUpdater(object):
         suggestion_count = 0
         if not update.uids:
             return update_count, suggestion_count
-        for unit in self.units(update.uids):
+        unit_set = self.target_store.unit_set
+        for unit in self.target_store.findid_bulk(update.uids, unit_set):
+            unit.store = self.target_store
             updated, suggested = self.unit_updater_class(
                 unit, update).update_unit()
             if updated:
