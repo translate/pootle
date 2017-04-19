@@ -11,7 +11,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 from django.utils.functional import cached_property
 from django.utils.translation import get_language
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, View
 
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import revision, scores
@@ -63,32 +63,44 @@ class WelcomeView(TemplateView):
         return context
 
 
-def view(request):
-    if not request.user.is_authenticated:
-        ctx = {
-            'next': request.GET.get(REDIRECT_FIELD_NAME, ''),
-        }
-        return WelcomeView.as_view()(request, ctx)
+class IndexView(View):
 
-    lang = request.COOKIES.get(COOKIE_NAME, None)
+    @property
+    def active_languages(self):
+        return Language.objects.filter(
+            translationproject__isnull=False,
+            translationproject__directory__obsolete=False)
 
-    if lang is None:
-        supported = Language.live.cached_dict(
-            show_all=request.user.is_superuser
-        )
-        lang = get_lang_from_http_header(request, supported)
+    @property
+    def all_languages(self):
+        return self.active_languages
 
-    if lang is not None and lang not in ('projects', ''):
-        url = reverse('pootle-language-browse', args=[lang])
-    else:
-        url = reverse('pootle-projects-browse')
+    @property
+    def languages(self):
+        return self.active_languages.filter(
+            translationproject__project__disabled=False)
 
-    # Preserve query strings
-    args = request.GET.urlencode()
-    qs = '?%s' % args if args else ''
-    redirect_url = '%s%s' % (url, qs)
-
-    return redirect(redirect_url)
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            ctx = {
+                'next': request.GET.get(REDIRECT_FIELD_NAME, '')}
+            return WelcomeView.as_view()(request, ctx)
+        lang = request.COOKIES.get(COOKIE_NAME, None)
+        if lang is None:
+            lang = get_lang_from_http_header(
+                request,
+                (self.all_languages
+                 if request.user.is_superuser
+                 else self.languages))
+        if lang is not None and lang not in ('projects', ''):
+            url = reverse('pootle-language-browse', args=[lang])
+        else:
+            url = reverse('pootle-projects-browse')
+        # Preserve query strings
+        args = request.GET.urlencode()
+        qs = '?%s' % args if args else ''
+        redirect_url = '%s%s' % (url, qs)
+        return redirect(redirect_url)
 
 
 class AboutView(TemplateView):
