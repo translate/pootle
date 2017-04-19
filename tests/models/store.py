@@ -146,7 +146,7 @@ def test_update_from_ts(store0, test_fs, member):
         user=member)
     assert not store0.units[orig_units].hasplural()
     unit = store0.units[orig_units + 1]
-    assert unit.submission_set.count() == 0
+    assert unit.submission_set.count() == 2
     assert unit.hasplural()
     assert unit.creation_time >= existing_created_at
     assert unit.creation_time >= existing_mtime
@@ -173,15 +173,15 @@ def test_update_ts_plurals(store_po, test_fs, ts):
     store_po.update(file_store)
     unit = store_po.units[0]
     assert unit.hasplural()
-    assert unit.submission_set.count() == 0
+    assert unit.submission_set.count() == 2
 
     with test_fs.open(['data', 'ts', 'update_plurals.ts']) as f:
         file_store = getclass(f)(f.read())
     store_po.update(file_store)
     unit = store_po.units[0]
     assert unit.hasplural()
-    assert unit.submission_set.count() == 1
-    update_sub = unit.submission_set.first()
+    assert unit.submission_set.count() == 3
+    update_sub = unit.submission_set.last()
     assert update_sub.revision == unit.revision
     assert update_sub.creation_time == unit.change.submitted_on
     assert update_sub.submitter == unit.change.submitted_by
@@ -206,7 +206,7 @@ def test_update_with_non_ascii(store0, test_fs):
     last_unit = store0.units[orig_units]
     updated_target = "Hèḽḽě, ŵôrḽḓ"
     assert last_unit.target == updated_target
-    assert last_unit.submission_set.count() == 0
+    assert last_unit.submission_set.count() == 2
     # last_unit.target = "foo"
     # last_unit.save()
     # this should now have a submission with the old target
@@ -454,7 +454,7 @@ def test_update_upload_new_revision(store0, member):
     assert unit.change.reviewed_by is None
     assert unit.change.reviewed_on is None
     assert unit.target == "Hello, world UPDATED"
-    assert unit.submission_set.count() == 0
+    assert unit.submission_set.count() == 2
 
 
 @pytest.mark.django_db
@@ -475,7 +475,7 @@ def test_update_upload_again_new_revision(store0, member, member2):
     created_unit = store.units[0]
     assert created_unit.target == "Hello, world UPDATED"
     assert created_unit.state == TRANSLATED
-    assert created_unit.submission_set.count() == 0
+    assert created_unit.submission_set.count() == 2
     old_unit_revision = store.data.max_unit_revision
     update_store(
         store0,
@@ -483,8 +483,8 @@ def test_update_upload_again_new_revision(store0, member, member2):
         submission_type=SubmissionTypes.WEB,
         user=member2,
         store_revision=Revision.get() + 1)
-    assert created_unit.submission_set.count() == 1
-    update_sub = created_unit.submission_set.first()
+    assert created_unit.submission_set.count() == 3
+    update_sub = created_unit.submission_set.last()
     store = Store.objects.get(pk=store0.pk)
     assert store.state == PARSED
     unit = store.units[0]
@@ -538,7 +538,7 @@ def test_update_upload_old_revision_unit_conflict(store0, admin, member):
         store_revision=original_revision,
         user=member)
     unit = store0.units[0]
-    assert unit.submission_set.count() == 0
+    assert unit.submission_set.count() == 2
     unit_source = unit.unit_source
     # unit target is not updated and revision remains the same
     assert store0.units[0].target == "Hello, world UPDATED"
@@ -570,7 +570,7 @@ def test_update_upload_new_revision_new_unit(store0, member):
     unit = store0.units.last()
     unit_source = unit.unit_source
     # the new unit has been added
-    assert unit.submission_set.count() == 0
+    assert unit.submission_set.count() == 2
     assert unit.revision > old_unit_revision
     assert unit.target == 'Goodbye, world'
     assert unit_source.created_by == member
@@ -600,7 +600,7 @@ def test_update_upload_old_revision_new_unit(store0, member2):
     unit = store0.units.last()
     unit_source = unit.unit_source
     # the new unit has been added
-    assert unit.submission_set.count() == 0
+    assert unit.submission_set.count() == 2
     assert unit.revision > old_unit_revision
     assert unit.target == 'Goodbye, world'
     assert unit_source.created_by == member2
@@ -628,8 +628,10 @@ def _test_store_update_units_before(*test_args):
         if unit.source not in updates:
             # unit is not in update, target should be left unchanged
             assert updated_unit.target == unit.target
-            assert updated_unit.change.submitted_by == change.submitted_by
-
+            try:
+                assert updated_unit.change.submitted_by == change.submitted_by
+            except:
+                import pdb; pdb.set_trace()
             # depending on unit/store_revision should be obsoleted
             if unit.isobsolete() or store_revision >= unit.revision:
                 assert updated_unit.isobsolete()
