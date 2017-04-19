@@ -17,6 +17,7 @@ update_checks = Signal(
     providing_args=["instance", "keep_false_positives"],
     use_caching=True)
 update_data = Signal(providing_args=["instance"], use_caching=True)
+update_checks = Signal(providing_args=["instance"], use_caching=True)
 filetypes_changed = Signal(
     providing_args=["instance", "filetype"],
     use_caching=True)

@@ -44,6 +44,7 @@ class Command(PootleCommand):
         """
         if translation_project.project.treestyle == 'pootle_fs':
             return
+
         if translation_project.directory_exists_on_disk():
             translation_project.update_from_disk(
                 force=options['force'], overwrite=options['overwrite'])

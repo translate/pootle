@@ -14,8 +14,11 @@ import re
 from django.conf import settings
 
 from pootle.core.log import STORE_RESURRECTED, store_log
+from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models.directory import Directory
+from pootle_data.models import StoreData
 from pootle_language.models import Language
+from pootle_store.constants import OBSOLETE
 from pootle_store.models import Store
 from pootle_store.util import absolute_real_path, relative_real_path
 
@@ -173,12 +176,96 @@ def add_items(fs_items_set, db_items, create_or_resurrect_db_item, parent):
         item = create_or_resurrect_db_item(name)
         items.append(item)
         new_items.append(item)
-        try:
-            item.save()
-        except Exception:
-            logging.exception('Error while adding %s', item)
-
     return items, new_items
+
+
+def add_stores(fs_items_set, parent, tp):
+    items = []
+    child_stores = parent.child_stores.select_related(
+        "data",
+        "filetype__extension",
+        "filetype__template_extension")
+    new_items = child_stores.none()
+    existing_stores = dict(
+        (store.name, store)
+        for store
+        in child_stores.iterator())
+    existing_stores_set = set(existing_stores)
+    items_to_delete = existing_stores_set - fs_items_set
+    to_create = fs_items_set - existing_stores_set
+    if items_to_delete:
+        parent.child_stores.filter(
+            name__in=items_to_delete).update(state=OBSOLETE)
+    if to_create:
+        def _file_path(pootle_path):
+            path_parts = split_pootle_path(pootle_path)
+            file_path = os.path.join(
+                tp.abs_real_path,
+                *path_parts[2:])
+            path_prefix = [path_parts[1]]
+            if tp.project.get_treestyle() != "gnu":
+                path_prefix.append(path_parts[0])
+            return os.path.join(
+                *(path_prefix + list(path_parts[2:])))
+        def _filetype(name):
+            return tp.project.filetype_tool.choose_filetype(name).id
+        parent.child_stores.bulk_create(
+            Store(
+                name=name,
+                parent_id=parent.id,
+                filetype_id=_filetype(name),
+                file=_file_path("%s%s" % (parent.pootle_path, name)),
+                pootle_path="%s%s" % (parent.pootle_path, name),
+                translation_project=tp)
+            for name in to_create)
+        new_items = child_stores.filter(name__in=to_create)
+        StoreData.objects.bulk_create(
+            StoreData(store_id=store_id)
+            for store_id
+            in new_items.values_list("id", flat=True))
+    for name, store in existing_stores.items():
+        if name in fs_items_set and store.obsolete:
+            store.resurrect(resurrect_units=False)
+    return child_stores.all(), new_items
+
+
+def add_dirs(fs_items_set, parent, tp):
+    items = []
+    existing_dirs = dict(
+        (dir.name, dir)
+        for dir
+        in parent.child_dirs.iterator())
+    items = (existing_dirs.values())
+    existing_dirs_set = set(existing_dirs)
+    items_to_delete = existing_dirs_set - fs_items_set
+    items_to_create = fs_items_set - existing_dirs_set
+    if items_to_delete:
+        parent.child_dirs.filter(
+            name__in=items_to_delete).update(obsolete=True)
+        items = [
+            x for x
+            in items
+            if x.name not in items_to_delete]
+    to_create = []
+    to_resurrect = []
+    for name in items_to_create:
+        existing_dir = existing_dirs.get(name)
+        if existing_dir:
+            to_resurrect.append(name)
+        else:
+            to_create.append(name)
+    if to_create:
+        parent.child_dirs.bulk_create(
+            Directory(
+                name=name,
+                parent_id=parent.id,
+                pootle_path="%s%s/" % (parent.pootle_path, name))
+            for name in to_create)
+        items = list(parent.child_dirs.all())
+    for name, directory in existing_dirs.items():
+        if name in to_resurrect:
+            directory.resurrect()
+    return items
 
 
 def create_or_resurrect_store(f, parent, name, translation_project):
@@ -213,34 +300,15 @@ def add_files(translation_project, ignored_files, exts, relative_dir, db_dir,
         ignored_files, exts, podir_path, file_filter)
     file_set = set(files)
     dir_set = set(dirs)
-
-    existing_stores = dict((store.name, store) for store in
-                           db_dir.child_stores.live().exclude(file='')
-                                                     .iterator())
-    existing_dirs = dict((dir.name, dir) for dir in
-                         db_dir.child_dirs.live().iterator())
-
-    files, new_files = add_items(
-        file_set,
-        existing_stores,
-        lambda name: create_or_resurrect_store(
-            f=os.path.join(relative_dir, name),
-            parent=db_dir,
-            name=name,
-            translation_project=translation_project,
-        ),
-        db_dir,
-    )
-
-    db_subdirs, new_db_subdirs_ = add_items(
+    db_subdirs = add_dirs(
         dir_set,
-        existing_dirs,
-        lambda name: create_or_resurrect_dir(
-            tp=translation_project, name=name, parent=db_dir),
         db_dir,
-    )
-
-    is_empty = len(files) == 0
+        translation_project)
+    files, new_files = add_stores(
+        file_set,
+        db_dir,
+        translation_project)
+    is_empty = (len(files) == 0)
     for db_subdir in db_subdirs:
         fs_subdir = os.path.join(relative_dir, db_subdir.name)
         _files, _new_files, _is_empty = add_files(
@@ -250,13 +318,11 @@ def add_files(translation_project, ignored_files, exts, relative_dir, db_dir,
             fs_subdir,
             db_subdir,
             file_filter)
-        files += _files
-        new_files += _new_files
+        files |= _files
+        new_files |= _new_files
         is_empty &= _is_empty
-
-    if is_empty:
-        db_dir.makeobsolete()
-
+        if is_empty:
+            db_dir.makeobsolete()
     return files, new_files, is_empty
 
 
