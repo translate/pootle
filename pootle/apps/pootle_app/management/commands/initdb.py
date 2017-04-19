@@ -33,7 +33,7 @@ class Command(SkipChecksMixin, BaseCommand):
 
     def handle(self, **options):
         self.stdout.write('Populating the database.')
-        InitDB().init_db(options["create_projects"])
+        InitDB(options["create_projects"]).init_db()
         self.stdout.write('Successfully populated the database.')
         self.stdout.write("To create an admin user, use the `pootle "
                           "createsuperuser` command.")
