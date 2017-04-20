@@ -13,8 +13,9 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
+from pootle.core.contextmanagers import update_data_after
 from pootle_misc.checks import run_given_filters
-from pootle_store.constants import OBSOLETE
+from pootle_store.constants import UNTRANSLATED
 from pootle_store.models import QualityCheck, Unit
 from pootle_store.unit import UnitProxy
 from pootle_translationproject.models import TranslationProject
@@ -237,6 +238,29 @@ class QualityCheckUpdater(object):
             "Updated checks for %s units in %s seconds",
             trans, (time.time() - start))
 
+        start = time.time()
+        logger.debug("Updating checks data - this may take some time...")
+        self.update_checks_data()
+        logger.debug(
+            "Updated checks data in %s seconds",
+            (time.time() - start))
+
+    def update_tp_checks_data(self, tp):
+        """Update checks for a translated Unit
+        """
+        with update_data_after(tp):
+            for store in tp.stores.all():
+                store.data_tool.update()
+
+    def update_checks_data(self):
+        """Update checks for a translated Unit
+        """
+        if self.translation_project is not None:
+            self.update_tp_checks_data(self.translation_project)
+        else:
+            for tp in TranslationProject.objects.live():
+                self.update_tp_checks_data(tp)
+
     def update_translated_unit(self, unit, checker=None):
         """Update checks for a translated Unit
         """
@@ -270,7 +294,7 @@ class QualityCheckUpdater(object):
             checker = self.get_checker(self.translation_project.id)
 
         translated = (
-            self.units.filter(state__gte=OBSOLETE)
+            self.units.filter(state__gte=UNTRANSLATED)
                       .order_by("store", "index"))
         updated_count = 0
         for unit in translated.values(*unit_fields).iterator():
@@ -288,7 +312,5 @@ class QualityCheckUpdater(object):
     def update_untranslated(self):
         """Delete QualityChecks for untranslated Units
         """
-        checks_qs = self.checks_qs.exclude(unit__state__gte=OBSOLETE)
-        deleted = checks_qs.count()
-        checks_qs.delete()
-        return deleted
+        checks_qs = self.checks_qs.exclude(unit__state__gte=UNTRANSLATED)
+        return checks_qs.delete()[0]
