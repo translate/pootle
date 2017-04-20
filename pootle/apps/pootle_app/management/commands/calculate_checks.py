@@ -11,7 +11,7 @@ import os
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from pootle.core.delegate import check_updater
+from pootle.core.signals import update_checks
 from pootle_translationproject.models import TranslationProject
 
 from . import PootleCommand
@@ -31,17 +31,20 @@ class Command(PootleCommand):
             help='Check to recalculate',
         )
 
+    def update_checks(self, check_names, translation_project=None):
+        update_checks.send(
+            TranslationProject,
+            check_names=check_names,
+            instance=translation_project)
+
     def handle_all_stores(self, translation_project, **options):
         self.stdout.write(u"Running %s for %s" %
                           (self.name, translation_project))
-        check_updater.get(TranslationProject)(
-            check_names=options['check_names'],
-            translation_project=translation_project).update()
+        self.update_checks(options["check_names"], translation_project)
 
     def handle_all(self, **options):
         if not self.projects and not self.languages:
             self.stdout.write(u"Running %s (noargs)" % self.name)
-            check_updater.get(TranslationProject)(
-                check_names=options['check_names']).update()
+            self.update_checks(options["check_names"])
         else:
             super(Command, self).handle_all(**options)
