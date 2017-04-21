@@ -12,6 +12,8 @@ from django.contrib.auth import get_user_model
 from django.db.models import Sum
 from django.utils.functional import cached_property
 
+from bulk_update.helper import bulk_update
+
 from pootle.core.delegate import log, event_score
 from pootle.core.signals import update_scores
 from pootle_log.utils import LogEvent
@@ -190,8 +192,19 @@ class UserScoreUpdater(ScoreUpdater):
                 "user").annotate(score=Sum("score"))
 
     def set_scores(self, calculated_scores):
-        for user, score in calculated_scores:
-            self.score_model.objects.filter(id=user).update(score=score)
+        calculated_scores = dict(calculated_scores)
+        if len(calculated_scores) == 1:
+            self.score_model.objects.filter(
+                id=calculated_scores.keys()[0]).update(
+                    score=calculated_scores.values()[0])
+            return
+        users = self.score_model.objects.filter(
+            id__in=calculated_scores.keys()).in_bulk()
+        _users = []
+        for pk, user in users.items():
+            user.score = calculated_scores[pk]
+            _users.append(user)
+        bulk_update(_users, update_fields=["score"])
 
     def clear(self):
         tp_scores = self.tp_score_model.objects.all()
