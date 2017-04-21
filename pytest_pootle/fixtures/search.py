@@ -106,7 +106,7 @@ def units_state_searches(request):
 
 @pytest.fixture(params=UNITS_CHECKS_SEARCH_TESTS)
 def units_checks_searches(request):
-    from pootle_misc.checks import get_category_id
+    from pootle_checks.utils import get_category_id
 
     check_type, check_data = request.param.split(":")
     if check_type == "category":

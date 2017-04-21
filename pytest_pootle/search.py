@@ -13,7 +13,7 @@ from django.urls import resolve
 
 from pootle.core.dateparse import parse_datetime
 from pootle.core.url_helpers import split_pootle_path
-from pootle_misc.checks import get_category_id
+from pootle_checks.utils import get_category_id
 from pootle_misc.util import get_date_interval
 from pootle_store.constants import ALLOWED_SORTS, SIMPLY_SORTED
 from pootle_store.models import Unit
