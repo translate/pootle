@@ -10,9 +10,12 @@ from django.contrib.auth import get_user_model
 
 from pootle.core.contextmanagers import update_data_after
 from pootle.core.models import Revision
+from pootle.core.contextmanagers import keep_data
+from pootle.core.signals import update_checks, update_data
 from pootle_statistics.models import SubmissionTypes
-from pootle_store.constants import SOURCE_WINS
+from pootle_store.constants import OBSOLETE, SOURCE_WINS
 from pootle_store.diff import StoreDiff
+from pootle_store.models import QualityCheck
 
 
 User = get_user_model()
@@ -52,7 +55,7 @@ class TPTool(object):
                 "TP '%s' is not part of project '%s'"
                 % (tp, self.project.code))
 
-    def clone(self, tp, language, project=None, update_cache=True):
+    def clone(self, tp, language, project=None):
         """Clone a TP to a given language. Raises Exception if an existing TP
         exists for that Language.
         """
@@ -64,23 +67,22 @@ class TPTool(object):
         new_tp.directory.translationproject = new_tp
         self.clone_children(
             tp.directory,
-            new_tp.directory,
-            update_cache=update_cache)
+            new_tp.directory)
         return new_tp
 
-    def clone_children(self, source_dir, target_parent, update_cache=True):
+    def clone_children(self, source_dir, target_parent):
         """Clone a source Directory's children to a given target Directory.
         """
         source_stores = source_dir.child_stores.live().select_related(
             "filetype", "filetype__extension")
         for store in source_stores:
             store.parent = source_dir
-            self.clone_store(store, target_parent, update_cache=update_cache)
+            self.clone_store(store, target_parent)
         for subdir in source_dir.child_dirs.live():
             subdir.parent = source_dir
-            self.clone_directory(subdir, target_parent, update_cache=update_cache)
+            self.clone_directory(subdir, target_parent)
 
-    def clone_directory(self, source_dir, target_parent, update_cache=True):
+    def clone_directory(self, source_dir, target_parent):
         """Clone a source Directory and its children to a given target
         Directory. Raises Exception if the target exists already.
         """
@@ -89,20 +91,49 @@ class TPTool(object):
         target_dir.parent = target_parent
         self.clone_children(
             source_dir,
-            target_dir,
-            update_cache=update_cache)
+            target_dir)
         return target_dir
 
-    def clone_store(self, store, target_dir, update_cache=True):
+    def clone_store(self, store, target_dir):
         """Clone given Store to target Directory"""
         cloned = target_dir.child_stores.create(
             name=store.name,
             translation_project=target_dir.translation_project)
-        cloned.update(cloned.deserialize(store.serialize()))
-        cloned.state = store.state
-        cloned.filetype = store.filetype
-        cloned.save()
+
+        with keep_data(signals=(update_checks, update_data)):
+            cloned.update(cloned.deserialize(store.serialize()))
+            cloned.state = store.state
+            cloned.filetype = store.filetype
+            cloned.save()
+
+            self.clone_checks(store, cloned)
+        update_data.send(cloned.__class__, instance=cloned)
         return cloned
+
+    def clone_checks(self, source_store, target_store):
+        """Clone checks from source store to target store."""
+        fields = ('unit__unitid_hash', 'category', 'name',
+                  'false_positive', 'message')
+        checks = QualityCheck.objects.filter(
+            unit__store=source_store,
+            unit__state__gt=OBSOLETE,
+        ).values(*fields)
+        unitid_hashes = [x['unit__unitid_hash'] for x in checks]
+        units = target_store.units.filter(unitid_hash__in=unitid_hashes)
+        unit_map = {
+            x['unitid_hash']: x['id']
+            for x in units.values('id', 'unitid_hash')}
+
+        cloned_checks = []
+        for check in checks:
+            cloned_checks.append(QualityCheck(
+                unit_id=unit_map[check['unit__unitid_hash']],
+                category=check['category'],
+                name=check['name'],
+                false_positive=check['false_positive'],
+                message=check['message']))
+
+        QualityCheck.objects.bulk_create(cloned_checks)
 
     def create_tp(self, language, project=None):
         """Create a TP for a given language"""
@@ -141,7 +172,7 @@ class TPTool(object):
         except tp_qs.model.DoesNotExist:
             pass
 
-    def move(self, tp, language, project=None, update_cache=True):
+    def move(self, tp, language, project=None):
         """Re-assign a tp to a different language"""
         if not project:
             self.check_tp(tp)
@@ -160,11 +191,10 @@ class TPTool(object):
         self.set_parents(
             directory,
             self.get_tp(language, project).directory,
-            project=project,
-            update_cache=update_cache)
+            project=project)
         directory.delete()
 
-    def set_parents(self, directory, parent, project=None, update_cache=True):
+    def set_parents(self, directory, parent, project=None):
         """Recursively sets the parent for children of a directory"""
         if not project:
             self.check_tp(directory.translation_project)
@@ -175,10 +205,9 @@ class TPTool(object):
         for subdir in directory.child_dirs.all():
             subdir.parent = parent
             subdir.save()
-            self.set_parents(
-                subdir, subdir, project, update_cache=update_cache)
+            self.set_parents(subdir, subdir, project)
 
-    def update_children(self, source_dir, target_dir, update_cache=True):
+    def update_children(self, source_dir, target_dir):
         """Update a target Directory and its children from a given
         source Directory
         """
@@ -197,28 +226,26 @@ class TPTool(object):
                         "filetype__extension",
                         "filetype__template_extension").get(name=store.name))
             except target_dir.child_stores.model.DoesNotExist:
-                self.clone_store(store, target_dir, update_cache=update_cache)
+                self.clone_store(store, target_dir)
         for subdir in source_dir.child_dirs.live():
             subdir.parent = source_dir
             dirs.append(subdir.name)
             try:
                 self.update_children(
                     subdir,
-                    target_dir.child_dirs.get(name=subdir.name),
-                    update_cache=update_cache)
+                    target_dir.child_dirs.get(name=subdir.name))
             except target_dir.child_dirs.model.DoesNotExist:
-                self.clone_directory(
-                    subdir, target_dir, update_cache=update_cache)
+                self.clone_directory(subdir, target_dir)
 
         for store in target_dir.child_stores.exclude(name__in=stores):
             store.makeobsolete()
 
-    def update_from_tp(self, source, target, update_cache=True):
+    def update_from_tp(self, source, target):
         """Update one TP from another"""
         self.check_tp(source)
         self.check_tp(target)
         self.update_children(
-            source.directory, target.directory, update_cache=update_cache)
+            source.directory, target.directory)
 
     def update_store(self, source, target):
         """Update a target Store from a given source Store"""

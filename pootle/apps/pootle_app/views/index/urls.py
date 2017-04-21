@@ -9,8 +9,7 @@
 from django.conf.urls import url
 from django.views.generic import TemplateView
 
-from . import index
-from .index import AboutView
+from .index import AboutView, IndexView
 
 
 urlpatterns = [
@@ -20,7 +19,7 @@ urlpatterns = [
         name="pootle-robots"),
 
     url(r'^$',
-        index.view,
+        IndexView.as_view(),
         name='pootle-home'),
 
     url(r'^about/$',

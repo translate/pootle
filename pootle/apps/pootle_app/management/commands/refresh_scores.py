@@ -12,6 +12,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 
+from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import score_updater
 from pootle.core.signals import update_scores
 from pootle_translationproject.models import TranslationProject
@@ -45,8 +46,14 @@ class Command(BaseCommand):
             score_updater.get(get_user_model())(users=users).clear()
             return
         for tp in TranslationProject.objects.all():
-            for store in tp.stores.all():
-                update_scores.send(
-                    store.__class__,
-                    instance=store,
-                    users=users)
+            data_update = update_data_after(
+                tp,
+                signals=(update_scores, ),
+                suppress=(tp.__class__, ),
+                kwargs=dict(users=users))
+            with data_update:
+                for store in tp.stores.all():
+                    update_scores.send(
+                        store.__class__,
+                        instance=store,
+                        users=users)

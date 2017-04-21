@@ -379,7 +379,7 @@ def test_reject_translated_suggestion(client, request_users, member, system):
 
 
 @pytest.mark.django_db
-def test_toggle_quality_check(rf, admin):
+def test_toggle_quality_check(rf, admin, member):
     """Tests the view that mutes/unmutes quality checks."""
     qc_filter = dict(
         false_positive=False,
@@ -389,6 +389,8 @@ def test_toggle_quality_check(rf, admin):
     qc = QualityCheck.objects.filter(**qc_filter).first()
     unit = qc.unit
 
+    unit.change.reviewed_by = member
+    unit.change.save()
     # Explicit POST data present, mute
     data = 'mute='
     request = create_api_request(rf, method='post', user=admin, data=data,
@@ -396,12 +398,22 @@ def test_toggle_quality_check(rf, admin):
     response = toggle_qualitycheck(request, unit.id, qc.id)
     assert response.status_code == 200
     assert QualityCheck.objects.get(id=qc.id).false_positive is True
+    sub = unit.submission_set.get(quality_check=qc)
+    assert sub.submitter == admin
+    unit.change.refresh_from_db()
+    assert unit.change.reviewed_by == admin
 
+    unit.change.reviewed_by = member
+    unit.change.save()
     # No POST data present, unmute
     request = create_api_request(rf, method='post', user=admin)
     response = toggle_qualitycheck(request, unit.id, qc.id)
     assert response.status_code == 200
     assert QualityCheck.objects.get(id=qc.id).false_positive is False
+    sub = unit.submission_set.get(id__gt=sub.id, quality_check=qc)
+    assert sub.submitter == admin
+    unit.change.refresh_from_db()
+    assert unit.change.reviewed_by == admin
 
 
 @pytest.mark.django_db

@@ -57,6 +57,7 @@ class SubmissionFields(object):
         TARGET: _("Target"),
         STATE: _("State"),
         COMMENT: _("Comment"),
+        CHECK: (_("Check")),
     }
 
 

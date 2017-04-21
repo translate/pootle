@@ -14,7 +14,7 @@ from django.utils.encoding import force_bytes
 
 from pootle.core.delegate import lifecycle, uniqueid
 from pootle.core.models import Revision
-from pootle.core.signals import update_data
+from pootle.core.signals import update_checks, update_data
 
 from .constants import FUZZY, TRANSLATED, UNTRANSLATED
 from .models import Suggestion, Unit, UnitChange, UnitSource
@@ -122,6 +122,6 @@ def handle_unit_change(**kwargs):
         return
     new_untranslated = (created and unit.state == UNTRANSLATED)
     if not new_untranslated:
-        unit.update_qualitychecks()
+        update_checks.send(unit.__class__, instance=unit)
     if unit.istranslated():
         unit.update_tmserver()

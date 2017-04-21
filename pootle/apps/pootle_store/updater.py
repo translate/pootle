@@ -16,7 +16,6 @@ from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import frozen, review
 from pootle.core.log import log
 from pootle.core.models import Revision
-from pootle_statistics.models import SubmissionFields, SubmissionTypes
 
 from .constants import OBSOLETE, PARSED, POOTLE_WINS
 from .diff import StoreDiff
@@ -184,13 +183,7 @@ class UnitUpdater(object):
             return True
         if self.unit.target == self.newunit.target:
             return False
-        edit_types = SubmissionTypes.EDIT_TYPES
-        prev_subs = self.unit.submission_set.filter(
-            type__in=edit_types).filter(field=SubmissionFields.TARGET).filter(
-                revision__lte=self.update.store_revision)
-        last_subs = prev_subs.order_by("-revision")
-        old_target = last_subs.values_list("new_value", flat=True).first()
-        return old_target != self.newunit.target
+        return True
 
     def create_suggestion(self):
         suggestion_review = review.get(Suggestion)()

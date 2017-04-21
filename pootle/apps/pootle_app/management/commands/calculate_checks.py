@@ -11,7 +11,8 @@ import os
 # This must be run before importing Django.
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
-from pootle.core.checks.checker import QualityCheckUpdater
+from pootle.core.delegate import check_updater
+from pootle_translationproject.models import TranslationProject
 
 from . import PootleCommand
 
@@ -33,13 +34,14 @@ class Command(PootleCommand):
     def handle_all_stores(self, translation_project, **options):
         self.stdout.write(u"Running %s for %s" %
                           (self.name, translation_project))
-        QualityCheckUpdater(
-            options['check_names'],
-            translation_project).update()
+        check_updater.get(TranslationProject)(
+            check_names=options['check_names'],
+            translation_project=translation_project).update()
 
     def handle_all(self, **options):
         if not self.projects and not self.languages:
             self.stdout.write(u"Running %s (noargs)" % self.name)
-            QualityCheckUpdater(options['check_names']).update()
+            check_updater.get(TranslationProject)(
+                check_names=options['check_names']).update()
         else:
             super(Command, self).handle_all(**options)

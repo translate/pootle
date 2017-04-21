@@ -18,11 +18,12 @@ from pytest_pootle.env import PootleTestEnv
 
 
 @pytest.fixture(autouse=True)
-def test_timing(request, settings, log_timings):
+def test_timing(request, log_timings):
     from django.db import reset_queries
 
     if not request.config.getoption("--debug-tests"):
         return
+    from django.conf import settings
     settings.DEBUG = True
     reset_queries()
     start = time.time()

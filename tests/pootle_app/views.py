@@ -12,8 +12,36 @@ from django.utils.translation import get_language
 from django.urls import reverse
 
 from pootle.core.delegate import revision
-from pootle_app.views.index.index import WelcomeView
+from pootle_app.views.index.index import (
+    COOKIE_NAME, IndexView, WelcomeView)
 from pootle_score.display import TopScoreDisplay
+
+
+@pytest.mark.django_db
+def test_view_index(client, rf, request_users, language0):
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    response = client.get("")
+    if not user.is_authenticated:
+        assert response.status_code == 200
+        assert isinstance(response.context["view"], WelcomeView)
+    else:
+        assert response.status_code == 302
+        assert response["Location"] == reverse("pootle-projects-browse")
+
+    request = rf.get("")
+    request.user = user
+    request.COOKIES[COOKIE_NAME] = language0.code
+    response = IndexView.as_view()(request=request)
+    if not user.is_authenticated:
+        assert response.status_code == 200
+    else:
+        assert response.status_code == 302
+        assert response["Location"] == reverse(
+            "pootle-language-browse",
+            kwargs=dict(language_code=language0.code))
 
 
 @pytest.mark.django_db

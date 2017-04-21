@@ -46,8 +46,7 @@ class CheckableUnit(UnitProxy):
 
 class UnitQualityCheck(object):
 
-    def __init__(self, unit, checker, original_checks,
-                 check_names, keep_false_positives=True):
+    def __init__(self, unit, checker, original_checks, check_names):
         """Refreshes QualityChecks for a Unit
 
         As this class can work with either `Unit` or `CheckableUnit` it only
@@ -57,15 +56,11 @@ class UnitQualityCheck(object):
         :param checker: a Checker for this Unit.
         :param original_checks: current QualityChecks for this Unit
         :param check_names: limit checks to given list of quality check names.
-        :param keep_false_positives: when set to `False`, it will unmute any
-            existing false positive checks.
         """
         self.checker = checker
         self.unit = unit
         self.original_checks = original_checks
         self.check_names = check_names
-        self.keep_false_positives = keep_false_positives
-        self.unmute_list = []
 
     @cached_property
     def check_failures(self):
@@ -92,16 +87,6 @@ class UnitQualityCheck(object):
             return True
         return False
 
-    def unmute_checks(self, checks):
-        """Unmute checks that should no longer be muted
-        """
-        to_unmute = self.checks_qs.filter(
-            name__in=checks, false_positive=True)
-        if to_unmute.exists():
-            to_unmute.update(false_positive=False)
-            return True
-        return False
-
     def update(self):
         """Update QualityChecks for a Unit, deleting and unmuting as appropriate.
         """
@@ -112,11 +97,7 @@ class UnitQualityCheck(object):
         deleted = (
             self.original_checks and self.delete_checks(self.original_checks))
 
-        # unmute any checks that have been marked for unmuting
-        unmuted = (
-            self.unmute_list and self.unmute_checks(self.unmute_list))
-
-        return (updated or deleted or unmuted)
+        return (updated or deleted)
 
     def update_checks(self):
         """Compare self.original_checks to the Units calculated QualityCheck failures.
@@ -127,16 +108,9 @@ class UnitQualityCheck(object):
         new_checks = []
         for name in self.check_failures.iterkeys():
             if name in self.original_checks:
-                # keep false-positive checks if check is active
-                unmute = (
-                    self.original_checks[name]['false_positive']
-                    and not self.keep_false_positives)
-                if unmute:
-                    self.unmute_list.append(name)
                 # if the check is valid remove from the list and continue
                 del self.original_checks[name]
                 continue
-
             # the check didnt exist previously - so create it
             new_checks.append(
                 self.checks_qs.model(
@@ -152,20 +126,16 @@ class UnitQualityCheck(object):
 
 class QualityCheckUpdater(object):
 
-    def __init__(self, check_names=None, translation_project=None,
-                 keep_false_positives=True):
+    def __init__(self, check_names=None, translation_project=None):
         """Refreshes QualityChecks for Units
 
         :param check_names: limit checks to given list of quality check names.
         :param translation_project: an instance of `TranslationProject` to
             restrict the update to.
-        :param keep_false_positives: when set to `False`, it will unmute any
-            existing false positive checks.
         """
 
         self.check_names = check_names
         self.translation_project = translation_project
-        self.keep_false_positives = keep_false_positives
         self.stores = set()
         self._store_to_expire = None
 
@@ -275,8 +245,7 @@ class QualityCheckUpdater(object):
             unit,
             checker,
             self.checks.get(unit.id, {}),
-            self.check_names,
-            self.keep_false_positives)
+            self.check_names)
         if checker.update():
             self.expire_store_cache(unit.store)
             self.units.filter(id=unit.id).update(mtime=timezone.now())

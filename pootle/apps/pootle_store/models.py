@@ -19,7 +19,6 @@ from django.db import models
 from django.db.models import F
 from django.template.defaultfilters import truncatechars
 from django.urls import reverse
-from django.utils import timezone
 from django.utils.encoding import force_bytes
 from django.utils.functional import cached_property
 from django.utils.http import urlquote
@@ -31,7 +30,7 @@ from pootle.core.log import (
     STORE_DELETED, STORE_OBSOLETE, log, store_log)
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
-from pootle.core.signals import update_data
+from pootle.core.signals import toggle, update_checks, update_data
 from pootle.core.url_helpers import (
     get_editor_filter, split_pootle_path, to_tp_relative_path)
 from pootle.core.utils import dateformat
@@ -39,9 +38,7 @@ from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.multistring import PLURAL_PLACEHOLDER, SEPARATOR
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle_misc.checks import check_names
-from pootle_statistics.models import (
-    MUTED, UNMUTED, Submission, SubmissionFields,
-    SubmissionTypes)
+from pootle_statistics.models import SubmissionTypes
 
 from .abstracts import (
     AbstractUnit, AbstractQualityCheck, AbstractStore, AbstractSuggestion,
@@ -299,7 +296,7 @@ class Unit(AbstractUnit):
             self.change = UnitChange(
                 unit=self,
                 changed_with=changed_with)
-        if self.updated:
+        if self.updated or reviewed_by != user:
             if changed_with is not None:
                 self.change.changed_with = changed_with
             if self.comment_updated:
@@ -714,7 +711,8 @@ class Unit(AbstractUnit):
         else:
             self.state = UNTRANSLATED
 
-        self.update_qualitychecks(keep_false_positives=True)
+        update_checks.send(self.__class__, instance=self,
+                           keep_false_positives=True)
         self.index = self.store.max_index() + 1
 
     def istranslated(self):
@@ -736,30 +734,9 @@ class Unit(AbstractUnit):
             return
 
         self.revision = Revision.incr()
-        self.save(
-            reviewed_by=user)
-        check.false_positive = false_positive
-        check.save()
-
-        # create submission
-        old_value = MUTED
-        new_value = UNMUTED
-        if false_positive:
-            old_value = UNMUTED
-            new_value = MUTED
-
-        update_time = make_aware(timezone.now())
-        sub = Submission(
-            creation_time=update_time,
-            translation_project=self.store.translation_project,
-            submitter=user,
-            field=SubmissionFields.NONE,
-            unit=self,
-            type=SubmissionTypes.WEB,
-            old_value=old_value,
-            new_value=new_value,
-            quality_check=check)
-        sub.save()
+        self.save(reviewed_by=user)
+        toggle.send(check.__class__, instance=check,
+                    false_positive=false_positive)
 
     def get_terminology(self):
         """get terminology suggestions"""

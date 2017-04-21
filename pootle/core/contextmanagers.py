@@ -8,14 +8,22 @@
 
 from contextlib import contextmanager, nested
 
-from pootle.core.signals import update_data, update_scores
+from django.dispatch.dispatcher import _make_id
+
+from pootle.core.signals import update_data, update_revisions, update_scores
 
 
 @contextmanager
-def suppress_signal(signal):
+def suppress_signal(signal, suppress=None):
     handlers = signal.receivers
     receiver_cache = signal.sender_receivers_cache.copy()
     signal.receivers = []
+    if suppress:
+        refs = [_make_id(sup) for sup in suppress]
+        signal.receivers = [h for h in handlers if not h[0][1] in refs]
+    else:
+        signal.receivers = []
+    signal.sender_receivers_cache.clear()
     try:
         yield
     finally:
@@ -24,9 +32,10 @@ def suppress_signal(signal):
 
 
 @contextmanager
-def keep_data(keep=True, signals=(update_data, update_scores)):
+def keep_data(keep=True, signals=None, suppress=None):
+    signals = signals or (update_data, update_revisions, update_scores)
     if keep:
-        with nested(*[suppress_signal(s) for s in signals]):
+        with nested(*[suppress_signal(s, suppress) for s in signals]):
             yield
     else:
         yield
@@ -35,7 +44,7 @@ def keep_data(keep=True, signals=(update_data, update_scores)):
 @contextmanager
 def update_data_after(sender, **kwargs):
     signals = kwargs.get("signals", [update_data, update_scores])
-    with keep_data(signals=signals):
+    with keep_data(signals=signals, suppress=kwargs.get("suppress")):
         yield
     if "kwargs" in kwargs:
         kwargs.update(kwargs.pop("kwargs"))
