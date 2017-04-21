@@ -473,22 +473,6 @@ Translation environment configuration settings.
   :djadmin:`update_stores` will read from this directory.
 
 
-.. setting:: POOTLE_QUALITY_CHECKER
-
-``POOTLE_QUALITY_CHECKER``
-  Default: ``''``
-
-  .. versionadded:: 2.7
-
-  The import path to a class that provides alternate quality checks to
-  Pootle.  If it is unset then the Translate Toolkit checking functions are
-  used and you can make adjustments in the project's admin page.  If set
-  then the quality checker function is used for all projects.
-
-  .. note:: If set, only the checker function defined here is used instead of
-     the Translate Toolkit counterparts. Both cannot be selectively applied.
-
-
 .. setting:: POOTLE_WORDCOUNT_FUNC
 
 ``POOTLE_WORDCOUNT_FUNC``
