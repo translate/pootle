@@ -212,8 +212,8 @@ class BuildChecksTemplatesCommand(Command):
     def run(self):
         import django
         import codecs
-        from pootle.apps.pootle_misc.checks import (check_names,
-                                                    excluded_filters)
+        from pootle.apps.pootle_checks.constants import (
+            CHECK_NAMES, EXCLUDED_FiLTERS)
         from translate.filters.checks import (TeeChecker, StandardChecker,
                                               StandardUnitChecker)
         try:
@@ -233,7 +233,7 @@ class BuildChecksTemplatesCommand(Command):
             """
             # Provide a header with an anchor to refer to.
             description = ('\n<h3 id="%s">%s</h3>\n\n' %
-                           (name, unicode(check_names[name])))
+                           (name, unicode(CHECK_NAMES[name])))
 
             # Clean the leading whitespace on each docstring line so it gets
             # properly rendered.
@@ -250,7 +250,7 @@ class BuildChecksTemplatesCommand(Command):
         # that are not used in Pootle are excluded.
         fd = TeeChecker(
             checkerclasses=[StandardChecker, StandardUnitChecker]
-        ).getfilters(excludefilters=excluded_filters)
+        ).getfilters(excludefilters=EXCLUDED_FiLTERS)
 
         docs = sorted(
             get_check_description(name, f) for name, f in fd.items()
