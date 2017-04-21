@@ -8,10 +8,13 @@
 
 import pytest
 
-from pootle_misc.checks import (Category, check_names,
-                                get_category_code, get_category_name,
-                                get_qualitychecks, get_qualitycheck_list,
-                                get_qualitycheck_schema)
+from pootle_checks.constants import Category, CHECK_NAMES
+from pootle_checks.utils import (
+    get_category_code,
+    get_category_name,
+    get_qualitychecks,
+    get_qualitycheck_list,
+    get_qualitycheck_schema)
 
 
 def test_get_qualitycheck_schema():
@@ -27,7 +30,7 @@ def test_get_qualitycheck_schema():
             }
         d[cat]['checks'].append({
             'code': check,
-            'title': u"%s" % check_names.get(check, check),
+            'title': u"%s" % CHECK_NAMES.get(check, check),
             'url': ''
         })
 
@@ -46,7 +49,7 @@ def test_get_qualitycheck_list(tp0):
         result.append({
             'code': check,
             'is_critical': cat == Category.CRITICAL,
-            'title': u"%s" % check_names.get(check, check),
+            'title': u"%s" % CHECK_NAMES.get(check, check),
             'url': tp0.get_translate_url(check=check)
         })
 

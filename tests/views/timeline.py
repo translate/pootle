@@ -20,7 +20,7 @@ from django.utils.encoding import force_bytes
 
 from pootle.core.delegate import review
 from pootle_comment.forms import UnsecuredCommentForm
-from pootle_misc.checks import check_names
+from pootle_checks.constants import CHECK_NAMES
 from pootle_statistics.models import Submission, SubmissionFields
 from pootle_store.constants import (
     FUZZY, OBSOLETE, STATES_MAP, TRANSLATED, UNTRANSLATED)
@@ -126,7 +126,7 @@ def _calculate_timeline(request, unit):
                          '#', check_name]))
                 entry.update({
                     'check_name': check_name,
-                    'check_display_name': check_names[check_name],
+                    'check_display_name': CHECK_NAMES[check_name],
                     'checks_url': check_url})
             else:
                 entry['new_value'] = to_python(item['new_value'])

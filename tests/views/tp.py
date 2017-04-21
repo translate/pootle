@@ -24,9 +24,8 @@ from pootle.core.url_helpers import get_previous_url, get_path_parts
 from pootle.core.utils.stats import (
     TOP_CONTRIBUTORS_CHUNK_SIZE, get_translation_states)
 from pootle.core.views.display import ChecksDisplay
-from pootle_misc.checks import (
-    CATEGORY_IDS, check_names,
-    get_qualitychecks, get_qualitycheck_schema)
+from pootle_checks.constants import CATEGORY_IDS, CHECK_NAMES
+from pootle_checks.utils import get_qualitychecks, get_qualitycheck_schema
 from pootle.core.views.browse import StatsDisplay
 from pootle_misc.forms import make_search_form
 from pootle_store.models import Store
@@ -139,7 +138,7 @@ def _test_translate_view(tp, request, response, kwargs, settings):
         _checks[_checkid]["checks"].append(
             dict(
                 code=check,
-                title=check_names[check],
+                title=CHECK_NAMES[check],
                 count=check_data[check]))
     _checks = OrderedDict(
         (k, _checks[k])
