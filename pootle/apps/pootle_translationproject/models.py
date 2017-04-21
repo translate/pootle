@@ -8,7 +8,6 @@
 
 import logging
 
-from django.conf import settings
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.db.models.signals import post_save
@@ -206,17 +205,10 @@ class TranslationProject(models.Model, CachedTreeItem):
     @property
     def checker(self):
         from translate.filters import checks
-        # We do not use default Translate Toolkit checkers; instead use
-        # our own one
-        if settings.POOTLE_QUALITY_CHECKER:
-            from pootle_misc.util import import_func
-            checkerclasses = [import_func(settings.POOTLE_QUALITY_CHECKER)]
-        else:
-            checkerclasses = [
-                checks.projectcheckers.get(self.project.checkstyle,
-                                           checks.StandardChecker)
-            ]
-
+        checkerclasses = [
+            checks.projectcheckers.get(
+                self.project.checkstyle,
+                checks.StandardChecker)]
         return checks.TeeChecker(checkerclasses=checkerclasses,
                                  excludefilters=excluded_filters,
                                  errorhandler=self.filtererrorhandler,
