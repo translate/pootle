@@ -19,7 +19,7 @@ from django.utils.functional import cached_property
 from pootle.core.contextmanagers import keep_data
 from pootle.core.delegate import data_tool
 from pootle.core.mixins import CachedTreeItem
-from pootle.core.signals import update_data, update_scores
+from pootle.core.signals import update_data, update_revisions, update_scores
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_app.project_tree import (does_not_exist, init_store_from_template,
@@ -323,8 +323,20 @@ class TranslationProject(models.Model, CachedTreeItem):
         self.update_from_disk()
 
     def update_from_disk(self, force=False, overwrite=False):
+        with keep_data(suppress=(self.__class__, )):
+            with keep_data(signals=(update_revisions, update_scores)):
+                updated_stores = self._update_from_disk(
+                    force=force, overwrite=overwrite)
+            for store in updated_stores:
+                update_data.send(store.__class__, instance=store)
+                update_scores.send(store.__class__, instance=store)
+        if updated_stores:
+            update_data.send(self.__class__, instance=self)
+            update_scores.send(self.__class__, instance=self)
+
+    def _update_from_disk(self, force=False, overwrite=False):
         """Update all stores to reflect state on disk."""
-        changed = False
+        changed = []
 
         logging.info(u"Scanning for new files in %s", self)
         # Create new, make obsolete in-DB stores to reflect state on disk
@@ -345,11 +357,8 @@ class TranslationProject(models.Model, CachedTreeItem):
                 logging.debug(u"File didn't change since last sync, "
                               u"skipping %s", store.pootle_path)
                 continue
-
-            changed = (
-                store.updater.update_from_disk(overwrite=overwrite)
-                or changed)
-
+            if store.updater.update_from_disk(overwrite=overwrite):
+                changed.append(store)
         return changed
 
     def sync(self, conservative=True, skip_missing=False, only_newer=True):
@@ -438,11 +447,7 @@ def scan_languages(**kwargs):
         with keep_data():
             tp = create_translation_project(language, instance)
         if tp is not None:
-            with keep_data(tp, suppress=(tp.__class__, )):
-                result = tp.update_from_disk()
-                if result:
-                    update_data.send(tp.__class__, instance=tp)
-                    update_scores.send(tp.__class__, instance=tp)
+            tp.update_from_disk()
 
 
 @receiver(post_save, sender=Language)
@@ -458,6 +463,7 @@ def scan_projects(**kwargs):
         treestyle="pootle_fs")
 
     for project in old_style_projects.iterator():
-        tp = create_translation_project(instance, project)
+        with keep_data():
+            tp = create_translation_project(instance, project)
         if tp is not None:
             tp.update_from_disk()
