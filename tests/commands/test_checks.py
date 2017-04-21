@@ -74,15 +74,3 @@ def test_test_checks_srctgt_fail(capfd):
     call_command('test_checks', '--source="%s files"', '--target="%d leers"')
     out, err = capfd.readouterr()
     assert 'Failing checks' in out
-
-
-@pytest.mark.cmd
-def test_test_checks_alt_checker(capfd, settings):
-    """Use an alternate checker."""
-    settings.POOTLE_QUALITY_CHECKER = 'pootle_misc.checks.ENChecker'
-    call_command('test_checks', '--source="%s files"', '--target="%s leers"')
-    out, err = capfd.readouterr()
-    assert 'No errors found' in out
-    call_command('test_checks', '--source="%s files"', '--target="%d leers"')
-    out, err = capfd.readouterr()
-    assert 'Failing checks' in out

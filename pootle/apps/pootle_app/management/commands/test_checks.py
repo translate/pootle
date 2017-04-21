@@ -12,11 +12,9 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from translate.filters.checks import FilterFailure, projectcheckers
 
-from django.conf import settings
 from django.core.management.base import CommandError, BaseCommand
 
 from pootle_misc.checks import get_qualitychecks
-from pootle_misc.util import import_func
 from pootle_store.models import Unit
 
 
@@ -81,10 +79,7 @@ class Command(BaseCommand):
             source = options['source'].decode('utf-8')
             target = options['target'].decode('utf-8')
 
-        if settings.POOTLE_QUALITY_CHECKER:
-            checkers = [import_func(settings.POOTLE_QUALITY_CHECKER)()]
-        else:
-            checkers = [checker() for checker in projectcheckers.values()]
+        checkers = [checker() for checker in projectcheckers.values()]
 
         if not checks:
             checks = get_qualitychecks().keys()
