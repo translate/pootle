@@ -25,7 +25,7 @@ from pootle_app.project_tree import (does_not_exist, init_store_from_template,
                                      translation_project_dir_exists)
 from pootle_format.models import Format
 from pootle_language.models import Language
-from pootle_misc.checks import excluded_filters
+from pootle_checks.constants import EXCLUDED_FILTERS
 from pootle_project.models import Project
 from pootle_revision.models import Revision
 from pootle_store.constants import PARSED
@@ -210,7 +210,7 @@ class TranslationProject(models.Model, CachedTreeItem):
                 self.project.checkstyle,
                 checks.StandardChecker)]
         return checks.TeeChecker(checkerclasses=checkerclasses,
-                                 excludefilters=excluded_filters,
+                                 excludefilters=EXCLUDED_FILTERS,
                                  errorhandler=self.filtererrorhandler,
                                  languagecode=self.language.code)
 

@@ -14,7 +14,7 @@ from accounts.proxy import DisplayUser
 from pootle.core.primitives import PrefixedDict
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle.core.utils import dateformat
-from pootle_misc.checks import check_names
+from pootle_checks.constants import CHECK_NAMES
 from pootle_store.constants import FUZZY, TRANSLATED
 from pootle_store.fields import to_python
 
@@ -169,7 +169,7 @@ class SubmissionProxy(object):
             return info
         info.update(
             dict(check_name=self.qc_name,
-                 check_display_name=check_names.get(self.qc_name, self.qc_name),
+                 check_display_name=CHECK_NAMES.get(self.qc_name, self.qc_name),
                  checks_url=reverse('pootle-checks-descriptions')))
         return info
 

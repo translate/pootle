@@ -15,7 +15,7 @@ from django.urls import reverse
 from pootle.core.utils import dateformat
 from pootle.core.user import get_system_user
 from pootle.i18n.gettext import ugettext_lazy as _
-from pootle_misc.checks import check_names
+from pootle_checks.constants import CHECK_NAMES
 from pootle_store.constants import FUZZY, TRANSLATED
 from pootle_store.fields import to_python
 
@@ -210,7 +210,7 @@ class Submission(models.Model):
                 check_name = self.quality_check.name
                 result.update({
                     'check_name': check_name,
-                    'check_display_name': check_names.get(check_name,
+                    'check_display_name': CHECK_NAMES.get(check_name,
                                                           check_name),
                     'checks_url': reverse('pootle-checks-descriptions'),
                 })

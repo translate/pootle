@@ -14,7 +14,7 @@ from translate.filters.checks import FilterFailure, projectcheckers
 
 from django.core.management.base import CommandError, BaseCommand
 
-from pootle_misc.checks import get_qualitychecks
+from pootle_checks.utils import get_qualitychecks
 from pootle_store.models import Unit
 
 

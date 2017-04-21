@@ -37,7 +37,7 @@ from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.multistring import PLURAL_PLACEHOLDER, SEPARATOR
 from pootle.core.utils.timezone import datetime_min, make_aware
-from pootle_misc.checks import check_names
+from pootle_checks.constants import CHECK_NAMES
 from pootle_statistics.models import SubmissionTypes
 
 from .abstracts import (
@@ -77,12 +77,13 @@ class QualityCheck(AbstractQualityCheck):
 
     @property
     def display_name(self):
-        return check_names.get(self.name, self.name)
+        return CHECK_NAMES.get(self.name, self.name)
 
     @classmethod
     def delete_unknown_checks(cls):
-        unknown_checks = QualityCheck.objects \
-            .exclude(name__in=check_names.keys())
+        unknown_checks = (
+            QualityCheck.objects.exclude(
+                name__in=CHECK_NAMES.keys()))
         unknown_checks.delete()
 
 

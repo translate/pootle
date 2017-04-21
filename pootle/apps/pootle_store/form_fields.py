@@ -10,7 +10,7 @@ from django import forms
 from django.utils.datastructures import MultiValueDict
 
 from pootle.core.dateparse import parse_datetime
-from pootle_misc.checks import CATEGORY_IDS
+from pootle_checks.constants import CATEGORY_IDS
 
 
 class CommaSeparatedCheckboxSelectMultiple(forms.CheckboxSelectMultiple):

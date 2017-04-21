@@ -15,7 +15,7 @@ from django.utils.functional import cached_property
 
 from accounts.proxy import DisplayUser
 from pootle_comment import get_model as get_comment_model
-from pootle_misc.checks import check_names
+from pootle_checks.constants import CHECK_NAMES
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 from pootle_statistics.proxy import SubmissionProxy
@@ -63,7 +63,7 @@ class TimelineEntry(object):
                  '#', check_name]))
         entry.update(
             {'check_name': check_name,
-             'check_display_name': check_names[check_name],
+             'check_display_name': CHECK_NAMES[check_name],
              'checks_url': check_url})
         return entry
 

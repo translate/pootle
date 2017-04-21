@@ -113,7 +113,7 @@ CHECK_NAMES = {
     'niciun_nicio': _(u'Romanian: Use "niciun"/"nicio"')}
 
 
-EXCLUDED_FiLTERS = [
+EXCLUDED_FILTERS = [
     'hassuggestion',
     'spellcheck',
     'isfuzzy',

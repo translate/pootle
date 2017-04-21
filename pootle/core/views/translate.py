@@ -12,9 +12,8 @@ from django.conf import settings
 
 from pootle.core.url_helpers import get_previous_url
 from pootle_app.models.permissions import check_permission
-from pootle_misc.checks import (
-    CATEGORY_IDS, check_names,
-    get_qualitycheck_schema, get_qualitychecks)
+from pootle_checks.constants import CATEGORY_IDS, CHECK_NAMES
+from pootle_checks.utils import get_qualitycheck_schema, get_qualitychecks
 from pootle_misc.forms import make_search_form
 from pootle_store.constants import AMAGAMA_SOURCE_LANGUAGES
 
@@ -45,7 +44,7 @@ class PootleTranslateView(PootleDetailView):
             _checks[_checkid]["checks"].append(
                 dict(
                     code=check,
-                    title=check_names[check],
+                    title=CHECK_NAMES[check],
                     count=check_data[check]))
         return OrderedDict(
             (k, _checks[k])

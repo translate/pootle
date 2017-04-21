@@ -22,7 +22,7 @@ from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
 from pootle_app.models.permissions import check_permission, check_user_permission
 from pootle_comment.forms import UnsecuredCommentForm
-from pootle_misc.checks import CATEGORY_CODES, check_names
+from pootle_checks.constants import CATEGORY_CODES, CHECK_NAMES
 from pootle_misc.util import get_date_interval
 from pootle_project.models import Project
 from pootle_statistics.models import SubmissionFields, SubmissionTypes
@@ -339,7 +339,7 @@ class UnitSearchForm(forms.Form):
     checks = forms.MultipleChoiceField(
         required=False,
         widget=CommaSeparatedCheckboxSelectMultiple,
-        choices=check_names.items())
+        choices=CHECK_NAMES.items())
     category = CategoryChoiceField(
         required=False,
         choices=CATEGORY_CODES.items())
