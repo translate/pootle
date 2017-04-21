@@ -40,3 +40,18 @@ def test_tp_qualitycheck_updater(tp0):
     unit.__class__.objects.filter(pk=unit.pk).update(target_f=unit.source_f)
     updater.update()
     assert check.__class__.objects.filter(pk=check.pk).count() == 0
+
+
+@pytest.mark.django_db
+def test_store_qualitycheck_updater(tp0, store0):
+    QualityCheck.objects.filter(unit__store__translation_project=tp0).delete()
+    updater = QualityCheckUpdater(units=store0.unit_set.all())
+    updater.update()
+    checks = QualityCheck.objects.filter(unit__store=store0)
+    original_checks = checks.delete()[0]
+    assert original_checks
+    updater.update()
+    assert checks.count() == original_checks
+    assert (
+        QualityCheck.objects.filter(unit__store__translation_project=tp0).count()
+        == original_checks)
