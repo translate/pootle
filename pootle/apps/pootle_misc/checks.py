@@ -971,7 +971,19 @@ def run_given_filters(checker, unit, check_names=None):
     failures = {}
 
     for functionname in check_names:
-        filterfunction = getattr(checker, functionname, None)
+        if isinstance(checker, checks.TeeChecker):
+            for _checker in checker.checkers:
+                filterfunction = getattr(_checker, functionname, None)
+                if filterfunction:
+                    checker = _checker
+                    checker.str1 = data.normalized_unicode(unit.source) or u""
+                    checker.str2 = data.normalized_unicode(unit.target) or u""
+                    checker.language_code = unit.language_code
+                    checker.hasplural = unit.hasplural()
+                    checker.locations = unit.getlocations()
+                    break
+        else:
+            filterfunction = getattr(checker, functionname, None)
 
         # This filterfunction may only be defined on another checker if
         # using TeeChecker
