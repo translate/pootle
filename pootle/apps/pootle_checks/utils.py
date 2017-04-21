@@ -9,15 +9,22 @@
 import logging
 import time
 
+from translate.filters import checks
+from translate.filters.decorators import Category
+from translate.lang import data
+
 from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
-from pootle_misc.checks import run_given_filters
 from pootle_store.constants import UNTRANSLATED
 from pootle_store.models import QualityCheck, Unit
 from pootle_store.unit import UnitProxy
 from pootle_translationproject.models import TranslationProject
+
+from .constants import (
+    CATEGORY_CODES, CATEGORY_IDS, CATEGORY_NAMES,
+    CHECK_NAMES, EXCLUDED_FILTERS)
 
 
 logger = logging.getLogger(__name__)
@@ -292,3 +299,165 @@ class QualityCheckUpdater(object):
         deleted = checks_qs.count()
         checks_qs.delete()
         return deleted
+
+
+def get_category_id(code):
+    return CATEGORY_IDS.get(code)
+
+
+def get_category_code(cid):
+    return CATEGORY_CODES.get(cid)
+
+
+def get_category_name(code):
+    return unicode(CATEGORY_NAMES.get(code))
+
+
+def run_given_filters(checker, unit, check_names=None):
+    """Run all the tests in this suite.
+
+    :rtype: Dictionary
+    :return: Content of the dictionary is as follows::
+
+       {'testname': {
+           'message': message_or_exception,
+           'category': failure_category
+        }}
+
+    Do some optimisation by caching some data of the unit for the
+    benefit of :meth:`~TranslationChecker.run_test`.
+    """
+    if check_names is None:
+        check_names = []
+
+    checker.str1 = data.normalized_unicode(unit.source) or u""
+    checker.str2 = data.normalized_unicode(unit.target) or u""
+    checker.language_code = unit.language_code  # XXX: comes from `CheckableUnit`
+    checker.hasplural = unit.hasplural()
+    checker.locations = unit.getlocations()
+
+    checker.results_cache = {}
+    failures = {}
+
+    for functionname in check_names:
+        if isinstance(checker, checks.TeeChecker):
+            for _checker in checker.checkers:
+                filterfunction = getattr(_checker, functionname, None)
+                if filterfunction:
+                    checker = _checker
+                    checker.str1 = data.normalized_unicode(unit.source) or u""
+                    checker.str2 = data.normalized_unicode(unit.target) or u""
+                    checker.language_code = unit.language_code
+                    checker.hasplural = unit.hasplural()
+                    checker.locations = unit.getlocations()
+                    break
+        else:
+            filterfunction = getattr(checker, functionname, None)
+
+        # This filterfunction may only be defined on another checker if
+        # using TeeChecker
+        if filterfunction is None:
+            continue
+
+        filtermessage = filterfunction.__doc__
+
+        try:
+            filterresult = checker.run_test(filterfunction, unit)
+        except checks.FilterFailure as e:
+            filterresult = False
+            filtermessage = unicode(e)
+        except Exception as e:
+            if checker.errorhandler is None:
+                raise ValueError("error in filter %s: %r, %r, %s" %
+                                 (functionname, unit.source, unit.target, e))
+            else:
+                filterresult = checker.errorhandler(functionname, unit.source,
+                                                    unit.target, e)
+
+        if not filterresult:
+            # We test some preconditions that aren't actually a cause for
+            # failure
+            if functionname in checker.defaultfilters:
+                failures[functionname] = {
+                    'message': filtermessage,
+                    'category': checker.categories[functionname],
+                }
+
+    checker.results_cache = {}
+
+    return failures
+
+
+def get_qualitychecks():
+    available_checks = {}
+
+    checkers = [checker() for checker in checks.projectcheckers.values()]
+
+    for checker in checkers:
+        for filt in checker.defaultfilters:
+            if filt not in EXCLUDED_FILTERS:
+                # don't use an empty string because of
+                # http://bugs.python.org/issue18190
+                try:
+                    getattr(checker, filt)(u'_', u'_')
+                except Exception as e:
+                    # FIXME there must be a better way to get a list of
+                    # available checks.  Some error because we're not actually
+                    # using them on real units.
+                    logging.error("Problem with check filter '%s': %s",
+                                  filt, e)
+                    continue
+
+        available_checks.update(checker.categories)
+
+    return available_checks
+
+
+def get_qualitycheck_schema(path_obj=None):
+    d = {}
+    checks = get_qualitychecks()
+
+    for check, cat in checks.items():
+        if cat not in d:
+            d[cat] = {
+                'code': cat,
+                'name': get_category_code(cat),
+                'title': get_category_name(cat),
+                'checks': []
+            }
+        d[cat]['checks'].append({
+            'code': check,
+            'title': u"%s" % CHECK_NAMES.get(check, check),
+            'url': path_obj.get_translate_url(check=check) if path_obj else ''
+        })
+
+    result = sorted([item for item in d.values()],
+                    key=lambda x: x['code'],
+                    reverse=True)
+
+    return result
+
+
+def get_qualitycheck_list(path_obj):
+    """
+    Returns list of checks sorted in alphabetical order
+    but having critical checks first.
+    """
+    result = []
+    checks = get_qualitychecks()
+
+    for check, cat in checks.items():
+        result.append({
+            'code': check,
+            'is_critical': cat == Category.CRITICAL,
+            'title': u"%s" % CHECK_NAMES.get(check, check),
+            'url': path_obj.get_translate_url(check=check)
+        })
+
+    def alphabetical_critical_first(item):
+        critical_first = 0 if item['is_critical'] else 1
+        return critical_first, item['title'].lower()
+
+    result = sorted(result, key=alphabetical_critical_first)
+
+    return result
