@@ -11,9 +11,13 @@ from translate.filters.decorators import Category
 from django.db import models
 from django.db.models import Case, Count, Max, Q, When
 
+from pootle.core.contextmanagers import keep_data
+from pootle.core.signals import update_revisions, update_data
+from pootle_app.models import Directory
 from pootle_statistics.models import Submission
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED
-from pootle_store.models import QualityCheck
+from pootle_store.models import Store, QualityCheck
+from pootle_translationproject.models import TranslationProject
 
 from .utils import DataTool, DataUpdater
 
@@ -128,3 +132,25 @@ class StoreDataUpdater(DataUpdater):
         return (
             self.units.filter(suggestion__state__name="pending")
                       .values_list("suggestion").count())
+
+
+class StoreUpdater(object):
+
+    def __init__(self, object_list):
+        self.object_list = object_list
+
+    def update(self):
+        dirs = set()
+        tps = set()
+        with keep_data(suppress=(TranslationProject, )):
+            with keep_data(signals=(update_revisions, )):
+                for store in self.object_list:
+                    update_data.send(Store, instance=store)
+                    dirs.add(store.parent_id)
+                    tps.add(store.translation_project)
+        for tp in tps:
+            update_data.send(TranslationProject, instance=tp)
+        if dirs:
+            update_revisions.send(
+                Directory,
+                object_list=Directory.objects.filter(id__in=dirs))

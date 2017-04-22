@@ -18,13 +18,18 @@ from .directory_data import DirectoryDataTool
 from .language_data import LanguageDataTool
 from .project_data import (
     ProjectDataTool, ProjectResourceDataTool, ProjectSetDataTool)
-from .store_data import StoreDataTool, StoreDataUpdater
+from .store_data import StoreDataTool, StoreDataUpdater, StoreUpdater
 from .tp_data import TPDataTool, TPDataUpdater
 
 
 @getter(data_tool, sender=Store)
 def store_data_tool_getter(**kwargs_):
     return StoreDataTool
+
+
+@getter(data_updater, sender=Store)
+def store_updater_getter(**kwargs_):
+    return StoreUpdater
 
 
 @getter(data_updater, sender=StoreDataTool)
