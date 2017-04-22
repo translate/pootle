@@ -35,7 +35,9 @@ class Command(PootleCommand):
         update_checks.send(
             TranslationProject,
             check_names=check_names,
-            instance=translation_project)
+            instance=translation_project,
+            clear_unknown=True,
+            update_data_after=True)
 
     def handle_all_stores(self, translation_project, **options):
         self.stdout.write(u"Running %s for %s" %
