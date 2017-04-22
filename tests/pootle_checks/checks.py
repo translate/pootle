@@ -23,11 +23,16 @@ def test_tp_qualitycheck_updater(tp0):
     updater.update()
     assert checks.count() == original_checks
     # make unit obsolete
+    original_revision = tp0.directory.revisions.filter(
+        key="stats").values_list("value", flat=True).first()
     check = checks[0]
     unit = check.unit
     unit.__class__.objects.filter(pk=unit.pk).update(state=OBSOLETE)
     updater.update()
     assert check.__class__.objects.filter(pk=check.pk).count() == 0
+    new_revision = tp0.directory.revisions.filter(
+        key="stats").values_list("value", flat=True).first()
+    assert original_revision != new_revision
     # set to unknown check
     check = checks[0]
     check.name = "DOES_NOT_EXIST"
