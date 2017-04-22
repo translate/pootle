@@ -172,6 +172,8 @@ class QualityCheckUpdater(object):
             tp_pk = self.translation_project.pk
             checks_qs = checks_qs.filter(
                 unit__store__translation_project__pk=tp_pk)
+        if self.stores is not None:
+            checks_qs = checks_qs.filter(unit__store_id__in=self.stores)
         if self._units is not None:
             checks_qs = checks_qs.filter(
                 unit_id__in=self._units.values_list("id", flat=True))
@@ -187,6 +189,8 @@ class QualityCheckUpdater(object):
         if self.translation_project is not None:
             units = units.filter(
                 store__translation_project=self.translation_project)
+        if self.stores is not None:
+            units = units.filter(store_id__in=self.stores)
         return units
 
     def clear_unknown_checks(self):
@@ -330,6 +334,7 @@ class TPQCUpdater(QualityCheckUpdater):
 
 
 class StoreQCUpdater(QualityCheckUpdater):
+    stores = None
 
     def __init__(self, store, check_names=None, units=None):
         """Refreshes QualityChecks for Units
