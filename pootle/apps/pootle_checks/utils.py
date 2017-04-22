@@ -230,31 +230,36 @@ class QualityCheckUpdater(object):
     def updated_stores(self):
         return self._updated_stores
 
-    def update(self):
+    def update(self, clear_unknown=False, update_data_after=False):
         """Update/purge all QualityChecks for Units, and expire Store caches.
         """
-        self.clear_unknown_checks()
+        if clear_unknown:
+            self.clear_unknown_checks()
         self.update_untranslated()
         self.update_translated()
-        self.update_data()
+        updated = self.updated_stores
+        if update_data_after:
+            self.update_data(updated)
+        if "checks" in self.__dict__:
+            del self.__dict__["checks"]
+        self._updated_stores = {}
+        return updated
 
-    def update_data(self):
-        if not self.updated_stores:
+    def update_data(self, updated):
+        if not updated:
             return
         if self.translation_project:
             tps = {
                 self.translation_project.id: self.translation_project}
         else:
             tps = self.tp_qs.filter(
-                id__in=self.updated_stores.keys()).in_bulk()
-        for tp, stores in self.updated_stores.items():
+                id__in=updated.keys()).in_bulk()
+        for tp, stores in updated.items():
             tp = tps[tp]
             update_data.send(
                 tp.__class__,
                 instance=tp,
                 object_list=tp.stores.filter(id__in=stores))
-        del self.__dict__["checks"]
-        self._updated_stores = {}
 
     def update_translated_unit(self, unit, checker=None):
         """Update checks for a translated Unit
