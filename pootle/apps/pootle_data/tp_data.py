@@ -172,4 +172,5 @@ class TPUpdater(object):
         if dirs:
             update_revisions.send(
                 Directory,
-                object_list=Directory.objects.filter(id__in=dirs))
+                object_list=Directory.objects.filter(id__in=dirs),
+                keys=["stats", "checks"])
