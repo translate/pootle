@@ -128,7 +128,7 @@ class UnitQualityCheck(object):
 
 class QualityCheckUpdater(object):
 
-    def __init__(self, check_names=None, translation_project=None):
+    def __init__(self, check_names=None, translation_project=None, units=None):
         """Refreshes QualityChecks for Units
 
         :param check_names: limit checks to given list of quality check names.
@@ -139,6 +139,7 @@ class QualityCheckUpdater(object):
         self.check_names = check_names
         self.translation_project = translation_project
         self.stores = set()
+        self._units = units
         self._store_to_expire = None
 
     @cached_property
@@ -169,12 +170,17 @@ class QualityCheckUpdater(object):
             tp_pk = self.translation_project.pk
             checks_qs = checks_qs.filter(
                 unit__store__translation_project__pk=tp_pk)
+        if self._units is not None:
+            checks_qs = checks_qs.filter(
+                unit_id__in=self._units.values_list("id", flat=True))
         return checks_qs
 
     @cached_property
     def units(self):
         """Result set of Units, restricted to TP if set
         """
+        if self._units:
+            return self._units
         units = Unit.objects.all()
         if self.translation_project is not None:
             units = units.filter(
