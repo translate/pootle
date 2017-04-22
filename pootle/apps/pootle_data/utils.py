@@ -230,7 +230,7 @@ class DataUpdater(object):
         if not hasattr(self.data, k):
             return
         existing_value = getattr(self.data, k)
-        if existing_value is None or existing_value != v:
+        if existing_value != v:
             setattr(self.data, k, v)
             return True
         return False
