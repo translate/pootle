@@ -49,4 +49,6 @@ def tp_checks_handler(**kwargs):
     tp = kwargs["instance"]
     check_updater.get(TranslationProject)(
         translation_project=tp,
-        check_names=kwargs.get("check_names")).update()
+        check_names=kwargs.get("check_names")).update(
+            clear_unknown=kwargs.get("clear_unknown", False),
+            update_data_after=kwargs.get("update_data_after", False))
