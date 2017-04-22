@@ -10,10 +10,16 @@ from pootle.core.plugin import getter
 
 from pootle.core.delegate import check_updater
 
-from .utils import QualityCheckUpdater
+from .utils import StoreQCUpdater, TPQCUpdater
+from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
 
 @getter(check_updater, sender=TranslationProject)
 def get_tp_check_updater(**kwargs_):
-    return QualityCheckUpdater
+    return TPQCUpdater
+
+
+@getter(check_updater, sender=Store)
+def get_store_check_updater(**kwargs_):
+    return StoreQCUpdater
