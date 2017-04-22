@@ -182,7 +182,7 @@ class QualityCheckUpdater(object):
                 store__translation_project=self.translation_project)
         return units
 
-    def clear_checks(self):
+    def clear_unknown_checks(self):
         QualityCheck.delete_unknown_checks()
 
     @lru_cache(maxsize=None)
@@ -221,7 +221,7 @@ class QualityCheckUpdater(object):
         """
         start = time.time()
         logger.debug("Clearing unknown checks...")
-        self.clear_checks()
+        self.clear_unknown_checks()
         logger.debug(
             "Cleared unknown checks in %s seconds",
             (time.time() - start))
