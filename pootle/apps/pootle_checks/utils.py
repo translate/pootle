@@ -221,6 +221,7 @@ class QualityCheckUpdater(object):
         self.clear_unknown_checks()
         self.update_untranslated()
         self.update_translated()
+        del self.__dict__["checks"]
 
     def update_translated_unit(self, unit, checker=None):
         """Update checks for a translated Unit
