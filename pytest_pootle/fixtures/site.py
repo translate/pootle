@@ -79,10 +79,12 @@ def tests_use_vfolders(request):
 
 @pytest.fixture(scope='session')
 def tests_use_migration(request, tests_use_db):
+    force_migration = request.config.getoption("--force-migration")
     return bool(
-        tests_use_db
-        and [item for item in request.node.items
-             if item.get_marker('django_migration')])
+        force_migration
+        or (tests_use_db
+            and [item for item in request.node.items
+                 if item.get_marker('django_migration')]))
 
 
 @pytest.fixture(autouse=True, scope='session')

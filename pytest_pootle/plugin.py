@@ -32,6 +32,11 @@ def pytest_addoption(parser):
         action="store",
         default="",
         help="Debug tests to a given file")
+    parser.addoption(
+        "--force-migration",
+        action="store_true",
+        default="False",
+        help="Force migration before test run")
 
 
 def pytest_configure(config):
