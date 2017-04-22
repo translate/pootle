@@ -9,6 +9,7 @@
 import pytest
 
 from pootle_checks.utils import QualityCheckUpdater
+from pootle_store.constants import OBSOLETE
 from pootle_store.models import QualityCheck
 
 
@@ -21,3 +22,21 @@ def test_tp_qualitycheck_updater(tp0):
     assert original_checks
     updater.update()
     assert checks.count() == original_checks
+    # make unit obsolete
+    check = checks[0]
+    unit = check.unit
+    unit.__class__.objects.filter(pk=unit.pk).update(state=OBSOLETE)
+    updater.update()
+    assert check.__class__.objects.filter(pk=check.pk).count() == 0
+    # set to unknown check
+    check = checks[0]
+    check.name = "DOES_NOT_EXIST"
+    check.save()
+    updater.update()
+    assert check.__class__.objects.filter(pk=check.pk).count() == 0
+    # fix a check
+    check = checks.filter(name="printf")[0]
+    unit = check.unit
+    unit.__class__.objects.filter(pk=unit.pk).update(target_f=unit.source_f)
+    updater.update()
+    assert check.__class__.objects.filter(pk=check.pk).count() == 0
