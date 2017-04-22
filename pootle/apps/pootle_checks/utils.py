@@ -128,7 +128,8 @@ class UnitQualityCheck(object):
 
 class QualityCheckUpdater(object):
 
-    def __init__(self, check_names=None, translation_project=None, units=None):
+    def __init__(self, check_names=None, translation_project=None,
+                 stores=None, units=None):
         """Refreshes QualityChecks for Units
 
         :param check_names: limit checks to given list of quality check names.
@@ -138,7 +139,7 @@ class QualityCheckUpdater(object):
 
         self.check_names = check_names
         self.translation_project = translation_project
-        self.stores = set()
+        self.stores = stores
         self._units = units
         self._store_to_expire = None
         self._updated_stores = {}
@@ -323,6 +324,43 @@ class QualityCheckUpdater(object):
         for tp, store in untranslated_stores.iterator():
             self.update_store(tp, store)
         return untranslated.delete()
+
+
+class TPQCUpdater(QualityCheckUpdater):
+    pass
+
+
+class StoreQCUpdater(QualityCheckUpdater):
+
+    def __init__(self, store, check_names=None, units=None):
+        """Refreshes QualityChecks for Units
+
+        :param check_names: limit checks to given list of quality check names.
+        :param translation_project: an instance of `TranslationProject` to
+            restrict the update to.
+        """
+        self.check_names = check_names
+        self.store = store
+        self._store_to_expire = None
+        self._updated_stores = {}
+        self._units = units
+
+    @property
+    def translation_project(self):
+        return self.store.translation_project
+
+    @cached_property
+    def units(self):
+        """Result set of Units, restricted to TP if set
+        """
+        return self.store.unit_set
+
+    def update_data(self, updated_stores):
+        if not updated_stores:
+            return
+        update_data.send(
+            self.store.__class__,
+            instance=self.store)
 
 
 def get_category_id(code):
