@@ -28,7 +28,7 @@ def test_tp_qualitycheck_updater(tp0):
     check = checks[0]
     unit = check.unit
     unit.__class__.objects.filter(pk=unit.pk).update(state=OBSOLETE)
-    updater.update()
+    updater.update(update_data_after=True)
     assert check.__class__.objects.filter(pk=check.pk).count() == 0
     new_revision = tp0.directory.revisions.filter(
         key="stats").values_list("value", flat=True).first()
