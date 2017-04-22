@@ -12,7 +12,6 @@ from translate.filters import checks
 from translate.filters.decorators import Category
 from translate.lang import data
 
-from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
@@ -240,7 +239,6 @@ class QualityCheckUpdater(object):
             self.check_names)
         if checker.update():
             self.expire_store_cache(unit.store)
-            self.units.filter(id=unit.id).update(mtime=timezone.now())
             return True
         return False
 
