@@ -61,7 +61,7 @@ class PootleTestEnv(object):
         from pootle_store.models import SuggestionState
 
         for state in ["pending", "accepted", "rejected"]:
-            SuggestionState.objects.create(name=state)
+            SuggestionState.objects.get_or_create(name=state)
 
     def setup_announcements(self):
         from pytest_pootle.factories import AnnouncementFactory
@@ -237,11 +237,18 @@ class PootleTestEnv(object):
         Revision.initialize(force=True)
 
     def setup_system_users(self):
+        from django.contrib.auth import get_user_model
         from .fixtures.models.user import TEST_USERS, _require_user
 
+        users = {
+            user.username: user
+            for user
+            in get_user_model().objects.all()}
+
         for username, user_params in TEST_USERS.items():
-            user = _require_user(username=username, **user_params)
-            TEST_USERS[username]["user"] = user
+            TEST_USERS[username]["user"] = (
+                users.get(username)
+                or _require_user(username=username, **user_params))
 
     def setup_site_permissions(self):
         from django.contrib.auth import get_user_model
