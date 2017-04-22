@@ -12,7 +12,7 @@ from django.db.models.functions import Coalesce
 from pootle.core.contextmanagers import keep_data
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import revision
-from pootle.core.signals import update_revisions, update_data
+from pootle.core.signals import update_data, update_revisions
 from pootle_app.models import Directory
 from pootle_data.models import StoreChecksData, StoreData
 
@@ -169,6 +169,8 @@ class TPUpdater(object):
                 for store in self.object_list:
                     update_data.send(store.__class__, instance=store)
                     dirs.add(store.parent_id)
+        with keep_data(signals=(update_revisions, )):
+            update_data.send(self.tp.__class__, instance=self.tp)
         if dirs:
             update_revisions.send(
                 Directory,
