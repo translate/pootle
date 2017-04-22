@@ -8,14 +8,17 @@
 
 import pytest
 
-from pootle_checks.utils import QualityCheckUpdater
+from pootle.core.delegate import check_updater
+from pootle_checks.utils import TPQCUpdater, StoreQCUpdater
 from pootle_store.constants import OBSOLETE
 from pootle_store.models import QualityCheck
 
 
 @pytest.mark.django_db
 def test_tp_qualitycheck_updater(tp0):
-    updater = QualityCheckUpdater(translation_project=tp0)
+    qc_updater = check_updater.get(tp0.__class__)
+    assert qc_updater is TPQCUpdater
+    updater = qc_updater(translation_project=tp0)
     updater.update()
     checks = QualityCheck.objects.filter(unit__store__translation_project=tp0)
     original_checks = checks.delete()[0]
@@ -49,14 +52,28 @@ def test_tp_qualitycheck_updater(tp0):
 
 @pytest.mark.django_db
 def test_store_qualitycheck_updater(tp0, store0):
+    qc_updater = check_updater.get(store0.__class__)
+    assert qc_updater is StoreQCUpdater
     QualityCheck.objects.filter(unit__store__translation_project=tp0).delete()
-    updater = QualityCheckUpdater(units=store0.unit_set.all())
+    updater = qc_updater(store=store0)
     updater.update()
     checks = QualityCheck.objects.filter(unit__store=store0)
     original_checks = checks.delete()[0]
     assert original_checks
     updater.update()
     assert checks.count() == original_checks
-    assert (
-        QualityCheck.objects.filter(unit__store__translation_project=tp0).count()
-        == original_checks)
+    # make unit obsolete
+    original_revision = store0.parent.revisions.filter(
+        key="stats").values_list("value", flat=True).first()
+    check = checks[0]
+    unit = check.unit
+    unit.__class__.objects.filter(pk=unit.pk).update(state=OBSOLETE)
+    updater.update(update_data_after=True)
+    assert check.__class__.objects.filter(pk=check.pk).count() == 0
+    new_revision = tp0.directory.revisions.filter(
+        key="stats").values_list("value", flat=True).first()
+    assert original_revision != new_revision
+    updater.update(update_data_after=True)
+    newest_revision = tp0.directory.revisions.filter(
+        key="stats").values_list("value", flat=True).first()
+    assert newest_revision == new_revision
