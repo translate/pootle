@@ -44,8 +44,13 @@ def handle_directory_save(**kwargs):
 
 @receiver(update_revisions, sender=Directory)
 def handle_directory_revision_update(**kwargs):
-    revision_updater.get(Directory)(
-        context=kwargs["instance"]).update(keys=kwargs.get("keys"))
+    updater = revision_updater.get(Directory)
+    if kwargs.get("instance"):
+        updater(context=kwargs["instance"]).update(
+            keys=kwargs.get("keys"))
+    else:
+        updater(object_list=kwargs.get("object_list")).update(
+            keys=kwargs.get("keys"))
 
 
 @receiver(pre_delete, sender=Directory)
