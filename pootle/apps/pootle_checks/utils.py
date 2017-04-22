@@ -15,6 +15,7 @@ from translate.lang import data
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
+from pootle.core.signals import update_data
 from pootle_store.constants import UNTRANSLATED
 from pootle_store.models import QualityCheck, Unit
 from pootle_store.unit import UnitProxy
@@ -140,6 +141,7 @@ class QualityCheckUpdater(object):
         self.stores = set()
         self._units = units
         self._store_to_expire = None
+        self._updated_stores = {}
 
     @cached_property
     def checks(self):
@@ -159,7 +161,7 @@ class QualityCheckUpdater(object):
                 check['unit_id'], {})[check['name']] = check
         return all_units_checks
 
-    @cached_property
+    @property
     def checks_qs(self):
         """QualityCheck queryset for all units, restricted to TP if set
         """
@@ -220,13 +222,39 @@ class QualityCheckUpdater(object):
         # remember the new store_pk
         self._store_to_expire = store_pk
 
+    @property
+    def tp_qs(self):
+        return TranslationProject.objects.all()
+
+    @property
+    def updated_stores(self):
+        return self._updated_stores
+
     def update(self):
         """Update/purge all QualityChecks for Units, and expire Store caches.
         """
         self.clear_unknown_checks()
         self.update_untranslated()
         self.update_translated()
+        self.update_data()
+
+    def update_data(self):
+        if not self.updated_stores:
+            return
+        if self.translation_project:
+            tps = {
+                self.translation_project.id: self.translation_project}
+        else:
+            tps = self.tp_qs.filter(
+                id__in=self.updated_stores.keys()).in_bulk()
+        for tp, stores in self.updated_stores.items():
+            tp = tps[tp]
+            update_data.send(
+                tp.__class__,
+                instance=tp,
+                object_list=tp.stores.filter(id__in=stores))
         del self.__dict__["checks"]
+        self._updated_stores = {}
 
     def update_translated_unit(self, unit, checker=None):
         """Update checks for a translated Unit
@@ -238,6 +266,7 @@ class QualityCheckUpdater(object):
             self.checks.get(unit.id, {}),
             self.check_names)
         if checker.update():
+            self.update_store(unit.tp, unit.store)
             self.expire_store_cache(unit.store)
             return True
         return False
@@ -275,10 +304,20 @@ class QualityCheckUpdater(object):
         self.expire_store_cache()
         return updated_count
 
+    def update_store(self, tp, store):
+        self._updated_stores[tp] = (
+            self._updated_stores.get(tp, set()))
+        self._updated_stores[tp].add(store)
+
     def update_untranslated(self):
         """Delete QualityChecks for untranslated Units
         """
-        return self.checks_qs.exclude(unit__state__gt=UNTRANSLATED).delete()
+        untranslated = self.checks_qs.exclude(unit__state__gt=UNTRANSLATED)
+        untranslated_stores = untranslated.values_list(
+            "unit__store__translation_project", "unit__store").distinct()
+        for tp, store in untranslated_stores.iterator():
+            self.update_store(tp, store)
+        return untranslated.delete()
 
 
 def get_category_id(code):
