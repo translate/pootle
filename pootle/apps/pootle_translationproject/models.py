@@ -316,15 +316,14 @@ class TranslationProject(models.Model, CachedTreeItem):
 
     def update_from_disk(self, force=False, overwrite=False):
         with keep_data(suppress=(self.__class__, )):
-            with keep_data(signals=(update_revisions, update_scores)):
+            with keep_data(signals=(update_revisions, update_data, update_scores)):
                 updated_stores = self._update_from_disk(
                     force=force, overwrite=overwrite)
-            for store in updated_stores:
-                update_data.send(store.__class__, instance=store)
-                update_scores.send(store.__class__, instance=store)
         if updated_stores:
-            update_data.send(self.__class__, instance=self)
-            update_scores.send(self.__class__, instance=self)
+            update_data.send(
+                self.__class__,
+                instance=self,
+                object_list=updated_stores)
 
     def _update_from_disk(self, force=False, overwrite=False):
         """Update all stores to reflect state on disk."""
