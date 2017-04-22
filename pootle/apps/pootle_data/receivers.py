@@ -11,7 +11,7 @@ import logging
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from pootle.core.delegate import data_tool
+from pootle.core.delegate import data_tool, data_updater
 from pootle.core.signals import update_data
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
@@ -30,23 +30,29 @@ def handle_storedata_save(**kwargs):
 
 @receiver(update_data, sender=Store)
 def handle_store_data_update(**kwargs):
-    store = kwargs["instance"]
+    store = kwargs.get("instance")
     data_tool.get(Store)(store).update()
 
 
 @receiver(update_data, sender=TranslationProject)
 def handle_tp_data_update(**kwargs):
     tp = kwargs["instance"]
-    data_tool.get(TranslationProject)(tp).update()
+    object_list = kwargs.get("object_list")
+    if object_list is not None:
+        data_updater.get(TranslationProject)(
+            tp,
+            object_list=kwargs.get("object_list")).update()
+    else:
+        data_tool.get(TranslationProject)(tp).update()
 
 
 @receiver(post_save, sender=Store)
 def handle_store_data_create(sender, instance, created, **kwargs):
     if created:
-        update_data.send(instance.__class__, instance=instance)
+        data_tool.get(Store)(instance).update()
 
 
 @receiver(post_save, sender=TranslationProject)
 def handle_tp_data_create(sender, instance, created, **kwargs):
     if created:
-        update_data.send(instance.__class__, instance=instance)
+        data_tool.get(TranslationProject)(instance).update()
