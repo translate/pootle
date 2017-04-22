@@ -7,7 +7,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import logging
-import time
 
 from translate.filters import checks
 from translate.filters.decorators import Category
@@ -219,26 +218,9 @@ class QualityCheckUpdater(object):
     def update(self):
         """Update/purge all QualityChecks for Units, and expire Store caches.
         """
-        start = time.time()
-        logger.debug("Clearing unknown checks...")
         self.clear_unknown_checks()
-        logger.debug(
-            "Cleared unknown checks in %s seconds",
-            (time.time() - start))
-
-        start = time.time()
-        logger.debug("Deleting checks for untranslated units...")
-        untrans = self.update_untranslated()
-        logger.debug(
-            "Deleted %s checks for untranslated units in %s seconds",
-            untrans, (time.time() - start))
-
-        start = time.time()
-        logger.debug("Updating checks - this may take some time...")
-        trans = self.update_translated()
-        logger.debug(
-            "Updated checks for %s units in %s seconds",
-            trans, (time.time() - start))
+        self.update_untranslated()
+        self.update_translated()
 
     def update_translated_unit(self, unit, checker=None):
         """Update checks for a translated Unit
