@@ -88,11 +88,7 @@ class UnitQualityCheck(object):
     def delete_checks(self, checks):
         """Delete checks that are no longer used.
         """
-        to_delete = self.checks_qs.filter(name__in=checks)
-        if to_delete.exists():
-            to_delete.delete()
-            return True
-        return False
+        return self.checks_qs.filter(name__in=checks).delete()
 
     def update(self):
         """Update QualityChecks for a Unit, deleting and unmuting as appropriate.
@@ -295,10 +291,7 @@ class QualityCheckUpdater(object):
     def update_untranslated(self):
         """Delete QualityChecks for untranslated Units
         """
-        checks_qs = self.checks_qs.exclude(unit__state__gt=UNTRANSLATED)
-        deleted = checks_qs.count()
-        checks_qs.delete()
-        return deleted
+        return self.checks_qs.exclude(unit__state__gt=UNTRANSLATED).delete()
 
 
 def get_category_id(code):
