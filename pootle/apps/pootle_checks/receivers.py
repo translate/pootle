@@ -48,4 +48,5 @@ def handle_toggle_quality_check(**kwargs):
 def tp_checks_handler(**kwargs):
     tp = kwargs["instance"]
     check_updater.get(TranslationProject)(
-        translation_project=tp).update()
+        translation_project=tp,
+        check_names=kwargs.get("check_names")).update()
