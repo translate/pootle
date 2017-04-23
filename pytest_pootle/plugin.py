@@ -10,6 +10,7 @@ from pkgutil import iter_modules
 
 from . import fixtures
 from .fixtures import models as fixtures_models
+from .fixtures import core as fixtures_core
 from .fixtures.core import management as fixtures_core_management
 from .fixtures.core import utils as fixtures_core_utils
 from .fixtures import formats as fixtures_formats
@@ -47,6 +48,7 @@ def pytest_configure(config):
     pytest_plugins = tuple(
         _load_fixtures(
             fixtures,
+            fixtures_core,
             fixtures_core_management,
             fixtures_core_utils,
             fixtures_formats,
