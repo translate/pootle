@@ -12,7 +12,7 @@ from translate.filters.decorators import Category
 
 from django.db.models import Max
 
-from pootle.core.contextmanagers import update_data_after
+from pootle_store.contextmanagers import update_data_after
 from pootle.core.delegate import review
 from pootle.core.signals import update_checks
 from pootle_data.tp_data import TPDataTool, TPDataUpdater

@@ -15,7 +15,6 @@ from django.contrib.auth import get_user_model
 from django.urls import Resolver404, resolve
 from django.utils.translation import get_language
 
-from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import review
 from pootle.core.url_helpers import split_pootle_path
 from pootle.i18n.gettext import ugettext as _
@@ -28,6 +27,7 @@ from pootle_project.models import Project
 from pootle_statistics.models import SubmissionFields, SubmissionTypes
 
 from .constants import ALLOWED_SORTS, FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
+from .contextmanagers import update_data_after
 from .fields import to_db
 from .form_fields import (
     CategoryChoiceField, ISODateTimeField, MultipleArgsField,

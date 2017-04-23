@@ -369,7 +369,7 @@ class PootleTestEnv(object):
             self._add_stores(tp, n=(1, 1), parent=subdir1)
 
     def setup_submissions(self):
-        from pootle.core.contextmanagers import update_data_after
+        from pootle_store.contextmanagers import update_data_after
         from pootle_statistics.models import SubmissionTypes
         from pootle_store.constants import UNTRANSLATED
         from pootle_store.models import Store, Unit, UnitChange

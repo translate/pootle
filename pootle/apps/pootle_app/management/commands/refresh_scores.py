@@ -12,9 +12,9 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 
-from pootle.core.contextmanagers import update_data_after
 from pootle.core.delegate import score_updater
 from pootle.core.signals import update_scores
+from pootle_store.contextmanagers import update_data_after
 from pootle_translationproject.models import TranslationProject
 
 

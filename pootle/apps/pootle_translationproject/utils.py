@@ -8,7 +8,7 @@
 
 from django.contrib.auth import get_user_model
 
-from pootle.core.contextmanagers import update_data_after
+from pootle_store.contextmanagers import update_data_after
 from pootle.core.models import Revision
 from pootle.core.contextmanagers import keep_data
 from pootle.core.signals import update_checks, update_data

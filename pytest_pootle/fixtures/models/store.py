@@ -164,7 +164,7 @@ def _setup_store_test(store, member, member2, test):
 
 @pytest.fixture(params=UPDATE_STORE_TESTS.keys())
 def store_diff_tests(request, tp0, member, member2):
-    from pootle.core.contextmanagers import update_data_after
+    from pootle_store.contextmanagers import update_data_after
     from pootle_store.diff import StoreDiff
 
     store = StoreDBFactory(
@@ -180,7 +180,7 @@ def store_diff_tests(request, tp0, member, member2):
 
 @pytest.fixture(params=UPDATE_STORE_TESTS.keys())
 def param_update_store_test(request, tp0, member, member2):
-    from pootle.core.contextmanagers import update_data_after
+    from pootle_store.contextmanagers import update_data_after
 
     store = StoreDBFactory(
         translation_project=tp0,
@@ -291,7 +291,7 @@ def _mark_unit_fuzzy(unit, user):
 
 
 def _make_member_updates(store, member):
-    from pootle.core.contextmanagers import update_data_after
+    from pootle_store.contextmanagers import update_data_after
 
     # Member updates first unit, adding a suggestion, and marking unit as fuzzy
     with update_data_after(store):
