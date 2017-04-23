@@ -14,8 +14,8 @@ from pootle.core.signals import update_data, update_scores
 
 @contextmanager
 def update_data_after(sender, **kwargs):
-    signals = kwargs.get("signals", [update_data, update_scores])
-    with keep_data(signals=signals, suppress=kwargs.get("suppress")):
+    signals = [update_data, update_scores]
+    with keep_data(signals=signals):
         yield
     if "kwargs" in kwargs:
         kwargs.update(kwargs.pop("kwargs"))
