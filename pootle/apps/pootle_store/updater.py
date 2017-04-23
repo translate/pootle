@@ -298,10 +298,8 @@ class StoreUpdater(object):
         finally:
             if old_state < PARSED:
                 self.target_store.state = PARSED
-            else:
-                self.target_store.state = old_state
+                self.target_store.save()
             has_changed = any(x > 0 for x in changes.values())
-            self.target_store.save()
             if has_changed:
                 log(u"[update] %s units in %s [revision: %d]"
                     % (get_change_str(changes),
