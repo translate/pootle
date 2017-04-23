@@ -255,7 +255,8 @@ class StoreUpdater(object):
                 revision=Revision.incr())
 
     def units(self, uids):
-        unit_set = self.target_store.unit_set
+        unit_set = self.target_store.unit_set.select_related(
+            "change", "change__submitted_by")
         for unit in self.target_store.findid_bulk(uids, unit_set):
             unit.store = self.target_store
             yield unit
