@@ -12,9 +12,8 @@ from translate.filters.decorators import Category
 
 from django.db.models import Max
 
-from pootle_store.contextmanagers import update_data_after
 from pootle.core.delegate import review
-from pootle.core.signals import update_checks
+from pootle.core.signals import update_checks, update_data
 from pootle_data.tp_data import TPDataTool, TPDataUpdater
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from pootle_store.models import Suggestion
@@ -255,9 +254,14 @@ def test_data_tp_qc_stats(tp0):
     other_qc.false_positive = True
     other_qc.save()
     # trigger refresh
-    with update_data_after(unit.store):
-        update_checks.send(unit.__class__, instance=unit,
-                           keep_false_positives=True)
+    update_checks.send(
+        unit.__class__,
+        instance=unit,
+        keep_false_positives=True)
+    update_data.send(
+        unit.store.__class__,
+        instance=unit.store,
+        keep_false_positives=True)
     store_data = tp0.data_tool.updater.get_store_data()
     tp0.data.refresh_from_db()
     assert (

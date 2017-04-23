@@ -16,9 +16,8 @@ from translate.filters.decorators import Category
 
 from django.db.models import Max
 
-from pootle_store.contextmanagers import update_data_after
 from pootle.core.delegate import review
-from pootle.core.signals import update_checks
+from pootle.core.signals import update_checks, update_data
 from pootle_data.store_data import StoreDataTool, StoreDataUpdater
 from pootle_statistics.models import Submission
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
@@ -260,9 +259,14 @@ def test_data_store_critical_checks(store0):
     other_qc.false_positive = True
     other_qc.save()
     # trigger refresh
-    with update_data_after(unit.store):
-        update_checks.send(unit.__class__, instance=unit,
-                           keep_false_positives=True)
+    update_checks.send(
+        unit.__class__,
+        instance=unit,
+        keep_false_positives=True)
+    update_data.send(
+        unit.store.__class__,
+        instance=unit.store,
+        keep_false_positives=True)
     assert (
         store0.data.critical_checks
         == check_count + unit_critical - 1)
