@@ -174,8 +174,15 @@ class UnitUpdater(object):
     def state_updated(self):
         # `fuzzy` state change is checked here.
         # `translated` and `obsolete` states are handled separately.
-        return (self.newunit
-                and self.unit.isfuzzy() != self.newunit.isfuzzy())
+        if not self.newunit:
+            return False
+        source_fuzzy = (
+            self.newunit.isfuzzy()
+            and not self.newunit.isobsolete())
+        target_fuzzy = (
+            self.unit.isfuzzy()
+            and not self.newunit.isobsolete())
+        return source_fuzzy != target_fuzzy
 
     @cached_property
     def target_updated(self):
