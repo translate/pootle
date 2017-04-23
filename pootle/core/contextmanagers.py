@@ -39,17 +39,3 @@ def keep_data(keep=True, signals=None, suppress=None):
             yield
     else:
         yield
-
-
-@contextmanager
-def update_data_after(sender, **kwargs):
-    signals = kwargs.get("signals", [update_data, update_scores])
-    with keep_data(signals=signals, suppress=kwargs.get("suppress")):
-        yield
-    if "kwargs" in kwargs:
-        kwargs.update(kwargs.pop("kwargs"))
-    for signal in signals:
-        signal.send(
-            sender.__class__,
-            instance=sender,
-            **kwargs)
