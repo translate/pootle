@@ -365,7 +365,11 @@ class StoreUpdater(object):
             store_revision=store_revision)
 
         # update file_mtime
-        self.target_store.file_mtime = self.target_store.get_file_mtime()
+        file_changed = False
+        file_mtime = self.target_store.get_file_mtime()
+        if file_mtime != self.target_store.file_mtime:
+            self.target_store.file_mtime = file_mtime
+            file_changed = True
 
         # update last_sync_revision if anything changed
         changed = changes and any(x > 0 for x in changes.values())
@@ -379,7 +383,8 @@ class StoreUpdater(object):
                 logging.info(u"[update] unsynced %d units in %s "
                              "[revision: %d]", update_unsynced,
                              self.target_store.pootle_path, update_revision)
-        self.target_store.save()
+        if file_changed or changed:
+            self.target_store.save()
         return changed
 
     def update_units(self, update):
