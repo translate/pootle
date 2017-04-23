@@ -49,6 +49,25 @@ def test_tp_qualitycheck_updater(tp0):
     updater.update()
     assert check.__class__.objects.filter(pk=check.pk).count() == 0
 
+    # obsolete units in 2 stores - but only update checks for one store
+    store_ids = checks.filter(name="printf").values_list(
+        "unit__store", flat=True).distinct()[:2]
+    check1 = checks.filter(name="printf").filter(
+        unit__store_id=store_ids[0]).first()
+    check2 = checks.filter(name="printf").filter(
+        unit__store_id=store_ids[1]).first()
+    unit1 = check1.unit
+    store1 = unit1.store
+    unit2 = check2.unit
+    store2 = unit2.store
+    store1.units.filter(id=unit1.id).update(state=OBSOLETE)
+    store2.units.filter(id=unit2.id).update(state=OBSOLETE)
+    qc_updater(
+        translation_project=tp0,
+        stores=[store1.id]).update()
+    assert check.__class__.objects.filter(pk=check1.pk).count() == 0
+    assert check.__class__.objects.filter(pk=check2.pk).count() == 1
+
 
 @pytest.mark.django_db
 def test_store_qualitycheck_updater(tp0, store0):
