@@ -96,9 +96,10 @@ class TPRevision(RevisionContext):
 
 class RevisionUpdater(object):
 
-    def __init__(self, context=None, object_list=None):
+    def __init__(self, context=None, object_list=None, paths=None):
         self.context = context
         self.object_list = object_list
+        self.paths = paths
 
     @property
     def object_list_paths(self):
@@ -116,6 +117,8 @@ class RevisionUpdater(object):
             if self.context:
                 parents.add(self.context_path)
             return parents
+        elif self.paths:
+            return self.paths
         return []
 
     @property
