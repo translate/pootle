@@ -13,12 +13,12 @@ from django.views.generic import TemplateView
 from pootle.core.delegate import formats
 from pootle.core.http import JsonResponse
 from pootle.core.views import APIView
-from pootle.core.views.decorators import (set_permissions, 
+from pootle.core.views.decorators import (set_permissions,
             requires_permission_class)
 from pootle.core.views.mixins import SuperuserRequiredMixin
 from pootle_app.forms import ProjectForm
 from pootle_app.models.directory import Directory
-from pootle_app.models.permissions import (check_user_permission, 
+from pootle_app.models.permissions import (check_user_permission,
                                 get_pootle_permission, PermissionSet)
 from pootle_language.models import Language
 from pootle_project.models import PROJECT_CHECKERS, Project
@@ -64,7 +64,7 @@ class ProjectGenericAdminView(TemplateView):
         }
 
 
-class ProjectAdminView(ProjectGenericAdminView, SuperuserRequiredMixin):
+class ProjectAdminView(SuperuserRequiredMixin, ProjectGenericAdminView):
     pass
 
 
@@ -85,15 +85,15 @@ class ProjectAPIView(APIView):
     @requires_permission_class("add_project")
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_superuser:
-            exclude_projects = [project.pk 
+            exclude_projects = [project.pk
                                 for project in self.base_queryset.all()
                                 if not check_user_permission(
-                                            request.user, 
-                                            project.code, 
+                                            request.user,
+                                            project.code,
                                             project.directory)]
             self.base_queryset = self.base_queryset.exclude(
                                             pk__in=exclude_projects)
-        return super(ProjectAPIView, self).dispatch(request, 
+        return super(ProjectAPIView, self).dispatch(request,
                                                     *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
@@ -107,12 +107,14 @@ class ProjectAPIView(APIView):
         if form.is_valid():
             new_object = form.save()
             permissionset = PermissionSet.objects.create(
-                user=request.user, 
+                user=request.user,
                 directory=new_object.directory
             )
-            permissionset.positive_permissions.add(get_pootle_permission("administrate"))
+            permissionset.positive_permissions.add(
+                get_pootle_permission("administrate")
+            )
             request.user.permissionset_set.add(permissionset)
-            
+
             wrapper_qs = self.base_queryset.filter(pk=new_object.pk)
             return JsonResponse(
                 self.qs_to_values(wrapper_qs, single_object=True)

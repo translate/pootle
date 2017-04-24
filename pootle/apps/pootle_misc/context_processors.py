@@ -50,7 +50,8 @@ def pootle_context(request):
             'POOTLE_SIGNUP_ENABLED': settings.POOTLE_SIGNUP_ENABLED,
             'SCRIPT_NAME': settings.SCRIPT_NAME,
             'POOTLE_CACHE_TIMEOUT': settings.POOTLE_CACHE_TIMEOUT,
-            'POOTLE_PROJECTADMIN_CAN_EDITPROJECTS': settings.POOTLE_PROJECTADMIN_CAN_EDITPROJECTS,
+            'POOTLE_PROJECTADMIN_CAN_EDITPROJECTS': 
+                    settings.POOTLE_PROJECTADMIN_CAN_EDITPROJECTS,
             'DEBUG': settings.DEBUG,
         },
         'custom': settings.POOTLE_CUSTOM_TEMPLATE_CONTEXT,
