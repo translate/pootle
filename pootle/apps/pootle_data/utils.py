@@ -10,6 +10,8 @@ from django.db import models
 from django.db.models import Sum
 from django.utils.functional import cached_property
 
+from bulk_update.helper import bulk_update
+
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import data_updater, revision
 from pootle.core.url_helpers import split_pootle_path
@@ -214,11 +216,13 @@ class DataUpdater(object):
                     category=category, name=name)
         if checks:
             check_data.delete()
-        for pk, count in to_update:
-            # bulk update?
-            check = self.model.check_data.get(pk=pk)
-            check.count = count
-            check.save()
+        if to_update:
+            to_update = dict(to_update)
+            updates = self.model.check_data.filter(
+                id__in=to_update.keys())
+            for update in updates:
+                update.count = to_update[update.id]
+            bulk_update(updates)
         new_checks = []
         for check in to_add:
             new_checks.append(
