@@ -10,7 +10,7 @@ from django.dispatch import receiver
 
 from pootle.core.signals import toggle, update_checks, update_data
 from pootle.core.delegate import check_updater, lifecycle
-from pootle_store.models import QualityCheck, Unit
+from pootle_store.models import QualityCheck, Store, Unit
 from pootle_translationproject.models import TranslationProject
 
 
@@ -42,6 +42,17 @@ def handle_toggle_quality_check(**kwargs):
     unit_lifecycle.save_subs(subs=subs)
     store = unit.store
     update_data.send(store.__class__, instance=store)
+
+
+@receiver(update_checks, sender=Store)
+def store_checks_handler(**kwargs):
+    store = kwargs["instance"]
+    check_updater.get(Store)(
+        store,
+        units=kwargs.get("units"),
+        check_names=kwargs.get("check_names")).update(
+            clear_unknown=kwargs.get("clear_unknown", False),
+            update_data_after=kwargs.get("update_data_after", False))
 
 
 @receiver(update_checks, sender=TranslationProject)
