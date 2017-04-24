@@ -332,6 +332,7 @@ class UnitLifecycle(object):
         return self.create_submission(**_kwargs)
 
     def save_subs(self, subs):
+        subs = list(subs)
         if not subs:
             return
         self.unit.submission_set.bulk_create(subs)
