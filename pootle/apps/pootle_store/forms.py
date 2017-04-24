@@ -27,7 +27,7 @@ from pootle_project.models import Project
 from pootle_statistics.models import SubmissionFields, SubmissionTypes
 
 from .constants import ALLOWED_SORTS, FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
-from .contextmanagers import update_data_after
+from .contextmanagers import update_store_after
 from .fields import to_db
 from .form_fields import (
     CategoryChoiceField, ISODateTimeField, MultipleArgsField,
@@ -267,7 +267,7 @@ def unit_form_factory(language, snplurals=None, request=None):
                 return
             changed_with = kwargs.pop("changed_with", None)
             suggestion = self.cleaned_data["suggestion"]
-            with update_data_after(self.instance.store):
+            with update_store_after(self.instance.store):
                 user = (
                     suggestion.user
                     if suggestion
@@ -547,7 +547,7 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
         self.suggestion_review.accept(target=self.cleaned_data["target_f"])
 
     def save(self):
-        with update_data_after(self.unit.store):
+        with update_store_after(self.unit.store):
             self.save_unit()
         if self.cleaned_data['comment']:
             super(SuggestionSubmitForm, self).save()
@@ -579,5 +579,5 @@ class SubmitForm(SubmitFormMixin, forms.Form):
             changed_with=SubmissionTypes.WEB)
 
     def save(self):
-        with update_data_after(self.unit.store):
+        with update_store_after(self.unit.store):
             self.save_unit()

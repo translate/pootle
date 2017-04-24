@@ -11,7 +11,7 @@ import pytest
 from django.dispatch import receiver
 
 from pootle.core.signals import update_data
-from pootle_store.contextmanagers import update_data_after
+from pootle_store.contextmanagers import update_store_after
 from pootle_store.models import Store
 
 
@@ -24,7 +24,7 @@ def test_contextmanager_keep_data_kwargs(store0, no_update_data_):
     def update_data_handler(**kwargs):
         result.append(kwargs)
 
-    with update_data_after(store0):
+    with update_store_after(store0):
         update_data.send(Store, instance=store0)
         # update_data was not called
         assert result == []
@@ -34,7 +34,7 @@ def test_contextmanager_keep_data_kwargs(store0, no_update_data_):
 
     # you can pass args to pass to the update receiver
     result.remove(result[0])
-    with update_data_after(store0, foo="apples", bar="oranges"):
+    with update_store_after(store0, foo="apples", bar="oranges"):
         update_data.send(Store, instance=store0)
         assert result == []
     assert len(result) == 1
@@ -45,7 +45,7 @@ def test_contextmanager_keep_data_kwargs(store0, no_update_data_):
     # you can control the kwargs passed to send inside the context
     result.remove(result[0])
     kwargs = dict(foo="apples", bar="oranges")
-    with update_data_after(store0, kwargs=kwargs):
+    with update_store_after(store0, kwargs=kwargs):
         update_data.send(Store, instance=store0)
         kwargs["foo"] = "plums"
         assert result == []

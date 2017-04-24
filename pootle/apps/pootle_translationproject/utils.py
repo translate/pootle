@@ -8,7 +8,7 @@
 
 from django.contrib.auth import get_user_model
 
-from pootle_store.contextmanagers import update_data_after
+from pootle_store.contextmanagers import update_store_after
 from pootle.core.models import Revision
 from pootle.core.contextmanagers import keep_data
 from pootle.core.signals import update_checks, update_data
@@ -256,7 +256,7 @@ class TPTool(object):
             return
         system = User.objects.get_system_user()
         update_revision = Revision.incr()
-        with update_data_after(target):
+        with update_store_after(target):
             return target.updater.update_from_diff(
                 source,
                 source_revision,

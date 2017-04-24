@@ -20,7 +20,7 @@ class Updated:
 
 
 @contextmanager
-def update_data_after(sender, **kwargs):
+def update_store_after(sender, **kwargs):
     signals = [update_data, update_scores]
     with keep_data(signals=signals):
         updated = Updated()

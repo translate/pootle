@@ -369,7 +369,7 @@ class PootleTestEnv(object):
             self._add_stores(tp, n=(1, 1), parent=subdir1)
 
     def setup_submissions(self):
-        from pootle_store.contextmanagers import update_data_after
+        from pootle_store.contextmanagers import update_store_after
         from pootle_statistics.models import SubmissionTypes
         from pootle_store.constants import UNTRANSLATED
         from pootle_store.models import Store, Unit, UnitChange
@@ -390,7 +390,7 @@ class PootleTestEnv(object):
             in units.filter(state__gt=UNTRANSLATED).values_list("id", flat=True))
 
         for store in stores.all():
-            with update_data_after(store):
+            with update_store_after(store):
                 for unit in store.unit_set.all():
                     unit.store = store
                     self._add_submissions(unit, year_ago)

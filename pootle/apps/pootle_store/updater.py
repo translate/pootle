@@ -12,7 +12,7 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.utils.functional import cached_property
 
-from pootle_store.contextmanagers import update_data_after
+from pootle_store.contextmanagers import update_store_after
 from pootle.core.delegate import frozen, review
 from pootle.core.log import log
 from pootle.core.models import Revision
@@ -269,7 +269,7 @@ class StoreUpdater(object):
             yield unit
 
     def update(self, *args, **kwargs):
-        with update_data_after(self.target_store):
+        with update_store_after(self.target_store):
             return self._update(*args, **kwargs)
 
     def _update(self, store, user=None, store_revision=None,

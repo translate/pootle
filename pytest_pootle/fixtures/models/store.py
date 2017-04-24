@@ -164,14 +164,14 @@ def _setup_store_test(store, member, member2, test):
 
 @pytest.fixture(params=UPDATE_STORE_TESTS.keys())
 def store_diff_tests(request, tp0, member, member2):
-    from pootle_store.contextmanagers import update_data_after
+    from pootle_store.contextmanagers import update_store_after
     from pootle_store.diff import StoreDiff
 
     store = StoreDBFactory(
         translation_project=tp0,
         parent=tp0.directory)
 
-    with update_data_after(store):
+    with update_store_after(store):
         test = _setup_store_test(store, member, member2,
                                  UPDATE_STORE_TESTS[request.param])
     test_store = create_store(units=test[1])
@@ -298,10 +298,10 @@ def _mark_unit_fuzzy(unit, user):
 
 
 def _make_member_updates(store, member):
-    from pootle_store.contextmanagers import update_data_after
+    from pootle_store.contextmanagers import update_store_after
 
     # Member updates first unit, adding a suggestion, and marking unit as fuzzy
-    with update_data_after(store):
+    with update_store_after(store):
         _create_submission_and_suggestion(store, member)
         _create_comment_on_unit(store.units[0], member, "NICE COMMENT")
         _mark_unit_fuzzy(store.units[0], member)
