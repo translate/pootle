@@ -180,21 +180,28 @@ def store_diff_tests(request, tp0, member, member2):
 
 @pytest.fixture(params=UPDATE_STORE_TESTS.keys())
 def param_update_store_test(request, tp0, member, member2):
-    from pootle_store.contextmanagers import update_data_after
+    from pootle.core.contextmanagers import keep_data
+    from pootle.core.signals import update_data
 
     store = StoreDBFactory(
         translation_project=tp0,
         parent=tp0.directory)
-    with update_data_after(store):
+
+    with keep_data():
         test = _setup_store_test(
             store, member, member2,
             UPDATE_STORE_TESTS[request.param])
+    update_data.send(store.__class__, instance=store)
+
+    with keep_data():
         update_store(
             test[0],
             units=test[1],
             store_revision=test[2],
             user=member2,
             resolve_conflict=test[3])
+    update_data.send(store.__class__, instance=store)
+
     return test
 
 
