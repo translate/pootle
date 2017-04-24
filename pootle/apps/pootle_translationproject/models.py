@@ -18,7 +18,6 @@ from django.utils.functional import cached_property
 from pootle.core.contextmanagers import keep_data
 from pootle.core.delegate import data_tool
 from pootle.core.mixins import CachedTreeItem
-from pootle.core.signals import update_checks, update_data
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_app.project_tree import (does_not_exist, init_store_from_template,
@@ -29,9 +28,10 @@ from pootle_checks.constants import EXCLUDED_FILTERS
 from pootle_project.models import Project
 from pootle_revision.models import Revision
 from pootle_store.constants import PARSED
-from pootle_store.models import Store, Unit
 from pootle_store.util import absolute_real_path, relative_real_path
 from staticpages.models import StaticPage
+
+from .contextmanagers import update_tp_after
 
 
 def create_or_resurrect_translation_project(language, project):
@@ -316,33 +316,8 @@ class TranslationProject(models.Model, CachedTreeItem):
         self.update_from_disk()
 
     def update_from_disk(self, force=False, overwrite=False):
-        stores_to_update = set()
-        stores_to_check = set()
-
-        with keep_data():
-
-            @receiver(update_data, sender=Store)
-            def update_data_handler(**kwargs):
-                stores_to_update.add(kwargs["instance"])
-
-            @receiver(update_checks, sender=Unit)
-            def update_check_handler(**kwargs):
-                # this could be optimized by only checking units
-                stores_to_check.add(kwargs["instance"].store)
-
-            self._update_from_disk(
-                force=force,
-                overwrite=overwrite)
-        if stores_to_check:
-            update_checks.send(
-                self.__class__,
-                instance=self,
-                stores=stores_to_check)
-        if stores_to_update:
-            update_data.send(
-                self.__class__,
-                instance=self,
-                object_list=stores_to_update)
+        with update_tp_after(self):
+            self._update_from_disk(force=force, overwrite=overwrite)
 
     def _update_from_disk(self, force=False, overwrite=False):
         """Update all stores to reflect state on disk."""
