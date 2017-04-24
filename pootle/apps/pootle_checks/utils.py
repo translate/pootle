@@ -350,6 +350,16 @@ class StoreQCUpdater(QualityCheckUpdater):
         self._units = units
 
     @property
+    def checks_qs(self):
+        """QualityCheck queryset for all units, restricted to TP if set
+        """
+        checks_qs = QualityCheck.objects.all()
+        checks_qs = checks_qs.filter(unit__store_id=self.store.id)
+        if self._units is not None:
+            checks_qs = checks_qs.filter(unit_id__in=self._units)
+        return checks_qs
+
+    @property
     def translation_project(self):
         return self.store.translation_project
 
