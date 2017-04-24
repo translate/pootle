@@ -204,9 +204,16 @@ class DataUpdater(object):
             elif checks[(category, name)][1] != count:
                 to_update.append((checks[(category, name)][0], count))
             del checks[(category, name)]
+        check_data = None
         for category, name in checks.keys():
-            # bulk delete?
-            self.model.check_data.filter(category=category, name=name).delete()
+            if check_data is None:
+                check_data = self.model.check_data.filter(
+                    category=category, name=name)
+            else:
+                check_data = check_data | self.model.check_data.filter(
+                    category=category, name=name)
+        if checks:
+            check_data.delete()
         for pk, count in to_update:
             # bulk update?
             check = self.model.check_data.get(pk=pk)
