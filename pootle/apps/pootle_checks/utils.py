@@ -141,7 +141,6 @@ class QualityCheckUpdater(object):
         self.translation_project = translation_project
         self.stores = stores
         self._units = units
-        self._store_to_expire = None
         self._updated_stores = {}
 
     @cached_property
@@ -208,25 +207,6 @@ class QualityCheckUpdater(object):
             logger.error("Missing TP (pk '%s'). No checker retrieved.", tp_pk)
             return None
 
-    def expire_store_cache(self, store_pk=None):
-        """Whenever a store_pk is found it is queued for cache expiry
-
-        if a new store_pk is called the old one has its cache expired,
-        and the new store_pk is saved
-
-        call with None to expire the current Store's cache
-        """
-        if self._store_to_expire is None:
-            # there is no Store set - queue it for expiry
-            self._store_to_expire = store_pk
-            return
-        if store_pk == self._store_to_expire:
-            # its the same Store that we saw last time
-            return
-
-        # remember the new store_pk
-        self._store_to_expire = store_pk
-
     @property
     def tp_qs(self):
         return TranslationProject.objects.all()
@@ -277,7 +257,6 @@ class QualityCheckUpdater(object):
             self.check_names)
         if checker.update():
             self.update_store(unit.tp, unit.store)
-            self.expire_store_cache(unit.store)
             return True
         return False
 
@@ -310,7 +289,6 @@ class QualityCheckUpdater(object):
             if checker and self.update_translated_unit(unit, checker=checker):
                 updated_count += 1
         # clear the cache of the remaining Store
-        self.expire_store_cache()
         return updated_count
 
     def update_store(self, tp, store):
@@ -345,7 +323,6 @@ class StoreQCUpdater(QualityCheckUpdater):
         """
         self.check_names = check_names
         self.store = store
-        self._store_to_expire = None
         self._updated_stores = {}
         self._units = units
 
