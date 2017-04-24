@@ -7,8 +7,8 @@
 # AUTHORS file for copyright and authorship information.
 
 from .languages import LanguageAdminView, LanguageAPIView
-from .projects import (ProjectGenericAdminView, 
-		ProjectAdminView, ProjectAPIView)
+from .projects import (
+    ProjectGenericAdminView, ProjectAdminView, ProjectAPIView)
 from .users import UserAdminView, UserAPIView
 
 

@@ -13,13 +13,13 @@ from django.views.generic import TemplateView
 from pootle.core.delegate import formats
 from pootle.core.http import JsonResponse
 from pootle.core.views import APIView
-from pootle.core.views.decorators import (set_permissions,
-            requires_permission_class)
+from pootle.core.views.decorators import (
+    set_permissions, requires_permission_class)
 from pootle.core.views.mixins import SuperuserRequiredMixin
 from pootle_app.forms import ProjectForm
 from pootle_app.models.directory import Directory
-from pootle_app.models.permissions import (check_user_permission,
-                                get_pootle_permission, PermissionSet)
+from pootle_app.models.permissions import (
+        check_user_permission, get_pootle_permission, PermissionSet)
 from pootle_language.models import Language
 from pootle_project.models import PROJECT_CHECKERS, Project
 
@@ -88,11 +88,12 @@ class ProjectAPIView(APIView):
             exclude_projects = [project.pk
                                 for project in self.base_queryset.all()
                                 if not check_user_permission(
-                                            request.user,
-                                            "administrate",
-                                            project.directory)]
+                                    request.user,
+                                    "administrate",
+                                    project.directory
+                                )]
             self.base_queryset = self.base_queryset.exclude(
-                                            pk__in=exclude_projects)
+                pk__in=exclude_projects)
         return super(ProjectAPIView, self).dispatch(request,
                                                     *args, **kwargs)
 
