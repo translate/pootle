@@ -19,7 +19,7 @@ from pootle.core.views.mixins import SuperuserRequiredMixin
 from pootle_app.forms import ProjectForm
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import (
-        check_user_permission, get_pootle_permission, PermissionSet)
+    check_user_permission, get_pootle_permission, PermissionSet)
 from pootle_language.models import Language
 from pootle_project.models import PROJECT_CHECKERS, Project
 
