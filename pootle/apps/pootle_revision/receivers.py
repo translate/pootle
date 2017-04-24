@@ -51,7 +51,7 @@ def handle_directory_revision_update(**kwargs):
     else:
         updater(
             object_list=kwargs.get("object_list"),
-            paths=kwargs.get("object_list")).update(
+            paths=kwargs.get("paths")).update(
                 keys=kwargs.get("keys"))
 
 
