@@ -9,11 +9,9 @@
 from django.db.models import Max, Sum
 from django.db.models.functions import Coalesce
 
-from pootle.core.contextmanagers import keep_data
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import revision
-from pootle.core.signals import update_data, update_revisions
-from pootle_app.models import Directory
+from pootle.core.signals import update_data
 from pootle_data.models import StoreChecksData, StoreData
 
 from .utils import DataUpdater, RelatedStoresDataTool
@@ -163,16 +161,5 @@ class TPUpdater(object):
         self.object_list = object_list
 
     def update(self):
-        dirs = set()
-        with keep_data(suppress=(self.tp.__class__, )):
-            with keep_data(signals=(update_revisions, )):
-                for store in self.object_list:
-                    update_data.send(store.__class__, instance=store)
-                    dirs.add(store.parent_id)
-        with keep_data(signals=(update_revisions, )):
-            update_data.send(self.tp.__class__, instance=self.tp)
-        if dirs:
-            update_revisions.send(
-                Directory,
-                object_list=Directory.objects.filter(id__in=dirs),
-                keys=["stats", "checks"])
+        for store in self.object_list:
+            update_data.send(store.__class__, instance=store)
