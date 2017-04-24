@@ -17,6 +17,8 @@ from pootle_store.constants import OBSOLETE, SOURCE_WINS
 from pootle_store.diff import StoreDiff
 from pootle_store.models import QualityCheck
 
+from .contextmanagers import update_tp_after
+
 
 User = get_user_model()
 
@@ -65,9 +67,10 @@ class TPTool(object):
         new_tp = self.create_tp(language, project)
         new_tp.directory.tp = new_tp
         new_tp.directory.translationproject = new_tp
-        self.clone_children(
-            tp.directory,
-            new_tp.directory)
+        with update_tp_after(tp):
+            self.clone_children(
+                tp.directory,
+                new_tp.directory)
         return new_tp
 
     def clone_children(self, source_dir, target_parent):
@@ -187,12 +190,13 @@ class TPTool(object):
             tp.project = project
         tp.language = language
         tp.pootle_path = pootle_path
-        tp.save()
-        self.set_parents(
-            directory,
-            self.get_tp(language, project).directory,
-            project=project)
-        directory.delete()
+        with update_tp_after(tp):
+            tp.save()
+            self.set_parents(
+                directory,
+                self.get_tp(language, project).directory,
+                project=project)
+            directory.delete()
 
     def set_parents(self, directory, parent, project=None):
         """Recursively sets the parent for children of a directory"""
@@ -244,8 +248,10 @@ class TPTool(object):
         """Update one TP from another"""
         self.check_tp(source)
         self.check_tp(target)
-        self.update_children(
-            source.directory, target.directory)
+
+        with update_tp_after(target):
+            self.update_children(
+                source.directory, target.directory)
 
     def update_store(self, source, target):
         """Update a target Store from a given source Store"""
