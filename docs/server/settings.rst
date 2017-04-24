@@ -585,3 +585,12 @@ Deprecated Settings
 ``EXPORTED_DIRECTORY_MODE``
   .. deprecated:: 2.7
      Offline translation support was rewritten and the setting was unused.
+
+
+.. setting:: POOTLE_QUALITY_CHECKER
+
+``POOTLE_QUALITY_CHECKER``
+  .. deprecated:: 2.8
+     To simplify checker code, the ability to have a custom quality checker was
+     removed.  To create custom checks, write them within the Translate
+     Toolkit.
