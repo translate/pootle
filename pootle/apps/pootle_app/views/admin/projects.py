@@ -75,7 +75,7 @@ class ProjectAPIView(APIView):
     edit_form_class = ProjectForm
     page_size = 10
     search_fields = ('code', 'fullname', 'disabled')
-    m2m = ("filetypes", )
+    m2m = ("filetypes",)
 
     @property
     def permission_context(self):
@@ -89,7 +89,7 @@ class ProjectAPIView(APIView):
                                 for project in self.base_queryset.all()
                                 if not check_user_permission(
                                             request.user,
-                                            project.code,
+                                            "administrate",
                                             project.directory)]
             self.base_queryset = self.base_queryset.exclude(
                                             pk__in=exclude_projects)
