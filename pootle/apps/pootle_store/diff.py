@@ -168,7 +168,7 @@ class StoreDiff(object):
         return diffs["default"]
 
     def get_target_revision(self):
-        return self.target_store.get_max_unit_revision()
+        return self.target_store.data.max_unit_revision or 0
 
     @cached_property
     def active_target_units(self):
