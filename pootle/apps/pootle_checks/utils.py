@@ -357,6 +357,9 @@ class StoreQCUpdater(QualityCheckUpdater):
     def units(self):
         """Result set of Units, restricted to TP if set
         """
+        if self._units:
+            return self.store.unit_set.filter(
+                id__in=self._units)
         return self.store.unit_set
 
     def update_data(self, updated_stores):
