@@ -15,7 +15,8 @@ from translate.lang import data
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
-from pootle.core.signals import update_data
+from pootle.core.contextmanagers import bulk_operations
+from pootle.core.signals import create, delete, update_data
 from pootle_store.constants import UNTRANSLATED
 from pootle_store.models import QualityCheck, Unit
 from pootle_store.unit import UnitProxy
@@ -87,7 +88,9 @@ class UnitQualityCheck(object):
     def delete_checks(self, checks):
         """Delete checks that are no longer used.
         """
-        return self.checks_qs.filter(name__in=checks).delete()
+        return delete.send(
+            self.checks_qs.model,
+            objects=self.checks_qs.filter(name__in=checks))
 
     def update(self):
         """Update QualityChecks for a Unit, deleting and unmuting as appropriate.
@@ -122,7 +125,7 @@ class UnitQualityCheck(object):
                     category=self.check_failures[name]['category']))
             updated = True
         if new_checks:
-            self.checks_qs.bulk_create(new_checks)
+            create.send(self.checks_qs.model, objects=new_checks)
         return updated
 
 
@@ -220,8 +223,9 @@ class QualityCheckUpdater(object):
         """
         if clear_unknown:
             self.clear_unknown_checks()
-        self.update_untranslated()
-        self.update_translated()
+        with bulk_operations(QualityCheck):
+            self.update_untranslated()
+            self.update_translated()
         updated = self.updated_stores
         if update_data_after:
             self.update_data(updated)
