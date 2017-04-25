@@ -13,6 +13,15 @@ from django.dispatch import Signal
 changed = Signal(
     providing_args=["instance", "updates"],
     use_caching=True)
+create = Signal(
+    providing_args=["instance", "objects"],
+    use_caching=True)
+delete = Signal(
+    providing_args=["instance", "objects"],
+    use_caching=True)
+update = Signal(
+    providing_args=["instance", "objects"],
+    use_caching=True)
 update_checks = Signal(
     providing_args=["instance", "keep_false_positives"],
     use_caching=True)
