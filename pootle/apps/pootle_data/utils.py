@@ -10,10 +10,9 @@ from django.db import models
 from django.db.models import Sum
 from django.utils.functional import cached_property
 
-from bulk_update.helper import bulk_update
-
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import data_updater, revision
+from pootle.core.signals import create, delete, update
 from pootle.core.url_helpers import split_pootle_path
 from pootle_statistics.models import Submission
 from pootle_statistics.proxy import SubmissionProxy
@@ -204,7 +203,7 @@ class DataUpdater(object):
                 to_add.append(check)
                 continue
             elif checks[(category, name)][1] != count:
-                to_update.append((checks[(category, name)][0], count))
+                to_update.append((checks[(category, name)][0], dict(count=count)))
             del checks[(category, name)]
         check_data = None
         for category, name in checks.keys():
@@ -215,24 +214,23 @@ class DataUpdater(object):
                 check_data = check_data | self.model.check_data.filter(
                     category=category, name=name)
         if checks:
-            check_data.delete()
+            delete.send(check_data.model, objects=check_data)
         if to_update:
             to_update = dict(to_update)
-            updates = self.model.check_data.filter(
-                id__in=to_update.keys())
-            for update in updates:
-                update.count = to_update[update.id]
-            bulk_update(updates)
-        new_checks = []
-        for check in to_add:
-            new_checks.append(
+            update.send(
+                self.model.check_data.model,
+                updates=to_update)
+        if not to_add:
+            return
+        create.send(
+            self.model.check_data.model,
+            objects=[
                 self.check_data_field.related_model(
                     **{self.related_name: self.model,
                        "category": check["category"],
                        "name": check["name"],
-                       "count": check["count"]}))
-        if new_checks:
-            self.model.check_data.bulk_create(new_checks)
+                       "count": check["count"]})
+                for check in to_add])
 
     def set_data(self, k, v):
         k = (k in self.fk_fields
@@ -243,22 +241,32 @@ class DataUpdater(object):
         existing_value = getattr(self.data, k)
         if existing_value != v:
             setattr(self.data, k, v)
-            return True
-        return False
+            return k
 
     def update(self, **kwargs):
         store_data = self.get_store_data(**kwargs)
-        data_changed = any(
-            [self.set_data(k, store_data[k])
-             for k in self.filter_fields(**kwargs)])
+        data_changed = set(
+            filter(
+                None,
+                [self.set_data(k, store_data[k])
+                 for k
+                 in self.filter_fields(**kwargs)]))
         # set the checks
         if "checks" in store_data:
             self.set_check_data(store_data)
-        if data_changed or not self.data.pk:
-            self.save_data()
+        if not self.data.pk:
+            create.send(
+                self.data.__class__,
+                instance=self.data)
+            self.model.data = self.data
+        elif data_changed:
+            self.save_data(fields=data_changed)
 
-    def save_data(self):
-        self.data.save()
+    def save_data(self, fields=None):
+        update.send(
+            self.data.__class__,
+            instance=self.data,
+            update_fields=fields)
         # this ensures that any calling code gets the
         # correct revision. It doesnt refresh the last
         # created/updated fks tho
