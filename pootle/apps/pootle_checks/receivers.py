@@ -8,10 +8,21 @@
 
 from django.dispatch import receiver
 
-from pootle.core.signals import toggle, update_checks, update_data
-from pootle.core.delegate import check_updater, lifecycle
+from pootle.core.delegate import check_updater, crud, lifecycle
+from pootle.core.signals import (
+    create, delete, toggle, update_checks, update_data)
 from pootle_store.models import QualityCheck, Store, Unit
 from pootle_translationproject.models import TranslationProject
+
+
+@receiver(delete, sender=QualityCheck)
+def handle_qc_delete(**kwargs):
+    crud.get(QualityCheck).delete(**kwargs)
+
+
+@receiver(create, sender=QualityCheck)
+def handle_qc_create(**kwargs):
+    crud.get(QualityCheck).create(**kwargs)
 
 
 @receiver(update_checks, sender=Unit)
