@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-04-01 11:23+0000\n"
-"Last-Translator: belkacem77 <belkacem77@gmail.com>\n"
+"PO-Revision-Date: 2017-04-25 18:41+0000\n"
+"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1491045829.000000\n"
+"X-POOTLE-MTIME: 1493145713.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -1062,12 +1062,12 @@ msgid "Plural"
 msgstr "Asegwet"
 
 #: apps/pootle_store/unit/timeline.py:47
-#, python-format
+#, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Asumer ittwaqbel sɣur ameskar %"
 
 #: apps/pootle_store/unit/timeline.py:48
-#, python-format
+#, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Asumer ur ittwaqbel ara sɣur ameskar %"
 
@@ -1354,7 +1354,7 @@ msgid "Not using cached_db as session engine"
 msgstr ""
 
 #: checks.py:214
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
@@ -1589,7 +1589,7 @@ msgid ""
 msgstr ""
 
 #: checks.py:516
-#, python-format
+#, fuzzy, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
