@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-02-11 19:17+0000\n"
+"PO-Revision-Date: 2017-04-22 14:55+0000\n"
 "Last-Translator: smarquespt <smarquespt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1486840628.000000\n"
+"X-POOTLE-MTIME: 1492872908.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -164,7 +164,7 @@ msgstr "Endereço de e-mail"
 
 #: apps/contact/forms.py:40
 msgid "Please enter your email address"
-msgstr "Por favor, insira o seu endereço de e-mail"
+msgstr "Digite o seu endereço de e-mail"
 
 #: apps/contact/forms.py:43
 msgid "Message"
@@ -172,7 +172,7 @@ msgstr "Mensagem"
 
 #: apps/contact/forms.py:44
 msgid "Please enter your message"
-msgstr "Por favor, insira a sua mensagem"
+msgstr "Digite a sua mensagem"
 
 #: apps/contact/views.py:34 templates/layout.html:120
 msgid "Contact Us"
@@ -268,7 +268,7 @@ msgstr "Palavra-passe"
 
 #: apps/pootle_app/forms.py:143 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
-msgstr "Por favor, insira um URL de perfil do LinkedIn válido."
+msgstr "Por favor digite um URL de perfil do LinkedIn válido."
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:58

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-02-08 16:11+0000\n"
+"PO-Revision-Date: 2017-04-15 22:33+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: he\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1486570312.000000\n"
+"X-POOTLE-MTIME: 1492295630.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -926,9 +926,8 @@ msgid "Quality Checks"
 msgstr "בדיקות איכות"
 
 #: apps/pootle_project/models.py:221
-#, fuzzy
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
-msgstr "זיהוי אוטומטי של תבניות קובצי gnu/לא-gnu (אטי יותר)"
+msgstr "זיהוי אוטומטי של תבניות קובצי GNU/לא-GNU (אטי יותר)"
 
 #: apps/pootle_project/models.py:222
 msgid "GNU style: files named by language code"
@@ -1608,15 +1607,15 @@ msgstr "ל־MySQL נדרשות הגדרות אזור זמן."
 
 #: checks.py:558
 msgid "Pootle does not yet support Python 3."
-msgstr ""
+msgstr "אין עדיין תמיכה ב־Python 3 ב־Pootle."
 
 #: checks.py:559 checks.py:565
 msgid "Use a Python 2.7 virtualenv."
-msgstr ""
+msgstr "יש להשתמש ב־virtualenv של Python 2.7."
 
 #: checks.py:564
 msgid "Pootle no longer supports Python versions older than 2.7"
-msgstr ""
+msgstr "ב־Pootle אין עוד תמיכה ב־Python בגרסאות שקדמו ל־2.7."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
