@@ -55,4 +55,4 @@ def handle_store_data_create(sender, instance, created, **kwargs):
 @receiver(post_save, sender=TranslationProject)
 def handle_tp_data_create(sender, instance, created, **kwargs):
     if created:
-        data_tool.get(TranslationProject)(instance).update()
+        update_data.send(instance.__class__, instance=instance)
