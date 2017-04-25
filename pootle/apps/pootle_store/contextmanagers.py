@@ -17,11 +17,43 @@ from pootle.core.signals import (
 from .models import Unit
 
 
-class Updated:
+class Updated(object):
     data = False
     scores = set()
     checks = set()
     revisions = False
+
+
+def _callback_handler(sender, updated, **kwargs):
+
+    with keep_data(signals=(update_revisions, )):
+
+        @receiver(update_revisions)
+        def handle_update_revisions(**kwargs):
+            updated.revisions = True
+
+        if updated.checks:
+            update_checks.send(
+                sender.__class__,
+                instance=sender,
+                units=updated.checks,
+                **kwargs)
+        if updated.data:
+            update_data.send(
+                sender.__class__,
+                instance=sender,
+                **kwargs)
+        if updated.scores:
+            update_scores.send(
+                sender.__class__,
+                instance=sender,
+                users=updated.scores,
+                **kwargs)
+    if updated.revisions:
+        update_revisions.send(
+            sender.parent.__class__,
+            instance=sender.parent,
+            keys=["stats", "checks"])
 
 
 @contextmanager
@@ -55,31 +87,5 @@ def update_store_after(sender, **kwargs):
 
     if "kwargs" in kwargs:
         kwargs.update(kwargs.pop("kwargs"))
-    with keep_data(signals=(update_revisions, )):
-
-        @receiver(update_revisions)
-        def handle_update_revisions(**kwargs):
-            updated.revisions = True
-
-        if updated.checks:
-            update_checks.send(
-                sender.__class__,
-                instance=sender,
-                units=updated.checks,
-                **kwargs)
-        if updated.data:
-            update_data.send(
-                sender.__class__,
-                instance=sender,
-                **kwargs)
-        if updated.scores:
-            update_scores.send(
-                sender.__class__,
-                instance=sender,
-                users=updated.scores,
-                **kwargs)
-    if updated.revisions:
-        update_revisions.send(
-            sender.parent.__class__,
-            instance=sender.parent,
-            keys=["stats", "checks"])
+    kwargs.get("callback", _callback_handler)(
+        sender, updated, **kwargs)

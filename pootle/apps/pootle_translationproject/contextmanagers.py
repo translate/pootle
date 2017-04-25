@@ -17,7 +17,7 @@ from pootle_app.models import Directory
 from pootle_store.models import Store
 
 
-class Updated:
+class Updated(object):
     data = set()
     checks = set()
     tp_data = False
@@ -25,22 +25,7 @@ class Updated:
     revisions = set()
 
 
-@contextmanager
-def update_tp_after(sender, **kwargs):
-    updated = Updated()
-
-    with keep_data():
-
-        @receiver(update_data, sender=Store)
-        def update_data_handler(**kwargs):
-            updated.data.add(kwargs["instance"])
-
-        @receiver(update_checks, sender=Store)
-        def update_check_handler(**kwargs):
-            # this could be optimized by only checking units
-            updated.checks.add(kwargs["instance"])
-        yield
-
+def _callback_handler(sender, updated, **kwargs):
     with keep_data(signals=(update_revisions, )):
 
         @receiver(update_revisions)
@@ -84,3 +69,22 @@ def update_tp_after(sender, **kwargs):
             Directory,
             paths=updated.revisions,
             keys=["stats", "checks"])
+
+
+@contextmanager
+def update_tp_after(sender, **kwargs):
+    updated = Updated()
+
+    with keep_data():
+
+        @receiver(update_data, sender=Store)
+        def update_data_handler(**kwargs):
+            updated.data.add(kwargs["instance"])
+
+        @receiver(update_checks, sender=Store)
+        def update_check_handler(**kwargs):
+            # this could be optimized by only checking units
+            updated.checks.add(kwargs["instance"])
+        yield
+    kwargs.get("callback", _callback_handler)(
+        sender, updated, **kwargs)
