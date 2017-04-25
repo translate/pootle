@@ -112,7 +112,7 @@ class DataUpdater(object):
         try:
             return self.model.data
         except self.data_field.related_model.DoesNotExist:
-            return self.data_field.related_model.objects.create(
+            return self.data_field.related_model(
                 **{self.related_name: self.model})
 
     @property
@@ -254,7 +254,7 @@ class DataUpdater(object):
         # set the checks
         if "checks" in store_data:
             self.set_check_data(store_data)
-        if data_changed:
+        if data_changed or not self.data.pk:
             self.save_data()
 
     def save_data(self):
