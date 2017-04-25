@@ -181,7 +181,7 @@ class UnitUpdater(object):
             and not self.newunit.isobsolete())
         target_fuzzy = (
             self.unit.isfuzzy()
-            and not self.newunit.isobsolete())
+            and not self.unit.isobsolete())
         return source_fuzzy != target_fuzzy
 
     @cached_property
