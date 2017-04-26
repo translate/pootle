@@ -78,6 +78,26 @@ It is *not* generally safe to run commands in this mode if you have RQ workers
 active at the same time, as there is a risk that they conflict with other jobs
 dispatched to the workers.
 
+.. django-admin-option:: --atomic
+
+.. versionadded:: 2.8
+
+  Default: ``tp``.
+  Available choices: ``tp``, ``all``, ``none``.
+
+  This option allows you to run CLI commands with atomic transactions.
+
+  The default is to commit changes on per-translation-project basis.
+
+  For example to run update_stores against all translation projects in a single
+  transaction.
+
+.. code-block:: console
+
+    $ pootle update_stores --atomic=all
+
+
+
 .. django-admin-option:: --noinput
 
 If there are RQ workers running, the command will ask for confirmation before
@@ -961,8 +981,8 @@ stores are affected by the command.
 
 .. django-admin-option:: -p --fs_path
 
-  Only affect files whose filesystem path matches a given glob. 
-  
+  Only affect files whose filesystem path matches a given glob.
+
 
   .. code-block:: console
 
