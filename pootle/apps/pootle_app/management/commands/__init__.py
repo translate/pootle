@@ -9,6 +9,7 @@
 import datetime
 import logging
 
+from django.db import transaction
 from django.core.management.base import BaseCommand, CommandError
 
 from pootle.runner import set_sync_mode
@@ -35,6 +36,7 @@ class SkipChecksMixin(object):
 class PootleCommand(BaseCommand):
     """Base class for handling recursive pootle store management commands."""
 
+    atomic_default = "tp"
     process_disabled_projects = False
 
     def add_arguments(self, parser):
@@ -63,6 +65,14 @@ class PootleCommand(BaseCommand):
             help=(u"Run all jobs in a single process, without "
                   "using rq workers"),
         )
+        parser.add_argument(
+            "--atomic",
+            action="store",
+            default=self.atomic_default,
+            choices=["tp", "all", "none"],
+            help=(
+                u"Run commands using database atomic "
+                u"transactions"))
 
     def __init__(self, *args, **kwargs):
         self.languages = []
@@ -105,6 +115,13 @@ class PootleCommand(BaseCommand):
                                unrecognized_languages)
 
     def handle(self, **options):
+        if options["atomic"] == "all":
+            with transaction.atomic():
+                return self._handle(**options)
+        else:
+            return self._handle(**options)
+
+    def _handle(self, **options):
         # adjust debug level to the verbosity option
         debug_levels = {
             0: logging.ERROR,
@@ -159,4 +176,8 @@ class PootleCommand(BaseCommand):
             tps = tps.filter(language__code__in=self.languages)
 
         for tp in tps.iterator():
-            self.do_translation_project(tp, **options)
+            if options["atomic"] == "tp":
+                with transaction.atomic():
+                    self.do_translation_project(tp, **options)
+            else:
+                self.do_translation_project(tp, **options)
