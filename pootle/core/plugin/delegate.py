@@ -96,12 +96,26 @@ def provider(signal, **kwargs):
 
 class Getter(Signal):
 
+    def __init__(self, *args, **kwargs):
+        super(Getter, self).__init__(*args, **kwargs)
+        self.use_caching = True
+
     def get(self, sender=None, **named):
+        receivers_cache = self.sender_receivers_cache.get(sender)
         no_receivers = (
             not self.receivers
-            or self.sender_receivers_cache.get(sender) is NO_RECEIVERS)
+            or receivers_cache is NO_RECEIVERS)
         if no_receivers:
             return None
+        elif receivers_cache:
+            for receiver in receivers_cache:
+                if isinstance(receiver, weakref.ReferenceType):
+                    # Dereference the weak reference.
+                    receiver = receiver()
+                if receiver is not None:
+                    response = receiver(signal=self, sender=sender, **named)
+                    if response is not None:
+                        return response
         for receiver in self._live_receivers(sender):
             response = receiver(signal=self, sender=sender, **named)
             if response is not None:
