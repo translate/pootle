@@ -61,6 +61,16 @@ def tp_checks_handler(**kwargs):
     check_updater.get(TranslationProject)(
         translation_project=tp,
         stores=kwargs.get("stores"),
-        check_names=kwargs.get("check_names")).update(
+        check_names=kwargs.get("check_names"),
+        units=kwargs.get("units")).update(
             clear_unknown=kwargs.get("clear_unknown", False),
             update_data_after=kwargs.get("update_data_after", False))
+
+
+@receiver(update_checks, sender=Store)
+def store_checks_handler(**kwargs):
+    store = kwargs["instance"]
+    check_updater.get(Store)(
+        store=store,
+        check_names=kwargs.get("check_names"),
+        units=kwargs.get("units")).update()
