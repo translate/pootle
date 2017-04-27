@@ -15,6 +15,7 @@ from translate.lang import data
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
+from pootle.core.bulk import BulkCRUD
 from pootle.core.contextmanagers import bulk_operations
 from pootle.core.signals import create, delete, update_data
 from pootle_store.constants import UNTRANSLATED
@@ -28,6 +29,11 @@ from .constants import (
 
 
 logger = logging.getLogger(__name__)
+
+
+class QualityCheckCRUD(BulkCRUD):
+
+    model = QualityCheck
 
 
 class CheckableUnit(UnitProxy):

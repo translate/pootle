@@ -8,11 +8,19 @@
 
 from pootle.core.plugin import getter
 
-from pootle.core.delegate import check_updater
+from pootle.core.delegate import check_updater, crud
 
-from .utils import StoreQCUpdater, TPQCUpdater
-from pootle_store.models import Store
+from .utils import QualityCheckCRUD, StoreQCUpdater, TPQCUpdater
+from pootle_store.models import QualityCheck, Store
 from pootle_translationproject.models import TranslationProject
+
+
+qc_crud = QualityCheckCRUD()
+
+
+@getter(crud, sender=QualityCheck)
+def data_crud_getter(**kwargs):
+    return qc_crud
 
 
 @getter(check_updater, sender=TranslationProject)
