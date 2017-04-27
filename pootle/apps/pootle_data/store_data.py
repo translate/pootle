@@ -11,11 +11,26 @@ from translate.filters.decorators import Category
 from django.db import models
 from django.db.models import Case, Count, Max, Q, When
 
+from pootle.core.bulk import BulkCRUD
 from pootle_statistics.models import Submission
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED
 from pootle_store.models import QualityCheck
 
+from .models import StoreChecksData, StoreData
 from .utils import DataTool, DataUpdater
+
+
+class StoreDataCRUD(BulkCRUD):
+    model = StoreData
+
+
+class StoreChecksDataCRUD(BulkCRUD):
+    model = StoreChecksData
+
+    @property
+    def qs(self):
+        return self.model.objects.select_related(
+            "store__translation_project")
 
 
 class StoreDataTool(DataTool):
