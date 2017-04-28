@@ -24,6 +24,24 @@ class BulkCRUD(object):
     def qs(self):
         return self.model.objects
 
+    def pre_delete(self, instance=None, objects=None):
+        pass
+
+    def post_delete(self, instance=None, objects=None, pre=None, result=None):
+        pass
+
+    def pre_create(self, instance=None, objects=None):
+        pass
+
+    def post_create(self, instance=None, objects=None, pre=None, result=None):
+        pass
+
+    def pre_update(self, instance=None, objects=None):
+        pass
+
+    def post_update(self, instance=None, objects=None, pre=None, result=None):
+        pass
+
     def bulk_update(self, objects, fields=None):
         bulk_update(
             objects,
@@ -31,16 +49,24 @@ class BulkCRUD(object):
 
     def create(self, **kwargs):
         if "instance" in kwargs:
-            kwargs["instance"].save()
+            pre = self.pre_create(instance=kwargs["instance"])
+            result = kwargs["instance"].save()
+            self.post_create(instance=kwargs["instance"], pre=pre, result=result)
         if "objects" in kwargs:
-            self.model.objects.bulk_create(
+            pre = self.pre_delete(objects=kwargs["objects"])
+            result = self.model.objects.bulk_create(
                 kwargs["objects"])
+            self.post_create(objects=kwargs["objects"], pre=pre, result=result)
 
     def delete(self, **kwargs):
         if "instance" in kwargs:
-            kwargs["instance"].delete()
+            pre = self.pre_delete(instance=kwargs["instance"])
+            result = kwargs["instance"].delete()
+            self.post_delete(instance=kwargs["instance"], pre=pre, result=result)
         if "objects" in kwargs:
-            kwargs["objects"].delete()
+            pre = self.pre_delete(objects=kwargs["objects"])
+            result = kwargs["objects"].delete()
+            self.post_delete(objects=kwargs["objects"], pre=pre, result=result)
 
     def update_object(self, obj, update):
         for k, v in update.items():
@@ -70,7 +96,7 @@ class BulkCRUD(object):
             if "update_fields" in kwargs
             else set())
         objects = []
-        if "objects" in kwargs:
+        if "objects" in kwargs and kwargs["objects"] is not None:
             fields |= set(
                 self.update_objects(
                     kwargs["objects"],
@@ -79,27 +105,29 @@ class BulkCRUD(object):
         return objects, fields
 
     def update_object_dict(self, objects, updates):
-        to_fetch = self.objects_to_fetch(
-            objects, updates)
-        return (
-            set()
-            if to_fetch is None
-            else (
-                set(self.update_objects(
-                    to_fetch.iterator(),
-                    updates,
-                    objects))))
+        to_fetch = self.objects_to_fetch(objects, updates)
+        if to_fetch is None:
+            return set()
+        return set(
+            self.update_objects(
+                to_fetch.iterator(),
+                updates,
+                objects))
 
     def update(self, **kwargs):
         if kwargs.get("instance") is not None:
-            kwargs["instance"].save()
+            pre = self.pre_update(instance=kwargs["instance"])
+            result = kwargs["instance"].save()
+            self.post_update(instance=kwargs["instance"], pre=pre, result=result)
         objects, fields = self.update_object_list(**kwargs)
         fields = (
             (fields or set())
             | self.update_object_dict(
                 objects, kwargs.get("updates")))
         if objects:
-            self.bulk_update(
+            pre = self.pre_update(objects=objects)
+            result = self.bulk_update(
                 objects,
                 fields=list(fields))
+            self.post_update(objects=objects, pre=pre, result=result)
         return objects
