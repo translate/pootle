@@ -15,11 +15,9 @@ from pootle.core.contextmanagers import bulk_operations, keep_data
 from pootle.core.signals import (
     update_checks, update_data, update_revisions, update_scores)
 from pootle_app.models import Directory
-# from pootle_data.models import (
-#     StoreChecksData, StoreData, TPChecksData, TPData)
-from pootle_data.models import TPChecksData, TPData
-# from pootle_score.models import UserTPScore, UserStoreScore
-from pootle_score.models import UserTPScore
+from pootle_data.models import (
+    StoreChecksData, StoreData, TPChecksData, TPData)
+from pootle_score.models import UserTPScore, UserStoreScore
 from pootle_store.models import Store
 
 
@@ -33,8 +31,71 @@ class Updated(object):
     tp_scores = False
 
 
+def _handle_update_stores(sender, updated):
+
+    @receiver(update_data, sender=sender.__class__)
+    def update_tp_data_handler(**kwargs):
+        updated.tp_data = True
+        update_data.disconnect(
+            update_tp_data_handler,
+            sender=sender.__class__)
+
+    @receiver(update_scores, sender=sender.__class__)
+    def update_tp_scores_handler(**kwargs):
+        updated.tp_scores = True
+        update_scores.disconnect(
+            update_tp_scores_handler,
+            sender=sender.__class__)
+
+    if updated.checks:
+        with keep_data(suppress=(Store, ), signals=(update_data, )):
+
+            @receiver(update_data, sender=Store)
+            def extra_update_data_handler_(**kwargs):
+                updated.data = updated.data or {}
+                updated.data[kwargs["instance"].id] = kwargs["instance"]
+
+            for store in updated.checks:
+                update_checks.send(
+                    store.__class__,
+                    instance=store,
+                    update_data_after=True)
+
+    if updated.data:
+        stores = updated.data.values()
+        for store in stores:
+            update_data.send(
+                Store,
+                instance=store)
+    if updated.score_stores:
+        for store in updated.score_stores.values():
+            update_scores.send(
+                store.__class__,
+                instance=store,
+                users=updated.score_users)
+
+
 def _update_stores(sender, updated):
+    # call signals for stores
+    bulk_stores = bulk_operations(
+        models=(
+            UserStoreScore,
+            StoreData,
+            StoreChecksData))
     with keep_data(suppress=(sender.__class__, )):
+        with bulk_stores:
+            _handle_update_stores(sender, updated)
+
+
+def _callback_handler(sender, updated, **kwargs):
+
+    bulk_tps = bulk_operations(
+        models=(
+            get_user_model(),
+            UserTPScore,
+            TPData,
+            TPChecksData))
+    with keep_data(signals=(update_revisions, )):
 
         @receiver(update_revisions)
         def update_revisions_handler(**kwargs):
@@ -46,54 +107,7 @@ def _update_stores(sender, updated):
             elif isinstance(instance, Directory):
                 updated.revisions.add(kwargs["instance"].pootle_path)
 
-        @receiver(update_data, sender=sender.__class__)
-        def update_tp_data_handler(**kwargs):
-            updated.tp_data = True
-            update_data.disconnect(
-                update_tp_data_handler,
-                sender=sender.__class__)
-
-        @receiver(update_scores, sender=sender.__class__)
-        def update_tp_scores_handler(**kwargs):
-            updated.tp_scores = True
-            update_scores.disconnect(
-                update_tp_scores_handler,
-                sender=sender.__class__)
-
-        if updated.checks:
-            with keep_data(suppress=(Store, ), signals=(update_data, )):
-
-                for store in updated.checks:
-                    update_checks.send(
-                        store.__class__,
-                        instance=store,
-                        update_data_after=True)
-
-        if updated.data:
-            stores = updated.data.values()
-            for store in stores:
-                update_data.send(
-                    Store,
-                    instance=store)
-        if updated.score_stores:
-            for store in updated.score_stores.values():
-                update_scores.send(
-                    store.__class__,
-                    instance=store,
-                    users=updated.score_users)
-
-
-def _callback_handler(sender, updated, **kwargs):
-
-    bulk_tp = bulk_operations(
-        models=(
-            get_user_model(),
-            UserTPScore,
-            TPData,
-            TPChecksData))
-    with keep_data(signals=(update_revisions, )):
-        with bulk_tp:
-            # call signals for stores
+        with bulk_tps:
             _update_stores(sender, updated)
             if updated.tp_data:
                 update_data.send(
