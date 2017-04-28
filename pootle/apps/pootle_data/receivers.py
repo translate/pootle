@@ -11,15 +11,70 @@ import logging
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from pootle.core.delegate import data_tool, data_updater
-from pootle.core.signals import update_data
+from pootle.core.delegate import crud, data_tool, data_updater
+from pootle.core.signals import create, delete, update, update_data
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
-from .models import StoreData
+from .models import StoreChecksData, StoreData, TPChecksData, TPData
 
 
 logger = logging.getLogger(__name__)
+
+
+@receiver(create, sender=StoreData)
+def handle_store_data_obj_create(**kwargs):
+    crud.get(StoreData).create(**kwargs)
+
+
+@receiver(create, sender=TPData)
+def handle_tp_data_obj_create(**kwargs):
+    crud.get(TPData).create(**kwargs)
+
+
+@receiver(update, sender=StoreData)
+def handle_store_data_obj_update(**kwargs):
+    tps = set(
+        storedata.store.translation_project
+        for storedata
+        in crud.get(StoreData).update(**kwargs))
+    for tp in tps:
+        update_data.send(tp.__class__, instance=tp)
+
+
+@receiver(update, sender=TPData)
+def handle_tp_data_obj_update(**kwargs):
+    crud.get(TPData).update(**kwargs)
+
+
+@receiver(delete, sender=StoreChecksData)
+def handle_store_checks_data_delete(**kwargs):
+    crud.get(StoreChecksData).delete(**kwargs)
+
+
+@receiver(create, sender=StoreChecksData)
+def handle_store_checks_data_create(**kwargs):
+    crud.get(StoreChecksData).create(**kwargs)
+
+
+@receiver(update, sender=StoreChecksData)
+def handle_store_checks_data_update(**kwargs):
+    crud.get(StoreChecksData).update(**kwargs)
+
+
+@receiver(update, sender=TPChecksData)
+def handle_tp_checks_data_update(**kwargs):
+    crud.get(TPChecksData).update(**kwargs)
+
+
+@receiver(delete, sender=TPChecksData)
+def handle_tp_checks_data_delete(**kwargs):
+    crud.get(TPChecksData).delete(**kwargs)
+
+
+@receiver(create, sender=TPChecksData)
+def handle_tp_checks_data_create(**kwargs):
+    crud.get(TPChecksData).create(**kwargs)
 
 
 @receiver(post_save, sender=StoreData)
