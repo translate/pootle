@@ -193,9 +193,11 @@ class ProjectAdminView(PootleAdminView):
 
     @property
     def formset_extra(self):
-        return (
-            (self.object.get_template_translationproject() is not None)
-            and 1 or 0)
+        can_add = (
+            self.object.treestyle != 'pootle_fs'
+            and self.object.get_template_translationproject() is not None)
+
+        return can_add and 1 or 0
 
     @property
     def form_initial(self):
@@ -238,7 +240,8 @@ class ProjectAdminView(PootleAdminView):
                     kwargs=self.url_kwargs)),
             'project': {
                 'code': self.object.code,
-                'name': self.object.fullname},
+                'name': self.object.fullname,
+                'treestyle': self.object.treestyle},
             'formset_text': self.render_formset(formset),
             'formset': formset,
             'objects': self.page,

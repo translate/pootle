@@ -13,7 +13,7 @@ from django.urls import reverse_lazy, reverse
 from django.utils.safestring import mark_safe
 
 from pytest_pootle.fixtures.models.user import TEST_USERS
-from pytest_pootle.factories import LanguageDBFactory
+from pytest_pootle.factories import LanguageDBFactory, TranslationProjectFactory
 
 from pootle.core.delegate import formats
 from pootle.core.paginator import paginate
@@ -86,7 +86,8 @@ def _test_admin_view(response, project):
     assert (
         response.context['project']
         == {'code': project.code,
-            'name': project.fullname})
+            'name': project.fullname,
+            'treestyle': project.treestyle})
     assert (
         response.context["formset_text"]
         == mark_safe(
@@ -191,17 +192,18 @@ def test_admin_view_project_post(client, request_users):
 
 
 @pytest.mark.django_db
-def test_admin_view_project_add_tp(project0, client, admin):
-
+def test_admin_view_project_add_tp(project_foo, english, client, admin):
+    assert project_foo.treestyle != 'pootle_fs'
     user = admin
 
     new_language = LanguageDBFactory()
+    TranslationProjectFactory(language=english, project=project_foo)
 
     client.login(
         username=user.username,
         password=TEST_USERS["admin"]["password"])
 
-    get_response = _admin_view_get(client, project0)
+    get_response = _admin_view_get(client, project_foo)
     post_data = {}
     formset = get_response.context["formset"]
     forms = formset.forms + formset.extra_forms + [formset.management_form]
@@ -213,14 +215,28 @@ def test_admin_view_project_add_tp(project0, client, admin):
                 or form.initial.get(field, ""))
 
     post_data["%s-language" % formset.extra_forms[0].prefix] = new_language.id
-    post_data["%s-project" % formset.extra_forms[0].prefix] = project0.id
+    post_data["%s-project" % formset.extra_forms[0].prefix] = project_foo.id
 
-    response = _admin_view_post(client, project0, **post_data)
+    response = _admin_view_post(client, project_foo, **post_data)
 
-    new_tp = TranslationProject.objects.get(language=new_language, project=project0)
+    new_tp = TranslationProject.objects.get(language=new_language,
+                                            project=project_foo)
     assert new_tp in response.context["objects"].object_list
 
-    _test_admin_view(response, project0)
+    _test_admin_view(response, project_foo)
+
+
+@pytest.mark.django_db
+def test_admin_view_project_add_pootle_fs_tp(project0, client, admin):
+    assert project0.treestyle == 'pootle_fs'
+
+    client.login(
+        username=admin.username,
+        password=TEST_USERS["admin"]["password"])
+
+    get_response = _admin_view_get(client, project0)
+    formset = get_response.context["formset"]
+    assert len(formset.extra_forms) == 0
 
 
 @pytest.mark.django_db
