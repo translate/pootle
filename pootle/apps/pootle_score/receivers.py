@@ -10,14 +10,34 @@ from django.contrib.auth import get_user_model
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from pootle.core.delegate import score_updater
-from pootle.core.signals import update_scores
+from pootle.core.delegate import crud, score_updater
+from pootle.core.signals import create, delete, update_scores
 from pootle_statistics.models import Submission
 from pootle_store.models import Store, Suggestion
 from pootle_translationproject.models import TranslationProject
 
 
-from .models import UserStoreScore
+from .models import UserStoreScore, UserTPScore
+
+
+@receiver(delete, sender=UserStoreScore)
+def handle_store_score_delete(**kwargs):
+    crud.get(UserStoreScore).delete(**kwargs)
+
+
+@receiver(create, sender=UserStoreScore)
+def handle_user_store_score_create(**kwargs):
+    crud.get(UserStoreScore).create(**kwargs)
+
+
+@receiver(delete, sender=UserTPScore)
+def handle_user_tp_score_delete(**kwargs):
+    crud.get(UserTPScore).delete(**kwargs)
+
+
+@receiver(create, sender=UserTPScore)
+def handle_user_tp_score_create(**kwargs):
+    crud.get(UserTPScore).create(**kwargs)
 
 
 @receiver(update_scores, sender=get_user_model())
