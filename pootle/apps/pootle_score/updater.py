@@ -14,10 +14,19 @@ from django.utils.functional import cached_property
 
 from bulk_update.helper import bulk_update
 
-from pootle.core.delegate import log, event_score
-from pootle.core.signals import update_scores
+from pootle.core.bulk import BulkCRUD
+from pootle.core.delegate import event_score, log
+from pootle.core.signals import create, delete, update_scores
 from pootle_log.utils import LogEvent
 from pootle_score.models import UserStoreScore, UserTPScore
+
+
+class UserStoreScoreCRUD(BulkCRUD):
+    model = UserStoreScore
+
+
+class UserTPScoreCRUD(BulkCRUD):
+    model = UserTPScore
 
 
 class ScoreUpdater(object):
@@ -35,8 +44,9 @@ class ScoreUpdater(object):
         return event_score.gather(self.event_class)
 
     def delete_scores(self, scores):
-        self.find_existing_scores(
-            scores).select_for_update().delete()
+        delete.send(
+            self.score_model,
+            objects=self.find_existing_scores(scores))
 
     def filter_users(self, qs, users):
         field = "user_id"
@@ -70,7 +80,11 @@ class ScoreUpdater(object):
                 **user_scores)
 
     def create_scores(self, scores):
-        return self.score_model.objects.bulk_create(self.new_scores(scores))
+        created = list(self.new_scores(scores))
+        create.send(
+            self.score_model,
+            objects=created)
+        return created
 
     def set_scores(self, calculated_scores):
         self.delete_scores(calculated_scores)
