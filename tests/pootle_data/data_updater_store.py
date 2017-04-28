@@ -16,9 +16,11 @@ from translate.filters.decorators import Category
 
 from django.db.models import Max
 
-from pootle.core.delegate import review
+from pootle.core.delegate import crud, review
 from pootle.core.signals import update_checks, update_data
-from pootle_data.store_data import StoreDataTool, StoreDataUpdater
+from pootle_data.models import StoreChecksData
+from pootle_data.store_data import (
+    StoreChecksDataCRUD, StoreDataTool, StoreDataUpdater)
 from pootle_statistics.models import Submission
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from pootle_store.models import Suggestion
@@ -35,6 +37,13 @@ def _calc_word_counts(units):
         elif unit.state == FUZZY:
             expected["fuzzy_words"] += unit.unit_source.source_wordcount
     return expected
+
+
+@pytest.mark.django_db
+def test_data_store_checks_data_crud():
+    store_data_crud = crud.get(StoreChecksData)
+    assert isinstance(store_data_crud, StoreChecksDataCRUD)
+    assert store_data_crud.qs.count() == StoreChecksData.objects.count()
 
 
 @pytest.mark.django_db
