@@ -34,12 +34,7 @@ def handle_tp_data_obj_create(**kwargs):
 
 @receiver(update, sender=StoreData)
 def handle_store_data_obj_update(**kwargs):
-    tps = set(
-        storedata.store.translation_project
-        for storedata
-        in crud.get(StoreData).update(**kwargs))
-    for tp in tps:
-        update_data.send(tp.__class__, instance=tp)
+    crud.get(StoreData).update(**kwargs)
 
 
 @receiver(update, sender=TPData)
@@ -103,7 +98,7 @@ def handle_tp_data_update(**kwargs):
 @receiver(post_save, sender=Store)
 def handle_store_data_create(sender, instance, created, **kwargs):
     if created:
-        data_tool.get(Store)(instance).update()
+        data_updater.get(instance.data_tool.__class__)(instance.data_tool).update()
 
 
 @receiver(post_save, sender=TranslationProject)

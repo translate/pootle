@@ -12,6 +12,7 @@ from django.db import models
 from django.db.models import Case, Count, Max, Q, When
 
 from pootle.core.bulk import BulkCRUD
+from pootle.core.signals import update_data, update_revisions
 from pootle_statistics.models import Submission
 from pootle_store.constants import FUZZY, OBSOLETE, TRANSLATED
 from pootle_store.models import QualityCheck
@@ -23,14 +24,31 @@ from .utils import DataTool, DataUpdater
 class StoreDataCRUD(BulkCRUD):
     model = StoreData
 
+    def update_tps_and_revisions(self, stores):
+        tps = {}
+        for store in stores:
+            if store.translation_project_id not in tps:
+                tps[store.translation_project_id] = store.translation_project
+            update_revisions.send(
+                store.__class__,
+                instance=store,
+                keys=["stats", "checks"])
+        for tp in tps.values():
+            update_data.send(
+                tp.__class__,
+                instance=tp)
+
+    def post_create(self, instance=None, objects=None, pre=None, result=None):
+        if objects:
+            self.update_tps_and_revisions(set(result.store for data in objects))
+
+    def post_update(self, instance=None, objects=None, pre=None, result=None):
+        if objects:
+            self.update_tps_and_revisions(set(data.store for data in objects))
+
 
 class StoreChecksDataCRUD(BulkCRUD):
     model = StoreChecksData
-
-    @property
-    def qs(self):
-        return self.model.objects.select_related(
-            "store__translation_project")
 
 
 class StoreDataTool(DataTool):
