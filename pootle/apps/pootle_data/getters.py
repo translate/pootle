@@ -6,7 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from pootle.core.delegate import data_tool, data_updater
+from pootle.core.delegate import crud, data_tool, data_updater
 from pootle.core.plugin import getter
 from pootle_app.models import Directory
 from pootle_language.models import Language
@@ -16,10 +16,25 @@ from pootle_translationproject.models import TranslationProject
 
 from .directory_data import DirectoryDataTool
 from .language_data import LanguageDataTool
+from .models import StoreChecksData, StoreData, TPChecksData, TPData
 from .project_data import (
     ProjectDataTool, ProjectResourceDataTool, ProjectSetDataTool)
-from .store_data import StoreDataTool, StoreDataUpdater
-from .tp_data import TPDataTool, TPDataUpdater, TPUpdater
+from .store_data import (
+    StoreChecksDataCRUD, StoreDataCRUD, StoreDataTool, StoreDataUpdater)
+from .tp_data import (
+    TPChecksDataCRUD, TPDataCRUD, TPDataTool, TPDataUpdater, TPUpdater)
+
+
+CRUD = {
+    StoreData: StoreDataCRUD(),
+    StoreChecksData: StoreChecksDataCRUD(),
+    TPData: TPDataCRUD(),
+    TPChecksData: TPChecksDataCRUD()}
+
+
+@getter(crud, sender=(StoreChecksData, StoreData, TPChecksData, TPData))
+def data_crud_getter(**kwargs):
+    return CRUD[kwargs["sender"]]
 
 
 @getter(data_tool, sender=Store)

@@ -249,9 +249,8 @@ class TPTool(object):
         self.check_tp(source)
         self.check_tp(target)
 
-        with update_tp_after(target):
-            self.update_children(
-                source.directory, target.directory)
+        self.update_children(
+            source.directory, target.directory)
 
     def update_store(self, source, target):
         """Update a target Store from a given source Store"""

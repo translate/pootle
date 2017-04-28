@@ -9,12 +9,24 @@
 from django.db.models import Max, Sum
 from django.db.models.functions import Coalesce
 
+from pootle.core.bulk import BulkCRUD
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import revision
 from pootle.core.signals import update_data
 from pootle_data.models import StoreChecksData, StoreData
 
+from .models import TPChecksData, TPData
 from .utils import DataUpdater, RelatedStoresDataTool
+
+
+class TPDataCRUD(BulkCRUD):
+
+    model = TPData
+
+
+class TPChecksDataCRUD(BulkCRUD):
+
+    model = TPChecksData
 
 
 class TPDataUpdater(DataUpdater):

@@ -10,9 +10,11 @@ from contextlib import contextmanager
 
 from django.dispatch import receiver
 
-from pootle.core.contextmanagers import keep_data
+from pootle.core.contextmanagers import bulk_operations, keep_data
 from pootle.core.signals import (
     update_checks, update_data, update_revisions, update_scores)
+from pootle_data.models import StoreData
+
 
 from .models import Unit
 
@@ -39,10 +41,11 @@ def _callback_handler(sender, updated, **kwargs):
                 units=updated.checks,
                 **kwargs)
         if updated.data:
-            update_data.send(
-                sender.__class__,
-                instance=sender,
-                **kwargs)
+            with bulk_operations(StoreData):
+                update_data.send(
+                    sender.__class__,
+                    instance=sender,
+                    **kwargs)
         if updated.scores:
             update_scores.send(
                 sender.__class__,
