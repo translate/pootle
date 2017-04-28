@@ -36,6 +36,7 @@ def log_new_queries(queries, debug_logger=None):
     for query in new_queries:
         debug_logger.debug(query["time"])
         debug_logger.debug("\t%s", query["sql"])
+    debug_logger.debug("total db calls: %s", len(new_queries))
 
 
 @contextmanager
