@@ -37,11 +37,10 @@ def handle_store_data_update(**kwargs):
 @receiver(update_data, sender=TranslationProject)
 def handle_tp_data_update(**kwargs):
     tp = kwargs["instance"]
-    object_list = kwargs.get("object_list")
-    if object_list is not None:
+    if "object_list" in kwargs:
         data_updater.get(TranslationProject)(
             tp,
-            object_list=kwargs.get("object_list")).update()
+            object_list=kwargs["object_list"]).update()
     else:
         data_tool.get(TranslationProject)(tp).update()
 
