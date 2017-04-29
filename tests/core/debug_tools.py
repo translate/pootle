@@ -54,14 +54,16 @@ def test_debug_sql_logger(caplog, settings):
     queries = len(connection.queries)
 
     log_new_queries(queries)
-    assert caplog.records == []
+    assert len(caplog.records) == 1
+    assert caplog.records[0].message == "total db calls: 0"
 
     # trigger some sql and log
     Project.objects.count()
     log_new_queries(queries)
 
-    timing = caplog.records[0].message
-    sql = caplog.records[1].message
+    timing = caplog.records[1].message
+    sql = caplog.records[2].message
+    assert caplog.records[3].message == "total db calls: 1"
 
     # match the timing, sql
     assert re.match("^\d+?\.\d+?$", timing)
@@ -75,7 +77,8 @@ def test_debug_sql_contextmanager(caplog, settings):
 
     with debug_sql():
         pass
-    assert caplog.records == []
+    assert len(caplog.records) == 1
+    assert caplog.records[0].message == "total db calls: 0"
 
     # should work even when debug is False
     settings.DEBUG = False
@@ -84,8 +87,9 @@ def test_debug_sql_contextmanager(caplog, settings):
     with debug_sql():
         Project.objects.count()
 
-    timing = caplog.records[0].message
-    sql = caplog.records[1].message
+    timing = caplog.records[1].message
+    sql = caplog.records[2].message
+    assert caplog.records[3].message == "total db calls: 1"
 
     # match the timing, sql
     assert re.match("^\d+?\.\d+?$", timing)
