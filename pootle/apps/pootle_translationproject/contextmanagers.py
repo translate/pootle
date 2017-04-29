@@ -12,7 +12,7 @@ from django.dispatch import receiver
 
 from pootle.core.contextmanagers import keep_data
 from pootle.core.signals import (
-    update_checks, update_data, update_revisions)
+    update_checks, update_data, update_revisions, update_scores)
 from pootle_app.models import Directory
 from pootle_store.models import Store
 
@@ -23,6 +23,8 @@ class Updated(object):
     tp_data = False
     dirs = set()
     revisions = set()
+    score_stores = {}
+    score_users = None
 
 
 def _callback_handler(sender, updated, **kwargs):
@@ -59,11 +61,21 @@ def _callback_handler(sender, updated, **kwargs):
                     update_data.send(
                         Store,
                         instance=store)
+            if updated.score_stores:
+                for store in updated.score_stores.values():
+                    update_scores.send(
+                        store.__class__,
+                        instance=store,
+                        users=updated.score_users)
+        if updated.score_stores:
+            update_scores.send(
+                sender.__class__,
+                instance=sender,
+                users=updated.score_users)
         if updated.tp_data:
             update_data.send(
                 sender.__class__,
                 instance=sender)
-
     if updated.revisions:
         update_revisions.send(
             Directory,
@@ -85,6 +97,15 @@ def update_tp_after(sender, **kwargs):
         def update_check_handler(**kwargs):
             # this could be optimized by only checking units
             updated.checks.add(kwargs["instance"])
+
+        @receiver(update_scores, sender=Store)
+        def update_scores_handler(**kwargs):
+            if "instance" in kwargs:
+                updated.score_stores[kwargs["instance"].id] = kwargs["instance"]
+            if "users" in kwargs:
+                updated.score_users = (
+                    (updated.score_users or set())
+                    | set(kwargs["users"]))
         yield
     kwargs.get("callback", _callback_handler)(
         sender, updated, **kwargs)
