@@ -12,25 +12,60 @@ from django.contrib.auth import get_user_model
 from django.db.models import Sum
 from django.utils.functional import cached_property
 
-from bulk_update.helper import bulk_update
-
 from pootle.core.bulk import BulkCRUD
-from pootle.core.delegate import event_score, log
-from pootle.core.signals import create, delete, update_scores
+from pootle.core.contextmanagers import bulk_operations, keep_data
+from pootle.core.delegate import event_score, log, score_updater
+from pootle.core.signals import create, update, update_scores
 from pootle_log.utils import LogEvent
 from pootle_score.models import UserStoreScore, UserTPScore
+from pootle_translationproject.models import TranslationProject
 
 
-class UserStoreScoreCRUD(BulkCRUD):
+class UserRelatedScoreCRUD(BulkCRUD):
+
+    def post_create(self, **kwargs):
+        if "objects" in kwargs and kwargs["objects"] is not None:
+            self.update_scores(kwargs["objects"])
+
+    def post_update(self, **kwargs):
+        if "objects" in kwargs and kwargs["objects"] is not None:
+            self.update_scores(kwargs["objects"])
+
+
+class UserStoreScoreCRUD(UserRelatedScoreCRUD):
     model = UserStoreScore
 
+    def update_scores(self, objects):
+        users = set()
+        stores = {}
+        tps = {}
+        for score in objects:
+            users.add(score.user_id)
+            if score.store_id not in stores:
+                stores[score.store_id] = score.store
+        for store in stores.values():
+            if store.translation_project_id not in tps:
+                tps[store.translation_project_id] = store.translation_project
+                tp = store.translation_project
+                update_scores.send(
+                    tp.__class__,
+                    instance=tp,
+                    stores=stores.values(),
+                    users=users)
 
-class UserTPScoreCRUD(BulkCRUD):
+
+class UserTPScoreCRUD(UserRelatedScoreCRUD):
     model = UserTPScore
+
+    def update_scores(self, objects):
+        update_scores.send(
+            get_user_model(),
+            users=set(score.user_id for score in objects))
 
 
 class ScoreUpdater(object):
     event_class = LogEvent
+    related_object = None
 
     def __init__(self, context, *args, **kwargs):
         self.context = context
@@ -43,10 +78,40 @@ class ScoreUpdater(object):
     def scoring(self):
         return event_score.gather(self.event_class)
 
-    def delete_scores(self, scores):
-        delete.send(
-            self.score_model,
-            objects=self.find_existing_scores(scores))
+    def set_scores(self, calculated_scores, existing=None):
+        calculated_scores = list(self.iterate_scores(calculated_scores))
+        score_dict = {
+            (score[0], score[1]): score[2]
+            for score
+            in calculated_scores}
+        updates = {}
+        if existing:
+            scores = existing
+        else:
+            scores = self.find_existing_scores(calculated_scores) or []
+        for score in scores:
+            id, date, user, score, reviewed, suggested, translated = score
+            newscore = score_dict.get((date, user), None)
+            if newscore is None:
+                # delete ?
+                continue
+            oldscore = dict(
+                score=score,
+                reviewed=reviewed,
+                translated=translated,
+                suggested=suggested)
+            for k in ["score", "suggested", "reviewed", "translated"]:
+                _newscore = round(newscore.get(k, 0), 2)
+                if round(oldscore[k], 2) != _newscore:
+                    updates[id] = updates.get(id, {})
+                    updates[id][k] = _newscore
+            del score_dict[(date, user)]
+        if updates:
+            update.send(
+                self.score_model,
+                updates=updates)
+        if score_dict:
+            self.create_scores(score_dict)
 
     def filter_users(self, qs, users):
         field = "user_id"
@@ -58,26 +123,37 @@ class ScoreUpdater(object):
             else qs.filter(**{"%s__in" % field: users}))
 
     def find_existing_scores(self, scores):
+        found = False
         existing_scores = self.score_model.objects.none()
-        score_iterator = self.iterate_scores(scores)
-        for timestamp, user, user_scores in score_iterator:
+        score_qs = self.score_model.objects.filter(
+            **{self.related_field: self.context.pk})
+        for timestamp, user, user_scores in scores:
+            found = True
             existing_scores = (
                 existing_scores
-                | self.score_model.objects.filter(
+                | score_qs.filter(
                     user_id=user,
-                    date=timestamp,
-                    **{self.related_field: self.context.pk}))
-        return existing_scores
+                    date=timestamp))
+        if not found:
+            return
+        return existing_scores.values_list(
+            "id",
+            "date",
+            "user_id",
+            "score",
+            "reviewed",
+            "suggested",
+            "translated").iterator()
 
     def new_scores(self, scores):
-        score_iterator = self.iterate_scores(scores)
-        for timestamp, user, user_scores in score_iterator:
-            user_scores.update(
-                {self.related_field: self.context.pk})
-            yield self.score_model(
+        for (timestamp, user), user_scores in scores.items():
+            created = self.score_model(
                 date=timestamp,
                 user_id=user,
                 **user_scores)
+            if self.related_object:
+                setattr(created, self.related_object, self.context)
+            yield created
 
     def create_scores(self, scores):
         created = list(self.new_scores(scores))
@@ -86,17 +162,49 @@ class ScoreUpdater(object):
             objects=created)
         return created
 
-    def set_scores(self, calculated_scores):
-        self.delete_scores(calculated_scores)
-        return self.create_scores(calculated_scores)
+    def update(self, users=None, existing=None):
+        return self.set_scores(self.calculate(users=users), existing=existing)
 
-    def update(self, users=None):
-        return self.set_scores(self.calculate(users=users))
+    def get_tp_scores(self):
+        tp_scores = self.tp_score_model.objects.order_by("tp_id").values_list(
+            "tp_id",
+            "id",
+            "date",
+            "user_id",
+            "score",
+            "reviewed",
+            "suggested",
+            "translated")
+        scores = {}
+        for tp_score in tp_scores.iterator():
+            tp = tp_score[0]
+            scores[tp] = scores.get(tp, [])
+            scores[tp].append(tp_score[1:])
+        return scores
+
+    def get_store_scores(self, tp):
+        store_scores = self.store_score_model.objects.filter(
+            store__translation_project_id=tp.id).order_by("store_id").values_list(
+                "store_id",
+                "id",
+                "date",
+                "user_id",
+                "score",
+                "reviewed",
+                "suggested",
+                "translated")
+        scores = {}
+        for store_score in store_scores.iterator():
+            store = store_score[0]
+            scores[store] = scores.get(store, [])
+            scores[store].append(store_score[1:])
+        return scores
 
 
 class StoreScoreUpdater(ScoreUpdater):
     score_model = UserStoreScore
     related_field = "store_id"
+    related_object = "store"
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.get('user')
@@ -136,20 +244,13 @@ class StoreScoreUpdater(ScoreUpdater):
             for user, user_scores in date_scores.items():
                 yield timestamp, user, user_scores
 
-    def update(self, users=None):
-        updated = super(StoreScoreUpdater, self).update(users=users)
-        if updated:
-            update_scores.send(
-                self.store.translation_project.__class__,
-                instance=self.store.translation_project,
-                users=set([x.user_id for x in updated]))
-        return updated
-
 
 class TPScoreUpdater(ScoreUpdater):
     related_field = "tp_id"
     score_model = UserTPScore
     store_score_model = UserStoreScore
+    user_score_model = get_user_model()
+    related_object = "tp"
 
     @property
     def tp(self):
@@ -182,13 +283,19 @@ class TPScoreUpdater(ScoreUpdater):
                     reviewed=Sum("reviewed"),
                     suggested=Sum("suggested"))
 
-    def update(self, users=None):
-        updated = super(TPScoreUpdater, self).update(users=users)
-        if updated:
-            update_scores.send(
-                get_user_model(),
-                users=set([x.user_id for x in updated]))
-        return updated
+    def refresh_scores(self, users=None, existing=None, existing_tps=None):
+        suppress_tp_scores = keep_data(
+            signals=(update_scores, ),
+            suppress=(TranslationProject, ))
+        existing = existing or self.get_store_scores(self.tp)
+        with bulk_operations(UserTPScore):
+            with suppress_tp_scores:
+                with bulk_operations(UserStoreScore):
+                    for store in self.tp.stores.all():
+                        score_updater.get(store.__class__)(store).update(
+                            users=users,
+                            existing=existing.get(store.id))
+            self.update(users=users, existing=existing_tps)
 
 
 class UserScoreUpdater(ScoreUpdater):
@@ -205,20 +312,13 @@ class UserScoreUpdater(ScoreUpdater):
             kwargs.get("users")).order_by("user").values_list(
                 "user").annotate(score=Sum("score"))
 
-    def set_scores(self, calculated_scores):
-        calculated_scores = dict(calculated_scores)
-        if len(calculated_scores) == 1:
-            self.score_model.objects.filter(
-                id=calculated_scores.keys()[0]).update(
-                    score=calculated_scores.values()[0])
-            return
-        users = self.score_model.objects.filter(
-            id__in=calculated_scores.keys()).in_bulk()
-        _users = []
-        for pk, user in users.items():
-            user.score = calculated_scores[pk]
-            _users.append(user)
-        bulk_update(_users, update_fields=["score"])
+    def set_scores(self, calculated_scores, existing=None):
+        update.send(
+            self.score_model,
+            updates={
+                user: dict(score=score)
+                for user, score
+                in calculated_scores.iterator()})
 
     def clear(self):
         tp_scores = self.tp_score_model.objects.all()
@@ -231,3 +331,17 @@ class UserScoreUpdater(ScoreUpdater):
         tp_scores.delete()
         store_scores.delete()
         scores.update(score=0)
+
+    def refresh_scores(self, users=None, **kwargs):
+        suppress_user_scores = keep_data(
+            signals=(update_scores, ),
+            suppress=(get_user_model(), ))
+        tp_scores = self.get_tp_scores()
+
+        with bulk_operations(get_user_model()):
+            with suppress_user_scores:
+                for tp in TranslationProject.objects.all():
+                    score_updater.get(tp.__class__)(tp).refresh_scores(
+                        users=users,
+                        existing_tps=tp_scores.get(tp.id))
+                self.update(users=users)
