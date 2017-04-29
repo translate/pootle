@@ -11,12 +11,8 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
-from django.dispatch import receiver
 
-from pootle.core.contextmanagers import keep_data
 from pootle.core.delegate import score_updater
-from pootle.core.signals import update_scores
-from pootle_translationproject.models import TranslationProject
 
 
 class Command(BaseCommand):
@@ -46,25 +42,4 @@ class Command(BaseCommand):
         if options["reset"]:
             score_updater.get(get_user_model())(users=users).clear()
             return
-
-        class Update:
-            users = set()
-
-        for tp in TranslationProject.objects.all():
-            update = Update()
-            with keep_data(suppress=(TranslationProject, )):
-
-                @receiver(update_scores, sender=TranslationProject)
-                def handle_update_tp_scores(**kwargs):
-                    update.users = update.users | kwargs.get("users", set())
-
-                for store in tp.stores.all():
-                    update_scores.send(
-                        store.__class__,
-                        instance=store,
-                        users=users)
-            if update.users:
-                update_scores.send(
-                    tp.__class__,
-                    instance=tp,
-                    users=update.users)
+        score_updater.get(get_user_model())().refresh_scores(users)
