@@ -43,8 +43,7 @@ def handle_user_tp_score_create(**kwargs):
 @receiver(update_scores, sender=get_user_model())
 def update_user_scores_handler(**kwargs):
     users = kwargs.get("users")
-    score_updater.get(get_user_model())(
-        users=users).update()
+    score_updater.get(get_user_model())().update(users=users)
 
 
 @receiver(update_scores, sender=TranslationProject)

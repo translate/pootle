@@ -202,7 +202,7 @@ class UserScoreUpdater(ScoreUpdater):
     def calculate(self, start=date.today(), end=None, **kwargs):
         return self.filter_users(
             self.tp_score_model.objects,
-            self.users).order_by("user").values_list(
+            kwargs.get("users")).order_by("user").values_list(
                 "user").annotate(score=Sum("score"))
 
     def set_scores(self, calculated_scores):
