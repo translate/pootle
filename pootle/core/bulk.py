@@ -36,10 +36,11 @@ class BulkCRUD(object):
     def post_create(self, instance=None, objects=None, pre=None, result=None):
         pass
 
-    def pre_update(self, instance=None, objects=None):
+    def pre_update(self, instance=None, objects=None, values=None):
         pass
 
-    def post_update(self, instance=None, objects=None, pre=None, result=None):
+    def post_update(self, instance=None, objects=None, pre=None, result=None,
+                    values=None):
         pass
 
     def bulk_update(self, objects, fields=None):
@@ -65,13 +66,14 @@ class BulkCRUD(object):
             self.post_delete(instance=kwargs["instance"], pre=pre, result=result)
         if "objects" in kwargs:
             pre = self.pre_delete(objects=kwargs["objects"])
-            result = kwargs["objects"].delete()
+            result = kwargs["objects"].select_for_update().delete()
             self.post_delete(objects=kwargs["objects"], pre=pre, result=result)
 
     def update_object(self, obj, update):
         for k, v in update.items():
-            setattr(obj, k, v)
-            yield k
+            if not getattr(obj, k) == v:
+                setattr(obj, k, v)
+                yield k
 
     def update_objects(self, to_update, updates, objects):
         if not updates:
@@ -102,32 +104,69 @@ class BulkCRUD(object):
                     kwargs["objects"],
                     kwargs.get("updates"),
                     objects))
-        return objects, fields
+        return objects, (fields or None)
 
-    def update_object_dict(self, objects, updates):
+    def update_common_objects(self, ids, values):
+        objects = self.model.objects.filter(id__in=ids)
+        pre = self.pre_update(objects=objects, values=values)
+        result = objects.select_for_update().update(**values)
+        self.post_update(
+            objects=objects, pre=pre, result=result, values=values)
+        return result
+
+    def all_updates_common(self, updates):
+        values = {}
+        first = True
+        for item, _update in updates.items():
+            if not first and len(values) != len(_update):
+                return False
+            for k, v in _update.items():
+                if first:
+                    values[k] = v
+                    continue
+                if k not in values or values[k] != v:
+                    return False
+            first = False
+        return values
+
+    def update_object_dict(self, objects, updates, fields):
+        extra_fields = None
         to_fetch = self.objects_to_fetch(objects, updates)
-        if to_fetch is None:
+        if to_fetch is None and not objects:
             return set()
-        return set(
-            self.update_objects(
-                to_fetch.iterator(),
-                updates,
-                objects))
+        if not objects:
+            common_updates = self.all_updates_common(updates)
+            if common_updates:
+                return self.update_common_objects(
+                    updates.keys(),
+                    common_updates)
+        if to_fetch is not None:
+            extra_fields = set(
+                self.update_objects(
+                    to_fetch.iterator(),
+                    updates,
+                    objects))
+        if objects:
+            pre = self.pre_update(objects=objects)
+            if fields is not None:
+                fields = list(
+                    fields | extra_fields
+                    if extra_fields is not None
+                    else fields)
+            result = self.bulk_update(
+                objects,
+                fields=fields)
+            self.post_update(objects=objects, pre=pre, result=result)
+        return result
+
+    def update_object_instance(self, instance):
+        pre = self.pre_update(instance=instance)
+        result = instance.save()
+        self.post_update(instance=instance, pre=pre, result=result)
+        return result
 
     def update(self, **kwargs):
         if kwargs.get("instance") is not None:
-            pre = self.pre_update(instance=kwargs["instance"])
-            result = kwargs["instance"].save()
-            self.post_update(instance=kwargs["instance"], pre=pre, result=result)
+            return self.update_object_instance(kwargs["instance"])
         objects, fields = self.update_object_list(**kwargs)
-        fields = (
-            (fields or set())
-            | self.update_object_dict(
-                objects, kwargs.get("updates")))
-        if objects:
-            pre = self.pre_update(objects=objects)
-            result = self.bulk_update(
-                objects,
-                fields=list(fields))
-            self.post_update(objects=objects, pre=pre, result=result)
-        return objects
+        return self.update_object_dict(objects, kwargs.get("updates"), fields)
