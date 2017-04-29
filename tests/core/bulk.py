@@ -159,15 +159,15 @@ def test_bulk_crud_update_methods(store0):
     assert objects == [unit0, unit1, unit2]
 
     objects = [unit0, unit1]
-    fields = unit_crud.update_object_dict(objects, updates)
+    fields = unit_crud.update_object_dict(objects, updates, set())
     assert objects == [unit0, unit1]
-    assert fields == set()
+    assert fields is None
     updates = {
         unit0.id: dict(target_f="FOO"),
         unit2.id: dict(developer_comment="Are we done yet?")}
-    fields = unit_crud.update_object_dict(objects, updates)
+    result = unit_crud.update_object_dict(objects, updates, set())
     assert objects == [unit0, unit1, unit2]
-    assert fields == set(["developer_comment"])
+    assert result is None
     # unit0 not updated
     assert unit0.target_f == "BAR"
     assert objects[2].developer_comment == "Are we done yet?"
@@ -181,53 +181,92 @@ def test_bulk_crud_update(store0):
         model = Unit
         kwargs = None
 
-        def update_object_list(self, **kwargs):
-            self.kwargs = kwargs
-            return ["objects"], set(["fields"])
-
-        def update_object_dict(self, objects, updates):
-            objects += ["more objects"]
-            return updates or set()
+        def update_common_objects(self, ids, values):
+            self.ids = ids
+            self.values = values
+            return "Called common"
 
         def bulk_update(self, objects, fields):
-            objects += ["and more objects"]
-            fields += ["and more fields"]
             self.objects = objects
             self.fields = fields
+            return "Called bulk"
 
     unit_crud = ExampleBulkCRUD()
     result = unit_crud.update(
         **dict(
-            updates=set(["more fields"]),
-            foo=1, bar=2))
-    assert (
-        result
-        == unit_crud.objects
-        == ['objects', 'more objects', 'and more objects'])
-    assert (
-        sorted(unit_crud.fields)
-        == ['and more fields', 'fields', 'more fields'])
-    assert (
-        unit_crud.kwargs
-        == dict(
-            updates=set(["more fields"]),
-            foo=1,
-            bar=2))
+            updates={unit1.id: dict(foo=1, bar=2)}))
+    assert result == "Called common"
+    assert unit_crud.ids == [unit1.id]
+    assert unit_crud.values == dict(foo=1, bar=2)
 
     unit_crud = ExampleBulkCRUD()
     result = unit_crud.update(objects=[unit0, unit1, unit2])
-    assert (
-        result
-        == unit_crud.objects
-        == ['objects', 'more objects', 'and more objects'])
-    assert (
-        sorted(unit_crud.fields)
-        == ['and more fields', 'fields'])
-    assert (
-        unit_crud.kwargs
-        == dict(objects=[unit0, unit1, unit2]))
+    assert result == "Called bulk"
+    assert unit_crud.objects == [unit0, unit1, unit2]
+    assert unit_crud.fields is None
 
     unit0.target = "THE END"
     unit_crud.update(instance=unit0)
     unit0.refresh_from_db()
     assert unit0.target == "THE END"
+
+
+@pytest.mark.django_db
+def test_bulk_crud_update_common(store0):
+    unit0, unit1, unit2 = store0.units[:3]
+
+    class ExampleBulkCRUD(BulkCRUD):
+        model = Unit
+        kwargs = None
+
+    unit_crud = ExampleBulkCRUD()
+
+    common_dict = dict(foo="FOO", bar="BAR")
+    updates = {
+        i: common_dict.copy()
+        for i in range(0, 20)}
+    result = unit_crud.all_updates_common(updates=updates)
+    assert result == common_dict
+    updates[19]["foo"] = "NOTFOO"
+    result = unit_crud.all_updates_common(updates=updates)
+    assert not result
+    updates[19]["foo"] = "FOO"
+    updates[20] = common_dict.copy()
+    result = unit_crud.all_updates_common(updates=updates)
+    assert result == common_dict
+    del updates[20]["bar"]
+    result = unit_crud.all_updates_common(updates=updates)
+    assert not result
+    updates[20]["bar"] = "BAR"
+    result = unit_crud.all_updates_common(updates=updates)
+    assert result == common_dict
+    del updates[20]["bar"]
+    updates[20]["baz"] = "BAR"
+    result = unit_crud.all_updates_common(updates=updates)
+    assert not result
+    result = unit_crud.update_common_objects(
+        [unit0.id, unit1.id],
+        values=dict(target_f="FOO TARGET", context="FOO CONTEXT"))
+    unit0.refresh_from_db()
+    unit1.refresh_from_db()
+    unit2.refresh_from_db()
+    for unit in [unit0, unit1]:
+        assert unit.target == "FOO TARGET"
+        assert unit.context == "FOO CONTEXT"
+    assert unit2.target != "FOO TARGET"
+    assert unit2.context != "FOO CONTEXT"
+    assert result == 2
+
+    new_values = dict(target_f="BAR TARGET", context="BAR CONTEXT")
+    result = unit_crud.update(
+        updates={
+            unit.id: new_values.copy()
+            for unit
+            in [unit0, unit1, unit2]})
+    unit0.refresh_from_db()
+    unit1.refresh_from_db()
+    unit2.refresh_from_db()
+    for unit in [unit0, unit1, unit2]:
+        assert unit.target == "BAR TARGET"
+        assert unit.context == "BAR CONTEXT"
+    assert result == 3
