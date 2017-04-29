@@ -157,10 +157,14 @@ def test_bulk_crud_update_methods(store0):
         sorted(fields)
         == ["context", "field0", "field1", "target_f"])
     assert objects == [unit0, unit1, unit2]
+
+    objects = [unit0, unit1]
+    fields = unit_crud.update_object_dict(objects, updates)
+    assert objects == [unit0, unit1]
+    assert fields == set()
     updates = {
         unit0.id: dict(target_f="FOO"),
         unit2.id: dict(developer_comment="Are we done yet?")}
-    objects = [unit0, unit1]
     fields = unit_crud.update_object_dict(objects, updates)
     assert objects == [unit0, unit1, unit2]
     assert fields == set(["developer_comment"])
@@ -209,6 +213,19 @@ def test_bulk_crud_update(store0):
             updates=set(["more fields"]),
             foo=1,
             bar=2))
+
+    unit_crud = ExampleBulkCRUD()
+    result = unit_crud.update(objects=[unit0, unit1, unit2])
+    assert (
+        result
+        == unit_crud.objects
+        == ['objects', 'more objects', 'and more objects'])
+    assert (
+        sorted(unit_crud.fields)
+        == ['and more fields', 'fields'])
+    assert (
+        unit_crud.kwargs
+        == dict(objects=[unit0, unit1, unit2]))
 
     unit0.target = "THE END"
     unit_crud.update(instance=unit0)
