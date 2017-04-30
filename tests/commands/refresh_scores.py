@@ -53,6 +53,7 @@ def test_refresh_scores_recalculate_user(capfd, member, admin):
 def test_refresh_scores_reset_user(capfd, member, admin):
     """Set scores to zero for given users."""
     admin_score = round(admin.score, 2)
+    member_score = round(member.score, 2)
     call_command('refresh_scores', '--reset', '--user=member')
     out, err = capfd.readouterr()
     member.refresh_from_db()
@@ -61,6 +62,9 @@ def test_refresh_scores_reset_user(capfd, member, admin):
     assert member.scores.count() == 0
     assert member.store_scores.count() == 0
     assert admin_score == round(admin.score, 2)
+    call_command('refresh_scores', '--user=member')
+    member.refresh_from_db()
+    assert round(member.score, 2) == member_score
 
 
 @pytest.mark.cmd
