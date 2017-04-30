@@ -11,7 +11,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from pootle.core.delegate import crud, score_updater
-from pootle.core.signals import create, delete, update_scores
+from pootle.core.signals import create, update, update_scores
 from pootle_statistics.models import Submission
 from pootle_store.models import Store, Suggestion
 from pootle_translationproject.models import TranslationProject
@@ -20,9 +20,9 @@ from pootle_translationproject.models import TranslationProject
 from .models import UserStoreScore, UserTPScore
 
 
-@receiver(delete, sender=UserStoreScore)
-def handle_store_score_delete(**kwargs):
-    crud.get(UserStoreScore).delete(**kwargs)
+@receiver(update, sender=UserStoreScore)
+def handle_store_score_update(**kwargs):
+    crud.get(UserStoreScore).update(**kwargs)
 
 
 @receiver(create, sender=UserStoreScore)
@@ -30,9 +30,9 @@ def handle_user_store_score_create(**kwargs):
     crud.get(UserStoreScore).create(**kwargs)
 
 
-@receiver(delete, sender=UserTPScore)
-def handle_user_tp_score_delete(**kwargs):
-    crud.get(UserTPScore).delete(**kwargs)
+@receiver(update, sender=UserTPScore)
+def handle_user_tp_score_update(**kwargs):
+    crud.get(UserTPScore).update(**kwargs)
 
 
 @receiver(create, sender=UserTPScore)
