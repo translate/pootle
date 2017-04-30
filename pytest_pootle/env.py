@@ -337,42 +337,49 @@ class PootleTestEnv(object):
         from pytest_pootle.factories import (DirectoryFactory,
                                              ProjectDBFactory,
                                              TranslationProjectFactory)
-
+        from pootle.core.contextmanagers import keep_data
         from pootle_format.models import Format
         from pootle_language.models import Language
 
-        source_language = Language.objects.get(code="en")
-        project = ProjectDBFactory(code="disabled_project0",
-                                   fullname="Disabled Project 0",
-                                   source_language=source_language)
-        project.filetypes.add(Format.objects.get(name="po"))
-        project.disabled = True
-        project.save()
-        language = Language.objects.get(code="language0")
-        tp = TranslationProjectFactory(project=project, language=language)
-        tp_dir = tp.directory
-        tp_dir.obsolete = False
-        tp_dir.save()
-        self._add_stores(tp, n=(1, 1))
-        subdir0 = DirectoryFactory(name="subdir0", parent=tp.directory, tp=tp)
-        self._add_stores(tp, n=(1, 1), parent=subdir0)
+        with keep_data():
+            source_language = Language.objects.get(code="en")
+            project = ProjectDBFactory(code="disabled_project0",
+                                       fullname="Disabled Project 0",
+                                       source_language=source_language)
+            project.filetypes.add(Format.objects.get(name="po"))
+            project.disabled = True
+            project.save()
+            language = Language.objects.get(code="language0")
+            tp = TranslationProjectFactory(project=project, language=language)
+            tp_dir = tp.directory
+            tp_dir.obsolete = False
+            tp_dir.save()
+            self._add_stores(tp, n=(1, 1))
+            subdir0 = DirectoryFactory(name="subdir0", parent=tp.directory, tp=tp)
+            self._add_stores(tp, n=(1, 1), parent=subdir0)
 
     def setup_subdirs(self):
         from pytest_pootle.factories import DirectoryFactory
 
+        from pootle.core.contextmanagers import keep_data
         from pootle_translationproject.models import TranslationProject
 
-        for tp in TranslationProject.objects.all():
-            subdir0 = DirectoryFactory(name="subdir0", parent=tp.directory, tp=tp)
-            subdir1 = DirectoryFactory(name="subdir1", parent=subdir0, tp=tp)
-            self._add_stores(tp, n=(2, 1), parent=subdir0)
-            self._add_stores(tp, n=(1, 1), parent=subdir1)
+        with keep_data():
+            for tp in TranslationProject.objects.all():
+                subdir0 = DirectoryFactory(
+                    name="subdir0", parent=tp.directory, tp=tp)
+                subdir1 = DirectoryFactory(
+                    name="subdir1", parent=subdir0, tp=tp)
+                self._add_stores(tp, n=(2, 1), parent=subdir0)
+                self._add_stores(tp, n=(1, 1), parent=subdir1)
 
     def setup_submissions(self):
         from pootle_store.contextmanagers import update_store_after
         from pootle_statistics.models import SubmissionTypes
         from pootle_store.constants import UNTRANSLATED
         from pootle_store.models import Store, Unit, UnitChange
+
+        from django.contrib.auth import get_user_model
         from django.utils import timezone
 
         year_ago = timezone.now() - relativedelta(years=1)
@@ -381,6 +388,10 @@ class PootleTestEnv(object):
         stores = Store.objects.select_related(
             "translation_project__project",
             "translation_project__language")
+        User = get_user_model()
+        admin = User.objects.get(username="admin")
+        member = User.objects.get(username="member")
+        member2 = User.objects.get(username="member2")
 
         units = Unit.objects.filter(store__in=stores)
 
@@ -391,42 +402,48 @@ class PootleTestEnv(object):
 
         for store in stores.all():
             with update_store_after(store):
-                for unit in store.unit_set.all():
-                    unit.store = store
-                    self._add_submissions(unit, year_ago)
+                units = store.unit_set.select_related("change").all()
+                for unit in units:
+                    self._add_submissions(
+                        unit, year_ago, admin, member, member2)
 
     def setup_templates(self):
+        from pootle.core.contextmanagers import keep_data
         from pootle_project.models import Project
         from pytest_pootle.factories import (
             LanguageDBFactory, TranslationProjectFactory)
 
-        templates = LanguageDBFactory(code="templates")
+        with keep_data():
+            templates = LanguageDBFactory(code="templates")
 
-        for project in Project.objects.all():
-            # add a TP to the project for each language
-            tp = TranslationProjectFactory(project=project, language=templates)
-            # As there are no files on the FS we have to currently unobsolete
-            # the directory
-            tp_dir = tp.directory
-            tp_dir.obsolete = False
-            tp_dir.save()
-            self._add_template_stores(tp)
-
-    def setup_tps(self):
-        from pootle_project.models import Project
-        from pootle_language.models import Language
-        from pytest_pootle.factories import TranslationProjectFactory
-
-        for project in Project.objects.all():
-            for language in Language.objects.exclude(code="en"):
+            for project in Project.objects.all():
                 # add a TP to the project for each language
-                tp = TranslationProjectFactory(project=project, language=language)
+                tp = TranslationProjectFactory(project=project, language=templates)
                 # As there are no files on the FS we have to currently unobsolete
                 # the directory
                 tp_dir = tp.directory
                 tp_dir.obsolete = False
                 tp_dir.save()
-                self._add_stores(tp)
+                self._add_template_stores(tp)
+
+    def setup_tps(self):
+        from pootle.core.contextmanagers import keep_data
+        from pootle_project.models import Project
+        from pootle_language.models import Language
+        from pytest_pootle.factories import TranslationProjectFactory
+
+        with keep_data():
+            for project in Project.objects.select_related("source_language").all():
+                for language in Language.objects.exclude(code="en"):
+                    # add a TP to the project for each language
+                    tp = TranslationProjectFactory(
+                        project=project, language=language)
+                    # As there are no files on the FS we have to currently
+                    # unobsolete the directory
+                    tp_dir = tp.directory
+                    tp_dir.obsolete = False
+                    tp_dir.save()
+                    self._add_stores(tp)
 
     def _add_template_stores(self, tp, n=(3, 2), parent=None):
         from pytest_pootle.factories import StoreDBFactory, UnitDBFactory
@@ -467,21 +484,15 @@ class PootleTestEnv(object):
                 creation_time__lte=last_update)
         submissions.update(creation_time=update_time)
 
-    def _add_submissions(self, unit, created):
+    def _add_submissions(self, unit, created, admin, member, member2):
         from pootle.core.delegate import review
         from pootle_store.constants import UNTRANSLATED, FUZZY, OBSOLETE
         from pootle_store.models import Suggestion, Unit, UnitChange
 
-        from django.contrib.auth import get_user_model
         from django.utils import timezone
 
         original_state = unit.state
         unit.created = created
-
-        User = get_user_model()
-        admin = User.objects.get(username="admin")
-        member = User.objects.get(username="member")
-        member2 = User.objects.get(username="member2")
 
         first_modified = created + relativedelta(months=unit.index, days=10)
 
