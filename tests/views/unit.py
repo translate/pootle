@@ -510,6 +510,7 @@ def test_submit_unit(client, store0, request_users, settings, system):
     unit.store.data.refresh_from_db()
     assert unit.store.data.last_submission.unit == unit
     unit_source = unit.unit_source
+    unit.refresh_from_db()
     assert unit_source.created_by == system
     assert unit_source.created_with == SubmissionTypes.SYSTEM
     assert unit.change.changed_with == SubmissionTypes.WEB

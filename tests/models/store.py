@@ -422,8 +422,9 @@ def test_update_upload_submission_type(store0):
         submission_type=SubmissionTypes.UPLOAD,
         store_revision=Revision.get() + 1)
     unit_source = store0.units[0].unit_source
+    unit_change = store0.units[0].change
     assert unit_source.created_with == SubmissionTypes.SYSTEM
-    assert unit.change.changed_with == SubmissionTypes.UPLOAD
+    assert unit_change.changed_with == SubmissionTypes.UPLOAD
     # there should be 2 new subs - state_change and target_change
     # and both should show as by UPLOAD
     new_subs = unit.submission_set.filter(id__gt=last_sub_pk)
