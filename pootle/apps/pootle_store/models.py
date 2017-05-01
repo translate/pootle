@@ -791,7 +791,8 @@ class Store(AbstractStore):
 
     @property
     def units(self):
-        return self.unit_set.filter(state__gt=OBSOLETE).order_by('index')
+        return self.unit_set.filter(state__gt=OBSOLETE).order_by(
+            'index').select_related("change")
 
     @units.setter
     def units(self, value):
