@@ -275,6 +275,18 @@ class Unit(AbstractUnit):
         except UnitChange.DoesNotExist:
             return False
 
+    def refresh_from_db(self, *args, **kwargs):
+        super(Unit, self).refresh_from_db(*args, **kwargs)
+        if kwargs.get("fields") and "change" not in kwargs["fields"]:
+            return
+        field = self._meta.get_field("change")
+        # Throw away stale empty references to unit.change.
+        should_expire_cache = (
+            field.get_cache_name() in self.__dict__
+            and self.__dict__[field.get_cache_name()] is None)
+        if should_expire_cache:
+            del self.__dict__[field.get_cache_name()]
+
     def save(self, *args, **kwargs):
         created = self.id is None
         user = (
