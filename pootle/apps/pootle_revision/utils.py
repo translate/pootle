@@ -12,6 +12,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.utils.functional import cached_property
 
 from pootle.core.bulk import BulkCRUD
+from pootle.core.signals import create, update
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Directory
 
@@ -55,7 +56,9 @@ class RevisionContext(object):
                         object_id=self.context.pk,
                         key=k,
                         value=value))
-            Revision.objects.bulk_create(revisions)
+            create.send(
+                Revision,
+                objects=revisions)
 
 
 class DirectoryRevision(RevisionContext):
@@ -183,11 +186,17 @@ class RevisionUpdater(object):
                         key=key))
 
         new_revision = self.new_revision
-        revisions.filter(id__in=existing_ids).update(
-            value=new_revision)
+        update.send(
+            Revision,
+            updates={
+                id: dict(value=new_revision)
+                for id in existing_ids})
         if missing_revisions:
-            Revision.objects.bulk_create(
-                self.create_missing_revisions(missing_revisions, new_revision))
+            create.send(
+                Revision,
+                objects=list(
+                    self.create_missing_revisions(
+                        missing_revisions, new_revision)))
 
     def create_missing_revisions(self, missing_revisions, new_revision):
         for revision in missing_revisions:
