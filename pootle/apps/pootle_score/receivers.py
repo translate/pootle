@@ -72,18 +72,18 @@ def handle_suggestion_change(**kwargs):
     suggestion = kwargs["instance"]
     is_system_user = (
         (suggestion.state.name == "pending"
-         and (suggestion.user
-              == get_user_model().objects.get_system_user()))
+         and (suggestion.user_id
+              == get_user_model().objects.get_system_user().id))
         or (suggestion.state.name != "pending"
-            and (suggestion.reviewer
-                 == get_user_model().objects.get_system_user())))
+            and (suggestion.reviewer_id
+                 == get_user_model().objects.get_system_user().id)))
     if is_system_user:
         return
     update_scores.send(
         suggestion.unit.store.__class__,
         instance=suggestion.unit.store,
         users=[
-            suggestion.user.id
+            suggestion.user_id
             if suggestion.state.name == "pending"
             else suggestion.reviewer_id])
 
