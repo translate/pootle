@@ -11,19 +11,29 @@ from django.core.exceptions import ValidationError
 
 from pootle.core.delegate import (
     deserializers, frozen, lifecycle, review, search_backend, serializers,
-    uniqueid, wordcount)
+    states, uniqueid, wordcount)
 from pootle.core.plugin import getter
 from pootle_config.delegate import (
     config_should_not_be_set, config_should_not_be_appended)
 from pootle_misc.util import import_func
 
-from .models import Suggestion, Unit
+from .models import Suggestion, SuggestionState, Unit
 from .unit.search import DBSearchBackend
 from .utils import (
     FrozenUnit, SuggestionsReview, UnitLifecycle, UnitUniqueId, UnitWordcount)
 
 
 wordcounter = None
+suggestion_states = None
+
+
+@getter(states, sender=Suggestion)
+def get_suggestion_states(**kwargs_):
+    global suggestion_states
+
+    if not suggestion_states:
+        suggestion_states = dict(SuggestionState.objects.values_list("name", "pk"))
+    return suggestion_states
 
 
 @getter(wordcount, sender=Unit)
