@@ -374,15 +374,16 @@ class PootleTestEnv(object):
                 self._add_stores(tp, n=(1, 1), parent=subdir1)
 
     def setup_submissions(self):
-        from pootle_store.contextmanagers import update_store_after
         from pootle_statistics.models import SubmissionTypes
         from pootle_store.constants import UNTRANSLATED
         from pootle_store.models import Store, Unit, UnitChange
+        from pootle_translationproject.contextmanagers import update_tp_after
 
         from django.contrib.auth import get_user_model
         from django.utils import timezone
 
         year_ago = timezone.now() - relativedelta(years=1)
+
         Unit.objects.update(creation_time=year_ago)
 
         stores = Store.objects.select_related(
@@ -400,12 +401,37 @@ class PootleTestEnv(object):
             for unit_id
             in units.filter(state__gt=UNTRANSLATED).values_list("id", flat=True))
 
+        from pootle.core.contextmanagers import bulk_operations
+        from pootle_score.models import UserTPScore
+        from pootle_data.models import TPChecksData, TPData
+        from pootle_translationproject.models import TranslationProject
+
+        bulk_pootle = bulk_operations(
+            models=(
+                get_user_model(),
+                UserTPScore,
+                TPData,
+                TPChecksData))
+        with bulk_pootle:
+            for tp in TranslationProject.objects.all():
+                with update_tp_after(tp):
+                    self._add_subs_to_stores(
+                        tp.stores.all(), admin, member, member2)
+
+    def _add_subs_to_stores(self, stores, admin, member, member2):
         for store in stores.all():
-            with update_store_after(store):
-                units = store.unit_set.select_related("change").all()
-                for unit in units:
-                    self._add_submissions(
-                        unit, year_ago, admin, member, member2)
+            self._add_subs_to_store(store, admin, member, member2)
+
+    def _add_subs_to_store(self, store, admin, member, member2):
+        from django.utils import timezone
+
+        # from pootle_store.contextmanagers import update_store_after
+
+        year_ago = timezone.now() - relativedelta(years=1)
+        units = store.unit_set.select_related("change").all()
+        for unit in units:
+            self._add_submissions(
+                unit, year_ago, admin, member, member2)
 
     def setup_templates(self):
         from pootle.core.contextmanagers import keep_data
