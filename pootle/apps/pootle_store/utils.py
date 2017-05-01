@@ -12,6 +12,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.template import loader
 from django.utils import timezone
+from django.utils.functional import cached_property
 
 from pootle.core.delegate import site, unitid
 from pootle.core.mail import send_mail
@@ -26,6 +27,16 @@ from .models import Suggestion, SuggestionState
 
 
 User = get_user_model()
+
+
+class SuggestionStates(object):
+
+    @cached_property
+    def states(self):
+        return dict(SuggestionState.objects.values_list("name", "pk"))
+
+
+suggestion_states = SuggestionStates()
 
 
 class UnitWordcount(object):
@@ -157,6 +168,10 @@ class SuggestionsReview(object):
             users[suggestion.user].append(suggestion)
         return users
 
+    @cached_property
+    def pending_state(self):
+        return suggestion_states.states["pending"]
+
     def add(self, unit, translation, user=None):
         """Adds a new suggestion to the unit.
 
@@ -183,11 +198,10 @@ class SuggestionsReview(object):
                 target_f=translation)
             return (suggestion, False)
         except Suggestion.DoesNotExist:
-            pending = SuggestionState.objects.get(name="pending")
             suggestion = Suggestion.objects.create(
                 unit=unit,
                 user_id=user,
-                state_id=pending.id,
+                state_id=self.pending_state,
                 target=translation,
                 creation_time=make_aware(timezone.now()))
         return (suggestion, True)
@@ -203,7 +217,8 @@ class SuggestionsReview(object):
             reviewed_by=self.reviewer)
 
     def accept_suggestion(self, suggestion, target=None):
-        suggestion.state = SuggestionState.objects.get(name="accepted")
+        # suggestion.state = SuggestionState.objects.get(name="accepted")
+        suggestion.state_id = suggestion_states.states["accepted"]
         suggestion.reviewer = self.reviewer
         self.update_unit_on_accept(suggestion, target=target)
         suggestion.review_time = suggestion.unit.mtime
@@ -211,7 +226,7 @@ class SuggestionsReview(object):
 
     def reject_suggestion(self, suggestion):
         store = suggestion.unit.store
-        suggestion.state = SuggestionState.objects.get(name="rejected")
+        suggestion.state_id = suggestion_states.states["rejected"]
         suggestion.review_time = make_aware(timezone.now())
         suggestion.reviewer = self.reviewer
         suggestion.save()
