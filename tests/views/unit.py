@@ -113,6 +113,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
         assert unit.change.changed_with == SubmissionTypes.WEB
 
         assert suggestion.state.name == 'accepted'
+        assert suggestion.is_accepted
         assert str(unit.target) == edited_target
         assert (Comment.objects
                        .for_model(suggestion)
@@ -142,6 +143,7 @@ def test_submit_with_suggestion_and_comment(client, request_users,
     else:
         assert response.status_code == 403
         assert suggestion.state.name == "pending"
+        assert suggestion.is_pending
         assert unit.target == ""
         assert new_subs.count() == 0
         with pytest.raises(UnitChange.DoesNotExist):
@@ -190,6 +192,7 @@ def test_submit_with_suggestion(client, request_users, settings, system):
             assert unit.change.reviewed_by == user
         assert unit.change.changed_with == SubmissionTypes.WEB
         assert suggestion.state.name == 'accepted'
+        assert suggestion.is_accepted
         assert str(unit.target) == sugg.target_f
         assert new_subs.count() == 2
         target_sub = new_subs[0]
@@ -207,6 +210,7 @@ def test_submit_with_suggestion(client, request_users, settings, system):
         assert response.status_code == 403
         assert new_subs.count() == 0
         assert suggestion.state.name == "pending"
+        assert suggestion.is_pending
         assert unit.target == ""
         with pytest.raises(UnitChange.DoesNotExist):
             unit.change
@@ -247,6 +251,7 @@ def test_accept_suggestion_with_comment(client, request_users, settings, system)
         assert unit.change.reviewed_by == user
         assert unit.change.changed_with == SubmissionTypes.WEB
         assert suggestion.state.name == 'accepted'
+        assert suggestion.is_accepted
         assert str(unit.target) == str(suggestion.target)
         assert (Comment.objects
                        .for_model(suggestion)
@@ -254,6 +259,7 @@ def test_accept_suggestion_with_comment(client, request_users, settings, system)
     else:
         assert response.status_code == 404
         assert suggestion.state.name == "pending"
+        assert suggestion.is_pending
         assert unit.target == ""
         with pytest.raises(UnitChange.DoesNotExist):
             unit.change
@@ -288,6 +294,7 @@ def test_reject_suggestion_with_comment(client, request_users):
     if can_reject:
         assert response.status_code == 200
         assert suggestion.state.name == 'rejected'
+        assert suggestion.is_rejected
         assert unit.target == ""
         # unit is untranslated so no change
         with pytest.raises(UnitChange.DoesNotExist):
@@ -299,6 +306,7 @@ def test_reject_suggestion_with_comment(client, request_users):
         assert response.status_code == 404
         assert unit.target == ""
         assert suggestion.state.name == "pending"
+        assert suggestion.is_pending
         with pytest.raises(UnitChange.DoesNotExist):
             unit.change
 
@@ -368,6 +376,7 @@ def test_reject_translated_suggestion(client, request_users, member, system):
     if can_reject:
         assert response.status_code == 200
         assert suggestion.state.name == 'rejected'
+        assert suggestion.is_rejected
         assert unit_source.created_by == system
         assert unit.change.changed_with == SubmissionTypes.UPLOAD
         assert unit.change.submitted_by == member
@@ -376,6 +385,7 @@ def test_reject_translated_suggestion(client, request_users, member, system):
         assert response.status_code == 404
         assert unit.target == "EXISTING TARGET"
         assert suggestion.state.name == "pending"
+        assert suggestion.is_pending
 
 
 @pytest.mark.django_db
