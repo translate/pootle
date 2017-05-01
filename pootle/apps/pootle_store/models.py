@@ -24,8 +24,8 @@ from django.utils.functional import cached_property
 from django.utils.http import urlquote
 
 from pootle.core.delegate import (
-    data_tool, format_syncers, format_updaters, frozen, terminology_matcher,
-    wordcount)
+    data_tool, format_syncers, format_updaters, frozen, states,
+    terminology_matcher, wordcount)
 from pootle.core.log import (
     STORE_DELETED, STORE_OBSOLETE, log, store_log)
 from pootle.core.models import Revision
@@ -109,6 +109,22 @@ class Suggestion(AbstractSuggestion):
     objects = SuggestionManager()
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
+
+    @cached_property
+    def states(self):
+        return states.get(self.__class__)
+
+    @property
+    def is_accepted(self):
+        return self.state_id == self.states["accepted"]
+
+    @property
+    def is_pending(self):
+        return self.state_id == self.states["pending"]
+
+    @property
+    def is_rejected(self):
+        return self.state_id == self.states["rejected"]
 
     @property
     def _target(self):
