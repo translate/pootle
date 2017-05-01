@@ -291,7 +291,7 @@ class TPScoreUpdater(ScoreUpdater):
         with bulk_operations(UserTPScore):
             with suppress_tp_scores:
                 with bulk_operations(UserStoreScore):
-                    for store in self.tp.stores.all():
+                    for store in self.tp.stores.iterator():
                         score_updater.get(store.__class__)(store).update(
                             users=users,
                             existing=existing.get(store.id))
