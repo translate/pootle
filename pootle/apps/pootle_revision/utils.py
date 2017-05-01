@@ -11,10 +11,15 @@ import uuid
 from django.contrib.contenttypes.models import ContentType
 from django.utils.functional import cached_property
 
+from pootle.core.bulk import BulkCRUD
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Directory
 
 from .models import Revision
+
+
+class RevisionCRUD(BulkCRUD):
+    model = Revision
 
 
 class RevisionContext(object):

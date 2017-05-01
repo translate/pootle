@@ -6,7 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from pootle.core.delegate import revision, revision_updater
+from pootle.core.delegate import crud, revision, revision_updater
 from pootle.core.plugin import getter
 from pootle_app.models import Directory
 from pootle_language.models import Language
@@ -14,10 +14,20 @@ from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_translationproject.models import TranslationProject
 from pootle_store.models import Store, Unit
 
+from .models import Revision
 from .utils import (
     DirectoryRevision, DirectoryRevisionUpdater, LanguageRevision,
     ProjectRevision, ProjectResourceRevision, ProjectSetRevision,
-    StoreRevisionUpdater, TPRevision, UnitRevisionUpdater)
+    RevisionCRUD, StoreRevisionUpdater, TPRevision, UnitRevisionUpdater)
+
+
+CRUD = {
+    Revision: RevisionCRUD()}
+
+
+@getter(crud, sender=(Revision, ))
+def data_crud_getter(**kwargs):
+    return CRUD[kwargs["sender"]]
 
 
 @getter(revision, sender=Directory)

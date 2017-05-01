@@ -9,12 +9,24 @@
 from django.db.models.signals import post_save, pre_delete
 from django.dispatch import receiver
 
-from pootle.core.delegate import revision_updater
-from pootle.core.signals import update_revisions
+from pootle.core.delegate import crud, revision_updater
+from pootle.core.signals import create, update, update_revisions
 from pootle_app.models import Directory
 from pootle_data.models import StoreData
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
+
+from .models import Revision
+
+
+@receiver(create, sender=Revision)
+def handle_store_data_obj_create(**kwargs):
+    crud.get(Revision).create(**kwargs)
+
+
+@receiver(update, sender=Revision)
+def handle_store_data_obj_update(**kwargs):
+    crud.get(Revision).update(**kwargs)
 
 
 @receiver(post_save, sender=StoreData)
