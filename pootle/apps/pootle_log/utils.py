@@ -244,7 +244,7 @@ class Log(object):
                  and (not users
                       or (suggestion.user_id in users))))
             review_event = (
-                not suggestion.state.name == "pending"
+                not suggestion.is_pending
                 and ((not kwargs.get("start")
                       or (suggestion.review_time >= kwargs.get("start")))
                      and (not kwargs.get("end")
@@ -261,7 +261,7 @@ class Log(object):
             if review_event:
                 event_name = (
                     "suggestion_accepted"
-                    if suggestion.state.name == "accepted"
+                    if suggestion.is_accepted
                     else "suggestion_rejected")
                 yield self.event(
                     suggestion.unit,

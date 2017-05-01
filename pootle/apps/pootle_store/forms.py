@@ -470,7 +470,7 @@ class SuggestionReviewForm(BaseSuggestionForm):
             ("reject", "Reject")))
 
     def clean_action(self):
-        if self.target_object.state.name != "pending":
+        if not self.target_object.is_pending:
             self.add_error(
                 "action",
                 forms.ValidationError(

@@ -33,7 +33,7 @@ def handle_suggestion_added(**kwargs):
 def handle_suggestion_accepted(**kwargs):
     created = kwargs.get("created")
     suggestion = kwargs["instance"]
-    if created or not suggestion.state.name == "accepted":
+    if created or not suggestion.is_accepted:
         return
     suggestion.submission_set.add(
         *suggestion.unit.submission_set.filter(
