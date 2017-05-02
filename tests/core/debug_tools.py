@@ -98,3 +98,54 @@ def test_debug_sql_contextmanager(caplog, settings):
 
     # settings shold be correct
     assert settings.DEBUG is False
+
+
+def test_debug_trace(caplog, settings):
+
+    def _test_debug():
+        assert _trace.debug  # noqa: F821
+
+    def _test_no_debug():
+        assert not _trace.debug  # noqa: F821
+
+    def _test_trace(*args, **kwargs):
+        _trace(*args, **kwargs)  # noqa: F821
+
+    _test_no_debug()
+    _trace.debug = True  # noqa: F821
+    _test_debug()
+    _trace.debug = False  # noqa: F821
+    _test_no_debug()
+
+    _trace("called", "here")  # noqa: F821
+    called = list(_trace)  # noqa: F821
+
+    # trace was emptied
+    assert not list(_trace)  # noqa: F821
+    assert called[0].stack[1] == __file__
+    assert called[0].stack[3] == "test_debug_trace"
+    assert called[0].args == ("called", "here")
+    assert called[0].kwargs == {}
+    assert (
+        str(called[0])
+        == ", ".join(
+            [called[0].stack[1],
+             str(called[0].stack[2]),
+             called[0].stack[3],
+             str(called[0].args),
+             str(called[0].kwargs)]))
+
+    _test_trace("foo0", "bar0", baz=0)
+    _trace("foo1", "bar1", baz=1)  # noqa: F821
+    _test_trace("foo2", "bar2", baz=2)
+
+    asstring = str(_trace)  # noqa: F821
+    called = list(_trace)  # noqa: F821
+    for i in range(0, 2):
+        assert called[i].stack[1] == __file__
+        assert called[i].args == (("foo%s" % i), ("bar%s" % i))
+        assert called[i].kwargs == dict(baz=i)
+    assert called[0].stack[3] == "_test_trace"
+    assert called[1].stack[3] == "test_debug_trace"
+    assert called[2].stack[3] == "_test_trace"
+    assert asstring == "\n".join(str(item) for item in called)
