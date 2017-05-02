@@ -271,12 +271,17 @@ class Log(object):
                     suggestion)
 
     def get_events(self, **kwargs):
-        for event in self.get_created_unit_events(**kwargs):
-            yield event
-        for event in self.get_suggestion_events(**kwargs):
-            yield event
-        for event in self.get_submission_events(**kwargs):
-            yield event
+        event_sources = kwargs.pop("event_sources",
+                                   ("submission", "suggestion", "unit_source"))
+        if "unit_source" in event_sources:
+            for event in self.get_created_unit_events(**kwargs):
+                yield event
+        if "suggestion" in event_sources:
+            for event in self.get_suggestion_events(**kwargs):
+                yield event
+        if "submission" in event_sources:
+            for event in self.get_submission_events(**kwargs):
+                yield event
 
 
 class StoreLog(Log):
