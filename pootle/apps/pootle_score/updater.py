@@ -6,7 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from datetime import date
+from datetime import date, timedelta
 
 from django.contrib.auth import get_user_model
 from django.db.models import Sum
@@ -19,6 +19,8 @@ from pootle.core.signals import create, update, update_scores
 from pootle_log.utils import LogEvent
 from pootle_score.models import UserStoreScore, UserTPScore
 from pootle_translationproject.models import TranslationProject
+
+from .utils import to_datetime
 
 
 class UserRelatedScoreCRUD(BulkCRUD):
@@ -169,8 +171,15 @@ class ScoreUpdater(object):
             objects=created)
         return created
 
-    def update(self, users=None, existing=None):
-        return self.set_scores(self.calculate(users=users), existing=existing)
+    def update(self, users=None, existing=None, date=None):
+        if date is not None:
+            start = date
+            end = date + timedelta(days=1)
+        else:
+            start = end = None
+        return self.set_scores(
+            self.calculate(users=users, start=start, end=end),
+            existing=existing)
 
     def get_tp_scores(self):
         tp_scores = self.tp_score_model.objects.order_by("tp_id").values_list(
@@ -242,8 +251,8 @@ class StoreScoreUpdater(ScoreUpdater):
         calculated_scores = {}
         scored_events = self.logs.get_events(
             users=users,
-            start=start,
-            end=end,
+            start=to_datetime(start),
+            end=to_datetime(end),
             include_meta=False,
             event_sources=("suggestion", "submission"))
         for event in scored_events:

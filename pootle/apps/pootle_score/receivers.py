@@ -42,20 +42,25 @@ def handle_user_tp_score_create(**kwargs):
 
 @receiver(update_scores, sender=get_user_model())
 def update_user_scores_handler(**kwargs):
-    users = kwargs.get("users")
-    score_updater.get(get_user_model())().update(users=users)
+    score_updater.get(get_user_model())().update(
+        users=kwargs.get("users"),
+        date=kwargs.get("date"))
 
 
 @receiver(update_scores, sender=TranslationProject)
 def update_tp_scores_handler(**kwargs):
     tp = kwargs["instance"]
-    score_updater.get(tp.__class__)(tp).update(users=kwargs.get("users"))
+    score_updater.get(tp.__class__)(tp).update(
+        users=kwargs.get("users"),
+        date=kwargs.get("date"))
 
 
 @receiver(update_scores, sender=Store)
 def update_store_scores_handler(**kwargs):
     store = kwargs["instance"]
-    score_updater.get(store.__class__)(store).update(users=kwargs.get("users"))
+    score_updater.get(store.__class__)(store).update(
+        users=kwargs.get("users"),
+        date=kwargs.get("date"))
 
 
 @receiver(post_save, sender=UserStoreScore)
@@ -64,7 +69,8 @@ def handle_store_score_updated(**kwargs):
     update_scores.send(
         tp.__class__,
         instance=tp,
-        users=[kwargs["instance"].user_id])
+        users=[kwargs["instance"].user_id],
+        date=kwargs["instance"].date)
 
 
 @receiver(post_save, sender=Suggestion)
@@ -79,13 +85,18 @@ def handle_suggestion_change(**kwargs):
                  == get_user_model().objects.get_system_user().id)))
     if is_system_user:
         return
+    change_date = (
+        suggestion.review_time.date()
+        if not suggestion.is_pending
+        else suggestion.creation_time.date())
     update_scores.send(
         suggestion.unit.store.__class__,
         instance=suggestion.unit.store,
         users=[
             suggestion.user_id
             if suggestion.is_pending
-            else suggestion.reviewer_id])
+            else suggestion.reviewer_id],
+        date=change_date)
 
 
 @receiver(post_save, sender=Submission)
@@ -99,4 +110,5 @@ def handle_submission_added(**kwargs):
     update_scores.send(
         submission.unit.store.__class__,
         instance=submission.unit.store,
-        users=[submission.submitter_id])
+        users=[submission.submitter_id],
+        date=submission.creation_time.date())

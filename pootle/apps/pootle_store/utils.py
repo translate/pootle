@@ -344,7 +344,8 @@ class UnitLifecycle(object):
         update_scores.send(
             self.unit.store.__class__,
             instance=self.unit.store,
-            users=[sub.submitter_id for sub in subs])
+            users=[sub.submitter_id for sub in subs],
+            date=self.unit.mtime.date())
 
     def sub_comment_update(self, **kwargs):
         _kwargs = dict(
