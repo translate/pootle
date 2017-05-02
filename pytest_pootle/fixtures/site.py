@@ -7,14 +7,18 @@
 # AUTHORS file for copyright and authorship information.
 
 import functools
+import inspect
 import os
+import pdb
 import shutil
 import tempfile
+import sys
 import time
-
 import pytest
 
 from pytest_pootle.env import PootleTestEnv
+
+from pootle.core.debug import debug_sql
 
 
 @pytest.fixture(autouse=True)
@@ -85,6 +89,44 @@ def tests_use_migration(request, tests_use_db):
         or (tests_use_db
             and [item for item in request.node.items
                  if item.get_marker('django_migration')]))
+
+
+@pytest.fixture(autouse=True, scope='session')
+def debug_utils(request):
+
+    class _TraceEvent(object):
+
+        def __init__(self, *args, **kwargs):
+            self.stack = inspect.stack()[2]
+            self.args = args
+            self.kwargs = kwargs
+
+        def __str__(self):
+            return ", ".join(
+                [self.stack[1],
+                 str(self.stack[2]),
+                 self.stack[3],
+                 str(self.args),
+                 str(self.kwargs)])
+
+    class _Trace(object):
+        debug = False
+        _called = ()
+
+        def __call__(self, *args, **kwargs):
+            self._called += (_TraceEvent(*args, **kwargs), )
+
+        def __iter__(self):
+            for event in self._called:
+                yield event
+            self._called = ()
+
+        def __str__(self):
+            return "\n".join(str(item) for item in self._called)
+
+    sys.modules["__builtin__"].__dict__["_trace"] = _Trace()
+    sys.modules["__builtin__"].__dict__["pdb"] = pdb
+    sys.modules["__builtin__"].__dict__["debug_sql"] = debug_sql
 
 
 @pytest.fixture(autouse=True, scope='session')
