@@ -234,7 +234,11 @@ class StoreScoreUpdater(ScoreUpdater):
     def calculate(self, start=None, end=None, users=None):
         calculated_scores = {}
         scored_events = self.logs.get_events(
-            users=users, start=start, end=end)
+            users=users,
+            start=start,
+            end=end,
+            include_meta=False,
+            event_sources=("suggestion", "submission"))
         for event in scored_events:
             self.score_event(event, calculated_scores)
         return calculated_scores
