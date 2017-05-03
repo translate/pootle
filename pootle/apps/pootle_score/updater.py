@@ -35,6 +35,9 @@ class UserRelatedScoreCRUD(BulkCRUD):
 class UserStoreScoreCRUD(UserRelatedScoreCRUD):
     model = UserStoreScore
 
+    def select_for_update(self, qs):
+        return qs.select_related("store", "store__translation_project")
+
     def update_scores(self, objects):
         users = set()
         stores = {}
@@ -56,6 +59,9 @@ class UserStoreScoreCRUD(UserRelatedScoreCRUD):
 
 class UserTPScoreCRUD(UserRelatedScoreCRUD):
     model = UserTPScore
+
+    def select_for_update(self, qs):
+        return qs.select_related("tp")
 
     def update_scores(self, objects):
         update_scores.send(
