@@ -86,13 +86,13 @@ def _delete_handler(updated, **kwargs):
 
 
 def _update_handler(updated, **kwargs):
-    if "update_fields" in kwargs:
+    if kwargs.get("update_fields"):
         if updated.update_fields is None:
             updated.update_fields = set()
         # update these fields (~only)
         updated.update_fields = (
             updated.update_fields
-            | kwargs["update_fields"])
+            | set(kwargs["update_fields"]))
     if "updates" in kwargs:
         # dict of pk: dict(up=date)
         updated.updates = (
