@@ -137,11 +137,7 @@ class Log(object):
             else qs.filter(**{"%s__in" % field: users}))
 
     def filtered_suggestions(self, **kwargs):
-        suggestions = self.filter_store(
-            self.suggestions,
-            kwargs.get("store"))
-        suggestions = self.filter_path(
-            suggestions, kwargs.get("path"))
+        suggestions = self.suggestions
         added_suggestions = (
             self.filter_users(
                 suggestions,
@@ -163,15 +159,19 @@ class Log(object):
                 start=kwargs.get("start"),
                 end=kwargs.get("end"),
                 field="review_time"))
-        return added_suggestions | reviewed_suggestions
+        suggestions = (added_suggestions | reviewed_suggestions)
+        suggestions = self.filter_store(
+            suggestions,
+            kwargs.get("store"))
+        suggestions = self.filter_path(
+            suggestions,
+            kwargs.get("path"))
+        return suggestions
 
     def filtered_submissions(self, **kwargs):
-        submissions = self.filter_store(
-            self.submissions,
-            kwargs.get("store"))
         submissions = (
             self.filter_users(
-                submissions,
+                self.submissions,
                 kwargs.get("users"),
                 include_meta=kwargs.get("include_meta")))
         submissions = self.filter_path(
@@ -181,6 +181,9 @@ class Log(object):
                 submissions,
                 start=kwargs.get("start"),
                 end=kwargs.get("end")))
+        submissions = self.filter_store(
+            submissions,
+            kwargs.get("store"))
         return submissions
 
     def filtered_created_units(self, **kwargs):
