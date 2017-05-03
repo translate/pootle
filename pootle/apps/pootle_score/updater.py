@@ -123,19 +123,20 @@ class ScoreUpdater(object):
             else qs.filter(**{"%s__in" % field: users}))
 
     def find_existing_scores(self, scores):
-        found = False
         existing_scores = self.score_model.objects.none()
-        score_qs = self.score_model.objects.filter(
-            **{self.related_field: self.context.pk})
+        users = set()
+        tstamps = set()
         for timestamp, user, user_scores in scores:
-            found = True
-            existing_scores = (
-                existing_scores
-                | score_qs.filter(
-                    user_id=user,
-                    date=timestamp))
-        if not found:
+            users.add(user)
+            tstamps.add(timestamp)
+        if not users and not tstamps:
             return
+        existing_scores = self.score_model.objects.filter(
+            user__in=users)
+        existing_scores = existing_scores.filter(
+            date__in=tstamps)
+        existing_scores = existing_scores.filter(
+            **{self.related_field: self.context.pk})
         return existing_scores.values_list(
             "id",
             "date",
@@ -275,10 +276,8 @@ class TPScoreUpdater(ScoreUpdater):
                 score)
 
     def calculate(self, start=None, end=None, users=None):
-        qs = self.filter_users(
-            self.store_score_model.objects.filter(
-                store__translation_project=self.tp),
-            users)
+        qs = self.filter_users(self.store_score_model.objects, users)
+        qs = qs.filter(store__translation_project=self.tp)
         return qs.order_by(
             "date", "user").values_list(
                 "date", "user").annotate(
