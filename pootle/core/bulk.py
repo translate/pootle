@@ -90,7 +90,11 @@ class BulkCRUD(object):
             set((updates or {}).keys())
             - set(obj.id for obj in objects))
         if ids_to_fetch:
-            return self.qs.filter(id__in=ids_to_fetch)
+            return self.select_for_update(
+                self.qs.filter(id__in=ids_to_fetch))
+
+    def select_for_update(self, qs):
+        return qs
 
     def update_object_list(self, **kwargs):
         fields = (
@@ -107,7 +111,7 @@ class BulkCRUD(object):
         return objects, (fields or None)
 
     def update_common_objects(self, ids, values):
-        objects = self.model.objects.filter(id__in=ids)
+        objects = self.select_for_update(self.model.objects).filter(id__in=ids)
         pre = self.pre_update(objects=objects, values=values)
         result = objects.select_for_update().update(**values)
         self.post_update(
