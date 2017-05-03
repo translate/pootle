@@ -95,7 +95,7 @@ class BulkCRUD(object):
     def update_object_list(self, **kwargs):
         fields = (
             set(kwargs["update_fields"])
-            if "update_fields" in kwargs
+            if kwargs.get("update_fields")
             else set())
         objects = []
         if "objects" in kwargs and kwargs["objects"] is not None:

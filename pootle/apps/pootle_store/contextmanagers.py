@@ -19,8 +19,8 @@ from .models import Unit
 
 class Updated(object):
     data = False
-    scores = set()
-    checks = set()
+    scores = None
+    checks = None
     revisions = False
 
 
@@ -81,6 +81,8 @@ def update_store_after(sender, **kwargs):
 
         @receiver(update_checks, sender=Unit)
         def handle_update_checks(**kwargs):
+            if updated.checks is None:
+                updated.checks = set()
             updated.checks.add(kwargs["instance"].id)
 
         @receiver(update_data, sender=sender.__class__)
@@ -92,6 +94,8 @@ def update_store_after(sender, **kwargs):
 
         @receiver(update_scores, sender=sender.__class__)
         def handle_update_scores(**kwargs):
+            if updated.scores is None:
+                updated.scores = set()
             updated.scores = (
                 updated.scores
                 | set(kwargs.get("users") or []))

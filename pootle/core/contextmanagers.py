@@ -20,11 +20,11 @@ class BulkUpdated(object):
     create = None
     delete_qs = None
     delete = None
-    delete_ids = set()
+    delete_ids = None
     update_qs = None
     update = None
     updates = None
-    update_fields = set()
+    update_fields = None
     update_objects = None
 
 
@@ -80,11 +80,15 @@ def _delete_handler(updated, **kwargs):
                 updated.delete_qs
                 | kwargs["objects"])
     if "instance" in kwargs:
+        if updated.delete_ids is None:
+            updated.delete_ids = set()
         updated.delete_ids.add(kwargs["instance"].pk)
 
 
 def _update_handler(updated, **kwargs):
     if "update_fields" in kwargs:
+        if updated.update_fields is None:
+            updated.update_fields = set()
         # update these fields (~only)
         updated.update_fields = (
             updated.update_fields

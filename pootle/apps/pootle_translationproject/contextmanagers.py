@@ -25,10 +25,9 @@ from pootle_store.models import Store
 
 class Updated(object):
     data = None
-    checks = set()
+    checks = None
     tp_data = False
-    dirs = set()
-    revisions = set()
+    revisions = None
     score_stores = None
     score_users = None
     tp_scores = False
@@ -39,6 +38,8 @@ def _update_stores(sender, updated):
 
         @receiver(update_revisions)
         def update_revisions_handler(**kwargs):
+            if updated.revisions is None:
+                updated.revisions = set()
             instance = kwargs.get("instance")
             if isinstance(instance, Store):
                 updated.revisions.add(kwargs["instance"].parent.pootle_path)
@@ -124,6 +125,8 @@ def update_tp_after(sender, **kwargs):
 
         @receiver(update_checks)
         def update_check_handler(**kwargs):
+            if updated.checks is None:
+                updated.checks = set()
             # this could be optimized by only checking units
             if isinstance(kwargs.get("instance"), Store):
                 updated.checks.add(kwargs["instance"])
