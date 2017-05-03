@@ -8,11 +8,15 @@
 
 from contextlib import contextmanager
 
+from django.contrib.auth import get_user_model
 from django.dispatch import receiver
 
-from pootle.core.contextmanagers import keep_data
+from pootle.core.contextmanagers import bulk_operations, keep_data
 from pootle.core.signals import (
     update_checks, update_data, update_revisions, update_scores)
+from pootle_data.models import (
+    StoreData, StoreChecksData, TPChecksData, TPData)
+from pootle_score.models import UserStoreScore, UserTPScore
 
 from .models import Unit
 
@@ -26,11 +30,18 @@ class Updated(object):
 
 def _callback_handler(sender, updated, **kwargs):
 
+    bulk_pootle = bulk_operations(
+        models=(
+            get_user_model(),
+            UserTPScore,
+            UserStoreScore,
+            TPData,
+            TPChecksData,
+            StoreData,
+            StoreChecksData))
+
     with keep_data(signals=(update_revisions, )):
-        bulk_tp_scores = keep_data(
-            signals=(update_scores, ),
-            suppress=(sender.translation_project.__class__, ))
-        with bulk_tp_scores:
+        with bulk_pootle:
 
             @receiver(update_revisions)
             def handle_update_revisions(**kwargs):
@@ -53,18 +64,10 @@ def _callback_handler(sender, updated, **kwargs):
                     instance=sender,
                     users=updated.scores,
                     **kwargs)
-    if updated.scores:
-        update_scores.send(
-            sender.translation_project.__class__,
-            instance=sender.translation_project,
-            users=updated.scores,
-            stores=[sender],
-            **kwargs)
-
     if updated.revisions:
         update_revisions.send(
-            sender.parent.__class__,
-            instance=sender.parent,
+            sender.__class__,
+            instance=sender,
             keys=["stats", "checks"])
 
 
