@@ -6,7 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from datetime import timedelta
+from datetime import date, datetime, timedelta
 
 from django.contrib.auth import get_user_model
 from django.db.models import Sum
@@ -14,6 +14,7 @@ from django.utils import timezone
 
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import display, revision, scores
+from pootle.core.utils.timezone import make_aware
 from pootle_app.models import Directory
 from pootle_language.models import Language
 
@@ -22,6 +23,18 @@ from .models import UserTPScore
 
 
 User = get_user_model()
+
+
+def to_datetime(possible_dt):
+    if possible_dt is None:
+        return
+    if isinstance(possible_dt, datetime):
+        return possible_dt
+    if isinstance(possible_dt, date):
+        return make_aware(
+            datetime.combine(
+                possible_dt,
+                datetime.min.time()))
 
 
 class Scores(object):
