@@ -9,6 +9,8 @@
 import logging
 import time
 
+from bulk_update.helper import bulk_update
+
 
 logger = logging.getLogger(__name__)
 
@@ -54,3 +56,47 @@ class Batch(object):
 
     def iterate_qs(self, qs, offset):
         return qs[offset:offset + self.batch_size].iterator()
+
+    def bulk_update(self, objects, update_fields=None):
+        return bulk_update(objects, update_fields=update_fields)
+
+    def objects_to_update(self, qs, update_method, offset):
+        return [
+            update_method(item)
+            for item
+            in self.iterate_qs(qs, offset)]
+
+    def batched_update(self, qs, update_method, reduces=True, update_fields=None):
+        complete = 0
+        offset = 0
+        total = qs.count()
+        start = time.time()
+        step = (
+            self.batch_size
+            if not reduces
+            else 0)
+        while True:
+            complete += self.batch_size
+            objects_to_update = self.objects_to_update(qs, update_method, offset)
+            if not objects_to_update:
+                break
+            result = self.bulk_update(
+                objects=objects_to_update,
+                update_fields=update_fields)
+            logger.debug(
+                "updated %s/%s in %s seconds",
+                min(complete, total),
+                total,
+                (time.time() - start))
+            yield result
+            if complete > total:
+                break
+            offset = offset + step
+
+    def update(self, qs, update_method, reduces=True, update_fields=None):
+        return sum(
+            self.batched_update(
+                qs,
+                update_method,
+                reduces,
+                update_fields))
