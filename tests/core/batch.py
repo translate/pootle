@@ -9,7 +9,7 @@
 import pytest
 
 from pootle.core.batch import Batch
-from pootle_store.models import Suggestion
+from pootle_store.models import Suggestion, Unit
 
 
 @pytest.mark.django_db
@@ -88,3 +88,31 @@ def test_batch_create_no_reduce(store0, member):
     assert (
         list(new_suggs.values_list("unit"))
         == list(store0.units.values_list("id")))
+
+
+@pytest.mark.django_db
+def test_batch_update_reduce(store0, member):
+    """The source queryset reduces as batches are created"""
+    batch = Batch(Unit, batch_size=2)
+    store0.units.exclude(
+        pk=store0.units.first().pk).update(target_f="FOO")
+
+    def _update_method(unit):
+        unit.target_f = "BAR"
+        return unit
+    count = batch.update(
+        store0.units.filter(target_f="FOO"),
+        _update_method)
+    assert count == store0.units.count() - 1
+    assert count == store0.units.filter(target_f="BAR").count()
+
+    store0.units.update(target_f="BAZ")
+    newcount = batch.update(
+        store0.units.filter(target_f="FOO"),
+        _update_method,
+        update_fields=["source_f"])
+    # units not updated, only source in update_fields
+    assert newcount == 0
+    assert (
+        store0.units.count()
+        == store0.units.filter(target_f="BAZ").count())
