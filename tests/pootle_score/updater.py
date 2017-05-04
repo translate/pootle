@@ -19,6 +19,7 @@ from pootle_log.utils import LogEvent, StoreLog
 from pootle_score.models import UserStoreScore
 from pootle_score.updater import (
     StoreScoreUpdater, TPScoreUpdater, UserScoreUpdater)
+from pootle_score.utils import to_datetime
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
@@ -76,8 +77,8 @@ def test_score_store_updater_event(store0, admin, member):
     # no score adapters
     assert result == {}
     result = updater.calculate(start=yesterday, end=today)
-    assert updater.logs._start == yesterday
-    assert updater.logs._end == today
+    assert updater.logs._start == to_datetime(yesterday)
+    assert updater.logs._end == to_datetime(today)
     assert result == {}
     updater = DummyScoreUpdater(store0)
     updater.calculate(users=(admin, ))
