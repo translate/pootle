@@ -207,7 +207,6 @@ class SuggestionsReview(object):
             reviewed_by=self.reviewer)
 
     def accept_suggestion(self, suggestion, target=None):
-        # suggestion.state = SuggestionState.objects.get(name="accepted")
         suggestion.state_id = self.states["accepted"]
         suggestion.reviewer = self.reviewer
         self.update_unit_on_accept(suggestion, target=target)
