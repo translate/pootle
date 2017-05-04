@@ -55,11 +55,16 @@ def _handle_update_stores(sender, updated):
                 updated.data = updated.data or {}
                 updated.data[kwargs["instance"].id] = kwargs["instance"]
 
-            for store in updated.checks:
+            for to_check in updated.checks.values():
+                store = to_check["store"]
+                units = (
+                    [unit.id for unit in to_check["units"]]
+                    if to_check["units"]
+                    else None)
                 update_checks.send(
                     store.__class__,
                     instance=store,
-                    update_data_after=True)
+                    units=units)
 
     if updated.data:
         stores = updated.data.values()
@@ -109,6 +114,7 @@ def _callback_handler(sender, updated, **kwargs):
 
         with bulk_tps:
             _update_stores(sender, updated)
+
             if updated.tp_data:
                 update_data.send(
                     sender.__class__,
@@ -140,12 +146,18 @@ def update_tp_after(sender, **kwargs):
         @receiver(update_checks)
         def update_check_handler(**kwargs):
             if updated.checks is None:
-                updated.checks = set()
-            # this could be optimized by only checking units
+                updated.checks = {}
+            units = None
             if isinstance(kwargs.get("instance"), Store):
-                updated.checks.add(kwargs["instance"])
+                store = kwargs["instance"]
             else:
-                updated.checks.add(kwargs["instance"].store)
+                store = kwargs["instance"].store
+                units = set([kwargs["instance"]])
+            updated.checks[store.id] = updated.checks.get(
+                store.id,
+                dict(store=store, units=set()))
+            if units is not None:
+                updated.checks[store.id]["units"] |= units
 
         @receiver(update_scores, sender=Store)
         def update_scores_handler(**kwargs):
