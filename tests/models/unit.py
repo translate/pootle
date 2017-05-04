@@ -404,7 +404,7 @@ def test_unit_syncer_locations(unit_syncer):
 
 
 @pytest.mark.django_db
-def test_add_autotranslated_unit(settings, store0, admin):
+def test_add_autotranslated_unit(settings, store0, admin, no_wordcount):
 
     class DummyWordcount(object):
 
@@ -415,18 +415,17 @@ def test_add_autotranslated_unit(settings, store0, admin):
             return sum(self.count(string) for string in strings)
 
     wc = DummyWordcount()
-    wc_receivers = wordcount.receivers
-    wordcount.receivers = []
 
-    @getter(wordcount, sender=Unit)
-    def temp_wc_getter(**kwargs_):
-        return wc
+    with no_wordcount():
 
-    unit = store0.addunit(
-        store0.UnitClass(source_f='Pootle Pootle'),
-        user=admin)
+        @getter(wordcount, sender=Unit)
+        def temp_wc_getter(**kwargs_):
+            return wc
+
+        unit = store0.addunit(
+            store0.UnitClass(source_f='Pootle Pootle'),
+            user=admin)
 
     dbunit = store0.units.get(id=unit.id)
     assert dbunit.state == FUZZY
     assert dbunit.target_f == unit.source_f
-    wordcount.receivers = wc_receivers

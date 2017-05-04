@@ -10,6 +10,7 @@ import pytest
 
 from django.template import Context, Template
 
+from pootle.core.contextmanagers import keep_data
 from pootle.core.delegate import upstream
 from pootle.core.plugin import provider
 from pootle_project.models import Project
@@ -33,9 +34,7 @@ def _render_upstream_short(ctx):
         context=ctx)
 
 
-@pytest.mark.django_db
-def test_fs_tags_upstream(project0):
-
+def _test_fs_tags_upstram(project0):
     # no upstreams and project not configured
     assert not _render_upstream(dict(project=project0)).strip()
 
@@ -64,11 +63,15 @@ def test_fs_tags_upstream(project0):
 
     rendered = _render_upstream(dict(project=project0))
     assert all([(v in rendered) for v in foocontext.values()])
-    upstream.receivers = []
 
 
 @pytest.mark.django_db
-def test_fs_tags_upstream_short(project0):
+def test_fs_tags_upstream(project0):
+    with keep_data(upstream):
+        _test_fs_tags_upstram(project0)
+
+
+def _test_fs_tags_upstream_short(project0):
 
     # no upstreams and project not configured
     assert not _render_upstream_short(dict(project=project0)).strip()
@@ -100,4 +103,9 @@ def test_fs_tags_upstream_short(project0):
     rendered = _render_upstream_short(
         dict(project=project0, location="FOO"))
     assert all([(v in rendered) for v in foocontext.values()])
-    upstream.receivers = []
+
+
+@pytest.mark.django_db
+def test_fs_tags_upstream_short(project0):
+    with keep_data(upstream):
+        _test_fs_tags_upstream_short(project0)
