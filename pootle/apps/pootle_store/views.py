@@ -18,7 +18,6 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404, QueryDict
 from django.shortcuts import get_object_or_404, redirect
 from django.template import loader
-from django.utils import timezone
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 from django.utils.translation import to_locale
@@ -242,9 +241,6 @@ def save_comment(request, unit):
     :return: If the form validates, the cleaned comment is returned.
              An error message is returned otherwise.
     """
-    # Update current unit instance's attributes
-    unit.change.commented_by = request.user
-    unit.change.commented_on = timezone.now().replace(microsecond=0)
 
     language = request.translation_project.language
     form = unit_comment_form_factory(language)(request.POST, instance=unit,

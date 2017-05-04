@@ -318,6 +318,10 @@ def unit_comment_form_factory(language):
                 return ''
 
             return self.cleaned_data['translator_comment']
+
+        def save(self, *args, **kwargs):
+            self.instance.save(user=self.request.user)
+
     return UnitCommentForm
 
 
