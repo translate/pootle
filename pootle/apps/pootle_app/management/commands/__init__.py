@@ -140,10 +140,7 @@ class PootleCommand(BaseCommand):
         start = datetime.datetime.now()
         logging.info('Start running of %s', self.name)
 
-        try:
-            self.handle_all(**options)
-        except Exception as e:
-            raise CommandError(e)
+        self.handle_all(**options)
 
         # info finish
         end = datetime.datetime.now()
