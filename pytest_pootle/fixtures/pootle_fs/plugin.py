@@ -123,7 +123,7 @@ def localfs_base(localfs_env):
 
 
 @pytest.fixture
-def localfs_dummy_finder(no_fs_finder, localfs_env):
+def localfs_dummy_finder(dummy_fs_finder, localfs_env):
     from pootle.core.plugin import getter
     from pootle.core.url_helpers import split_pootle_path
     from pootle_fs.delegate import fs_finder
@@ -152,7 +152,7 @@ def localfs_dummy_finder(no_fs_finder, localfs_env):
 
 
 @pytest.fixture
-def localfs_dummy_finder_empty(no_fs_finder, localfs_env):
+def localfs_dummy_finder_empty(dummy_fs_finder, localfs_env):
     from pootle.core.plugin import getter
     from pootle_fs.delegate import fs_finder
     from pootle_fs.finder import TranslationFileFinder
@@ -170,7 +170,7 @@ def localfs_dummy_finder_empty(no_fs_finder, localfs_env):
 
 
 @pytest.fixture
-def localfs_dummy_file(no_fs_files):
+def localfs_dummy_file(dummy_fs_files):
     from pootle.core.plugin import getter
     from pootle_fs.delegate import fs_file
     from pootle_fs.files import FSFile
