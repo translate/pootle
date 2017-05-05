@@ -6,7 +6,9 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import gc
 import logging
+import resource
 import time
 from contextlib import contextmanager
 
@@ -64,3 +66,19 @@ def debug_sql(debug_logger=None):
             queries,
             debug_logger)
         settings.DEBUG = debug
+
+
+def _get_mem_usage(proc=None):
+    return resource.getrusage(
+        proc or resource.RUSAGE_SELF).ru_maxrss
+
+
+@contextmanager
+def memusage(proc=None):
+    usage = {}
+    gc.collect()
+    usage["initial"] = _get_mem_usage(proc)
+    yield usage
+    gc.collect()
+    usage["after"] = _get_mem_usage(proc)
+    usage["used"] = usage["after"] - usage["initial"]
