@@ -62,9 +62,9 @@ class BulkCRUD(object):
             result = self.model.objects.bulk_create(
                 kwargs["objects"])
             logger.debug(
-                "Created %s objects: %s",
+                "[crud] Created (%s): %s",
                 len(result),
-                str(self.model._meta))
+                self.model.__name__)
             self.post_create(objects=kwargs["objects"], pre=pre, result=result)
 
     def delete(self, **kwargs):
@@ -76,9 +76,9 @@ class BulkCRUD(object):
             pre = self.pre_delete(objects=kwargs["objects"])
             result = kwargs["objects"].select_for_update().delete()
             logger.debug(
-                "Deleted %s objects: %s",
+                "[crud] Deleted (%s): %s",
                 str(result),
-                str(self.model._meta))
+                self.model.__name__)
             self.post_delete(objects=kwargs["objects"], pre=pre, result=result)
 
     def update_object(self, obj, update):
@@ -186,8 +186,8 @@ class BulkCRUD(object):
             return self.update_object_instance(kwargs["instance"])
         objects, fields = self.update_object_list(**kwargs)
         logger.debug(
-            "Updated %s objects: %s (%s)",
+            "[crud] Updated (%s): %s %s",
             len(objects),
-            str(self.model._meta),
-            str(fields))
+            self.model.__name__,
+            "%s" % (", ".join(fields or [])))
         return self.update_object_dict(objects, kwargs.get("updates"), fields)
