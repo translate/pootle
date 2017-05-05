@@ -6,11 +6,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import gc
 import re
+import resource
 import time
 
 from pootle.core.debug import (
-    debug_sql, log_new_queries, log_timing, timings)
+    debug_sql, log_new_queries, log_timing, memusage, timings)
 
 import pytest
 
@@ -149,3 +151,18 @@ def test_debug_trace(caplog, settings):
     assert called[1].stack[3] == "test_debug_trace"
     assert called[2].stack[3] == "_test_trace"
     assert asstring == "\n".join(str(item) for item in called)
+
+
+def test_debug_memusage():
+    """Site wide update_stores"""
+    gc.collect()
+
+    initial = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+
+    with memusage() as usage:
+        foo = "BAR"
+
+    assert foo
+    assert usage["initial"] >= initial
+    assert usage["after"] >= initial
+    assert "used" in usage
