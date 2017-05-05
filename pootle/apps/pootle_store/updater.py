@@ -390,6 +390,8 @@ class StoreUpdater(object):
                              self.target_store.pootle_path, update_revision)
         if file_changed or changed:
             self.target_store.save()
+        if "store" in self.target_store.file.__dict__:
+            del self.target_store.file.__dict__["store"]
         return changed
 
     def update_units(self, update):
