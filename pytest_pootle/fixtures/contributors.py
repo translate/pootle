@@ -78,7 +78,9 @@ def dummy_contributors(request, default_contributors_kwargs):
     from pootle_statistics.utils import Contributors
 
     orig_receivers = contributors.receivers
+    receivers_cache = contributors.sender_receivers_cache.copy()
     contributors.receivers = []
+    contributors.sender_receivers_cache.clear()
 
     class DummyContributors(Contributors):
 
@@ -99,6 +101,7 @@ def dummy_contributors(request, default_contributors_kwargs):
 
     def _reset_contributors():
         contributors.receivers = orig_receivers
+        contributors.sender_receivers_cache = receivers_cache
 
     request.addfinalizer(_reset_contributors)
 
@@ -111,7 +114,9 @@ def dummy_email_contributors(request):
     from pootle_statistics.utils import Contributors
 
     orig_receivers = contributors.receivers
+    receivers_cache = contributors.sender_receivers_cache.copy()
     contributors.receivers = []
+    contributors.sender_receivers_cache.clear()
 
     class DummyContributors(Contributors):
 
@@ -127,5 +132,6 @@ def dummy_email_contributors(request):
 
     def _reset_contributors():
         contributors.receivers = orig_receivers
+        contributors.sender_receivers_cache = receivers_cache
 
     request.addfinalizer(_reset_contributors)
