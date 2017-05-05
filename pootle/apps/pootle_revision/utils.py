@@ -184,13 +184,14 @@ class RevisionUpdater(object):
                     missing_revisions.append(dict(
                         object_id=parent,
                         key=key))
-
         new_revision = self.new_revision
-        update.send(
-            Revision,
-            updates={
-                id: dict(value=new_revision)
-                for id in existing_ids})
+        updates = {
+            id: dict(value=new_revision)
+            for id in existing_ids}
+        if updates:
+            update.send(
+                Revision,
+                updates=updates)
         if missing_revisions:
             create.send(
                 Revision,
