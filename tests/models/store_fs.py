@@ -240,20 +240,23 @@ def test_store_fs_plugin(po_directory, tp0_store_fs, no_fs_plugins, no_fs_files)
         def foo(self):
             return "bar"
 
-    @provider(fs_plugins, weak=False, sender=Project)
-    def provide_plugin(**kwargs):
-        return dict(dummyfs=DummyPlugin)
-
-    @getter(fs_file, weak=False, sender=DummyPlugin)
-    def fs_files_getter(**kwargs):
-        return FSFile
-
     project = store_fs.project
     project.config["pootle_fs.fs_type"] = "dummyfs"
     project.config["pootle_fs.fs_url"] = "/foo/bar"
-    assert store_fs.plugin.project == project
-    assert store_fs.plugin.foo() == "bar"
-    assert isinstance(store_fs.file, FSFile)
+
+    with no_fs_plugins():
+        with no_fs_files():
+
+            @provider(fs_plugins, weak=False, sender=Project)
+            def provide_plugin(**kwargs):
+                return dict(dummyfs=DummyPlugin)
+
+            @getter(fs_file, weak=False, sender=DummyPlugin)
+            def fs_files_getter(**kwargs):
+                return FSFile
+            assert store_fs.plugin.project == project
+            assert store_fs.plugin.foo() == "bar"
+            assert isinstance(store_fs.file, FSFile)
 
 
 @pytest.mark.django_db

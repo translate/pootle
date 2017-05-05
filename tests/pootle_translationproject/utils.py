@@ -180,17 +180,19 @@ def test_tp_tool_getter(project0_directory, project0):
 
 
 @pytest.mark.django_db
-def test_tp_tool_custom_getter(project0, no_tp_tool_):
+def test_tp_tool_custom_getter(project0, no_tp_tool):
 
     class CustomTPTool(TPTool):
         pass
 
-    @getter(tp_tool, sender=Project, weak=False)
-    def custom_tp_tool_getter(**kwargs_):
-        return CustomTPTool
+    with no_tp_tool():
 
-    assert tp_tool.get(Project) is CustomTPTool
-    assert isinstance(project0.tp_tool, CustomTPTool)
+        @getter(tp_tool, sender=Project, weak=False)
+        def custom_tp_tool_getter(**kwargs_):
+            return CustomTPTool
+
+        assert tp_tool.get(Project) is CustomTPTool
+        assert isinstance(project0.tp_tool, CustomTPTool)
 
 
 @pytest.mark.django_db

@@ -23,28 +23,30 @@ def qs_match(qs1, qs2):
 
 
 @pytest.mark.django_db
-def test_contextmanager_keep_data(store0, no_update_data_):
+def test_contextmanager_keep_data(store0, no_update_data):
 
     result = []
 
-    @receiver(update_data, sender=Store)
-    def update_data_handler(**kwargs):
-        store = kwargs["instance"]
-        result.append(store)
+    with no_update_data():
 
-    update_data.send(Store, instance=store0)
-    assert result == [store0]
+        @receiver(update_data, sender=Store)
+        def update_data_handler(**kwargs):
+            store = kwargs["instance"]
+            result.append(store)
 
-    result.remove(store0)
-
-    # with keep_data decorator signal is suppressed
-    with keep_data():
         update_data.send(Store, instance=store0)
-    assert result == []
+        assert result == [store0]
 
-    # works again now
-    update_data.send(Store, instance=store0)
-    assert result == [store0]
+        result.remove(store0)
+
+        # with keep_data decorator signal is suppressed
+        with keep_data():
+            update_data.send(Store, instance=store0)
+        assert result == []
+
+        # works again now
+        update_data.send(Store, instance=store0)
+        assert result == [store0]
 
 
 def _create_qc_events(unit):
