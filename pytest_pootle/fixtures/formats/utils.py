@@ -43,7 +43,10 @@ def dummy_project_filetypes(request, dummy_filetypes_class):
     from pootle_project.models import Project
 
     receivers = filetype_tool.receivers
+    receiver_cache = filetype_tool.sender_receivers_cache.copy()
     filetype_tool.receivers = []
+    filetype_tool.sender_receivers_cache.clear()
+
     result = Result()
 
     @getter(filetype_tool, sender=Project, weak=False)
@@ -53,5 +56,6 @@ def dummy_project_filetypes(request, dummy_filetypes_class):
 
     def _restore_filetypes():
         filetype_tool.receivers = receivers
+        filetype_tool.sender_receivers_cache = receiver_cache
 
     request.addfinalizer(_restore_filetypes)
