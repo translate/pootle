@@ -1081,6 +1081,9 @@ class Store(AbstractStore):
                 last_revision)
         self.last_sync_revision = last_revision
         self.save()
+        if "store" in self.file.__dict__:
+            del self.file.__dict__["store"]
+
 
 # # # # # # # # # # # #  TranslationStore # # # # # # # # # # # # #
 
