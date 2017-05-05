@@ -15,9 +15,6 @@ from django.core.management import CommandError, call_command
 @pytest.mark.django_db
 def test_update_stores_noargs(capfd, project0_nongnu, project1, language1):
     """Site wide update_stores"""
-    # speed up test by deleting objects
-    project1.delete()
-    language1.delete()
     call_command('update_stores', '-v3')
     out, err = capfd.readouterr()
     # Store and Unit are deleted as there are no files on disk

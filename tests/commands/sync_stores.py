@@ -19,8 +19,6 @@ from pootle_store.models import Store
 @pytest.mark.django_db
 def test_sync_stores_noargs(capfd, project0, project1):
     """Site wide sync_stores"""
-    project0.delete()
-    project1.delete()
     capfd.readouterr()
     call_command('sync_stores')
     out, err = capfd.readouterr()
