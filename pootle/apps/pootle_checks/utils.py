@@ -224,9 +224,13 @@ class QualityCheckUpdater(object):
     def updated_stores(self):
         return self._updated_stores
 
+    def log_debug(self):
+        pass
+
     def update(self, clear_unknown=False, update_data_after=False):
         """Update/purge all QualityChecks for Units, and expire Store caches.
         """
+        self.log_debug()
         if clear_unknown:
             self.clear_unknown_checks()
         with bulk_operations(QualityCheck):
@@ -318,7 +322,16 @@ class QualityCheckUpdater(object):
 
 
 class TPQCUpdater(QualityCheckUpdater):
-    pass
+
+    def log_debug(self):
+        logger.debug(
+            "[checks] Update %s(%s) for %s stores and %s units",
+            self.__class__.__name__,
+            (self.translation_project.pootle_path
+             if self.translation_project
+             else ""),
+            "all" if self.stores is None else len(self.stores),
+            "all" if self._units is None else len(self._units))
 
 
 class StoreQCUpdater(QualityCheckUpdater):
@@ -335,6 +348,13 @@ class StoreQCUpdater(QualityCheckUpdater):
         self.store = store
         self._updated_stores = {}
         self._units = units
+
+    def log_debug(self):
+        logger.debug(
+            "[checks] Update %s(%s) for %s units",
+            self.__class__.__name__,
+            self.store.pootle_path,
+            "all" if self._units is None else len(self._units))
 
     @property
     def checks_qs(self):
