@@ -87,12 +87,6 @@ class PootleCommand(BaseCommand):
         if hasattr(self, "handle_all_stores"):
             logging.info(u"Running %s over %s's files", self.name, tp)
             self.handle_all_stores(tp, **options)
-        elif hasattr(self, "handle_store"):
-            store_query = tp.stores.live()
-            for store in store_query.iterator():
-                logging.info(u"Running %s over %s",
-                             self.name, store.pootle_path)
-                self.handle_store(store, **options)
 
     def check_projects(self, project_codes):
         existing_projects = Project.objects.filter(
