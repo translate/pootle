@@ -6,8 +6,12 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import logging
 
 from bulk_update.helper import bulk_update
+
+
+logger = logging.getLogger(__name__)
 
 
 class BulkCRUD(object):
@@ -57,6 +61,10 @@ class BulkCRUD(object):
             pre = self.pre_delete(objects=kwargs["objects"])
             result = self.model.objects.bulk_create(
                 kwargs["objects"])
+            logger.debug(
+                "Created %s objects: %s",
+                len(result),
+                str(self.model._meta))
             self.post_create(objects=kwargs["objects"], pre=pre, result=result)
 
     def delete(self, **kwargs):
@@ -67,6 +75,10 @@ class BulkCRUD(object):
         if "objects" in kwargs:
             pre = self.pre_delete(objects=kwargs["objects"])
             result = kwargs["objects"].select_for_update().delete()
+            logger.debug(
+                "Deleted %s objects: %s",
+                str(result),
+                str(self.model._meta))
             self.post_delete(objects=kwargs["objects"], pre=pre, result=result)
 
     def update_object(self, obj, update):
@@ -173,4 +185,9 @@ class BulkCRUD(object):
         if kwargs.get("instance") is not None:
             return self.update_object_instance(kwargs["instance"])
         objects, fields = self.update_object_list(**kwargs)
+        logger.debug(
+            "Updated %s objects: %s (%s)",
+            len(objects),
+            str(self.model._meta),
+            str(fields))
         return self.update_object_dict(objects, kwargs.get("updates"), fields)
