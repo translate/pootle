@@ -374,38 +374,35 @@ class PootleTestEnv(object):
                 self._add_stores(tp, n=(1, 1), parent=subdir1)
 
     def setup_submissions(self):
-        from pootle_statistics.models import SubmissionTypes
-        from pootle_store.constants import UNTRANSLATED
-        from pootle_store.models import Store, Unit, UnitChange
-        from pootle_translationproject.contextmanagers import update_tp_after
-
         from django.contrib.auth import get_user_model
         from django.utils import timezone
 
+        from pootle.core.contextmanagers import bulk_operations
+        from pootle_data.models import TPChecksData, TPData
+        from pootle_score.models import UserTPScore
+        from pootle_statistics.models import SubmissionTypes
+        from pootle_store.constants import UNTRANSLATED
+        from pootle_store.models import Unit, UnitChange
+        from pootle_translationproject.contextmanagers import update_tp_after
+        from pootle_translationproject.models import TranslationProject
+
         year_ago = timezone.now() - relativedelta(years=1)
 
-        Unit.objects.update(creation_time=year_ago)
+        units = Unit.objects.all()
+        units.update(creation_time=year_ago)
 
-        stores = Store.objects.select_related(
-            "translation_project__project",
-            "translation_project__language")
         User = get_user_model()
         admin = User.objects.get(username="admin")
         member = User.objects.get(username="member")
         member2 = User.objects.get(username="member2")
-
-        units = Unit.objects.filter(store__in=stores)
 
         UnitChange.objects.bulk_create(
             UnitChange(unit_id=unit_id, changed_with=SubmissionTypes.SYSTEM)
             for unit_id
             in units.filter(state__gt=UNTRANSLATED).values_list("id", flat=True))
 
-        from pootle.core.contextmanagers import bulk_operations
-        from pootle_score.models import UserTPScore
-        from pootle_data.models import TPChecksData, TPData
-        from pootle_translationproject.models import TranslationProject
-
+        tps = TranslationProject.objects.select_related(
+            "language", "project__source_language").all()
         bulk_pootle = bulk_operations(
             models=(
                 get_user_model(),
@@ -413,13 +410,13 @@ class PootleTestEnv(object):
                 TPData,
                 TPChecksData))
         with bulk_pootle:
-            for tp in TranslationProject.objects.all():
+            for tp in tps:
                 with update_tp_after(tp):
                     self._add_subs_to_stores(
-                        tp.stores.all(), admin, member, member2)
+                        tp.stores, admin, member, member2)
 
     def _add_subs_to_stores(self, stores, admin, member, member2):
-        for store in stores.all():
+        for store in stores.select_related("data", "parent"):
             self._add_subs_to_store(store, admin, member, member2)
 
     def _add_subs_to_store(self, store, admin, member, member2):
