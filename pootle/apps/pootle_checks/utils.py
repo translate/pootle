@@ -386,6 +386,25 @@ class StoreQCUpdater(QualityCheckUpdater):
             self.store.__class__,
             instance=self.store)
 
+    def update_translated(self):
+        """Update checks for translated Units
+        """
+        unit_fields = ["id", "source_f", "target_f", "locations"]
+        checker = self.store.translation_project.checker
+        lang_code = self.store.translation_project.language.code
+        translated = (
+            self.units.filter(state__gt=UNTRANSLATED)
+                      .order_by("store", "index"))
+        updated_count = 0
+        for unit in translated.values(*unit_fields).iterator():
+            unit["store__translation_project__id"] = self.translation_project.id
+            unit["store__id"] = self.store.id
+            unit["store__translation_project__language__code"] = lang_code
+            if self.update_translated_unit(unit, checker=checker):
+                updated_count += 1
+        # clear the cache of the remaining Store
+        return updated_count
+
 
 def get_category_id(code):
     return CATEGORY_IDS.get(code)
