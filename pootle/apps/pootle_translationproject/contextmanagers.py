@@ -18,7 +18,7 @@ from pootle_app.models import Directory
 from pootle_data.models import (
     StoreChecksData, StoreData, TPChecksData, TPData)
 from pootle_score.models import UserTPScore, UserStoreScore
-from pootle_store.models import Store
+from pootle_store.models import QualityCheck, Store
 
 
 class Updated(object):
@@ -55,16 +55,17 @@ def _handle_update_stores(sender, updated):
                 updated.data = updated.data or {}
                 updated.data[kwargs["instance"].id] = kwargs["instance"]
 
-            for to_check in updated.checks.values():
-                store = to_check["store"]
-                units = (
-                    [unit.id for unit in to_check["units"]]
-                    if to_check["units"]
-                    else None)
-                update_checks.send(
-                    store.__class__,
-                    instance=store,
-                    units=units)
+            with bulk_operations(QualityCheck):
+                for to_check in updated.checks.values():
+                    store = to_check["store"]
+                    units = (
+                        [unit.id for unit in to_check["units"]]
+                        if to_check["units"]
+                        else None)
+                    update_checks.send(
+                        store.__class__,
+                        instance=store,
+                        units=units)
 
     if updated.data:
         stores = updated.data.values()
