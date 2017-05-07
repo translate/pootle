@@ -8,10 +8,9 @@
 
 from django.contrib.auth import get_user_model
 
-from pootle_store.contextmanagers import update_store_after
 from pootle.core.models import Revision
 from pootle.core.contextmanagers import keep_data
-from pootle.core.signals import update_checks, update_data
+from pootle.core.signals import create, update_checks
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.constants import OBSOLETE, SOURCE_WINS
 from pootle_store.diff import StoreDiff
@@ -67,7 +66,7 @@ class TPTool(object):
         new_tp = self.create_tp(language, project)
         new_tp.directory.tp = new_tp
         new_tp.directory.translationproject = new_tp
-        with update_tp_after(tp):
+        with update_tp_after(new_tp):
             self.clone_children(
                 tp.directory,
                 new_tp.directory)
@@ -77,7 +76,7 @@ class TPTool(object):
         """Clone a source Directory's children to a given target Directory.
         """
         source_stores = source_dir.child_stores.live().select_related(
-            "filetype", "filetype__extension")
+            "data", "filetype", "filetype__extension")
         for store in source_stores:
             store.parent = source_dir
             self.clone_store(store, target_parent)
@@ -102,15 +101,12 @@ class TPTool(object):
         cloned = target_dir.child_stores.create(
             name=store.name,
             translation_project=target_dir.translation_project)
-
-        with keep_data(signals=(update_checks, update_data)):
+        with keep_data(signals=(update_checks, )):
             cloned.update(cloned.deserialize(store.serialize()))
             cloned.state = store.state
             cloned.filetype = store.filetype
             cloned.save()
-
-            self.clone_checks(store, cloned)
-        update_data.send(cloned.__class__, instance=cloned)
+        self.clone_checks(store, cloned)
         return cloned
 
     def clone_checks(self, source_store, target_store):
@@ -135,8 +131,7 @@ class TPTool(object):
                 name=check['name'],
                 false_positive=check['false_positive'],
                 message=check['message']))
-
-        QualityCheck.objects.bulk_create(cloned_checks)
+        create.send(QualityCheck, objects=cloned_checks)
 
     def create_tp(self, language, project=None):
         """Create a TP for a given language"""
@@ -171,7 +166,9 @@ class TPTool(object):
             if project
             else self.tp_qs)
         try:
-            return tp_qs.get(language=language)
+            return tp_qs.select_related(
+                "directory",
+                "directory__parent").get(language=language)
         except tp_qs.model.DoesNotExist:
             pass
 
@@ -262,13 +259,12 @@ class TPTool(object):
             return
         system = User.objects.get_system_user()
         update_revision = Revision.incr()
-        with update_store_after(target):
-            return target.updater.update_from_diff(
-                source,
-                source_revision,
-                diff,
-                update_revision,
-                system,
-                SubmissionTypes.SYSTEM,
-                SOURCE_WINS,
-                True)
+        return target.updater.update_from_diff(
+            source,
+            source_revision,
+            diff,
+            update_revision,
+            system,
+            SubmissionTypes.SYSTEM,
+            SOURCE_WINS,
+            True)
