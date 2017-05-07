@@ -402,7 +402,6 @@ class StoreQCUpdater(QualityCheckUpdater):
             unit["store__translation_project__language__code"] = lang_code
             if self.update_translated_unit(unit, checker=checker):
                 updated_count += 1
-        # clear the cache of the remaining Store
         return updated_count
 
 
