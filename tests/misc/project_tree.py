@@ -8,8 +8,12 @@
 
 import pytest
 
+from pootle.core.contextmanagers import keep_data
+from pootle.core.signals import update_revisions
+from pootle_app.models import Directory
 from pootle_app.project_tree import direct_language_match_filename
 from pytest_pootle.factories import LanguageDBFactory
+from pootle_store.models import Store
 
 
 @pytest.mark.parametrize('language_code, path_name, matched', [
@@ -203,5 +207,8 @@ from pytest_pootle.factories import LanguageDBFactory
 ])
 @pytest.mark.django_db
 def test_direct_language_match_filename(language_code, path_name, matched):
-    LanguageDBFactory(code="pt_BR")
+
+    with keep_data(signals=(update_revisions, ), suppress=(Directory, Store)):
+        LanguageDBFactory(code="pt_BR")
+
     assert direct_language_match_filename(language_code, path_name) is matched
