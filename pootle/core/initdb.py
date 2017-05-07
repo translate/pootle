@@ -13,9 +13,12 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_noop as _
 
+from pootle.core.contextmanagers import bulk_operations, keep_data
 from pootle.core.models import Revision
+from pootle.core.signals import update_revisions
 from pootle_app.models import Directory
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
+from pootle_data.models import TPChecksData, TPData
 from pootle_format.models import Format
 from pootle_language.models import Language
 from pootle_project.models import Project
@@ -28,6 +31,11 @@ logger = logging.getLogger(__name__)
 class InitDB(object):
 
     def init_db(self, create_projects=True):
+        with keep_data(signals=(update_revisions, )):
+            with bulk_operations(models=(TPData, TPChecksData)):
+                self._init_db(create_projects)
+
+    def _init_db(self, create_projects=True):
         """Populate the database with default initial data.
 
         This creates the default database to get a working Pootle installation.
