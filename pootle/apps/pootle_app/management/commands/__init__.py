@@ -38,6 +38,14 @@ class PootleCommand(BaseCommand):
 
     atomic_default = "tp"
     process_disabled_projects = False
+    project_related = (
+        "source_language", )
+    tp_related = (
+        "data",
+        "language",
+        "directory",
+        "directory__parent",
+        "directory__parent__parent")
 
     def add_arguments(self, parser):
         parser.add_argument(
@@ -150,25 +158,47 @@ class PootleCommand(BaseCommand):
         if options["no_rq"]:
             set_sync_mode(options['noinput'])
 
-        tps = TranslationProject.objects.live().order_by(
-            "project__code", "language__code").select_related(
-                "project",
-                "language",
-                "directory",
-                "project__source_language")
+        if options["atomic"] == "tp":
+            self._handle_atomic_tps(**options)
+        else:
+            self._handle_tps(**options)
+
+    def _handle_tps(self, **options):
+        projects = Project.objects.select_related(
+            *self.project_related).order_by("code").all()
+
+        if self.projects:
+            projects = projects.filter(code__in=self.projects)
 
         if not self.process_disabled_projects:
-            tps = tps.exclude(project__disabled=True)
+            projects = projects.exclude(disabled=True)
+
+        for project in projects.iterator():
+            tps = project.translationproject_set.live().order_by(
+                "language__code").select_related(*self.tp_related)
+            if self.languages:
+                tps = tps.filter(language__code__in=self.languages)
+
+            for tp in tps.iterator():
+                self.do_translation_project(tp, **options)
+
+    def _handle_atomic_tps(self, **options):
+        related = [
+            ("project__%s" % project_related)
+            for project_related in self.project_related]
+        related += list(self.tp_related)
+        tps = TranslationProject.objects.select_related(
+            *related).order_by("project__code", "language__code").all()
 
         if self.projects:
             tps = tps.filter(project__code__in=self.projects)
+
+        if not self.process_disabled_projects:
+            tps = tps.exclude(project__disabled=True)
 
         if self.languages:
             tps = tps.filter(language__code__in=self.languages)
 
         for tp in tps.iterator():
-            if options["atomic"] == "tp":
-                with transaction.atomic():
-                    self.do_translation_project(tp, **options)
-            else:
+            with transaction.atomic():
                 self.do_translation_project(tp, **options)
