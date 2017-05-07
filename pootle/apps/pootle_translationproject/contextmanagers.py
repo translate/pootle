@@ -59,7 +59,7 @@ def _handle_update_stores(sender, updated):
                 for to_check in updated.checks.values():
                     store = to_check["store"]
                     units = (
-                        [unit.id for unit in to_check["units"]]
+                        [unit for unit in to_check["units"]]
                         if to_check["units"]
                         else None)
                     update_checks.send(
@@ -151,9 +151,10 @@ def update_tp_after(sender, **kwargs):
             units = None
             if isinstance(kwargs.get("instance"), Store):
                 store = kwargs["instance"]
+                units = set(kwargs.get("units") or [])
             else:
                 store = kwargs["instance"].store
-                units = set([kwargs["instance"]])
+                units = set([kwargs["instance"].id])
             updated.checks[store.id] = updated.checks.get(
                 store.id,
                 dict(store=store, units=set()))
