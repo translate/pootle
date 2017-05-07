@@ -138,8 +138,7 @@ class Directory(models.Model, CachedTreeItem):
 
     def save(self, *args, **kwargs):
         # Force validation of fields.
-        self.full_clean()
-
+        self.full_clean(validate_unique=False)
         super(Directory, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
