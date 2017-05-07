@@ -15,8 +15,24 @@ from pootle_store.models import Unit
 from pootle_statistics.models import Submission, SubmissionFields
 
 
-@receiver(post_save, sender=Submission)
+@receiver(post_save, sender=Unit)
 def handle_unit_save(**kwargs):
+    unit = kwargs["instance"]
+    if not kwargs.get("created"):
+        return
+    if unit.state != TRANSLATED:
+        return
+    is_terminology = (
+        unit.store.name.startswith("pootle-terminology")
+        or (unit.store.translation_project.project.code
+            == "terminology"))
+    if not is_terminology:
+        return
+    terminology.get(Unit)(unit).stem()
+
+
+@receiver(post_save, sender=Submission)
+def handle_submission_save(**kwargs):
     sub = kwargs["instance"]
     if sub.type != SubmissionFields.TARGET:
         return
