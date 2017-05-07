@@ -64,21 +64,21 @@ def tp_checker_tests(request, english, checkers):
 @pytest.fixture
 def templates_project0(request, templates, project0):
     """Require the templates/project0/ translation project."""
-    from pootle_translationproject.models import TranslationProject
-
-    return TranslationProject.objects.get(
-        language=templates, project=project0)
+    tps = project0.translationproject_set.select_related(
+        "data",
+        "directory")
+    template_tp = tps.get(language=templates)
+    template_tp.language = templates
+    return template_tp
 
 
 @pytest.fixture
 def tp0(language0, project0):
     """Require English Project0."""
-    from pootle_translationproject.models import TranslationProject
-
-    tp0 = TranslationProject.objects.select_related("data").get(
-        language=language0,
-        project=project0)
-    tp0.project = project0
+    tps = project0.translationproject_set.select_related(
+        "data",
+        "directory")
+    tp0 = tps.get(language=language0)
     tp0.language = language0
     return tp0
 
