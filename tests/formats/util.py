@@ -28,9 +28,21 @@ def test_format_util(project0):
 
     xliff = Format.objects.get(name="xliff")
     project0.filetypes.add(xliff)
+    del project0.__dict__["filetype_tool"]
+    filetype_tool = project0.filetype_tool
     assert filetype_tool.filetype_extensions == [u"po", u"xliff"]
     assert filetype_tool.template_extensions == [u"pot", u"xliff"]
     assert filetype_tool.valid_extensions == [u"po", u"xliff", u"pot"]
+
+    ts = Format.objects.get(name="ts")
+    filetype_tool.add_filetype(ts)
+    del project0.__dict__["filetype_tool"]
+    filetype_tool = project0.filetype_tool
+    assert filetype_tool.filetype_extensions == [u"po", u"xliff", u"ts"]
+    assert filetype_tool.template_extensions == [u"pot", u"xliff", u"ts"]
+    assert (
+        sorted(filetype_tool.valid_extensions)
+        == [u"po", u"pot", u"ts", u"xliff"])
 
 
 @pytest.mark.django_db
