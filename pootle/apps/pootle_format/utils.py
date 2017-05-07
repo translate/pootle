@@ -10,6 +10,8 @@ import logging
 import os
 from collections import OrderedDict
 
+from django.utils.functional import cached_property
+
 from pootle_fs.utils import PathFilter
 
 from .exceptions import UnrecognizedFiletype
@@ -60,19 +62,19 @@ class ProjectFiletypes(object):
                self.project.fullname,
                ", ".join(str(ft) for ft in self.filetypes)))
 
-    @property
+    @cached_property
     def filetype_extensions(self):
         return list(
             self.filetypes.values_list(
                 "extension__name", flat=True))
 
-    @property
+    @cached_property
     def template_extensions(self):
         return list(
             self.filetypes.values_list(
                 "template_extension__name", flat=True))
 
-    @property
+    @cached_property
     def valid_extensions(self):
         """this is the equiv of combining 2 sets"""
         exts = []
@@ -92,6 +94,16 @@ class ProjectFiletypes(object):
                 "Adding filetype '%s' to project '%s'",
                 filetype, self.project)
             self.project.filetypes.add(filetype)
+            self.clear_cache()
+
+    def clear_cache(self):
+        cached = [
+            "filetype_extensions",
+            "template_extensions",
+            "valid_extensions"]
+        for cachetype in cached:
+            if cachetype in self.__dict__:
+                del self.__dict__[cachetype]
 
     def set_store_filetype(self, store, filetype):
         """Sets a Store to given filetype
