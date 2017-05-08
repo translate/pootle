@@ -401,8 +401,9 @@ class PootleTestEnv(object):
             for unit_id
             in units.filter(state__gt=UNTRANSLATED).values_list("id", flat=True))
 
-        tps = TranslationProject.objects.select_related(
-            "language", "project__source_language").all()
+        tps = TranslationProject.objects.exclude(
+            language__code="templates").select_related(
+                "language", "project__source_language").all()
         bulk_pootle = bulk_operations(
             models=(
                 get_user_model(),
@@ -432,10 +433,13 @@ class PootleTestEnv(object):
 
     def setup_templates(self):
         from pootle.core.contextmanagers import keep_data
+        from pootle.core.signals import update_data
         from pootle_project.models import Project
+        from pootle_translationproject.contextmanagers import update_tp_after
         from pytest_pootle.factories import (
             LanguageDBFactory, TranslationProjectFactory)
 
+        tps = []
         with keep_data():
             templates = LanguageDBFactory(code="templates")
 
@@ -448,6 +452,13 @@ class PootleTestEnv(object):
                 tp_dir.obsolete = False
                 tp_dir.save()
                 self._add_template_stores(tp)
+                tps.append(tp)
+        for tp in tps:
+            with update_tp_after(tp):
+                for store in tp.stores.all():
+                    update_data.send(
+                        store.__class__,
+                        instance=store)
 
     def setup_tps(self):
         from pootle.core.contextmanagers import keep_data
