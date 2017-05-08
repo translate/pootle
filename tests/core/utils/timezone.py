@@ -6,14 +6,23 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from datetime import datetime
+from datetime import datetime, timedelta
 
 import pytest
 import pytz
 
 from django.utils import timezone
 
-from pootle.core.utils.timezone import make_aware, make_naive, aware_datetime
+from pootle.core.utils.timezone import (
+    localdate, make_aware, make_naive, aware_datetime)
+
+
+def test_localdate(settings):
+    today = localdate()
+    assert today == timezone.localtime(timezone.now()).date()
+    assert (
+        localdate(timezone.now() + timedelta(weeks=1))
+        == today + timedelta(weeks=1))
 
 
 @pytest.mark.django_db
