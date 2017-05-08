@@ -341,7 +341,12 @@ class GroupedEvents(object):
     def __init__(self, log):
         self.log = log
 
-    def sorted_events(self, reverse=False):
-        for event in sorted([comparable_event.get(self.log.__class__)(x)
-                             for x in self.log.get_events()], reverse=reverse):
+    def sorted_events(self, start=None, end=None, users=None, reverse=False):
+        comparable_event_class = comparable_event.get(self.log.__class__)
+        events = sorted(
+            (comparable_event_class(x)
+             for x in self.log.get_events(start=start,
+                                          end=end,
+                                          users=users)), reverse=reverse)
+        for event in events:
             yield event
