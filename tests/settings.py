@@ -18,7 +18,7 @@ SECRET_KEY = "test_secret_key"
 # and at the same time are behind a `lru_cache` decorator, which makes it
 # impossible to alter the value at runtime because decorators are applied at
 # function definition time.
-TIME_ZONE = 'Europe/Amsterdam'
+TIME_ZONE = 'Pacific/Honolulu'
 
 ROOT_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
 POOTLE_TRANSLATION_DIRECTORY = os.path.join(ROOT_DIR, 'pytest_pootle', 'data', 'po')
