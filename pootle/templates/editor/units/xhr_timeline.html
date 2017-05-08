@@ -1,67 +1,49 @@
 {% load i18n locale store_tags common_tags %}
 <div id="timeline-results">
   <div class="extra-item-title">{% trans 'Timeline' %}</div>
-  {% for entry_group in entries_group %}
+  {% for event_group in event_groups %}
   <div class="extra-item-block">
     <div class="extra-item-content">
-      {% if entry_group.submitter %}
+      {% if event_group.user %}
       <div class="extra-item-gravatar">
-	<a href="{% url 'pootle-user-profile' entry_group.submitter.username %}"
-	   title="{{ entry_group.submitter.display_name|force_escape|force_escape }}">
-	  {% avatar entry_group.submitter.username entry_group.submitter.email_hash 20 %}
+	<a href="{% url 'pootle-user-profile' event_group.user.username %}"
+	   title="{{ event_group.user.display_name|force_escape|force_escape }}">
+	  {% avatar event_group.user.username event_group.user.email_hash 20 %}
 	</a>
       </div>
       {% endif %}
       <div class="extra-item">
         <div class="timeline-entry">
-          {% for entry in entry_group.entries %}
-          {% if entry.suggestion_text %}
-          <div class="timeline-type-{{ entry.type }}">
-            <div
-              class="timeline-field-body js-unit-highlight"
-              data-string="{{ entry.suggestion_text|escapejs }}"
-            ></div>
-            <div class="sidetitle">{{ entry.suggestion_description }}</div>
-          </div>
-          {% elif entry.field > -1 %}
-          <div class="timeline-field-{{ entry.field }}
-            {% if entry.field == 4 %}js-editor-copy-comment{% endif %}
-            {% if entry.field == 2 %}js-editor-copytext{% endif %}"
-            {% if entry.field == 2 %} data-action="overwrite"{% endif %}
-            data-string="{{ entry.new_value }}">
-            {% if entry.field != 2 and entry.field != 0 %}
-              {% if entry.field == 4 and entry.new_value != '' %}
-              <span class="sidetitle">{{ entry.field_name }}:</span>
-              {% endif %}
-            {% endif %}
-            {% if entry.field == 4 and entry.new_value == '' %}
-              <span class="unit-empty">{% trans 'Last comment removed' %}</span>
-            {% elif entry.field != 3 and entry.field != 0 %}
-              <span class="timeline-field-body js-unit-highlight" lang="{{ language.code }}">{{ entry.new_value }}</span>
-            {% elif entry.field == 0 %}
-              {% if entry.check_name %}
-                {% if entry.type == 6 %}
-                {% blocktrans with check_url=entry.checks_url check_name=entry.check_display_name trimmed %}
-                  Muted <a href="{{ check_url }}">{{ check_name }}</a> check
-                  {% endblocktrans %}
-                {% elif entry.type == 7 %}
-                  {% blocktrans with check_url=entry.checks_url check_name=entry.check_display_name trimmed %}
-                  Unmuted <a href="{{ check_url }}">{{ check_name }}</a> check
-                  {% endblocktrans %}
+          {% for event in event_group.events %}
+            {% if event.state %}
+              <div class="state-change">
+                  {{ event.value }}
+              </div>
+            {% elif event.value %}
+              <div
+                  {% if event.translation %}
+                    class="js-editor-copytext" data-action="overwrite" data-string="{{ event.value }}"
+                  {% elif event.comment %}
+                    class="js-editor-copy-comment" data-string="{{ event.value }}"
+                  {% endif %}
+              >
+                {% if event.sidetitle %}
+                  <div class="sidetitle">{{ event.sidetitle }}</div>
                 {% endif %}
-              {% endif %}
-            {% else %}
-              {{ entry.old_value }} <span class="timeline-arrow"></span> {{ entry.new_value }}
+                <span class="timeline-field-body js-unit-highlight"
+                      lang="{{ language.code }}"
+                >{{ event.value }}</span>
+              </div>
             {% endif %}
-          </div>
-          {% endif %}
+            {% if event.description %}
+              <div class="description">
+                {{ event.description }}
+              </div>
+            {% endif %}
           {% endfor %}
-          {% if entry_group.created %}
-            <div class="timeline-field-3">{% trans 'Unit created' %}</div>
-          {% endif %}
         </div>
       </div>
-      {% if entry_group.datetime or entry_group.via_upload %}
+      {% if event_group.datetime or event_group.via_upload %}
         <div class="js-mount-timesince"></div>
       {% endif %}
     </div>

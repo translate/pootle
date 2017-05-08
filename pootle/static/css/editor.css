@@ -995,11 +995,6 @@ html[dir="rtl"] .extra-item-block .suggestion-feedback .buttons button
     margin-bottom: 0.2em;
 }
 
-.timeline-entry .sidetitle .comment
-{
-    color: #444;
-}
-
 .extra-item
 {
     line-height: 140%;
@@ -1200,15 +1195,20 @@ html[dir="rtl"] .timeline-extra
     right: 100%;
 }
 
-.timeline-field-3,
-.timeline-field-0
+.timeline-entry .description
 {
     font-size: 85%;
+    color: #999;
 }
 
-.timeline-field-3 .sidetitle
+.timeline-entry .description .comment
 {
-    font-size: 100%;
+    color: #444;
+}
+
+.timeline-entry .state-change
+{
+    font-size: 85%;
 }
 
 .timeline-field-body
@@ -1224,6 +1224,18 @@ html[dir="rtl"] .timeline-extra
 html[dir="rtl"] .timeline-arrow::before
 {
     content: "←";
+}
+
+.timeline-entry .sidetitle
+{
+    float: left;
+    margin-right: 5px;
+}
+
+html[dir="rtl"] .timeline-entry .sidetitle
+{
+    float: right;
+    margin-left: 5px;
 }
 
 #editor-comment.hide
