@@ -219,15 +219,20 @@ def test_data_tp_stats(tp0):
 
 @pytest.mark.django_db
 def test_data_project_stats(project0):
+    units = (
+        Unit.objects.live().filter(
+            store__translation_project__project=project0).exclude(
+                store__translation_project__language__code="templates"))
     _test_object_stats(
         project0.data_tool.get_stats(include_children=False),
-        Unit.objects.live().filter(
-            store__translation_project__project=project0))
+        units)
     child_stats = project0.data_tool.get_stats()
+    non_templates_tps = project0.translationproject_set.exclude(
+        language__code="templates")
     assert (
         len(child_stats["children"])
-        == project0.translationproject_set.count())
-    for tp in project0.translationproject_set.all():
+        == non_templates_tps.count())
+    for tp in non_templates_tps.iterator():
         stat_code = "%s-%s" % (tp.language.code, project0.code)
         assert stat_code in child_stats["children"]
         child = child_stats["children"][stat_code]
