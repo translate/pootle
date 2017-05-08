@@ -6,7 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from datetime import date, timedelta
+from datetime import timedelta
 
 from django.contrib.auth import get_user_model
 from django.db.models import Sum
@@ -16,6 +16,7 @@ from pootle.core.bulk import BulkCRUD
 from pootle.core.contextmanagers import bulk_operations, keep_data
 from pootle.core.delegate import event_score, log, score_updater
 from pootle.core.signals import create, update, update_scores
+from pootle.core.utils.timezone import localdate
 from pootle_log.utils import LogEvent
 from pootle_score.models import UserStoreScore, UserTPScore
 from pootle_translationproject.models import TranslationProject
@@ -236,15 +237,16 @@ class StoreScoreUpdater(ScoreUpdater):
         scores = self.scoring[event.action](event).get_score()
         if not scores or not any(x > 0 for x in scores.values()):
             return
-        calculated_scores[event.timestamp.date()] = (
-            calculated_scores.get(event.timestamp.date(), {}))
-        calculated_scores[event.timestamp.date()][event.user.id] = (
-            calculated_scores[event.timestamp.date()].get(event.user.id, {}))
+        event_date = localdate(event.timestamp)
+        calculated_scores[event_date] = (
+            calculated_scores.get(event_date, {}))
+        calculated_scores[event_date][event.user.id] = (
+            calculated_scores[event_date].get(event.user.id, {}))
         for k, score in scores.items():
             if not score:
                 continue
-            calculated_scores[event.timestamp.date()][event.user.id][k] = (
-                calculated_scores[event.timestamp.date()][event.user.id].get(k, 0)
+            calculated_scores[event_date][event.user.id][k] = (
+                calculated_scores[event_date][event.user.id].get(k, 0)
                 + score)
 
     def calculate(self, start=None, end=None, users=None):
@@ -324,7 +326,7 @@ class UserScoreUpdater(ScoreUpdater):
     def __init__(self, users=None, **kwargs):
         self.users = users
 
-    def calculate(self, start=date.today(), end=None, **kwargs):
+    def calculate(self, start=localdate(), end=None, **kwargs):
         return self.filter_users(
             self.tp_score_model.objects,
             kwargs.get("users")).order_by("user").values_list(
