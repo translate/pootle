@@ -12,10 +12,10 @@ import pytest
 
 from django.contrib.auth import get_user_model
 from django.db.models import Sum
-from django.utils import timezone
 
 from accounts.proxy import DisplayUser
 from pootle.core.delegate import revision, scores
+from pootle.core.utils.timezone import localdate
 from pootle.i18n import formatter
 from pootle_app.models import Directory
 from pootle_language.models import Language
@@ -30,7 +30,7 @@ User = get_user_model()
 
 
 def _test_scores(ns, context, score_data):
-    today = timezone.now().date()
+    today = localdate()
     assert score_data.context == context
     assert (
         score_data.get_daterange(30)
@@ -87,7 +87,7 @@ def test_scores_language(language0):
         score_data.cache_key
         == ("%s.%s.%s"
             % (language0.code,
-               timezone.now().date(),
+               localdate(),
                score_data.revision)))
     qs = score_data.scores_within_days(30)
     assert (
@@ -104,7 +104,7 @@ def test_scores_project(project0):
         score_data.cache_key
         == ("%s.%s.%s"
             % (project0.code,
-               timezone.now().date(),
+               localdate(),
                score_data.revision)))
     qs = score_data.scores_within_days(30)
     assert (
@@ -122,7 +122,7 @@ def test_scores_tp(tp0):
         == ("%s/%s.%s.%s"
             % (tp0.language.code,
                tp0.project.code,
-               timezone.now().date(),
+               localdate(),
                score_data.revision)))
     qs = score_data.scores_within_days(30)
     assert (
@@ -138,7 +138,7 @@ def test_scores_project_set(project_set):
     assert (
         score_data.cache_key
         == ("%s.%s"
-            % (timezone.now().date(),
+            % (localdate(),
                score_data.revision)))
     qs = score_data.scores_within_days(30)
     assert score_data.filter_scores(qs) is qs
@@ -186,7 +186,7 @@ def test_scores_user(member, system):
         score_data.cache_key
         == ("%s.%s.%s"
             % (member.id,
-               timezone.now().date(),
+               localdate(),
                score_data.revision)))
     # system gets no rank
     sys_score_data = scores.get(system.__class__)(system)

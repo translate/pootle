@@ -8,9 +8,8 @@
 
 import pytest
 
-from django.utils import timezone
-
 from pootle.core.delegate import review
+from pootle.core.utils.timezone import localdate
 from pootle_store.constants import UNTRANSLATED
 from pootle_store.models import Suggestion
 
@@ -25,7 +24,7 @@ def test_user_tp_score_update_suggestions(store0, member, member2):
     # score and sugg increase
     current_score = member.scores.get(
         tp=store0.translation_project,
-        date=timezone.now().date())
+        date=localdate())
     old_suggested = current_score.suggested
 
     old_score = round(current_score.score, 2)
@@ -36,7 +35,7 @@ def test_user_tp_score_update_suggestions(store0, member, member2):
         unit, suggestion_text, user=member)
     current_score = member.scores.get(
         tp=store0.translation_project,
-        date=timezone.now().date())
+        date=localdate())
     assert round(current_score.score, 2) == old_score
     assert (
         current_score.suggested
@@ -48,7 +47,7 @@ def test_user_tp_score_update_suggestions(store0, member, member2):
     # score and review increase
     m2_score = member2.scores.get(
         tp=store0.translation_project,
-        date=timezone.now().date())
+        date=localdate())
     old_m2_score = round(m2_score.score, 2)
     old_m2_suggested = m2_score.suggested
     old_m2_translated = m2_score.translated
@@ -56,7 +55,7 @@ def test_user_tp_score_update_suggestions(store0, member, member2):
     suggestions([sugg], member2).accept()
     m2_score = member2.scores.get(
         tp=store0.translation_project,
-        date=timezone.now().date())
+        date=localdate())
     assert round(m2_score.score, 2) > old_m2_score
     assert (
         m2_score.reviewed
@@ -74,14 +73,14 @@ def test_user_tp_score_update_translated(store0, member, member2):
     suggestions = review.get(Suggestion)
     current_score = member.scores.get(
         tp=store0.translation_project,
-        date=timezone.now().date())
+        date=localdate())
     old_score = round(current_score.score, 2)
     old_suggested = current_score.suggested
     old_translated = current_score.translated
     old_reviewed = current_score.reviewed
     m2_score = member2.scores.get(
         tp=store0.translation_project,
-        date=timezone.now().date())
+        date=localdate())
     m2_old_score = round(m2_score.score, 2)
     m2_suggested = m2_score.suggested
     m2_translated = m2_score.translated
@@ -92,7 +91,7 @@ def test_user_tp_score_update_translated(store0, member, member2):
     suggestions([sugg], member2).accept()
     current_score = member.scores.get(
         tp=store0.translation_project,
-        date=timezone.now().date())
+        date=localdate())
     assert round(current_score.score, 2) > old_score
     assert current_score.reviewed == old_reviewed
     assert (
@@ -103,7 +102,7 @@ def test_user_tp_score_update_translated(store0, member, member2):
         == old_translated + unit.unit_source.source_wordcount)
     m2_score = member2.scores.get(
         tp=store0.translation_project,
-        date=timezone.now().date())
+        date=localdate())
     assert round(m2_score.score, 2) > m2_old_score
     assert m2_score.suggested == m2_suggested
     assert m2_score.translated == m2_translated
@@ -119,14 +118,14 @@ def test_user_tp_score_update_rejects(store0, member, member2):
     suggestions = review.get(Suggestion)
     current_score = member.scores.get(
         tp=store0.translation_project,
-        date=timezone.now().date())
+        date=localdate())
     old_score = round(current_score.score, 2)
     old_suggested = current_score.suggested
     old_translated = current_score.translated
     old_reviewed = current_score.reviewed
     m2_score = member2.scores.get(
         tp=store0.translation_project,
-        date=timezone.now().date())
+        date=localdate())
     m2_old_score = round(m2_score.score, 2)
     m2_suggested = m2_score.suggested
     m2_translated = m2_score.translated
@@ -137,7 +136,7 @@ def test_user_tp_score_update_rejects(store0, member, member2):
     suggestions([sugg], member2).reject()
     current_score = member.scores.get(
         tp=store0.translation_project,
-        date=timezone.now().date())
+        date=localdate())
     assert round(current_score.score, 2) == old_score
     assert current_score.reviewed == old_reviewed
     assert current_score.translated == old_translated
@@ -146,7 +145,7 @@ def test_user_tp_score_update_rejects(store0, member, member2):
         == old_suggested + unit.unit_source.source_wordcount)
     m2_score = member2.scores.get(
         tp=store0.translation_project,
-        date=timezone.now().date())
+        date=localdate())
     assert round(m2_score.score, 2) > m2_old_score
     assert m2_score.suggested == m2_suggested
     assert m2_score.translated == m2_translated

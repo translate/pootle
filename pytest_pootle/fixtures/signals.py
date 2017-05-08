@@ -7,12 +7,12 @@
 # AUTHORS file for copyright and authorship information.
 
 from contextlib import contextmanager
-from datetime import date
 
 import pytest
 
 from pootle.core.contextmanagers import keep_data
 from pootle.core.signals import update_data
+from pootle.core.utils.timezone import localdate
 
 
 class UpdateUnitTest(object):
@@ -48,7 +48,7 @@ class UpdateUnitTest(object):
                 "pending_suggestions"]}
         store_score = unit.store.user_scores.get(
             user__username="member",
-            date=date.today())
+            date=localdate())
         data["store_score"] = {
             k: getattr(store_score, k)
             for k
@@ -58,7 +58,7 @@ class UpdateUnitTest(object):
                 "score"]}
         tp_score = tp.user_scores.get(
             user__username="member",
-            date=date.today())
+            date=localdate())
         data["tp_score"] = {
             k: getattr(tp_score, k)
             for k

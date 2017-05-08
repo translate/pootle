@@ -6,7 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from datetime import date, datetime, timedelta
+from datetime import datetime, timedelta
 
 import pytest
 
@@ -15,6 +15,7 @@ from django.utils.functional import cached_property
 from pootle.core.delegate import event_score, score_updater
 from pootle.core.plugin import provider
 from pootle.core.plugin.results import GatheredDict
+from pootle.core.utils.timezone import localdate
 from pootle_log.utils import LogEvent, StoreLog
 from pootle_score.models import UserStoreScore
 from pootle_score.updater import (
@@ -41,7 +42,7 @@ def test_score_store_updater(store0, admin):
 def test_score_store_updater_event(store0, admin, member):
     unit0 = store0.units[0]
     unit1 = store0.units[1]
-    today = date.today()
+    today = localdate()
     yesterday = today - timedelta(days=1)
 
     class DummyLogs(object):
@@ -91,10 +92,20 @@ def test_score_store_updater_event(store0, admin, member):
 def test_score_store_updater_event_score(store0, admin, member, member2):
     unit0 = store0.units[0]
     unit1 = store0.units[1]
-    today = date.today()
-    dt_today = datetime.combine(today, datetime.min.time())
+    today = localdate()
+    import pytz
+    from pootle.core.utils.timezone import make_aware
+    dt_today = make_aware(
+        datetime.combine(
+            today,
+            datetime.min.time())).astimezone(
+                pytz.timezone("UTC"))
     yesterday = today - timedelta(days=1)
-    dt_yesterday = datetime.combine(yesterday, datetime.min.time())
+    dt_yesterday = make_aware(
+        datetime.combine(
+            yesterday,
+            datetime.min.time())).astimezone(
+                pytz.timezone("UTC"))
 
     class DummyLogs(object):
         _start = None
@@ -206,7 +217,7 @@ def test_score_tp_updater(tp0, admin, member, member2):
 
 @pytest.mark.django_db
 def test_score_tp_updater_update(store0, tp0, admin, member, member2):
-    today = date.today()
+    today = localdate()
     yesterday = today - timedelta(days=1)
     updater = score_updater.get(TranslationProject)(tp0)
     store1 = tp0.stores.exclude(id=store0.id).first()

@@ -12,6 +12,7 @@ from django.dispatch import receiver
 
 from pootle.core.delegate import crud, score_updater
 from pootle.core.signals import create, update, update_scores
+from pootle.core.utils.timezone import localdate
 from pootle_statistics.models import Submission
 from pootle_store.models import Store, Suggestion
 from pootle_translationproject.models import TranslationProject
@@ -86,9 +87,9 @@ def handle_suggestion_change(**kwargs):
     if is_system_user:
         return
     change_date = (
-        suggestion.review_time.date()
+        suggestion.review_time
         if not suggestion.is_pending
-        else suggestion.creation_time.date())
+        else suggestion.creation_time)
     update_scores.send(
         suggestion.unit.store.__class__,
         instance=suggestion.unit.store,
@@ -96,7 +97,7 @@ def handle_suggestion_change(**kwargs):
             suggestion.user_id
             if suggestion.is_pending
             else suggestion.reviewer_id],
-        date=change_date)
+        date=localdate(change_date))
 
 
 @receiver(post_save, sender=Submission)
@@ -111,4 +112,4 @@ def handle_submission_added(**kwargs):
         submission.unit.store.__class__,
         instance=submission.unit.store,
         users=[submission.submitter_id],
-        date=submission.creation_time.date())
+        date=localdate(submission.creation_time))
