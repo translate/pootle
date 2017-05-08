@@ -17,7 +17,7 @@ from django.utils.functional import cached_property
 from pootle.core.delegate import site, states, unitid
 from pootle.core.mail import send_mail
 from pootle.core.signals import update_data, update_scores
-from pootle.core.utils.timezone import datetime_min, make_aware
+from pootle.core.utils.timezone import datetime_min, localdate, make_aware
 from pootle.i18n.gettext import ugettext as _
 from pootle_statistics.models import (
     MUTED, UNMUTED, SubmissionFields, SubmissionTypes)
@@ -344,7 +344,7 @@ class UnitLifecycle(object):
             self.unit.store.__class__,
             instance=self.unit.store,
             users=[sub.submitter_id for sub in subs],
-            date=self.unit.mtime.date())
+            date=localdate(self.unit.mtime))
 
     def sub_comment_update(self, **kwargs):
         _kwargs = dict(
