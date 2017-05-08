@@ -17,6 +17,7 @@ class ProjectDataTool(RelatedTPsDataTool):
     cache_key_name = "project"
 
     def filter_data(self, qs):
+        qs = qs.exclude(tp__language__code="templates")
         return qs.filter(tp__project=self.context)
 
     @property
