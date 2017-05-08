@@ -15,13 +15,34 @@ from django.utils.functional import cached_property
 
 from accounts.proxy import DisplayUser
 from pootle_comment import get_model as get_comment_model
+
+from pootle.core.proxy import BaseProxy
 from pootle_checks.constants import CHECK_NAMES
+from pootle_log.utils import UnitLog
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 from pootle_statistics.proxy import SubmissionProxy
 from pootle_store.constants import STATES_MAP
 from pootle_store.fields import to_python
 from pootle_store.models import Suggestion
+
+
+ACTION_ORDER = {
+    'unit_created': 0,
+    'suggestion_created': 5,
+    'suggestion_rejected': 5,
+    'suggestion_accepted': 5,
+    'source_updated': 10,
+    'state_changed': 10,
+    'target_updated': 20,
+    'comment_updated': 30,
+    'check_muted': 40,
+    'check_unmuted': 40,
+}
+
+
+class UnitTimelineLog(UnitLog):
+    pass
 
 
 class SuggestionEvent(object):
@@ -191,3 +212,42 @@ class Timeline(object):
         item["suggestion_comment"] = self.comment_dict.get(
             item["suggestion_id"])
         return self.entry_class(SubmissionProxy(item)).entry
+
+
+class ComparableUnitTimelineLogEvent(BaseProxy):
+    _special_names = (x for x in BaseProxy._special_names
+                      if x not in ["__lt__", "__gt__"])
+
+    def __cmp__(self, other):
+        # valuable revisions are authoritative
+        if self.revision is not None and other.revision is not None:
+            if self.revision > other.revision:
+                return 1
+            elif self.revision < other.revision:
+                return -1
+
+        # timestamps have the next priority
+        if self.timestamp and other.timestamp:
+            if self.timestamp > other.timestamp:
+                return 1
+            elif self.timestamp < other.timestamp:
+                return -1
+        elif self.timestamp:
+            return 1
+        elif other.timestamp:
+            return -1
+
+        # conditions below are applied for events with equal timestamps
+        # or without any
+        action_order = ACTION_ORDER[self.action] - ACTION_ORDER[other.action]
+        if action_order > 0:
+            return 1
+        elif action_order < 0:
+            return -1
+        if self.action == other.action:
+            if self.value.pk > other.value.pk:
+                return 1
+            elif self.value.pk < other.value.pk:
+                return -1
+
+        return 0

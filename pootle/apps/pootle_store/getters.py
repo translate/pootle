@@ -10,8 +10,8 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 
 from pootle.core.delegate import (
-    deserializers, frozen, lifecycle, review, search_backend, serializers,
-    states, uniqueid, wordcount)
+    comparable_event, deserializers, frozen, lifecycle, review,
+    search_backend, serializers, states, uniqueid, wordcount)
 from pootle.core.plugin import getter
 from pootle_config.delegate import (
     config_should_not_be_set, config_should_not_be_appended)
@@ -19,6 +19,7 @@ from pootle_misc.util import import_func
 
 from .models import Suggestion, SuggestionState, Unit
 from .unit.search import DBSearchBackend
+from unit.timeline import UnitTimelineLog, ComparableUnitTimelineLogEvent
 from .utils import (
     FrozenUnit, SuggestionsReview, UnitLifecycle, UnitUniqueId, UnitWordcount)
 
@@ -69,6 +70,11 @@ def get_unit_uniqueid(**kwargs_):
 @getter(lifecycle, sender=Unit)
 def get_unit_lifecylcle(**kwargs_):
     return UnitLifecycle
+
+
+@getter(comparable_event, sender=UnitTimelineLog)
+def get_unit_timeline_log_comparable_event(**kwargs_):
+    return ComparableUnitTimelineLogEvent
 
 
 @getter([config_should_not_be_set, config_should_not_be_appended])
