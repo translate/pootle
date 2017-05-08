@@ -91,16 +91,17 @@ def test_make_naive(settings):
 def test_make_naive_default_tz(settings):
     """Tests datetimes are made naive of the configured timezone."""
     settings.USE_TZ = True
-
-    datetime_object = timezone.make_aware(datetime(2016, 1, 2, 21, 52, 25),
-                                          timezone=pytz.timezone('Europe/Helsinki'))
+    datetime_object = timezone.make_aware(
+        datetime(2016, 1, 2, 21, 52, 25),
+        timezone=pytz.timezone('Europe/Helsinki'))
     assert timezone.is_aware(datetime_object)
     naive_datetime = make_naive(datetime_object)
     assert timezone.is_naive(naive_datetime)
-
-    # Conversion from a Helsinki aware datetime to a naive datetime in Amsterdam
-    # should decrement 1 hour (UTC+2 vs. UTC+1)
-    assert naive_datetime.hour == (datetime_object.hour - 1) % 24
+    assert(
+        naive_datetime
+        == make_naive(
+            datetime_object,
+            tz=pytz.timezone(settings.TIME_ZONE)))
 
 
 @pytest.mark.django_db
