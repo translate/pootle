@@ -18,6 +18,11 @@ if settings.USE_TZ:
     datetime_min = timezone.make_aware(datetime_min, timezone.utc)
 
 
+def localdate(dt=None):
+    dt = dt or timezone.now()
+    return timezone.localtime(dt).date()
+
+
 def make_aware(value, tz=None):
     """Makes a `datetime` timezone-aware.
 
