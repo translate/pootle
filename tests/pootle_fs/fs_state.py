@@ -21,12 +21,16 @@ from pootle_fs.state import FS_STATE, ProjectFSState
 from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 
 
-def _test_state(plugin, pootle_path, fs_path, state_type, paths=None):
+def _test_state(plugin, pootle_path, fs_path, state_type, paths=None,
+                exclude_templates=False):
     state = ProjectFSState(plugin, pootle_path=pootle_path, fs_path=fs_path)
     if paths is None:
-        paths = list(
-            state.resources.storefs_filter.filtered(
-                state.resources.tracked).values_list("pootle_path", "path"))
+        paths = state.resources.storefs_filter.filtered(
+            state.resources.tracked)
+        if exclude_templates:
+            paths = paths.exclude(
+                store__translation_project__language__code="templates")
+        paths = list(paths.values_list("pootle_path", "path"))
     state_paths = []
     for item in getattr(state, "state_%s" % state_type):
         if item.get("pootle_path"):
@@ -100,13 +104,17 @@ def test_fs_state_pootle_ahead(fs_path_qs, dummyfs_plugin_fs_unchanged):
     plugin = dummyfs_plugin_fs_unchanged
     for sfs in plugin.resources.tracked:
         sfs.last_sync_hash = sfs.file.latest_hash
-        sfs.last_sync_revision = sfs.store.data.max_unit_revision - 1
+        sfs.last_sync_revision = (
+            sfs.store.data.max_unit_revision - 1
+            if sfs.store.data.max_unit_revision
+            else 0)
         sfs.save()
     _test_state(
         plugin,
         pootle_path,
         fs_path,
-        "pootle_ahead")
+        "pootle_ahead",
+        exclude_templates=True)
 
 
 @pytest.mark.django_db

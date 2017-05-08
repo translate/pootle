@@ -60,7 +60,7 @@ def test_changed_languages_since_revision(capfd, project0_nongnu, tp0):
         rev=Min('last_sync_revision'))['rev'] - 1
     call_command('changed_languages', '--after-revision=%s' % rev)
     out, err = capfd.readouterr()
-    assert out == u'language0,language1,templates\n'
+    assert out == u'language0,language1\n'
 
     # End revisions
     revision = Revision.get()
