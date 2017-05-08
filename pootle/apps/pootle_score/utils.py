@@ -8,13 +8,14 @@
 
 from datetime import date, datetime, timedelta
 
+import pytz
+
 from django.contrib.auth import get_user_model
 from django.db.models import Sum
-from django.utils import timezone
 
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import display, revision, scores
-from pootle.core.utils.timezone import make_aware
+from pootle.core.utils.timezone import localdate, make_aware
 from pootle_app.models import Directory
 from pootle_language.models import Language
 
@@ -34,7 +35,8 @@ def to_datetime(possible_dt):
         return make_aware(
             datetime.combine(
                 possible_dt,
-                datetime.min.time()))
+                datetime.min.time())).astimezone(
+                    pytz.timezone("UTC"))
 
 
 class Scores(object):
@@ -55,7 +57,7 @@ class Scores(object):
             user__username__in=User.objects.META_USERS)
 
     def get_daterange(self, days):
-        now = timezone.now().date()
+        now = localdate()
         return now - timedelta(days), now
 
     def scores_within_days(self, days):
@@ -106,7 +108,7 @@ class LanguageScores(Scores):
         return (
             "%s.%s.%s"
             % (self.context.code,
-               timezone.now().date(),
+               localdate(),
                self.revision))
 
     def filter_scores(self, qs):
@@ -121,7 +123,7 @@ class ProjectScores(Scores):
         return (
             "%s.%s.%s"
             % (self.context.code,
-               timezone.now().date(),
+               localdate(),
                self.revision))
 
     def filter_scores(self, qs):
@@ -135,7 +137,7 @@ class ProjectSetScores(Scores):
     def cache_key(self):
         return (
             "%s.%s"
-            % (timezone.now().date(),
+            % (localdate(),
                self.revision))
 
 
@@ -148,7 +150,7 @@ class TPScores(Scores):
             "%s/%s.%s.%s"
             % (self.context.language.code,
                self.context.project.code,
-               timezone.now().date(),
+               localdate(),
                self.revision))
 
     def filter_scores(self, qs):
@@ -163,7 +165,7 @@ class UserScores(Scores):
         return (
             "%s.%s.%s"
             % (self.context.id,
-               timezone.now().date(),
+               localdate(),
                self.revision))
 
     @property
