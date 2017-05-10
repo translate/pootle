@@ -10,15 +10,25 @@ import pytest
 
 from datetime import timedelta
 
+from translate.filters.decorators import Category
+
+from django.urls import reverse
 from django.utils import timezone
+from django.utils.html import format_html
+
+from accounts.proxy import DisplayUser
 
 from pootle.core.delegate import comparable_event, grouped_events, review
-from pootle_store.constants import TRANSLATED, UNTRANSLATED
-from pootle_statistics.models import Submission
-from pootle_store.models import Suggestion, Unit
+from pootle_checks.constants import CHECK_NAMES
+from pootle_comment.forms import UnsecuredCommentForm
+from pootle_store.constants import (
+    FUZZY, STATES_MAP, TRANSLATED, UNTRANSLATED)
+from pootle_statistics.models import Submission, SubmissionFields
+from pootle_store.fields import to_python
+from pootle_store.models import QualityCheck, Suggestion, Unit
 from pootle_store.unit.timeline import (
     ACTION_ORDER, ComparableUnitTimelineLogEvent as ComparableLogEvent,
-    UnitTimelineGroupedEvents as GroupedEvents, UnitTimelineLog)
+    UnitTimelineGroupedEvents as GroupedEvents, Timeline, UnitTimelineLog)
 
 
 def _latest_submission(unit, limit):
@@ -247,3 +257,232 @@ def test_comparable_unit_timelime_log(member, store0):
         ACTION_ORDER[event2.action] < ACTION_ORDER[event1.action])
 
     assert not (event1 < event1) and not (event1 > event1)
+
+
+@pytest.mark.django_db
+def test_timeline_translated_unit_creation(store0, member):
+    pounit = store0.UnitClass(source="Foo")
+    pounit.target = "Bar"
+    unit = store0.addunit(pounit, user=member)
+    unit.refresh_from_db()
+    groups = Timeline(unit).grouped_events()
+    assert len(groups) == 1
+    group = groups[0]
+    assert len(group['events']) == 1
+    assert group['events'][0]['value'] == unit.target
+    assert group['events'][0]['translation']
+    assert group['events'][0]['description'] == u"Unit created"
+    assert group['via_upload'] is False
+    assert group['datetime'] == unit.creation_time
+    assert group['user'].username == member.username
+
+
+@pytest.mark.django_db
+def test_timeline_untranslated_unit_creation(store0, member):
+    unit = store0.addunit(store0.UnitClass(source="Foo"), user=member)
+    unit.refresh_from_db()
+    groups = Timeline(unit).grouped_events()
+    assert len(groups) == 1
+    group = groups[0]
+    assert len(group['events']) == 1
+    assert 'value' not in group['events'][0]
+    assert 'translation' not in group['events'][0]
+    assert group['events'][0]['description'] == u"Unit created"
+    assert group['via_upload'] is False
+    assert group['datetime'] == unit.creation_time
+    assert group['user'].username == member.username
+
+
+def _get_sugg_accepted_desc(suggestion):
+    user = DisplayUser(suggestion.user.username, suggestion.user.full_name)
+    params = {'author': user.author_link}
+    return u'Accepted suggestion from %(author)s' % params
+
+
+def _get_sugg_accepted_with_comment_desc(suggestion, comment):
+    user = DisplayUser(suggestion.user.username, suggestion.user.full_name)
+    params = {
+        'author': user.author_link,
+        'comment': format_html(u'<span class="comment">{}</span>',
+                               comment)}
+
+    return (u'Accepted suggestion from %(author)s '
+            u'with comment: %(comment)s' % params)
+
+
+def _get_state_changed_value(submission):
+    params = {
+        'old_value': STATES_MAP[int(to_python(submission.old_value))],
+        'new_value': STATES_MAP[int(to_python(submission.new_value))]}
+    return (
+        u"%(old_value)s "
+        u"<span class='timeline-arrow'></span> "
+        u"%(new_value)s" % params)
+
+
+def _get_update_check_desc(submission):
+    check_name = submission.quality_check.name
+    check_url = u''.join(
+        [reverse('pootle-checks-descriptions'),
+         '#', check_name])
+    check_link = format_html("<a href='{}'>{}</a>", check_url,
+                             CHECK_NAMES[check_name])
+
+    action = ''
+    if submission.old_value == '1' and submission.new_value == '0':
+        action = 'Muted'
+    if submission.old_value == '0' and submission.new_value == '1':
+        action = 'Unmuted'
+
+    return ("%(action)s %(check_link)s check" %
+            {'check_link': check_link, 'action': action})
+
+
+@pytest.mark.django_db
+def test_timeline_translated_unit_with_suggestion(store0, admin):
+    suggestion = Suggestion.objects.filter(
+        unit__store=store0,
+        state__name="pending",
+        unit__state=TRANSLATED).first()
+    unit = suggestion.unit
+    review.get(Suggestion)([suggestion], admin).accept()
+    suggestion.refresh_from_db()
+    unit.refresh_from_db()
+    timeline = Timeline(unit)
+    groups = timeline.grouped_events(start=suggestion.review_time)
+    assert len(groups) == 1
+    group = groups[0]
+    assert len(group['events']) == 1
+    assert group['events'][0]['value'] == unit.target
+    assert group['events'][0]['translation']
+    assert (group['events'][0]['description'] ==
+            _get_sugg_accepted_desc(suggestion))
+
+    assert group['via_upload'] is False
+    assert group['datetime'] == suggestion.review_time
+    assert group['user'].username == admin.username
+
+
+@pytest.mark.django_db
+def test_timeline_unit_with_suggestion_and_comment(store0, admin):
+    suggestion = Suggestion.objects.filter(
+        unit__store=store0,
+        state__name="pending",
+        unit__state=UNTRANSLATED).first()
+    unit = suggestion.unit
+    review.get(Suggestion)([suggestion], admin).accept()
+    comment = 'This is a comment!'
+    form = UnsecuredCommentForm(suggestion, admin, dict(
+        comment=comment))
+
+    assert form.is_valid()
+    form.save()
+
+    suggestion.refresh_from_db()
+    unit.refresh_from_db()
+    timeline = Timeline(unit)
+    groups = timeline.grouped_events(start=suggestion.review_time)
+    assert len(groups) == 1
+    group = groups[0]
+    assert len(group['events']) == 2
+    assert group['events'][0]['value'] == unit.target
+    assert group['events'][0]['translation']
+    assert (group['events'][0]['description'] ==
+            _get_sugg_accepted_with_comment_desc(suggestion, comment))
+
+    submission = Submission.objects.get(field=SubmissionFields.STATE,
+                                        unit=suggestion.unit,
+                                        creation_time=suggestion.review_time)
+    assert group['events'][1]['value'] == _get_state_changed_value(submission)
+    assert group['via_upload'] is False
+    assert group['datetime'] == suggestion.review_time
+    assert group['user'].username == admin.username
+
+
+@pytest.mark.django_db
+def test_timeline_unfuzzied_unit(member):
+    unit = Unit.objects.filter(state=FUZZY).first()
+    unit.markfuzzy(False)
+    unit.save(user=member)
+    last_submission = unit.store.data.last_submission
+    groups = Timeline(unit).grouped_events(
+        start=last_submission.creation_time)
+    assert len(groups) == 1
+    group = groups[0]
+    assert len(group['events']) == 1
+    assert (group['events'][0]['value'] ==
+            _get_state_changed_value(last_submission))
+    assert group['events'][0]['state']
+    assert 'description' not in group['events'][0]
+    assert group['via_upload'] is False
+    assert group['datetime'] == last_submission.creation_time
+    assert group['user'].username == member.username
+
+
+@pytest.mark.django_db
+def test_timeline_unit_with_qc(store0, admin, member):
+    qc_filter = dict(
+        unit__store=store0,
+        unit__state=TRANSLATED,
+        unit__store__translation_project__project__disabled=False,
+        category=Category.CRITICAL)
+    qc = QualityCheck.objects.filter(**qc_filter).first()
+    unit = qc.unit
+    unit.toggle_qualitycheck(qc.id, True, member)
+    last_submission_0 = unit.store.data.last_submission
+    unit.toggle_qualitycheck(qc.id, False, admin)
+    unit.store.data.refresh_from_db()
+    last_submission_1 = unit.store.data.last_submission
+    groups = Timeline(unit).grouped_events(
+        start=last_submission_0.creation_time)
+    assert len(groups) == 2
+    group = groups[1]
+    assert len(group['events']) == 1
+    assert 'value' not in group['events'][0]
+    assert (group['events'][0]['description'] ==
+            _get_update_check_desc(last_submission_0))
+    assert group['via_upload'] is False
+    assert group['user'].username == member.username
+    assert group['datetime'] == last_submission_0.creation_time
+
+    group = groups[0]
+    assert len(group['events']) == 1
+    assert 'value' not in group['events'][0]
+    assert (group['events'][0]['description'] ==
+            _get_update_check_desc(last_submission_1))
+    assert group['via_upload'] is False
+    assert group['user'].username == admin.username
+    assert group['datetime'] == last_submission_1.creation_time
+
+
+@pytest.mark.django_db
+def test_timeline_translated_unit_comment(store0, admin, member):
+    unit = store0.units.filter(state=TRANSLATED).first()
+    comment = 'This is a comment!'
+    unit.translator_comment = comment
+    unit.save(user=member)
+    last_submission_0 = unit.store.data.last_submission
+    unit.translator_comment = ''
+    unit.save(user=admin)
+    unit.store.data.refresh_from_db()
+    last_submission_1 = unit.store.data.last_submission
+    groups = Timeline(unit).grouped_events(
+        start=last_submission_0.creation_time)
+    assert len(groups) == 2
+    group = groups[1]
+    assert len(group['events']) == 1
+    assert group['events'][0]['value'] == comment
+    assert group['events'][0]['comment']
+    assert 'description' not in group['events'][0]
+    assert group['via_upload'] is False
+    assert group['datetime'] == last_submission_0.creation_time
+    assert group['user'].username == member.username
+
+    group = groups[0]
+    assert len(group['events']) == 1
+    assert 'value' not in group['events'][0]
+    assert 'comment' not in group['events'][0]
+    assert group['events'][0]['description'] == 'Removed comment'
+    assert group['via_upload'] is False
+    assert group['datetime'] == last_submission_1.creation_time
+    assert group['user'].username == admin.username
