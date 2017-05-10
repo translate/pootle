@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-02-20 14:39+0000\n"
-"PO-Revision-Date: 2017-02-21 02:57+0000\n"
-"Last-Translator: chaichen <luojiazhen@gmail.com>\n"
+"PO-Revision-Date: 2017-05-08 11:37+0000\n"
+"Last-Translator: 炜 <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1487645844.000000\n"
+"X-POOTLE-MTIME: 1494243460.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -156,9 +156,8 @@ msgid "Contact Us"
 msgstr "联系我们"
 
 #: apps/contact/views.py:65
-#, fuzzy
 msgid "Report problem with string"
-msgstr "报告此字符串的一个问题"
+msgstr "报告此字符串相关的一个问题"
 
 #: apps/import_export/templates/browser/index.html:11
 msgid "Download translation files for offline translation"
@@ -185,7 +184,7 @@ msgid "Upload translations"
 msgstr "上传翻译"
 
 #: apps/import_export/templates/browser/index.html:36
-#, fuzzy, python-format
+#, python-format
 msgid "Upload as %(user)s"
 msgstr "以 %(user)s 上传"
 
@@ -284,23 +283,20 @@ msgid "There are errors in the form. Please review the problems below."
 msgstr "这个表单中存在问题。请审阅下列错误。"
 
 #: apps/pootle_format/abstracts.py:35
-#, fuzzy
 msgid "Format name"
-msgstr "名字"
+msgstr "格式化名称"
 
 #: apps/pootle_format/abstracts.py:40
 msgid "Format title"
 msgstr "格式化标题"
 
 #: apps/pootle_format/abstracts.py:44
-#, fuzzy
 msgid "Enabled"
-msgstr "已禁用"
+msgstr "已启用"
 
 #: apps/pootle_format/abstracts.py:46
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Android 格式"
+msgstr "单语言格式"
 
 #: apps/pootle_fs/forms.py:24
 msgid "GNU-style"
@@ -323,9 +319,8 @@ msgid "Filesystem backend"
 msgstr "文件系统后台"
 
 #: apps/pootle_fs/forms.py:38
-#, fuzzy
 msgid "Select a filesystem backend"
-msgstr "选择要上载的文件"
+msgstr "选择后台文件系统"
 
 #: apps/pootle_fs/forms.py:43
 msgid "Backend URL or path"
@@ -336,69 +331,58 @@ msgid "The URL or path to your translation files"
 msgstr "翻译文件的链接或路径"
 
 #: apps/pootle_fs/forms.py:54
-#, fuzzy
 msgid "Translation path mapping"
-msgstr "翻译设置"
+msgstr "翻译路径映射"
 
 #: apps/pootle_fs/forms.py:55
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
-msgstr ""
+msgstr "翻译路径映射将文件系统里的本地化文件映射到 Pootle 上的文件。"
 
 #: apps/pootle_fs/forms.py:181
 msgid "Filesystem language codes must be unique"
 msgstr "文件系统语言编码必须是唯一的"
 
 #: apps/pootle_fs/forms.py:185
-#, fuzzy
 msgid "Pootle language mappings must be unique"
-msgstr "Pootle 语言管理页面"
+msgstr "Pootle 的语言映射必须是唯一的"
 
 #: apps/pootle_language/forms.py:28
-#, fuzzy
 msgid "Member"
-msgstr "数字"
+msgstr "成员"
 
 #: apps/pootle_language/forms.py:29
-#, fuzzy
 msgid "Submitter"
-msgstr "提交"
+msgstr "提交者"
 
 #: apps/pootle_language/forms.py:30
-#, fuzzy
 msgid "Reviewer"
-msgstr "审阅"
+msgstr "审阅者"
 
 #: apps/pootle_language/forms.py:31
-#, fuzzy
 msgid "Administrator"
-msgstr "管理"
+msgstr "管理员"
 
 #: apps/pootle_language/forms.py:70
-#, fuzzy
 msgid "Administrators"
-msgstr "管理"
+msgstr "管理员"
 
 #: apps/pootle_language/forms.py:76
-#, fuzzy
 msgid "Reviewers"
-msgstr "审阅"
+msgstr "审阅者"
 
 #: apps/pootle_language/forms.py:81
-#, fuzzy
 msgid "Submitters"
-msgstr "提交"
+msgstr "提交者"
 
 #: apps/pootle_language/forms.py:86
-#, fuzzy
 msgid "Members"
-msgstr "数字"
+msgstr "成员"
 
 #: apps/pootle_language/forms.py:90
-#, fuzzy
 msgid "New member"
-msgstr "数字"
+msgstr "新成员"
 
 #: apps/pootle_language/forms.py:91
 msgid "Add a user to this team"
@@ -409,9 +393,8 @@ msgid "Role"
 msgstr "角色"
 
 #: apps/pootle_language/forms.py:129
-#, fuzzy
 msgid "Role is required when adding a new member"
-msgstr "Redis 作为缓存后端是必须的。"
+msgstr "当添加一个新成员时角色是必须的"
 
 #: apps/pootle_language/forms.py:155 core/forms.py:184
 msgid "Reject"
@@ -422,14 +405,12 @@ msgid "Accept"
 msgstr "接受"
 
 #: apps/pootle_language/forms.py:158
-#, fuzzy
 msgid "Filter by suggester"
-msgstr "用户建议"
+msgstr "按建议者过滤"
 
 #: apps/pootle_language/forms.py:164
-#, fuzzy
 msgid "Filter by state"
-msgstr "过滤"
+msgstr "按状态过滤"
 
 #: apps/pootle_language/forms.py:174 apps/pootle_language/views.py:215
 #: core/browser.py:26
@@ -497,14 +478,12 @@ msgid "Suggestion"
 msgstr "建议"
 
 #: apps/pootle_language/views.py:213
-#, fuzzy
 msgid "Suggested by"
-msgstr "建议"
+msgstr "建议者："
 
 #: apps/pootle_language/views.py:214
-#, fuzzy
 msgid "Suggested at"
-msgstr "建议"
+msgstr "建议于："
 
 #: apps/pootle_language/views.py:236
 #, fuzzy, python-format
@@ -1060,14 +1039,14 @@ msgid "Plural"
 msgstr "复数"
 
 #: apps/pootle_store/unit/timeline.py:47
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "接受了来自于%s的建议"
+msgstr "接受了来自于 %(author)s 的建议"
 
 #: apps/pootle_store/unit/timeline.py:48
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "拒绝%s的建议"
+msgstr "拒绝 %(author)s 的建议"
 
 #: apps/pootle_store/unit/timeline.py:56
 #, fuzzy, python-format
@@ -1094,7 +1073,7 @@ msgstr "建议被拒绝"
 
 #: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:105
 msgid "Path too long."
-msgstr ""
+msgstr "路径过长。"
 
 #: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:107
 #: core/decorators.py:41
@@ -1122,14 +1101,14 @@ msgid "This term already exists in this file."
 msgstr "此术语已存在于文件中。"
 
 #: apps/pootle_translationproject/receivers.py:38
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "翻译项目的主页"
+msgstr "翻译项目 (%s) 已创建"
 
 #: apps/pootle_translationproject/receivers.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "翻译项目的主页"
+msgstr "创建翻译项目 (%s) 失败"
 
 #: apps/staticpages/forms.py:59
 #, python-format
@@ -1166,9 +1145,8 @@ msgid "Redirect to URL"
 msgstr "重定向到 URL"
 
 #: apps/staticpages/models.py:52
-#, fuzzy
 msgid "If set, this page will redirect to this URL"
-msgstr "如果设置，则任何对此页面的引用都将会重定向到此 URL"
+msgstr "如果设置，此页面将会重定向到此 URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
@@ -1199,15 +1177,13 @@ msgstr ""
 "projects/<project_code> 或 <language_code> 或 <language_code>/<project_code>"
 
 #: apps/staticpages/views.py:230
-#, fuzzy
 msgid "Text is missing"
-msgstr "缺少参数。"
+msgstr "缺少文字"
 
 #. Translators: This is a noun.
 #: apps/virtualfolder/models.py:39
-#, fuzzy
 msgid "Filter"
-msgstr "过滤"
+msgstr "过滤器"
 
 #: apps/virtualfolder/models.py:41
 msgid "Filtering rules that tell which files this virtual folder comprises."
@@ -1444,7 +1420,7 @@ msgstr ""
 #: checks.py:300
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr ""
+msgstr "POOTLE_TM_SERVER['%s'] 没有 INDEX_NAME。"
 
 #: checks.py:301
 #, python-format
@@ -1513,14 +1489,14 @@ msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
 msgstr "在 POOTLE_SCORE_COEFFICIENTS 中设置  %s 。"
 
 #: checks.py:363
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "POOTLE_MARKUP_FILTER中的值无效。"
+msgstr "POOTLE_SCORE_COEFFICIENTS 中 %s 的值无效。"
 
 #: checks.py:365
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
-msgstr "请为POOTLE_MARKUP_FILTER设置一个有效的值。"
+msgstr "请为 POOTLE_SCORE_COEFFICIENTS 中的 %s 设置一个有效的值。"
 
 #: checks.py:387
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1532,7 +1508,7 @@ msgstr "移除'admin'用户或者更改其密码。"
 
 #: checks.py:403
 msgid "Database connection uses transaction_hooks."
-msgstr ""
+msgstr "数据库连接使用事务钩子。"
 
 #: checks.py:404
 msgid ""
@@ -1577,9 +1553,8 @@ msgid ""
 msgstr ""
 
 #: checks.py:505
-#, fuzzy
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
-msgstr "POOTLE_CONTACT_EMAIL没有被设置。"
+msgstr "还没有设置 POOTLE_FS_WORKING_PATH。"
 
 #: checks.py:509
 #, python-format
@@ -1653,9 +1628,8 @@ msgid "Last updated"
 msgstr "上次更新"
 
 #: core/browser.py:119
-#, fuzzy
 msgid "Back to language"
-msgstr "回到语言页面"
+msgstr "回到语言"
 
 #: core/browser.py:121
 msgid "Back to parent folder"
@@ -1686,7 +1660,6 @@ msgid "With selected"
 msgstr "被选中"
 
 #: core/forms.py:187
-#, fuzzy
 msgid "Add comment"
 msgstr "添加注释"
 
@@ -1696,11 +1669,11 @@ msgstr "选择包括没有显示出来的所有符合筛选条件的项目"
 
 #: core/forms.py:213
 msgid "You must specify an action to take"
-msgstr ""
+msgstr "您必须指定一个要执行的动作"
 
 #: core/forms.py:214
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "必须指定一个有效的搜索字段"
 
 #: core/initdb.py:127
 msgid "Can access a project"
@@ -1719,29 +1692,27 @@ msgid "Can submit a translation"
 msgstr "可以提交一个翻译"
 
 #: core/initdb.py:143
-#, fuzzy
 msgid "Can review suggestions"
-msgstr "审阅建议"
+msgstr "能够审阅建议"
 
 #: core/initdb.py:147
-#, fuzzy
 msgid "Can perform administrative tasks"
-msgstr "Django 管理"
+msgstr "能够执行管理任务"
 
 #: core/views/display.py:103 core/views/display.py:125
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr "移除了 %(source_string)s 的翻译"
+msgstr "%(user)s 移除了对 %(source)s 的翻译"
 
 #: core/views/display.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr "接受了来自于%s的建议"
+msgstr "%(user)s 接受了对 %(source)s 的建议"
 
 #: core/views/display.py:107
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s uploaded file"
-msgstr "%(user)s 上传了一个文件"
+msgstr "%(user)s 上传了文件"
 
 #: core/views/display.py:109
 #, fuzzy, python-format
@@ -1882,39 +1853,35 @@ msgstr ""
 "信息即可。"
 
 #: templates/account/email/email_confirmation_subject.txt:2
-#, fuzzy
 msgid "Pootle e-mail confirmation"
-msgstr "Pootle电子邮箱确认"
+msgstr "Pootle电子邮件确认"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr ""
+msgstr "我们接到了一个重置您密码的请求。"
 
 #: templates/account/email/password_reset_key_message.txt:3
-#, fuzzy
 msgid "To reset your password, follow this link:"
-msgstr "要激活您的帐户，请点击这个链接："
+msgstr "要重置您的密码，请跟随这个链接："
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
-msgstr ""
+msgstr "如果您不想重置您的密码，请简单地忽略本消息。"
 
 #: templates/account/email/password_reset_key_subject.txt:2
-#, fuzzy
 msgid "Pootle password reset e-mail"
-msgstr "密码重设失败。"
+msgstr "Pootle 密码重设邮件"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
-#, fuzzy
 msgid "Registration Disabled"
-msgstr "目前禁止新用户注册"
+msgstr "禁止注册"
 
 #: templates/account/signup_closed.html:14
 msgid "Registration is currently disabled. Please try again later."
-msgstr ""
+msgstr "当前禁止注册，请稍后重试。"
 
 #: templates/admin/_generic_formset.html:22
 #: templates/translation_projects/terminology/manage.html:54
@@ -1993,9 +1960,8 @@ msgid "Failed jobs"
 msgstr "失败任务"
 
 #: templates/admin/dashboard.html:56
-#, fuzzy
 msgid "System Checks"
-msgstr "显示检查"
+msgstr "系统检查"
 
 #: templates/admin/dashboard.html:66
 msgid "No issues have been detected. All is good!"
@@ -2073,9 +2039,8 @@ msgid "Remove"
 msgstr "移除"
 
 #: templates/admin/project_fs.html:92
-#, fuzzy
 msgid "Pootle code"
-msgstr "Pootle 演示"
+msgstr "Pootle 代码"
 
 #: templates/admin/project_fs.html:93
 msgid "Filesystem code"
@@ -2087,7 +2052,6 @@ msgid "Add"
 msgstr "添加"
 
 #: templates/admin/project_fs.html:104
-#, fuzzy
 msgid "Update"
 msgstr "更新"
 
@@ -2192,12 +2156,11 @@ msgstr "添加公告"
 
 #: templates/browser/_actions.html:8
 msgid "Fix critical errors"
-msgstr "修复关键错误"
+msgstr "修复致命错误"
 
 #: templates/browser/_actions.html:13
-#, fuzzy
 msgid "Critical errors"
-msgstr "关键错误："
+msgstr "致命错误"
 
 #: templates/browser/_actions.html:23
 msgid "Review suggestions"
@@ -2256,24 +2219,20 @@ msgid "Less..."
 msgstr "至少..."
 
 #: templates/browser/index.html:82
-#, fuzzy
 msgid "Updates"
 msgstr "更新"
 
 #: templates/browser/index.html:87
-#, fuzzy
 msgid "Last updated:"
-msgstr "上次更新"
+msgstr "上次更新于："
 
 #: templates/browser/index.html:102
-#, fuzzy
 msgid "Translations"
-msgstr "译文"
+msgstr "翻译"
 
 #: templates/browser/index.html:106
-#, fuzzy
 msgid "Last action:"
-msgstr "最后操作"
+msgstr "最后操作："
 
 #: templates/browser/index.html:158
 msgid "This project is disabled and visible to administrators only."
@@ -2310,9 +2269,8 @@ msgid "No user contributions yet."
 msgstr "尚未有用户贡献。"
 
 #: templates/core/_top_scorers_as_ul.html:3
-#, fuzzy
 msgid "Top contributors:"
-msgstr "顶尖贡献者"
+msgstr "顶尖贡献者："
 
 #: templates/core/captcha.html:4 templates/core/captcha.html:7
 #: templates/core/xhr_captcha.html:14
@@ -2521,14 +2479,12 @@ msgid "User suggestions"
 msgstr "用户建议"
 
 #: templates/editor/units/edit.html:291
-#, fuzzy
 msgid "More options"
-msgstr "更改选项"
+msgstr "更多选项"
 
 #: templates/editor/units/edit.html:293
-#, fuzzy
 msgid "Less options"
-msgstr "更改选项"
+msgstr "更少选项"
 
 #: templates/editor/units/edit.html:298
 msgid "Accept suggestion"
@@ -2583,7 +2539,7 @@ msgstr "移除注释"
 
 #: templates/editor/units/xhr_comment.html:19
 msgid "Last comment:"
-msgstr "最后注释："
+msgstr "最后的注释："
 
 #: templates/editor/units/xhr_timeline.html:3
 msgid "Timeline"
@@ -2591,7 +2547,7 @@ msgstr "时间线"
 
 #: templates/editor/units/xhr_timeline.html:38
 msgid "Last comment removed"
-msgstr "最后注释已移除"
+msgstr "最后的注释已移除"
 
 #: templates/editor/units/xhr_timeline.html:44
 #, python-format
@@ -2605,7 +2561,7 @@ msgstr ""
 
 #: templates/editor/units/xhr_timeline.html:60
 msgid "Unit created"
-msgstr ""
+msgstr "单元已创建"
 
 #: templates/errors/400.html:4 templates/errors/400.html:11
 msgid "Bad Request"
@@ -2613,7 +2569,7 @@ msgstr "错误请求"
 
 #: templates/errors/400.html:12
 msgid "Error 400"
-msgstr "Error 400"
+msgstr "错误 400"
 
 #: templates/errors/400.html:14
 msgid "The operation is not permitted."
@@ -2684,9 +2640,8 @@ msgid "The reported error was:"
 msgstr "报告的错误是："
 
 #: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-#, fuzzy
 msgid "Previous page"
-msgstr "上一项"
+msgstr "前一页"
 
 #: templates/includes/formtable.html:22
 #, python-format
@@ -2699,14 +2654,12 @@ msgid "Showing %(count)s results per page"
 msgstr "每页显示 %(count)s 条结果"
 
 #: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-#, fuzzy
 msgid "Next page"
-msgstr "主页"
+msgstr "下一页"
 
 #: templates/includes/formtable.html:85
-#, fuzzy
 msgid "Select all"
-msgstr "选择多个"
+msgstr "全选"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2719,14 +2672,12 @@ msgid "Team"
 msgstr "团队"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
-msgstr "用户建议"
+msgstr "过滤器建议"
 
 #: templates/languages/admin/language_team.html:5
-#, fuzzy
 msgid "Language team"
-msgstr "语言名称"
+msgstr "语言团队"
 
 #. Translators: This refers to the management of language team members
 #: templates/languages/admin/language_team.html:16
@@ -2741,9 +2692,8 @@ msgstr "添加成员到组"
 #: templates/languages/admin/language_team.html:56
 #: templates/languages/admin/language_team.html:69
 #: templates/languages/admin/language_team.html:82
-#, fuzzy
 msgid "Remove selected"
-msgstr "移除用户"
+msgstr "删除所选"
 
 #: templates/languages/admin/language_team.html:103
 #, fuzzy
@@ -2756,19 +2706,16 @@ msgid "Pending suggestions:"
 msgstr "待审阅的建议"
 
 #: templates/languages/admin/language_team.html:128
-#, fuzzy
 msgid "Total words:"
 msgstr "总单词数"
 
 #: templates/languages/admin/language_team.html:132
-#, fuzzy
 msgid "Translated:"
-msgstr "已翻译"
+msgstr "已翻译："
 
 #: templates/languages/admin/language_team.html:140
-#, fuzzy
 msgid "Needs work:"
-msgstr "尚需完善"
+msgstr "尚需完善："
 
 #: templates/layout.html:88
 msgid "Pootle requires JavaScript"
@@ -2797,9 +2744,8 @@ msgid "Admin"
 msgstr "管理"
 
 #: templates/layout.html:137
-#, fuzzy
 msgid "Sign out"
-msgstr "退出"
+msgstr "注销"
 
 #: templates/layout.html:141
 msgid "Sign In"
@@ -2851,7 +2797,6 @@ msgid "Before continuing, you must read and accept the following documents."
 msgstr "在继续之前，您必须阅读并接受以下文档。"
 
 #: templates/staticpages/agreement.html:17
-#, fuzzy
 msgid "No thanks. Sign out"
 msgstr "不了。注销"
 
@@ -2926,7 +2871,6 @@ msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "您可以在 www.gravatar.com 设置或更改您的头像"
 
 #: templates/user/profile.html:16
-#, fuzzy
 msgid "Anonymous User"
 msgstr "匿名用户"
 
@@ -2944,9 +2888,8 @@ msgid "Tweet this!"
 msgstr ""
 
 #: templates/user/profile.html:40
-#, fuzzy
 msgid "No contributions in the last 30 days"
-msgstr "顶尖贡献者"
+msgstr "最近30天里没有贡献"
 
 #: templates/user/profile.html:43
 #, python-format
@@ -2990,24 +2933,23 @@ msgstr ""
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
-msgstr ""
+msgstr "一些翻译是由匿名志愿者提供的。它们在这个指定的元帐号下注册。"
 
 #: templates/user/profile.html:100
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
-msgstr ""
+msgstr "一些翻译是从外部文件导入的。它们在这个指定的元帐号下注册。"
 
 #: templates/user/settings.html:12
-#, fuzzy
 msgid "User Account"
-msgstr "注册帐户"
+msgstr "用户帐号"
 
 #: templates/user/settings.html:14
 msgid ""
 "Do you want to change your password? Click the 'Reset Password' button which "
 "will initiate the process of setting a new password."
-msgstr ""
+msgstr "想修改您的密码？点击“重置密码”按钮将启动设置一个新密码的流程。"
 
 #: templates/user/settings.html:25
 msgid "Reset Password"
@@ -3023,25 +2965,23 @@ msgstr "每日动态"
 
 #: templates/welcome.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "欢迎"
 
 #: templates/welcome.html:13
 msgid "Welcome to Pootle"
-msgstr ""
+msgstr "欢迎来到 Pootle"
 
 #: templates/welcome.html:14
 msgid "Come and join us!"
-msgstr ""
+msgstr "来加入我们！"
 
 #: templates/welcome.html:19
-#, fuzzy
 msgid "Sign in"
 msgstr "登录"
 
 #: templates/welcome.html:32
-#, fuzzy
 msgid "Top Contributors for the Last 30 Days"
-msgstr "顶尖贡献者"
+msgstr "最近30天里的顶尖贡献者"
 
 #~ msgid "Rate"
 #~ msgstr "比率"
