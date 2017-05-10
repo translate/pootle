@@ -2116,11 +2116,11 @@ PTL.editor = {
       }
       qAll('.js-mount-timesince').forEach((el, i) => {
         const props = {
-          title: data.entries_group[i].display_datetime,
-          dateTime: data.entries_group[i].iso_datetime,
-          relativeTime: data.entries_group[i].relative_time,
+          title: data.event_groups[i].display_datetime,
+          dateTime: data.event_groups[i].iso_datetime,
+          relativeTime: data.event_groups[i].relative_time,
         };
-        if (data.entries_group[i].via_upload) {
+        if (data.event_groups[i].via_upload) {
           ReactRenderer.render(<UploadTimeSince {...props} />, el);
         } else {
           ReactRenderer.render(<TimeSince {...props} />, el);

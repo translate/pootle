@@ -328,7 +328,7 @@ class UnitTimelineJSON(PootleUnitJSON):
 
     def get_context_data(self, *args, **kwargs):
         return dict(
-            entries_group=self.timeline.grouped_entries,
+            event_groups=self.timeline.grouped_events(),
             language=self.language)
 
     def get_queryset(self):
@@ -340,21 +340,21 @@ class UnitTimelineJSON(PootleUnitJSON):
     def get_response_data(self, context):
         return {
             'uid': self.object.id,
-            'entries_group': self.get_entries_group_data(context),
+            'event_groups': self.get_event_groups_data(context),
             'timeline': self.render_timeline(context)}
 
     def render_timeline(self, context):
         return loader.get_template(self.template_name).render(context=context)
 
-    def get_entries_group_data(self, context):
+    def get_event_groups_data(self, context):
         result = []
-        for entry_group in context['entries_group']:
-            display_dt = entry_group['datetime']
+        for event_group in context['event_groups']:
+            display_dt = event_group['datetime']
             if display_dt is not None:
                 display_dt = dateformat.format(display_dt)
-                iso_dt = entry_group['datetime'].isoformat()
+                iso_dt = event_group['datetime'].isoformat()
                 relative_time = timesince(
-                    calendar.timegm(entry_group['datetime'].timetuple()),
+                    calendar.timegm(event_group['datetime'].timetuple()),
                     self.request_lang)
             else:
                 iso_dt = None
@@ -363,7 +363,7 @@ class UnitTimelineJSON(PootleUnitJSON):
                 "display_datetime": display_dt,
                 "iso_datetime": iso_dt,
                 "relative_time": relative_time,
-                "via_upload": entry_group.get('via_upload', False),
+                "via_upload": event_group.get('via_upload', False),
             })
         return result
 
