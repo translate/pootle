@@ -302,6 +302,7 @@ class Unit(AbstractUnit):
             and self.__dict__[field.get_cache_name()] is None)
         if should_expire_cache:
             del self.__dict__[field.get_cache_name()]
+        self._frozen = frozen.get(Unit)(self)
 
     def save(self, *args, **kwargs):
         created = self.id is None
