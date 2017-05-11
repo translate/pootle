@@ -116,3 +116,35 @@ def test_batch_update_reduce(store0, member):
     assert (
         store0.units.count()
         == store0.units.filter(target_f="BAZ").count())
+
+
+@pytest.mark.django_db
+def test_batch_lists(store0, member):
+    batch = Batch(Suggestion.objects, batch_size=2)
+    assert batch.target == Suggestion.objects
+    assert batch.batch_size == 2
+    last_sugg_pk = Suggestion.objects.order_by(
+        "-pk").values_list("pk", flat=True).first()
+
+    def _create_method(unit, source, mtime):
+        return dict(
+            unit_id=unit,
+            creation_time=mtime,
+            target_f=source,
+            user_id=member.id)
+    batch.create(
+        list(store0.units.values_list("id", "source_f", "mtime")),
+        _create_method,
+        reduces=False)
+    new_suggs = Suggestion.objects.filter(pk__gt=last_sugg_pk)
+    assert new_suggs.count() == store0.units.count()
+    updated_suggs = []
+    for suggestion in new_suggs:
+        suggestion.target_f = "suggestion %s" % suggestion.id
+        updated_suggs.append(suggestion)
+    batch.update(
+        updated_suggs,
+        update_fields=["target_f"],
+        reduces=False)
+    for suggestion in Suggestion.objects.filter(pk__gt=last_sugg_pk):
+        assert suggestion.target_f == "suggestion %s" % suggestion.id
