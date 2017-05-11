@@ -58,7 +58,7 @@ class ComparableLogEvent(BaseProxy):
         if self.action == other.action == 'suggestion_created':
             if self.value.pk > other.value.pk:
                 return 1
-            else:
+            elif self.value.pk < other.value.pk:
                 return -1
 
         if self.unit.pk > other.unit.pk:

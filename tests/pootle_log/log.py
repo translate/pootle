@@ -733,6 +733,8 @@ def test_comparable_log(member, store0, store_po):
                       for x in unit_log.get_submission_events()]
     assert not (event1 < event2) and not (event2 < event1)
 
+    assert not (event1 < event1) and not (event1 > event1)
+
 
 @pytest.mark.django_db
 def test_grouped_events(store_po):
