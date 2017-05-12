@@ -81,11 +81,10 @@ def _timeline_test(client, request_user, unit):
         url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
 
     no_permission = (
-        not user.is_superuser
-        and unit not in Unit.objects.get_translatable(user))
+        unit not in Unit.objects.get_translatable(user))
 
     if no_permission:
-        assert response.status_code == 403
+        assert response.status_code == 404
         assert "timeline" not in response
         return
 
@@ -107,8 +106,6 @@ def test_timeline_view_units(client, request_users, system, admin):
         Unit.objects.filter(state=UNTRANSLATED).first())
 
 
-@pytest.mark.xfail(
-    reason="timeline does not currently check permissions correctly")
 @pytest.mark.django_db
 def test_timeline_view_unit_obsolete(client, request_users, system, admin):
     _timeline_test(
@@ -117,8 +114,6 @@ def test_timeline_view_unit_obsolete(client, request_users, system, admin):
         Unit.objects.filter(state=OBSOLETE).first())
 
 
-@pytest.mark.xfail(
-    reason="timeline does not currently check permissions correctly")
 @pytest.mark.django_db
 def test_timeline_view_unit_disabled_project(client, request_users,
                                              system, admin):
