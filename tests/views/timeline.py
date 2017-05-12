@@ -7,26 +7,21 @@
 # AUTHORS file for copyright and authorship information.
 
 from hashlib import md5
-from itertools import groupby
 import json
 
 import pytest
 
-from django.contrib.auth import get_user_model
-from django.db.models import Q
 from django.template import loader
 from django.urls import reverse
 from django.utils.encoding import force_bytes
 
-from pootle.core.delegate import review
+from pootle.core.delegate import grouped_events, review
 from pootle_comment.forms import UnsecuredCommentForm
-from pootle_checks.constants import CHECK_NAMES
-from pootle_statistics.models import Submission, SubmissionFields
 from pootle_store.constants import (
-    FUZZY, OBSOLETE, STATES_MAP, TRANSLATED, UNTRANSLATED)
-from pootle_store.fields import to_python
+    FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED)
 from pootle_store.models import (
     Suggestion, QualityCheck, Unit)
+from pootle_store.unit.timeline import EventGroup, UnitTimelineLog
 
 
 class ProxyTimelineLanguage(object):
@@ -57,95 +52,19 @@ class ProxyTimelineUser(object):
 
 
 def _calculate_timeline(request, unit):
-    submission_filter = (
-        Q(field__in=[SubmissionFields.TARGET, SubmissionFields.STATE,
-                     SubmissionFields.COMMENT, SubmissionFields.NONE]))
-    subs = (
-        Submission.objects.filter(unit=unit)
-                          .filter(submission_filter))
-    if unit.changed and unit.change.commented_on:
-        subs = subs.exclude(
-            field=SubmissionFields.COMMENT,
-            creation_time=unit.commented_on)
-    timeline = subs.order_by("id")
-    User = get_user_model()
-    entries_group = []
-    context = {}
-    timeline_fields = [
-        "type", "old_value", "new_value", "submitter_id", "creation_time",
-        "translation_project__language__code", "field", "suggestion_id",
-        "suggestion__target_f", "quality_check__name", "submitter__username",
-        "submitter__full_name", "suggestion__user__full_name", "submitter__email",
-        "suggestion__user__username"]
+    groups = []
+    log = UnitTimelineLog(unit)
+    grouped_events_class = grouped_events.get(log.__class__)
+    target_event = None
+    for _key, group in grouped_events_class(log).grouped_events():
+        event_group = EventGroup(group, target_event)
+        target_event = event_group.target_event
+        groups.append(event_group.context)
 
-    grouped_timeline = groupby(
-        timeline.values(*timeline_fields),
-        key=lambda item: "\001".join([
-            str(x) for x in
-            [
-                item['submitter_id'],
-                item['creation_time'],
-                item['suggestion_id'],
-            ]
-        ])
-    )
-
-    # Group by submitter id and creation_time because
-    # different submissions can have same creation time
-    for key_, values in grouped_timeline:
-        entry_group = {
-            'entries': [],
-        }
-
-        for item in values:
-            # Only add creation_time information for the whole entry group once
-            entry_group['datetime'] = item['creation_time']
-
-            # Only add submitter information for the whole entry group once
-            entry_group.setdefault('submitter', ProxyTimelineUser(item))
-
-            context.setdefault(
-                'language',
-                ProxyTimelineLanguage(item['translation_project__language__code']))
-
-            entry = {
-                'field': item['field'],
-                'field_name': SubmissionFields.NAMES_MAP.get(item['field'], None),
-                'type': item['type']}
-            if item['field'] == SubmissionFields.STATE:
-                entry['old_value'] = STATES_MAP[int(to_python(item['old_value']))]
-                entry['new_value'] = STATES_MAP[int(to_python(item['new_value']))]
-            elif item['suggestion_id']:
-                entry.update({
-                    'suggestion_text': item['suggestion__target_f']})
-            elif item['quality_check__name']:
-                check_name = item['quality_check__name']
-                check_url = (
-                    u''.join(
-                        [reverse('pootle-checks-descriptions'),
-                         '#', check_name]))
-                entry.update({
-                    'check_name': check_name,
-                    'check_display_name': CHECK_NAMES[check_name],
-                    'checks_url': check_url})
-            else:
-                entry['new_value'] = to_python(item['new_value'])
-
-            entry_group['entries'].append(entry)
-
-        entries_group.append(entry_group)
-
-    created = {
-        'created': True,
-        'submitter': User.objects.get_system_user()}
-
-    if unit.creation_time:
-        created['datetime'] = unit.creation_time
-    entries_group[:0] = [created]
-
-    # Let's reverse the chronological order
-    entries_group.reverse()
-    context['entries_group'] = entries_group
+    context = dict(event_groups=groups)
+    context.setdefault(
+        'language', ProxyTimelineLanguage(
+            unit.store.translation_project.language.code))
     t = loader.get_template('editor/units/xhr_timeline.html')
     return t.render(context=context, request=request)
 
