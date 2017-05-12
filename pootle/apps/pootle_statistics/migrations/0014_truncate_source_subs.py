@@ -4,14 +4,6 @@ from __future__ import unicode_literals
 
 from django.db import migrations
 
-# this was/is the value of SubmissionTypes.SOURCE
-SOURCE_FLAG = 1
-
-
-def truncate_source_field(apps, schema_editor):
-    subs = apps.get_model("pootle_statistics.Submission").objects.all()
-    subs.filter(field=SOURCE_FLAG).delete()
-
 
 class Migration(migrations.Migration):
 
@@ -20,5 +12,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(truncate_source_field),
     ]
