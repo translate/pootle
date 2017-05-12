@@ -18,7 +18,7 @@ from pootle_comment import get_model as get_comment_model
 
 from pootle.core.proxy import BaseProxy
 from pootle_checks.constants import CHECK_NAMES
-from pootle_log.utils import UnitLog
+from pootle_log.utils import GroupedEvents, UnitLog
 from pootle_statistics.models import (
     Submission, SubmissionFields, SubmissionTypes)
 from pootle_statistics.proxy import SubmissionProxy
@@ -251,3 +251,20 @@ class ComparableUnitTimelineLogEvent(BaseProxy):
                 return -1
 
         return 0
+
+
+class UnitTimelineGroupedEvents(GroupedEvents):
+    def grouped_events(self, start=None, end=None, users=None):
+        def _group_id(event):
+            user_id = event.user.id
+            if event.action == 'suggestion_accepted':
+                user_id = event.value.user_id
+            return '%s\001%s' % (event.timestamp, user_id)
+
+        return groupby(
+            self.sorted_events(
+                start=start,
+                end=end,
+                users=users,
+                reverse=True),
+            key=_group_id)
