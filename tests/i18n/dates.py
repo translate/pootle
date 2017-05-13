@@ -21,6 +21,9 @@ def test_local_date_timesince(settings):
     timedelta = datetime.now() - datetime.fromtimestamp(timestamp)
     language = str(get_locale_formats().locale)
     assert timesince(timestamp) == format_timedelta(timedelta, locale=language)
+    assert (
+        timesince(timestamp, locale="ff")
+        == timesince(timestamp, locale=settings.LANGUAGE_CODE))
 
 
 @pytest.mark.parametrize('language,fallback', [
