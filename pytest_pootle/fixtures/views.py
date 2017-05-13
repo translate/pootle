@@ -9,22 +9,23 @@
 import functools
 import urllib
 from collections import OrderedDict
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 import pytest
 from dateutil.relativedelta import relativedelta
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
+from django.utils import timezone
 
 from pytest_pootle.fixtures.models.user import TEST_USERS
 from pytest_pootle.utils import create_store, get_test_uids
 
 
-DAY_AGO = (datetime.now() - timedelta(days=1))
-MONTH_AGO = (datetime.now() - relativedelta(months=1))
-TWO_MONTHS_AGO = (datetime.now() - relativedelta(months=2))
-SEVEN_MONTHS_AGO = (datetime.now() - relativedelta(months=7))
+DAY_AGO = (timezone.now() - timedelta(days=1))
+MONTH_AGO = (timezone.now() - relativedelta(months=1))
+TWO_MONTHS_AGO = (timezone.now() - relativedelta(months=2))
+SEVEN_MONTHS_AGO = (timezone.now() - relativedelta(months=7))
 
 BAD_VIEW_TESTS = OrderedDict(
     (("/foo/bar", dict(code=301, location="/foo/bar/")),
