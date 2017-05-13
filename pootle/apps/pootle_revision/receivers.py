@@ -13,6 +13,7 @@ from pootle.core.delegate import crud, revision_updater
 from pootle.core.signals import create, update, update_revisions
 from pootle_app.models import Directory
 from pootle_data.models import StoreData
+from pootle_project.models import Project
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
@@ -40,6 +41,12 @@ def handle_storedata_save(**kwargs):
 @receiver(update_revisions, sender=Store)
 def handle_store_revision_update(**kwargs):
     revision_updater.get(Store)(
+        context=kwargs["instance"]).update(keys=kwargs.get("keys"))
+
+
+@receiver(update_revisions, sender=Project)
+def handle_project_revision_update(**kwargs):
+    revision_updater.get(Project)(
         context=kwargs["instance"]).update(keys=kwargs.get("keys"))
 
 
@@ -80,4 +87,12 @@ def handle_tp_delete(**kwargs):
     update_revisions.send(
         Directory,
         instance=kwargs["instance"].directory,
+        keys=["stats", "checks"])
+
+
+@receiver(post_save, sender=Project)
+def handle_project_save(**kwargs):
+    update_revisions.send(
+        Project,
+        instance=kwargs["instance"],
         keys=["stats", "checks"])

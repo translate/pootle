@@ -17,8 +17,9 @@ from pootle_store.models import Store, Unit
 from .models import Revision
 from .utils import (
     DirectoryRevision, DirectoryRevisionUpdater, LanguageRevision,
-    ProjectRevision, ProjectResourceRevision, ProjectSetRevision,
-    RevisionCRUD, StoreRevisionUpdater, TPRevision, UnitRevisionUpdater)
+    ProjectRevision, ProjectResourceRevision, ProjectRevisionUpdater,
+    ProjectSetRevision, RevisionCRUD, StoreRevisionUpdater, TPRevision,
+    UnitRevisionUpdater)
 
 
 CRUD = {
@@ -73,3 +74,8 @@ def units_revision_updater_getter(**kwargs):
 @getter(revision_updater, sender=Store)
 def stores_revision_updater_getter(**kwargs):
     return StoreRevisionUpdater
+
+
+@getter(revision_updater, sender=Project)
+def project_revision_updater_getter(**kwargs):
+    return ProjectRevisionUpdater

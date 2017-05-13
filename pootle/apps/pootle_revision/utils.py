@@ -15,6 +15,7 @@ from pootle.core.bulk import BulkCRUD
 from pootle.core.signals import create, update
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Directory
+from pootle_translationproject.models import TranslationProject
 
 from .models import Revision
 
@@ -139,9 +140,12 @@ class RevisionUpdater(object):
         paths = set(["/projects/"])
         for pootle_path in pootle_paths:
             lang_code, proj_code, dir_path, __ = split_pootle_path(pootle_path)
-            paths.add("/projects/%s/" % proj_code)
-            paths.add("/%s/" % lang_code)
-            paths.add("/%s/%s/" % (lang_code, proj_code))
+            if proj_code:
+                paths.add("/projects/%s/" % proj_code)
+            if lang_code:
+                paths.add("/%s/" % lang_code)
+            if lang_code and proj_code:
+                paths.add("/%s/%s/" % (lang_code, proj_code))
             dir_path_parts = dir_path.split("/")
             for i, name in enumerate(dir_path_parts):
                 if not name:
@@ -230,3 +234,24 @@ class DirectoryRevisionUpdater(RevisionUpdater):
     @property
     def context_path(self):
         return self.context.pootle_path
+
+
+class ProjectRevisionUpdater(RevisionUpdater):
+    related_pootle_path = "pootle_path"
+
+    @property
+    def context_path(self):
+        return self.context.pootle_path
+
+    def get_parent_paths(self, pootle_paths):
+        paths = set(["/projects/"])
+        projects = set()
+        for pootle_path in pootle_paths:
+            lang_code, proj_code, dir_path, __ = split_pootle_path(pootle_path)
+            paths.add("/projects/%s/" % proj_code)
+            projects.add(proj_code)
+        tps = TranslationProject.objects.filter(
+            project__code__in=projects).values_list("language__code", flat=True)
+        for lang_code in tps.iterator():
+            paths.add("/%s/" % lang_code)
+        return paths
