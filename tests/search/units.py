@@ -27,13 +27,17 @@ def _expected_text_search_words(text, exact):
     return [t.strip() for t in text.split(" ") if t.strip()]
 
 
-def _expected_text_search_results(qs, words, search_fields):
+def _expected_text_search_results(qs, words, search_fields, exact):
+    contains = (
+        "contains"
+        if exact
+        else "icontains")
 
     def _search_field(k):
         subresult = qs.all()
         for word in words:
             subresult = subresult.filter(
-                **{("%s__icontains" % k): word})
+                **{("%s__%s" % (k, contains)): word})
         return subresult
 
     result = qs.none()
@@ -143,7 +147,7 @@ def _test_unit_text_search(qs, text, sfields, exact, empty=True):
     # ensure result meets our expectation
     assert (
         list(result)
-        == _expected_text_search_results(qs, words, fields))
+        == _expected_text_search_results(qs, words, fields, exact))
 
     # ensure that there are no dupes in result qs
     assert list(result) == list(result.distinct())
