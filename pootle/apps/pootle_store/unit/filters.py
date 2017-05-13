@@ -180,12 +180,16 @@ class UnitTextSearch(object):
         words = self.get_words(text, exact)
 
         for k in self.get_search_fields(sfields):
-            result = result | self.search_field(k, words)
+            result |= self.search_field(k, words, exact=exact)
         return result
 
-    def search_field(self, k, words):
+    def search_field(self, k, words, exact=False):
         subresult = self.qs
+        contains = (
+            "contains"
+            if exact
+            else "icontains")
         for word in words:
             subresult = subresult.filter(
-                **{("%s__icontains" % k): word})
+                **{("%s__%s" % (k, contains)): word})
         return subresult
