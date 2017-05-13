@@ -32,6 +32,7 @@ def test_update_stores_noargs(capfd, project0_nongnu, project1, language1):
 def test_update_stores_project_tree_none(capfd, project0):
     project0.treestyle = 'pootle_fs'
     project0.save()
+    capfd.readouterr()
     call_command(
         "update_stores", "--atomic=all", "--project", project0.code)
     out, err = capfd.readouterr()
