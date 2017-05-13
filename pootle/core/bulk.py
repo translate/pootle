@@ -185,9 +185,11 @@ class BulkCRUD(object):
         if kwargs.get("instance") is not None:
             return self.update_object_instance(kwargs["instance"])
         objects, fields = self.update_object_list(**kwargs)
+        updated = self.update_object_dict(objects, kwargs.get("updates"), fields)
+        total = (updated or 0) + len(objects)
         logger.debug(
             "[crud] Updated (%s): %s %s",
-            len(objects),
+            total,
             self.model.__name__,
             "%s" % (", ".join(fields or [])))
-        return self.update_object_dict(objects, kwargs.get("updates"), fields)
+        return total
