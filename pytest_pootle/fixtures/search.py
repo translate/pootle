@@ -45,10 +45,10 @@ UNITS_TEXT_SEARCH_TESTS["suggestion for translated (source/target)"] = {
     "text": "suggestion for translated",
     "sfields": ["target", "source"]}
 UNITS_TEXT_SEARCH_TESTS["exact: suggestion for translated (target)"] = {
-    "text": "suggestion for translated",
+    "text": "Suggestion for Translated",
     "sfields": ["target"]}
 UNITS_TEXT_SEARCH_TESTS["exact: suggestion for translated (source/target)"] = {
-    "text": "suggestion for translated",
+    "text": "Suggestion for Translated",
     "sfields": ["target", "source"]}
 UNITS_TEXT_SEARCH_TESTS["suggestion translated for (target)"] = {
     "text": "suggestion translated for",
