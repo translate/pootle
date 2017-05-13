@@ -184,24 +184,24 @@ def test_bulk_crud_update(store0):
         def update_common_objects(self, ids, values):
             self.ids = ids
             self.values = values
-            return "Called common"
+            return 23
 
         def bulk_update(self, objects, fields):
             self.objects = objects
             self.fields = fields
-            return "Called bulk"
+            return 77
 
     unit_crud = ExampleBulkCRUD()
     result = unit_crud.update(
         **dict(
             updates={unit1.id: dict(foo=1, bar=2)}))
-    assert result == "Called common"
+    assert result == 23
     assert unit_crud.ids == [unit1.id]
     assert unit_crud.values == dict(foo=1, bar=2)
 
     unit_crud = ExampleBulkCRUD()
     result = unit_crud.update(objects=[unit0, unit1, unit2])
-    assert result == "Called bulk"
+    assert result == 77 + len(unit_crud.objects)
     assert unit_crud.objects == [unit0, unit1, unit2]
     assert unit_crud.fields is None
 
