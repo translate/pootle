@@ -275,7 +275,6 @@ class StoreUpdater(object):
     def _update(self, store, user=None, store_revision=None,
                 submission_type=None, resolve_conflict=POOTLE_WINS,
                 allow_add_and_obsolete=True):
-        logging.debug(u"Updating %s", self.target_store.pootle_path)
         old_state = self.target_store.state
 
         if user is None:
