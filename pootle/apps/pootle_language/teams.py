@@ -18,6 +18,7 @@ User = get_user_model()
 
 
 class LanguageTeam(object):
+    # this shouldnt be a dict
     roles = dict(
         member=["suggest"],
         submitter=["suggest", "translate"],
