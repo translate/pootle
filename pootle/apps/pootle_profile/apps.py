@@ -6,4 +6,15 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-default_app_config = 'pootle_profile.apps.PootleProfileConfig'
+import importlib
+
+from django.apps import AppConfig
+
+
+class PootleProfileConfig(AppConfig):
+
+    name = "pootle_profile"
+    verbose_name = "Pootle Profile"
+
+    def ready(self):
+        importlib.import_module("pootle_profile.getters")
