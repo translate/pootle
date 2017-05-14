@@ -6,15 +6,15 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-#nav-main .user-score
+.user-score
 {
     font-size: 1em;
     font-weight: 300;
     color: #168bd3;
     white-space: nowrap;
+    background: #ddd;
     overflow: hidden;
     margin: 0 0.25em;
-    background: #ddd;
     padding: 2px 4px;
     border-radius: 4px;
     box-shadow: 0 -1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 0 rgba(0, 0, 0, 0.2) inset;

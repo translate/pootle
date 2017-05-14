@@ -6,130 +6,119 @@
  * AUTHORS file for copyright and authorship information.
  */
 
-/* USER PROFILES */
-
-#profile-page #content
+.edit-profile-btn
 {
-    background: url(../images/bg.png) 0 0 repeat-x;
-    margin: 0;
+    margin: 0 1em 1.5em;
 }
 
-#user-profile
+/* user teams */
+
+.user-teams ul.user-site-roles
 {
     text-align: center;
-    padding-top: 140px;
+    padding: 0.3em;
+    font-size: 1.2em;
 }
 
-#user-profile a:active,
-#user-profile a:hover,
-#user-profile a:focus
+.user-teams dl
 {
-    opacity: 0.8;
-    text-decoration: none;
+    margin-top: 0.2em;
 }
 
-/* Meta */
-
-#user-meta img
+.user-teams dt
 {
-    border: 1px solid #eee;
-    padding: 5px;
+    font-size: 1.3em;
+    margin-top: 0.2em;
 }
 
-#user-meta .user-name
+.user-teams dd
 {
-    font-size: 3em;
+    margin-left: 0.5em;
 }
 
-/* Stats */
+/* user activity */
 
-#user-stats .user-score-title
+.user-activity .last-activity
 {
-    font-family: sans-serif;
-    font-size: 1.8em;
-    font-weight: normal;
-    color: #1a1a1a;
-    margin-top: 0.5em;
+    position: relative;
+    top: 0;
+    font-size: 1em;
 }
 
-#user-stats .user-score
+.user-activity .last-activity .avatar
 {
-    font-size: 3em;
-    margin-bottom: 1em;
+    position: relative;
+    float: left;
 }
 
-#user-stats .user-score,
-#user-stats .user-position
+.user-activity .last-activity .user-info
 {
-    color: #5a8295;
+    float: left;
+    width: 80%;
+    margin-left: 0.3em;
 }
 
-#user-meta .admin,
-#user-meta .admin:hover
+/* user bio */
+
+.user-bio
 {
-    color: #f33;
+    text-align: center;
 }
 
-#user-stats .user-detailed-stats,
-#user-stats .user-detailed-stats
-{
-    margin-bottom: 1em;
-}
-
-#user-stats .user-position
-{
-    display: inline-block;
-    background-color: #eee;
-    font-size: 1.6em;
-    border-radius: 1.5em;
-    padding: 0.5em 1em;
-    margin-bottom: 2em;
-}
-
-#user-stats .user-last-activity
-{
-    margin-bottom: 3em;
-    font-size: 1.1em;
-}
-
-#user-stats .user-last-activity .label
-{
-    color: #999;
-    display: inline;
-    margin-right: 0.5em;
-}
-
-#user-stats .last-action
-{
-    display: inline;
-}
-
-#user-stats .last-action img
-{
-    vertical-align: middle;
-}
-
-
-/* Personal details */
-
-#user-details
-{
-    background-color: #f5fbfd;
-    padding: 1em 2em;
-    font-size: 1.5em;
-}
-
-#user-details.meta-user
+.user-bio img
 {
     margin-top: 2em;
 }
 
-#user-details .user-contact
+.user-bio-text
 {
-    margin: 1em 0;
+    padding: 1em;
+    font-size: 1.5em;
+    font-style: italic;
 }
 
-#user-details .user-contact i
+/* user-ranking */
+
+.user-ranking
+{
+    background: rgba(221, 221, 221, 0.5);
+    font-size: 1.2em;
+    border-radius: 1.5em;
+    padding: 0.5em 1em;
+    color: #5a8295;
+    margin: 0.5em 0;
+}
+
+/* user scores */
+
+.user-scores
+{
+    text-align: center;
+    font-size: 1.5em;
+    padding: 0.5em 0;
+}
+
+.user-scores .user-score
+{
+    background: rgba(221, 221, 221, 0.2);
+    display: inline;
+}
+
+/* user social links */
+
+.user-social-links
+{
+    margin: 1em 0;
+    text-align: center;
+}
+
+.user-social-links li
+{
+    display: inline-block;
+    margin: 0 2em;
+}
+
+.user-social-links i
 {
     vertical-align: middle;
     margin-right: 0.5em;
@@ -137,51 +126,56 @@
     top: -2px;
 }
 
-#user-details .user-contact li
+/* profile page */
+
+#profile-page #content
 {
-    display: inline-block;
-    margin: 0 2em;
+    background: url(../images/bg.png) 0 0 repeat-x;
+    margin: 0;
 }
 
-.user-contact + .user-bio
+#profile-page h3
 {
-    margin-top: 1em !important;
-}
-
-#user-details .user-bio
-{
-    font-family: sans-serif;
-    font-weight: normal;
-    line-height: 1.6;
-    max-width: 750px;
-    margin: 1em auto;
-}
-
-#user-details .user-bio.placeholder
-{
-    color: #72a6c4;
-}
-
-#user-details .edit-profile-btn
-{
-    margin: 2em 0 1em;
+    margin-top: 0.7em;
+    font-size: 1.4em;
 }
 
 
-/* Detailed stats */
-
-#user-stats table
+#user-profile-left
 {
-    margin-top: 0.5em;
-    margin-bottom: 1.5em;
-    width: 100%;
+    width: 30%;
+    float: left;
+    box-sizing: border-box;
+    padding: 1em;
+    background: linear-gradient(to bottom, rgba(200, 200, 200, 0.5), rgba(200, 200, 200, 0));
+    min-height: 10em;
 }
 
-#user-stats table td
+#user-profile-center
 {
-    padding: 5px;
-    width: 16.6%;
+    width: 40%;
+    float: left;
 }
+
+#user-profile-right
+{
+    width: 30%;
+    float: left;
+    box-sizing: border-box;
+    padding: 1em;
+    background: linear-gradient(to bottom, rgba(200, 200, 200, 0.5), rgba(200, 200, 200, 0));
+    min-height: 10em;
+}
+
+#user-profile-bottom
+{
+    clear: both;
+    background-color: #f5fbfd;
+    padding: 1em 2em;
+    font-size: 1.5em;
+}
+
+/* USER PROFILES */
 
 
 /* User profile editing form */
@@ -291,8 +285,11 @@ html[dir="rtl"] #user-edit .helptext
 }
 
 
-.user-last-activity .last-action
+/* profile bio */
+
+#user-profile .user-bio .user-display-name
 {
-    position: relative;
-    top: 0;
+    background: linear-gradient(to bottom, rgba(200, 200, 200, 0.3), rgba(200, 200, 200, 0));
+    min-height: 5em;
+    padding: 1em;
 }
