@@ -8,28 +8,21 @@
 
 import pytest
 
-from django.template import Context, Template
-
 from pootle.core.contextmanagers import keep_data
 from pootle.core.delegate import upstream
 from pootle.core.plugin import provider
+from pootle.core.utils.templates import render_as_template
 from pootle_project.models import Project
 
 
-def _render_template(string, context=None):
-    context = context or {}
-    context = Context(context)
-    return Template(string).render(context=context)
-
-
 def _render_upstream(ctx):
-    return _render_template(
+    return render_as_template(
         "{% load fs_tags %}{% upstream_link project %}",
         context=ctx)
 
 
 def _render_upstream_short(ctx):
-    return _render_template(
+    return render_as_template(
         "{% load fs_tags %}{% upstream_link_short project location %}",
         context=ctx)
 
