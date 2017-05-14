@@ -1,0 +1,10 @@
+{% load i18n %}
+{% if social_media_links %}
+<div id="user-details">
+  <ul class="user-contact">  
+  {% for link in social_media_links %}
+  <li><a href="{{ link.url }}"><i class="{{ link.icon }}"></i>{{ link.text }}</a></li>
+  {% endfor %}
+  </ul>
+</div>
+{% endif %}

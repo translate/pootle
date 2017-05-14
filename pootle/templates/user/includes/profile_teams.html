@@ -1,0 +1,15 @@
+{% load i18n %}
+{% for permission in site_permissions %}
+<h3>{{ permission }}</h3>
+{% endfor %}
+{% if teams %}
+<h3>{% trans "Language teams" %}</h3>
+<ul>
+  {% for code, team in teams.items %}
+  <li>
+    <a href="/{{ team.url }}/">{{ team.name }}</a>
+    {% if team.role %}({{ team.role }}){% endif %}
+  </li>
+  {% endfor %}
+</ul>
+{% endif %}

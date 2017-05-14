@@ -1,0 +1,26 @@
+{% load i18n profile_tags %}
+<div class="user-profile-user" lang="{{ LANGUAGE_CODE }}">
+  <div id="user-avatar-bio">
+    <img src="{{ profile.user|gravatar:150 }}"
+	 width="150"
+	 height="150"
+	 class="avatar"
+	 title="{{ user_title }}" />
+    <div class="user-bio">{{ bio }}</div>
+    {% if can_edit_profile %}
+    {% if should_edit_profile %}
+    <div class="user-bio placeholder">{{ edit_profile_message }}</div>
+    {% endif %}
+    <div class="js-user-profile-edit"></div>
+    {% endif %}
+
+    <div class="user-name">
+      <h1>
+	{{ profile.display_name }}
+      </h1>
+      {% if request_user_is_manager %}
+      <p><a class="admin" href="mailto:{{ profile.user.email }}">{{ profile.user.email }}</a></p>
+      {% endif %}
+    </div>
+  </div>
+</div>

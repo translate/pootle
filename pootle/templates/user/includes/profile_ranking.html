@@ -1,0 +1,14 @@
+{% load i18n %}
+<h3 class="user-position">
+  {% if no_ranking_text %}
+  {{ no_ranking_text }}
+  {% elif own_profile %}
+  <a class="js-popup-tweet"
+     href="{{ ranking_tweet_link }}"
+     title="{{ ranking_tweet_link_text }}">
+    {{ ranking_text }}
+  </a>
+  {% else %}
+  {{ ranking_text }}
+  {% endif %}
+</h3>
