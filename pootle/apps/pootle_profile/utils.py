@@ -6,9 +6,14 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from datetime import timedelta
+
+from django.utils import timezone
 from django.utils.functional import cached_property
 
-from pootle.core.delegate import membership, scores, site_languages
+from pootle.core.delegate import (
+    comparable_event, log, membership, scores, site_languages)
+from pootle.core.utils.templates import render_as_template
 from pootle.i18n.gettext import ugettext_lazy as _
 
 
@@ -16,6 +21,18 @@ class UserProfile(object):
 
     def __init__(self, user):
         self.user = user
+
+    @cached_property
+    def avatar(self):
+        return render_as_template(
+            "{% load common_tags %}{% avatar username email_hash 20 %}",
+            context=dict(
+                username=self.user.username,
+                email_hash=self.user.email_hash))
+
+    @cached_property
+    def log(self):
+        return log.get(self.user.__class__)(self.user)
 
     @cached_property
     def membership(self):
@@ -31,6 +48,17 @@ class UserProfile(object):
             self.user.display_name
             if not self.user.is_anonymous
             else _("Anonymous User"))
+
+    def get_events(self, start=None, n=None):
+        sortable = comparable_event.get(self.log.__class__)
+        start = start or (timezone.now() - timedelta(days=30))
+        events = sorted(
+            sortable(ev)
+            for ev
+            in self.log.get_events(start=start))
+        if n is not None:
+            events = events[-n:]
+        return reversed(events)
 
 
 class UserMembership(object):
