@@ -6,8 +6,14 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.template import TemplateDoesNotExist
+from django.template import Context, Template, TemplateDoesNotExist
 from django.template.engine import Engine
+
+
+def render_as_template(string, context=None):
+    context = context or {}
+    context = Context(context)
+    return Template(string).render(context=context)
 
 
 def get_template_source(name, dirs=None):
