@@ -10,7 +10,7 @@ import pytest
 
 from django.urls import reverse
 
-from pootle.core.delegate import scores
+from pootle_profile.utils import UserProfile
 from pootle_profile.views import UserDetailView
 
 
@@ -21,6 +21,6 @@ def test_view_user_detail(client, member, system):
             'pootle-user-profile',
             kwargs=dict(username=member.username)))
     assert isinstance(response.context["view"], UserDetailView)
-    user_scores = scores.get(member.__class__)(member)
-    assert response.context["user_score"] == user_scores.public_score
-    assert response.context["user_top_language"] == user_scores.top_language
+    profile = response.context["profile"]
+    assert isinstance(profile, UserProfile)
+    assert profile.user == member
