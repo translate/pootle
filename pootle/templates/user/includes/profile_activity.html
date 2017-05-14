@@ -1,6 +1,15 @@
-{% load i18n %}
+{% load i18n log_events %}
 <div class="user-activity">
-  {% if user_last_event %}
+  <h3>Recent activity</h3>
+  <ul>
+    {% for event in user_events %}
+    <li style="padding: .3em; background: rgba(204, 204, 204, 0.3)">
+      {% log_event event %}
+      <div style="clear: both"> </div>
+    </li>
+    {% endfor %}
+  </ul>
+  {% if user_last_event and not user_events %}
   <div class="user-last-activity">
     <h3>{% trans 'Latest activity:' %}</h3>
     <div class="last-activity">
