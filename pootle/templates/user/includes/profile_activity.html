@@ -1,5 +1,17 @@
 {% load i18n %}
 <div class="user-activity">
+  <h3>Recent activity</h3>
+  <ul>
+    {% for event in user_events %}
+    <li>
+      <div>
+	{{ profile.avatar }}
+	{{ event.timestamp }}
+      </div>
+      {{ event.action }} {{ event.value.new_value }}
+      {{ event.unit.id }} at revision {{ event.revision }}</li>
+    {% endfor %}
+  </ul>
   {% if user_last_event %}
   <div class="user-last-activity">
     <h3>{% trans 'Latest activity:' %}</h3>
