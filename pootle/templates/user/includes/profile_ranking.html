@@ -1,5 +1,5 @@
 {% load i18n %}
-<h3 class="user-position">
+<div class="user-ranking">
   {% if no_ranking_text %}
   {{ no_ranking_text }}
   {% elif own_profile %}
@@ -11,4 +11,4 @@
   {% else %}
   {{ ranking_text }}
   {% endif %}
-</h3>
+</div>

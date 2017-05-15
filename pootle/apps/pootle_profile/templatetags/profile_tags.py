@@ -8,9 +8,10 @@
 
 import urllib
 
+from django import template
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from django import template
+from django.utils.safestring import mark_safe
 
 from pootle.i18n.gettext import ugettext_lazy as _
 
@@ -87,17 +88,27 @@ def profile_social(profile):
 
 
 @register.inclusion_tag("user/includes/profile_teams.html")
-def profile_teams(profile):
+def profile_teams(request, profile):
     teams = profile.membership.teams_and_roles
     site_permissions = []
-    if profile.user.is_superuser:
+    if not request.user.is_anonymous and profile.user.is_superuser:
         site_permissions.append(_("Site administrator"))
     for code, info in teams.items():
         info["url"] = reverse(
             "pootle-language-browse",
             kwargs=dict(language_code=code))
+    if teams:
+        teams_title = _(
+            "%s's language teams"
+            % profile.user.display_name)
+    else:
+        teams_title = _(
+            "%s is not a member of any language teams"
+            % profile.user.display_name)
     return dict(
+        anon_request=request.user.is_anonymous,
         teams=teams,
+        teams_title=teams_title,
         site_permissions=site_permissions)
 
 
@@ -121,13 +132,13 @@ def profile_user(request, profile):
                 not profile.user.has_contact_details
                 or not profile.user.bio)
             if context["should_edit_profile"]:
-                context["edit_profile_message"] = _(
-                    "Show others who you are, tell about yourself<br/>"
-                    "and make your public profile look gorgeous!")
+                context["edit_profile_message"] = mark_safe(
+                    _("Show others who you are, tell about yourself<br/>"
+                      "and make your public profile look gorgeous!"))
             context["user_title"] = _(
                 "You can set or change your avatar image at www.gravatar.com")
         if profile.user.bio:
-            context["bio"] = "&ldquo;%s&rdquo;" % profile.user.bio
+            context["bio"] = profile.user.bio
     return context
 
 
