@@ -65,6 +65,21 @@ This file contains base configuration settings.
   The name of the Pootle server.
 
 
+.. setting:: POOTLE_SQL_MIGRATIONS
+
+``POOTLE_SQL_MIGRATIONS``
+  Default: ``True``
+
+  .. versionadded:: 2.8
+
+  Some migrations have been optimized by using SQL directly and bypassing
+  the Django ORM (Currently only for mysql migrations).
+
+  This could cause problems if, for example, you have developed custom models with
+  foreign keys to Pootle models.
+
+
+
 20-backends.conf
 ^^^^^^^^^^^^^^^^
 
