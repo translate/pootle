@@ -26,7 +26,7 @@ def unit_log_getter(**kwargs_):
     return UnitLog
 
 
-@getter(comparable_event, sender=(Log, StoreLog, UnitLog))
+@getter(comparable_event, sender=(Log, StoreLog, UnitLog, UserLog))
 def comparable_event_getter(**kwargs_):
     return ComparableLogEvent
 
