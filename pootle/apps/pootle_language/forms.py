@@ -77,12 +77,12 @@ class LanguageTeamAdminForm(LanguageTeamBaseAdminForm):
         queryset=User.objects.none())
     rm_submitters = forms.ModelMultipleChoiceField(
         required=False,
-        label=_("Submitters"),
+        label=_("Translators"),
         widget=TableSelectMultiple(item_attrs=["username"]),
         queryset=User.objects.none())
     rm_members = forms.ModelMultipleChoiceField(
         required=False,
-        label=_("Members"),
+        label=_("Suggesters"),
         widget=TableSelectMultiple(item_attrs=["username"]),
         queryset=User.objects.none())
     new_member = forms.ModelChoiceField(
