@@ -115,43 +115,55 @@ def test_templatetag_profile_social(member):
 
 
 @pytest.mark.django_db
-def test_templatetag_profile_teams(admin, member, language0):
+def test_templatetag_profile_teams(rf, admin, member, language0, request_users):
+    request_user = request_users["user"]
     lang_team = language_team.get()
     user_profile = profile.get(member.__class__)(member)
+    request = rf.get("")
+    request.user = request_user
     rendered = render_as_template(
-        "{% load profile_tags %}{% profile_teams profile %}",
-        dict(profile=user_profile))
-    assert not rendered.strip()
+        "{% load profile_tags %}{% profile_teams request profile %}",
+        dict(profile=user_profile, request=request))
+    assert (
+        ("%s is not a member of any language teams"
+         % member.display_name)
+        in rendered)
     lang_team(language0).add_member(member, "member")
     user_profile = profile.get(member.__class__)(member)
     rendered = render_as_template(
-        "{% load profile_tags %}{% profile_teams profile %}",
-        dict(profile=user_profile))
+        "{% load profile_tags %}{% profile_teams request profile %}",
+        dict(profile=user_profile, request=request))
     assert language0.name in rendered
     assert (
         reverse(
             "pootle-language-browse",
             kwargs=dict(language_code=language0.code))
         in rendered)
-    assert "(Admin)" not in rendered
+    assert "Admin" not in rendered
     assert "Site administrator" not in rendered
     lang_team(language0).add_member(member, "admin")
     user_profile = profile.get(member.__class__)(member)
     rendered = render_as_template(
-        "{% load profile_tags %}{% profile_teams profile %}",
-        dict(profile=user_profile))
+        "{% load profile_tags %}{% profile_teams request profile %}",
+        dict(profile=user_profile, request=request))
     assert language0.name in rendered
     assert (
         reverse(
             "pootle-language-browse",
             kwargs=dict(language_code=language0.code))
         in rendered)
-    assert "(Admin)" in rendered
+    if request_user.is_anonymous:
+        assert "Admin" not in rendered
+    else:
+        assert "Admin" in rendered
     admin_profile = profile.get(admin.__class__)(admin)
     rendered = render_as_template(
-        "{% load profile_tags %}{% profile_teams profile %}",
-        dict(profile=admin_profile))
-    assert "Site administrator" in rendered
+        "{% load profile_tags %}{% profile_teams request profile %}",
+        dict(profile=admin_profile, request=request))
+    if request_user.is_anonymous:
+        assert "Site administrator" not in rendered
+    else:
+        assert "Site administrator" in rendered
 
 
 @pytest.mark.django_db
