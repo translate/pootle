@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-20 14:39+0000\n"
+"POT-Creation-Date: 2017-05-16 11:56+0100\n"
 "PO-Revision-Date: 2017-04-25 18:41+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,36 +40,41 @@ msgstr ""
 "Aseqdac inek yettban am akken iṛuḥ. Ma ulac aɣilif, azen-d ayagi i yimawlan "
 "n usmel."
 
-#: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:56 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "Isem n useqdac"
 
-#: apps/accounts/models.py:56
+#: apps/accounts/models.py:57
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
 "Yettwasra. 30 n izamulen neɣ  daw. Isekkilen, izwilen akked izamulen @/./+/-/"
 "_ "
 
-#: apps/accounts/models.py:60
+#: apps/accounts/models.py:61
 msgid "Enter a valid username."
 msgstr "Sekcem isem n useqdac ameɣtu"
 
-#: apps/accounts/models.py:64
+#: apps/accounts/models.py:65
+#, fuzzy
+msgid "A user with that username already exists."
+msgstr "Tansa-agi imayl tella yakan."
+
+#: apps/accounts/models.py:68
 msgid "Email Address"
 msgstr "Tansa Imayl"
 
-#: apps/accounts/models.py:65 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:208
+#: apps/accounts/models.py:69 apps/pootle_language/models.py:35
+#: apps/pootle_project/models.py:206
 msgid "Full Name"
 msgstr "Isem ummid"
 
-#: apps/accounts/models.py:68 apps/staticpages/models.py:30
+#: apps/accounts/models.py:72 apps/staticpages/models.py:30
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Urmid"
 
-#: apps/accounts/models.py:71
+#: apps/accounts/models.py:75
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -77,11 +82,11 @@ msgstr ""
 "Yettwag  ma yella aseqdac-agi yezmer ad yettwammel d urmid neɣ ala. Kkes "
 "afran deg umḍiq n tukksa n umiḍan."
 
-#: apps/accounts/models.py:74
+#: apps/accounts/models.py:78
 msgid "Superuser Status"
 msgstr "Addad n unebdal"
 
-#: apps/accounts/models.py:77
+#: apps/accounts/models.py:81
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
@@ -89,83 +94,99 @@ msgstr ""
 "Yemmal-d d akken aseqdac-agi ɣur-s akk tisirag war ma ttwanefkent-as s wudem "
 "aflalay."
 
-#: apps/accounts/models.py:80
+#: apps/accounts/models.py:84
 msgid "date joined"
 msgstr "azemz n ujerred"
 
-#: apps/accounts/models.py:84
+#: apps/accounts/models.py:88
 msgid "Number of Rows"
 msgstr "Amḍan n izirigen"
 
-#: apps/accounts/models.py:88
+#: apps/accounts/models.py:92
 msgid "Alternative Source Languages"
 msgstr "Tutlayin n yeɣbula-nniḍen"
 
-#: apps/accounts/models.py:93
+#: apps/accounts/models.py:95
 msgid "Score"
 msgstr "Agmuḍ"
 
-#: apps/accounts/models.py:94
+#: apps/accounts/models.py:96
 msgid "Is employee?"
 msgstr "D amaris?"
 
-#: apps/accounts/models.py:95
+#: apps/accounts/models.py:97
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:99
 msgid "Website"
 msgstr "Asmel Web"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:100
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:99
+#: apps/accounts/models.py:101
 msgid "Short Bio"
 msgstr "Taseknudert tawezlant"
 
-#: apps/accounts/models.py:239
+#: apps/accounts/models.py:241
 msgid "This email address already exists."
 msgstr "Tansa-agi imayl tella yakan."
 
-#: apps/contact/forms.py:26
-msgid "Summary"
-msgstr "Agzul"
+#: apps/contact/forms.py:27
+#, fuzzy
+msgid "Subject"
+msgstr "Aggi"
 
-#: apps/contact/forms.py:28
-msgid "Please enter your message summary"
-msgstr "Ma ulac aɣlif, sekcem izen inek agzul"
+#: apps/contact/forms.py:29
+#, fuzzy
+msgid "Please enter a message subject"
+msgstr "Ma ulac aɣlif, sekcem izen inek"
 
-#: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
+#: apps/contact/forms.py:36 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "Isem"
 
-#: apps/contact/forms.py:36
+#: apps/contact/forms.py:37
 msgid "Please enter your name"
 msgstr "Ttxilek sekcem isem-ik"
 
-#: apps/contact/forms.py:39
+#: apps/contact/forms.py:40
 msgid "Email address"
 msgstr "Tansa n imayl"
 
-#: apps/contact/forms.py:40
+#: apps/contact/forms.py:41
 msgid "Please enter your email address"
 msgstr "Ttxilek sekcem tansa-inek n imayl"
 
-#: apps/contact/forms.py:43
+#: apps/contact/forms.py:44
 msgid "Message"
 msgstr "Izen"
 
-#: apps/contact/forms.py:44
+#: apps/contact/forms.py:45
 msgid "Please enter your message"
 msgstr "Ma ulac aɣlif, sekcem izen inek"
 
-#: apps/contact/views.py:34 templates/layout.html:120
+#: apps/contact/forms.py:115
+msgid "String context"
+msgstr ""
+
+#: apps/contact/forms.py:125
+#, fuzzy
+msgid "Question or comment"
+msgstr "Asumer ur ittwaqbel ara s uwennit"
+
+#: apps/contact/forms.py:126
+#, fuzzy
+msgid "Please enter your question or comment"
+msgstr "Ttxilek sekcem isem-ik"
+
+#: apps/contact/views.py:35 templates/layout.html:120
 msgid "Contact Us"
 msgstr "Nermes-aɣ-d"
 
-#: apps/contact/views.py:65
+#: apps/contact/views.py:92
 msgid "Report problem with string"
 msgstr "Azen-d ugur n uzrir n isekkilen"
 
@@ -236,7 +257,7 @@ msgstr "Teḍra-d tuccḍa deg usali n ufaylu inek"
 msgid "Language code does not follow the ISO convention"
 msgstr "Tangalt n tutlayt ur teḍfiṛ ara tizeɣt ISO"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:232
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
 msgid "Source Language"
 msgstr "Tutlayt n uɣbalu"
 
@@ -295,6 +316,224 @@ msgstr "Ulac ifuyla deg usenfar-agi."
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Llant tuccḍiwin di tfelwit. Ma ulac ăqilif, wali ugur daw-a."
 
+#: apps/pootle_checks/constants.py:24 core/browser.py:47
+msgid "Critical"
+msgstr "Uzɣin"
+
+#: apps/pootle_checks/constants.py:25
+msgid "Cosmetic"
+msgstr "Aḥennek"
+
+#: apps/pootle_checks/constants.py:26
+msgid "Functional"
+msgstr "Amesγan"
+
+#: apps/pootle_checks/constants.py:27
+msgid "Extraction"
+msgstr "Tukkist"
+
+#: apps/pootle_checks/constants.py:28
+msgid "Other"
+msgstr "Wayeḍ"
+
+#: apps/pootle_checks/constants.py:31
+msgid "Accelerators"
+msgstr "Inegzumen"
+
+#: apps/pootle_checks/constants.py:32
+msgid "Acronyms"
+msgstr "Ixefwalen"
+
+#: apps/pootle_checks/constants.py:33
+msgid "Blank"
+msgstr "Ilem"
+
+#: apps/pootle_checks/constants.py:34
+msgid "Brackets"
+msgstr "Tacciwin"
+
+#: apps/pootle_checks/constants.py:35
+msgid "Compendium conflict"
+msgstr "Tilla di tkatut n umawal"
+
+#: apps/pootle_checks/constants.py:36
+msgid "Translator credits"
+msgstr "Ismaden n umsuqel"
+
+#: apps/pootle_checks/constants.py:37
+msgid "Dialog sizes"
+msgstr "Teɣzi n isfuyla n udiwenni"
+
+#: apps/pootle_checks/constants.py:38
+msgid "Double quotes"
+msgstr ""
+
+#: apps/pootle_checks/constants.py:39
+msgid "Double spaces"
+msgstr ""
+
+#: apps/pootle_checks/constants.py:40
+msgid "Repeated word"
+msgstr "ales awal"
+
+#: apps/pootle_checks/constants.py:41
+msgid "E-mail"
+msgstr "Imayl"
+
+#: apps/pootle_checks/constants.py:42
+msgid "Ending punctuation"
+msgstr ""
+
+#: apps/pootle_checks/constants.py:43
+msgid "Ending whitespace"
+msgstr ""
+
+#: apps/pootle_checks/constants.py:44
+msgid "Escapes"
+msgstr "tilla usenser"
+
+#: apps/pootle_checks/constants.py:45
+msgid "File paths"
+msgstr "Iberdan n ufaylu"
+
+#: apps/pootle_checks/constants.py:46
+msgid "Functions"
+msgstr "Tiwuriwin"
+
+#: apps/pootle_checks/constants.py:47
+msgid "GConf values"
+msgstr "Azalen GConf"
+
+#: apps/pootle_checks/constants.py:48 core/utils/stats.py:29
+msgid "Fuzzy"
+msgstr "amakken"
+
+#: apps/pootle_checks/constants.py:49
+msgid "Old KDE comment"
+msgstr "Awennit aqbur KDE"
+
+#: apps/pootle_checks/constants.py:50
+msgid "Long"
+msgstr "Teɣzi"
+
+#: apps/pootle_checks/constants.py:51
+msgid "Must translate words"
+msgstr "Yessef ad ittusuqel"
+
+#: apps/pootle_checks/constants.py:52
+msgid "Newlines"
+msgstr "Angaz n izirig"
+
+#: apps/pootle_checks/constants.py:53
+msgid "Number of plurals"
+msgstr "Amḍan n usgwet"
+
+#: apps/pootle_checks/constants.py:54
+msgid "Don't translate words"
+msgstr "Ur suqul ara awalen-a"
+
+#: apps/pootle_checks/constants.py:55
+msgid "Numbers"
+msgstr "Imiḍanen"
+
+#: apps/pootle_checks/constants.py:56
+msgid "Options"
+msgstr "Iɣewwaṛen"
+
+#: apps/pootle_checks/constants.py:57
+msgid "printf()"
+msgstr "printf()"
+
+#: apps/pootle_checks/constants.py:58
+msgid "Punctuation spacing"
+msgstr ""
+
+#: apps/pootle_checks/constants.py:59
+msgid "Pure punctuation"
+msgstr ""
+
+#: apps/pootle_checks/constants.py:60
+msgid "Python brace placeholders"
+msgstr ""
+
+#: apps/pootle_checks/constants.py:61
+msgid "Number of sentences"
+msgstr "Amḍan n tefyar"
+
+#: apps/pootle_checks/constants.py:62
+msgid "Short"
+msgstr "Wezzil"
+
+#: apps/pootle_checks/constants.py:63
+msgid "Simple capitalization"
+msgstr "Aseqdec n usekkil ameqqran"
+
+#: apps/pootle_checks/constants.py:64
+msgid "Simple plural(s)"
+msgstr "Asget aḥerfi"
+
+#: apps/pootle_checks/constants.py:65
+msgid "Single quotes"
+msgstr "tuccar tiḥerfiyin"
+
+#: apps/pootle_checks/constants.py:66
+msgid "Starting capitalization"
+msgstr ""
+
+#: apps/pootle_checks/constants.py:67
+msgid "Starting punctuation"
+msgstr ""
+
+#: apps/pootle_checks/constants.py:68
+msgid "Starting whitespace"
+msgstr ""
+
+#. Translators: This refers to tabulation characters
+#: apps/pootle_checks/constants.py:70
+msgid "Tabs"
+msgstr "Iccaren"
+
+#: apps/pootle_checks/constants.py:71
+msgid "Unchanged"
+msgstr "arubdil"
+
+#: apps/pootle_checks/constants.py:72 apps/pootle_store/constants.py:66
+#: core/utils/stats.py:30 templates/editor/_filters.html:9
+msgid "Untranslated"
+msgstr "Ur ittwasuqel ara"
+
+#: apps/pootle_checks/constants.py:73
+msgid "URLs"
+msgstr "URL"
+
+#: apps/pootle_checks/constants.py:74
+msgid "Valid characters"
+msgstr "Isekkilen imeɣta"
+
+#: apps/pootle_checks/constants.py:75
+msgid "Placeholders"
+msgstr ""
+
+#: apps/pootle_checks/constants.py:76
+msgid "Valid XML"
+msgstr "XML ameɣtu"
+
+#: apps/pootle_checks/constants.py:77
+msgid "XML tags"
+msgstr "Tibzimin MXL"
+
+#: apps/pootle_checks/constants.py:80
+msgid "ftl format"
+msgstr "amasal ftl"
+
+#: apps/pootle_checks/constants.py:83
+msgid "Romanian: Avoid cedilla diacritics"
+msgstr ""
+
+#: apps/pootle_checks/constants.py:84
+msgid "Romanian: Use \"niciun\"/\"nicio\""
+msgstr "Tarumanit: Sewdec \"niciun\"/\"nicio\""
+
 #: apps/pootle_format/abstracts.py:35
 msgid "Format name"
 msgstr "Isem n umasal"
@@ -343,99 +582,104 @@ msgstr "Tansa URL n ubrid n umsedday"
 msgid "The URL or path to your translation files"
 msgstr "Tansa URL neɣ abrid ar ifuyla inek n tsuqilt"
 
-#: apps/pootle_fs/forms.py:54
-msgid "Translation path mapping"
+#: apps/pootle_fs/forms.py:47
+#, fuzzy
+msgid "Translation mapping presets"
 msgstr "Tanmeɣrut n iberdan n tsuqilt"
 
 #: apps/pootle_fs/forms.py:55
+msgid "Translation path mapping"
+msgstr "Tanmeɣrut n iberdan n tsuqilt"
+
+#: apps/pootle_fs/forms.py:56
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
 "Tanmeɣrut n iberdan n tsuqilt gar unagraw n ifuyla akked ifuyla n Pootle."
 
-#: apps/pootle_fs/forms.py:181
+#: apps/pootle_fs/forms.py:182
 msgid "Filesystem language codes must be unique"
 msgstr "Tigalin n titlayt n unagraw n ifuyla yessefk ad ilin-t d tisufin"
 
-#: apps/pootle_fs/forms.py:185
+#: apps/pootle_fs/forms.py:186
 msgid "Pootle language mappings must be unique"
 msgstr "Tinmeɣra n tutlayt Pootle yessefk ad ilint d tisufin"
 
-#: apps/pootle_language/forms.py:28
+#: apps/pootle_language/forms.py:27
 msgid "Member"
 msgstr "Amedraw"
 
-#: apps/pootle_language/forms.py:29
+#: apps/pootle_language/forms.py:28
 msgid "Submitter"
 msgstr "Amazan"
 
-#: apps/pootle_language/forms.py:30
+#: apps/pootle_language/forms.py:29 apps/pootle_profile/utils.py:98
 msgid "Reviewer"
 msgstr "Imcegger"
 
-#: apps/pootle_language/forms.py:31
+#: apps/pootle_language/forms.py:30
 msgid "Administrator"
 msgstr "Anedbal"
 
-#: apps/pootle_language/forms.py:70
+#: apps/pootle_language/forms.py:69
 msgid "Administrators"
 msgstr "Inedbalen"
 
-#: apps/pootle_language/forms.py:76
+#: apps/pootle_language/forms.py:75
 msgid "Reviewers"
 msgstr "Imceggiren"
 
-#: apps/pootle_language/forms.py:81
+#: apps/pootle_language/forms.py:80
 msgid "Submitters"
 msgstr "Imazanen"
 
-#: apps/pootle_language/forms.py:86
+#: apps/pootle_language/forms.py:85
 msgid "Members"
 msgstr "Imedrawen"
 
-#: apps/pootle_language/forms.py:90
+#: apps/pootle_language/forms.py:89
 msgid "New member"
 msgstr "Amedraw amaynut"
 
-#: apps/pootle_language/forms.py:91
+#: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
 msgstr "Rnu aseqdac amaynut ar terbaɛt-agi"
 
-#: apps/pootle_language/forms.py:98
+#: apps/pootle_language/forms.py:97
 msgid "Role"
 msgstr "Tamlilt"
 
-#: apps/pootle_language/forms.py:129
+#: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
 msgstr "Tamlilt tettwasra di tmerna n usaqdac amaynut"
 
-#: apps/pootle_language/forms.py:155 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
 msgstr "Aggi"
 
-#: apps/pootle_language/forms.py:156 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
 msgstr "Qbel"
 
-#: apps/pootle_language/forms.py:158
+#: apps/pootle_language/forms.py:157
 msgid "Filter by suggester"
 msgstr "Zizdeg s umeskar n usumer"
 
-#: apps/pootle_language/forms.py:164
+#: apps/pootle_language/forms.py:163
 msgid "Filter by state"
 msgstr "Zizdeg n waddad"
 
-#: apps/pootle_language/forms.py:174 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Asenfar"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:203
+#: apps/pootle_language/models.py:28 apps/pootle_project/models.py:201
 msgid "Code"
 msgstr "Tangalt"
 
-#: apps/pootle_language/models.py:86
+#: apps/pootle_language/models.py:29
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
@@ -445,17 +689,17 @@ msgstr ""
 "tengalt ISO 3166 n tmurt. <a href=\"http://www.w3.org/International/articles/"
 "language-tags/\">Ugar n telɣut</a>"
 
-#: apps/pootle_language/models.py:95 templates/languages/_nav.html:35
+#: apps/pootle_language/models.py:38 templates/languages/_nav.html:35
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
 msgstr "Isekkilen imeẓliyen"
 
-#: apps/pootle_language/models.py:96
+#: apps/pootle_language/models.py:39
 msgid "Enter any special characters that users might find difficult to type"
 msgstr "Sekcem isekkilen imeẓliyen iweɛren i tira i yiseqdacen "
 
-#: apps/pootle_language/models.py:100
+#: apps/pootle_language/models.py:43
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
@@ -465,15 +709,15 @@ msgstr ""
 "localization-guide/en/latest/l10n/pluralforms.html\">asebter-nneɣ</a> ɣef "
 "talɣa n usgwet."
 
-#: apps/pootle_language/models.py:106
+#: apps/pootle_language/models.py:49
 msgid "Unknown"
 msgstr "Arussin"
 
-#: apps/pootle_language/models.py:110
+#: apps/pootle_language/models.py:53
 msgid "Number of Plurals"
 msgstr "Amḍan n usget"
 
-#: apps/pootle_language/models.py:113
+#: apps/pootle_language/models.py:56
 msgid "Plural Equation"
 msgstr "Tagda n usget"
 
@@ -481,11 +725,11 @@ msgstr "Tagda n usget"
 msgid "Unit"
 msgstr "Aferdis"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:58
 msgid "State"
 msgstr "Addad"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:56
 msgid "Source"
 msgstr "Aɣbalu"
 
@@ -529,332 +773,6 @@ msgid_plural "Accepted %s suggestions"
 msgstr[0] "Yettwaqbel %s n usumer"
 msgstr[1] "Yettwaqeblen %s n isumar"
 
-#: apps/pootle_misc/checks.py:35 core/browser.py:47
-msgid "Critical"
-msgstr "Uzɣin"
-
-#: apps/pootle_misc/checks.py:36
-msgid "Cosmetic"
-msgstr "Aḥennek"
-
-#: apps/pootle_misc/checks.py:37
-msgid "Functional"
-msgstr "Amesγan"
-
-#: apps/pootle_misc/checks.py:38
-msgid "Extraction"
-msgstr "Tukkist"
-
-#: apps/pootle_misc/checks.py:39
-msgid "Other"
-msgstr "Wayeḍ"
-
-#: apps/pootle_misc/checks.py:43
-msgid "Accelerators"
-msgstr "Inegzumen"
-
-#: apps/pootle_misc/checks.py:44
-msgid "Acronyms"
-msgstr "Ixefwalen"
-
-#: apps/pootle_misc/checks.py:45
-msgid "Blank"
-msgstr "Ilem"
-
-#: apps/pootle_misc/checks.py:46
-msgid "Brackets"
-msgstr "Tacciwin"
-
-#: apps/pootle_misc/checks.py:47
-msgid "Compendium conflict"
-msgstr "Tilla di tkatut n umawal"
-
-#: apps/pootle_misc/checks.py:48
-msgid "Translator credits"
-msgstr "Ismaden n umsuqel"
-
-#: apps/pootle_misc/checks.py:49
-msgid "Dialog sizes"
-msgstr "Teɣzi n isfuyla n udiwenni"
-
-#: apps/pootle_misc/checks.py:50
-msgid "Double quotes"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:51
-msgid "Double spaces"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:52
-msgid "Repeated word"
-msgstr "ales awal"
-
-#: apps/pootle_misc/checks.py:53
-msgid "E-mail"
-msgstr "Imayl"
-
-#: apps/pootle_misc/checks.py:54
-msgid "Ending punctuation"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:55
-msgid "Ending whitespace"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:56
-msgid "Escapes"
-msgstr "tilla usenser"
-
-#: apps/pootle_misc/checks.py:57
-msgid "File paths"
-msgstr "Iberdan n ufaylu"
-
-#: apps/pootle_misc/checks.py:58
-msgid "Functions"
-msgstr "Tiwuriwin"
-
-#: apps/pootle_misc/checks.py:59
-msgid "GConf values"
-msgstr "Azalen GConf"
-
-#: apps/pootle_misc/checks.py:60 core/utils/stats.py:29
-msgid "Fuzzy"
-msgstr "amakken"
-
-#: apps/pootle_misc/checks.py:61
-msgid "Old KDE comment"
-msgstr "Awennit aqbur KDE"
-
-#: apps/pootle_misc/checks.py:62
-msgid "Long"
-msgstr "Teɣzi"
-
-#: apps/pootle_misc/checks.py:63
-msgid "Must translate words"
-msgstr "Yessef ad ittusuqel"
-
-#: apps/pootle_misc/checks.py:64
-msgid "Newlines"
-msgstr "Angaz n izirig"
-
-#: apps/pootle_misc/checks.py:65
-msgid "Number of plurals"
-msgstr "Amḍan n usgwet"
-
-#: apps/pootle_misc/checks.py:66
-msgid "Don't translate words"
-msgstr "Ur suqul ara awalen-a"
-
-#: apps/pootle_misc/checks.py:67
-msgid "Numbers"
-msgstr "Imiḍanen"
-
-#: apps/pootle_misc/checks.py:68
-msgid "Options"
-msgstr "Iɣewwaṛen"
-
-#: apps/pootle_misc/checks.py:69
-msgid "printf()"
-msgstr "printf()"
-
-#: apps/pootle_misc/checks.py:70
-msgid "Punctuation spacing"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:71
-msgid "Pure punctuation"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:72
-msgid "Python brace placeholders"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:73
-msgid "Number of sentences"
-msgstr "Amḍan n tefyar"
-
-#: apps/pootle_misc/checks.py:74
-msgid "Short"
-msgstr "Wezzil"
-
-#: apps/pootle_misc/checks.py:75
-msgid "Simple capitalization"
-msgstr "Aseqdec n usekkil ameqqran"
-
-#: apps/pootle_misc/checks.py:76
-msgid "Simple plural(s)"
-msgstr "Asget aḥerfi"
-
-#: apps/pootle_misc/checks.py:77
-msgid "Single quotes"
-msgstr "tuccar tiḥerfiyin"
-
-#: apps/pootle_misc/checks.py:78
-msgid "Starting capitalization"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:79
-msgid "Starting punctuation"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:80
-msgid "Starting whitespace"
-msgstr ""
-
-#. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:82
-msgid "Tabs"
-msgstr "Iccaren"
-
-#: apps/pootle_misc/checks.py:83
-msgid "Unchanged"
-msgstr "arubdil"
-
-#: apps/pootle_misc/checks.py:84 apps/pootle_store/constants.py:66
-#: core/utils/stats.py:30 templates/editor/_filters.html:9
-msgid "Untranslated"
-msgstr "Ur ittwasuqel ara"
-
-#: apps/pootle_misc/checks.py:85
-msgid "URLs"
-msgstr "URL"
-
-#: apps/pootle_misc/checks.py:86
-msgid "Valid characters"
-msgstr "Isekkilen imeɣta"
-
-#: apps/pootle_misc/checks.py:87
-msgid "Placeholders"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:88
-msgid "Valid XML"
-msgstr "XML ameɣtu"
-
-#: apps/pootle_misc/checks.py:89
-msgid "XML tags"
-msgstr "Tibzimin MXL"
-
-#: apps/pootle_misc/checks.py:91
-msgid "Broken HTML Entities"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:92
-msgid "Java format"
-msgstr "Amasal Java"
-
-#: apps/pootle_misc/checks.py:93
-msgid "Template format"
-msgstr "Amasal n tneɣruft"
-
-#: apps/pootle_misc/checks.py:94
-msgid "Mustache placeholders"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:95
-msgid "Mustache placeholder pairs"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:96
-msgid "Mustache like placeholder pairs"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:97
-msgid "C format placeholders"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:98
-msgid "Non printable"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:99
-msgid "Unbalanced tag braces"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:100
-msgid "Changed attributes"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:101
-msgid "Unescaped ampersands"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:102
-msgid "Incorrectly escaped ampersands"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:103
-msgid "Whitespaces"
-msgstr "Isekkilen imellalen"
-
-#: apps/pootle_misc/checks.py:104
-msgid "Date format"
-msgstr "Amasal n wazemz"
-
-#: apps/pootle_misc/checks.py:105
-msgid "Uppercase placeholders"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:106
-msgid "Percent sign placeholders"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:108
-msgid "Percent sign closure placeholders"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:109
-msgid "$ placeholders"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:110
-msgid "$ closure placeholders"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:111
-msgid "Java-encoded unicode"
-msgstr "Unicode yettwasteglen s Java"
-
-#: apps/pootle_misc/checks.py:112
-msgid "Objective-C format"
-msgstr "Amasal Objective-C"
-
-#: apps/pootle_misc/checks.py:113
-msgid "Android format"
-msgstr "Amasal android"
-
-#: apps/pootle_misc/checks.py:114
-msgid "Tags differ"
-msgstr "Amgired n tṛekkizin"
-
-#: apps/pootle_misc/checks.py:115
-msgid "Curly braces"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:116
-msgid "Potential unwanted placeholders"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:117
-msgid "Double quotes in tags"
-msgstr "tuccar takniwin"
-
-#: apps/pootle_misc/checks.py:118
-msgid "Percent brace placeholders"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:121
-msgid "ftl format"
-msgstr "amasal ftl"
-
-#: apps/pootle_misc/checks.py:124
-msgid "Romanian: Avoid cedilla diacritics"
-msgstr ""
-
-#: apps/pootle_misc/checks.py:125
-msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr "Tarumanit: Sewdec \"niciun\"/\"nicio\""
-
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
 msgstr "Nadi"
@@ -864,23 +782,23 @@ msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr ""
 "Nadi (Ctrl+Shift+S)<br/> Sekcem aḍris, sakin senned ɣef kcem akken ad tnadiḍ"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:440
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:368
 msgid "Exact Match"
 msgstr ""
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:446
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:374
 msgid "Source Text"
 msgstr "Aḍris aɣbalu"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:447
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:375
 msgid "Target Text"
 msgstr "Aḍris n tniɣert"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:448
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:376
 msgid "Comments"
 msgstr "Iwenniten"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:449
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:377
 msgid "Locations"
 msgstr "Idigen"
 
@@ -905,26 +823,115 @@ msgstr "Ineggura (%d)"
 msgid "Search unavailable"
 msgstr "Anadi ulac-it"
 
+#: apps/pootle_profile/templatetags/profile_tags.py:34
+#, fuzzy, python-format
+msgid "My current score at %s is %s"
+msgstr "Agmuḍ-iw amiran di %(server_title)s d %(score)s "
+
+#: apps/pootle_profile/templatetags/profile_tags.py:37
+#: apps/pootle_profile/templatetags/profile_tags.py:62
+#: templates/user/profile.html:31 templates/user/profile.html:43
+msgid "Tweet this!"
+msgstr "Twiti ayagi!"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:51
+#, fuzzy, python-format
+msgid "#%s contributor in %s in the last 30 days"
+msgstr "Ulac attekki di 30 n wussan-a ineggura"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:55
+#, fuzzy, python-format
+msgid "I am #%s contributor in %s in the last 30 days at %s!"
+msgstr ""
+"Nek #%(pos)s d imttekki di %(lang_name)s di 30 n wussan ineggura di "
+"%(server_title)s! "
+
+#: apps/pootle_profile/templatetags/profile_tags.py:64
+#: templates/user/profile.html:40
+msgid "No contributions in the last 30 days"
+msgstr "Ulac attekki di 30 n wussan-a ineggura"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:75
+#: templates/user/profile.html:73
+msgid "My Website"
+msgstr "Asmel-iw Web:"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:85
+#: templates/user/profile.html:79
+msgid "My LinkedIn Profile"
+msgstr "Amaɣnu inu LinkedIn"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:94
+#, fuzzy
+msgid "Site administrator"
+msgstr "Anedbal"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:111
+#: templates/user/profile.html:98
+msgid ""
+"Some translations are provided by anonymous volunteers. These are registered "
+"under this special meta-account."
+msgstr ""
+"Kra n tsuqilin i d-mudden imttekkiyen udrigen. Ttwakelsent s waɣef amiḍan-gi."
+
+#: apps/pootle_profile/templatetags/profile_tags.py:115
+#: templates/user/profile.html:100
+msgid ""
+"Some translations are imported from external files. These are registered "
+"under this special meta-account."
+msgstr ""
+"Kr n tsuqilin ttwaketrent seg ifuyla izɣarayen. TTwaskelsent s yiwem n waɣef "
+"amiḍan-agi."
+
+#: apps/pootle_profile/templatetags/profile_tags.py:125
+#: templates/user/profile.html:88
+msgid ""
+"Show others who you are, tell about yourself<br/>and make your public "
+"profile look gorgeous!"
+msgstr ""
+"Sken i wiyaḍ anwa-k, meslay af yiman-ik<br/> sakin err amaɣnu-ik azayez d "
+"ucbiḥ!"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:128
+#: templates/user/profile.html:13
+msgid "You can set or change your avatar image at www.gravatar.com"
+msgstr ""
+"Ur tezmireḍ ara ad tesbaduḍ neɣ ad tesnifleḍ tugna yinek n uvataṛ di www."
+"gravatar.com"
+
+#: apps/pootle_profile/utils.py:50 templates/user/profile.html:16
+msgid "Anonymous User"
+msgstr "Aseqdac udrig"
+
+#: apps/pootle_profile/utils.py:96 templates/layout.html:134
+msgid "Admin"
+msgstr "Anebdal"
+
+#: apps/pootle_profile/utils.py:100
+#, fuzzy
+msgid "Translator"
+msgstr "Tasuqilt"
+
 #: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "Fren yiwet n tutlayt neɣ ugar"
 
-#: apps/pootle_project/forms.py:65 core/browser.py:31
+#: apps/pootle_project/forms.py:57 core/browser.py:31
 msgid "Language"
 msgstr "Tutlayt"
 
-#: apps/pootle_project/models.py:181
+#: apps/pootle_project/models.py:179
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%(code)s\" ur izmir ara ad ittaseqdec am tengalt n usenfaṛ"
 
 #. Translators: this refers to the project quality checker
-#: apps/pootle_project/models.py:190
+#: apps/pootle_project/models.py:188
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "\"%(code)s\" ur izmir ara ad ittaseqdec am umseɣtay n usenfaṛ"
 
-#: apps/pootle_project/models.py:197
+#: apps/pootle_project/models.py:195
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -932,54 +939,54 @@ msgstr ""
 "Tangalt wezzilen n usenfaṛ. Tezmer kan ad tegber isekkilen ASCII, izwilen "
 "akked usekkil n uderrer (_)."
 
-#: apps/pootle_project/models.py:215
+#: apps/pootle_project/models.py:213
 msgid "Quality Checks"
 msgstr "asenqed n tɣara"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:219
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
 msgstr "Tuṭṭfa tawurmant n tneɣrufin n ifuyla GNU/mačči-GNU (aẓayan)"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:220
 msgid "GNU style: files named by language code"
 msgstr ""
 "Style GNU : ifuyla ttwasnifel yesmawen-nwen akken id-qqarent tenglain n "
 "tutlayt"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:221
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Non GNU : yal tutlayt ɣur-s akaram ines"
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:222
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr "Sireg Pootle FS ad iseqdec ifuyla inagrawanen (Armitan)"
 
-#: apps/pootle_project/models.py:228
+#: apps/pootle_project/models.py:226
 msgid "Project Tree Style"
 msgstr "Aɣani n tseklut n usenfaṛ"
 
-#: apps/pootle_project/models.py:236
+#: apps/pootle_project/models.py:234
 msgid "Ignore Files"
 msgstr "Zgel ifuyla"
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:240
 msgid "Errors Report Email"
 msgstr "Imayl n uneqqis n tuccḍiwin"
 
-#: apps/pootle_project/models.py:243
+#: apps/pootle_project/models.py:241
 msgid "An email address where issues with the source text can be reported."
 msgstr "Tansa n yimayl deg-s uguren akked uḍris aɣbalu tezmer ad tettwammel."
 
 #. Translators: This is the URL prefix to search for context screenshots
-#: apps/pootle_project/models.py:248
+#: apps/pootle_project/models.py:246
 msgid "Screenshot Search Prefix"
 msgstr "Azwir b unadi n tuṭṭfa n ugdil"
 
-#: apps/pootle_project/models.py:253
+#: apps/pootle_project/models.py:251
 msgid "Disabled"
 msgstr "Arurmid"
 
-#: apps/pootle_project/views.py:263
+#: apps/pootle_project/views.py:266
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
@@ -988,20 +995,24 @@ msgstr ""
 "Asenfaṛ n tsuqilt (%s) yettwarna. Ad nleqqem ifuyla ines si tneɣrufin n "
 "ufaylu."
 
-#: apps/pootle_project/views.py:270
+#: apps/pootle_project/views.py:273
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Asenfar n usuɣel (%s) yettwakkes"
 
-#: apps/pootle_statistics/models.py:63
+#: apps/pootle_statistics/models.py:57
 msgid "Target"
 msgstr "Asaḍas"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:59
 msgid "Comment"
 msgstr "Awennit"
 
-#: apps/pootle_store/abstracts.py:250 apps/pootle_store/abstracts.py:257
+#: apps/pootle_statistics/models.py:60
+msgid "Check"
+msgstr ""
+
+#: apps/pootle_store/abstracts.py:215 apps/pootle_store/abstracts.py:222
 msgid "Path"
 msgstr "Abrid"
 
@@ -1009,8 +1020,8 @@ msgstr "Abrid"
 msgid "Obsolete"
 msgstr "Aqbuṛ"
 
-#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:213
-#: templates/editor/_filters.html:10
+#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:188
+#: apps/pootle_store/forms.py:563 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Isra asenqed"
 
@@ -1031,11 +1042,11 @@ msgstr "Ulac izerfan ilaqen akken ad tkecmeḍ s uskar n usumer."
 msgid "Insufficient rights to access translation mode."
 msgstr "Xuṣṣent tsirag akken ad tedduḍ ar uskar n tsuqilt."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:644
+#: apps/pootle_store/decorators.py:30
 msgid "Insufficient rights to access review mode."
 msgstr "Ulac izerfan ilaqen akken ad tkecmeḍ s uskar n ucegger."
 
-#: apps/pootle_store/forms.py:102
+#: apps/pootle_store/forms.py:100
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
@@ -1043,13 +1054,23 @@ msgstr "Ulac izerfan ilaqen akken ad tkecmeḍ s uskar n ucegger."
 msgid "Plural Form %d"
 msgstr "Talɣa n usget %d"
 
-#: apps/pootle_store/forms.py:270
+#: apps/pootle_store/forms.py:246
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:354
+#: apps/pootle_store/forms.py:301
 msgid "Translator comment"
 msgstr "Awennit n umsuqel"
+
+#: apps/pootle_store/forms.py:481
+#, python-format
+msgid "Suggestion '%s' has already been accepted or rejected."
+msgstr ""
+
+#: apps/pootle_store/forms.py:499 core/decorators.py:140
+#: core/views/decorators.py:70
+msgid "Insufficient rights to access this page."
+msgstr "Ulac deqs n izerfan akken ad tkecmeḍ ar usebter-agi."
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -1061,60 +1082,80 @@ msgstr "Asuf"
 msgid "Plural"
 msgstr "Asegwet"
 
-#: apps/pootle_store/unit/timeline.py:47
+#: apps/pootle_store/unit/timeline.py:72
+msgid "Added suggestion"
+msgstr "Isumren ittwarnan"
+
+#: apps/pootle_store/unit/timeline.py:85
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Asumer ittwaqbel sɣur ameskar %"
 
-#: apps/pootle_store/unit/timeline.py:48
-#, fuzzy, python-format
-msgid "Rejected suggestion from %(author)s"
-msgstr "Asumer ur ittwaqbel ara sɣur ameskar %"
-
-#: apps/pootle_store/unit/timeline.py:56
+#: apps/pootle_store/unit/timeline.py:93
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Isuma yettwaqeblen si %(author)s s uwennit : %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:61
+#: apps/pootle_store/unit/timeline.py:109
+#, fuzzy, python-format
+msgid "Rejected suggestion from %(author)s"
+msgstr "Asumer ur ittwaqbel ara sɣur ameskar %"
+
+#: apps/pootle_store/unit/timeline.py:117
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Isumar yettwagin %(author)s s uwennit: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:67
-msgid "Added suggestion"
-msgstr "Isumren ittwarnan"
+#: apps/pootle_store/unit/timeline.py:155
+msgid "Unit created"
+msgstr "Aferdis yettwarna"
 
-#: apps/pootle_store/utils.py:67
+#: apps/pootle_store/unit/timeline.py:185
+#, fuzzy
+msgid "Comment:"
+msgstr "Awennit:"
+
+#: apps/pootle_store/unit/timeline.py:188
+#, fuzzy
+msgid "Removed comment"
+msgstr "Kkas awennit"
+
+#: apps/pootle_store/unit/timeline.py:213
+#, fuzzy, python-format
+msgid "Muted %(check_name)s check"
+msgstr "Sens asenqed n  <a href=\"%(check_url)s\">%(check_name)s</a>"
+
+#: apps/pootle_store/unit/timeline.py:222
+#, fuzzy, python-format
+msgid "Unmuted %(check_name)s check"
+msgstr "Rmed asenqed n <a href=\"%(check_url)s\">%(check_name)s</a>"
+
+#: apps/pootle_store/utils.py:137
 msgid "Suggestion accepted with comment"
 msgstr "Asumer yettwaqbel s uwennit"
 
-#: apps/pootle_store/utils.py:69
+#: apps/pootle_store/utils.py:139
 msgid "Suggestion rejected with comment"
 msgstr "Asumer ur ittwaqbel ara s uwennit"
 
-#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:105
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:105
 msgid "Path too long."
 msgstr "Abrid ɣezzi aṭas."
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:107
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:107
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr ""
 
-#: apps/pootle_store/views.py:233
+#: apps/pootle_store/views.py:235
 msgid "Failed to remove comment."
 msgstr "Ur izmir ara ad yekkes awennit."
 
-#: apps/pootle_store/views.py:268
+#: apps/pootle_store/views.py:267
 msgid "Comment submission failed."
 msgstr "Ur izmir ara ad yazen awennit."
 
-#: apps/pootle_store/views.py:575
-msgid "Failed to process submission."
-msgstr "Ur izmir ara ad isekles tasuqilt."
-
-#: apps/pootle_store/views.py:615
+#: apps/pootle_store/views.py:567
 msgid "Failed to process suggestion."
 msgstr "Ur izmir ara ad isekles asumer."
 
@@ -1238,13 +1279,13 @@ msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
 msgstr ""
 
-#: checks.py:64
+#: checks.py:74
 msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
 msgstr ""
 
-#: checks.py:66
+#: checks.py:76
 msgid ""
 "Try using 'pootle find_duplicate_emails', and then update user emails with "
 "'pootle update_user_email username email'. You might also want to consider "
@@ -1254,117 +1295,117 @@ msgstr ""
 "useqdac s 'pootle update_user_email username email'. Ahat yessefk daɣen ad "
 "twaliḍ ma tzemred ad tesqedceḍ tiludna merge_user neɣ purge_user n pootle"
 
-#: checks.py:90
+#: checks.py:100
 msgid "Your version of Django is too old."
 msgstr "Tasenfelt-inek n Django aṭas d taqburt."
 
-#: checks.py:91
+#: checks.py:101
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
 msgstr "Ɛreḍ pip install --upgrade 'Django==%s'"
 
-#: checks.py:98
+#: checks.py:108
 msgid "Your version of lxml is too old."
 msgstr "Lqem inek n lxml d aqbuṛ."
 
-#: checks.py:99
+#: checks.py:109
 msgid "Try pip install --upgrade lxml"
 msgstr "Ɛreḍ pip install --upgrade lxml"
 
-#: checks.py:105
+#: checks.py:115
 msgid "Your version of Translate Toolkit is too old."
 msgstr "Lqem inek n ifecku n tsuqil (Translate Toolkit) d aqbuṛ."
 
-#: checks.py:106
+#: checks.py:116
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr "Ɛreḍ pip install --upgrade translate-toolkit"
 
-#: checks.py:126
+#: checks.py:136
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr "Ulamek tuqqna ɣer Redis (%s)"
 
-#: checks.py:127
+#: checks.py:137
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr "Ḍmen d akken Redis yettwaselkam di %(host)s:%(port)s"
 
-#: checks.py:137
+#: checks.py:147
 msgid "Your version of Redis is too old."
 msgstr "Lqem inek n Redis d aqbuṛ."
 
-#: checks.py:138
+#: checks.py:148
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
 msgstr "Leqqem akemmus n uqeddac Redis n unagraw ɣarṣum ar lqem %s"
 
 #. Translators: a worker processes background tasks
-#: checks.py:149
+#: checks.py:159
 msgid "No worker running."
 msgstr ""
 
 #. Translators: a worker processes background tasks
-#: checks.py:151
+#: checks.py:161
 msgid "Run new workers with 'pootle rqworker'"
 msgstr ""
 
-#: checks.py:166
+#: checks.py:176
 msgid "Cache backend is not set to Redis."
 msgstr ""
 
-#: checks.py:167
+#: checks.py:177
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
 "Current settings: %r"
 msgstr ""
 
-#: checks.py:177
+#: checks.py:187
 msgid "Could not initiate a Redis cache connection"
 msgstr ""
 
-#: checks.py:178 checks.py:192
+#: checks.py:188 checks.py:202
 msgid "Double-check your CACHES settings"
 msgstr ""
 
-#: checks.py:190
+#: checks.py:200
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
 
-#: checks.py:198
+#: checks.py:208
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "Askar DEBUG yermed. UR seqdac ara ayagi deg ufares!"
 
-#: checks.py:199
+#: checks.py:209
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Sbadu DEBUG = False deg iɣewwaṛen n Pootle"
 
-#: checks.py:205
+#: checks.py:215
 msgid "The sqlite database backend is unsupported"
 msgstr ""
 
-#: checks.py:206
+#: checks.py:216
 msgid "Set your default database engine to postgresql or mysql"
 msgstr "Sbadu amsedday n taffa n isefka amezwer ar postgresql neɣ mysql"
 
-#: checks.py:213
+#: checks.py:223
 msgid "Not using cached_db as session engine"
 msgstr ""
 
-#: checks.py:214
+#: checks.py:224
 #, fuzzy, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr "Sbadu SESSION_ENGINE ar django.contrib.sessions.backend.cached_db\n"
 
-#: checks.py:222
+#: checks.py:232
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "POOTLE_CONTACT_EMAIL ur yettuwennez ara."
 
-#: checks.py:223
+#: checks.py:233
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1372,161 +1413,161 @@ msgstr ""
 "SetSbadu POOTLE_CONTACT_EMAIL akken ad teǧǧeḍ iseqdacen ad nermesen "
 "inedbalen s tferkit n unermesn Pootle."
 
-#: checks.py:231
+#: checks.py:241
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL iseqdac aɣewwar-agi amezwer %r."
 
-#: checks.py:233
+#: checks.py:243
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
 msgstr ""
 "POOTLE_CONTACT_EMAIL d tansa imayl ara d-iremsen iznan si tferkit n unermes."
 
-#: checks.py:240
+#: checks.py:250
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "DEFAULT_FROM_EMAIL ur ittuwennez ara."
 
-#: checks.py:241 checks.py:251
+#: checks.py:251 checks.py:261
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
 msgstr ""
 
-#: checks.py:249
+#: checks.py:259
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
 
-#: checks.py:260
+#: checks.py:270
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER ulac-it."
 
-#: checks.py:261
+#: checks.py:271
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Sbadu POOTLE_MARKUP_FILTER."
 
-#: checks.py:266
+#: checks.py:276
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Azal arameɣtu di POOTLE_MARKUP_FILTER."
 
-#: checks.py:267
+#: checks.py:277
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Sbadu azal ameɣtu i POOTLE_MARKUP_FILTER."
 
-#: checks.py:281
+#: checks.py:291
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "Taṛekkizt tarameɣtut di POOTLE_MARKUP_FILTER."
 
-#: checks.py:282
+#: checks.py:292
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Sbadu taṛekkizt tameɣtut i POOTLE_MARKUP_FILTER."
 
-#: checks.py:287
+#: checks.py:297
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
 
-#: checks.py:289
+#: checks.py:299
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Sebded akemmus neɣ snifel POOTLE_MARKUP_FILTER."
 
-#: checks.py:300
+#: checks.py:310
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "POOTLE_TM_SERVER['%s'] ulac ɣur-s INDEX_NAME."
 
-#: checks.py:301
+#: checks.py:311
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "Sbadu INDEX_NAME i POOTLE_TM_SERVER['%s']."
 
-#: checks.py:307
+#: checks.py:317
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr "'%s' INDEX_NAME d uslig di POOTLE_TM_SERVER."
 
-#: checks.py:309
+#: checks.py:319
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr "Sbadu INDEX_NAME nniḍen i yiqeddacen meṛṛa di POOTLE_TM_SERVER."
 
-#: checks.py:319
+#: checks.py:329
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "POOTLE_TM_SERVER['%s'] ulac ɣur-s ENGINE."
 
-#: checks.py:320
+#: checks.py:330
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "Sbadu ENGINE i POOTLE_TM_SERVER['%s']."
 
-#: checks.py:327
+#: checks.py:337
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "POOTLE_TM_SERVER['%s'] ulac ɣur-s HOST."
 
-#: checks.py:328
+#: checks.py:338
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "Sbadu HOST i POOTLE_TM_SERVER['%s']."
 
-#: checks.py:335
+#: checks.py:345
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "POOTLE_TM_SERVER['%s'] ur ɣur-s ara TABBURT."
 
-#: checks.py:336
+#: checks.py:346
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "Sbadu PORT i POOTLE_TM_SERVER['%s']."
 
-#: checks.py:345
+#: checks.py:355
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr "POOTLE_TM_SERVER['%s'] n TẒẒAYT daw n 0.0 neɣ ugar n 1.0"
 
-#: checks.py:347
+#: checks.py:357
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
 msgstr "Sbadu TẒẒAYT gar 0.0 akked 1.0 (i sin ddan) i POOTLE_TM_SERVER['%s']."
 
-#: checks.py:355
-#, python-format
-msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
+#: checks.py:365
+#, fuzzy, python-format
+msgid "POOTLE_SCORES has no %s."
 msgstr "POOTLE_SCORE_COEFFICIENTS ulac ɣur-s %s."
 
-#: checks.py:356
-#, python-format
-msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
+#: checks.py:366
+#, fuzzy, python-format
+msgid "Set %s in POOTLE_SCORES."
 msgstr "Sbadu %s in POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:363
-#, python-format
-msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
+#: checks.py:374
+#, fuzzy, python-format
+msgid "Invalid value for %s in POOTLE_SCORES."
 msgstr "Azal arameɣtu i %s di POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:365
-#, python-format
-msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
+#: checks.py:377
+#, fuzzy, python-format
+msgid "Set a valid value for %s in POOTLE_SCORES."
 msgstr "Sbadu azal ameɣtu i %s in POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:387
+#: checks.py:397
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "Aseqdac amezwer 'admin' mazal ɣur-s awal uffir  'admin'."
 
-#: checks.py:389
+#: checks.py:399
 msgid "Remove the 'admin' user or change its password."
 msgstr "Kkes aseqdac  'admin' neɣ snifel awal uffir."
 
-#: checks.py:403
+#: checks.py:413
 msgid "Database connection uses transaction_hooks."
 msgstr "Tuqqna ar taffa n isefka tseqdac transaction_hooks."
 
-#: checks.py:404
+#: checks.py:414
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
@@ -1534,38 +1575,38 @@ msgstr ""
 "Sbadu DATABASES['default']['ENGINE'] akken ad iseqdec idis agilal n Django "
 "si django.db.backends."
 
-#: checks.py:424
+#: checks.py:434
 msgid "Email server is not available."
 msgstr "Aqeddac n yimayl ulac-it"
 
-#: checks.py:425
+#: checks.py:435
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "Wali iɣewwaṛen n yimayl-ik sakin wali ma yella aqeddac n yimayl-ik iteddu."
 
-#: checks.py:452
+#: checks.py:462
 msgid "Revision is missing or has an incorrect value."
 msgstr ""
 
-#: checks.py:453
+#: checks.py:463
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 
-#: checks.py:467
+#: checks.py:477
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 
-#: checks.py:469
+#: checks.py:479
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
 
-#: checks.py:473
+#: checks.py:483
 msgid "Canonical URL is set to http://localhost."
 msgstr ""
 
-#: checks.py:475
+#: checks.py:485
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
@@ -1573,47 +1614,47 @@ msgstr ""
 "Sbadu `POOTLE_CANONICAL_URL` ar wazal ilaqen i usmel-ik neɣ eǧǧ-it d ilem ma "
 "yella tseqdaceḍ `django.contrib.sites`."
 
-#: checks.py:505
+#: checks.py:515
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "Aɣewwaṛ POOTLE_FS_WORKING_PATH setting ur ittuwennez ara."
 
-#: checks.py:509
+#: checks.py:519
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "Abrid ('%s') i d-yemmal POOTLE_FS_WORKING_PATH ulac-it."
 
-#: checks.py:511
+#: checks.py:521
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
 
-#: checks.py:516
+#: checks.py:526
 #, fuzzy, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
 "Abrid i d-yemmal POOTLE_FS_WORKING_PATH ur izmir ara ad yeru deg-s Pootle."
 
-#: checks.py:519
+#: checks.py:529
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
 msgstr "Rnu tasiregt n tira ar `POOTLE_FS_WORKING_PATH` neɣ snefli aɣewwaṛ."
 
-#: checks.py:538
+#: checks.py:548
 msgid "MySQL requires time zone settings."
 msgstr "MySQL isra iɣewwaṛen n izḍi usrig."
 
-#: checks.py:558
+#: checks.py:568
 msgid "Pootle does not yet support Python 3."
 msgstr "Pootle ur isefrak ara yakan Python 3."
 
-#: checks.py:559 checks.py:565
+#: checks.py:569 checks.py:575
 msgid "Use a Python 2.7 virtualenv."
 msgstr "Seqdec Python 2.7 virtualenv."
 
-#: checks.py:564
+#: checks.py:574
 msgid "Pootle no longer supports Python versions older than 2.7"
 msgstr "Pootle ur isefrak ara tura ileqman Python daw n 2.7"
 
@@ -1657,10 +1698,6 @@ msgstr "Uɣal ar tutlayt"
 msgid "Back to parent folder"
 msgstr "Uɣal ar ukaram asaraw"
 
-#: core/decorators.py:140 core/views/decorators.py:70
-msgid "Insufficient rights to access this page."
-msgstr "Ulac deqs n izerfan akken ad tkecmeḍ ar usebter-agi."
-
 #: core/decorators.py:153 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
 msgstr "Ur ɣur-k ara izerfan n tnedbelt Pootle."
@@ -1697,27 +1734,27 @@ msgstr "Yessefk ad d-muddeḍ tigawt ara teṭṭfeḍ"
 msgid "A valid search field must be specified"
 msgstr "Urti n unadi ameɣtu yessefk ad yettwammel"
 
-#: core/initdb.py:127
+#: core/initdb.py:135
 msgid "Can access a project"
 msgstr "Yezmer ad yekcem ar usenfar"
 
-#: core/initdb.py:131
+#: core/initdb.py:139
 msgid "Cannot access a project"
 msgstr "Ur izmir ara ad yekcem ar usenfar"
 
-#: core/initdb.py:135
+#: core/initdb.py:143
 msgid "Can make a suggestion for a translation"
 msgstr "Yezmer ad d-isumer tasuqilt"
 
-#: core/initdb.py:139
+#: core/initdb.py:147
 msgid "Can submit a translation"
 msgstr "Yezmer ad d-yazen tasuqilt"
 
-#: core/initdb.py:143
+#: core/initdb.py:151
 msgid "Can review suggestions"
 msgstr "Yezmer ad icegger isumar"
 
-#: core/initdb.py:147
+#: core/initdb.py:155
 msgid "Can perform administrative tasks"
 msgstr "Yezmer ad iselkem tiwurwin n tnebdelt"
 
@@ -2577,30 +2614,13 @@ msgid "Remove comment"
 msgstr "Kkas awennit"
 
 #: templates/editor/units/xhr_comment.html:19
-msgid "Last comment:"
-msgstr "Awennit aneggaru:"
+#, fuzzy
+msgid "Сomment:"
+msgstr "Awennit:"
 
 #: templates/editor/units/xhr_timeline.html:3
 msgid "Timeline"
 msgstr ""
-
-#: templates/editor/units/xhr_timeline.html:38
-msgid "Last comment removed"
-msgstr "Awennit aneggaru yettwakksen"
-
-#: templates/editor/units/xhr_timeline.html:44
-#, python-format
-msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "Sens asenqed n  <a href=\"%(check_url)s\">%(check_name)s</a>"
-
-#: templates/editor/units/xhr_timeline.html:48
-#, python-format
-msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "Rmed asenqed n <a href=\"%(check_url)s\">%(check_name)s</a>"
-
-#: templates/editor/units/xhr_timeline.html:60
-msgid "Unit created"
-msgstr "Aferdis yettwarna"
 
 #: templates/errors/400.html:4 templates/errors/400.html:11
 msgid "Bad Request"
@@ -2677,27 +2697,25 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "Tuccḍa i d-yuɣalen d:"
 
-#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-msgid "Previous page"
-msgstr "Asebter yezrin"
-
 #: templates/includes/formtable.html:22
 #, python-format
 msgid "Page %(page_number)s of %(page_count)s."
 msgstr "Asebter %(page_number)s n %(page_count)s."
 
 #: templates/includes/formtable.html:27
-#, python-format
-msgid "Showing %(count)s results per page"
-msgstr "Askan n %(count)s n igmaḍ deg usebter"
+#, fuzzy, python-format
+msgid "Showing %(n)s result per page"
+msgid_plural "Showing %(n)s results per page"
+msgstr[0] "Askan n %(count)s n igmaḍ deg usebter"
+msgstr[1] "Askan n %(count)s n igmaḍ deg usebter"
 
-#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-msgid "Next page"
-msgstr "Asebter d-iteddun"
-
-#: templates/includes/formtable.html:85
+#: templates/includes/formtable.html:87
 msgid "Select all"
 msgstr "Fren akk"
+
+#: templates/includes/formtable.html:100
+msgid "Go"
+msgstr ""
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2777,10 +2795,6 @@ msgstr "Amaɣnu azayez:"
 msgid "Settings"
 msgstr "Iɣewaren"
 
-#: templates/layout.html:134
-msgid "Admin"
-msgstr "Anebdal"
-
 #: templates/layout.html:137
 msgid "Sign out"
 msgstr "Ffeɣ"
@@ -2810,7 +2824,13 @@ msgstr ""
 msgid "Here you can add, edit, or delete the languages for this project."
 msgstr "Tzemreḍ ad ternuḍ, ad tẓergeḍ neɣ ad tekkseḍ tutlayin i usenfaṛ-agi."
 
-#: templates/projects/admin/languages.html:14
+#: templates/projects/admin/languages.html:15
+msgid ""
+"Adding new languages from this screen is disabled. You will need to update "
+"your sources directly, and update pootle from there."
+msgstr ""
+
+#: templates/projects/admin/languages.html:17
 msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
@@ -2918,15 +2938,20 @@ msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr ""
 "Ticki tuzneḍ ifuyla, tzemred ad ternuḍ, ad tesnifleḍ neɣ ad tekkseḍ awalen."
 
-#: templates/user/profile.html:13
-msgid "You can set or change your avatar image at www.gravatar.com"
-msgstr ""
-"Ur tezmireḍ ara ad tesbaduḍ neɣ ad tesnifleḍ tugna yinek n uvataṛ di www."
-"gravatar.com"
+#: templates/user/includes/profile_activity.html:5
+#: templates/user/profile.html:59
+msgid "Latest activity:"
+msgstr "Armud aneggaru:"
 
-#: templates/user/profile.html:16
-msgid "Anonymous User"
-msgstr "Aseqdac udrig"
+#: templates/user/includes/profile_score.html:2
+#, fuzzy
+msgid "Total score:"
+msgstr "Amḍan n wawalen:"
+
+#: templates/user/includes/profile_teams.html:6
+#, fuzzy
+msgid "Language teams"
+msgstr "Tarbawt n tutlayt"
 
 #: templates/user/profile.html:28
 msgid "Score:"
@@ -2936,14 +2961,6 @@ msgstr "Agmuḍ:"
 #, python-format
 msgid "My current score at %(server_title)s is %(score)s "
 msgstr "Agmuḍ-iw amiran di %(server_title)s d %(score)s "
-
-#: templates/user/profile.html:31 templates/user/profile.html:43
-msgid "Tweet this!"
-msgstr "Twiti ayagi!"
-
-#: templates/user/profile.html:40
-msgid "No contributions in the last 30 days"
-msgstr "Ulac attekki di 30 n wussan-a ineggura"
 
 #: templates/user/profile.html:43
 #, python-format
@@ -2967,41 +2984,6 @@ msgid ""
 msgstr ""
 "#%(pos)s n imttekki di <a href=\"%(url)s\">%(lang_name)s</a> di 30 n wussan "
 "ineggura"
-
-#: templates/user/profile.html:59
-msgid "Latest activity:"
-msgstr "Armud aneggaru:"
-
-#: templates/user/profile.html:73
-msgid "My Website"
-msgstr "Asmel-iw Web:"
-
-#: templates/user/profile.html:79
-msgid "My LinkedIn Profile"
-msgstr "Amaɣnu inu LinkedIn"
-
-#: templates/user/profile.html:88
-msgid ""
-"Show others who you are, tell about yourself<br/>and make your public "
-"profile look gorgeous!"
-msgstr ""
-"Sken i wiyaḍ anwa-k, meslay af yiman-ik<br/> sakin err amaɣnu-ik azayez d "
-"ucbiḥ!"
-
-#: templates/user/profile.html:98
-msgid ""
-"Some translations are provided by anonymous volunteers. These are registered "
-"under this special meta-account."
-msgstr ""
-"Kra n tsuqilin i d-mudden imttekkiyen udrigen. Ttwakelsent s waɣef amiḍan-gi."
-
-#: templates/user/profile.html:100
-msgid ""
-"Some translations are imported from external files. These are registered "
-"under this special meta-account."
-msgstr ""
-"Kr n tsuqilin ttwaketrent seg ifuyla izɣarayen. TTwaskelsent s yiwem n waɣef "
-"amiḍan-agi."
 
 #: templates/user/settings.html:12
 msgid "User Account"
@@ -3046,3 +3028,51 @@ msgstr "Qqen"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Imettekiyen imezwura deg 30 ussan-agi inegura"
+
+#~ msgid "Summary"
+#~ msgstr "Agzul"
+
+#~ msgid "Please enter your message summary"
+#~ msgstr "Ma ulac aɣlif, sekcem izen inek agzul"
+
+#~ msgid "Java format"
+#~ msgstr "Amasal Java"
+
+#~ msgid "Template format"
+#~ msgstr "Amasal n tneɣruft"
+
+#~ msgid "Whitespaces"
+#~ msgstr "Isekkilen imellalen"
+
+#~ msgid "Date format"
+#~ msgstr "Amasal n wazemz"
+
+#~ msgid "Java-encoded unicode"
+#~ msgstr "Unicode yettwasteglen s Java"
+
+#~ msgid "Objective-C format"
+#~ msgstr "Amasal Objective-C"
+
+#~ msgid "Android format"
+#~ msgstr "Amasal android"
+
+#~ msgid "Tags differ"
+#~ msgstr "Amgired n tṛekkizin"
+
+#~ msgid "Double quotes in tags"
+#~ msgstr "tuccar takniwin"
+
+#~ msgid "Failed to process submission."
+#~ msgstr "Ur izmir ara ad isekles tasuqilt."
+
+#~ msgid "Last comment:"
+#~ msgstr "Awennit aneggaru:"
+
+#~ msgid "Last comment removed"
+#~ msgstr "Awennit aneggaru yettwakksen"
+
+#~ msgid "Previous page"
+#~ msgstr "Asebter yezrin"
+
+#~ msgid "Next page"
+#~ msgstr "Asebter d-iteddun"

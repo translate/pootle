@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-07 22:44+0100\n"
+"POT-Creation-Date: 2017-05-16 11:32+0100\n"
 "PO-Revision-Date: 2017-02-19 21:19+0000\n"
 "Last-Translator: Chris Leonard <cjlhomeaddress@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -644,15 +644,15 @@ msgstr "Go back to browsing"
 msgid "Reload page"
 msgstr "Reload page"
 
-#: static/js/editor/app.js:2177
+#: static/js/editor/app.js:2176
 msgid "some anonymous user"
 msgstr "some anonymous user"
 
-#: static/js/editor/app.js:2179
+#: static/js/editor/app.js:2178
 msgid "someone"
 msgstr "someone"
 
-#: static/js/editor/app.js:2197 static/js/editor/app.js:2246
+#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
 msgid "Similar translations"
 msgstr "Similar translations"
 

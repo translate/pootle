@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-20 14:39+0000\n"
+"POT-Creation-Date: 2017-05-16 11:56+0100\n"
 "PO-Revision-Date: 2017-02-06 22:11+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -39,34 +39,39 @@ msgstr ""
 "あなたのユーザーアカウントが見つかりません。この問題をサイト管理者に報告して"
 "ください。"
 
-#: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:56 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "ユーザー名"
 
-#: apps/accounts/models.py:56
+#: apps/accounts/models.py:57
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr "必須。30 文字以下。英数字と @/./+/-/_ の記号のみ"
 
-#: apps/accounts/models.py:60
+#: apps/accounts/models.py:61
 msgid "Enter a valid username."
 msgstr "正しいユーザー名を入力してください。"
 
-#: apps/accounts/models.py:64
+#: apps/accounts/models.py:65
+#, fuzzy
+msgid "A user with that username already exists."
+msgstr "同じスラッグを持つ目標が既に存在します。"
+
+#: apps/accounts/models.py:68
 msgid "Email Address"
 msgstr "メール アドレス"
 
-#: apps/accounts/models.py:65 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:208
+#: apps/accounts/models.py:69 apps/pootle_language/models.py:35
+#: apps/pootle_project/models.py:206
 msgid "Full Name"
 msgstr "フルネーム"
 
-#: apps/accounts/models.py:68 apps/staticpages/models.py:30
+#: apps/accounts/models.py:72 apps/staticpages/models.py:30
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "アクティブ"
 
-#: apps/accounts/models.py:71
+#: apps/accounts/models.py:75
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -74,11 +79,11 @@ msgstr ""
 "このユーザーをアクティブとして扱うべきかどうかを示します。アカウントを削除す"
 "る代わりに、この選択を解除してください。"
 
-#: apps/accounts/models.py:74
+#: apps/accounts/models.py:78
 msgid "Superuser Status"
 msgstr "管理者ステータス"
 
-#: apps/accounts/models.py:77
+#: apps/accounts/models.py:81
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
@@ -86,83 +91,99 @@ msgstr ""
 "このユーザーが、明示的に割り当てなくてもすべての権限を持つかどうかを示しま"
 "す。"
 
-#: apps/accounts/models.py:80
+#: apps/accounts/models.py:84
 msgid "date joined"
 msgstr "参加日"
 
-#: apps/accounts/models.py:84
+#: apps/accounts/models.py:88
 msgid "Number of Rows"
 msgstr "ページごとの表示件数"
 
-#: apps/accounts/models.py:88
+#: apps/accounts/models.py:92
 msgid "Alternative Source Languages"
 msgstr "別のソース言語"
 
-#: apps/accounts/models.py:93
+#: apps/accounts/models.py:95
 msgid "Score"
 msgstr "スコア"
 
-#: apps/accounts/models.py:94
+#: apps/accounts/models.py:96
 msgid "Is employee?"
 msgstr "従業員？"
 
-#: apps/accounts/models.py:95
+#: apps/accounts/models.py:97
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:99
 msgid "Website"
 msgstr "ウェブサイト"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:100
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:99
+#: apps/accounts/models.py:101
 msgid "Short Bio"
 msgstr "短い自己紹介"
 
-#: apps/accounts/models.py:239
+#: apps/accounts/models.py:241
 msgid "This email address already exists."
 msgstr "このメールアドレスはすでに使用されています。"
 
-#: apps/contact/forms.py:26
-msgid "Summary"
-msgstr "概要"
+#: apps/contact/forms.py:27
+#, fuzzy
+msgid "Subject"
+msgstr "却下"
 
-#: apps/contact/forms.py:28
-msgid "Please enter your message summary"
-msgstr "メッセージの要約を入力してください"
+#: apps/contact/forms.py:29
+#, fuzzy
+msgid "Please enter a message subject"
+msgstr "あなたのメッセージを入力してください"
 
-#: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
+#: apps/contact/forms.py:36 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "名前"
 
-#: apps/contact/forms.py:36
+#: apps/contact/forms.py:37
 msgid "Please enter your name"
 msgstr "お名前を入力してください"
 
-#: apps/contact/forms.py:39
+#: apps/contact/forms.py:40
 msgid "Email address"
 msgstr "メール アドレス"
 
-#: apps/contact/forms.py:40
+#: apps/contact/forms.py:41
 msgid "Please enter your email address"
 msgstr "あなたのメールアドレスを入力してください"
 
-#: apps/contact/forms.py:43
+#: apps/contact/forms.py:44
 msgid "Message"
 msgstr "メッセージ"
 
-#: apps/contact/forms.py:44
+#: apps/contact/forms.py:45
 msgid "Please enter your message"
 msgstr "あなたのメッセージを入力してください"
 
-#: apps/contact/views.py:34 templates/layout.html:120
+#: apps/contact/forms.py:115
+msgid "String context"
+msgstr ""
+
+#: apps/contact/forms.py:125
+#, fuzzy
+msgid "Question or comment"
+msgstr "提案がコメント付きで却下されました"
+
+#: apps/contact/forms.py:126
+#, fuzzy
+msgid "Please enter your question or comment"
+msgstr "登録する詳細を入力してください"
+
+#: apps/contact/views.py:35 templates/layout.html:120
 msgid "Contact Us"
 msgstr "連絡先"
 
-#: apps/contact/views.py:65
+#: apps/contact/views.py:92
 msgid "Report problem with string"
 msgstr "文字列の問題を報告する"
 
@@ -233,7 +254,7 @@ msgstr "ファイルのアップロード中にエラーが発生しました"
 msgid "Language code does not follow the ISO convention"
 msgstr "言語コードが ISO の慣例に従っていません"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:232
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
 msgid "Source Language"
 msgstr "ソース言語"
 
@@ -291,6 +312,226 @@ msgstr "このプロジェクトにはファイルがありません。"
 msgid "There are errors in the form. Please review the problems below."
 msgstr "フォームにエラーがあります。以下の問題を見直してください。"
 
+#: apps/pootle_checks/constants.py:24 core/browser.py:47
+msgid "Critical"
+msgstr "重大"
+
+#: apps/pootle_checks/constants.py:25
+msgid "Cosmetic"
+msgstr "表面的"
+
+#: apps/pootle_checks/constants.py:26
+msgid "Functional"
+msgstr "機能的"
+
+#: apps/pootle_checks/constants.py:27
+msgid "Extraction"
+msgstr "抽出"
+
+#: apps/pootle_checks/constants.py:28
+msgid "Other"
+msgstr "その他"
+
+#: apps/pootle_checks/constants.py:31
+msgid "Accelerators"
+msgstr "アクセラレータ"
+
+#: apps/pootle_checks/constants.py:32
+msgid "Acronyms"
+msgstr "略語"
+
+#: apps/pootle_checks/constants.py:33
+msgid "Blank"
+msgstr "空"
+
+#: apps/pootle_checks/constants.py:34
+msgid "Brackets"
+msgstr "括弧"
+
+#: apps/pootle_checks/constants.py:35
+msgid "Compendium conflict"
+msgstr "要約の衝突"
+
+#: apps/pootle_checks/constants.py:36
+msgid "Translator credits"
+msgstr "翻訳者クレジット"
+
+#: apps/pootle_checks/constants.py:37
+msgid "Dialog sizes"
+msgstr "ダイアログサイズ"
+
+#: apps/pootle_checks/constants.py:38
+msgid "Double quotes"
+msgstr "二重引用符"
+
+#: apps/pootle_checks/constants.py:39
+msgid "Double spaces"
+msgstr "空白の連続"
+
+#: apps/pootle_checks/constants.py:40
+msgid "Repeated word"
+msgstr "単語の繰り返し"
+
+#: apps/pootle_checks/constants.py:41
+msgid "E-mail"
+msgstr "メール"
+
+#: apps/pootle_checks/constants.py:42
+msgid "Ending punctuation"
+msgstr "末尾の句読点"
+
+#: apps/pootle_checks/constants.py:43
+msgid "Ending whitespace"
+msgstr "末尾の空白"
+
+#: apps/pootle_checks/constants.py:44
+msgid "Escapes"
+msgstr "エスケープ"
+
+#: apps/pootle_checks/constants.py:45
+msgid "File paths"
+msgstr "ファイル パス"
+
+#: apps/pootle_checks/constants.py:46
+msgid "Functions"
+msgstr "関数"
+
+#: apps/pootle_checks/constants.py:47
+msgid "GConf values"
+msgstr "GConf 値"
+
+#: apps/pootle_checks/constants.py:48 core/utils/stats.py:29
+msgid "Fuzzy"
+msgstr "ファジー"
+
+#: apps/pootle_checks/constants.py:49
+msgid "Old KDE comment"
+msgstr "旧式の KDE コメント"
+
+#: apps/pootle_checks/constants.py:50
+msgid "Long"
+msgstr "長い"
+
+#: apps/pootle_checks/constants.py:51
+msgid "Must translate words"
+msgstr "単語を翻訳すべき"
+
+#: apps/pootle_checks/constants.py:52
+msgid "Newlines"
+msgstr "改行"
+
+#: apps/pootle_checks/constants.py:53
+msgid "Number of plurals"
+msgstr "複数形の個数"
+
+#: apps/pootle_checks/constants.py:54
+msgid "Don't translate words"
+msgstr "単語を翻訳してはいけない"
+
+#: apps/pootle_checks/constants.py:55
+msgid "Numbers"
+msgstr "数値"
+
+#: apps/pootle_checks/constants.py:56
+msgid "Options"
+msgstr "任意"
+
+#: apps/pootle_checks/constants.py:57
+msgid "printf()"
+msgstr "printf()"
+
+#: apps/pootle_checks/constants.py:58
+msgid "Punctuation spacing"
+msgstr "句読点の空白"
+
+#: apps/pootle_checks/constants.py:59
+msgid "Pure punctuation"
+msgstr "純粋な句読点"
+
+#: apps/pootle_checks/constants.py:60
+msgid "Python brace placeholders"
+msgstr "Python 波括弧プレースホルダー"
+
+#: apps/pootle_checks/constants.py:61
+msgid "Number of sentences"
+msgstr "文の個数"
+
+#: apps/pootle_checks/constants.py:62
+msgid "Short"
+msgstr "短い"
+
+#: apps/pootle_checks/constants.py:63
+msgid "Simple capitalization"
+msgstr "単純な大文字/小文字"
+
+#: apps/pootle_checks/constants.py:64
+msgid "Simple plural(s)"
+msgstr "単純な複数形"
+
+#: apps/pootle_checks/constants.py:65
+msgid "Single quotes"
+msgstr "単一引用符"
+
+#: apps/pootle_checks/constants.py:66
+msgid "Starting capitalization"
+msgstr "先頭の大文字"
+
+#: apps/pootle_checks/constants.py:67
+msgid "Starting punctuation"
+msgstr "先頭の句読点"
+
+#: apps/pootle_checks/constants.py:68
+msgid "Starting whitespace"
+msgstr "先頭の空白"
+
+#. Translators: This refers to tabulation characters
+#: apps/pootle_checks/constants.py:70
+msgid "Tabs"
+msgstr "タブ"
+
+#: apps/pootle_checks/constants.py:71
+msgid "Unchanged"
+msgstr "変更なし"
+
+#: apps/pootle_checks/constants.py:72 apps/pootle_store/constants.py:66
+#: core/utils/stats.py:30 templates/editor/_filters.html:9
+msgid "Untranslated"
+msgstr "未翻訳"
+
+#: apps/pootle_checks/constants.py:73
+msgid "URLs"
+msgstr "URL"
+
+#: apps/pootle_checks/constants.py:74
+msgid "Valid characters"
+msgstr "有効な文字"
+
+#: apps/pootle_checks/constants.py:75
+msgid "Placeholders"
+msgstr "プレースホルダー"
+
+#: apps/pootle_checks/constants.py:76
+msgid "Valid XML"
+msgstr "正しい XML"
+
+#: apps/pootle_checks/constants.py:77
+msgid "XML tags"
+msgstr "XML タグ"
+
+#: apps/pootle_checks/constants.py:80
+msgid "ftl format"
+msgstr "ftl 形式"
+
+#: apps/pootle_checks/constants.py:83
+#, fuzzy
+msgid "Romanian: Avoid cedilla diacritics"
+msgstr "Romanian: Avoid cedilla diacritics"
+
+#: apps/pootle_checks/constants.py:84
+#, fuzzy
+msgid "Romanian: Use \"niciun\"/\"nicio\""
+msgstr "Romanian: Use \"niciun\"/\"nicio\""
+
 #: apps/pootle_format/abstracts.py:35
 msgid "Format name"
 msgstr "フォーマット名"
@@ -339,11 +580,16 @@ msgstr "バックエンドの URL またはパス"
 msgid "The URL or path to your translation files"
 msgstr "翻訳ファイルへの URL またはパス"
 
-#: apps/pootle_fs/forms.py:54
-msgid "Translation path mapping"
+#: apps/pootle_fs/forms.py:47
+#, fuzzy
+msgid "Translation mapping presets"
 msgstr "翻訳パスマッピング"
 
 #: apps/pootle_fs/forms.py:55
+msgid "Translation path mapping"
+msgstr "翻訳パスマッピング"
+
+#: apps/pootle_fs/forms.py:56
 #, fuzzy
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
@@ -352,90 +598,90 @@ msgstr ""
 "翻訳パスマッピングは、ファイルシステム上のローカライズファイルを Pootle 上の"
 "ストアに割り当てます。"
 
-#: apps/pootle_fs/forms.py:181
+#: apps/pootle_fs/forms.py:182
 msgid "Filesystem language codes must be unique"
 msgstr "ファイルシステムの言語コードは一意でなければなりません。"
 
-#: apps/pootle_fs/forms.py:185
+#: apps/pootle_fs/forms.py:186
 msgid "Pootle language mappings must be unique"
 msgstr "Pootle の言語マッピングは一意でなければなりません"
 
-#: apps/pootle_language/forms.py:28
+#: apps/pootle_language/forms.py:27
 msgid "Member"
 msgstr "メンバー"
 
-#: apps/pootle_language/forms.py:29
+#: apps/pootle_language/forms.py:28
 msgid "Submitter"
 msgstr "送信者"
 
-#: apps/pootle_language/forms.py:30
+#: apps/pootle_language/forms.py:29 apps/pootle_profile/utils.py:98
 msgid "Reviewer"
 msgstr "査読者"
 
-#: apps/pootle_language/forms.py:31
+#: apps/pootle_language/forms.py:30
 msgid "Administrator"
 msgstr "管理者"
 
-#: apps/pootle_language/forms.py:70
+#: apps/pootle_language/forms.py:69
 msgid "Administrators"
 msgstr "管理者"
 
-#: apps/pootle_language/forms.py:76
+#: apps/pootle_language/forms.py:75
 msgid "Reviewers"
 msgstr "査読者"
 
-#: apps/pootle_language/forms.py:81
+#: apps/pootle_language/forms.py:80
 msgid "Submitters"
 msgstr "送信者"
 
-#: apps/pootle_language/forms.py:86
+#: apps/pootle_language/forms.py:85
 msgid "Members"
 msgstr "メンバー"
 
-#: apps/pootle_language/forms.py:90
+#: apps/pootle_language/forms.py:89
 msgid "New member"
 msgstr "新メンバー"
 
-#: apps/pootle_language/forms.py:91
+#: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
 msgstr "ユーザーをこのチームに追加"
 
-#: apps/pootle_language/forms.py:98
+#: apps/pootle_language/forms.py:97
 msgid "Role"
 msgstr "役割"
 
-#: apps/pootle_language/forms.py:129
+#: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
 msgstr "新しいメンバーを追加するときは役割りが必要です"
 
-#: apps/pootle_language/forms.py:155 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
 msgstr "却下"
 
-#: apps/pootle_language/forms.py:156 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
 msgstr "採用"
 
-#: apps/pootle_language/forms.py:158
+#: apps/pootle_language/forms.py:157
 #, fuzzy
 msgid "Filter by suggester"
 msgstr "フィルター提案"
 
-#: apps/pootle_language/forms.py:164
+#: apps/pootle_language/forms.py:163
 #, fuzzy
 msgid "Filter by state"
 msgstr "フィルターの状態"
 
-#: apps/pootle_language/forms.py:174 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "プロジェクト"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:203
+#: apps/pootle_language/models.py:28 apps/pootle_project/models.py:201
 msgid "Code"
 msgstr "コード"
 
-#: apps/pootle_language/models.py:86
+#: apps/pootle_language/models.py:29
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
@@ -445,17 +691,17 @@ msgstr ""
 "す。 (<a href=\"http://www.w3.org/International/articles/language-tags/\">詳"
 "細情報</a>)"
 
-#: apps/pootle_language/models.py:95 templates/languages/_nav.html:35
+#: apps/pootle_language/models.py:38 templates/languages/_nav.html:35
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
 msgstr "特殊文字"
 
-#: apps/pootle_language/models.py:96
+#: apps/pootle_language/models.py:39
 msgid "Enter any special characters that users might find difficult to type"
 msgstr "ユーザーが入力しづらい特殊文字を入力してください"
 
-#: apps/pootle_language/models.py:100
+#: apps/pootle_language/models.py:43
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
@@ -465,15 +711,15 @@ msgstr ""
 "guide/en/latest/l10n/pluralforms.html\">複数形について</a> のページを参照して"
 "ください。"
 
-#: apps/pootle_language/models.py:106
+#: apps/pootle_language/models.py:49
 msgid "Unknown"
 msgstr "不明"
 
-#: apps/pootle_language/models.py:110
+#: apps/pootle_language/models.py:53
 msgid "Number of Plurals"
 msgstr "複数形の数"
 
-#: apps/pootle_language/models.py:113
+#: apps/pootle_language/models.py:56
 msgid "Plural Equation"
 msgstr "複数形の同一視"
 
@@ -481,11 +727,11 @@ msgstr "複数形の同一視"
 msgid "Unit"
 msgstr "ユニット"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:58
 msgid "State"
 msgstr "状態"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:56
 msgid "Source"
 msgstr "ソース"
 
@@ -525,334 +771,6 @@ msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
 msgstr[0] "%s 件の提案を承認しました"
 
-#: apps/pootle_misc/checks.py:35 core/browser.py:47
-msgid "Critical"
-msgstr "重大"
-
-#: apps/pootle_misc/checks.py:36
-msgid "Cosmetic"
-msgstr "表面的"
-
-#: apps/pootle_misc/checks.py:37
-msgid "Functional"
-msgstr "機能的"
-
-#: apps/pootle_misc/checks.py:38
-msgid "Extraction"
-msgstr "抽出"
-
-#: apps/pootle_misc/checks.py:39
-msgid "Other"
-msgstr "その他"
-
-#: apps/pootle_misc/checks.py:43
-msgid "Accelerators"
-msgstr "アクセラレータ"
-
-#: apps/pootle_misc/checks.py:44
-msgid "Acronyms"
-msgstr "略語"
-
-#: apps/pootle_misc/checks.py:45
-msgid "Blank"
-msgstr "空"
-
-#: apps/pootle_misc/checks.py:46
-msgid "Brackets"
-msgstr "括弧"
-
-#: apps/pootle_misc/checks.py:47
-msgid "Compendium conflict"
-msgstr "要約の衝突"
-
-#: apps/pootle_misc/checks.py:48
-msgid "Translator credits"
-msgstr "翻訳者クレジット"
-
-#: apps/pootle_misc/checks.py:49
-msgid "Dialog sizes"
-msgstr "ダイアログサイズ"
-
-#: apps/pootle_misc/checks.py:50
-msgid "Double quotes"
-msgstr "二重引用符"
-
-#: apps/pootle_misc/checks.py:51
-msgid "Double spaces"
-msgstr "空白の連続"
-
-#: apps/pootle_misc/checks.py:52
-msgid "Repeated word"
-msgstr "単語の繰り返し"
-
-#: apps/pootle_misc/checks.py:53
-msgid "E-mail"
-msgstr "メール"
-
-#: apps/pootle_misc/checks.py:54
-msgid "Ending punctuation"
-msgstr "末尾の句読点"
-
-#: apps/pootle_misc/checks.py:55
-msgid "Ending whitespace"
-msgstr "末尾の空白"
-
-#: apps/pootle_misc/checks.py:56
-msgid "Escapes"
-msgstr "エスケープ"
-
-#: apps/pootle_misc/checks.py:57
-msgid "File paths"
-msgstr "ファイル パス"
-
-#: apps/pootle_misc/checks.py:58
-msgid "Functions"
-msgstr "関数"
-
-#: apps/pootle_misc/checks.py:59
-msgid "GConf values"
-msgstr "GConf 値"
-
-#: apps/pootle_misc/checks.py:60 core/utils/stats.py:29
-msgid "Fuzzy"
-msgstr "ファジー"
-
-#: apps/pootle_misc/checks.py:61
-msgid "Old KDE comment"
-msgstr "旧式の KDE コメント"
-
-#: apps/pootle_misc/checks.py:62
-msgid "Long"
-msgstr "長い"
-
-#: apps/pootle_misc/checks.py:63
-msgid "Must translate words"
-msgstr "単語を翻訳すべき"
-
-#: apps/pootle_misc/checks.py:64
-msgid "Newlines"
-msgstr "改行"
-
-#: apps/pootle_misc/checks.py:65
-msgid "Number of plurals"
-msgstr "複数形の個数"
-
-#: apps/pootle_misc/checks.py:66
-msgid "Don't translate words"
-msgstr "単語を翻訳してはいけない"
-
-#: apps/pootle_misc/checks.py:67
-msgid "Numbers"
-msgstr "数値"
-
-#: apps/pootle_misc/checks.py:68
-msgid "Options"
-msgstr "任意"
-
-#: apps/pootle_misc/checks.py:69
-msgid "printf()"
-msgstr "printf()"
-
-#: apps/pootle_misc/checks.py:70
-msgid "Punctuation spacing"
-msgstr "句読点の空白"
-
-#: apps/pootle_misc/checks.py:71
-msgid "Pure punctuation"
-msgstr "純粋な句読点"
-
-#: apps/pootle_misc/checks.py:72
-msgid "Python brace placeholders"
-msgstr "Python 波括弧プレースホルダー"
-
-#: apps/pootle_misc/checks.py:73
-msgid "Number of sentences"
-msgstr "文の個数"
-
-#: apps/pootle_misc/checks.py:74
-msgid "Short"
-msgstr "短い"
-
-#: apps/pootle_misc/checks.py:75
-msgid "Simple capitalization"
-msgstr "単純な大文字/小文字"
-
-#: apps/pootle_misc/checks.py:76
-msgid "Simple plural(s)"
-msgstr "単純な複数形"
-
-#: apps/pootle_misc/checks.py:77
-msgid "Single quotes"
-msgstr "単一引用符"
-
-#: apps/pootle_misc/checks.py:78
-msgid "Starting capitalization"
-msgstr "先頭の大文字"
-
-#: apps/pootle_misc/checks.py:79
-msgid "Starting punctuation"
-msgstr "先頭の句読点"
-
-#: apps/pootle_misc/checks.py:80
-msgid "Starting whitespace"
-msgstr "先頭の空白"
-
-#. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:82
-msgid "Tabs"
-msgstr "タブ"
-
-#: apps/pootle_misc/checks.py:83
-msgid "Unchanged"
-msgstr "変更なし"
-
-#: apps/pootle_misc/checks.py:84 apps/pootle_store/constants.py:66
-#: core/utils/stats.py:30 templates/editor/_filters.html:9
-msgid "Untranslated"
-msgstr "未翻訳"
-
-#: apps/pootle_misc/checks.py:85
-msgid "URLs"
-msgstr "URL"
-
-#: apps/pootle_misc/checks.py:86
-msgid "Valid characters"
-msgstr "有効な文字"
-
-#: apps/pootle_misc/checks.py:87
-msgid "Placeholders"
-msgstr "プレースホルダー"
-
-#: apps/pootle_misc/checks.py:88
-msgid "Valid XML"
-msgstr "正しい XML"
-
-#: apps/pootle_misc/checks.py:89
-msgid "XML tags"
-msgstr "XML タグ"
-
-#: apps/pootle_misc/checks.py:91
-msgid "Broken HTML Entities"
-msgstr "壊れた HTML 実体"
-
-#: apps/pootle_misc/checks.py:92
-msgid "Java format"
-msgstr "Java 形式"
-
-#: apps/pootle_misc/checks.py:93
-msgid "Template format"
-msgstr "テンプレート形式"
-
-#: apps/pootle_misc/checks.py:94
-msgid "Mustache placeholders"
-msgstr "Mustache プレースホルダー"
-
-#: apps/pootle_misc/checks.py:95
-msgid "Mustache placeholder pairs"
-msgstr "Mustache プレースホルダーのペア"
-
-#: apps/pootle_misc/checks.py:96
-msgid "Mustache like placeholder pairs"
-msgstr "Mustache のようなプレースホルダーのペア"
-
-#: apps/pootle_misc/checks.py:97
-msgid "C format placeholders"
-msgstr "C 形式のプレースホルダー"
-
-#: apps/pootle_misc/checks.py:98
-msgid "Non printable"
-msgstr "制御文字"
-
-#: apps/pootle_misc/checks.py:99
-msgid "Unbalanced tag braces"
-msgstr "タグ括弧の不一致"
-
-#: apps/pootle_misc/checks.py:100
-msgid "Changed attributes"
-msgstr "属性の変更"
-
-#: apps/pootle_misc/checks.py:101
-msgid "Unescaped ampersands"
-msgstr "未エスケープの＆記号"
-
-#: apps/pootle_misc/checks.py:102
-msgid "Incorrectly escaped ampersands"
-msgstr "不正にエスケープされた＆記号"
-
-#: apps/pootle_misc/checks.py:103
-msgid "Whitespaces"
-msgstr "空白"
-
-#: apps/pootle_misc/checks.py:104
-msgid "Date format"
-msgstr "日付書式"
-
-#: apps/pootle_misc/checks.py:105
-msgid "Uppercase placeholders"
-msgstr "大文字のプレースホルダー"
-
-#: apps/pootle_misc/checks.py:106
-msgid "Percent sign placeholders"
-msgstr "パーセント記号のプレースホルダー"
-
-#: apps/pootle_misc/checks.py:108
-msgid "Percent sign closure placeholders"
-msgstr "パーセント記号の閉じプレースホルダー"
-
-#: apps/pootle_misc/checks.py:109
-msgid "$ placeholders"
-msgstr "$ プレースホルダー"
-
-#: apps/pootle_misc/checks.py:110
-msgid "$ closure placeholders"
-msgstr "$ 閉じプレースホルダー"
-
-#: apps/pootle_misc/checks.py:111
-msgid "Java-encoded unicode"
-msgstr "Java エンコードされたユニコード"
-
-#: apps/pootle_misc/checks.py:112
-msgid "Objective-C format"
-msgstr "Objective-C 形式"
-
-#: apps/pootle_misc/checks.py:113
-msgid "Android format"
-msgstr "Android 形式"
-
-#: apps/pootle_misc/checks.py:114
-msgid "Tags differ"
-msgstr "タグの不一致"
-
-#: apps/pootle_misc/checks.py:115
-msgid "Curly braces"
-msgstr "波括弧"
-
-#: apps/pootle_misc/checks.py:116
-msgid "Potential unwanted placeholders"
-msgstr "潜在的に不要なプレースホルダー"
-
-#: apps/pootle_misc/checks.py:117
-msgid "Double quotes in tags"
-msgstr "タグ内の二重引用符"
-
-#: apps/pootle_misc/checks.py:118
-msgid "Percent brace placeholders"
-msgstr "パーセント波括弧プレースホルダー"
-
-#: apps/pootle_misc/checks.py:121
-msgid "ftl format"
-msgstr "ftl 形式"
-
-#: apps/pootle_misc/checks.py:124
-#, fuzzy
-msgid "Romanian: Avoid cedilla diacritics"
-msgstr "Romanian: Avoid cedilla diacritics"
-
-#: apps/pootle_misc/checks.py:125
-#, fuzzy
-msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr "Romanian: Use \"niciun\"/\"nicio\""
-
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
 msgstr "検索"
@@ -861,23 +779,23 @@ msgstr "検索"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "検索 (Ctrl+Shift+S)<br/>検索語を入力して Enter キーを押してください"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:440
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:368
 msgid "Exact Match"
 msgstr "完全一致"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:446
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:374
 msgid "Source Text"
 msgstr "ソーステキスト"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:447
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:375
 msgid "Target Text"
 msgstr "ターゲットテキスト"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:448
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:376
 msgid "Comments"
 msgstr "コメント"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:449
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:377
 msgid "Locations"
 msgstr "位置"
 
@@ -902,26 +820,111 @@ msgstr "末尾 (%d)"
 msgid "Search unavailable"
 msgstr "検索は利用できません"
 
+#: apps/pootle_profile/templatetags/profile_tags.py:34
+#, fuzzy, python-format
+msgid "My current score at %s is %s"
+msgstr "私の現在の %(server_title)s のスコアは %(score)s です "
+
+#: apps/pootle_profile/templatetags/profile_tags.py:37
+#: apps/pootle_profile/templatetags/profile_tags.py:62
+#: templates/user/profile.html:31 templates/user/profile.html:43
+msgid "Tweet this!"
+msgstr "ツイートする！"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:51
+#, fuzzy, python-format
+msgid "#%s contributor in %s in the last 30 days"
+msgstr "最近 30 日間の貢献者はいません"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:55
+#, fuzzy, python-format
+msgid "I am #%s contributor in %s in the last 30 days at %s!"
+msgstr ""
+"%(server_title)s で最近 30 日間の %(lang_name)s の私の貢献は #%(pos)s です！ "
+
+#: apps/pootle_profile/templatetags/profile_tags.py:64
+#: templates/user/profile.html:40
+msgid "No contributions in the last 30 days"
+msgstr "最近 30 日間の貢献者はいません"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:75
+#: templates/user/profile.html:73
+msgid "My Website"
+msgstr "ウェブサイト"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:85
+#: templates/user/profile.html:79
+msgid "My LinkedIn Profile"
+msgstr "LinkedIn プロフィール"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:94
+#, fuzzy
+msgid "Site administrator"
+msgstr "管理者"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:111
+#: templates/user/profile.html:98
+msgid ""
+"Some translations are provided by anonymous volunteers. These are registered "
+"under this special meta-account."
+msgstr ""
+"翻訳は匿名のボランティアにより提供されているものもあります。これらは、この特"
+"別なメタアカウントの下に登録されています。"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:115
+#: templates/user/profile.html:100
+msgid ""
+"Some translations are imported from external files. These are registered "
+"under this special meta-account."
+msgstr ""
+"翻訳は外部ファイルからインポートされているものもあります。これらは、この特別"
+"なメタアカウントの下に登録されています。"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:125
+#: templates/user/profile.html:88
+msgid ""
+"Show others who you are, tell about yourself<br/>and make your public "
+"profile look gorgeous!"
+msgstr "あなたの自己紹介をして、<br/>公開プロフィールを派手に見せましょう。"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:128
+#: templates/user/profile.html:13
+msgid "You can set or change your avatar image at www.gravatar.com"
+msgstr "アバター画像は www.gravatar.com で設定/変更できます"
+
+#: apps/pootle_profile/utils.py:50 templates/user/profile.html:16
+msgid "Anonymous User"
+msgstr "匿名ユーザー"
+
+#: apps/pootle_profile/utils.py:96 templates/layout.html:134
+msgid "Admin"
+msgstr "管理者"
+
+#: apps/pootle_profile/utils.py:100
+#, fuzzy
+msgid "Translator"
+msgstr "訳文"
+
 #: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "言語を選択してください"
 
-#: apps/pootle_project/forms.py:65 core/browser.py:31
+#: apps/pootle_project/forms.py:57 core/browser.py:31
 msgid "Language"
 msgstr "言語"
 
-#: apps/pootle_project/models.py:181
+#: apps/pootle_project/models.py:179
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%(code)s\" はプロジェクトコードとして使用できません"
 
 #. Translators: this refers to the project quality checker
-#: apps/pootle_project/models.py:190
+#: apps/pootle_project/models.py:188
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "\"%(code)s\" はプロジェクトチェッカとして使用できません"
 
-#: apps/pootle_project/models.py:197
+#: apps/pootle_project/models.py:195
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -929,53 +932,53 @@ msgstr ""
 "プロジェクトの短いコード名。ASCII 文字、数字、アンダースコア (_) 以外は含める"
 "ことができません。"
 
-#: apps/pootle_project/models.py:215
+#: apps/pootle_project/models.py:213
 msgid "Quality Checks"
 msgstr "品質チェック"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:219
 #, fuzzy
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
 msgstr "GNU / 非 GNU ファイルレイアウトの自動判別 (遅め)"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:220
 msgid "GNU style: files named by language code"
 msgstr "GNU スタイル: 言語コードによるファイル名"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:221
 msgid "Non-GNU: Each language in its own directory"
 msgstr "非 GNU: 言語ごとにディレクトリを作成"
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:222
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr "Pootle FS にファイルシステムの管理を許可する (実験段階)"
 
-#: apps/pootle_project/models.py:228
+#: apps/pootle_project/models.py:226
 msgid "Project Tree Style"
 msgstr "プロジェクトの階層スタイル"
 
-#: apps/pootle_project/models.py:236
+#: apps/pootle_project/models.py:234
 msgid "Ignore Files"
 msgstr "無視ファイル"
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:240
 msgid "Errors Report Email"
 msgstr "エラーレポートのメール"
 
-#: apps/pootle_project/models.py:243
+#: apps/pootle_project/models.py:241
 msgid "An email address where issues with the source text can be reported."
 msgstr "原文の問題を報告できるメールアドレス。"
 
 #. Translators: This is the URL prefix to search for context screenshots
-#: apps/pootle_project/models.py:248
+#: apps/pootle_project/models.py:246
 msgid "Screenshot Search Prefix"
 msgstr "スクリーンショット検索の接頭辞"
 
-#: apps/pootle_project/models.py:253
+#: apps/pootle_project/models.py:251
 msgid "Disabled"
 msgstr "無効"
 
-#: apps/pootle_project/views.py:263
+#: apps/pootle_project/views.py:266
 #, fuzzy, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
@@ -984,20 +987,25 @@ msgstr ""
 "翻訳プロジェクト (%s) が作成されました。ファイルテンプレートから内容を更新し"
 "ています。"
 
-#: apps/pootle_project/views.py:270
+#: apps/pootle_project/views.py:273
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "翻訳プロジェクト (%s) が削除されました"
 
-#: apps/pootle_statistics/models.py:63
+#: apps/pootle_statistics/models.py:57
 msgid "Target"
 msgstr "ターゲット"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:59
 msgid "Comment"
 msgstr "コメント"
 
-#: apps/pootle_store/abstracts.py:250 apps/pootle_store/abstracts.py:257
+#: apps/pootle_statistics/models.py:60
+#, fuzzy
+msgid "Check"
+msgstr "査読"
+
+#: apps/pootle_store/abstracts.py:215 apps/pootle_store/abstracts.py:222
 msgid "Path"
 msgstr "パス"
 
@@ -1005,8 +1013,8 @@ msgstr "パス"
 msgid "Obsolete"
 msgstr "廃止"
 
-#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:213
-#: templates/editor/_filters.html:10
+#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:188
+#: apps/pootle_store/forms.py:563 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "要修正"
 
@@ -1027,11 +1035,11 @@ msgstr "提案モードにアクセスするための権限がありません。
 msgid "Insufficient rights to access translation mode."
 msgstr "翻訳モードへのアクセスに必要な権限がありません。"
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:644
+#: apps/pootle_store/decorators.py:30
 msgid "Insufficient rights to access review mode."
 msgstr "査読モードへのアクセスに必要な権限がありません。"
 
-#: apps/pootle_store/forms.py:102
+#: apps/pootle_store/forms.py:100
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
@@ -1039,13 +1047,23 @@ msgstr "査読モードへのアクセスに必要な権限がありません。
 msgid "Plural Form %d"
 msgstr "複数形 %d"
 
-#: apps/pootle_store/forms.py:270
+#: apps/pootle_store/forms.py:246
 msgid "Needs work flag must be cleared"
 msgstr "要修正フラグを消去してください"
 
-#: apps/pootle_store/forms.py:354
+#: apps/pootle_store/forms.py:301
 msgid "Translator comment"
 msgstr "翻訳者によるコメント"
+
+#: apps/pootle_store/forms.py:481
+#, python-format
+msgid "Suggestion '%s' has already been accepted or rejected."
+msgstr ""
+
+#: apps/pootle_store/forms.py:499 core/decorators.py:140
+#: core/views/decorators.py:70
+msgid "Insufficient rights to access this page."
+msgstr "このページにアクセスする十分な権限がありません。"
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -1057,60 +1075,79 @@ msgstr "単数形"
 msgid "Plural"
 msgstr "複数形"
 
-#: apps/pootle_store/unit/timeline.py:47
+#: apps/pootle_store/unit/timeline.py:72
+msgid "Added suggestion"
+msgstr "提案を追加しました"
+
+#: apps/pootle_store/unit/timeline.py:85
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "%(author)s による提案を承認しました"
 
-#: apps/pootle_store/unit/timeline.py:48
-#, python-format
-msgid "Rejected suggestion from %(author)s"
-msgstr "%(author)s による提案を却下しました"
-
-#: apps/pootle_store/unit/timeline.py:56
+#: apps/pootle_store/unit/timeline.py:93
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "%(author)s による提案をコメント付きで承認しました: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:61
+#: apps/pootle_store/unit/timeline.py:109
+#, python-format
+msgid "Rejected suggestion from %(author)s"
+msgstr "%(author)s による提案を却下しました"
+
+#: apps/pootle_store/unit/timeline.py:117
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "%(author)s による提案をコメント付きで却下しました: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:67
-msgid "Added suggestion"
-msgstr "提案を追加しました"
+#: apps/pootle_store/unit/timeline.py:155
+msgid "Unit created"
+msgstr "ユニットを作成しました"
 
-#: apps/pootle_store/utils.py:67
+#: apps/pootle_store/unit/timeline.py:185
+msgid "Comment:"
+msgstr "コメント:"
+
+#: apps/pootle_store/unit/timeline.py:188
+#, fuzzy
+msgid "Removed comment"
+msgstr "コメントを削除"
+
+#: apps/pootle_store/unit/timeline.py:213
+#, fuzzy, python-format
+msgid "Muted %(check_name)s check"
+msgstr "<a href=\"%(check_url)s\">%(check_name)s</a> の誤りを黙認"
+
+#: apps/pootle_store/unit/timeline.py:222
+#, fuzzy, python-format
+msgid "Unmuted %(check_name)s check"
+msgstr "<a href=\"%(check_url)s\">%(check_name)s</a> の誤りを黙認解除"
+
+#: apps/pootle_store/utils.py:137
 msgid "Suggestion accepted with comment"
 msgstr "提案がコメント付きで承認されました。"
 
-#: apps/pootle_store/utils.py:69
+#: apps/pootle_store/utils.py:139
 msgid "Suggestion rejected with comment"
 msgstr "提案がコメント付きで却下されました"
 
-#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:105
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:105
 msgid "Path too long."
 msgstr "パスが長すぎます。"
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:107
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:107
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "引数が足りません。"
 
-#: apps/pootle_store/views.py:233
+#: apps/pootle_store/views.py:235
 msgid "Failed to remove comment."
 msgstr "コメントの削除に失敗しました。"
 
-#: apps/pootle_store/views.py:268
+#: apps/pootle_store/views.py:267
 msgid "Comment submission failed."
 msgstr "コメントの送信に失敗しました。"
 
-#: apps/pootle_store/views.py:575
-msgid "Failed to process submission."
-msgstr "送信の処理に失敗しました。"
-
-#: apps/pootle_store/views.py:615
+#: apps/pootle_store/views.py:567
 msgid "Failed to process suggestion."
 msgstr "提案の処理に失敗しました。"
 
@@ -1239,7 +1276,7 @@ msgid ""
 msgstr ""
 "詳しい情報や指示を提供するために使用してください。使用可能なマークアップ: %s"
 
-#: checks.py:64
+#: checks.py:74
 msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
@@ -1247,7 +1284,7 @@ msgstr ""
 "メールアドレスが重複したユーザーアカウントがあります。これは Pootle 2.8 では"
 "許可されません。"
 
-#: checks.py:66
+#: checks.py:76
 msgid ""
 "Try using 'pootle find_duplicate_emails', and then update user emails with "
 "'pootle update_user_email username email'. You might also want to consider "
@@ -1257,67 +1294,67 @@ msgstr ""
 "update_user_email username email' で更新してみてください。または、pootle の "
 "merge_user コマンドや purge_user コマンドの使用も検討してください"
 
-#: checks.py:90
+#: checks.py:100
 msgid "Your version of Django is too old."
 msgstr "Django のバージョンが古すぎます。"
 
-#: checks.py:91
+#: checks.py:101
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
 msgstr "pip install --upgrade 'Django==%s' を試してください"
 
-#: checks.py:98
+#: checks.py:108
 msgid "Your version of lxml is too old."
 msgstr "lxml のバージョンが古すぎます。"
 
-#: checks.py:99
+#: checks.py:109
 msgid "Try pip install --upgrade lxml"
 msgstr "pip install --upgrade lxml を試してください"
 
-#: checks.py:105
+#: checks.py:115
 msgid "Your version of Translate Toolkit is too old."
 msgstr "Translate Toolkit のバージョンが古すぎます。"
 
-#: checks.py:106
+#: checks.py:116
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr "pip install --upgrade translate-toolkit を試してください"
 
-#: checks.py:126
+#: checks.py:136
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr "Redis (%s) に接続できませんでした"
 
-#: checks.py:127
+#: checks.py:137
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr "Redis を %(host)s:%(port)s 上で稼働させてください"
 
-#: checks.py:137
+#: checks.py:147
 msgid "Your version of Redis is too old."
 msgstr "Redis のバージョンが古すぎます。"
 
-#: checks.py:138
+#: checks.py:148
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
 msgstr ""
 "システムの Redis サーバパッケージをバージョン %s 以上に更新してください"
 
 #. Translators: a worker processes background tasks
-#: checks.py:149
+#: checks.py:159
 #, fuzzy
 msgid "No worker running."
 msgstr "RQ Worker が稼働していません。"
 
 #. Translators: a worker processes background tasks
-#: checks.py:151
+#: checks.py:161
 msgid "Run new workers with 'pootle rqworker'"
 msgstr "'pootle rqworker' で新しい worker を実行してください"
 
-#: checks.py:166
+#: checks.py:176
 msgid "Cache backend is not set to Redis."
 msgstr "キャッシュバックエンドが Redis に設定されていません。"
 
-#: checks.py:167
+#: checks.py:177
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1327,15 +1364,15 @@ msgstr ""
 "ください\n"
 "現在の設定: %r"
 
-#: checks.py:177
+#: checks.py:187
 msgid "Could not initiate a Redis cache connection"
 msgstr "Redis キャッシュ接続を初期化できませんでした"
 
-#: checks.py:178 checks.py:192
+#: checks.py:188 checks.py:202
 msgid "Double-check your CACHES settings"
 msgstr "CACHES 設定をよく確認してください"
 
-#: checks.py:190
+#: checks.py:200
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
@@ -1343,28 +1380,28 @@ msgstr ""
 "`default`, `redis` および `lru` には django_redis.cache.RedisCache の個別設定"
 "が必要です。"
 
-#: checks.py:198
+#: checks.py:208
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "DEBUG モードが有効です。製品版では無効にしてください！"
 
-#: checks.py:199
+#: checks.py:209
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Pootle 設定で DEBUG = False に設定してください"
 
-#: checks.py:205
+#: checks.py:215
 msgid "The sqlite database backend is unsupported"
 msgstr "sqlite データベースバックエンドはサポートされていません"
 
-#: checks.py:206
+#: checks.py:216
 msgid "Set your default database engine to postgresql or mysql"
 msgstr ""
 "既定のデータベースエンジンを postgresql または mysql に設定してください"
 
-#: checks.py:213
+#: checks.py:223
 msgid "Not using cached_db as session engine"
 msgstr "cached_db をセッションエンジンとして使用していません"
 
-#: checks.py:214
+#: checks.py:224
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1374,11 +1411,11 @@ msgstr ""
 "い\n"
 "現在の設定: %r"
 
-#: checks.py:222
+#: checks.py:232
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "POOTLE_CONTACT_EMAIL が設定されていません。"
 
-#: checks.py:223
+#: checks.py:233
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1386,12 +1423,12 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL を設定して、ユーザーが Pootle の問い合わせフォームから管"
 "理者に問い合わせられるようにしてください。"
 
-#: checks.py:231
+#: checks.py:241
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL は次の既定の設定を使用します %r。"
 
-#: checks.py:233
+#: checks.py:243
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1399,11 +1436,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL は問い合わせフォームから送信されるメッセージを受信するア"
 "ドレスです。"
 
-#: checks.py:240
+#: checks.py:250
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "DEFAULT_FROM_EMAIL が設定されていません。"
 
-#: checks.py:241 checks.py:251
+#: checks.py:251 checks.py:261
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1411,36 +1448,36 @@ msgstr ""
 "DEFAULT_FROM_EMAIL は Pootle から送信されるすべてのメールに使用されます。\n"
 "メールサーバの設定を確認することを忘れないでください。"
 
-#: checks.py:249
+#: checks.py:259
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL は次の既定の設定を使用します %r。"
 
-#: checks.py:260
+#: checks.py:270
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER が足りません。"
 
-#: checks.py:261
+#: checks.py:271
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER を設定してください。"
 
-#: checks.py:266
+#: checks.py:276
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER の値が不正です。"
 
-#: checks.py:267
+#: checks.py:277
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER に正しい値を設定してください。"
 
-#: checks.py:281
+#: checks.py:291
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER に不正なマークアップが使用されています。"
 
-#: checks.py:282
+#: checks.py:292
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "POOTLE_MARKUP_FILTER に有効なマークアップを設定してください。"
 
-#: checks.py:287
+#: checks.py:297
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1449,71 +1486,71 @@ msgstr ""
 "POOTLE_MARKUP_FILTER に '%s' マークアップが設定されていますが、提供するパッ"
 "ケージが見つけられません。"
 
-#: checks.py:289
+#: checks.py:299
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr ""
 "パッケージをインストールするか、POOTLE_MARKUP_FILTER の設定を変更してくださ"
 "い。"
 
-#: checks.py:300
+#: checks.py:310
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "POOTLE_TM_SERVER['%s'] に INDEX_NAME がありません。"
 
-#: checks.py:301
+#: checks.py:311
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "POOTLE_TM_SERVER['%s'] に INDEX_NAME を設定してください。"
 
-#: checks.py:307
+#: checks.py:317
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr "POOTLE_TM_SERVER 内の '%s' INDEX_NAME が重複しています。"
 
-#: checks.py:309
+#: checks.py:319
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
 "POOTLE_TM_SERVER 内のすべてのサーバについて、異なる INDEX_NAME を設定してくだ"
 "さい。"
 
-#: checks.py:319
+#: checks.py:329
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "POOTLE_TM_SERVER['%s'] に ENGINE がありません。"
 
-#: checks.py:320
+#: checks.py:330
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "POOTLE_TM_SERVER['%s'] に ENGINE を設定してください。"
 
-#: checks.py:327
+#: checks.py:337
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "POOTLE_TM_SERVER['%s'] に HOST がありません。"
 
-#: checks.py:328
+#: checks.py:338
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "POOTLE_TM_SERVER['%s'] に HOST を設定してください。"
 
-#: checks.py:335
+#: checks.py:345
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "POOTLE_TM_SERVER['%s'] に PORT がありません。"
 
-#: checks.py:336
+#: checks.py:346
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "POOTLE_TM_SERVER['%s'] に PORT を設定してください。"
 
-#: checks.py:345
+#: checks.py:355
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr ""
 "POOTLE_TM_SERVER['%s'] の WEIGHT に 0.0 未満か 1.0 より大きな値が設定されてい"
 "ます。"
 
-#: checks.py:347
+#: checks.py:357
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
@@ -1521,40 +1558,40 @@ msgstr ""
 "POOTLE_TM_SERVER['%s'] の WEIGHT には 0.0 以上 1.0 以下の値を設定してくださ"
 "い。"
 
-#: checks.py:355
-#, python-format
-msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
+#: checks.py:365
+#, fuzzy, python-format
+msgid "POOTLE_SCORES has no %s."
 msgstr "POOTLE_SCORE_COEFFICIENTS に %s がありません。"
 
-#: checks.py:356
-#, python-format
-msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
+#: checks.py:366
+#, fuzzy, python-format
+msgid "Set %s in POOTLE_SCORES."
 msgstr "POOTLE_SCORE_COEFFICIENTS で %s を設定してください。"
 
-#: checks.py:363
-#, python-format
-msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
+#: checks.py:374
+#, fuzzy, python-format
+msgid "Invalid value for %s in POOTLE_SCORES."
 msgstr "POOTLE_SCORE_COEFFICIENTS 内の %s の値が無効です。"
 
-#: checks.py:365
-#, python-format
-msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
+#: checks.py:377
+#, fuzzy, python-format
+msgid "Set a valid value for %s in POOTLE_SCORES."
 msgstr "POOTLE_SCORE_COEFFICIENTS 内の %s に正しい値を設定してください。"
 
-#: checks.py:387
+#: checks.py:397
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
 "デフォルトの 'admin' ユーザーのパスワードが 'admin' に設定されています。"
 
-#: checks.py:389
+#: checks.py:399
 msgid "Remove the 'admin' user or change its password."
 msgstr "'admin' ユーザーを削除するかパスワードを変更してください。"
 
-#: checks.py:403
+#: checks.py:413
 msgid "Database connection uses transaction_hooks."
 msgstr "データベース接続が transaction_hooks を使用しています。"
 
-#: checks.py:404
+#: checks.py:414
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
@@ -1562,30 +1599,30 @@ msgstr ""
 "django.db.backends からの Django バックエンドを使用するには "
 "DATABASES['default']['ENGINE'] を設定してください。"
 
-#: checks.py:424
+#: checks.py:434
 msgid "Email server is not available."
 msgstr "メールサーバは利用できません。"
 
-#: checks.py:425
+#: checks.py:435
 msgid "Review your email settings and make sure your email server is working."
 msgstr "メール設定を見直し、メールサーバを稼働させてください。"
 
-#: checks.py:452
+#: checks.py:462
 msgid "Revision is missing or has an incorrect value."
 msgstr "リビジョン情報が無いか不正な値を持っています。"
 
-#: checks.py:453
+#: checks.py:463
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 "`revision --restore` を実行してリビジョンカウンタをリセットしてください。"
 
-#: checks.py:467
+#: checks.py:477
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 "Canonical URL が提供されておらずデフォルトサイトに example.com が設定されてい"
 "ます。"
 
-#: checks.py:469
+#: checks.py:479
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
@@ -1593,11 +1630,11 @@ msgstr ""
 "設定で `POOTLE_CANONICAL_URL` を設定するか、django.contrib.sites を使用してい"
 "る場合はデフォルトサイトを更新してください。"
 
-#: checks.py:473
+#: checks.py:483
 msgid "Canonical URL is set to http://localhost."
 msgstr "Canonical URL に http://localhost が設定されています。"
 
-#: checks.py:475
+#: checks.py:485
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
@@ -1605,16 +1642,16 @@ msgstr ""
 "あなたのサイトの `POOTLE_CANONICAL_URL` に適切な値を設定するか、`django."
 "contrib.sites` を使用している場合は空にしてください。"
 
-#: checks.py:505
+#: checks.py:515
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "POOTLE_FS_WORKING_PATH が設定されていません。"
 
-#: checks.py:509
+#: checks.py:519
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "POOTLE_FS_WORKING_PATH により指し示されたパス ('%s') が存在しません。"
 
-#: checks.py:511
+#: checks.py:521
 #, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
@@ -1623,7 +1660,7 @@ msgstr ""
 "`POOTLE_FS_WORKING_PATH` により指し示されたディレクトリーを作成するか、設定を"
 "変更してください。"
 
-#: checks.py:516
+#: checks.py:526
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
@@ -1631,7 +1668,7 @@ msgstr ""
 "POOTLE_FS_WORKING_PATH により指し示されたパス ('%s') に Pootle による書き込み"
 "ができません。"
 
-#: checks.py:519
+#: checks.py:529
 #, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
@@ -1639,19 +1676,19 @@ msgid ""
 msgstr ""
 "`POOTLE_FS_WORKING_PATH` に書き込み権限を追加するか、設定を変更してください。"
 
-#: checks.py:538
+#: checks.py:548
 msgid "MySQL requires time zone settings."
 msgstr "MySQL にタイムゾーン設定が必要です。"
 
-#: checks.py:558
+#: checks.py:568
 msgid "Pootle does not yet support Python 3."
 msgstr ""
 
-#: checks.py:559 checks.py:565
+#: checks.py:569 checks.py:575
 msgid "Use a Python 2.7 virtualenv."
 msgstr ""
 
-#: checks.py:564
+#: checks.py:574
 msgid "Pootle no longer supports Python versions older than 2.7"
 msgstr ""
 
@@ -1695,10 +1732,6 @@ msgstr "言語ページへ戻る"
 msgid "Back to parent folder"
 msgstr "親フォルダへ戻る"
 
-#: core/decorators.py:140 core/views/decorators.py:70
-msgid "Insufficient rights to access this page."
-msgstr "このページにアクセスする十分な権限がありません。"
-
 #: core/decorators.py:153 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
 msgstr "Pootle の管理権限がありません。"
@@ -1737,27 +1770,27 @@ msgstr "行う操作を指定する必要があります"
 msgid "A valid search field must be specified"
 msgstr "正しい検索フィールドが指定されなければなりません"
 
-#: core/initdb.py:127
+#: core/initdb.py:135
 msgid "Can access a project"
 msgstr "プロジェクトにアクセスできます"
 
-#: core/initdb.py:131
+#: core/initdb.py:139
 msgid "Cannot access a project"
 msgstr "プロジェクトにアクセスできません"
 
-#: core/initdb.py:135
+#: core/initdb.py:143
 msgid "Can make a suggestion for a translation"
 msgstr "翻訳を提案できます"
 
-#: core/initdb.py:139
+#: core/initdb.py:147
 msgid "Can submit a translation"
 msgstr "翻訳を送信できます"
 
-#: core/initdb.py:143
+#: core/initdb.py:151
 msgid "Can review suggestions"
 msgstr "提案を査読できます"
 
-#: core/initdb.py:147
+#: core/initdb.py:155
 msgid "Can perform administrative tasks"
 msgstr "管理タスクを実行できます"
 
@@ -2622,30 +2655,13 @@ msgid "Remove comment"
 msgstr "コメントを削除"
 
 #: templates/editor/units/xhr_comment.html:19
-msgid "Last comment:"
-msgstr "最後のコメント:"
+#, fuzzy
+msgid "Сomment:"
+msgstr "コメント:"
 
 #: templates/editor/units/xhr_timeline.html:3
 msgid "Timeline"
 msgstr "タイムライン"
-
-#: templates/editor/units/xhr_timeline.html:38
-msgid "Last comment removed"
-msgstr "最後のコメントを削除しました"
-
-#: templates/editor/units/xhr_timeline.html:44
-#, python-format
-msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "<a href=\"%(check_url)s\">%(check_name)s</a> の誤りを黙認"
-
-#: templates/editor/units/xhr_timeline.html:48
-#, python-format
-msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "<a href=\"%(check_url)s\">%(check_name)s</a> の誤りを黙認解除"
-
-#: templates/editor/units/xhr_timeline.html:60
-msgid "Unit created"
-msgstr "ユニットを作成しました"
 
 #: templates/errors/400.html:4 templates/errors/400.html:11
 msgid "Bad Request"
@@ -2723,29 +2739,25 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "返されたエラー:"
 
-#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-#, fuzzy
-msgid "Previous page"
-msgstr "前へ"
-
 #: templates/includes/formtable.html:22
 #, python-format
 msgid "Page %(page_number)s of %(page_count)s."
 msgstr "%(page_number)s / %(page_count)s ページ"
 
 #: templates/includes/formtable.html:27
-#, python-format
-msgid "Showing %(count)s results per page"
-msgstr "ページごとに %(count)s 件の結果を表示"
+#, fuzzy, python-format
+msgid "Showing %(n)s result per page"
+msgid_plural "Showing %(n)s results per page"
+msgstr[0] "ページごとに %(count)s 件の結果を表示"
 
-#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-#, fuzzy
-msgid "Next page"
-msgstr "ホームページ"
-
-#: templates/includes/formtable.html:85
+#: templates/includes/formtable.html:87
 msgid "Select all"
 msgstr "すべて選択"
+
+#: templates/includes/formtable.html:100
+#, fuzzy
+msgid "Go"
+msgstr "目標"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2824,10 +2836,6 @@ msgstr "公開プロフィール"
 msgid "Settings"
 msgstr "設定"
 
-#: templates/layout.html:134
-msgid "Admin"
-msgstr "管理者"
-
 #: templates/layout.html:137
 msgid "Sign out"
 msgstr "サインアウト"
@@ -2856,7 +2864,13 @@ msgstr ""
 msgid "Here you can add, edit, or delete the languages for this project."
 msgstr "ここでは、このプロジェクトの言語を追加、編集、削除できます。"
 
-#: templates/projects/admin/languages.html:14
+#: templates/projects/admin/languages.html:15
+msgid ""
+"Adding new languages from this screen is disabled. You will need to update "
+"your sources directly, and update pootle from there."
+msgstr ""
+
+#: templates/projects/admin/languages.html:17
 msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
@@ -2960,13 +2974,20 @@ msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr ""
 "ファイルをアップロードすれば、用語の追加や編集、削除ができるようになります。"
 
-#: templates/user/profile.html:13
-msgid "You can set or change your avatar image at www.gravatar.com"
-msgstr "アバター画像は www.gravatar.com で設定/変更できます"
+#: templates/user/includes/profile_activity.html:5
+#: templates/user/profile.html:59
+msgid "Latest activity:"
+msgstr "最終活動日時:"
 
-#: templates/user/profile.html:16
-msgid "Anonymous User"
-msgstr "匿名ユーザー"
+#: templates/user/includes/profile_score.html:2
+#, fuzzy
+msgid "Total score:"
+msgstr "単語総数:"
+
+#: templates/user/includes/profile_teams.html:6
+#, fuzzy
+msgid "Language teams"
+msgstr "言語チーム"
 
 #: templates/user/profile.html:28
 msgid "Score:"
@@ -2976,14 +2997,6 @@ msgstr "スコア:"
 #, python-format
 msgid "My current score at %(server_title)s is %(score)s "
 msgstr "私の現在の %(server_title)s のスコアは %(score)s です "
-
-#: templates/user/profile.html:31 templates/user/profile.html:43
-msgid "Tweet this!"
-msgstr "ツイートする！"
-
-#: templates/user/profile.html:40
-msgid "No contributions in the last 30 days"
-msgstr "最近 30 日間の貢献者はいません"
 
 #: templates/user/profile.html:43
 #, python-format
@@ -3006,40 +3019,6 @@ msgid ""
 msgstr ""
 "最近 30 日間の貢献で第 %(pos)s 位の <a href=\"%(url)s\">%(lang_name)s</a> 貢"
 "献者"
-
-#: templates/user/profile.html:59
-msgid "Latest activity:"
-msgstr "最終活動日時:"
-
-#: templates/user/profile.html:73
-msgid "My Website"
-msgstr "ウェブサイト"
-
-#: templates/user/profile.html:79
-msgid "My LinkedIn Profile"
-msgstr "LinkedIn プロフィール"
-
-#: templates/user/profile.html:88
-msgid ""
-"Show others who you are, tell about yourself<br/>and make your public "
-"profile look gorgeous!"
-msgstr "あなたの自己紹介をして、<br/>公開プロフィールを派手に見せましょう。"
-
-#: templates/user/profile.html:98
-msgid ""
-"Some translations are provided by anonymous volunteers. These are registered "
-"under this special meta-account."
-msgstr ""
-"翻訳は匿名のボランティアにより提供されているものもあります。これらは、この特"
-"別なメタアカウントの下に登録されています。"
-
-#: templates/user/profile.html:100
-msgid ""
-"Some translations are imported from external files. These are registered "
-"under this special meta-account."
-msgstr ""
-"翻訳は外部ファイルからインポートされているものもあります。これらは、この特別"
-"なメタアカウントの下に登録されています。"
 
 #: templates/user/settings.html:12
 msgid "User Account"
@@ -3084,6 +3063,110 @@ msgstr "サインイン"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "最近 30 日間の上位の貢献者たち"
+
+#~ msgid "Summary"
+#~ msgstr "概要"
+
+#~ msgid "Please enter your message summary"
+#~ msgstr "メッセージの要約を入力してください"
+
+#~ msgid "Broken HTML Entities"
+#~ msgstr "壊れた HTML 実体"
+
+#~ msgid "Java format"
+#~ msgstr "Java 形式"
+
+#~ msgid "Template format"
+#~ msgstr "テンプレート形式"
+
+#~ msgid "Mustache placeholders"
+#~ msgstr "Mustache プレースホルダー"
+
+#~ msgid "Mustache placeholder pairs"
+#~ msgstr "Mustache プレースホルダーのペア"
+
+#~ msgid "Mustache like placeholder pairs"
+#~ msgstr "Mustache のようなプレースホルダーのペア"
+
+#~ msgid "C format placeholders"
+#~ msgstr "C 形式のプレースホルダー"
+
+#~ msgid "Non printable"
+#~ msgstr "制御文字"
+
+#~ msgid "Unbalanced tag braces"
+#~ msgstr "タグ括弧の不一致"
+
+#~ msgid "Changed attributes"
+#~ msgstr "属性の変更"
+
+#~ msgid "Unescaped ampersands"
+#~ msgstr "未エスケープの＆記号"
+
+#~ msgid "Incorrectly escaped ampersands"
+#~ msgstr "不正にエスケープされた＆記号"
+
+#~ msgid "Whitespaces"
+#~ msgstr "空白"
+
+#~ msgid "Date format"
+#~ msgstr "日付書式"
+
+#~ msgid "Uppercase placeholders"
+#~ msgstr "大文字のプレースホルダー"
+
+#~ msgid "Percent sign placeholders"
+#~ msgstr "パーセント記号のプレースホルダー"
+
+#~ msgid "Percent sign closure placeholders"
+#~ msgstr "パーセント記号の閉じプレースホルダー"
+
+#~ msgid "$ placeholders"
+#~ msgstr "$ プレースホルダー"
+
+#~ msgid "$ closure placeholders"
+#~ msgstr "$ 閉じプレースホルダー"
+
+#~ msgid "Java-encoded unicode"
+#~ msgstr "Java エンコードされたユニコード"
+
+#~ msgid "Objective-C format"
+#~ msgstr "Objective-C 形式"
+
+#~ msgid "Android format"
+#~ msgstr "Android 形式"
+
+#~ msgid "Tags differ"
+#~ msgstr "タグの不一致"
+
+#~ msgid "Curly braces"
+#~ msgstr "波括弧"
+
+#~ msgid "Potential unwanted placeholders"
+#~ msgstr "潜在的に不要なプレースホルダー"
+
+#~ msgid "Double quotes in tags"
+#~ msgstr "タグ内の二重引用符"
+
+#~ msgid "Percent brace placeholders"
+#~ msgstr "パーセント波括弧プレースホルダー"
+
+#~ msgid "Failed to process submission."
+#~ msgstr "送信の処理に失敗しました。"
+
+#~ msgid "Last comment:"
+#~ msgstr "最後のコメント:"
+
+#~ msgid "Last comment removed"
+#~ msgstr "最後のコメントを削除しました"
+
+#, fuzzy
+#~ msgid "Previous page"
+#~ msgstr "前へ"
+
+#, fuzzy
+#~ msgid "Next page"
+#~ msgstr "ホームページ"
 
 #~ msgid "Rate"
 #~ msgstr "割合"
@@ -4215,9 +4298,6 @@ msgstr "最近 30 日間の上位の貢献者たち"
 #~ msgid "You do not have rights to add tags."
 #~ msgstr "タグを追加する権限がありません。"
 
-#~ msgid "Comment:"
-#~ msgstr "コメント:"
-
 #~ msgid "String %(id)s"
 #~ msgstr "文字列 %(id)s"
 
@@ -4273,9 +4353,6 @@ msgstr "最近 30 日間の上位の貢献者たち"
 #~ "タグスラッグはタグ名と同じですが、次の記号が単独または連続して現れる場合は"
 #~ "ハイフンに置き換えられます: スペース、コロン (:)、ハイフン (-)、アンダース"
 #~ "コア (_)、スラッシュ (/)、ピリオド (.)！"
-
-#~ msgid "A goal with this slug already exists."
-#~ msgstr "同じスラッグを持つ目標が既に存在します。"
 
 #~ msgid ""
 #~ "Warning: Changing the name also changes the slug, so it won't be possible "
@@ -4464,9 +4541,6 @@ msgstr "最近 30 日間の上位の貢献者たち"
 
 #~ msgid "You do not have rights to upload files here."
 #~ msgstr "ここでファイルをアップロードする権限がありません。"
-
-#~ msgid "Goal"
-#~ msgstr "目標"
 
 #~ msgid "Translation project files and folders"
 #~ msgstr "翻訳プロジェクトのファイルとフォルダ"
@@ -5875,9 +5949,6 @@ msgstr "最近 30 日間の上位の貢献者たち"
 
 #~ msgid "Language:"
 #~ msgstr "言語:"
-
-#~ msgid "Please enter your registration details"
-#~ msgstr "登録する詳細を入力してください"
 
 #~ msgid "Your requested username"
 #~ msgstr "希望するユーザ名"

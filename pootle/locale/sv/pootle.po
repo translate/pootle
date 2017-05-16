@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-20 14:39+0000\n"
+"POT-Creation-Date: 2017-05-16 11:56+0100\n"
 "PO-Revision-Date: 2017-02-26 14:59+0000\n"
 "Last-Translator: andpet <az@kth.se>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,34 +41,39 @@ msgstr ""
 "Ditt användarnamn verkar ha försvunnit. Rapportera detta till "
 "webbplatsägarna."
 
-#: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:56 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "Användarnamn"
 
-#: apps/accounts/models.py:56
+#: apps/accounts/models.py:57
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr "Krävs. 30 tecken eller färre. Bokstäver, siffror och @/./+/-/_ tecken"
 
-#: apps/accounts/models.py:60
+#: apps/accounts/models.py:61
 msgid "Enter a valid username."
 msgstr "Ange ett giltigt användarnamn."
 
-#: apps/accounts/models.py:64
+#: apps/accounts/models.py:65
+#, fuzzy
+msgid "A user with that username already exists."
+msgstr "Denna e-postadress finns redan."
+
+#: apps/accounts/models.py:68
 msgid "Email Address"
 msgstr "E-postadress"
 
-#: apps/accounts/models.py:65 apps/pootle_language/models.py:92
-#: apps/pootle_project/models.py:208
+#: apps/accounts/models.py:69 apps/pootle_language/models.py:35
+#: apps/pootle_project/models.py:206
 msgid "Full Name"
 msgstr "Fullständigt namn"
 
-#: apps/accounts/models.py:68 apps/staticpages/models.py:30
+#: apps/accounts/models.py:72 apps/staticpages/models.py:30
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Aktiv"
 
-#: apps/accounts/models.py:71
+#: apps/accounts/models.py:75
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -76,11 +81,11 @@ msgstr ""
 "Betecknar huruvida användaren ska betraktas som aktiv. Avmarkera detta "
 "istället för att ta bort konton."
 
-#: apps/accounts/models.py:74
+#: apps/accounts/models.py:78
 msgid "Superuser Status"
 msgstr "Administratörsstatus"
 
-#: apps/accounts/models.py:77
+#: apps/accounts/models.py:81
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
@@ -88,83 +93,99 @@ msgstr ""
 "Betecknar att denna användare har alla behörigheter utan att explicit "
 "tilldela dem."
 
-#: apps/accounts/models.py:80
+#: apps/accounts/models.py:84
 msgid "date joined"
 msgstr "datum då du anslöt"
 
-#: apps/accounts/models.py:84
+#: apps/accounts/models.py:88
 msgid "Number of Rows"
 msgstr "Antal rader"
 
-#: apps/accounts/models.py:88
+#: apps/accounts/models.py:92
 msgid "Alternative Source Languages"
 msgstr "Alternativa källspråk"
 
-#: apps/accounts/models.py:93
+#: apps/accounts/models.py:95
 msgid "Score"
 msgstr "Poäng"
 
-#: apps/accounts/models.py:94
+#: apps/accounts/models.py:96
 msgid "Is employee?"
 msgstr "Är anställd?"
 
-#: apps/accounts/models.py:95
+#: apps/accounts/models.py:97
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:99
 msgid "Website"
 msgstr "Webbplats"
 
-#: apps/accounts/models.py:98
+#: apps/accounts/models.py:100
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:99
+#: apps/accounts/models.py:101
 msgid "Short Bio"
 msgstr "Kort biografi"
 
-#: apps/accounts/models.py:239
+#: apps/accounts/models.py:241
 msgid "This email address already exists."
 msgstr "Denna e-postadress finns redan."
 
-#: apps/contact/forms.py:26
-msgid "Summary"
-msgstr "Sammanfattning"
+#: apps/contact/forms.py:27
+#, fuzzy
+msgid "Subject"
+msgstr "Vägra"
 
-#: apps/contact/forms.py:28
-msgid "Please enter your message summary"
-msgstr "Ange din meddelandesammanfattning"
+#: apps/contact/forms.py:29
+#, fuzzy
+msgid "Please enter a message subject"
+msgstr "Ange ditt meddelande"
 
-#: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
+#: apps/contact/forms.py:36 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "Namn"
 
-#: apps/contact/forms.py:36
+#: apps/contact/forms.py:37
 msgid "Please enter your name"
 msgstr "Ange ditt namn"
 
-#: apps/contact/forms.py:39
+#: apps/contact/forms.py:40
 msgid "Email address"
 msgstr "E-postadress"
 
-#: apps/contact/forms.py:40
+#: apps/contact/forms.py:41
 msgid "Please enter your email address"
 msgstr "Ange din e-postadress"
 
-#: apps/contact/forms.py:43
+#: apps/contact/forms.py:44
 msgid "Message"
 msgstr "Meddelande"
 
-#: apps/contact/forms.py:44
+#: apps/contact/forms.py:45
 msgid "Please enter your message"
 msgstr "Ange ditt meddelande"
 
-#: apps/contact/views.py:34 templates/layout.html:120
+#: apps/contact/forms.py:115
+msgid "String context"
+msgstr ""
+
+#: apps/contact/forms.py:125
+#, fuzzy
+msgid "Question or comment"
+msgstr "Förslag avvisades med kommentar"
+
+#: apps/contact/forms.py:126
+#, fuzzy
+msgid "Please enter your question or comment"
+msgstr "Ange dina registreringsdetaljer"
+
+#: apps/contact/views.py:35 templates/layout.html:120
 msgid "Contact Us"
 msgstr "Kontakta oss"
 
-#: apps/contact/views.py:65
+#: apps/contact/views.py:92
 msgid "Report problem with string"
 msgstr "Rapportera ett problem med sträng"
 
@@ -233,7 +254,7 @@ msgstr "Det gick inte att överföra filen"
 msgid "Language code does not follow the ISO convention"
 msgstr "Språkkod följer inte ISO-konventionen"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:232
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
 msgid "Source Language"
 msgstr "Källspråk"
 
@@ -292,6 +313,224 @@ msgstr "Inga filer i detta projekt."
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Det finns fel i formuläret. Granska problemen nedan."
 
+#: apps/pootle_checks/constants.py:24 core/browser.py:47
+msgid "Critical"
+msgstr "Kritiskt"
+
+#: apps/pootle_checks/constants.py:25
+msgid "Cosmetic"
+msgstr "Kosmetisk"
+
+#: apps/pootle_checks/constants.py:26
+msgid "Functional"
+msgstr "Funktionell"
+
+#: apps/pootle_checks/constants.py:27
+msgid "Extraction"
+msgstr "Extrahering"
+
+#: apps/pootle_checks/constants.py:28
+msgid "Other"
+msgstr "Andra"
+
+#: apps/pootle_checks/constants.py:31
+msgid "Accelerators"
+msgstr "Snabbtangenter"
+
+#: apps/pootle_checks/constants.py:32
+msgid "Acronyms"
+msgstr "Akronymer"
+
+#: apps/pootle_checks/constants.py:33
+msgid "Blank"
+msgstr "Tom"
+
+#: apps/pootle_checks/constants.py:34
+msgid "Brackets"
+msgstr "Parenteser"
+
+#: apps/pootle_checks/constants.py:35
+msgid "Compendium conflict"
+msgstr "Kompendiumkonflikt"
+
+#: apps/pootle_checks/constants.py:36
+msgid "Translator credits"
+msgstr "Erkännande"
+
+#: apps/pootle_checks/constants.py:37
+msgid "Dialog sizes"
+msgstr "Dialogstorlekar"
+
+#: apps/pootle_checks/constants.py:38
+msgid "Double quotes"
+msgstr "Dubbla citationstecken"
+
+#: apps/pootle_checks/constants.py:39
+msgid "Double spaces"
+msgstr "Dubbla mellanslag"
+
+#: apps/pootle_checks/constants.py:40
+msgid "Repeated word"
+msgstr "Upprepat ord"
+
+#: apps/pootle_checks/constants.py:41
+msgid "E-mail"
+msgstr "E-post"
+
+#: apps/pootle_checks/constants.py:42
+msgid "Ending punctuation"
+msgstr "Avslutande interpunktion"
+
+#: apps/pootle_checks/constants.py:43
+msgid "Ending whitespace"
+msgstr "Avslutande mellanslag"
+
+#: apps/pootle_checks/constants.py:44
+msgid "Escapes"
+msgstr "Esc-tecken"
+
+#: apps/pootle_checks/constants.py:45
+msgid "File paths"
+msgstr "Filsökvägar"
+
+#: apps/pootle_checks/constants.py:46
+msgid "Functions"
+msgstr "Funktioner"
+
+#: apps/pootle_checks/constants.py:47
+msgid "GConf values"
+msgstr "GConf-värden"
+
+#: apps/pootle_checks/constants.py:48 core/utils/stats.py:29
+msgid "Fuzzy"
+msgstr "Luddig"
+
+#: apps/pootle_checks/constants.py:49
+msgid "Old KDE comment"
+msgstr "Gammal KDE-kommentar"
+
+#: apps/pootle_checks/constants.py:50
+msgid "Long"
+msgstr "Lång"
+
+#: apps/pootle_checks/constants.py:51
+msgid "Must translate words"
+msgstr "Måste översätta ord"
+
+#: apps/pootle_checks/constants.py:52
+msgid "Newlines"
+msgstr "Nya rader"
+
+#: apps/pootle_checks/constants.py:53
+msgid "Number of plurals"
+msgstr "Antal pluralformer"
+
+#: apps/pootle_checks/constants.py:54
+msgid "Don't translate words"
+msgstr "Översätt inte ord"
+
+#: apps/pootle_checks/constants.py:55
+msgid "Numbers"
+msgstr "Nummer"
+
+#: apps/pootle_checks/constants.py:56
+msgid "Options"
+msgstr "Inställningar"
+
+#: apps/pootle_checks/constants.py:57
+msgid "printf()"
+msgstr "printf()"
+
+#: apps/pootle_checks/constants.py:58
+msgid "Punctuation spacing"
+msgstr "Interpunktionsmellanrum"
+
+#: apps/pootle_checks/constants.py:59
+msgid "Pure punctuation"
+msgstr "Rena interpunktioner"
+
+#: apps/pootle_checks/constants.py:60
+msgid "Python brace placeholders"
+msgstr "Parentens-platshållare för Python"
+
+#: apps/pootle_checks/constants.py:61
+msgid "Number of sentences"
+msgstr "Antal meningar"
+
+#: apps/pootle_checks/constants.py:62
+msgid "Short"
+msgstr "Kort"
+
+#: apps/pootle_checks/constants.py:63
+msgid "Simple capitalization"
+msgstr "Gemener och versaler"
+
+#: apps/pootle_checks/constants.py:64
+msgid "Simple plural(s)"
+msgstr "Enkla pluralformer"
+
+#: apps/pootle_checks/constants.py:65
+msgid "Single quotes"
+msgstr "Enkla citationstecken"
+
+#: apps/pootle_checks/constants.py:66
+msgid "Starting capitalization"
+msgstr "Inledande versal"
+
+#: apps/pootle_checks/constants.py:67
+msgid "Starting punctuation"
+msgstr "Inledande interpunktion"
+
+#: apps/pootle_checks/constants.py:68
+msgid "Starting whitespace"
+msgstr "Inledande mellanslag"
+
+#. Translators: This refers to tabulation characters
+#: apps/pootle_checks/constants.py:70
+msgid "Tabs"
+msgstr "Flikar"
+
+#: apps/pootle_checks/constants.py:71
+msgid "Unchanged"
+msgstr "Oförändrad"
+
+#: apps/pootle_checks/constants.py:72 apps/pootle_store/constants.py:66
+#: core/utils/stats.py:30 templates/editor/_filters.html:9
+msgid "Untranslated"
+msgstr "Ej översatt"
+
+#: apps/pootle_checks/constants.py:73
+msgid "URLs"
+msgstr "URL:er"
+
+#: apps/pootle_checks/constants.py:74
+msgid "Valid characters"
+msgstr "Giltiga tecken"
+
+#: apps/pootle_checks/constants.py:75
+msgid "Placeholders"
+msgstr "Platshållare"
+
+#: apps/pootle_checks/constants.py:76
+msgid "Valid XML"
+msgstr "Giltig XML"
+
+#: apps/pootle_checks/constants.py:77
+msgid "XML tags"
+msgstr "XML taggar"
+
+#: apps/pootle_checks/constants.py:80
+msgid "ftl format"
+msgstr "ftl-format"
+
+#: apps/pootle_checks/constants.py:83
+msgid "Romanian: Avoid cedilla diacritics"
+msgstr "Rumänska: Undvik diakritiska tecken"
+
+#: apps/pootle_checks/constants.py:84
+msgid "Romanian: Use \"niciun\"/\"nicio\""
+msgstr "Rumänska: Använd \"niciun\"/\"nicio\""
+
 #: apps/pootle_format/abstracts.py:35
 msgid "Format name"
 msgstr "Format namn"
@@ -340,11 +579,16 @@ msgstr "Backend-URL eller sökväg"
 msgid "The URL or path to your translation files"
 msgstr "URL eller sökvägen till översättningsfiler"
 
-#: apps/pootle_fs/forms.py:54
-msgid "Translation path mapping"
+#: apps/pootle_fs/forms.py:47
+#, fuzzy
+msgid "Translation mapping presets"
 msgstr "Mappning översättningssökväg"
 
 #: apps/pootle_fs/forms.py:55
+msgid "Translation path mapping"
+msgstr "Mappning översättningssökväg"
+
+#: apps/pootle_fs/forms.py:56
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
@@ -352,88 +596,88 @@ msgstr ""
 "Mappning av översättningssökvägar som mappar översättningsfiler på "
 "filsystemet till filer på Pootle."
 
-#: apps/pootle_fs/forms.py:181
+#: apps/pootle_fs/forms.py:182
 msgid "Filesystem language codes must be unique"
 msgstr "Filsystemets språkkoder måste vara unika"
 
-#: apps/pootle_fs/forms.py:185
+#: apps/pootle_fs/forms.py:186
 msgid "Pootle language mappings must be unique"
 msgstr "Pootle språkmappning måste vara unik"
 
-#: apps/pootle_language/forms.py:28
+#: apps/pootle_language/forms.py:27
 msgid "Member"
 msgstr "Medlem"
 
-#: apps/pootle_language/forms.py:29
+#: apps/pootle_language/forms.py:28
 msgid "Submitter"
 msgstr "Bidragare"
 
-#: apps/pootle_language/forms.py:30
+#: apps/pootle_language/forms.py:29 apps/pootle_profile/utils.py:98
 msgid "Reviewer"
 msgstr "Granskare"
 
-#: apps/pootle_language/forms.py:31
+#: apps/pootle_language/forms.py:30
 msgid "Administrator"
 msgstr "Administratör"
 
-#: apps/pootle_language/forms.py:70
+#: apps/pootle_language/forms.py:69
 msgid "Administrators"
 msgstr "Administratörer"
 
-#: apps/pootle_language/forms.py:76
+#: apps/pootle_language/forms.py:75
 msgid "Reviewers"
 msgstr "Granskare"
 
-#: apps/pootle_language/forms.py:81
+#: apps/pootle_language/forms.py:80
 msgid "Submitters"
 msgstr "Bidragare"
 
-#: apps/pootle_language/forms.py:86
+#: apps/pootle_language/forms.py:85
 msgid "Members"
 msgstr "Medlemmar"
 
-#: apps/pootle_language/forms.py:90
+#: apps/pootle_language/forms.py:89
 msgid "New member"
 msgstr "Ny medlem"
 
-#: apps/pootle_language/forms.py:91
+#: apps/pootle_language/forms.py:90
 msgid "Add a user to this team"
 msgstr "Lägg till en användare till gruppen"
 
-#: apps/pootle_language/forms.py:98
+#: apps/pootle_language/forms.py:97
 msgid "Role"
 msgstr "Roll"
 
-#: apps/pootle_language/forms.py:129
+#: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
 msgstr "Roll krävs när du lägger till en ny medlem"
 
-#: apps/pootle_language/forms.py:155 core/forms.py:184
+#: apps/pootle_language/forms.py:154 core/forms.py:184
 msgid "Reject"
 msgstr "Vägra"
 
-#: apps/pootle_language/forms.py:156 core/forms.py:185
+#: apps/pootle_language/forms.py:155 core/forms.py:185
 msgid "Accept"
 msgstr "Godkänn"
 
-#: apps/pootle_language/forms.py:158
+#: apps/pootle_language/forms.py:157
 msgid "Filter by suggester"
 msgstr "Filtrera efter förslagsställare"
 
-#: apps/pootle_language/forms.py:164
+#: apps/pootle_language/forms.py:163
 msgid "Filter by state"
 msgstr "Filtrera efter tillstånd"
 
-#: apps/pootle_language/forms.py:174 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
 #: core/browser.py:26
 msgid "Project"
 msgstr "Projekt"
 
-#: apps/pootle_language/models.py:85 apps/pootle_project/models.py:203
+#: apps/pootle_language/models.py:28 apps/pootle_project/models.py:201
 msgid "Code"
 msgstr "Kod"
 
-#: apps/pootle_language/models.py:86
+#: apps/pootle_language/models.py:29
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
@@ -443,18 +687,18 @@ msgstr ""
 "landskod enligt ISO 3166. <a href=\"http://www.w3.org/International/articles/"
 "language-tags/\">Mer information</a>"
 
-#: apps/pootle_language/models.py:95 templates/languages/_nav.html:35
+#: apps/pootle_language/models.py:38 templates/languages/_nav.html:35
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
 msgstr "Specialtecken"
 
-#: apps/pootle_language/models.py:96
+#: apps/pootle_language/models.py:39
 msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
 "Ange eventuella specialtecken som användare kan ha svårt för att mata in"
 
-#: apps/pootle_language/models.py:100
+#: apps/pootle_language/models.py:43
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
@@ -464,15 +708,15 @@ msgstr ""
 "localization-guide/en/latest/l10n/pluralforms.html\">vår sida</a> om "
 "pluralformer."
 
-#: apps/pootle_language/models.py:106
+#: apps/pootle_language/models.py:49
 msgid "Unknown"
 msgstr "Okänt"
 
-#: apps/pootle_language/models.py:110
+#: apps/pootle_language/models.py:53
 msgid "Number of Plurals"
 msgstr "Antal pluralformer"
 
-#: apps/pootle_language/models.py:113
+#: apps/pootle_language/models.py:56
 msgid "Plural Equation"
 msgstr "Pluralekvation"
 
@@ -480,11 +724,11 @@ msgstr "Pluralekvation"
 msgid "Unit"
 msgstr "Enhet"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:64
+#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:58
 msgid "State"
 msgstr "Tillstånd"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:62
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:56
 msgid "Source"
 msgstr "Källa"
 
@@ -528,332 +772,6 @@ msgid_plural "Accepted %s suggestions"
 msgstr[0] "Godkände %s förslag"
 msgstr[1] "Godkände %s förslag"
 
-#: apps/pootle_misc/checks.py:35 core/browser.py:47
-msgid "Critical"
-msgstr "Kritiskt"
-
-#: apps/pootle_misc/checks.py:36
-msgid "Cosmetic"
-msgstr "Kosmetisk"
-
-#: apps/pootle_misc/checks.py:37
-msgid "Functional"
-msgstr "Funktionell"
-
-#: apps/pootle_misc/checks.py:38
-msgid "Extraction"
-msgstr "Extrahering"
-
-#: apps/pootle_misc/checks.py:39
-msgid "Other"
-msgstr "Andra"
-
-#: apps/pootle_misc/checks.py:43
-msgid "Accelerators"
-msgstr "Snabbtangenter"
-
-#: apps/pootle_misc/checks.py:44
-msgid "Acronyms"
-msgstr "Akronymer"
-
-#: apps/pootle_misc/checks.py:45
-msgid "Blank"
-msgstr "Tom"
-
-#: apps/pootle_misc/checks.py:46
-msgid "Brackets"
-msgstr "Parenteser"
-
-#: apps/pootle_misc/checks.py:47
-msgid "Compendium conflict"
-msgstr "Kompendiumkonflikt"
-
-#: apps/pootle_misc/checks.py:48
-msgid "Translator credits"
-msgstr "Erkännande"
-
-#: apps/pootle_misc/checks.py:49
-msgid "Dialog sizes"
-msgstr "Dialogstorlekar"
-
-#: apps/pootle_misc/checks.py:50
-msgid "Double quotes"
-msgstr "Dubbla citationstecken"
-
-#: apps/pootle_misc/checks.py:51
-msgid "Double spaces"
-msgstr "Dubbla mellanslag"
-
-#: apps/pootle_misc/checks.py:52
-msgid "Repeated word"
-msgstr "Upprepat ord"
-
-#: apps/pootle_misc/checks.py:53
-msgid "E-mail"
-msgstr "E-post"
-
-#: apps/pootle_misc/checks.py:54
-msgid "Ending punctuation"
-msgstr "Avslutande interpunktion"
-
-#: apps/pootle_misc/checks.py:55
-msgid "Ending whitespace"
-msgstr "Avslutande mellanslag"
-
-#: apps/pootle_misc/checks.py:56
-msgid "Escapes"
-msgstr "Esc-tecken"
-
-#: apps/pootle_misc/checks.py:57
-msgid "File paths"
-msgstr "Filsökvägar"
-
-#: apps/pootle_misc/checks.py:58
-msgid "Functions"
-msgstr "Funktioner"
-
-#: apps/pootle_misc/checks.py:59
-msgid "GConf values"
-msgstr "GConf-värden"
-
-#: apps/pootle_misc/checks.py:60 core/utils/stats.py:29
-msgid "Fuzzy"
-msgstr "Luddig"
-
-#: apps/pootle_misc/checks.py:61
-msgid "Old KDE comment"
-msgstr "Gammal KDE-kommentar"
-
-#: apps/pootle_misc/checks.py:62
-msgid "Long"
-msgstr "Lång"
-
-#: apps/pootle_misc/checks.py:63
-msgid "Must translate words"
-msgstr "Måste översätta ord"
-
-#: apps/pootle_misc/checks.py:64
-msgid "Newlines"
-msgstr "Nya rader"
-
-#: apps/pootle_misc/checks.py:65
-msgid "Number of plurals"
-msgstr "Antal pluralformer"
-
-#: apps/pootle_misc/checks.py:66
-msgid "Don't translate words"
-msgstr "Översätt inte ord"
-
-#: apps/pootle_misc/checks.py:67
-msgid "Numbers"
-msgstr "Nummer"
-
-#: apps/pootle_misc/checks.py:68
-msgid "Options"
-msgstr "Inställningar"
-
-#: apps/pootle_misc/checks.py:69
-msgid "printf()"
-msgstr "printf()"
-
-#: apps/pootle_misc/checks.py:70
-msgid "Punctuation spacing"
-msgstr "Interpunktionsmellanrum"
-
-#: apps/pootle_misc/checks.py:71
-msgid "Pure punctuation"
-msgstr "Rena interpunktioner"
-
-#: apps/pootle_misc/checks.py:72
-msgid "Python brace placeholders"
-msgstr "Parentens-platshållare för Python"
-
-#: apps/pootle_misc/checks.py:73
-msgid "Number of sentences"
-msgstr "Antal meningar"
-
-#: apps/pootle_misc/checks.py:74
-msgid "Short"
-msgstr "Kort"
-
-#: apps/pootle_misc/checks.py:75
-msgid "Simple capitalization"
-msgstr "Gemener och versaler"
-
-#: apps/pootle_misc/checks.py:76
-msgid "Simple plural(s)"
-msgstr "Enkla pluralformer"
-
-#: apps/pootle_misc/checks.py:77
-msgid "Single quotes"
-msgstr "Enkla citationstecken"
-
-#: apps/pootle_misc/checks.py:78
-msgid "Starting capitalization"
-msgstr "Inledande versal"
-
-#: apps/pootle_misc/checks.py:79
-msgid "Starting punctuation"
-msgstr "Inledande interpunktion"
-
-#: apps/pootle_misc/checks.py:80
-msgid "Starting whitespace"
-msgstr "Inledande mellanslag"
-
-#. Translators: This refers to tabulation characters
-#: apps/pootle_misc/checks.py:82
-msgid "Tabs"
-msgstr "Flikar"
-
-#: apps/pootle_misc/checks.py:83
-msgid "Unchanged"
-msgstr "Oförändrad"
-
-#: apps/pootle_misc/checks.py:84 apps/pootle_store/constants.py:66
-#: core/utils/stats.py:30 templates/editor/_filters.html:9
-msgid "Untranslated"
-msgstr "Ej översatt"
-
-#: apps/pootle_misc/checks.py:85
-msgid "URLs"
-msgstr "URL:er"
-
-#: apps/pootle_misc/checks.py:86
-msgid "Valid characters"
-msgstr "Giltiga tecken"
-
-#: apps/pootle_misc/checks.py:87
-msgid "Placeholders"
-msgstr "Platshållare"
-
-#: apps/pootle_misc/checks.py:88
-msgid "Valid XML"
-msgstr "Giltig XML"
-
-#: apps/pootle_misc/checks.py:89
-msgid "XML tags"
-msgstr "XML taggar"
-
-#: apps/pootle_misc/checks.py:91
-msgid "Broken HTML Entities"
-msgstr "Trasiga HTML-entiteter"
-
-#: apps/pootle_misc/checks.py:92
-msgid "Java format"
-msgstr "Javaformat"
-
-#: apps/pootle_misc/checks.py:93
-msgid "Template format"
-msgstr "Mallformat"
-
-#: apps/pootle_misc/checks.py:94
-msgid "Mustache placeholders"
-msgstr "Mustache platshållare"
-
-#: apps/pootle_misc/checks.py:95
-msgid "Mustache placeholder pairs"
-msgstr "Mustache platshållarpar"
-
-#: apps/pootle_misc/checks.py:96
-msgid "Mustache like placeholder pairs"
-msgstr "Mustache som platshållarpar"
-
-#: apps/pootle_misc/checks.py:97
-msgid "C format placeholders"
-msgstr "C format platshållare"
-
-#: apps/pootle_misc/checks.py:98
-msgid "Non printable"
-msgstr "Icke utskrivbara"
-
-#: apps/pootle_misc/checks.py:99
-msgid "Unbalanced tag braces"
-msgstr "Obalanserade taggparenteser"
-
-#: apps/pootle_misc/checks.py:100
-msgid "Changed attributes"
-msgstr "Ändrade attribut"
-
-#: apps/pootle_misc/checks.py:101
-msgid "Unescaped ampersands"
-msgstr "Okodade et-tecken"
-
-#: apps/pootle_misc/checks.py:102
-msgid "Incorrectly escaped ampersands"
-msgstr "Felaktigt kodade et-tecken"
-
-#: apps/pootle_misc/checks.py:103
-msgid "Whitespaces"
-msgstr "Mellanrum"
-
-#: apps/pootle_misc/checks.py:104
-msgid "Date format"
-msgstr "Datumformat"
-
-#: apps/pootle_misc/checks.py:105
-msgid "Uppercase placeholders"
-msgstr "Versala platshållare"
-
-#: apps/pootle_misc/checks.py:106
-msgid "Percent sign placeholders"
-msgstr "Procent teckenplatshållare"
-
-#: apps/pootle_misc/checks.py:108
-msgid "Percent sign closure placeholders"
-msgstr "Procent tecken förslutningsplatshållare"
-
-#: apps/pootle_misc/checks.py:109
-msgid "$ placeholders"
-msgstr "$ platshållare"
-
-#: apps/pootle_misc/checks.py:110
-msgid "$ closure placeholders"
-msgstr "$ förslutningsplatshållare"
-
-#: apps/pootle_misc/checks.py:111
-msgid "Java-encoded unicode"
-msgstr "Java-kodad unicode"
-
-#: apps/pootle_misc/checks.py:112
-msgid "Objective-C format"
-msgstr "Objective-C format"
-
-#: apps/pootle_misc/checks.py:113
-msgid "Android format"
-msgstr "Android-format"
-
-#: apps/pootle_misc/checks.py:114
-msgid "Tags differ"
-msgstr "Taggar skiljer sig åt"
-
-#: apps/pootle_misc/checks.py:115
-msgid "Curly braces"
-msgstr "Klammerparenteser"
-
-#: apps/pootle_misc/checks.py:116
-msgid "Potential unwanted placeholders"
-msgstr "Potentiellt oönskade platshållare"
-
-#: apps/pootle_misc/checks.py:117
-msgid "Double quotes in tags"
-msgstr "Dubbla citattecken i taggar"
-
-#: apps/pootle_misc/checks.py:118
-msgid "Percent brace placeholders"
-msgstr "Procent parentes-platshållare"
-
-#: apps/pootle_misc/checks.py:121
-msgid "ftl format"
-msgstr "ftl-format"
-
-#: apps/pootle_misc/checks.py:124
-msgid "Romanian: Avoid cedilla diacritics"
-msgstr "Rumänska: Undvik diakritiska tecken"
-
-#: apps/pootle_misc/checks.py:125
-msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr "Rumänska: Använd \"niciun\"/\"nicio\""
-
 #: apps/pootle_misc/forms.py:101
 msgid "Search"
 msgstr "Sök"
@@ -862,23 +780,23 @@ msgstr "Sök"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Sök (Ctrl+Shift+S)<br/>Skriv och tryck Enter för att söka"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:440
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:368
 msgid "Exact Match"
 msgstr "Exakt match"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:446
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:374
 msgid "Source Text"
 msgstr "Källtext"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:447
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:375
 msgid "Target Text"
 msgstr "Måltext"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:448
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:376
 msgid "Comments"
 msgstr "Kommentarer"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:449
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:377
 msgid "Locations"
 msgstr "Platser"
 
@@ -903,26 +821,114 @@ msgstr "Sista (%d)"
 msgid "Search unavailable"
 msgstr "Sökning är inte tillgänglig"
 
+#: apps/pootle_profile/templatetags/profile_tags.py:34
+#, fuzzy, python-format
+msgid "My current score at %s is %s"
+msgstr "Min nuvarande poäng på %(server_title)s är %(score)s "
+
+#: apps/pootle_profile/templatetags/profile_tags.py:37
+#: apps/pootle_profile/templatetags/profile_tags.py:62
+#: templates/user/profile.html:31 templates/user/profile.html:43
+msgid "Tweet this!"
+msgstr "Twittra detta!"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:51
+#, fuzzy, python-format
+msgid "#%s contributor in %s in the last 30 days"
+msgstr "Inga bidrag under de senaste 30 dagarna"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:55
+#, fuzzy, python-format
+msgid "I am #%s contributor in %s in the last 30 days at %s!"
+msgstr ""
+"Jag är bidragsgivare #%(pos)s för %(lang_name)s under de senaste 30 dagarna "
+"på %(server_title)s! "
+
+#: apps/pootle_profile/templatetags/profile_tags.py:64
+#: templates/user/profile.html:40
+msgid "No contributions in the last 30 days"
+msgstr "Inga bidrag under de senaste 30 dagarna"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:75
+#: templates/user/profile.html:73
+msgid "My Website"
+msgstr "Min webbplats"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:85
+#: templates/user/profile.html:79
+msgid "My LinkedIn Profile"
+msgstr "Min LinkedIn profil"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:94
+#, fuzzy
+msgid "Site administrator"
+msgstr "Administratör"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:111
+#: templates/user/profile.html:98
+msgid ""
+"Some translations are provided by anonymous volunteers. These are registered "
+"under this special meta-account."
+msgstr ""
+"Vissa översättningar ges av anonyma volontärer. Dessa är registrerade enligt "
+"detta speciella meta-konto."
+
+#: apps/pootle_profile/templatetags/profile_tags.py:115
+#: templates/user/profile.html:100
+msgid ""
+"Some translations are imported from external files. These are registered "
+"under this special meta-account."
+msgstr ""
+"Vissa översättningar importeras från externa filer. Dessa är registrerade "
+"enligt detta speciella meta-konto."
+
+#: apps/pootle_profile/templatetags/profile_tags.py:125
+#: templates/user/profile.html:88
+msgid ""
+"Show others who you are, tell about yourself<br/>and make your public "
+"profile look gorgeous!"
+msgstr ""
+"Visa andra vem du är, berätta om dig själv<br/>och gör din publika profil "
+"underbar!"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:128
+#: templates/user/profile.html:13
+msgid "You can set or change your avatar image at www.gravatar.com"
+msgstr "Du kan ändra din profilbild på www.gravatar.com"
+
+#: apps/pootle_profile/utils.py:50 templates/user/profile.html:16
+msgid "Anonymous User"
+msgstr "Anonym användare"
+
+#: apps/pootle_profile/utils.py:96 templates/layout.html:134
+msgid "Admin"
+msgstr "Administratör"
+
+#: apps/pootle_profile/utils.py:100
+#, fuzzy
+msgid "Translator"
+msgstr "Översättning"
+
 #: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
 msgstr "Välj ett eller flera språk"
 
-#: apps/pootle_project/forms.py:65 core/browser.py:31
+#: apps/pootle_project/forms.py:57 core/browser.py:31
 msgid "Language"
 msgstr "Språk"
 
-#: apps/pootle_project/models.py:181
+#: apps/pootle_project/models.py:179
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%(code)s\" kan inte användas som en projekt-kod"
 
 #. Translators: this refers to the project quality checker
-#: apps/pootle_project/models.py:190
+#: apps/pootle_project/models.py:188
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "\"%(code)s\" kan inte användas som en projekt-kontroll"
 
-#: apps/pootle_project/models.py:197
+#: apps/pootle_project/models.py:195
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -930,52 +936,52 @@ msgstr ""
 "En kort kod för projektet. Denna bör endast innehålla ASCII-tecken, siffror "
 "och understreck (_)."
 
-#: apps/pootle_project/models.py:215
+#: apps/pootle_project/models.py:213
 msgid "Quality Checks"
 msgstr "Kvalitetskontroller"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:219
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
 msgstr "Automatisk identifiering av gnu/icke-gnu fillayouter (långsammare)"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:220
 msgid "GNU style: files named by language code"
 msgstr "GNU-stil: filer får sitt namn av språkkoden"
 
-#: apps/pootle_project/models.py:223
+#: apps/pootle_project/models.py:221
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Icke-GNU: Varje språk i sin egna katalog"
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:222
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr "Tillåt Pootle FS att hantera filsystem (Experimentell)"
 
-#: apps/pootle_project/models.py:228
+#: apps/pootle_project/models.py:226
 msgid "Project Tree Style"
 msgstr "Projektträd"
 
-#: apps/pootle_project/models.py:236
+#: apps/pootle_project/models.py:234
 msgid "Ignore Files"
 msgstr "Ignorera filer"
 
-#: apps/pootle_project/models.py:242
+#: apps/pootle_project/models.py:240
 msgid "Errors Report Email"
 msgstr "E-post felrapport"
 
-#: apps/pootle_project/models.py:243
+#: apps/pootle_project/models.py:241
 msgid "An email address where issues with the source text can be reported."
 msgstr "En e-postadress där problem kan rapporteras med källtexten."
 
 #. Translators: This is the URL prefix to search for context screenshots
-#: apps/pootle_project/models.py:248
+#: apps/pootle_project/models.py:246
 msgid "Screenshot Search Prefix"
 msgstr "Skärmbild sökprefix"
 
-#: apps/pootle_project/models.py:253
+#: apps/pootle_project/models.py:251
 msgid "Disabled"
 msgstr "Inaktiverad"
 
-#: apps/pootle_project/views.py:263
+#: apps/pootle_project/views.py:266
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
@@ -983,20 +989,25 @@ msgid ""
 msgstr ""
 "Översättningsprojekt (%s) har skapats. Vi uppdaterar nu filer från filmallar."
 
-#: apps/pootle_project/views.py:270
+#: apps/pootle_project/views.py:273
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Översättningsprojekt (%s) har tagits bort"
 
-#: apps/pootle_statistics/models.py:63
+#: apps/pootle_statistics/models.py:57
 msgid "Target"
 msgstr "Mål"
 
-#: apps/pootle_statistics/models.py:65
+#: apps/pootle_statistics/models.py:59
 msgid "Comment"
 msgstr "Kommentar"
 
-#: apps/pootle_store/abstracts.py:250 apps/pootle_store/abstracts.py:257
+#: apps/pootle_statistics/models.py:60
+#, fuzzy
+msgid "Check"
+msgstr "Kontroller"
+
+#: apps/pootle_store/abstracts.py:215 apps/pootle_store/abstracts.py:222
 msgid "Path"
 msgstr "Sökväg"
 
@@ -1004,8 +1015,8 @@ msgstr "Sökväg"
 msgid "Obsolete"
 msgstr "Föråldrat"
 
-#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:213
-#: templates/editor/_filters.html:10
+#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:188
+#: apps/pootle_store/forms.py:563 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Behöver kontrolleras"
 
@@ -1026,11 +1037,11 @@ msgstr "Otillräckliga rättigheter för tillgång till förslagsläge."
 msgid "Insufficient rights to access translation mode."
 msgstr "Otillräckliga rättigheter för tillgång till översättningsläget."
 
-#: apps/pootle_store/decorators.py:30 apps/pootle_store/views.py:644
+#: apps/pootle_store/decorators.py:30
 msgid "Insufficient rights to access review mode."
 msgstr "Otillräckliga rättigheter för tillgång till granskningsläget."
 
-#: apps/pootle_store/forms.py:102
+#: apps/pootle_store/forms.py:100
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
@@ -1038,13 +1049,23 @@ msgstr "Otillräckliga rättigheter för tillgång till granskningsläget."
 msgid "Plural Form %d"
 msgstr "Pluralform %d"
 
-#: apps/pootle_store/forms.py:270
+#: apps/pootle_store/forms.py:246
 msgid "Needs work flag must be cleared"
 msgstr "Behöver kontrolleras flagga måste rensas"
 
-#: apps/pootle_store/forms.py:354
+#: apps/pootle_store/forms.py:301
 msgid "Translator comment"
 msgstr "Översättarens kommentar"
+
+#: apps/pootle_store/forms.py:481
+#, python-format
+msgid "Suggestion '%s' has already been accepted or rejected."
+msgstr ""
+
+#: apps/pootle_store/forms.py:499 core/decorators.py:140
+#: core/views/decorators.py:70
+msgid "Insufficient rights to access this page."
+msgstr "Otillräckliga rättigheter för att få tillgång till den här sidan."
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -1056,60 +1077,79 @@ msgstr "Singular"
 msgid "Plural"
 msgstr "Plural"
 
-#: apps/pootle_store/unit/timeline.py:47
+#: apps/pootle_store/unit/timeline.py:72
+msgid "Added suggestion"
+msgstr "Lade till förslag"
+
+#: apps/pootle_store/unit/timeline.py:85
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Godkända förslag från %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:48
-#, python-format
-msgid "Rejected suggestion from %(author)s"
-msgstr "Avvisade förslag från %(author)s"
-
-#: apps/pootle_store/unit/timeline.py:56
+#: apps/pootle_store/unit/timeline.py:93
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Godkände förslag från %(author)s med kommentar: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:61
+#: apps/pootle_store/unit/timeline.py:109
+#, python-format
+msgid "Rejected suggestion from %(author)s"
+msgstr "Avvisade förslag från %(author)s"
+
+#: apps/pootle_store/unit/timeline.py:117
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Avvisade förslag från %(author)s med kommentar: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:67
-msgid "Added suggestion"
-msgstr "Lade till förslag"
+#: apps/pootle_store/unit/timeline.py:155
+msgid "Unit created"
+msgstr "Enhet skapad"
 
-#: apps/pootle_store/utils.py:67
+#: apps/pootle_store/unit/timeline.py:185
+msgid "Comment:"
+msgstr "Kommentar:"
+
+#: apps/pootle_store/unit/timeline.py:188
+#, fuzzy
+msgid "Removed comment"
+msgstr "Ta bort kommentar"
+
+#: apps/pootle_store/unit/timeline.py:213
+#, fuzzy, python-format
+msgid "Muted %(check_name)s check"
+msgstr "Ta bort <a href=\"%(check_url)s\">%(check_name)s</a> kontroll"
+
+#: apps/pootle_store/unit/timeline.py:222
+#, fuzzy, python-format
+msgid "Unmuted %(check_name)s check"
+msgstr "Använd <a href=\"%(check_url)s\">%(check_name)s</a> kontroll"
+
+#: apps/pootle_store/utils.py:137
 msgid "Suggestion accepted with comment"
 msgstr "Förslag godkändes med kommentar"
 
-#: apps/pootle_store/utils.py:69
+#: apps/pootle_store/utils.py:139
 msgid "Suggestion rejected with comment"
 msgstr "Förslag avvisades med kommentar"
 
-#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:105
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:105
 msgid "Path too long."
 msgstr "Sökväg för lång."
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:107
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:107
 #: core/decorators.py:41
 msgid "Arguments missing."
 msgstr "Argument saknas."
 
-#: apps/pootle_store/views.py:233
+#: apps/pootle_store/views.py:235
 msgid "Failed to remove comment."
 msgstr "Misslyckades med att ta bort kommentar."
 
-#: apps/pootle_store/views.py:268
+#: apps/pootle_store/views.py:267
 msgid "Comment submission failed."
 msgstr "Misslyckades med att skicka in kommentar."
 
-#: apps/pootle_store/views.py:575
-msgid "Failed to process submission."
-msgstr "Det gick inte att bearbeta bidrag."
-
-#: apps/pootle_store/views.py:615
+#: apps/pootle_store/views.py:567
 msgid "Failed to process suggestion."
 msgstr "Misslyckades med att behandla förslag."
 
@@ -1239,7 +1279,7 @@ msgstr ""
 "Använd detta för att ge mer information eller fler instruktioner. Tillåten "
 "uppmärkning: %s"
 
-#: checks.py:64
+#: checks.py:74
 msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
@@ -1247,7 +1287,7 @@ msgstr ""
 "Det finns användarkonton med dubbla e-poster. Detta kommer inte att tillåtas "
 "i Pootle 2.8."
 
-#: checks.py:66
+#: checks.py:76
 msgid ""
 "Try using 'pootle find_duplicate_emails', and then update user emails with "
 "'pootle update_user_email username email'. You might also want to consider "
@@ -1257,65 +1297,65 @@ msgstr ""
 "användarens e-post med 'pootle update_user_email'. Du kanske också vill "
 "överväga att använda pootle merge_user eller purge_user kommandon"
 
-#: checks.py:90
+#: checks.py:100
 msgid "Your version of Django is too old."
 msgstr "Din version av Django är för gammal."
 
-#: checks.py:91
+#: checks.py:101
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
 msgstr "Försök med pip install --upgrade 'Django==%s'"
 
-#: checks.py:98
+#: checks.py:108
 msgid "Your version of lxml is too old."
 msgstr "Din version av lxml är för gammal."
 
-#: checks.py:99
+#: checks.py:109
 msgid "Try pip install --upgrade lxml"
 msgstr "Försök med pip install --upgrade lxml"
 
-#: checks.py:105
+#: checks.py:115
 msgid "Your version of Translate Toolkit is too old."
 msgstr "Din version av Translate Toolkit är för gammal."
 
-#: checks.py:106
+#: checks.py:116
 msgid "Try pip install --upgrade translate-toolkit"
 msgstr "Försök med install --upgrade translate-toolkit"
 
-#: checks.py:126
+#: checks.py:136
 #, python-format
 msgid "Could not connect to Redis (%s)"
 msgstr "Kunde inte ansluta till Redis (%s)"
 
-#: checks.py:127
+#: checks.py:137
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
 msgstr "Se till att Redis körs på %(host)s:%(port)s"
 
-#: checks.py:137
+#: checks.py:147
 msgid "Your version of Redis is too old."
 msgstr "Din version av Redis är för gammal."
 
-#: checks.py:138
+#: checks.py:148
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
 msgstr "Uppdatera systemets serverpaket för Redis till åtminstone version %s"
 
 #. Translators: a worker processes background tasks
-#: checks.py:149
+#: checks.py:159
 msgid "No worker running."
 msgstr "Ingen worker körs."
 
 #. Translators: a worker processes background tasks
-#: checks.py:151
+#: checks.py:161
 msgid "Run new workers with 'pootle rqworker'"
 msgstr "Kör nya workers med 'pootle rqworker'"
 
-#: checks.py:166
+#: checks.py:176
 msgid "Cache backend is not set to Redis."
 msgstr "Cache backend är inte satt till Redis."
 
-#: checks.py:167
+#: checks.py:177
 #, python-format
 msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
@@ -1324,15 +1364,15 @@ msgstr ""
 "Ange standardcache backend till django_redis.cache.RedisCache\n"
 "Aktuella inställningar: %r"
 
-#: checks.py:177
+#: checks.py:187
 msgid "Could not initiate a Redis cache connection"
 msgstr "Det gick inte att initiera en Redis cache-anslutning"
 
-#: checks.py:178 checks.py:192
+#: checks.py:188 checks.py:202
 msgid "Double-check your CACHES settings"
 msgstr "Dubbelkolla dina cache-inställningar"
 
-#: checks.py:190
+#: checks.py:200
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
@@ -1340,27 +1380,27 @@ msgstr ""
 "Distinkta django_redis.cache.RedisCache konfigurationer krävs för `default`,"
 "` redis` och `lru`."
 
-#: checks.py:198
+#: checks.py:208
 msgid "DEBUG mode is on. Do not do this in production!"
 msgstr "Debugläge är på. Gör inte detta i produktion!"
 
-#: checks.py:199
+#: checks.py:209
 msgid "Set DEBUG = False in Pootle settings"
 msgstr "Ange DEBUG = False i Pootle inställningar"
 
-#: checks.py:205
+#: checks.py:215
 msgid "The sqlite database backend is unsupported"
 msgstr "SQLite databas backend stöds inte"
 
-#: checks.py:206
+#: checks.py:216
 msgid "Set your default database engine to postgresql or mysql"
 msgstr "Ställ in standarddatabasmotor till PostgreSQL eller MySQL"
 
-#: checks.py:213
+#: checks.py:223
 msgid "Not using cached_db as session engine"
 msgstr "Använder inte cached_db som sessionsmotor"
 
-#: checks.py:214
+#: checks.py:224
 #, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
@@ -1369,11 +1409,11 @@ msgstr ""
 "Ange SESSION_ENGINE till django.contrib.sessions.backends.cached_db\n"
 "Aktuella inställningar: %r"
 
-#: checks.py:222
+#: checks.py:232
 msgid "POOTLE_CONTACT_EMAIL is not set."
 msgstr "POOTLE_CONTACT_EMAIL är inte satt."
 
-#: checks.py:223
+#: checks.py:233
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
@@ -1381,12 +1421,12 @@ msgstr ""
 "Ange POOTLE_CONTACT_EMAIL för att tillåta användare att kontakta "
 "administratörer genom Pootle kontaktformulär."
 
-#: checks.py:231
+#: checks.py:241
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
 msgstr "POOTLE_CONTACT_EMAIL använder följande standardinställning %r."
 
-#: checks.py:233
+#: checks.py:243
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
@@ -1394,11 +1434,11 @@ msgstr ""
 "POOTLE_CONTACT_EMAIL är den adress som kommer att ta emot meddelanden från "
 "kontaktformuläret."
 
-#: checks.py:240
+#: checks.py:250
 msgid "DEFAULT_FROM_EMAIL is not set."
 msgstr "DEFAULT_FROM_EMAIL är inte satt."
 
-#: checks.py:241 checks.py:251
+#: checks.py:251 checks.py:261
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
@@ -1406,36 +1446,36 @@ msgstr ""
 "DEFAULT_FROM_EMAIL används i all utgående Pootle e-post.\n"
 "Glöm inte att granska e-postserverinställningar."
 
-#: checks.py:249
+#: checks.py:259
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr "DEFAULT_FROM_EMAIL använder följande standardinställning %r."
 
-#: checks.py:260
+#: checks.py:270
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "POOTLE_MARKUP_FILTER saknas."
 
-#: checks.py:261
+#: checks.py:271
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Ange POOTLE_MARKUP_FILTER."
 
-#: checks.py:266
+#: checks.py:276
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Ogiltigt värde i POOTLE_MARKUP_FILTER."
 
-#: checks.py:267
+#: checks.py:277
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Ange ett giltigt värde för POOTLE_MARKUP_FILTER."
 
-#: checks.py:281
+#: checks.py:291
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "Ogiltig uppmärkning i POOTLE_MARKUP_FILTER."
 
-#: checks.py:282
+#: checks.py:292
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Ange en giltig uppmärkning för POOTLE_MARKUP_FILTER."
 
-#: checks.py:287
+#: checks.py:297
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1444,65 +1484,65 @@ msgstr ""
 "POOTLE_MARKUP_FILTER är satt till '%s' upppmärkning, men det paket kan inte "
 "hittas."
 
-#: checks.py:289
+#: checks.py:299
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Installera paketet eller ändra POOTLE_MARKUP_FILTER."
 
-#: checks.py:300
+#: checks.py:310
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr "POOTLE_TM_SERVER['%s'] har ingen INDEX_NAME."
 
-#: checks.py:301
+#: checks.py:311
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr "Ange en INDEX_NAME för POOTLE_TM_SERVER['%s']."
 
-#: checks.py:307
+#: checks.py:317
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr "Dubbla '%s' INDEX_NAME i POOTLE_TM_SERVER."
 
-#: checks.py:309
+#: checks.py:319
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr "Ange olika INDEX_NAME för alla servrar i POOTLE_TM_SERVER."
 
-#: checks.py:319
+#: checks.py:329
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr "POOTLE_TM_SERVER['%s'] har ingen ENGINE."
 
-#: checks.py:320
+#: checks.py:330
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
 msgstr "Ange en ENGINE för POOTLE_TM_SERVER['%s']."
 
-#: checks.py:327
+#: checks.py:337
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
 msgstr "POOTLE_TM_SERVER['%s'] har ingen HOST."
 
-#: checks.py:328
+#: checks.py:338
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
 msgstr "Ange en HOST för POOTLE_TM_SERVER['%s']."
 
-#: checks.py:335
+#: checks.py:345
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
 msgstr "POOTLE_TM_SERVER['%s'] har ingen PORT."
 
-#: checks.py:336
+#: checks.py:346
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
 msgstr "Ange en PORT för POOTLE_TM_SERVER['%s']."
 
-#: checks.py:345
+#: checks.py:355
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
 msgstr "POOTLE_TM_SERVER['%s'] har en WEIGHT mindre än 0.0 eller större än 1.0"
 
-#: checks.py:347
+#: checks.py:357
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
@@ -1510,40 +1550,40 @@ msgstr ""
 "Ange en WEIGHT mellan 0.0 och 1.0 (båda inkluderade) för "
 "POOTLE_TM_SERVER['%s']."
 
-#: checks.py:355
-#, python-format
-msgid "POOTLE_SCORE_COEFFICIENTS has no %s."
+#: checks.py:365
+#, fuzzy, python-format
+msgid "POOTLE_SCORES has no %s."
 msgstr "POOTLE_SCORE_COEFFICIENTS har ingen %s."
 
-#: checks.py:356
-#, python-format
-msgid "Set %s in POOTLE_SCORE_COEFFICIENTS."
+#: checks.py:366
+#, fuzzy, python-format
+msgid "Set %s in POOTLE_SCORES."
 msgstr "Ange %s i POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:363
-#, python-format
-msgid "Invalid value for %s in POOTLE_SCORE_COEFFICIENTS."
+#: checks.py:374
+#, fuzzy, python-format
+msgid "Invalid value for %s in POOTLE_SCORES."
 msgstr "Ogiltigt värde för %s i POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:365
-#, python-format
-msgid "Set a valid value for %s in POOTLE_SCORE_COEFFICIENTS."
+#: checks.py:377
+#, fuzzy, python-format
+msgid "Set a valid value for %s in POOTLE_SCORES."
 msgstr "Ange ett giltigt värde för %s i POOTLE_SCORE_COEFFICIENTS."
 
-#: checks.py:387
+#: checks.py:397
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
 "Standardanvändaren 'admin' har fortfarande ett lösenord satt till 'admin'."
 
-#: checks.py:389
+#: checks.py:399
 msgid "Remove the 'admin' user or change its password."
 msgstr "Ta bort 'admin' användaren eller ändra lösenord."
 
-#: checks.py:403
+#: checks.py:413
 msgid "Database connection uses transaction_hooks."
 msgstr "Databasanslutningen använder transaction_hooks."
 
-#: checks.py:404
+#: checks.py:414
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
@@ -1551,29 +1591,29 @@ msgstr ""
 "Ange DATABASES['default']['ENGINE'] till att använda en Django backend från "
 "django.db.backends."
 
-#: checks.py:424
+#: checks.py:434
 msgid "Email server is not available."
 msgstr "E-postserver är inte tillgänglig."
 
-#: checks.py:425
+#: checks.py:435
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "Granska dina e-postinställningar och se till att e-postservern fungerar."
 
-#: checks.py:452
+#: checks.py:462
 msgid "Revision is missing or has an incorrect value."
 msgstr "Revision saknas eller har ett felaktigt värde."
 
-#: checks.py:453
+#: checks.py:463
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr "Kör `revision --restore` för att återställa revisionsräknaren."
 
-#: checks.py:467
+#: checks.py:477
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 "Ingen canonical URL har angetts och standardwebbplats satt till example.com."
 
-#: checks.py:469
+#: checks.py:479
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
@@ -1581,11 +1621,11 @@ msgstr ""
 "Sätt `POOTLE_CANONICAL_URL` i inställningar eller uppdatera "
 "standardwebbplats om du använder django.contrib.sites."
 
-#: checks.py:473
+#: checks.py:483
 msgid "Canonical URL is set to http://localhost."
 msgstr "Canonical URL är satt till http://localhost."
 
-#: checks.py:475
+#: checks.py:485
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
@@ -1593,16 +1633,16 @@ msgstr ""
 "Sätt `POOTLE_CANONICAL_URL` till ett lämpligt värde för din webbplats eller "
 "lämna det tomt om du använder `django.contrib.sites`."
 
-#: checks.py:505
+#: checks.py:515
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "POOTLE_FS_WORKING_PATH inställning är inte satt."
 
-#: checks.py:509
+#: checks.py:519
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "Sökväg ('%s') som pekas ut av POOTLE_FS_WORKING_PATH existerar inte."
 
-#: checks.py:511
+#: checks.py:521
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
@@ -1610,7 +1650,7 @@ msgstr ""
 "Skapa katalogen som pekas ut av `POOTLE_FS_WORKING_PATH` eller ändra i "
 "inställningar."
 
-#: checks.py:516
+#: checks.py:526
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
@@ -1618,7 +1658,7 @@ msgstr ""
 "Sökväg ('%s') som pekas ut av POOTLE_FS_WORKING_PATH är inte skrivbar av "
 "Pootle."
 
-#: checks.py:519
+#: checks.py:529
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
@@ -1626,19 +1666,19 @@ msgstr ""
 "Lägg till skrivrättigheter till `POOTLE_FS_WORKING_PATH` eller ändra i "
 "inställningar."
 
-#: checks.py:538
+#: checks.py:548
 msgid "MySQL requires time zone settings."
 msgstr "MySQL kräver tidszonsinställningar."
 
-#: checks.py:558
+#: checks.py:568
 msgid "Pootle does not yet support Python 3."
 msgstr "Pootle stöder ännu inte Python 3."
 
-#: checks.py:559 checks.py:565
+#: checks.py:569 checks.py:575
 msgid "Use a Python 2.7 virtualenv."
 msgstr "Använd en Python 2.7 virtualenv."
 
-#: checks.py:564
+#: checks.py:574
 msgid "Pootle no longer supports Python versions older than 2.7"
 msgstr "Pootle stöder inte längre Python versioner äldre än 2.7"
 
@@ -1682,10 +1722,6 @@ msgstr "Tillbaka till språk"
 msgid "Back to parent folder"
 msgstr "Tillbaka till föräldramapp"
 
-#: core/decorators.py:140 core/views/decorators.py:70
-msgid "Insufficient rights to access this page."
-msgstr "Otillräckliga rättigheter för att få tillgång till den här sidan."
-
 #: core/decorators.py:153 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
 msgstr "Du har inte behörighet att administrera Pootle."
@@ -1723,27 +1759,27 @@ msgstr "Du måste ange en åtgärd som ska vidtas"
 msgid "A valid search field must be specified"
 msgstr "Ett giltigt sökfält måste specificeras"
 
-#: core/initdb.py:127
+#: core/initdb.py:135
 msgid "Can access a project"
 msgstr "Har åtkomst till projekt"
 
-#: core/initdb.py:131
+#: core/initdb.py:139
 msgid "Cannot access a project"
 msgstr "Har inte åtkomst till projekt"
 
-#: core/initdb.py:135
+#: core/initdb.py:143
 msgid "Can make a suggestion for a translation"
 msgstr "Kan lämna förslag till ändringar av en översättning"
 
-#: core/initdb.py:139
+#: core/initdb.py:147
 msgid "Can submit a translation"
 msgstr "Kan skicka in en översättning"
 
-#: core/initdb.py:143
+#: core/initdb.py:151
 msgid "Can review suggestions"
 msgstr "Kan granska förslag"
 
-#: core/initdb.py:147
+#: core/initdb.py:155
 msgid "Can perform administrative tasks"
 msgstr "Kan utföra administrativa uppgifter"
 
@@ -2616,30 +2652,13 @@ msgid "Remove comment"
 msgstr "Ta bort kommentar"
 
 #: templates/editor/units/xhr_comment.html:19
-msgid "Last comment:"
-msgstr "Senaste kommentar:"
+#, fuzzy
+msgid "Сomment:"
+msgstr "Kommentar:"
 
 #: templates/editor/units/xhr_timeline.html:3
 msgid "Timeline"
 msgstr "Tidslinje"
-
-#: templates/editor/units/xhr_timeline.html:38
-msgid "Last comment removed"
-msgstr "Senaste kommentar borttagen"
-
-#: templates/editor/units/xhr_timeline.html:44
-#, python-format
-msgid "Muted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "Ta bort <a href=\"%(check_url)s\">%(check_name)s</a> kontroll"
-
-#: templates/editor/units/xhr_timeline.html:48
-#, python-format
-msgid "Unmuted <a href=\"%(check_url)s\">%(check_name)s</a> check"
-msgstr "Använd <a href=\"%(check_url)s\">%(check_name)s</a> kontroll"
-
-#: templates/editor/units/xhr_timeline.html:60
-msgid "Unit created"
-msgstr "Enhet skapad"
 
 #: templates/errors/400.html:4 templates/errors/400.html:11
 msgid "Bad Request"
@@ -2717,27 +2736,26 @@ msgstr ""
 msgid "The reported error was:"
 msgstr "Den rapporterade felet var:"
 
-#: templates/includes/formtable.html:15 templates/includes/formtable.html:17
-msgid "Previous page"
-msgstr "Föregående sida"
-
 #: templates/includes/formtable.html:22
 #, python-format
 msgid "Page %(page_number)s of %(page_count)s."
 msgstr "Sida %(page_number)s av %(page_count)s."
 
 #: templates/includes/formtable.html:27
-#, python-format
-msgid "Showing %(count)s results per page"
-msgstr "Visar %(count)s resultat per sida"
+#, fuzzy, python-format
+msgid "Showing %(n)s result per page"
+msgid_plural "Showing %(n)s results per page"
+msgstr[0] "Visar %(count)s resultat per sida"
+msgstr[1] "Visar %(count)s resultat per sida"
 
-#: templates/includes/formtable.html:34 templates/includes/formtable.html:36
-msgid "Next page"
-msgstr "Nästa sida"
-
-#: templates/includes/formtable.html:85
+#: templates/includes/formtable.html:87
 msgid "Select all"
 msgstr "Markera alla"
+
+#: templates/includes/formtable.html:100
+#, fuzzy
+msgid "Go"
+msgstr "Öka"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2816,10 +2834,6 @@ msgstr "Publik profil"
 msgid "Settings"
 msgstr "Inställningar"
 
-#: templates/layout.html:134
-msgid "Admin"
-msgstr "Administratör"
-
 #: templates/layout.html:137
 msgid "Sign out"
 msgstr "Logga ut"
@@ -2849,7 +2863,13 @@ msgstr ""
 msgid "Here you can add, edit, or delete the languages for this project."
 msgstr "Här kan du lägga till, redigera eller ta bort språk för detta projekt."
 
-#: templates/projects/admin/languages.html:14
+#: templates/projects/admin/languages.html:15
+msgid ""
+"Adding new languages from this screen is disabled. You will need to update "
+"your sources directly, and update pootle from there."
+msgstr ""
+
+#: templates/projects/admin/languages.html:17
 msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
@@ -2958,13 +2978,20 @@ msgstr ""
 "När du laddat upp filer kommer du att kunna lägga till, redigera och radera "
 "termer."
 
-#: templates/user/profile.html:13
-msgid "You can set or change your avatar image at www.gravatar.com"
-msgstr "Du kan ändra din profilbild på www.gravatar.com"
+#: templates/user/includes/profile_activity.html:5
+#: templates/user/profile.html:59
+msgid "Latest activity:"
+msgstr "Senaste aktivitet:"
 
-#: templates/user/profile.html:16
-msgid "Anonymous User"
-msgstr "Anonym användare"
+#: templates/user/includes/profile_score.html:2
+#, fuzzy
+msgid "Total score:"
+msgstr "Totalt antal ord:"
+
+#: templates/user/includes/profile_teams.html:6
+#, fuzzy
+msgid "Language teams"
+msgstr "Språkgrupp"
 
 #: templates/user/profile.html:28
 msgid "Score:"
@@ -2974,14 +3001,6 @@ msgstr "Poäng:"
 #, python-format
 msgid "My current score at %(server_title)s is %(score)s "
 msgstr "Min nuvarande poäng på %(server_title)s är %(score)s "
-
-#: templates/user/profile.html:31 templates/user/profile.html:43
-msgid "Tweet this!"
-msgstr "Twittra detta!"
-
-#: templates/user/profile.html:40
-msgid "No contributions in the last 30 days"
-msgstr "Inga bidrag under de senaste 30 dagarna"
 
 #: templates/user/profile.html:43
 #, python-format
@@ -3005,42 +3024,6 @@ msgid ""
 msgstr ""
 "Bidragsgivare #%(pos)s för <a href=\"%(url)s\">%(lang_name)s</a> under de "
 "senaste 30 dagarna"
-
-#: templates/user/profile.html:59
-msgid "Latest activity:"
-msgstr "Senaste aktivitet:"
-
-#: templates/user/profile.html:73
-msgid "My Website"
-msgstr "Min webbplats"
-
-#: templates/user/profile.html:79
-msgid "My LinkedIn Profile"
-msgstr "Min LinkedIn profil"
-
-#: templates/user/profile.html:88
-msgid ""
-"Show others who you are, tell about yourself<br/>and make your public "
-"profile look gorgeous!"
-msgstr ""
-"Visa andra vem du är, berätta om dig själv<br/>och gör din publika profil "
-"underbar!"
-
-#: templates/user/profile.html:98
-msgid ""
-"Some translations are provided by anonymous volunteers. These are registered "
-"under this special meta-account."
-msgstr ""
-"Vissa översättningar ges av anonyma volontärer. Dessa är registrerade enligt "
-"detta speciella meta-konto."
-
-#: templates/user/profile.html:100
-msgid ""
-"Some translations are imported from external files. These are registered "
-"under this special meta-account."
-msgstr ""
-"Vissa översättningar importeras från externa filer. Dessa är registrerade "
-"enligt detta speciella meta-konto."
 
 #: templates/user/settings.html:12
 msgid "User Account"
@@ -3085,6 +3068,108 @@ msgstr "Logga in"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Bästa bidragsgivare för de senaste 30 dagarna"
+
+#~ msgid "Summary"
+#~ msgstr "Sammanfattning"
+
+#~ msgid "Please enter your message summary"
+#~ msgstr "Ange din meddelandesammanfattning"
+
+#~ msgid "Broken HTML Entities"
+#~ msgstr "Trasiga HTML-entiteter"
+
+#~ msgid "Java format"
+#~ msgstr "Javaformat"
+
+#~ msgid "Template format"
+#~ msgstr "Mallformat"
+
+#~ msgid "Mustache placeholders"
+#~ msgstr "Mustache platshållare"
+
+#~ msgid "Mustache placeholder pairs"
+#~ msgstr "Mustache platshållarpar"
+
+#~ msgid "Mustache like placeholder pairs"
+#~ msgstr "Mustache som platshållarpar"
+
+#~ msgid "C format placeholders"
+#~ msgstr "C format platshållare"
+
+#~ msgid "Non printable"
+#~ msgstr "Icke utskrivbara"
+
+#~ msgid "Unbalanced tag braces"
+#~ msgstr "Obalanserade taggparenteser"
+
+#~ msgid "Changed attributes"
+#~ msgstr "Ändrade attribut"
+
+#~ msgid "Unescaped ampersands"
+#~ msgstr "Okodade et-tecken"
+
+#~ msgid "Incorrectly escaped ampersands"
+#~ msgstr "Felaktigt kodade et-tecken"
+
+#~ msgid "Whitespaces"
+#~ msgstr "Mellanrum"
+
+#~ msgid "Date format"
+#~ msgstr "Datumformat"
+
+#~ msgid "Uppercase placeholders"
+#~ msgstr "Versala platshållare"
+
+#~ msgid "Percent sign placeholders"
+#~ msgstr "Procent teckenplatshållare"
+
+#~ msgid "Percent sign closure placeholders"
+#~ msgstr "Procent tecken förslutningsplatshållare"
+
+#~ msgid "$ placeholders"
+#~ msgstr "$ platshållare"
+
+#~ msgid "$ closure placeholders"
+#~ msgstr "$ förslutningsplatshållare"
+
+#~ msgid "Java-encoded unicode"
+#~ msgstr "Java-kodad unicode"
+
+#~ msgid "Objective-C format"
+#~ msgstr "Objective-C format"
+
+#~ msgid "Android format"
+#~ msgstr "Android-format"
+
+#~ msgid "Tags differ"
+#~ msgstr "Taggar skiljer sig åt"
+
+#~ msgid "Curly braces"
+#~ msgstr "Klammerparenteser"
+
+#~ msgid "Potential unwanted placeholders"
+#~ msgstr "Potentiellt oönskade platshållare"
+
+#~ msgid "Double quotes in tags"
+#~ msgstr "Dubbla citattecken i taggar"
+
+#~ msgid "Percent brace placeholders"
+#~ msgstr "Procent parentes-platshållare"
+
+#~ msgid "Failed to process submission."
+#~ msgstr "Det gick inte att bearbeta bidrag."
+
+#~ msgid "Last comment:"
+#~ msgstr "Senaste kommentar:"
+
+#~ msgid "Last comment removed"
+#~ msgstr "Senaste kommentar borttagen"
+
+#~ msgid "Previous page"
+#~ msgstr "Föregående sida"
+
+#~ msgid "Next page"
+#~ msgstr "Nästa sida"
 
 #~ msgid "Rate"
 #~ msgstr "Taxa"
@@ -4152,9 +4237,6 @@ msgstr "Bästa bidragsgivare för de senaste 30 dagarna"
 #, fuzzy
 #~ msgid "The suggestion or vote is not valid any more."
 #~ msgstr "Förslaget eller rösten är inte längre giltig."
-
-#~ msgid "Comment:"
-#~ msgstr "Kommentar:"
 
 #~ msgid "Hide Timeline"
 #~ msgstr "Dölj tidslinje"
@@ -5649,9 +5731,6 @@ msgstr "Bästa bidragsgivare för de senaste 30 dagarna"
 #~ msgid "You have finished going through the items you selected"
 #~ msgstr "Du har färdigställt alla poster du valde"
 
-#~ msgid "Grow"
-#~ msgstr "Öka"
-
 #~ msgid "Shrink"
 #~ msgstr "Minska"
 
@@ -5672,9 +5751,6 @@ msgstr "Bästa bidragsgivare för de senaste 30 dagarna"
 
 #~ msgid "Language:"
 #~ msgstr "Språk:"
-
-#~ msgid "Please enter your registration details"
-#~ msgstr "Ange dina registreringsdetaljer"
 
 #~ msgid "Your requested username"
 #~ msgstr "Ditt begärda användarnamn"

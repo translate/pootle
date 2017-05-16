@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-07 22:44+0100\n"
+"POT-Creation-Date: 2017-05-16 11:32+0100\n"
 "PO-Revision-Date: 2017-02-08 14:27+0000\n"
 "Last-Translator: Abduqadir Abliz <sahran.ug@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -644,15 +644,15 @@ msgstr "كۆز يۈگۈرتۈشكە قايت"
 msgid "Reload page"
 msgstr "بەتنى قايتا يۈكلە"
 
-#: static/js/editor/app.js:2177
+#: static/js/editor/app.js:2176
 msgid "some anonymous user"
 msgstr "بەزى ئاتسىز ئىشلەتكۈچى"
 
-#: static/js/editor/app.js:2179
+#: static/js/editor/app.js:2178
 msgid "someone"
 msgstr "بىرسى"
 
-#: static/js/editor/app.js:2197 static/js/editor/app.js:2246
+#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
 msgid "Similar translations"
 msgstr "ئوخشايدىغان تەرجىمىلەر"
 

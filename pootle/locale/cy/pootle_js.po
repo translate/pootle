@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-02-07 22:44+0100\n"
+"POT-Creation-Date: 2017-05-16 11:32+0100\n"
 "PO-Revision-Date: 2017-01-19 10:23+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
@@ -650,15 +650,15 @@ msgstr "Mynd nôl i bori"
 msgid "Reload page"
 msgstr "Ail lwytho tudalen"
 
-#: static/js/editor/app.js:2177
+#: static/js/editor/app.js:2176
 msgid "some anonymous user"
 msgstr "rhyw ddefnyddiwr anhysbys"
 
-#: static/js/editor/app.js:2179
+#: static/js/editor/app.js:2178
 msgid "someone"
 msgstr "rhywun"
 
-#: static/js/editor/app.js:2197 static/js/editor/app.js:2246
+#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
 msgid "Similar translations"
 msgstr "Cyfieithiadau tebyg"
 
