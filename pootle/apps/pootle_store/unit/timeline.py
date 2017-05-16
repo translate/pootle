@@ -168,16 +168,12 @@ class UnitStateChangedEvent(SubmissionEvent):
 
     @property
     def context(self):
-        params = {
-            'old_value': STATES_MAP[int(to_python(self.submission.old_value))],
-            'new_value': STATES_MAP[int(to_python(self.submission.new_value))]}
-        value = format_html(_(
-            u"%(old_value)s "
-            u"<span class='timeline-arrow'></span> "
-            u"%(new_value)s", params))
-
-        return dict(value=value,
-                    state=True)
+        return dict(
+            value=format_html(
+                u"{} <span class='timeline-arrow'></span> {}",
+                STATES_MAP[int(to_python(self.submission.old_value))],
+                STATES_MAP[int(to_python(self.submission.new_value))]),
+            state=True)
 
 
 class CommentUpdatedEvent(SubmissionEvent):
