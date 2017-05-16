@@ -91,7 +91,7 @@ class IndexView(View):
                 request,
                 (self.all_languages
                  if request.user.is_superuser
-                 else self.languages))
+                 else self.languages).values_list('code', flat=True))
         if lang is not None and lang not in ('projects', ''):
             url = reverse('pootle-language-browse', args=[lang])
         else:
