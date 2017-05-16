@@ -58,7 +58,8 @@ def _calculate_timeline(request, unit):
     target_event = None
     for _key, group in grouped_events_class(log).grouped_events():
         event_group = EventGroup(group, target_event)
-        target_event = event_group.target_event
+        if event_group.target_event:
+            target_event = event_group.target_event
         groups.append(event_group.context)
 
     context = dict(event_groups=groups)

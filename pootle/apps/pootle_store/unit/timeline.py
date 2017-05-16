@@ -149,13 +149,11 @@ class UnitCreatedEvent(object):
 
     @property
     def context(self):
-        target_changed = (
-            self.target_event is not None
-            and self.target_event.value.old_value != '')
         ctx = dict(description=_("Unit created"))
-        if target_changed:
-            ctx['value'] = self.target_event.value.old_value
-            ctx['translation'] = True
+        if self.target_event is not None:
+            if self.target_event.value.old_value != '':
+                ctx['value'] = self.target_event.value.old_value
+                ctx['translation'] = True
         else:
             if self.unit_source.unit.istranslated():
                 ctx['value'] = self.unit_source.unit.target
@@ -235,7 +233,8 @@ class Timeline(object):
         target_event = None
         for __, group in self.events_adapter.grouped_events(**kwargs):
             event_group = EventGroup(group, target_event)
-            target_event = event_group.target_event
+            if event_group.target_event:
+                target_event = event_group.target_event
             groups.append(event_group.context)
 
         return groups
@@ -333,7 +332,8 @@ class EventGroup(object):
             if event_formatter_class is not None:
                 events.append(
                     event_formatter_class(
-                        self.log_events[event_action].value).context)
+                        self.log_events[event_action].value,
+                        target_event=self.related_target_event).context)
         return events
 
     @property
