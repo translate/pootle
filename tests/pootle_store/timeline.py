@@ -293,6 +293,46 @@ def test_timeline_untranslated_unit_creation(store0, member):
     assert group['user'].username == member.username
 
 
+@pytest.mark.django_db
+def test_timeline_untranslated_unit_creation_with_updates(store0, member):
+    unit = store0.addunit(store0.UnitClass(source="Foo"), user=member)
+    unit.refresh_from_db()
+    unit.target = 'Bar'
+    unit.save()
+    unit.refresh_from_db()
+    groups = Timeline(unit).grouped_events()
+    assert len(groups) == 2
+    group = groups[-1]
+    assert len(group['events']) == 1
+    assert 'value' not in group['events'][0]
+    assert 'translation' not in group['events'][0]
+    assert group['events'][0]['description'] == u"Unit created"
+    assert group['via_upload'] is False
+    assert group['datetime'] == unit.creation_time
+    assert group['user'].username == member.username
+
+
+@pytest.mark.django_db
+def test_timeline_translated_unit_creation_with_updates(store0, member):
+    pounit = store0.UnitClass(source="Foo")
+    pounit.target = "Bar"
+    unit = store0.addunit(pounit, user=member)
+    unit.refresh_from_db()
+    unit.target = "Bar UPDATED"
+    unit.save()
+    unit.refresh_from_db()
+    groups = Timeline(unit).grouped_events()
+    assert len(groups) == 2
+    group = groups[-1]
+    assert len(group['events']) == 1
+    assert group['events'][0]['value'] == "Bar"
+    assert group['events'][0]['translation']
+    assert group['events'][0]['description'] == u"Unit created"
+    assert group['via_upload'] is False
+    assert group['datetime'] == unit.creation_time
+    assert group['user'].username == member.username
+
+
 def _get_sugg_accepted_desc(suggestion):
     user = DisplayUser(suggestion.user.username, suggestion.user.full_name)
     params = {'author': user.author_link}
