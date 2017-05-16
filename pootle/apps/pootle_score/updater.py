@@ -327,10 +327,12 @@ class UserScoreUpdater(ScoreUpdater):
         self.users = users
 
     def calculate(self, start=localdate(), end=None, **kwargs):
-        return self.filter_users(
-            self.tp_score_model.objects,
-            kwargs.get("users")).order_by("user").values_list(
-                "user").annotate(score=Sum("score"))
+        scores = self.filter_users(
+            self.tp_score_model.objects.filter(
+                date__gte=(localdate() - timedelta(days=30))),
+            kwargs.get("users"))
+        return scores.order_by("user").values_list(
+            "user").annotate(score=Sum("score"))
 
     def set_scores(self, calculated_scores, existing=None):
         update.send(
