@@ -60,6 +60,11 @@ def test_get_edit_unit(project0_nongnu, get_edit_unit, client,
     assert result["is_obsolete"] is False
     assert result["sources"] == sources
     assert response.context["unit"] == unit
+    accepted_suggestion = None
+    submission = unit.get_latest_target_submission()
+    if submission:
+        accepted_suggestion = submission.suggestion
+    assert response.context["accepted_suggestion"] == accepted_suggestion
     assert response.context["priority"] == store.priority
     assert response.context["store"] == store
     assert response.context["filetype"] == filetype

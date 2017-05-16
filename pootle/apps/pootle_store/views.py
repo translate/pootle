@@ -478,8 +478,13 @@ class UnitEditJSON(PootleUnitJSON):
             if 'virtualfolder' in settings.INSTALLED_APPS
             else None)
         suggestions = self.object.get_suggestions()
+        latest_target_submission = self.object.get_latest_target_submission()
+        accepted_suggestion = None
+        if latest_target_submission is not None:
+            accepted_suggestion = latest_target_submission.suggestion
         return {
             'unit': self.object,
+            'accepted_suggestion': accepted_suggestion,
             'form': self.get_unit_edit_form(),
             'comment_form': self.get_unit_comment_form(),
             'priority': priority,

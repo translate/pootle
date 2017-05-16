@@ -38,7 +38,7 @@ from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.multistring import PLURAL_PLACEHOLDER, SEPARATOR
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle_checks.constants import CHECK_NAMES
-from pootle_statistics.models import SubmissionTypes
+from pootle_statistics.models import SubmissionFields, SubmissionTypes
 
 from .abstracts import (
     AbstractUnit, AbstractQualityCheck, AbstractStore, AbstractSuggestion,
@@ -751,6 +751,12 @@ class Unit(AbstractUnit):
 # # # # # # # # # # # Suggestions # # # # # # # # # # # # # # # # #
     def get_suggestions(self):
         return self.suggestion_set.pending().select_related('user').all()
+
+    def get_latest_target_submission(self):
+        return (self.submission_set.select_related('suggestion__user')
+                                   .filter(field=SubmissionFields.TARGET)
+                                   .order_by('-creation_time', '-id')
+                                   .first())
 
     def has_critical_checks(self):
         return self.qualitycheck_set.filter(

@@ -217,10 +217,10 @@
               <time
                 title="{{ unit.change.submitted_on|dateformat }}"
                 datetime="{{ unit.change.submitted_on.isoformat }}">{{ unit.change.submitted_on|relative_datetime_format }}</time>
-              {% with reviewer=unit.change.reviewed_by %}
+              {% with reviewer=accepted_suggestion.reviewer %}
               {% if reviewer %}
               <br>
-              <span>({% blocktrans with profile_url=reviewer.get_absolute_url%}reviewed by <a href="{{ profile_url }}">{{ reviewer }}</a>{% endblocktrans %})</span>
+              <span>({% blocktrans with profile_url=reviewer.get_absolute_url %}reviewed by <a href="{{ profile_url }}">{{ reviewer }}</a>{% endblocktrans %})</span>
               {% endif %}
               {% endwith %}
             </div>
