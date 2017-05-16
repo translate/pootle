@@ -283,10 +283,20 @@ def test_score_user_updater(tp0, admin, member):
     updater = user_updater(users=[admin, member])
     assert updater.users == [admin, member]
     result = updater.calculate()
-    admin_score = round(
-        sum(admin.scores.values_list("score", flat=True)), 2)
-    member_score = round(
-        sum(member.scores.values_list("score", flat=True)), 2)
+    admin_score = admin.scores.filter(
+        date__gte=(
+            localdate()
+            - timedelta(days=30)))
+    admin_score = round(sum(
+        admin_score.values_list(
+            "score", flat=True)), 2)
+    member_score = member.scores.filter(
+        date__gte=(
+            localdate()
+            - timedelta(days=30)))
+    member_score = round(sum(
+        member_score.values_list(
+            "score", flat=True)), 2)
     assert round(dict(result)[admin.pk], 2) == admin_score
     assert round(dict(result)[member.pk], 2) == member_score
     updater.set_scores(result)
