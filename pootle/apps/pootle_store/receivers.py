@@ -35,12 +35,9 @@ def handle_suggestion_accepted(**kwargs):
     suggestion = kwargs["instance"]
     if created or not suggestion.is_accepted:
         return
-    suggestion.submission_set.add(
-        *suggestion.unit.submission_set.filter(
-            revision=suggestion.unit.revision,
-            creation_time=suggestion.review_time))
-    store = suggestion.unit.store
-    update_data.send(store.__class__, instance=store)
+    update_data.send(
+        suggestion.unit.store.__class__,
+        instance=suggestion.unit.store)
 
 
 @receiver(pre_save, sender=UnitSource)

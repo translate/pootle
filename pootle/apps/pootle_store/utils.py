@@ -210,6 +210,9 @@ class SuggestionsReview(object):
         suggestion.state_id = self.states["accepted"]
         suggestion.reviewer = self.reviewer
         self.update_unit_on_accept(suggestion, target=target)
+        suggestion.submission_set.add(
+            *suggestion.unit.submission_set.filter(
+                revision=suggestion.unit.revision))
         suggestion.review_time = suggestion.unit.mtime
         suggestion.save()
 
