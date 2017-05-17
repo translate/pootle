@@ -134,11 +134,11 @@ def test_templatetag_profile_teams(rf, admin, member, language0, request_users):
         "{% load profile_tags %}{% profile_teams request profile %}",
         dict(profile=user_profile, request=request))
     assert language0.name in rendered
-    assert (
-        reverse(
-            "pootle-language-browse",
-            kwargs=dict(language_code=language0.code))
-        in rendered)
+    lang_link = reverse(
+        "pootle-language-browse",
+        kwargs=dict(language_code=language0.code))
+    assert lang_link in rendered
+    assert ("/%s/" % lang_link) not in rendered
     assert "Admin" not in rendered
     assert "Site administrator" not in rendered
     lang_team(language0).add_member(member, "admin")
@@ -147,11 +147,7 @@ def test_templatetag_profile_teams(rf, admin, member, language0, request_users):
         "{% load profile_tags %}{% profile_teams request profile %}",
         dict(profile=user_profile, request=request))
     assert language0.name in rendered
-    assert (
-        reverse(
-            "pootle-language-browse",
-            kwargs=dict(language_code=language0.code))
-        in rendered)
+    assert lang_link in rendered
     if request_user.is_anonymous:
         assert "Admin" not in rendered
     else:
