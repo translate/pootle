@@ -209,11 +209,15 @@ class SuggestionsReview(object):
     def accept_suggestion(self, suggestion, target=None):
         suggestion.state_id = self.states["accepted"]
         suggestion.reviewer = self.reviewer
+        old_revision = suggestion.unit.revision
         self.update_unit_on_accept(suggestion, target=target)
-        suggestion.submission_set.add(
-            *suggestion.unit.submission_set.filter(
-                revision=suggestion.unit.revision))
-        suggestion.review_time = suggestion.unit.mtime
+        if suggestion.unit.revision > old_revision:
+            suggestion.submission_set.add(
+                *suggestion.unit.submission_set.filter(
+                    revision=suggestion.unit.revision))
+            suggestion.review_time = suggestion.unit.mtime
+        else:
+            suggestion.review_time = timezone.now()
         suggestion.save()
 
     def reject_suggestion(self, suggestion):
