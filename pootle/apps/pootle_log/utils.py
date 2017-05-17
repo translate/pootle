@@ -78,7 +78,7 @@ class Log(object):
 
     @property
     def suggestion_qs(self):
-        return Suggestion.objects
+        return Suggestion.objects.exclude(creation_time__isnull=True)
 
     @property
     def submission_qs(self):
@@ -379,7 +379,9 @@ class UserLog(Log):
 
     @property
     def suggestion_qs(self):
-        return (self.user.suggestions.all() | self.user.reviews.all())
+        return (
+            self.user.suggestions.exclude(creation_time__isnull=True).all()
+            | self.user.reviews.all())
 
     @property
     def submission_qs(self):
