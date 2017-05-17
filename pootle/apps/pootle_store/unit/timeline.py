@@ -202,7 +202,7 @@ class CheckEvent(SubmissionEvent):
 
     @property
     def check_link(self):
-        return format_html("<a href='{}'>{}</a>", self.check_url,
+        return format_html(u"<a href='{}'>{}</a>", self.check_url,
                            CHECK_NAMES[self.check_name])
 
 
@@ -211,7 +211,7 @@ class CheckMutedEvent(CheckEvent):
     def context(self):
         return dict(
             description=format_html(_(
-                "Muted %(check_name)s check",
+                u"Muted %(check_name)s check",
                 {'check_name': self.check_link})))
 
 
@@ -220,7 +220,7 @@ class CheckUnmutedEvent(CheckEvent):
     def context(self):
         return dict(
             description=format_html(_(
-                "Unmuted %(check_name)s check",
+                u"Unmuted %(check_name)s check",
                 {'check_name': self.check_link})))
 
 
