@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:56+0100\n"
+"POT-Creation-Date: 2017-05-17 13:08+0100\n"
 "PO-Revision-Date: 2016-05-04 06:53+0000\n"
 "Last-Translator: wrinos <wrinos@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -834,66 +834,69 @@ msgstr "마지막 (%d)"
 msgid "Search unavailable"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:34
+#: apps/pootle_profile/templatetags/profile_tags.py:35
 #, fuzzy, python-format
 msgid "My current score at %s is %s"
 msgstr "내 현재 점수는 %(server_title)s에서 %(score)s점 입니다 "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:37
-#: apps/pootle_profile/templatetags/profile_tags.py:62
-#: templates/user/profile.html:31 templates/user/profile.html:43
+#: apps/pootle_profile/templatetags/profile_tags.py:38
+#: apps/pootle_profile/templatetags/profile_tags.py:63
 msgid "Tweet this!"
 msgstr "이것을 트윗하세요!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:51
+#: apps/pootle_profile/templatetags/profile_tags.py:52
 #, fuzzy, python-format
 msgid "#%s contributor in %s in the last 30 days"
 msgstr "지난 달에 기여가 없음"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:55
+#: apps/pootle_profile/templatetags/profile_tags.py:56
 #, fuzzy, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
 msgstr ""
 "이번달 %(server_title)s의 %(lang_name)s번역에서 기여자 #%(pos)s등입니다! "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:64
-#: templates/user/profile.html:40
+#: apps/pootle_profile/templatetags/profile_tags.py:65
 #, fuzzy
 msgid "No contributions in the last 30 days"
 msgstr "지난 달에 기여가 없음"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:75
-#: templates/user/profile.html:73
+#: apps/pootle_profile/templatetags/profile_tags.py:76
 msgid "My Website"
 msgstr "내 웹사이트"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:85
-#: templates/user/profile.html:79
+#: apps/pootle_profile/templatetags/profile_tags.py:86
 msgid "My LinkedIn Profile"
 msgstr "나의 LinkedIn 프로필"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:94
+#: apps/pootle_profile/templatetags/profile_tags.py:95
 #, fuzzy
 msgid "Site administrator"
 msgstr "관리"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:111
-#: templates/user/profile.html:98
+#: apps/pootle_profile/templatetags/profile_tags.py:101
+#, fuzzy, python-format
+msgid "%s's language teams"
+msgstr "언어 이름"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:104
+#, python-format
+msgid "%s is not a member of any language teams"
+msgstr ""
+
+#: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr "몇 번역은 익명의 자원봉사자들에 의해 제공됐습니다."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:115
-#: templates/user/profile.html:100
+#: apps/pootle_profile/templatetags/profile_tags.py:125
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
 msgstr ""
 "몇 번역은 외부 파일에 의해 입력됐습니다. 특별 메타 계정으로 등록된 것입니다."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:125
-#: templates/user/profile.html:88
+#: apps/pootle_profile/templatetags/profile_tags.py:135
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -901,14 +904,13 @@ msgstr ""
 "당신이 누구인지, 다른 사람에게 보여주기 위한<br/>공개 프로필을 멋지게 꾸며 보"
 "세요!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:128
-#: templates/user/profile.html:13
+#: apps/pootle_profile/templatetags/profile_tags.py:138
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr ""
 "당신은 www.gravatar.com에서 당신의 아바타 이미지를 지정하거나 변경 할 수 있습"
 "니다"
 
-#: apps/pootle_profile/utils.py:50 templates/user/profile.html:16
+#: apps/pootle_profile/utils.py:50
 msgid "Anonymous User"
 msgstr "익명의 사용자"
 
@@ -921,7 +923,7 @@ msgstr "관리"
 msgid "Translator"
 msgstr "번역"
 
-#: apps/pootle_profile/views.py:66
+#: apps/pootle_profile/views.py:61
 msgid "Select one or more languages"
 msgstr "하나 또는 그 이상의 언어를 선택하십시오"
 
@@ -1091,22 +1093,22 @@ msgstr "복수형"
 msgid "Added suggestion"
 msgstr "추가된 제안"
 
-#: apps/pootle_store/unit/timeline.py:85
+#: apps/pootle_store/unit/timeline.py:84
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "%s 제안 수락"
 
-#: apps/pootle_store/unit/timeline.py:93
+#: apps/pootle_store/unit/timeline.py:92
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "%(source_string)s위해 받아들여진 제안"
 
-#: apps/pootle_store/unit/timeline.py:109
+#: apps/pootle_store/unit/timeline.py:113
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "%s 제안 거부"
 
-#: apps/pootle_store/unit/timeline.py:117
+#: apps/pootle_store/unit/timeline.py:121
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "%(source_string)s때문에 취소된 제안"
@@ -1115,22 +1117,22 @@ msgstr "%(source_string)s때문에 취소된 제안"
 msgid "Unit created"
 msgstr "유닛 만들기"
 
-#: apps/pootle_store/unit/timeline.py:185
+#: apps/pootle_store/unit/timeline.py:186
 #, fuzzy
 msgid "Comment:"
 msgstr "주석"
 
-#: apps/pootle_store/unit/timeline.py:188
+#: apps/pootle_store/unit/timeline.py:189
 #, fuzzy
 msgid "Removed comment"
 msgstr "코멘트 제거"
 
-#: apps/pootle_store/unit/timeline.py:213
+#: apps/pootle_store/unit/timeline.py:214
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr "검토자 <a href=\"%(profile_url)s\">%(reviewer)s</a>의해 검토 됨"
 
-#: apps/pootle_store/unit/timeline.py:222
+#: apps/pootle_store/unit/timeline.py:223
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "검토자 <a href=\"%(profile_url)s\">%(reviewer)s</a>의해 검토 됨"
@@ -2967,48 +2969,13 @@ msgstr ""
 "당신이 한번 파일을 저장하면 약관들을 추가, 편집, 삭제를 하실 수 있습니다."
 
 #: templates/user/includes/profile_activity.html:5
-#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "최근 활동:"
 
-#: templates/user/includes/profile_score.html:2
+#: templates/user/includes/profile_score.html:3
 #, fuzzy
 msgid "Total score:"
 msgstr "전체 단어"
-
-#: templates/user/includes/profile_teams.html:6
-#, fuzzy
-msgid "Language teams"
-msgstr "언어 이름"
-
-#: templates/user/profile.html:28
-msgid "Score:"
-msgstr "점수:"
-
-#: templates/user/profile.html:31
-#, python-format
-msgid "My current score at %(server_title)s is %(score)s "
-msgstr "내 현재 점수는 %(server_title)s에서 %(score)s점 입니다 "
-
-#: templates/user/profile.html:43
-#, fuzzy, python-format
-msgid ""
-"I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
-"%(server_title)s! "
-msgstr ""
-"이번달 %(server_title)s의 %(lang_name)s번역에서 기여자 #%(pos)s등입니다! "
-
-#: templates/user/profile.html:44
-#, fuzzy, python-format
-msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "이번 달 %(lang_name)s번역의 #%(pos)s등 기여자 입니다"
-
-#: templates/user/profile.html:49
-#, fuzzy, python-format
-msgid ""
-"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
-"days"
-msgstr "이번 달 <a href=\"%(url)s\">%(lang_name)s</a>의 #%(pos)s 기여자"
 
 #: templates/user/settings.html:12
 msgid "User Account"
@@ -3054,6 +3021,29 @@ msgstr "로그인"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "기여자"
+
+#~ msgid "Score:"
+#~ msgstr "점수:"
+
+#~ msgid "My current score at %(server_title)s is %(score)s "
+#~ msgstr "내 현재 점수는 %(server_title)s에서 %(score)s점 입니다 "
+
+#, fuzzy
+#~ msgid ""
+#~ "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
+#~ "%(server_title)s! "
+#~ msgstr ""
+#~ "이번달 %(server_title)s의 %(lang_name)s번역에서 기여자 #%(pos)s등입니다! "
+
+#, fuzzy
+#~ msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
+#~ msgstr "이번 달 %(lang_name)s번역의 #%(pos)s등 기여자 입니다"
+
+#, fuzzy
+#~ msgid ""
+#~ "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last "
+#~ "30 days"
+#~ msgstr "이번 달 <a href=\"%(url)s\">%(lang_name)s</a>의 #%(pos)s 기여자"
 
 #~ msgid "Summary"
 #~ msgstr "요약"

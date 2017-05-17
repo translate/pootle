@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:56+0100\n"
+"POT-Creation-Date: 2017-05-17 13:08+0100\n"
 "PO-Revision-Date: 2010-10-04 09:00+0200\n"
 "Last-Translator: F Wolff <friedel@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -838,75 +838,77 @@ msgstr "Laaste (%d)"
 msgid "Search unavailable"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:34
+#: apps/pootle_profile/templatetags/profile_tags.py:35
 #, python-format
 msgid "My current score at %s is %s"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:37
-#: apps/pootle_profile/templatetags/profile_tags.py:62
-#: templates/user/profile.html:31 templates/user/profile.html:43
+#: apps/pootle_profile/templatetags/profile_tags.py:38
+#: apps/pootle_profile/templatetags/profile_tags.py:63
 msgid "Tweet this!"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:51
+#: apps/pootle_profile/templatetags/profile_tags.py:52
 #, fuzzy, python-format
 msgid "#%s contributor in %s in the last 30 days"
 msgstr "Topbydraers"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:55
+#: apps/pootle_profile/templatetags/profile_tags.py:56
 #, fuzzy, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
 msgstr "Topbydraers"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:64
-#: templates/user/profile.html:40
+#: apps/pootle_profile/templatetags/profile_tags.py:65
 #, fuzzy
 msgid "No contributions in the last 30 days"
 msgstr "Topbydraers"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:75
-#: templates/user/profile.html:73
+#: apps/pootle_profile/templatetags/profile_tags.py:76
 msgid "My Website"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:85
-#: templates/user/profile.html:79
+#: apps/pootle_profile/templatetags/profile_tags.py:86
 msgid "My LinkedIn Profile"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:94
+#: apps/pootle_profile/templatetags/profile_tags.py:95
 #, fuzzy
 msgid "Site administrator"
 msgstr "Administrasie"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:111
-#: templates/user/profile.html:98
+#: apps/pootle_profile/templatetags/profile_tags.py:101
+#, fuzzy, python-format
+msgid "%s's language teams"
+msgstr "Taalnaam"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:104
+#, python-format
+msgid "%s is not a member of any language teams"
+msgstr ""
+
+#: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:115
-#: templates/user/profile.html:100
+#: apps/pootle_profile/templatetags/profile_tags.py:125
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:125
-#: templates/user/profile.html:88
+#: apps/pootle_profile/templatetags/profile_tags.py:135
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:128
-#: templates/user/profile.html:13
+#: apps/pootle_profile/templatetags/profile_tags.py:138
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr ""
 
-#: apps/pootle_profile/utils.py:50 templates/user/profile.html:16
+#: apps/pootle_profile/utils.py:50
 msgid "Anonymous User"
 msgstr ""
 
@@ -919,7 +921,7 @@ msgstr "Admin"
 msgid "Translator"
 msgstr "Vertaling"
 
-#: apps/pootle_profile/views.py:66
+#: apps/pootle_profile/views.py:61
 msgid "Select one or more languages"
 msgstr ""
 
@@ -1093,22 +1095,22 @@ msgstr "Meervoud"
 msgid "Added suggestion"
 msgstr "Aanvaar voorstel"
 
-#: apps/pootle_store/unit/timeline.py:85
+#: apps/pootle_store/unit/timeline.py:84
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Aanvaar voorstel"
 
-#: apps/pootle_store/unit/timeline.py:93
+#: apps/pootle_store/unit/timeline.py:92
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Aanvaar voorstel"
 
-#: apps/pootle_store/unit/timeline.py:109
+#: apps/pootle_store/unit/timeline.py:113
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Verwerp voorstel"
 
-#: apps/pootle_store/unit/timeline.py:117
+#: apps/pootle_store/unit/timeline.py:121
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Verwerp voorstel"
@@ -1117,22 +1119,22 @@ msgstr "Verwerp voorstel"
 msgid "Unit created"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:185
+#: apps/pootle_store/unit/timeline.py:186
 #, fuzzy
 msgid "Comment:"
 msgstr "Kommentaar"
 
-#: apps/pootle_store/unit/timeline.py:188
+#: apps/pootle_store/unit/timeline.py:189
 #, fuzzy
 msgid "Removed comment"
 msgstr "Lewer kommentaar"
 
-#: apps/pootle_store/unit/timeline.py:213
+#: apps/pootle_store/unit/timeline.py:214
 #, python-format
 msgid "Muted %(check_name)s check"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:222
+#: apps/pootle_store/unit/timeline.py:223
 #, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr ""
@@ -2949,48 +2951,14 @@ msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr ""
 
 #: templates/user/includes/profile_activity.html:5
-#: templates/user/profile.html:59
 #, fuzzy
 msgid "Latest activity:"
 msgstr "Jongste aktiwiteit"
 
-#: templates/user/includes/profile_score.html:2
+#: templates/user/includes/profile_score.html:3
 #, fuzzy
 msgid "Total score:"
 msgstr "Totale woorde"
-
-#: templates/user/includes/profile_teams.html:6
-#, fuzzy
-msgid "Language teams"
-msgstr "Taalnaam"
-
-#: templates/user/profile.html:28
-msgid "Score:"
-msgstr ""
-
-#: templates/user/profile.html:31
-#, python-format
-msgid "My current score at %(server_title)s is %(score)s "
-msgstr ""
-
-#: templates/user/profile.html:43
-#, python-format
-msgid ""
-"I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
-"%(server_title)s! "
-msgstr ""
-
-#: templates/user/profile.html:44
-#, fuzzy, python-format
-msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "Topbydraers"
-
-#: templates/user/profile.html:49
-#, python-format
-msgid ""
-"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
-"days"
-msgstr ""
 
 #: templates/user/settings.html:12
 #, fuzzy
@@ -3036,6 +3004,10 @@ msgstr "Ken aksie toe"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Topbydraers"
+
+#, fuzzy
+#~ msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
+#~ msgstr "Topbydraers"
 
 #~ msgid "Summary"
 #~ msgstr "Opsomming"

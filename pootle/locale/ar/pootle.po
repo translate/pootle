@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:56+0100\n"
+"POT-Creation-Date: 2017-05-17 13:08+0100\n"
 "PO-Revision-Date: 2017-02-08 12:47+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -835,78 +835,80 @@ msgstr "الأخيرة (%d)"
 msgid "Search unavailable"
 msgstr "البحث غير متوفّر"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:34
+#: apps/pootle_profile/templatetags/profile_tags.py:35
 #, fuzzy, python-format
 msgid "My current score at %s is %s"
 msgstr "نتيجتي الحاليّة في %(server_title)s هي %(score)s "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:37
-#: apps/pootle_profile/templatetags/profile_tags.py:62
-#: templates/user/profile.html:31 templates/user/profile.html:43
+#: apps/pootle_profile/templatetags/profile_tags.py:38
+#: apps/pootle_profile/templatetags/profile_tags.py:63
 msgid "Tweet this!"
 msgstr "غرّد هذه!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:51
+#: apps/pootle_profile/templatetags/profile_tags.py:52
 #, fuzzy, python-format
 msgid "#%s contributor in %s in the last 30 days"
 msgstr "لا مساهمات في الأيام الثلاثين الماضية"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:55
+#: apps/pootle_profile/templatetags/profile_tags.py:56
 #, fuzzy, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
 msgstr ""
 "أنا المساهم رقم %(pos)s في %(lang_name)s في الأيام الثلاثين الماضية على "
 "%(server_title)s! "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:64
-#: templates/user/profile.html:40
+#: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
 msgstr "لا مساهمات في الأيام الثلاثين الماضية"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:75
-#: templates/user/profile.html:73
+#: apps/pootle_profile/templatetags/profile_tags.py:76
 msgid "My Website"
 msgstr "موقع الوِبّ"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:85
-#: templates/user/profile.html:79
+#: apps/pootle_profile/templatetags/profile_tags.py:86
 msgid "My LinkedIn Profile"
 msgstr "ملفّ لِنكدإن الشّخصيّ"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:94
+#: apps/pootle_profile/templatetags/profile_tags.py:95
 #, fuzzy
 msgid "Site administrator"
 msgstr "مدير"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:111
-#: templates/user/profile.html:98
+#: apps/pootle_profile/templatetags/profile_tags.py:101
+#, fuzzy, python-format
+msgid "%s's language teams"
+msgstr "فريق اللغة"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:104
+#, python-format
+msgid "%s is not a member of any language teams"
+msgstr ""
+
+#: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
 "بعض التّرجمات وفّرها متطوّعين مجهولين. هذه التّرجمات مسجّلة بهذا الحساب الخاصّ."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:115
-#: templates/user/profile.html:100
+#: apps/pootle_profile/templatetags/profile_tags.py:125
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
 msgstr ""
 "بعض التّرجمات استوردت من ملفّات خارجيّة. هذه التّرجمات مسجّلة بهذا الحساب الخاصّ."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:125
-#: templates/user/profile.html:88
+#: apps/pootle_profile/templatetags/profile_tags.py:135
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr "أري الآخرين من تكون، أخبرهم عن نفسك<br/>واجعل ملفّك الشّخصيّ يبدو مبهرًا!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:128
-#: templates/user/profile.html:13
+#: apps/pootle_profile/templatetags/profile_tags.py:138
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "يمكنك تغيير أيقونتك من www.gravatar.com"
 
-#: apps/pootle_profile/utils.py:50 templates/user/profile.html:16
+#: apps/pootle_profile/utils.py:50
 msgid "Anonymous User"
 msgstr "مستخدم مجهول"
 
@@ -919,7 +921,7 @@ msgstr "المدير"
 msgid "Translator"
 msgstr "التّرجمة"
 
-#: apps/pootle_profile/views.py:66
+#: apps/pootle_profile/views.py:61
 msgid "Select one or more languages"
 msgstr "حدّد لغةً أو أكثر"
 
@@ -1091,22 +1093,22 @@ msgstr "الجمع"
 msgid "Added suggestion"
 msgstr "أضاف اقتراحًا"
 
-#: apps/pootle_store/unit/timeline.py:85
+#: apps/pootle_store/unit/timeline.py:84
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "قبل اقتراح %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:93
+#: apps/pootle_store/unit/timeline.py:92
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "قبل اقتراح %(author)s قائلا: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:109
+#: apps/pootle_store/unit/timeline.py:113
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "رفض اقتراح %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:117
+#: apps/pootle_store/unit/timeline.py:121
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "رفض اقتراح %(author)s قائلا: %(comment)s"
@@ -1115,21 +1117,21 @@ msgstr "رفض اقتراح %(author)s قائلا: %(comment)s"
 msgid "Unit created"
 msgstr "أُنشئت الوحدة"
 
-#: apps/pootle_store/unit/timeline.py:185
+#: apps/pootle_store/unit/timeline.py:186
 msgid "Comment:"
 msgstr "تعليق:"
 
-#: apps/pootle_store/unit/timeline.py:188
+#: apps/pootle_store/unit/timeline.py:189
 #, fuzzy
 msgid "Removed comment"
 msgstr "أزل التّعليق"
 
-#: apps/pootle_store/unit/timeline.py:213
+#: apps/pootle_store/unit/timeline.py:214
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr "كتم فحص <a href=\"%(check_url)s\">%(check_name)s</a>"
 
-#: apps/pootle_store/unit/timeline.py:222
+#: apps/pootle_store/unit/timeline.py:223
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "أطلق فحص <a href=\"%(check_url)s\">%(check_name)s</a>"
@@ -2942,51 +2944,13 @@ msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr "بمجرّد رفع الملفّات ستستطيع إضافة والمصطلحات وتحريرها وحذفها."
 
 #: templates/user/includes/profile_activity.html:5
-#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "آخر نشاط:"
 
-#: templates/user/includes/profile_score.html:2
+#: templates/user/includes/profile_score.html:3
 #, fuzzy
 msgid "Total score:"
 msgstr "مجموع الكلمات:"
-
-#: templates/user/includes/profile_teams.html:6
-#, fuzzy
-msgid "Language teams"
-msgstr "فريق اللغة"
-
-#: templates/user/profile.html:28
-msgid "Score:"
-msgstr "النّتيجة:"
-
-#: templates/user/profile.html:31
-#, python-format
-msgid "My current score at %(server_title)s is %(score)s "
-msgstr "نتيجتي الحاليّة في %(server_title)s هي %(score)s "
-
-#: templates/user/profile.html:43
-#, python-format
-msgid ""
-"I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
-"%(server_title)s! "
-msgstr ""
-"أنا المساهم رقم %(pos)s في %(lang_name)s في الأيام الثلاثين الماضية على "
-"%(server_title)s! "
-
-#: templates/user/profile.html:44
-#, python-format
-msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "المساهم رقم %(pos)s في %(lang_name)s في الأيام الثلاثين الماضية"
-
-#: templates/user/profile.html:49
-#, python-format
-msgid ""
-"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
-"days"
-msgstr ""
-"المساهم رقم %(pos)s في <a href=\"%(url)s\">%(lang_name)s</a> في الأيام "
-"الثلاثين الماضية"
 
 #: templates/user/settings.html:12
 msgid "User Account"
@@ -3031,6 +2995,29 @@ msgstr "لِج"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "أعلى المساهمين خلال الثلاثين يومًا الماضية"
+
+#~ msgid "Score:"
+#~ msgstr "النّتيجة:"
+
+#~ msgid "My current score at %(server_title)s is %(score)s "
+#~ msgstr "نتيجتي الحاليّة في %(server_title)s هي %(score)s "
+
+#~ msgid ""
+#~ "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
+#~ "%(server_title)s! "
+#~ msgstr ""
+#~ "أنا المساهم رقم %(pos)s في %(lang_name)s في الأيام الثلاثين الماضية على "
+#~ "%(server_title)s! "
+
+#~ msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
+#~ msgstr "المساهم رقم %(pos)s في %(lang_name)s في الأيام الثلاثين الماضية"
+
+#~ msgid ""
+#~ "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last "
+#~ "30 days"
+#~ msgstr ""
+#~ "المساهم رقم %(pos)s في <a href=\"%(url)s\">%(lang_name)s</a> في الأيام "
+#~ "الثلاثين الماضية"
 
 #~ msgid "Summary"
 #~ msgstr "الملخّص"

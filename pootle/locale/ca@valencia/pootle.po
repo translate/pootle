@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:56+0100\n"
+"POT-Creation-Date: 2017-05-17 13:08+0100\n"
 "PO-Revision-Date: 2017-02-08 11:05+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: Softcatalà\n"
@@ -830,51 +830,56 @@ msgstr "Darrer (%d)"
 msgid "Search unavailable"
 msgstr "La busca no és disponible"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:34
+#: apps/pootle_profile/templatetags/profile_tags.py:35
 #, fuzzy, python-format
 msgid "My current score at %s is %s"
 msgstr "La meua puntuació al %(server_title)s és %(score)s "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:37
-#: apps/pootle_profile/templatetags/profile_tags.py:62
-#: templates/user/profile.html:31 templates/user/profile.html:43
+#: apps/pootle_profile/templatetags/profile_tags.py:38
+#: apps/pootle_profile/templatetags/profile_tags.py:63
 msgid "Tweet this!"
 msgstr "Piula això!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:51
+#: apps/pootle_profile/templatetags/profile_tags.py:52
 #, fuzzy, python-format
 msgid "#%s contributor in %s in the last 30 days"
 msgstr "Cap contribució en els últims 30 dies"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:55
+#: apps/pootle_profile/templatetags/profile_tags.py:56
 #, fuzzy, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
 msgstr ""
 "Sóc el col·laborador número %(pos)s per a %(lang_name)s d'este mes en "
 "%(server_title)s!  "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:64
-#: templates/user/profile.html:40
+#: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
 msgstr "Cap contribució en els últims 30 dies"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:75
-#: templates/user/profile.html:73
+#: apps/pootle_profile/templatetags/profile_tags.py:76
 msgid "My Website"
 msgstr "Lloc web"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:85
-#: templates/user/profile.html:79
+#: apps/pootle_profile/templatetags/profile_tags.py:86
 msgid "My LinkedIn Profile"
 msgstr "Perfil del LinkedIn"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:94
+#: apps/pootle_profile/templatetags/profile_tags.py:95
 #, fuzzy
 msgid "Site administrator"
 msgstr "Administrador"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:111
-#: templates/user/profile.html:98
+#: apps/pootle_profile/templatetags/profile_tags.py:101
+#, fuzzy, python-format
+msgid "%s's language teams"
+msgstr "Equip de la llengua"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:104
+#, python-format
+msgid "%s is not a member of any language teams"
+msgstr ""
+
+#: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -882,8 +887,7 @@ msgstr ""
 "Algunes traduccions estan proporcionades per voluntaris anònims. Estes "
 "traduccions queden gravades en este metacompte especial."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:115
-#: templates/user/profile.html:100
+#: apps/pootle_profile/templatetags/profile_tags.py:125
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -891,8 +895,7 @@ msgstr ""
 "Algunes traduccions s'han importat des de fitxers externs. Estes traduccions "
 "queden gravades en este metacompte especial."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:125
-#: templates/user/profile.html:88
+#: apps/pootle_profile/templatetags/profile_tags.py:135
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -900,12 +903,11 @@ msgstr ""
 "Expliqueu als altres usuaris qui sou i què feu<br/>i feu el vostre perfil "
 "públic atractiu!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:128
-#: templates/user/profile.html:13
+#: apps/pootle_profile/templatetags/profile_tags.py:138
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "Podeu definir o canviar la vostra imatge avatar a www.gravatar.com"
 
-#: apps/pootle_profile/utils.py:50 templates/user/profile.html:16
+#: apps/pootle_profile/utils.py:50
 msgid "Anonymous User"
 msgstr "Usuari anònim"
 
@@ -918,7 +920,7 @@ msgstr "Administrador"
 msgid "Translator"
 msgstr "Traducció"
 
-#: apps/pootle_profile/views.py:66
+#: apps/pootle_profile/views.py:61
 msgid "Select one or more languages"
 msgstr "Seleccioneu una o més llengües"
 
@@ -1096,22 +1098,22 @@ msgstr "Plural"
 msgid "Added suggestion"
 msgstr "Ha afegit un suggeriment"
 
-#: apps/pootle_store/unit/timeline.py:85
+#: apps/pootle_store/unit/timeline.py:84
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Ha acceptat un suggeriment de %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:93
+#: apps/pootle_store/unit/timeline.py:92
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Ha acceptat un suggeriment de %(author)s amb comentari: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:109
+#: apps/pootle_store/unit/timeline.py:113
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Ha rebutjat un suggeriment de %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:117
+#: apps/pootle_store/unit/timeline.py:121
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Ha rebutjat un suggeriment de %(author)s amb comentari: %(comment)s"
@@ -1120,22 +1122,22 @@ msgstr "Ha rebutjat un suggeriment de %(author)s amb comentari: %(comment)s"
 msgid "Unit created"
 msgstr "S'ha creat la unitat"
 
-#: apps/pootle_store/unit/timeline.py:185
+#: apps/pootle_store/unit/timeline.py:186
 msgid "Comment:"
 msgstr "Comentari:"
 
-#: apps/pootle_store/unit/timeline.py:188
+#: apps/pootle_store/unit/timeline.py:189
 #, fuzzy
 msgid "Removed comment"
 msgstr "Suprimeix el comentari"
 
-#: apps/pootle_store/unit/timeline.py:213
+#: apps/pootle_store/unit/timeline.py:214
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr ""
 "Heu silenciat la comprovació <a href=\"%(check_url)s\">%(check_name)s</a>"
 
-#: apps/pootle_store/unit/timeline.py:222
+#: apps/pootle_store/unit/timeline.py:223
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr ""
@@ -2999,51 +3001,13 @@ msgid "Once you upload files, you will be able to add, edit and delete terms."
 msgstr "Una vegada pugeu els fitxers, podreu afegir, editar i suprimir termes."
 
 #: templates/user/includes/profile_activity.html:5
-#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "Darrera activitat:"
 
-#: templates/user/includes/profile_score.html:2
+#: templates/user/includes/profile_score.html:3
 #, fuzzy
 msgid "Total score:"
 msgstr "Nombre total de paraules:"
-
-#: templates/user/includes/profile_teams.html:6
-#, fuzzy
-msgid "Language teams"
-msgstr "Equip de la llengua"
-
-#: templates/user/profile.html:28
-msgid "Score:"
-msgstr "Puntuació:"
-
-#: templates/user/profile.html:31
-#, python-format
-msgid "My current score at %(server_title)s is %(score)s "
-msgstr "La meua puntuació al %(server_title)s és %(score)s "
-
-#: templates/user/profile.html:43
-#, python-format
-msgid ""
-"I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
-"%(server_title)s! "
-msgstr ""
-"Sóc el col·laborador número %(pos)s per a %(lang_name)s d'este mes en "
-"%(server_title)s!  "
-
-#: templates/user/profile.html:44
-#, python-format
-msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "Col·laborador número %(pos)s per a %(lang_name)s en els últims 30 dies"
-
-#: templates/user/profile.html:49
-#, python-format
-msgid ""
-"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
-"days"
-msgstr ""
-"Col·laborador núm. %(pos)s per a <a href=\"%(url)s\">%(lang_name)s</a> en "
-"els últims 30 dies"
 
 #: templates/user/settings.html:12
 msgid "User Account"
@@ -3088,6 +3052,30 @@ msgstr "Inicia la sessió"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Col·laboradors més actius dels últims 30 dies"
+
+#~ msgid "Score:"
+#~ msgstr "Puntuació:"
+
+#~ msgid "My current score at %(server_title)s is %(score)s "
+#~ msgstr "La meua puntuació al %(server_title)s és %(score)s "
+
+#~ msgid ""
+#~ "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
+#~ "%(server_title)s! "
+#~ msgstr ""
+#~ "Sóc el col·laborador número %(pos)s per a %(lang_name)s d'este mes en "
+#~ "%(server_title)s!  "
+
+#~ msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
+#~ msgstr ""
+#~ "Col·laborador número %(pos)s per a %(lang_name)s en els últims 30 dies"
+
+#~ msgid ""
+#~ "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last "
+#~ "30 days"
+#~ msgstr ""
+#~ "Col·laborador núm. %(pos)s per a <a href=\"%(url)s\">%(lang_name)s</a> en "
+#~ "els últims 30 dies"
 
 #~ msgid "Summary"
 #~ msgstr "Resum"

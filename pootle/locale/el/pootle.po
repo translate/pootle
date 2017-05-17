@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:56+0100\n"
+"POT-Creation-Date: 2017-05-17 13:08+0100\n"
 "PO-Revision-Date: 2017-02-08 07:50+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -833,51 +833,56 @@ msgstr "Τελευταίο (%d)"
 msgid "Search unavailable"
 msgstr "Μη διαθέσιμη αναζήτηση"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:34
+#: apps/pootle_profile/templatetags/profile_tags.py:35
 #, fuzzy, python-format
 msgid "My current score at %s is %s"
 msgstr "Η τρέχουσα βαθμολογία μου στους %(server_title)s είναι %(score)s "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:37
-#: apps/pootle_profile/templatetags/profile_tags.py:62
-#: templates/user/profile.html:31 templates/user/profile.html:43
+#: apps/pootle_profile/templatetags/profile_tags.py:38
+#: apps/pootle_profile/templatetags/profile_tags.py:63
 msgid "Tweet this!"
 msgstr "Στείλτε το στο Tweet αυτό!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:51
+#: apps/pootle_profile/templatetags/profile_tags.py:52
 #, fuzzy, python-format
 msgid "#%s contributor in %s in the last 30 days"
 msgstr "Χωρίς συνεισφορά τις τελευταίες 30 ημέρες"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:55
+#: apps/pootle_profile/templatetags/profile_tags.py:56
 #, fuzzy, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
 msgstr ""
 "Η συνεισφορά μου #%(pos)s στο %(lang_name)s τις τελευταίες 30 ημέρες στο "
 "%(server_title)s! "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:64
-#: templates/user/profile.html:40
+#: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
 msgstr "Χωρίς συνεισφορά τις τελευταίες 30 ημέρες"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:75
-#: templates/user/profile.html:73
+#: apps/pootle_profile/templatetags/profile_tags.py:76
 msgid "My Website"
 msgstr "Ο ιστότοπός μου"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:85
-#: templates/user/profile.html:79
+#: apps/pootle_profile/templatetags/profile_tags.py:86
 msgid "My LinkedIn Profile"
 msgstr "Η κατατομή μου LinkedIn"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:94
+#: apps/pootle_profile/templatetags/profile_tags.py:95
 #, fuzzy
 msgid "Site administrator"
 msgstr "Διαχειριστής"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:111
-#: templates/user/profile.html:98
+#: apps/pootle_profile/templatetags/profile_tags.py:101
+#, fuzzy, python-format
+msgid "%s's language teams"
+msgstr "Ομάδα γλώσσας"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:104
+#, python-format
+msgid "%s is not a member of any language teams"
+msgstr ""
+
+#: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -885,8 +890,7 @@ msgstr ""
 "Μερικές μεταφράσεις παρέχονται από ανώνυμους εθελοντές. Αυτές καταχωρίζονται "
 "κάτω από αυτόν τον ειδικό μεταλογαριασμό."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:115
-#: templates/user/profile.html:100
+#: apps/pootle_profile/templatetags/profile_tags.py:125
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -894,8 +898,7 @@ msgstr ""
 "Κάποιες μεταφράσεις εισάγονται από εξωτερικά αρχεία. Αυτές καταχωρίζονται "
 "κάτω από αυτόν τον ειδικό μεταλογαριασμό."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:125
-#: templates/user/profile.html:88
+#: apps/pootle_profile/templatetags/profile_tags.py:135
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -903,12 +906,11 @@ msgstr ""
 "Εμφανίστε στους άλλους ποιος είσαστε, πείτε για σας<br/>και κάντε τη δημόσια "
 "κατατομή σας να φαίνεται εξαίσια!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:128
-#: templates/user/profile.html:13
+#: apps/pootle_profile/templatetags/profile_tags.py:138
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "Μπορείτε να ορίσετε ή να αλλάξετε την εικόνα σας στο www.gravatar.com"
 
-#: apps/pootle_profile/utils.py:50 templates/user/profile.html:16
+#: apps/pootle_profile/utils.py:50
 msgid "Anonymous User"
 msgstr "Ανώνυμος χρήστης"
 
@@ -921,7 +923,7 @@ msgstr "Διαχειριστής"
 msgid "Translator"
 msgstr "Μετάφραση"
 
-#: apps/pootle_profile/views.py:66
+#: apps/pootle_profile/views.py:61
 msgid "Select one or more languages"
 msgstr "Επιλέξτε μία ή περισσότερες γλώσσες"
 
@@ -1099,22 +1101,22 @@ msgstr "Πληθυντικός"
 msgid "Added suggestion"
 msgstr "Προσθήκη της πρότασης"
 
-#: apps/pootle_store/unit/timeline.py:85
+#: apps/pootle_store/unit/timeline.py:84
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Αποδοχή της πρότασης από τον %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:93
+#: apps/pootle_store/unit/timeline.py:92
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Αποδεκτή η πρόταση από τον %(author)s με σχόλιο: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:109
+#: apps/pootle_store/unit/timeline.py:113
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Απόρριψη της πρότασης του %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:117
+#: apps/pootle_store/unit/timeline.py:121
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Απόρριψη πρότασης από τον %(author)s με σχόλιο: %(comment)s"
@@ -1123,21 +1125,21 @@ msgstr "Απόρριψη πρότασης από τον %(author)s με σχόλ
 msgid "Unit created"
 msgstr "Δημιουργήθηκε μονάδα"
 
-#: apps/pootle_store/unit/timeline.py:185
+#: apps/pootle_store/unit/timeline.py:186
 msgid "Comment:"
 msgstr "Σχόλιο:"
 
-#: apps/pootle_store/unit/timeline.py:188
+#: apps/pootle_store/unit/timeline.py:189
 #, fuzzy
 msgid "Removed comment"
 msgstr "Αφαίρεση σχολίου"
 
-#: apps/pootle_store/unit/timeline.py:213
+#: apps/pootle_store/unit/timeline.py:214
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr "Έλεγχος σίγασης των <a href=\"%(check_url)s\">%(check_name)s</a>"
 
-#: apps/pootle_store/unit/timeline.py:222
+#: apps/pootle_store/unit/timeline.py:223
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "Έλεγχος αποσίγασης των <a href=\"%(check_url)s\">%(check_name)s</a>"
@@ -3037,51 +3039,13 @@ msgstr ""
 "να διαγράψετε όρους."
 
 #: templates/user/includes/profile_activity.html:5
-#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "Τελευταία δραστηριότητα:"
 
-#: templates/user/includes/profile_score.html:2
+#: templates/user/includes/profile_score.html:3
 #, fuzzy
 msgid "Total score:"
 msgstr "Σύνολο λέξεων:"
-
-#: templates/user/includes/profile_teams.html:6
-#, fuzzy
-msgid "Language teams"
-msgstr "Ομάδα γλώσσας"
-
-#: templates/user/profile.html:28
-msgid "Score:"
-msgstr "Βαθμολογία:"
-
-#: templates/user/profile.html:31
-#, python-format
-msgid "My current score at %(server_title)s is %(score)s "
-msgstr "Η τρέχουσα βαθμολογία μου στους %(server_title)s είναι %(score)s "
-
-#: templates/user/profile.html:43
-#, python-format
-msgid ""
-"I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
-"%(server_title)s! "
-msgstr ""
-"Η συνεισφορά μου #%(pos)s στο %(lang_name)s τις τελευταίες 30 ημέρες στο "
-"%(server_title)s! "
-
-#: templates/user/profile.html:44
-#, python-format
-msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "#%(pos)s συνεισφέροντες στο %(lang_name)s τις τελευταίες 30 ημέρες"
-
-#: templates/user/profile.html:49
-#, python-format
-msgid ""
-"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
-"days"
-msgstr ""
-"#%(pos)s συνεισφέροντες στο <a href=\"%(url)s\">%(lang_name)s</a> τις "
-"τελευταίες 30 ημέρες"
 
 #: templates/user/settings.html:12
 msgid "User Account"
@@ -3127,6 +3091,29 @@ msgstr "Σύνδεση"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Κορυφαίοι συντελεστές για τις τελευταίες 30 ημέρες"
+
+#~ msgid "Score:"
+#~ msgstr "Βαθμολογία:"
+
+#~ msgid "My current score at %(server_title)s is %(score)s "
+#~ msgstr "Η τρέχουσα βαθμολογία μου στους %(server_title)s είναι %(score)s "
+
+#~ msgid ""
+#~ "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
+#~ "%(server_title)s! "
+#~ msgstr ""
+#~ "Η συνεισφορά μου #%(pos)s στο %(lang_name)s τις τελευταίες 30 ημέρες στο "
+#~ "%(server_title)s! "
+
+#~ msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
+#~ msgstr "#%(pos)s συνεισφέροντες στο %(lang_name)s τις τελευταίες 30 ημέρες"
+
+#~ msgid ""
+#~ "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last "
+#~ "30 days"
+#~ msgstr ""
+#~ "#%(pos)s συνεισφέροντες στο <a href=\"%(url)s\">%(lang_name)s</a> τις "
+#~ "τελευταίες 30 ημέρες"
 
 #~ msgid "Summary"
 #~ msgstr "Περίληψη"

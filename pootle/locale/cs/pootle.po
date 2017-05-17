@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:56+0100\n"
+"POT-Creation-Date: 2017-05-17 13:08+0100\n"
 "PO-Revision-Date: 2017-02-21 16:51+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -831,51 +831,56 @@ msgstr "Poslední (%d)"
 msgid "Search unavailable"
 msgstr "Hledání není k dispozici"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:34
+#: apps/pootle_profile/templatetags/profile_tags.py:35
 #, fuzzy, python-format
 msgid "My current score at %s is %s"
 msgstr "Mé aktuální hodnocení na %(server_title)s je %(score)s "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:37
-#: apps/pootle_profile/templatetags/profile_tags.py:62
-#: templates/user/profile.html:31 templates/user/profile.html:43
+#: apps/pootle_profile/templatetags/profile_tags.py:38
+#: apps/pootle_profile/templatetags/profile_tags.py:63
 msgid "Tweet this!"
 msgstr "Tweetni to!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:51
+#: apps/pootle_profile/templatetags/profile_tags.py:52
 #, fuzzy, python-format
 msgid "#%s contributor in %s in the last 30 days"
 msgstr "Žádné příspěvky za posledních 30 dní"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:55
+#: apps/pootle_profile/templatetags/profile_tags.py:56
 #, fuzzy, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
 msgstr ""
 "Za posledních 30 dní jsem pro jazyk %(lang_name)s na serveru "
 "%(server_title)s přispěvatelem #%(pos)s! "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:64
-#: templates/user/profile.html:40
+#: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
 msgstr "Žádné příspěvky za posledních 30 dní"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:75
-#: templates/user/profile.html:73
+#: apps/pootle_profile/templatetags/profile_tags.py:76
 msgid "My Website"
 msgstr "Mé webové stránky"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:85
-#: templates/user/profile.html:79
+#: apps/pootle_profile/templatetags/profile_tags.py:86
 msgid "My LinkedIn Profile"
 msgstr "Můj LinkedIn profil"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:94
+#: apps/pootle_profile/templatetags/profile_tags.py:95
 #, fuzzy
 msgid "Site administrator"
 msgstr "Správce"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:111
-#: templates/user/profile.html:98
+#: apps/pootle_profile/templatetags/profile_tags.py:101
+#, fuzzy, python-format
+msgid "%s's language teams"
+msgstr "Tým jazyka"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:104
+#, python-format
+msgid "%s is not a member of any language teams"
+msgstr ""
+
+#: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -883,8 +888,7 @@ msgstr ""
 "Některé překlady byly zadány anonymními dobrovolníky. Tyto příspěvky jsou "
 "zaregistrovány pod tímto speciálním účtem."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:115
-#: templates/user/profile.html:100
+#: apps/pootle_profile/templatetags/profile_tags.py:125
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -892,8 +896,7 @@ msgstr ""
 "Některé překlady byly naimportovány z externích souborů. Tyto příspěvky jsou "
 "zaregistrovány pod tímto speciálním účtem."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:125
-#: templates/user/profile.html:88
+#: apps/pootle_profile/templatetags/profile_tags.py:135
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -901,12 +904,11 @@ msgstr ""
 "Ukažte ostatním kdo jste, řekněte jim něco o sobě<br/>a vytvořte si nádherný "
 "veřejný profil!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:128
-#: templates/user/profile.html:13
+#: apps/pootle_profile/templatetags/profile_tags.py:138
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "Obrázek svého avataru můžete nastavit nebo změnit na www.gravatar.com"
 
-#: apps/pootle_profile/utils.py:50 templates/user/profile.html:16
+#: apps/pootle_profile/utils.py:50
 msgid "Anonymous User"
 msgstr "Anonymní uživatel"
 
@@ -919,7 +921,7 @@ msgstr "Správce"
 msgid "Translator"
 msgstr "Překlad"
 
-#: apps/pootle_profile/views.py:66
+#: apps/pootle_profile/views.py:61
 msgid "Select one or more languages"
 msgstr "Vyberte jeden nebo více jazyků"
 
@@ -1094,22 +1096,22 @@ msgstr "Plurál"
 msgid "Added suggestion"
 msgstr "Přidal návrh"
 
-#: apps/pootle_store/unit/timeline.py:85
+#: apps/pootle_store/unit/timeline.py:84
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Přijal návrh uživatele %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:93
+#: apps/pootle_store/unit/timeline.py:92
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Přijal návrh uživatele %(author)s s komentářem: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:109
+#: apps/pootle_store/unit/timeline.py:113
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Zamítl návrh uživatele %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:117
+#: apps/pootle_store/unit/timeline.py:121
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Zamítl návrh uživatele %(author)s s komentářem: %(comment)s"
@@ -1118,21 +1120,21 @@ msgstr "Zamítl návrh uživatele %(author)s s komentářem: %(comment)s"
 msgid "Unit created"
 msgstr "Položka vytvořena"
 
-#: apps/pootle_store/unit/timeline.py:185
+#: apps/pootle_store/unit/timeline.py:186
 msgid "Comment:"
 msgstr "Komentář:"
 
-#: apps/pootle_store/unit/timeline.py:188
+#: apps/pootle_store/unit/timeline.py:189
 #, fuzzy
 msgid "Removed comment"
 msgstr "Odstranit komentář"
 
-#: apps/pootle_store/unit/timeline.py:213
+#: apps/pootle_store/unit/timeline.py:214
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr "Potlačil kontrolu <a href=\"%(check_url)s\">%(check_name)s</a>"
 
-#: apps/pootle_store/unit/timeline.py:222
+#: apps/pootle_store/unit/timeline.py:223
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "Obnovil kontrolu <a href=\"%(check_url)s\">%(check_name)s</a>"
@@ -2995,51 +2997,13 @@ msgstr ""
 "Po nahrání souborů budete moci přidávat, upravovat a odstraňovat výrazy."
 
 #: templates/user/includes/profile_activity.html:5
-#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "Poslední aktivita:"
 
-#: templates/user/includes/profile_score.html:2
+#: templates/user/includes/profile_score.html:3
 #, fuzzy
 msgid "Total score:"
 msgstr "Celkem slov:"
-
-#: templates/user/includes/profile_teams.html:6
-#, fuzzy
-msgid "Language teams"
-msgstr "Tým jazyka"
-
-#: templates/user/profile.html:28
-msgid "Score:"
-msgstr "Hodnocení:"
-
-#: templates/user/profile.html:31
-#, python-format
-msgid "My current score at %(server_title)s is %(score)s "
-msgstr "Mé aktuální hodnocení na %(server_title)s je %(score)s "
-
-#: templates/user/profile.html:43
-#, python-format
-msgid ""
-"I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
-"%(server_title)s! "
-msgstr ""
-"Za posledních 30 dní jsem pro jazyk %(lang_name)s na serveru "
-"%(server_title)s přispěvatelem #%(pos)s! "
-
-#: templates/user/profile.html:44
-#, python-format
-msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "Za posledních 30 dní přispěvatel #%(pos)s pro jazyk %(lang_name)s"
-
-#: templates/user/profile.html:49
-#, python-format
-msgid ""
-"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
-"days"
-msgstr ""
-"Za posledních 30 dní přispěvatel #%(pos)s pro jazyk <a href=\"%(url)s\">"
-"%(lang_name)s</a>"
 
 #: templates/user/settings.html:12
 msgid "User Account"
@@ -3084,6 +3048,29 @@ msgstr "Přihlásit se"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Hlavní přispěvatelé za posledních 30 dní"
+
+#~ msgid "Score:"
+#~ msgstr "Hodnocení:"
+
+#~ msgid "My current score at %(server_title)s is %(score)s "
+#~ msgstr "Mé aktuální hodnocení na %(server_title)s je %(score)s "
+
+#~ msgid ""
+#~ "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
+#~ "%(server_title)s! "
+#~ msgstr ""
+#~ "Za posledních 30 dní jsem pro jazyk %(lang_name)s na serveru "
+#~ "%(server_title)s přispěvatelem #%(pos)s! "
+
+#~ msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
+#~ msgstr "Za posledních 30 dní přispěvatel #%(pos)s pro jazyk %(lang_name)s"
+
+#~ msgid ""
+#~ "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last "
+#~ "30 days"
+#~ msgstr ""
+#~ "Za posledních 30 dní přispěvatel #%(pos)s pro jazyk <a href=\"%(url)s\">"
+#~ "%(lang_name)s</a>"
 
 #~ msgid "Summary"
 #~ msgstr "Souhrn"

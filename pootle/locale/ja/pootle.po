@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:56+0100\n"
+"POT-Creation-Date: 2017-05-17 13:08+0100\n"
 "PO-Revision-Date: 2017-02-06 22:11+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -820,50 +820,55 @@ msgstr "末尾 (%d)"
 msgid "Search unavailable"
 msgstr "検索は利用できません"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:34
+#: apps/pootle_profile/templatetags/profile_tags.py:35
 #, fuzzy, python-format
 msgid "My current score at %s is %s"
 msgstr "私の現在の %(server_title)s のスコアは %(score)s です "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:37
-#: apps/pootle_profile/templatetags/profile_tags.py:62
-#: templates/user/profile.html:31 templates/user/profile.html:43
+#: apps/pootle_profile/templatetags/profile_tags.py:38
+#: apps/pootle_profile/templatetags/profile_tags.py:63
 msgid "Tweet this!"
 msgstr "ツイートする！"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:51
+#: apps/pootle_profile/templatetags/profile_tags.py:52
 #, fuzzy, python-format
 msgid "#%s contributor in %s in the last 30 days"
 msgstr "最近 30 日間の貢献者はいません"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:55
+#: apps/pootle_profile/templatetags/profile_tags.py:56
 #, fuzzy, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
 msgstr ""
 "%(server_title)s で最近 30 日間の %(lang_name)s の私の貢献は #%(pos)s です！ "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:64
-#: templates/user/profile.html:40
+#: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
 msgstr "最近 30 日間の貢献者はいません"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:75
-#: templates/user/profile.html:73
+#: apps/pootle_profile/templatetags/profile_tags.py:76
 msgid "My Website"
 msgstr "ウェブサイト"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:85
-#: templates/user/profile.html:79
+#: apps/pootle_profile/templatetags/profile_tags.py:86
 msgid "My LinkedIn Profile"
 msgstr "LinkedIn プロフィール"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:94
+#: apps/pootle_profile/templatetags/profile_tags.py:95
 #, fuzzy
 msgid "Site administrator"
 msgstr "管理者"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:111
-#: templates/user/profile.html:98
+#: apps/pootle_profile/templatetags/profile_tags.py:101
+#, fuzzy, python-format
+msgid "%s's language teams"
+msgstr "言語チーム"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:104
+#, python-format
+msgid "%s is not a member of any language teams"
+msgstr ""
+
+#: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -871,8 +876,7 @@ msgstr ""
 "翻訳は匿名のボランティアにより提供されているものもあります。これらは、この特"
 "別なメタアカウントの下に登録されています。"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:115
-#: templates/user/profile.html:100
+#: apps/pootle_profile/templatetags/profile_tags.py:125
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -880,19 +884,17 @@ msgstr ""
 "翻訳は外部ファイルからインポートされているものもあります。これらは、この特別"
 "なメタアカウントの下に登録されています。"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:125
-#: templates/user/profile.html:88
+#: apps/pootle_profile/templatetags/profile_tags.py:135
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr "あなたの自己紹介をして、<br/>公開プロフィールを派手に見せましょう。"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:128
-#: templates/user/profile.html:13
+#: apps/pootle_profile/templatetags/profile_tags.py:138
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "アバター画像は www.gravatar.com で設定/変更できます"
 
-#: apps/pootle_profile/utils.py:50 templates/user/profile.html:16
+#: apps/pootle_profile/utils.py:50
 msgid "Anonymous User"
 msgstr "匿名ユーザー"
 
@@ -905,7 +907,7 @@ msgstr "管理者"
 msgid "Translator"
 msgstr "訳文"
 
-#: apps/pootle_profile/views.py:66
+#: apps/pootle_profile/views.py:61
 msgid "Select one or more languages"
 msgstr "言語を選択してください"
 
@@ -1079,22 +1081,22 @@ msgstr "複数形"
 msgid "Added suggestion"
 msgstr "提案を追加しました"
 
-#: apps/pootle_store/unit/timeline.py:85
+#: apps/pootle_store/unit/timeline.py:84
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "%(author)s による提案を承認しました"
 
-#: apps/pootle_store/unit/timeline.py:93
+#: apps/pootle_store/unit/timeline.py:92
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "%(author)s による提案をコメント付きで承認しました: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:109
+#: apps/pootle_store/unit/timeline.py:113
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "%(author)s による提案を却下しました"
 
-#: apps/pootle_store/unit/timeline.py:117
+#: apps/pootle_store/unit/timeline.py:121
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "%(author)s による提案をコメント付きで却下しました: %(comment)s"
@@ -1103,21 +1105,21 @@ msgstr "%(author)s による提案をコメント付きで却下しました: %(
 msgid "Unit created"
 msgstr "ユニットを作成しました"
 
-#: apps/pootle_store/unit/timeline.py:185
+#: apps/pootle_store/unit/timeline.py:186
 msgid "Comment:"
 msgstr "コメント:"
 
-#: apps/pootle_store/unit/timeline.py:188
+#: apps/pootle_store/unit/timeline.py:189
 #, fuzzy
 msgid "Removed comment"
 msgstr "コメントを削除"
 
-#: apps/pootle_store/unit/timeline.py:213
+#: apps/pootle_store/unit/timeline.py:214
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr "<a href=\"%(check_url)s\">%(check_name)s</a> の誤りを黙認"
 
-#: apps/pootle_store/unit/timeline.py:222
+#: apps/pootle_store/unit/timeline.py:223
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "<a href=\"%(check_url)s\">%(check_name)s</a> の誤りを黙認解除"
@@ -2975,50 +2977,13 @@ msgstr ""
 "ファイルをアップロードすれば、用語の追加や編集、削除ができるようになります。"
 
 #: templates/user/includes/profile_activity.html:5
-#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "最終活動日時:"
 
-#: templates/user/includes/profile_score.html:2
+#: templates/user/includes/profile_score.html:3
 #, fuzzy
 msgid "Total score:"
 msgstr "単語総数:"
-
-#: templates/user/includes/profile_teams.html:6
-#, fuzzy
-msgid "Language teams"
-msgstr "言語チーム"
-
-#: templates/user/profile.html:28
-msgid "Score:"
-msgstr "スコア:"
-
-#: templates/user/profile.html:31
-#, python-format
-msgid "My current score at %(server_title)s is %(score)s "
-msgstr "私の現在の %(server_title)s のスコアは %(score)s です "
-
-#: templates/user/profile.html:43
-#, python-format
-msgid ""
-"I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
-"%(server_title)s! "
-msgstr ""
-"%(server_title)s で最近 30 日間の %(lang_name)s の私の貢献は #%(pos)s です！ "
-
-#: templates/user/profile.html:44
-#, python-format
-msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "最近 30 日間の貢献で第 %(pos)s 位の %(lang_name)s 貢献者"
-
-#: templates/user/profile.html:49
-#, python-format
-msgid ""
-"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
-"days"
-msgstr ""
-"最近 30 日間の貢献で第 %(pos)s 位の <a href=\"%(url)s\">%(lang_name)s</a> 貢"
-"献者"
 
 #: templates/user/settings.html:12
 msgid "User Account"
@@ -3063,6 +3028,29 @@ msgstr "サインイン"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "最近 30 日間の上位の貢献者たち"
+
+#~ msgid "Score:"
+#~ msgstr "スコア:"
+
+#~ msgid "My current score at %(server_title)s is %(score)s "
+#~ msgstr "私の現在の %(server_title)s のスコアは %(score)s です "
+
+#~ msgid ""
+#~ "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
+#~ "%(server_title)s! "
+#~ msgstr ""
+#~ "%(server_title)s で最近 30 日間の %(lang_name)s の私の貢献は #%(pos)s で"
+#~ "す！ "
+
+#~ msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
+#~ msgstr "最近 30 日間の貢献で第 %(pos)s 位の %(lang_name)s 貢献者"
+
+#~ msgid ""
+#~ "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last "
+#~ "30 days"
+#~ msgstr ""
+#~ "最近 30 日間の貢献で第 %(pos)s 位の <a href=\"%(url)s\">%(lang_name)s</a> "
+#~ "貢献者"
 
 #~ msgid "Summary"
 #~ msgstr "概要"

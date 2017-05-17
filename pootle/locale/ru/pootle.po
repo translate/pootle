@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:56+0100\n"
+"POT-Creation-Date: 2017-05-17 13:08+0100\n"
 "PO-Revision-Date: 2017-05-16 17:44+0000\n"
 "Last-Translator: Mikhail <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
@@ -825,48 +825,53 @@ msgstr "Последняя (%d)"
 msgid "Search unavailable"
 msgstr "Поиск недоступен"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:34
+#: apps/pootle_profile/templatetags/profile_tags.py:35
 #, python-format
 msgid "My current score at %s is %s"
 msgstr "Мой текущий счет на %s составляет %s "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:37
-#: apps/pootle_profile/templatetags/profile_tags.py:62
-#: templates/user/profile.html:31 templates/user/profile.html:43
+#: apps/pootle_profile/templatetags/profile_tags.py:38
+#: apps/pootle_profile/templatetags/profile_tags.py:63
 msgid "Tweet this!"
 msgstr "Твитни это!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:51
+#: apps/pootle_profile/templatetags/profile_tags.py:52
 #, python-format
 msgid "#%s contributor in %s in the last 30 days"
 msgstr "Участник №%s в %s за последние 30 дней"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:55
+#: apps/pootle_profile/templatetags/profile_tags.py:56
 #, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
 msgstr "Я участник №%s в %s за последние 30 дней на %s!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:64
-#: templates/user/profile.html:40
+#: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
 msgstr "Нет вклада за последние 30 дней"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:75
-#: templates/user/profile.html:73
+#: apps/pootle_profile/templatetags/profile_tags.py:76
 msgid "My Website"
 msgstr "Мой веб-сайт"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:85
-#: templates/user/profile.html:79
+#: apps/pootle_profile/templatetags/profile_tags.py:86
 msgid "My LinkedIn Profile"
 msgstr "Мой профиль на LinkedIn"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:94
+#: apps/pootle_profile/templatetags/profile_tags.py:95
 msgid "Site administrator"
 msgstr "Администратор сайта"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:111
-#: templates/user/profile.html:98
+#: apps/pootle_profile/templatetags/profile_tags.py:101
+#, fuzzy, python-format
+msgid "%s's language teams"
+msgstr "Языковые команды"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:104
+#, python-format
+msgid "%s is not a member of any language teams"
+msgstr ""
+
+#: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -874,8 +879,7 @@ msgstr ""
 "Некоторые переводы были предоставлены анонимными волонтерами. Они будут "
 "учтены под специальной учетной записью."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:115
-#: templates/user/profile.html:100
+#: apps/pootle_profile/templatetags/profile_tags.py:125
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -883,21 +887,19 @@ msgstr ""
 "Некоторые переводы были импортированы из внешних файлов. Они будут учтены "
 "под специальной учетной записью."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:125
-#: templates/user/profile.html:88
+#: apps/pootle_profile/templatetags/profile_tags.py:135
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 "Расскажите остальным о себе,<br/>украсьте тем самым свой публичный профиль!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:128
-#: templates/user/profile.html:13
+#: apps/pootle_profile/templatetags/profile_tags.py:138
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr ""
 "Вы можете установить или изменить свой аватар на веб-сайте www.gravatar.com"
 
-#: apps/pootle_profile/utils.py:50 templates/user/profile.html:16
+#: apps/pootle_profile/utils.py:50
 msgid "Anonymous User"
 msgstr "Анонимный пользователь"
 
@@ -909,7 +911,7 @@ msgstr "Администратор"
 msgid "Translator"
 msgstr "Переводчик"
 
-#: apps/pootle_profile/views.py:66
+#: apps/pootle_profile/views.py:61
 msgid "Select one or more languages"
 msgstr "Выберите один или несколько языков"
 
@@ -1081,22 +1083,22 @@ msgstr "Множественное число"
 msgid "Added suggestion"
 msgstr "Добавить предложение"
 
-#: apps/pootle_store/unit/timeline.py:85
+#: apps/pootle_store/unit/timeline.py:84
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Принято предложение от %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:93
+#: apps/pootle_store/unit/timeline.py:92
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Принято предложение от %(author)s с комментарием: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:109
+#: apps/pootle_store/unit/timeline.py:113
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Отклонено предложение от %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:117
+#: apps/pootle_store/unit/timeline.py:121
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Отклонено предложение от %(author)s с комментарием: %(comment)s"
@@ -1105,20 +1107,20 @@ msgstr "Отклонено предложение от %(author)s с комме�
 msgid "Unit created"
 msgstr "Сегмент создан"
 
-#: apps/pootle_store/unit/timeline.py:185
+#: apps/pootle_store/unit/timeline.py:186
 msgid "Comment:"
 msgstr "Комментарии:"
 
-#: apps/pootle_store/unit/timeline.py:188
+#: apps/pootle_store/unit/timeline.py:189
 msgid "Removed comment"
 msgstr "Удаленный комментарий"
 
-#: apps/pootle_store/unit/timeline.py:213
+#: apps/pootle_store/unit/timeline.py:214
 #, python-format
 msgid "Muted %(check_name)s check"
 msgstr "Проверка %(check_name)s подавлена"
 
-#: apps/pootle_store/unit/timeline.py:222
+#: apps/pootle_store/unit/timeline.py:223
 #, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "Проверка %(check_name)s вновь активна"
@@ -2991,49 +2993,12 @@ msgstr ""
 "термины."
 
 #: templates/user/includes/profile_activity.html:5
-#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "Последняя активность:"
 
-#: templates/user/includes/profile_score.html:2
+#: templates/user/includes/profile_score.html:3
 msgid "Total score:"
 msgstr "Итого очков:"
-
-#: templates/user/includes/profile_teams.html:6
-msgid "Language teams"
-msgstr "Языковые команды"
-
-#: templates/user/profile.html:28
-msgid "Score:"
-msgstr "Счёт:"
-
-#: templates/user/profile.html:31
-#, python-format
-msgid "My current score at %(server_title)s is %(score)s "
-msgstr "Мой текущий счет на %(server_title)s составляет %(score)s "
-
-#: templates/user/profile.html:43
-#, python-format
-msgid ""
-"I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
-"%(server_title)s! "
-msgstr ""
-"Я участник #%(pos)s в %(lang_name)s за последние 30 дней на at "
-"%(server_title)s! "
-
-#: templates/user/profile.html:44
-#, python-format
-msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "Участник #%(pos)s в %(lang_name)s за последние 30 дней"
-
-#: templates/user/profile.html:49
-#, python-format
-msgid ""
-"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
-"days"
-msgstr ""
-"Участник #%(pos)s в <a href=\"%(url)s\">%(lang_name)s</a> за последние 30 "
-"дней"
 
 #: templates/user/settings.html:12
 msgid "User Account"
@@ -3078,6 +3043,29 @@ msgstr "Войти"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Топ переводчиков за последние 30 дней"
+
+#~ msgid "Score:"
+#~ msgstr "Счёт:"
+
+#~ msgid "My current score at %(server_title)s is %(score)s "
+#~ msgstr "Мой текущий счет на %(server_title)s составляет %(score)s "
+
+#~ msgid ""
+#~ "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
+#~ "%(server_title)s! "
+#~ msgstr ""
+#~ "Я участник #%(pos)s в %(lang_name)s за последние 30 дней на at "
+#~ "%(server_title)s! "
+
+#~ msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
+#~ msgstr "Участник #%(pos)s в %(lang_name)s за последние 30 дней"
+
+#~ msgid ""
+#~ "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last "
+#~ "30 days"
+#~ msgstr ""
+#~ "Участник #%(pos)s в <a href=\"%(url)s\">%(lang_name)s</a> за последние 30 "
+#~ "дней"
 
 #~ msgid "Summary"
 #~ msgstr "Статус"

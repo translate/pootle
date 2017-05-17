@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:56+0100\n"
+"POT-Creation-Date: 2017-05-17 13:08+0100\n"
 "PO-Revision-Date: 2017-03-24 05:22+0000\n"
 "Last-Translator: kingu <epost@anotheragency.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -840,51 +840,56 @@ msgstr "Siste (%d)"
 msgid "Search unavailable"
 msgstr "Søk utilgjengelig"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:34
+#: apps/pootle_profile/templatetags/profile_tags.py:35
 #, fuzzy, python-format
 msgid "My current score at %s is %s"
 msgstr "Min gjeldende poengsum på %(server_title)s er %(score)s "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:37
-#: apps/pootle_profile/templatetags/profile_tags.py:62
-#: templates/user/profile.html:31 templates/user/profile.html:43
+#: apps/pootle_profile/templatetags/profile_tags.py:38
+#: apps/pootle_profile/templatetags/profile_tags.py:63
 msgid "Tweet this!"
 msgstr "Kvitre dette!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:51
+#: apps/pootle_profile/templatetags/profile_tags.py:52
 #, fuzzy, python-format
 msgid "#%s contributor in %s in the last 30 days"
 msgstr "Ingen bidrag innsendt de siste 30 dagene"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:55
+#: apps/pootle_profile/templatetags/profile_tags.py:56
 #, fuzzy, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
 msgstr ""
 "Jeg er #%(pos)s bidragsyter i %(lang_name)s de siste 30 dagene på "
 "%(server_title)s! "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:64
-#: templates/user/profile.html:40
+#: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
 msgstr "Ingen bidrag innsendt de siste 30 dagene"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:75
-#: templates/user/profile.html:73
+#: apps/pootle_profile/templatetags/profile_tags.py:76
 msgid "My Website"
 msgstr "Min nettside"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:85
-#: templates/user/profile.html:79
+#: apps/pootle_profile/templatetags/profile_tags.py:86
 msgid "My LinkedIn Profile"
 msgstr "Min LinkedIn-profil"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:94
+#: apps/pootle_profile/templatetags/profile_tags.py:95
 #, fuzzy
 msgid "Site administrator"
 msgstr "Administrator"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:111
-#: templates/user/profile.html:98
+#: apps/pootle_profile/templatetags/profile_tags.py:101
+#, fuzzy, python-format
+msgid "%s's language teams"
+msgstr "Språkgruppe"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:104
+#, python-format
+msgid "%s is not a member of any language teams"
+msgstr ""
+
+#: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -892,8 +897,7 @@ msgstr ""
 "Noen oversettelser kommer fra anonyme frivillige. Disse er registrert under "
 "denne spesielle meta-kontoen."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:115
-#: templates/user/profile.html:100
+#: apps/pootle_profile/templatetags/profile_tags.py:125
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -901,8 +905,7 @@ msgstr ""
 "Noen oversettelser er importert fra eksterne filer. Disse er registrert "
 "under denne spesielle meta-kontoen."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:125
-#: templates/user/profile.html:88
+#: apps/pootle_profile/templatetags/profile_tags.py:135
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -910,12 +913,11 @@ msgstr ""
 "Vis andre hvem du er, fortell om deg selv<br/>og gjør din offentlige profil "
 "standsmessig!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:128
-#: templates/user/profile.html:13
+#: apps/pootle_profile/templatetags/profile_tags.py:138
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "Du kan skape eller endre din avatar på www.gravatar.com"
 
-#: apps/pootle_profile/utils.py:50 templates/user/profile.html:16
+#: apps/pootle_profile/utils.py:50
 msgid "Anonymous User"
 msgstr "Anonym bruker"
 
@@ -928,7 +930,7 @@ msgstr "Administrator"
 msgid "Translator"
 msgstr "Oversettelse"
 
-#: apps/pootle_profile/views.py:66
+#: apps/pootle_profile/views.py:61
 msgid "Select one or more languages"
 msgstr "Velg ett eller flere språk"
 
@@ -1103,22 +1105,22 @@ msgstr "Flertall"
 msgid "Added suggestion"
 msgstr "La til forslag"
 
-#: apps/pootle_store/unit/timeline.py:85
+#: apps/pootle_store/unit/timeline.py:84
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Godkjente forslag fra %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:93
+#: apps/pootle_store/unit/timeline.py:92
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Godkjente forslag fra %(author)s med kommentaren: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:109
+#: apps/pootle_store/unit/timeline.py:113
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Avslo forslag fra %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:117
+#: apps/pootle_store/unit/timeline.py:121
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Avslo forslag fra %(author)s med kommentaren: %(comment)s"
@@ -1127,21 +1129,21 @@ msgstr "Avslo forslag fra %(author)s med kommentaren: %(comment)s"
 msgid "Unit created"
 msgstr "Enhet opprettet"
 
-#: apps/pootle_store/unit/timeline.py:185
+#: apps/pootle_store/unit/timeline.py:186
 msgid "Comment:"
 msgstr "Kommentar:"
 
-#: apps/pootle_store/unit/timeline.py:188
+#: apps/pootle_store/unit/timeline.py:189
 #, fuzzy
 msgid "Removed comment"
 msgstr "Fjern kommentar"
 
-#: apps/pootle_store/unit/timeline.py:213
+#: apps/pootle_store/unit/timeline.py:214
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr "Tok bort <a href=\"%(check_url)s\">%(check_name)s</a> kontroll"
 
-#: apps/pootle_store/unit/timeline.py:222
+#: apps/pootle_store/unit/timeline.py:223
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "Anvendte <a href=\"%(check_url)s\">%(check_name)s</a> kontroll"
@@ -3043,52 +3045,14 @@ msgstr ""
 "Når du har lastet opp filer, kan du legge til, redigere og fjerne deler."
 
 #: templates/user/includes/profile_activity.html:5
-#: templates/user/profile.html:59
 #, fuzzy
 msgid "Latest activity:"
 msgstr "Siste aktivitet"
 
-#: templates/user/includes/profile_score.html:2
+#: templates/user/includes/profile_score.html:3
 #, fuzzy
 msgid "Total score:"
 msgstr "Totalt antall ord:"
-
-#: templates/user/includes/profile_teams.html:6
-#, fuzzy
-msgid "Language teams"
-msgstr "Språkgruppe"
-
-#: templates/user/profile.html:28
-msgid "Score:"
-msgstr "Poengsum:"
-
-#: templates/user/profile.html:31
-#, python-format
-msgid "My current score at %(server_title)s is %(score)s "
-msgstr "Min gjeldende poengsum på %(server_title)s er %(score)s "
-
-#: templates/user/profile.html:43
-#, python-format
-msgid ""
-"I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
-"%(server_title)s! "
-msgstr ""
-"Jeg er #%(pos)s bidragsyter i %(lang_name)s de siste 30 dagene på "
-"%(server_title)s! "
-
-#: templates/user/profile.html:44
-#, python-format
-msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "#%(pos)s bidragsyter for %(lang_name)s de siste 30 dagene"
-
-#: templates/user/profile.html:49
-#, fuzzy, python-format
-msgid ""
-"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
-"days"
-msgstr ""
-"#%(pos)s bidragsyter i <a href=\"%(url)s\">%(lang_name)s</a> de siste 30 "
-"dagene"
 
 #: templates/user/settings.html:12
 msgid "User Account"
@@ -3133,6 +3097,30 @@ msgstr "Logg inn"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Topp bidragsytere de siste 30 dagene"
+
+#~ msgid "Score:"
+#~ msgstr "Poengsum:"
+
+#~ msgid "My current score at %(server_title)s is %(score)s "
+#~ msgstr "Min gjeldende poengsum på %(server_title)s er %(score)s "
+
+#~ msgid ""
+#~ "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
+#~ "%(server_title)s! "
+#~ msgstr ""
+#~ "Jeg er #%(pos)s bidragsyter i %(lang_name)s de siste 30 dagene på "
+#~ "%(server_title)s! "
+
+#~ msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
+#~ msgstr "#%(pos)s bidragsyter for %(lang_name)s de siste 30 dagene"
+
+#, fuzzy
+#~ msgid ""
+#~ "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last "
+#~ "30 days"
+#~ msgstr ""
+#~ "#%(pos)s bidragsyter i <a href=\"%(url)s\">%(lang_name)s</a> de siste 30 "
+#~ "dagene"
 
 #~ msgid "Summary"
 #~ msgstr "Sammendrag"

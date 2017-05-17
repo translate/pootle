@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:56+0100\n"
+"POT-Creation-Date: 2017-05-17 13:08+0100\n"
 "PO-Revision-Date: 2017-03-06 21:02+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -821,51 +821,56 @@ msgstr "Utolsó (%d)"
 msgid "Search unavailable"
 msgstr "A keresés nem érhető el"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:34
+#: apps/pootle_profile/templatetags/profile_tags.py:35
 #, fuzzy, python-format
 msgid "My current score at %s is %s"
 msgstr "Jelenlegi pontszámom %(score)s itt: %(server_title)s "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:37
-#: apps/pootle_profile/templatetags/profile_tags.py:62
-#: templates/user/profile.html:31 templates/user/profile.html:43
+#: apps/pootle_profile/templatetags/profile_tags.py:38
+#: apps/pootle_profile/templatetags/profile_tags.py:63
 msgid "Tweet this!"
 msgstr "Twittelje ki!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:51
+#: apps/pootle_profile/templatetags/profile_tags.py:52
 #, fuzzy, python-format
 msgid "#%s contributor in %s in the last 30 days"
 msgstr "Nincs közreműködés az elmúlt 30 napban"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:55
+#: apps/pootle_profile/templatetags/profile_tags.py:56
 #, fuzzy, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
 msgstr ""
 "%(pos)s. hozzájáruló vagyok az elmúlt 30 napban %(lang_name)s nyelven a "
 "%(server_title)s oldalon! "
 
-#: apps/pootle_profile/templatetags/profile_tags.py:64
-#: templates/user/profile.html:40
+#: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
 msgstr "Nincs közreműködés az elmúlt 30 napban"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:75
-#: templates/user/profile.html:73
+#: apps/pootle_profile/templatetags/profile_tags.py:76
 msgid "My Website"
 msgstr "Weboldal"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:85
-#: templates/user/profile.html:79
+#: apps/pootle_profile/templatetags/profile_tags.py:86
 msgid "My LinkedIn Profile"
 msgstr "LinkedIn profil"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:94
+#: apps/pootle_profile/templatetags/profile_tags.py:95
 #, fuzzy
 msgid "Site administrator"
 msgstr "Adminisztrátor"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:111
-#: templates/user/profile.html:98
+#: apps/pootle_profile/templatetags/profile_tags.py:101
+#, fuzzy, python-format
+msgid "%s's language teams"
+msgstr "Nyelvi csapat"
+
+#: apps/pootle_profile/templatetags/profile_tags.py:104
+#, python-format
+msgid "%s is not a member of any language teams"
+msgstr ""
+
+#: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
@@ -873,8 +878,7 @@ msgstr ""
 "Néhány fordítást névtelen önkéntesek készítettek. Ezeket képviseli ez a "
 "speciális metafiók."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:115
-#: templates/user/profile.html:100
+#: apps/pootle_profile/templatetags/profile_tags.py:125
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
@@ -882,8 +886,7 @@ msgstr ""
 "Néhány fordítás külső fájlokból lett importálva. Ezeket képviseli ez a "
 "speciális metafiók."
 
-#: apps/pootle_profile/templatetags/profile_tags.py:125
-#: templates/user/profile.html:88
+#: apps/pootle_profile/templatetags/profile_tags.py:135
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
@@ -891,12 +894,11 @@ msgstr ""
 "Mutassa meg, kicsoda, mutatkozzon be<br/>és tegye érdekessé nyilvános "
 "profilját!"
 
-#: apps/pootle_profile/templatetags/profile_tags.py:128
-#: templates/user/profile.html:13
+#: apps/pootle_profile/templatetags/profile_tags.py:138
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr "Avatarképét a www.gravatar.com oldalon állíthatja be vagy módosíthatja"
 
-#: apps/pootle_profile/utils.py:50 templates/user/profile.html:16
+#: apps/pootle_profile/utils.py:50
 msgid "Anonymous User"
 msgstr "Anonymous felhasználó"
 
@@ -909,7 +911,7 @@ msgstr "Adminisztráció"
 msgid "Translator"
 msgstr "Fordítás"
 
-#: apps/pootle_profile/views.py:66
+#: apps/pootle_profile/views.py:61
 msgid "Select one or more languages"
 msgstr "Válasszon ki legalább egy nyelvet"
 
@@ -1083,22 +1085,22 @@ msgstr "Többes szám"
 msgid "Added suggestion"
 msgstr "Javaslat hozzáadva"
 
-#: apps/pootle_store/unit/timeline.py:85
+#: apps/pootle_store/unit/timeline.py:84
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Javaslat elfogadva tőle: %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:93
+#: apps/pootle_store/unit/timeline.py:92
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Javaslat elfogadva tőle: %(author)s, megjegyzés: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:109
+#: apps/pootle_store/unit/timeline.py:113
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Javaslat elutasítva tőle: %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:117
+#: apps/pootle_store/unit/timeline.py:121
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Javaslat elutasítva tőle: %(author)s, megjegyzés: %(comment)s"
@@ -1107,21 +1109,21 @@ msgstr "Javaslat elutasítva tőle: %(author)s, megjegyzés: %(comment)s"
 msgid "Unit created"
 msgstr "Egység létrehozva"
 
-#: apps/pootle_store/unit/timeline.py:185
+#: apps/pootle_store/unit/timeline.py:186
 msgid "Comment:"
 msgstr "Megjegyzés:"
 
-#: apps/pootle_store/unit/timeline.py:188
+#: apps/pootle_store/unit/timeline.py:189
 #, fuzzy
 msgid "Removed comment"
 msgstr "Megjegyzés törlése"
 
-#: apps/pootle_store/unit/timeline.py:213
+#: apps/pootle_store/unit/timeline.py:214
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr "<a href=\"%(check_url)s\">%(check_name)s</a> ellenőrzés némítva"
 
-#: apps/pootle_store/unit/timeline.py:222
+#: apps/pootle_store/unit/timeline.py:223
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "<a href=\"%(check_url)s\">%(check_name)s</a> ellenőrzés újraaktiválva"
@@ -2997,51 +2999,13 @@ msgstr ""
 "A fájlok feltöltése után hozzáadhat, szerkeszthet és törölhet kifejezéseket."
 
 #: templates/user/includes/profile_activity.html:5
-#: templates/user/profile.html:59
 msgid "Latest activity:"
 msgstr "Utolsó tevékenység:"
 
-#: templates/user/includes/profile_score.html:2
+#: templates/user/includes/profile_score.html:3
 #, fuzzy
 msgid "Total score:"
 msgstr "Összes szó:"
-
-#: templates/user/includes/profile_teams.html:6
-#, fuzzy
-msgid "Language teams"
-msgstr "Nyelvi csapat"
-
-#: templates/user/profile.html:28
-msgid "Score:"
-msgstr "Pontszám:"
-
-#: templates/user/profile.html:31
-#, python-format
-msgid "My current score at %(server_title)s is %(score)s "
-msgstr "Jelenlegi pontszámom %(score)s itt: %(server_title)s "
-
-#: templates/user/profile.html:43
-#, python-format
-msgid ""
-"I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
-"%(server_title)s! "
-msgstr ""
-"%(pos)s. hozzájáruló vagyok az elmúlt 30 napban %(lang_name)s nyelven a "
-"%(server_title)s oldalon! "
-
-#: templates/user/profile.html:44
-#, python-format
-msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-msgstr "%(pos)s. hozzájáruló az elmúlt 30 napban %(lang_name)s nyelven"
-
-#: templates/user/profile.html:49
-#, python-format
-msgid ""
-"#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last 30 "
-"days"
-msgstr ""
-"%(pos)s. hozzájáruló az elmúlt 30 napban <a href=\"%(url)s\">%(lang_name)s</"
-"a> nyelven"
 
 #: templates/user/settings.html:12
 msgid "User Account"
@@ -3086,6 +3050,29 @@ msgstr "Bejelentkezés"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Legaktívabb közreműködők az elmúlt 30 napban"
+
+#~ msgid "Score:"
+#~ msgstr "Pontszám:"
+
+#~ msgid "My current score at %(server_title)s is %(score)s "
+#~ msgstr "Jelenlegi pontszámom %(score)s itt: %(server_title)s "
+
+#~ msgid ""
+#~ "I am #%(pos)s contributor in %(lang_name)s in the last 30 days at "
+#~ "%(server_title)s! "
+#~ msgstr ""
+#~ "%(pos)s. hozzájáruló vagyok az elmúlt 30 napban %(lang_name)s nyelven a "
+#~ "%(server_title)s oldalon! "
+
+#~ msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
+#~ msgstr "%(pos)s. hozzájáruló az elmúlt 30 napban %(lang_name)s nyelven"
+
+#~ msgid ""
+#~ "#%(pos)s contributor in <a href=\"%(url)s\">%(lang_name)s</a> in the last "
+#~ "30 days"
+#~ msgstr ""
+#~ "%(pos)s. hozzájáruló az elmúlt 30 napban <a href=\"%(url)s\">"
+#~ "%(lang_name)s</a> nyelven"
 
 #~ msgid "Summary"
 #~ msgstr "Összegzés"
