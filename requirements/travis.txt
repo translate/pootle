@@ -11,6 +11,6 @@ tox==2.7.0
 -r _db_postgresql.txt
 
 # Test coverage
-codecov==2.0.8
+codecov==2.0.9
 coverage==4.3.4
 coveralls==1.1
