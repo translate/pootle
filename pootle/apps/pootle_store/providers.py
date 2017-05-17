@@ -44,6 +44,7 @@ def gather_unitid_providers(**kwargs_):
 def gather_event_formatters(**kwargs_):
     return dict(
         suggestion_created=timeline.SuggestionAddedEvent,
+        suggestion_accepted=timeline.SuggestionAcceptedEvent,
         suggestion_rejected=timeline.SuggestionRejectedEvent,
         target_updated=timeline.TargetUpdatedEvent,
         state_changed=timeline.UnitStateChangedEvent,

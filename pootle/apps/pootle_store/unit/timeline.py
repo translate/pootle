@@ -21,7 +21,7 @@ from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_checks.constants import CHECK_NAMES
 from pootle_comment import get_model as get_comment_model
 from pootle_log.utils import GroupedEvents, UnitLog
-from pootle_statistics.models import Submission, SubmissionTypes
+from pootle_statistics.models import Submission, SubmissionFields, SubmissionTypes
 from pootle_store.constants import STATES_MAP
 from pootle_store.fields import to_python
 from pootle_store.models import Suggestion
@@ -31,10 +31,10 @@ ACTION_ORDER = {
     'unit_created': 0,
     'suggestion_created': 5,
     'suggestion_rejected': 5,
-    'suggestion_accepted': 5,
     'source_updated': 10,
     'state_changed': 10,
     'target_updated': 20,
+    'suggestion_accepted': 25,
     'comment_updated': 30,
     'check_muted': 40,
     'check_unmuted': 40,
@@ -76,7 +76,6 @@ class SuggestionAcceptedEvent(SuggestionEvent):
 
     def __init__(self, suggestion, **kwargs):
         super(SuggestionAcceptedEvent, self).__init__(suggestion)
-        self.submission = kwargs.get("submission")
 
     @property
     def context(self):
@@ -94,8 +93,13 @@ class SuggestionAcceptedEvent(SuggestionEvent):
                 u'with comment: %(comment)s',
                 params)
 
+        target = self.suggestion.target
+        submission = self.suggestion.submission_set.filter(
+            field=SubmissionFields.TARGET).first()
+        if submission:
+            target = submission.new_value
         return dict(
-            value=self.submission.new_value,
+            value=target,
             translation=True,
             description=format_html(sugg_accepted_desc))
 
@@ -134,8 +138,7 @@ class TargetUpdatedEvent(SubmissionEvent):
         suggestion_accepted = (self.submission.suggestion_id
                                and self.submission.suggestion.is_accepted)
         if suggestion_accepted:
-            return SuggestionAcceptedEvent(
-                self.submission.suggestion, submission=self.submission).context
+            return None
 
         return dict(
             value=self.submission.new_value,
@@ -316,10 +319,13 @@ class EventGroup(object):
 
     @property
     def context_event(self):
+        event = self.log_events.get('suggestion_accepted')
+        if event is not None:
+            return event
         event = self.log_events.get('target_updated')
         if event is not None:
             return event
-        elif len(self.log_events) > 0:
+        if len(self.log_events) > 0:
             return self.log_events.values()[0]
 
         return None
@@ -330,10 +336,11 @@ class EventGroup(object):
         for event_action in self.log_events:
             event_formatter_class = self.event_formatters.get(event_action)
             if event_formatter_class is not None:
-                events.append(
-                    event_formatter_class(
-                        self.log_events[event_action].value,
-                        target_event=self.related_target_event).context)
+                ctx = event_formatter_class(
+                    self.log_events[event_action].value,
+                    target_event=self.related_target_event).context
+                if ctx is not None:
+                    events.append(ctx)
         return events
 
     @property
