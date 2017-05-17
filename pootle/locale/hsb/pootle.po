@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-17 13:08+0100\n"
-"PO-Revision-Date: 2017-05-16 16:38+0000\n"
+"PO-Revision-Date: 2017-05-17 18:45+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1494952705.000000\n"
+"X-POOTLE-MTIME: 1495046710.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -866,14 +866,14 @@ msgid "Site administrator"
 msgstr "Sydłowy administrator"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%s's language teams"
-msgstr "Rěčne teamy"
+msgstr "Rěčne teamy wužiwarja %s"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:104
 #, python-format
 msgid "%s is not a member of any language teams"
-msgstr ""
+msgstr "%s čłon žanoho rěčneho teama njeje"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""

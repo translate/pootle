@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-17 13:08+0100\n"
-"PO-Revision-Date: 2017-02-21 16:51+0000\n"
+"PO-Revision-Date: 2017-05-17 16:42+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1487695901.000000\n"
+"X-POOTLE-MTIME: 1495039354.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -54,9 +54,8 @@ msgid "Enter a valid username."
 msgstr "Zadejte platné uživatelské jméno."
 
 #: apps/accounts/models.py:65
-#, fuzzy
 msgid "A user with that username already exists."
-msgstr "Cíl s tímto zástupným názvem již existuje."
+msgstr "Uživatel s tímto uživatelským jménem již existuje."
 
 #: apps/accounts/models.py:68
 msgid "Email Address"
@@ -133,14 +132,12 @@ msgid "This email address already exists."
 msgstr "Tato e-mailová adresa již existuje."
 
 #: apps/contact/forms.py:27
-#, fuzzy
 msgid "Subject"
-msgstr "Odmítnout"
+msgstr "Předmět"
 
 #: apps/contact/forms.py:29
-#, fuzzy
 msgid "Please enter a message subject"
-msgstr "Zadejte vaši zprávu"
+msgstr "Zadejte předmět zprávy"
 
 #: apps/contact/forms.py:36 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
@@ -168,17 +165,15 @@ msgstr "Zadejte vaši zprávu"
 
 #: apps/contact/forms.py:115
 msgid "String context"
-msgstr ""
+msgstr "Kontext řetězce"
 
 #: apps/contact/forms.py:125
-#, fuzzy
 msgid "Question or comment"
-msgstr "Návrh byl odmítnut s komentářem"
+msgstr "Dotaz nebo komentář"
 
 #: apps/contact/forms.py:126
-#, fuzzy
 msgid "Please enter your question or comment"
-msgstr "Prosím vyplňte detaily registrace"
+msgstr "Zadejte svůj dotaz nebo komentář"
 
 #: apps/contact/views.py:35 templates/layout.html:120
 msgid "Contact Us"
@@ -584,9 +579,8 @@ msgid "The URL or path to your translation files"
 msgstr "Adresa nebo cesta k překladovým souborům"
 
 #: apps/pootle_fs/forms.py:47
-#, fuzzy
 msgid "Translation mapping presets"
-msgstr "Přiřazení cesty překladu"
+msgstr "Předvolby přiřazení překladu"
 
 #: apps/pootle_fs/forms.py:55
 msgid "Translation path mapping"
@@ -832,9 +826,9 @@ msgid "Search unavailable"
 msgstr "Hledání není k dispozici"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:35
-#, fuzzy, python-format
+#, python-format
 msgid "My current score at %s is %s"
-msgstr "Mé aktuální hodnocení na %(server_title)s je %(score)s "
+msgstr "Mé aktuální hodnocení na %s je %s"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:38
 #: apps/pootle_profile/templatetags/profile_tags.py:63
@@ -842,16 +836,16 @@ msgid "Tweet this!"
 msgstr "Tweetni to!"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "#%s contributor in %s in the last 30 days"
-msgstr "Žádné příspěvky za posledních 30 dní"
+msgstr "%s. největší přispěvatel pro jazyk %s za posledních 30 dní."
 
 #: apps/pootle_profile/templatetags/profile_tags.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
 msgstr ""
-"Za posledních 30 dní jsem pro jazyk %(lang_name)s na serveru "
-"%(server_title)s přispěvatelem #%(pos)s! "
+"Za posledních 30 dní jsem %s. největší přispěvatel pro jazyk %s na serveru "
+"%s! "
 
 #: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
@@ -866,19 +860,18 @@ msgid "My LinkedIn Profile"
 msgstr "Můj LinkedIn profil"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:95
-#, fuzzy
 msgid "Site administrator"
 msgstr "Správce"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%s's language teams"
-msgstr "Tým jazyka"
+msgstr "Jazykové týmy uživatele %s"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:104
 #, python-format
 msgid "%s is not a member of any language teams"
-msgstr ""
+msgstr "Uživatel %s není členem žádného jazykového týmu"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
@@ -917,9 +910,8 @@ msgid "Admin"
 msgstr "Správce"
 
 #: apps/pootle_profile/utils.py:100
-#, fuzzy
 msgid "Translator"
-msgstr "Překlad"
+msgstr "Překladatel"
 
 #: apps/pootle_profile/views.py:61
 msgid "Select one or more languages"
@@ -1017,9 +1009,8 @@ msgid "Comment"
 msgstr "Komentář"
 
 #: apps/pootle_statistics/models.py:60
-#, fuzzy
 msgid "Check"
-msgstr "Kontroly"
+msgstr "Kontrola"
 
 #: apps/pootle_store/abstracts.py:215 apps/pootle_store/abstracts.py:222
 msgid "Path"
@@ -1075,7 +1066,7 @@ msgstr "Poznámky překladatele"
 #: apps/pootle_store/forms.py:481
 #, python-format
 msgid "Suggestion '%s' has already been accepted or rejected."
-msgstr ""
+msgstr "Návrh ‚%s‘ byl již přijat nebo zamítnut."
 
 #: apps/pootle_store/forms.py:499 core/decorators.py:140
 #: core/views/decorators.py:70
@@ -1125,19 +1116,18 @@ msgid "Comment:"
 msgstr "Komentář:"
 
 #: apps/pootle_store/unit/timeline.py:189
-#, fuzzy
 msgid "Removed comment"
-msgstr "Odstranit komentář"
+msgstr "Odstraněný komentář"
 
 #: apps/pootle_store/unit/timeline.py:214
-#, fuzzy, python-format
+#, python-format
 msgid "Muted %(check_name)s check"
-msgstr "Potlačil kontrolu <a href=\"%(check_url)s\">%(check_name)s</a>"
+msgstr "Potlačil kontrolu %(check_name)s"
 
 #: apps/pootle_store/unit/timeline.py:223
-#, fuzzy, python-format
+#, python-format
 msgid "Unmuted %(check_name)s check"
-msgstr "Obnovil kontrolu <a href=\"%(check_url)s\">%(check_name)s</a>"
+msgstr "Obnovil kontrolu %(check_name)s"
 
 #: apps/pootle_store/utils.py:137
 msgid "Suggestion accepted with comment"
@@ -1565,24 +1555,24 @@ msgid ""
 msgstr "Nastavte WEIGHT mezi 0.0 a 1.0 (včetně) pro POOTLE_TM_SERVER['%s']."
 
 #: checks.py:365
-#, fuzzy, python-format
+#, python-format
 msgid "POOTLE_SCORES has no %s."
-msgstr "POOTLE_SCORE_COEFFICIENTS nemá nastaveno %s."
+msgstr "POOTLE_SCORES nemá nastaveno %s."
 
 #: checks.py:366
-#, fuzzy, python-format
+#, python-format
 msgid "Set %s in POOTLE_SCORES."
-msgstr "Nastavte %s pro POOTLE_SCORE_COEFFICIENTS."
+msgstr "Nastavte %s pro POOTLE_SCORES."
 
 #: checks.py:374
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORES."
-msgstr "POOTLE_SCORE_COEFFICIENTS obsahuje neplatnou hodnotu %s."
+msgstr "POOTLE_SCORES obsahuje neplatnou hodnotu %s."
 
 #: checks.py:377
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORES."
-msgstr "Nastavte platnou hodnotu %s pro POOTLE_SCORE_COEFFICIENTS."
+msgstr "Nastavte platnou hodnotu %s pro POOTLE_SCORES."
 
 #: checks.py:397
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -2667,7 +2657,6 @@ msgid "Remove comment"
 msgstr "Odstranit komentář"
 
 #: templates/editor/units/xhr_comment.html:19
-#, fuzzy
 msgid "Сomment:"
 msgstr "Komentář:"
 
@@ -2757,21 +2746,20 @@ msgid "Page %(page_number)s of %(page_count)s."
 msgstr "Stránka %(page_number)s z(e) %(page_count)s."
 
 #: templates/includes/formtable.html:27
-#, fuzzy, python-format
+#, python-format
 msgid "Showing %(n)s result per page"
 msgid_plural "Showing %(n)s results per page"
-msgstr[0] "Zobrazeno %(count)s výsledků na stránku"
-msgstr[1] "Zobrazeno %(count)s výsledků na stránku"
-msgstr[2] "Zobrazeno %(count)s výsledků na stránku"
+msgstr[0] "Zobrazen %(n)s výsledek na stránku"
+msgstr[1] "Zobrazeny %(n)s výsledky na stránku"
+msgstr[2] "Zobrazeno %(n)s výsledků na stránku"
 
 #: templates/includes/formtable.html:87
 msgid "Select all"
 msgstr "Vybrat vše"
 
 #: templates/includes/formtable.html:100
-#, fuzzy
 msgid "Go"
-msgstr "Cíl"
+msgstr "Přejít"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2885,6 +2873,8 @@ msgid ""
 "Adding new languages from this screen is disabled. You will need to update "
 "your sources directly, and update pootle from there."
 msgstr ""
+"Přidávání jazyků prostřednictvím této stránky je zakázáno. Budete muset "
+"přímo upravit své zdroje a aktualizovat pootle z nich."
 
 #: templates/projects/admin/languages.html:17
 msgid ""
@@ -3001,9 +2991,8 @@ msgid "Latest activity:"
 msgstr "Poslední aktivita:"
 
 #: templates/user/includes/profile_score.html:3
-#, fuzzy
 msgid "Total score:"
-msgstr "Celkem slov:"
+msgstr "Celkové hodnocení:"
 
 #: templates/user/settings.html:12
 msgid "User Account"
