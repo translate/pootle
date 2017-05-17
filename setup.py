@@ -213,7 +213,7 @@ class BuildChecksTemplatesCommand(Command):
         import django
         import codecs
         from pootle.apps.pootle_checks.constants import (
-            CHECK_NAMES, EXCLUDED_FiLTERS)
+            CHECK_NAMES, EXCLUDED_FILTERS)
         from translate.filters.checks import (TeeChecker, StandardChecker,
                                               StandardUnitChecker)
         try:
@@ -250,7 +250,7 @@ class BuildChecksTemplatesCommand(Command):
         # that are not used in Pootle are excluded.
         fd = TeeChecker(
             checkerclasses=[StandardChecker, StandardUnitChecker]
-        ).getfilters(excludefilters=EXCLUDED_FiLTERS)
+        ).getfilters(excludefilters=EXCLUDED_FILTERS)
 
         docs = sorted(
             get_check_description(name, f) for name, f in fd.items()
