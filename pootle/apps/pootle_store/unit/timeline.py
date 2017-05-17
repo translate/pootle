@@ -42,7 +42,9 @@ ACTION_ORDER = {
 
 
 class UnitTimelineLog(UnitLog):
-    pass
+    @property
+    def suggestion_qs(self):
+        return Suggestion.objects
 
 
 class SuggestionEvent(object):
