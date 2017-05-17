@@ -69,7 +69,7 @@ class SuggestionAddedEvent(SuggestionEvent):
     def context(self):
         return dict(
             value=self.suggestion.target,
-            description=_("Added suggestion"))
+            description=_(u"Added suggestion"))
 
 
 class SuggestionAcceptedEvent(SuggestionEvent):
@@ -152,7 +152,7 @@ class UnitCreatedEvent(object):
 
     @property
     def context(self):
-        ctx = dict(description=_("Unit created"))
+        ctx = dict(description=_(u"Unit created"))
         if self.target_event is not None:
             if self.target_event.value.old_value != '':
                 ctx['value'] = self.target_event.value.old_value
@@ -183,10 +183,10 @@ class CommentUpdatedEvent(SubmissionEvent):
         if self.submission.new_value:
             return dict(
                 value=self.submission.new_value,
-                sidetitle=_("Comment:"),
+                sidetitle=_(u"Comment:"),
                 comment=True)
 
-        return dict(description=_("Removed comment"))
+        return dict(description=_(u"Removed comment"))
 
 
 class CheckEvent(SubmissionEvent):
