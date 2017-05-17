@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-16 11:56+0100\n"
-"PO-Revision-Date: 2017-03-11 13:52+0000\n"
+"PO-Revision-Date: 2017-05-16 16:41+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1489240351.000000\n"
+"X-POOTLE-MTIME: 1494952907.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -56,9 +56,8 @@ msgid "Enter a valid username."
 msgstr "Zapódaj płaśiwe wužywarske mě."
 
 #: apps/accounts/models.py:65
-#, fuzzy
 msgid "A user with that username already exists."
-msgstr "Toś ta e-mailowa adresa južo eksistěrujo."
+msgstr "Wužywaŕ z toś teju e-mailoweju adresu južo eksistěrujo."
 
 #: apps/accounts/models.py:68
 msgid "Email Address"
@@ -135,14 +134,12 @@ msgid "This email address already exists."
 msgstr "Toś ta e-mailowa adresa južo eksistěrujo."
 
 #: apps/contact/forms.py:27
-#, fuzzy
 msgid "Subject"
-msgstr "Wótpokazaś"
+msgstr "Tema"
 
 #: apps/contact/forms.py:29
-#, fuzzy
 msgid "Please enter a message subject"
-msgstr "Pšosym zapódaj swóju powěsć"
+msgstr "Pšosym zapódaj swóju powěsćowu temu"
 
 #: apps/contact/forms.py:36 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
@@ -170,17 +167,15 @@ msgstr "Pšosym zapódaj swóju powěsć"
 
 #: apps/contact/forms.py:115
 msgid "String context"
-msgstr ""
+msgstr "Kontekst znamuškowego rjeśazka"
 
 #: apps/contact/forms.py:125
-#, fuzzy
 msgid "Question or comment"
-msgstr "Naraźenje z komentarom wótpokazane"
+msgstr "Pšašanje abo komentar"
 
 #: apps/contact/forms.py:126
-#, fuzzy
 msgid "Please enter your question or comment"
-msgstr "Pšosym zapódaj swójo mě"
+msgstr "Pšosym zapódaj swójo pšašanje abo swój komentar"
 
 #: apps/contact/views.py:35 templates/layout.html:120
 msgid "Contact Us"
@@ -584,9 +579,8 @@ msgid "The URL or path to your translation files"
 msgstr "URL abo sćažka k twójim pśełožowańskim datajam"
 
 #: apps/pootle_fs/forms.py:47
-#, fuzzy
 msgid "Translation mapping presets"
-msgstr "Pśirědowanje pśełožowańskeje sćažki"
+msgstr "Pśirědowanje pśełožowańskich pśednastajenjow"
 
 #: apps/pootle_fs/forms.py:55
 msgid "Translation path mapping"
@@ -838,9 +832,9 @@ msgid "Search unavailable"
 msgstr "Pytanje njejo k dispoziciji"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:34
-#, fuzzy, python-format
+#, python-format
 msgid "My current score at %s is %s"
-msgstr "Móje aktualne gódnośenje na %(server_title)s jo %(score)s "
+msgstr "Móje aktualne gódnośenje na %s  jo %s"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:37
 #: apps/pootle_profile/templatetags/profile_tags.py:62
@@ -849,16 +843,14 @@ msgid "Tweet this!"
 msgstr "Tweetuj to!"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:51
-#, fuzzy, python-format
+#, python-format
 msgid "#%s contributor in %s in the last 30 days"
-msgstr "Žedne pśinoski za zachadne 30 dnjow"
+msgstr "Sobustatkujucy #%s w %s za zachadne 30 dnjow"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:55
-#, fuzzy, python-format
+#, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
-msgstr ""
-"Som pśinosujucy #%(pos)s za rěc %(lang_name)s za zachadne 30 dnjow na "
-"%(server_title)s! "
+msgstr "Som sobustatkujucy #%s w %s za zachadne 30 dnjow na %s!"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:64
 #: templates/user/profile.html:40
@@ -876,9 +868,8 @@ msgid "My LinkedIn Profile"
 msgstr "Mój profil LinkedIn"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:94
-#, fuzzy
 msgid "Site administrator"
-msgstr "Administrator"
+msgstr "Sedłowy administrator"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:111
 #: templates/user/profile.html:98
@@ -921,9 +912,8 @@ msgid "Admin"
 msgstr "Administrator"
 
 #: apps/pootle_profile/utils.py:100
-#, fuzzy
 msgid "Translator"
-msgstr "Pśełožk"
+msgstr "Pśełožowaŕ"
 
 #: apps/pootle_profile/views.py:66
 msgid "Select one or more languages"
@@ -1022,9 +1012,8 @@ msgid "Comment"
 msgstr "Komentar"
 
 #: apps/pootle_statistics/models.py:60
-#, fuzzy
 msgid "Check"
-msgstr "Kontrole"
+msgstr "Kontrola"
 
 #: apps/pootle_store/abstracts.py:215 apps/pootle_store/abstracts.py:222
 msgid "Path"
@@ -1079,7 +1068,7 @@ msgstr "Komentar pśełožowarja"
 #: apps/pootle_store/forms.py:481
 #, python-format
 msgid "Suggestion '%s' has already been accepted or rejected."
-msgstr ""
+msgstr "Naraźenje '%s' jo južo akceptěrowane abo wótpokazane."
 
 #: apps/pootle_store/forms.py:499 core/decorators.py:140
 #: core/views/decorators.py:70
@@ -1125,26 +1114,22 @@ msgid "Unit created"
 msgstr "Zapisk jo se napórał"
 
 #: apps/pootle_store/unit/timeline.py:185
-#, fuzzy
 msgid "Comment:"
-msgstr "Komentar: "
+msgstr "Komentar:"
 
 #: apps/pootle_store/unit/timeline.py:188
-#, fuzzy
 msgid "Removed comment"
-msgstr "Komentar wótwónoźeś"
+msgstr "Wotwónoźony komentar"
 
 #: apps/pootle_store/unit/timeline.py:213
-#, fuzzy, python-format
+#, python-format
 msgid "Muted %(check_name)s check"
-msgstr ""
-"Kontrola <a href=\"%(check_url)s\">%(check_name)s</a> jo se znjemóžniła"
+msgstr "Kontrola %(check_name)s jo se znjemóžniła"
 
 #: apps/pootle_store/unit/timeline.py:222
-#, fuzzy, python-format
+#, python-format
 msgid "Unmuted %(check_name)s check"
-msgstr ""
-"Kontrola <a href=\"%(check_url)s\">%(check_name)s</a> jo se zasej zmóžniła"
+msgstr "Kontrola %(check_name)s jo se zasej zmóžniła"
 
 #: apps/pootle_store/utils.py:137
 msgid "Suggestion accepted with comment"
@@ -1575,24 +1560,24 @@ msgstr ""
 "Nastaj WEIGHT mjazy 0.0 a 1.0 (wobej zapśimjonej) za POOTLE_TM_SERVER['%s']."
 
 #: checks.py:365
-#, fuzzy, python-format
+#, python-format
 msgid "POOTLE_SCORES has no %s."
-msgstr "POOTLE_SCORE_COEFFICIENTS %s njama."
+msgstr "POOTLE_SCORES njama %s."
 
 #: checks.py:366
-#, fuzzy, python-format
+#, python-format
 msgid "Set %s in POOTLE_SCORES."
-msgstr "Nastaj %s za POOTLE_SCORE_COEFFICIENTS."
+msgstr "%s w POOTLE_SCORES nastajiś."
 
 #: checks.py:374
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORES."
-msgstr "Njepłaśiwa gódnota za %s w POOTLE_SCORE_COEFFICIENTS."
+msgstr "Njepłaśiwa gódnota za %s w POOTLE_SCORES."
 
 #: checks.py:377
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORES."
-msgstr "Nastaj płaśiwu gódnotu za %s w POOTLE_SCORE_COEFFICIENTS."
+msgstr "Nastaj płaśiwu gódnotu za %s w POOTLE_SCORES."
 
 #: checks.py:397
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -2681,9 +2666,8 @@ msgid "Remove comment"
 msgstr "Komentar wótwónoźeś"
 
 #: templates/editor/units/xhr_comment.html:19
-#, fuzzy
 msgid "Сomment:"
-msgstr "Komentar: "
+msgstr "Komentar:"
 
 #: templates/editor/units/xhr_timeline.html:3
 msgid "Timeline"
@@ -2771,13 +2755,13 @@ msgid "Page %(page_number)s of %(page_count)s."
 msgstr "Bok %(page_number)s z %(page_count)s."
 
 #: templates/includes/formtable.html:27
-#, fuzzy, python-format
+#, python-format
 msgid "Showing %(n)s result per page"
 msgid_plural "Showing %(n)s results per page"
-msgstr[0] "Wuslědki na bok: %(count)s"
-msgstr[1] "Wuslědki na bok: %(count)s"
-msgstr[2] "Wuslědki na bok: %(count)s"
-msgstr[3] "Wuslědki na bok: %(count)s"
+msgstr[0] "Pokazujo se %(n)s wuslědk na bok"
+msgstr[1] "Pokazujotej se %(n)s wuslědka na bok"
+msgstr[2] "Pokazuju se %(n)s wuslědki na bok"
+msgstr[3] "Pokazujo se %(n)s wuslědkow na bok"
 
 #: templates/includes/formtable.html:87
 msgid "Select all"
@@ -2785,7 +2769,7 @@ msgstr "Wše wubraś"
 
 #: templates/includes/formtable.html:100
 msgid "Go"
-msgstr ""
+msgstr "Start"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2900,6 +2884,8 @@ msgid ""
 "Adding new languages from this screen is disabled. You will need to update "
 "your sources directly, and update pootle from there."
 msgstr ""
+"Pśidawanje nowych rěcow z toś teje wobrazwoki jo znjemóžnjone. Musyśo swóje "
+"žrědła direktnje aktualizěrowaś a Pootle pótom wóttam."
 
 #: templates/projects/admin/languages.html:17
 msgid ""
@@ -3014,14 +3000,12 @@ msgid "Latest activity:"
 msgstr "Slědna aktiwita:"
 
 #: templates/user/includes/profile_score.html:2
-#, fuzzy
 msgid "Total score:"
-msgstr "Słowa dogromady:"
+msgstr "Gódnośenje dogromady:"
 
 #: templates/user/includes/profile_teams.html:6
-#, fuzzy
 msgid "Language teams"
-msgstr "Rěcny team"
+msgstr "Rěcne teamy"
 
 #: templates/user/profile.html:28
 msgid "Score:"
