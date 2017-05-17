@@ -6,5 +6,5 @@
 -r _lint.txt
 
 django-extensions==1.7.9
-glue==0.11.1
+glue==0.13
 ipython==5.3.0  # rq.filter: <6.0.0
