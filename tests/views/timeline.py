@@ -60,7 +60,8 @@ def _calculate_timeline(request, unit):
         event_group = EventGroup(group, target_event)
         if event_group.target_event:
             target_event = event_group.target_event
-        groups.append(event_group.context)
+        if event_group.events:
+            groups.append(event_group.context)
 
     context = dict(event_groups=groups)
     context.setdefault(
