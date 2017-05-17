@@ -11,9 +11,11 @@
   {% if teams %}
   <dl>
     {% for code, team in teams.items %}
-    <dt><a href="/{{ team.url }}/">{{ team.name }}</a></dt>
+    <dt><a href="{{ team.url }}">{{ team.name }}</a></dt>
     {% if team.role and not anon_request %}<dd>{{ team.role }}</dd>{% endif %}
     {% endfor %}
   </dl>
+  {% else %}
+  {{ no_teams_message }}
   {% endif %}
 </div>

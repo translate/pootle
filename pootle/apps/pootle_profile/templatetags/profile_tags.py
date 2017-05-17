@@ -97,18 +97,17 @@ def profile_teams(request, profile):
         info["url"] = reverse(
             "pootle-language-browse",
             kwargs=dict(language_code=code))
-    if teams:
-        teams_title = _(
-            "%s's language teams"
-            % profile.user.display_name)
-    else:
-        teams_title = _(
-            "%s is not a member of any language teams"
-            % profile.user.display_name)
+    teams_title = _(
+        "%s's language teams"
+        % profile.user.display_name)
+    no_teams_message = _(
+        "%s is not a member of any language teams"
+        % profile.user.display_name)
     return dict(
         anon_request=request.user.is_anonymous,
         teams=teams,
         teams_title=teams_title,
+        no_teams_message=no_teams_message,
         site_permissions=site_permissions)
 
 
