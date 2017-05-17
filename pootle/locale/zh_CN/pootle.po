@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-17 13:08+0100\n"
-"PO-Revision-Date: 2017-05-08 11:37+0000\n"
-"Last-Translator: 炜 <contact@huwei.name>\n"
+"PO-Revision-Date: 2017-05-17 15:33+0000\n"
+"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1494243460.000000\n"
+"X-POOTLE-MTIME: 1495035229.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -2213,19 +2213,19 @@ msgstr "所有"
 msgid ""
 "<span class='value translated'>%(translated_percent_display)s</span> "
 "translated"
-msgstr "<span class=\"value translated\">0</span>%%  已翻译"
+msgstr "<span class='value translated'>0</span>%%  已翻译"
 
 #: templates/browser/_progressbar.html:4
 #, fuzzy, python-format
 msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr "<span class=\"value fuzzy\">0</span>%% 需要工作"
+msgstr "<span class='value fuzzy'>0</span>%% 需要工作"
 
 #: templates/browser/_progressbar.html:5
 #, fuzzy, python-format
 msgid ""
 "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
 "untranslated"
-msgstr "<span class=\"value untranslated\">0</span>%% 未翻译"
+msgstr "<span class='value untranslated'>0</span>%% 未翻译"
 
 #: templates/browser/index.html:20
 msgid "Expand details"

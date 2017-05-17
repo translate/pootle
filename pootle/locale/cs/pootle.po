@@ -2303,14 +2303,14 @@ msgid ""
 "<span class='value translated'>%(translated_percent_display)s</span> "
 "translated"
 msgstr ""
-"Přeloženo <span class=\"value translated\">%(translated_percent_display)s</"
+"Přeloženo <span class='value translated'>%(translated_percent_display)s</"
 "span>"
 
 #: templates/browser/_progressbar.html:4
 #, python-format
 msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
 msgstr ""
-"Přibližně přeloženo <span class=\"value fuzzy\">%(fuzzy_percent_display)s</"
+"Přibližně přeloženo <span class='value fuzzy'>%(fuzzy_percent_display)s</"
 "span>"
 
 #: templates/browser/_progressbar.html:5
@@ -2319,7 +2319,7 @@ msgid ""
 "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
 "untranslated"
 msgstr ""
-"Nepřeloženo <span class=\"value untranslated\">"
+"Nepřeloženo <span class='value untranslated'>"
 "%(untranslated_percent_display)s</span>"
 
 #: templates/browser/index.html:20
