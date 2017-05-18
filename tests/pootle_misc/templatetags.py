@@ -21,14 +21,14 @@ def _render_str(string, context=None):
 
 def test_templatetag_progress_bar():
     rendered = _render_str("{% load common_tags %}{% progress_bar 0 0 0 %}")
-    assert "<span class=\'value translated\'>0%</span>" in rendered
-    assert '<span class=\'value fuzzy\'>0%</span>' in rendered
-    assert '<span class=\'value untranslated\'>0%</span>' in rendered
+    assert "<span class='legend translated'></span>0%" in rendered
+    assert "<span class='legend fuzzy'></span>0%" in rendered
+    assert "<span class='legend untranslated'></span>0%" in rendered
     rendered = _render_str(
         "{% load common_tags %}{% progress_bar 123 23 73 %}")
-    assert "<span class=\'value translated\'>59.3%</span>" in rendered
-    assert "<span class=\'value fuzzy\'>18.7%</span>" in rendered
-    assert "<span class=\'value untranslated\'>22.0%</span>" in rendered
+    assert "<span class='legend translated'></span>59.3%" in rendered
+    assert "<span class='legend fuzzy'></span>18.7%" in rendered
+    assert "<span class='legend untranslated'></span>22.0%" in rendered
     assert '<td class="translated" style="width: 59.3%">' in rendered
     assert '<td class="fuzzy" style="width: 18.7%">' in rendered
     assert '<td class="untranslated" style="width: 22.0%">' in rendered
