@@ -37,30 +37,22 @@
 {% if project %}
 {% if page == 'browse' or page == 'translate' %}
 <li id="js-breadcrumb-resource">
-  <select id="js-select-resource"
-    data-initial-code="{% if resource_path_parts %}ctx-{% endif %}{{ resource_path }}"
-    style="visibility: hidden;">
-    <option value=""></option>
-    {% if resource_path_parts %}
-    {% for res in resource_path_parts %}
-    <option value="ctx-{{ res }}"
-      {% if resource_path == res %}selected="selected"{% endif %}
-      {% if res|count:'/' == 0 %}class="select2-resource-root"{% endif %}
-      data-icon="{% if not res or res|endswith:'/' %}folder{% else %}file{% endif %}">
-      {{ res }}
-    </option>
-    {% endfor %}
-    <option disabled></option>{# Hack that works as a separator #}
-    {% endif %}
-    {% for res in project.resources %}
-    <option value="{{ res }}"
-      {% if resource_path == res %}selected="selected"{% endif %}	    
-      {% if res|count:'/' == 0 %}class="select2-resource-root"{% endif %}
-      data-icon="{% if not res or res|endswith:'/' %}folder{% else %}file{% endif %}">
-      {{ res }}
-    </option>
-    {% endfor %}
+  {% if language %}
+  <select
+     class="js-select2-remote js-s2-paths"
+     data-s2-placeholder="Entire project"
+     data-select2-url="/{{ language.code }}/{{ project.code }}/paths/">
+    <option>{% if resource_path %}{{ resource_path }}{% endif %}</option>
   </select>
+  {% else %}
+  <select
+     class="js-select2-remote js-s2-paths"
+     data-s2-placeholder="Entire project"
+     data-select2-url="/projects/{{ project.code }}/paths/"
+     data-s2-allow-clear="true">
+    <option>{% if resource_path %}{{ resource_path }}{% endif %}</option>
+  </select>
+  {% endif %}
 </li>
 {% endif %}
 {% endif %}
