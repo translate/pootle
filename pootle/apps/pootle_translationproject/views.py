@@ -21,6 +21,7 @@ from pootle.core.decorators import get_path_obj, permission_required
 from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.views import PootleBrowseView, PootleTranslateView
 from pootle.core.views.display import StatsDisplay
+from pootle.core.views.paths import PootlePathsJSON
 from pootle_app.models import Directory
 from pootle_app.models.permissions import get_matching_permissions
 from pootle_app.views.admin.permissions import admin_permissions as admin_perms
@@ -29,6 +30,16 @@ from pootle_store.models import Store
 
 from .apps import PootleTPConfig
 from .models import TranslationProject
+
+
+class TPPathsJSON(PootlePathsJSON):
+
+    @cached_property
+    def context(self):
+        return get_object_or_404(
+            TranslationProject.objects.all(),
+            language__code=self.kwargs["language_code"],
+            project__code=self.kwargs["project_code"])
 
 
 @get_path_obj

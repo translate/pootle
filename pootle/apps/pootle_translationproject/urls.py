@@ -9,7 +9,7 @@
 from django.conf.urls import url
 
 from .views import (
-    TPBrowseStoreView, TPBrowseView,
+    TPBrowseStoreView, TPBrowseView, TPPathsJSON,
     TPTranslateStoreView, TPTranslateView, admin_permissions)
 
 
@@ -19,6 +19,11 @@ urlpatterns = [
         r'/admin/permissions/',
         admin_permissions,
         name='pootle-tp-admin-permissions'),
+
+    url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)'
+        r'/paths/',
+        TPPathsJSON.as_view(),
+        name='pootle-tp-paths'),
 
     # Translation
     url(r'^(?P<language_code>[^/]*)/(?P<project_code>[^/]*)/'
