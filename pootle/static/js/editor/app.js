@@ -401,7 +401,7 @@ PTL.editor = {
     /* XHR activity indicator */
     $(document).ajaxStart(() => {
       clearTimeout(this.delayedActivityTimer);
-      if (this.isLoading) {
+      if (this.isLoading || this.isTimelimeLoading) {
         return;
       }
 
@@ -2094,13 +2094,17 @@ PTL.editor = {
 
     const $node = $('.translate-container');
     $node.spin();
+    this.isTimelimeLoading = true;
 
     UnitAPI.getTimeline(this.units.getCurrent().id)
       .then(
         (data) => this.renderTimeline(data),
         this.error
       )
-      .always(() => $node.spin(false));
+      .always(() => {
+        $node.spin(false);
+        this.isTimelimeLoading = false;
+      });
   },
 
   renderTimeline(data) {
