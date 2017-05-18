@@ -9,7 +9,7 @@
 from django.conf.urls import url
 
 from .views import (
-    ProjectBrowseView, ProjectsBrowseView,
+    ProjectBrowseView, ProjectPathsJSON, ProjectsBrowseView,
     ProjectsTranslateView, ProjectTranslateView,
     ProjectAdminView, project_admin_permissions)
 
@@ -23,6 +23,11 @@ urlpatterns = [
     url(r'^translate/$',
         ProjectsTranslateView.as_view(),
         name='pootle-projects-translate'),
+
+    url(r'^(?P<project_code>[^/]*)'
+        r'/paths/',
+        ProjectPathsJSON.as_view(),
+        name='pootle-project-paths'),
 
     # Admin
     url(r'^(?P<project_code>[^/]*)/admin/languages/$',

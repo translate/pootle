@@ -24,6 +24,7 @@ from pootle.core.paginator import paginate
 from pootle.core.url_helpers import split_pootle_path
 from pootle.core.views import (
     PootleAdminView, PootleBrowseView, PootleTranslateView)
+from pootle.core.views.paths import PootlePathsJSON
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
 from pootle_app.views.admin import util
@@ -36,6 +37,15 @@ from pootle_translationproject.models import TranslationProject
 from .apps import PootleProjectConfig
 from .forms import TranslationProjectFormSet
 from .models import Project, ProjectResource, ProjectSet
+
+
+class ProjectPathsJSON(PootlePathsJSON):
+
+    @cached_property
+    def context(self):
+        return get_object_or_404(
+            Project.objects.all(),
+            code=self.kwargs["project_code"])
 
 
 class ProjectMixin(object):
