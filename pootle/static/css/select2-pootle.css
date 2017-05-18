@@ -163,7 +163,6 @@ html[dir="rtl"] #header-meta .s2-pootle .select2-container--default .select2-sel
     background: #f4f4f4;
     display: list-item;
     cursor: default;
-    height: 1px;
     margin: 0.5em;
 }
 
