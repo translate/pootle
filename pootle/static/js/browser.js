@@ -134,9 +134,11 @@ function handleNavDropDownSelectClick() {
 
   const langCode = $(sel.language).val();
   const projectCode = $(sel.project).val();
-  const $resource = $(sel.resource);
-  const resource = $resource.length ? $resource.val().replace('ctx-', '') : '';
-  navigateTo(langCode, projectCode, resource);
+  if ($opt.val()) {
+    navigateTo(langCode, projectCode, $opt.val());
+  } else {
+    navigateTo(langCode, projectCode, ' ');
+  }
   return true;
 }
 
@@ -146,7 +148,6 @@ function handleBeforeNavDropDownResourceSelect(e) {
   if (resource !== '') {
     return;
   }
-
   e.preventDefault();
   const $select = $(this);
   if ($select.val() === '') {
@@ -215,14 +216,6 @@ function formatResult(text, term) {
 }
 
 
-function removeCtxEntries(results, container, query) {
-  if (query.term) {
-    return results.filter((result) => result.id.slice(0, 4) !== 'ctx-');
-  }
-  return results;
-}
-
-
 const browser = {
   init(opts) {
     $(window).on('pageshow', fixDropdowns);
@@ -251,19 +244,6 @@ const browser = {
       }
       return item.text;
     };
-    const formatResource = (item) => {
-      const $el = $(item.element);
-      if ($el.prop('disabled')) {
-        return '';
-      }
-      const t = `/${item.text.trim()}`;
-      return $([
-        '<span class="', $el.data('icon'), '">',
-        '<i class="icon-', $el.data('icon'), '"></i>',
-        '<span class="text">', formatResult(t, searchQuery.term), '</span>',
-        '</span>',
-      ].join(''));
-    };
     const termMatcher = (query, match) => {
       if (!(query.term)) {
         searchQuery.term = '';
@@ -276,6 +256,7 @@ const browser = {
       return null;
     };
     const allowTPClear = opts.page !== 'translate';
+
     makeNavDropdown(sel.navigation, {
       allowClear: false,
       minimumResultsForSearch: -1,
@@ -293,19 +274,39 @@ const browser = {
       templateResult: formatProject,
       matcher: termMatcher,
     }, handleNavDropDownSelectClick);
-    makeNavDropdown(sel.resource, {
-      placeholder: gettext('Entire Project'),
-      sortResults: removeCtxEntries,
-      templateResult: formatResource,
-      matcher: termMatcher,
-    }, handleNavDropDownSelectClick, handleBeforeNavDropDownResourceSelect);
 
-    /* Adjust breadcrumb layout on window resize */
-    $(window).on('resize', () => {
-      fixResourcePathBreadcrumbGeometry();
-    });
+    const processResults = (data) => {
+      const results = {
+        results: $.map(data.items.results, (result) => {
+          let cssClass;
+          if (result.endsWith('/')) {
+            cssClass = 'folder';
+          } else {
+            cssClass = 'file';
+          }
+          const item = {
+            id: result,
+            text: result,
+            css_class: cssClass,
+          };
+          return item;
+        }),
+      };
+      results.pagination = { more: data.items.more_results };
+      return results;
+    };
+
+    $('#js-breadcrumb-resource select')
+      .on('select2:select', handleNavDropDownSelectClick);
+    $('#js-breadcrumb-resource select')
+      .on('select2:unselecting', handleBeforeNavDropDownResourceSelect);
+    $('.js-s2-paths').on(
+      's2-process-data', (evt, data) => PTL.s2.processData(data));
+    $('.js-s2-paths').on(
+      's2-process-results', (evt, results) => processResults(results));
+    $('.js-s2-paths').on(
+      's2-template-result', (evt, result) => PTL.s2.templateResult(result));
   },
-
 };
 
 
