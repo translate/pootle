@@ -1405,6 +1405,12 @@ span.legend
     margin-bottom: -0.1em;
 }
 
+html[dir="rtl"] span.legend
+{
+    margin-right: auto;
+    margin-left: 0.3em;
+}
+
 span.legend.translated
 {
     background-color: #090;
