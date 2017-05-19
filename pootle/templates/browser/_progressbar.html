@@ -1,8 +1,8 @@
 {% load i18n %}
 <table class="graph" original-title="
-<span class='legend translated'></span>{{ translated_percent_display }}<br />
-<span class='legend fuzzy'></span>{{ fuzzy_percent_display }}<br />
-<span class='legend untranslated'></span>{{ untranslated_percent_display }}">
+<span class='legend translated'></span>{{ translated_percent_display|force_escape }}<br />
+<span class='legend fuzzy'></span>{{ fuzzy_percent_display|force_escape }}<br />
+<span class='legend untranslated'></span>{{ untranslated_percent_display|force_escape }}">
   <tr>
     <td class="translated" style="width: {{ translated_bar }}%"><span></span></td>
     <td class="fuzzy" style="width: {{ fuzzy_bar }}%"><span></span></td>
