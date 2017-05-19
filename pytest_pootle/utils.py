@@ -11,10 +11,14 @@
 import io
 import sys
 import time
+import types
+from contextlib import contextmanager
 from datetime import datetime
 from uuid import uuid4
 
 from translate.storage.factory import getclass
+
+from pootle.core.plugin.delegate import Getter, Provider
 
 
 STRING_STORE = """
@@ -215,3 +219,45 @@ def log_test_report(debug_logger, timings):
         "TESTS TOTAL queries: %s",
         total_queries)
     debug_logger.debug("%s\n" % ("=" * 80))
+
+
+@contextmanager
+def suppress_getter(getter):
+    _orig_get = getter.get
+    _orig_connect = getter.connect
+    temp_getter = Getter()
+
+    def suppressed_get(self, *args, **kwargs):
+        return temp_getter.get(*args, **kwargs)
+
+    def suppressed_connect(self, func, *args, **kwargs):
+        return temp_getter.connect(func, *args, **kwargs)
+
+    getter.get = types.MethodType(suppressed_get, getter)
+    getter.connect = types.MethodType(suppressed_connect, getter)
+    try:
+        yield
+    finally:
+        getter.get = _orig_get
+        getter.connect = _orig_connect
+
+
+@contextmanager
+def suppress_provider(provider):
+    _orig_gather = provider.gather
+    _orig_connect = provider.connect
+    temp_provider = Provider()
+
+    def suppressed_gather(self, *args, **kwargs):
+        return temp_provider.gather(*args, **kwargs)
+
+    def suppressed_connect(self, func, *args, **kwargs):
+        return temp_provider.connect(func, *args, **kwargs)
+
+    provider.gather = types.MethodType(suppressed_gather, provider)
+    provider.connect = types.MethodType(suppressed_connect, provider)
+    try:
+        yield
+    finally:
+        provider.gather = _orig_gather
+        provider.connect = _orig_connect
