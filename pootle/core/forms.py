@@ -19,9 +19,33 @@ from django.conf import settings
 from django.core.paginator import Paginator
 from django.utils.safestring import mark_safe
 
+from pootle.core.delegate import paths
 from pootle.i18n.gettext import ugettext as _, ugettext_lazy
 
 from .utils.json import jsonify
+
+
+class PathsSearchForm(forms.Form):
+    step = 20
+    q = forms.CharField(max_length=255)
+    page = forms.IntegerField(required=False)
+
+    def __init__(self, *args, **kwargs):
+        self.context = kwargs.pop("context")
+        super(PathsSearchForm, self).__init__(*args, **kwargs)
+
+    @property
+    def paths_util(self):
+        return paths.get(self.context.__class__)
+
+    def search(self, *la, **kwa):
+        q = self.cleaned_data["q"]
+        page = self.cleaned_data["page"] or 1
+        offset = (page - 1) * self.step
+        results = self.paths_util(self.context, q).paths
+        return dict(
+            more_results=len(results) > (offset + self.step),
+            results=results[offset:offset + self.step])
 
 
 # MathCaptchaForm Copyright (c) 2007, Dima Dogadaylo (www.mysoftparade.com)
