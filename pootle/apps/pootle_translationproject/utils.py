@@ -10,16 +10,27 @@ from django.contrib.auth import get_user_model
 
 from pootle.core.models import Revision
 from pootle.core.contextmanagers import keep_data
+from pootle.core.paths import Paths
 from pootle.core.signals import create, update_checks
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.constants import OBSOLETE, SOURCE_WINS
 from pootle_store.diff import StoreDiff
 from pootle_store.models import QualityCheck
 
+from .apps import PootleTPConfig
 from .contextmanagers import update_tp_after
 
 
 User = get_user_model()
+
+
+class TPPaths(Paths):
+    ns = "pootle.tp"
+    sw_version = PootleTPConfig.version
+
+    @property
+    def store_qs(self):
+        return self.context.stores.all()
 
 
 class TPTool(object):
