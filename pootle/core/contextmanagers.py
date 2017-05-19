@@ -6,10 +6,12 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import threading
+import types
+
 from contextlib import contextmanager, nested
 
-from django.dispatch import receiver
-from django.dispatch.dispatcher import _make_id
+from django.dispatch import receiver, Signal
 
 from pootle.core.signals import (
     create, delete, update,
@@ -30,20 +32,41 @@ class BulkUpdated(object):
 
 @contextmanager
 def suppress_signal(signal, suppress=None):
-    handlers = signal.receivers
-    receiver_cache = signal.sender_receivers_cache.copy()
-    signal.receivers = []
-    if suppress:
-        refs = [_make_id(sup) for sup in suppress]
-        signal.receivers = [h for h in handlers if not h[0][1] in refs]
-    else:
-        signal.receivers = []
-    signal.sender_receivers_cache.clear()
+    lock = threading.Lock()
+    suppressed_thread = threading.current_thread().ident
+
+    _orig_send = signal.send
+    _orig_connect = signal.connect
+    temp_signal = Signal()
+
+    def _should_suppress(*args, **kwargs):
+        sender = args[0] if args else kwargs.get("sender")
+        return (
+            threading.current_thread().ident == suppressed_thread
+            and (not suppress
+                 or not sender
+                 or sender in suppress))
+
+    def suppressed_send(self, *args, **kwargs):
+        return (
+            _orig_send(*args, **kwargs)
+            if not _should_suppress(*args, **kwargs)
+            else temp_signal.send(*args, **kwargs))
+
+    def suppressed_connect(self, func, *args, **kwargs):
+        return (
+            _orig_connect(func, *args, **kwargs)
+            if not _should_suppress(*args, **kwargs)
+            else temp_signal.connect(func, *args, **kwargs))
+    with lock:
+        signal.send = types.MethodType(suppressed_send, signal)
+        signal.connect = types.MethodType(suppressed_connect, signal)
     try:
         yield
     finally:
-        signal.sender_receivers_cache = receiver_cache
-        signal.receivers = handlers
+        with lock:
+            signal.send = _orig_send
+            signal.connect = _orig_connect
 
 
 @contextmanager
