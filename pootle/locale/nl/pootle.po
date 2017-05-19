@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-17 13:08+0100\n"
-"PO-Revision-Date: 2017-02-22 01:02+0000\n"
+"PO-Revision-Date: 2017-05-19 14:52+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1487725347.000000\n"
+"X-POOTLE-MTIME: 1495205571.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -57,9 +57,8 @@ msgid "Enter a valid username."
 msgstr "Voer een geldige gebruikersnaam in."
 
 #: apps/accounts/models.py:65
-#, fuzzy
 msgid "A user with that username already exists."
-msgstr "Er bestaat al een doel met deze slug."
+msgstr "Er bestaat al een gebruiker met die gebruikersnaam."
 
 #: apps/accounts/models.py:68
 msgid "Email Address"
@@ -136,14 +135,12 @@ msgid "This email address already exists."
 msgstr "Dit e-mailadres bestaat al."
 
 #: apps/contact/forms.py:27
-#, fuzzy
 msgid "Subject"
-msgstr "Afwijzen"
+msgstr "Onderwerp"
 
 #: apps/contact/forms.py:29
-#, fuzzy
 msgid "Please enter a message subject"
-msgstr "Voer uw bericht in"
+msgstr "Voer een berichtonderwerp in"
 
 #: apps/contact/forms.py:36 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
@@ -171,17 +168,15 @@ msgstr "Voer uw bericht in"
 
 #: apps/contact/forms.py:115
 msgid "String context"
-msgstr ""
+msgstr "Context van tekenreeks"
 
 #: apps/contact/forms.py:125
-#, fuzzy
 msgid "Question or comment"
-msgstr "Suggestie afgewezen met opmerking"
+msgstr "Vraag of opmerking"
 
 #: apps/contact/forms.py:126
-#, fuzzy
 msgid "Please enter your question or comment"
-msgstr "Voer uw registratiegegevens in, a.u.b."
+msgstr "Voer uw vraag of opmerking in"
 
 #: apps/contact/views.py:35 templates/layout.html:120
 msgid "Contact Us"
@@ -589,7 +584,7 @@ msgstr "De URL of het pad naar uw vertaalbestanden"
 #: apps/pootle_fs/forms.py:47
 #, fuzzy
 msgid "Translation mapping presets"
-msgstr "Padtoewijzing van vertaling"
+msgstr "Presets voor vertaaltoewijzing"
 
 #: apps/pootle_fs/forms.py:55
 msgid "Translation path mapping"
@@ -835,9 +830,9 @@ msgid "Search unavailable"
 msgstr "Zoeken niet beschikbaar"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:35
-#, fuzzy, python-format
+#, python-format
 msgid "My current score at %s is %s"
-msgstr "Mijn huidige score op %(server_title)s is %(score)s "
+msgstr "Mijn huidige score op %s is %s"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:38
 #: apps/pootle_profile/templatetags/profile_tags.py:63
@@ -845,16 +840,14 @@ msgid "Tweet this!"
 msgstr "Dit tweeten!"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "#%s contributor in %s in the last 30 days"
-msgstr "Geen bijdragen in de afgelopen 30 dagen"
+msgstr "#%s medewerker in het %s in de afgelopen 30 dagen"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:56
 #, fuzzy, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
-msgstr ""
-"Ik ben medewerker #%(pos)s in het %(lang_name)s in de afgelopen 30 dagen op "
-"%(server_title)s! "
+msgstr "Ik ben medewerker #%s in het %s in de afgelopen 30 dagen op %s!"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
@@ -869,19 +862,18 @@ msgid "My LinkedIn Profile"
 msgstr "Mijn LinkedIn-profiel"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:95
-#, fuzzy
 msgid "Site administrator"
-msgstr "Beheerder"
+msgstr "Websitebeheerder"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:101
 #, fuzzy, python-format
 msgid "%s's language teams"
-msgstr "Taalteam"
+msgstr "Taalteams van %s"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:104
 #, python-format
 msgid "%s is not a member of any language teams"
-msgstr ""
+msgstr "%s is geen lid van vertaalteams"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
@@ -922,9 +914,8 @@ msgid "Admin"
 msgstr "Beheer"
 
 #: apps/pootle_profile/utils.py:100
-#, fuzzy
 msgid "Translator"
-msgstr "Vertaling"
+msgstr "Vertaler"
 
 #: apps/pootle_profile/views.py:61
 msgid "Select one or more languages"
@@ -1023,7 +1014,7 @@ msgstr "Opmerking"
 #: apps/pootle_statistics/models.py:60
 #, fuzzy
 msgid "Check"
-msgstr "Controles"
+msgstr "Controle"
 
 #: apps/pootle_store/abstracts.py:215 apps/pootle_store/abstracts.py:222
 msgid "Path"
@@ -1078,7 +1069,7 @@ msgstr "Opmerking van vertaler"
 #: apps/pootle_store/forms.py:481
 #, python-format
 msgid "Suggestion '%s' has already been accepted or rejected."
-msgstr ""
+msgstr "Suggestie '%s' is al geaccepteerd of afgewezen."
 
 #: apps/pootle_store/forms.py:499 core/decorators.py:140
 #: core/views/decorators.py:70
@@ -1130,20 +1121,17 @@ msgstr "Opmerking:"
 #: apps/pootle_store/unit/timeline.py:189
 #, fuzzy
 msgid "Removed comment"
-msgstr "Opmerking verwijderen"
+msgstr "Heeft opmerking verwijderd"
 
 #: apps/pootle_store/unit/timeline.py:214
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
-msgstr ""
-"Heeft controle voor <a href=\"%(check_url)s\">%(check_name)s</a> verborgen"
+msgstr "Heeft controle voor %(check_name)s verborgen"
 
 #: apps/pootle_store/unit/timeline.py:223
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
-msgstr ""
-"Heeft controle voor <a href=\"%(check_url)s\">%(check_name)s</a> zichtbaar "
-"gemaakt"
+msgstr "Heeft controle voor %(check_name)s zichtbaar gemaakt"
 
 #: apps/pootle_store/utils.py:137
 msgid "Suggestion accepted with comment"
@@ -1576,24 +1564,24 @@ msgstr ""
 "POOTLE_TM_SERVER['%s']."
 
 #: checks.py:365
-#, fuzzy, python-format
+#, python-format
 msgid "POOTLE_SCORES has no %s."
-msgstr "POOTLE_SCORE_COEFFICIENTS heeft geen %s."
+msgstr "POOTLE_SCORES heeft geen %s."
 
 #: checks.py:366
-#, fuzzy, python-format
+#, python-format
 msgid "Set %s in POOTLE_SCORES."
-msgstr "Stel %s in in POOTLE_SCORE_COEFFICIENTS."
+msgstr "Stel %s in in POOTLE_SCORES."
 
 #: checks.py:374
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORES."
-msgstr "Ongeldige waarde voor %s in POOTLE_SCORE_COEFFICIENTS."
+msgstr "Ongeldige waarde voor %s in POOTLE_SCORES."
 
 #: checks.py:377
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORES."
-msgstr "Stel een geldige waarde in voor %s in POOTLE_SCORE_COEFFICIENTS."
+msgstr "Stel een geldige waarde in voor %s in POOTLE_SCORES."
 
 #: checks.py:397
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -2684,7 +2672,6 @@ msgid "Remove comment"
 msgstr "Opmerking verwijderen"
 
 #: templates/editor/units/xhr_comment.html:19
-#, fuzzy
 msgid "Сomment:"
 msgstr "Opmerking:"
 
@@ -2775,10 +2762,10 @@ msgid "Page %(page_number)s of %(page_count)s."
 msgstr "Pagina %(page_number)s van %(page_count)s."
 
 #: templates/includes/formtable.html:27
-#, fuzzy, python-format
+#, python-format
 msgid "Showing %(n)s result per page"
 msgid_plural "Showing %(n)s results per page"
-msgstr[0] "%(count)s resultaten per pagina getoond"
+msgstr[0] "%(count)s resultaat per pagina getoond"
 msgstr[1] "%(count)s resultaten per pagina getoond"
 
 #: templates/includes/formtable.html:87
@@ -2786,9 +2773,8 @@ msgid "Select all"
 msgstr "Alles selecteren"
 
 #: templates/includes/formtable.html:100
-#, fuzzy
 msgid "Go"
-msgstr "Doel"
+msgstr "Gaan"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -2903,6 +2889,8 @@ msgid ""
 "Adding new languages from this screen is disabled. You will need to update "
 "your sources directly, and update pootle from there."
 msgstr ""
+"Het toevoegen van nieuwe talen vanuit dit scherm is uitgeschakeld. U dient "
+"uw bronnen rechtstreeks bij te werken, en van daaruit Pootle bij te werken."
 
 #: templates/projects/admin/languages.html:17
 msgid ""
@@ -3021,9 +3009,8 @@ msgid "Latest activity:"
 msgstr "Laatste activiteit:"
 
 #: templates/user/includes/profile_score.html:3
-#, fuzzy
 msgid "Total score:"
-msgstr "Totale aantal woorden:"
+msgstr "Totale score:"
 
 #: templates/user/settings.html:12
 msgid "User Account"
