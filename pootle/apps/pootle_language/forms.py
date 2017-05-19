@@ -57,11 +57,18 @@ class LanguageTeamNewMemberSearchForm(LanguageTeamBaseAdminForm):
 
     def search(self):
         non_members = self.language_team.non_members
-        return [
-            dict(id=int(m["id"]), username=m["username"])
-            for m
-            in (non_members.filter(username__contains=self.cleaned_data["q"])
-                           .values("id", "username"))]
+        return dict(
+            results=[
+                dict(id=int(m["id"]), text=m["username"])
+                for m
+                in (non_members.filter(username__contains=self.cleaned_data["q"])
+                               .values("id", "username"))])
+
+
+class RemoteSelectWidget(forms.Select):
+
+    def render_options(self, selected_choices):
+        return ""
 
 
 class LanguageTeamAdminForm(LanguageTeamBaseAdminForm):
@@ -90,8 +97,10 @@ class LanguageTeamAdminForm(LanguageTeamBaseAdminForm):
         help_text=_("Add a user to this team"),
         required=False,
         queryset=User.objects.none(),
-        widget=forms.Select(
+        initial=[],
+        widget=RemoteSelectWidget(
             attrs={
+                "data-s2-placeholder": _("Search for users to add"),
                 'class': 'js-select2-remote'}))
     role = forms.ChoiceField(
         label=_("Role"),
