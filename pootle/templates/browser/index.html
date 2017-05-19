@@ -1,10 +1,7 @@
 {% extends browser_extends %}
-
-{% load core assets cleanhtml i18n locale common_tags profile_tags fs_tags %}
-
+{% load core assets i18n locale common_tags profile_tags fs_tags %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_current_language_bidi as LANGUAGE_BIDI %}
-
 {% block header_content_block %}
 {% if not templates_context %}
 <div id="top-stats" class="header">
@@ -73,9 +70,7 @@
         </div>
 	{% endif %}
       </div>
-
       <div id="js-mnt-top-contributors"></div>
-
       <div class="summary-3-col">
 	{% if has_admin_access or project.treestyle == "pootle_fs" %}
         <div id="js-last-updated-wrapper">
@@ -125,18 +120,15 @@
 </div>
 {% endif %}
 {% endblock %}
-
 {% block actions %}
 {% include 'browser/_actions.html' %}
 {% endblock %}
-
 {% block pre_content %}
 {% if has_sidebar %}
 <div id="sidebar"
   class="js-sidebar{% if is_sidebar_open %} sidebar-open{% endif %}">
   <div id="sidebar-content">
     {% block sidebar_content %}
-
     {% if announcements %}
     <div class="sidebar-group">
       {% for announcement in announcements %}
@@ -144,36 +136,29 @@
       {% endfor %}
     </div>
     {% endif %}
-
     {% endblock %}
   </div>
   <a id="sidebar-toggle" class="js-sidebar-toggle"></a>
 </div>
 {% endif %}
 {% endblock %}
-
 {% block content %}
 {% if project and project.disabled %}
 <div class="alert alert-danger">
 {% trans "This project is disabled and visible to administrators only." %}
 </div>
 {% endif %}
-
 {% if parent %}
 <div class="browser-parent" lang="{{ LANGUAGE_CODE }}">
   <a href="{{ parent.href }}"><i class="icon-folder-parent"></i> <span>{{ parent.title }}</span></a>
 </div>
 {% endif %}
-
 {% for panel in panels %}
 {{ panel }}
 {% endfor %}
-
 {% endblock content %}
-
 {% block scripts_extra %}
 {{ block.super }}
-
 <script type="text/javascript">
   $(function () {
     PTL.search.init();
