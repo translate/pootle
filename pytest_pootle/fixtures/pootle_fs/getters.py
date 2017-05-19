@@ -10,13 +10,14 @@ from contextlib import contextmanager
 
 import pytest
 
-from pootle.core.contextmanagers import keep_data
+from pytest_pootle.utils import suppress_getter, suppress_provider
+
 from pootle_fs.delegate import fs_file, fs_finder, fs_plugins
 
 
 @contextmanager
 def _no_fs_files():
-    with keep_data(signals=(fs_file, )):
+    with suppress_getter(fs_file):
         yield
 
 
@@ -27,7 +28,7 @@ def no_fs_files():
 
 @contextmanager
 def _no_fs_plugins():
-    with keep_data(signals=(fs_plugins, )):
+    with suppress_provider(fs_plugins):
         yield
 
 
@@ -38,7 +39,7 @@ def no_fs_plugins():
 
 @contextmanager
 def _no_fs_finder():
-    with keep_data(signals=(fs_finder, )):
+    with suppress_getter(fs_finder):
         yield
 
 

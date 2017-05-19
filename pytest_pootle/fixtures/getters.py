@@ -10,13 +10,14 @@ from contextlib import contextmanager
 
 import pytest
 
-from pootle.core.contextmanagers import keep_data
+from pytest_pootle.utils import suppress_getter
+
 from pootle.core.delegate import context_data, wordcount, tp_tool
 
 
 @contextmanager
 def _no_wordcount():
-    with keep_data(signals=(wordcount, )):
+    with suppress_getter(wordcount):
         yield
 
 
@@ -27,7 +28,7 @@ def no_wordcount():
 
 @contextmanager
 def _no_context_data():
-    with keep_data(signals=(context_data, )):
+    with suppress_getter(context_data):
         yield
 
 
@@ -38,7 +39,7 @@ def no_context_data():
 
 @contextmanager
 def _no_tp_tool():
-    with keep_data(signals=(tp_tool, )):
+    with suppress_getter(tp_tool):
         yield
 
 
