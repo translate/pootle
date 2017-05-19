@@ -13,6 +13,7 @@ from django.utils.translation import get_language
 
 from pootle.i18n import formatter
 from pootle.i18n.dates import timesince
+from pootle.i18n.gettext import ugettext_lazy as _
 
 
 register = template.Library()
@@ -49,13 +50,16 @@ def progress_bar(total, fuzzy, translated):
         fuzzy_frac = float(fuzzy)/total
         translated_frac = float(translated)/total
         cldrformat = "#,##0.0%"
+    untranslated_display = (_("{percentage} untranslated")).format(
+        percentage=formatter.percent(untranslated_frac, cldrformat))
+    fuzzy_display = (_("{percentage} needs work")).format(
+        percentage=formatter.percent(fuzzy_frac, cldrformat))
+    translated_display = (_("{percentage} translated")).format(
+        percentage=formatter.percent(translated_frac, cldrformat))
     return dict(
-        untranslated_percent_display=formatter.percent(
-            untranslated_frac, cldrformat),
-        fuzzy_percent_display=formatter.percent(
-            fuzzy_frac, cldrformat),
-        translated_percent_display=formatter.percent(
-            translated_frac, cldrformat),
+        untranslated_percent_display=untranslated_display,
+        fuzzy_percent_display=fuzzy_display,
+        translated_percent_display=translated_display,
         untranslated_bar=round(untranslated_frac * 100, 1),
         fuzzy_bar=round(fuzzy_frac * 100, 1),
         translated_bar=round(translated_frac * 100, 1))

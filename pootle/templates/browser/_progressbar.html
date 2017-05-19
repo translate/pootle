@@ -1,8 +1,8 @@
 {% load i18n %}
 <table class="graph" original-title="
-<span class='legend translated'></span>{% blocktrans %}{{ translated_percent_display }} translated{% endblocktrans %}<br />
-<span class='legend fuzzy'></span>{% blocktrans %}{{ fuzzy_percent_display }} needs work{% endblocktrans %}<br />
-<span class='legend untranslated'></span>{% blocktrans %}{{ untranslated_percent_display }} untranslated{% endblocktrans %}">
+<span class='legend translated'></span>{{ translated_percent_display }}<br />
+<span class='legend fuzzy'></span>{{ fuzzy_percent_display }}<br />
+<span class='legend untranslated'></span>{{ untranslated_percent_display }}">
   <tr>
     <td class="translated" style="width: {{ translated_bar }}%"><span></span></td>
     <td class="fuzzy" style="width: {{ fuzzy_bar }}%"><span></span></td>
