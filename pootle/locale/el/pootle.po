@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-17 13:08+0100\n"
+"POT-Creation-Date: 2017-05-19 20:58+0100\n"
 "PO-Revision-Date: 2017-02-08 07:50+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -812,6 +812,21 @@ msgstr "Σχόλια"
 msgid "Locations"
 msgstr "Τοποθεσίες"
 
+#: apps/pootle_misc/templatetags/common_tags.py:53
+#, fuzzy, python-brace-format
+msgid "{percentage} untranslated"
+msgstr "%d αμετάφραστη λέξη"
+
+#: apps/pootle_misc/templatetags/common_tags.py:55
+#, python-brace-format
+msgid "{percentage} needs work"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:57
+#, fuzzy, python-brace-format
+msgid "{percentage} translated"
+msgstr "Αμετάφραστα"
+
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr "Πρώτο"
@@ -1097,49 +1112,49 @@ msgstr "Ενικός"
 msgid "Plural"
 msgstr "Πληθυντικός"
 
-#: apps/pootle_store/unit/timeline.py:72
+#: apps/pootle_store/unit/timeline.py:74
 msgid "Added suggestion"
 msgstr "Προσθήκη της πρότασης"
 
-#: apps/pootle_store/unit/timeline.py:84
+#: apps/pootle_store/unit/timeline.py:86
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Αποδοχή της πρότασης από τον %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:92
+#: apps/pootle_store/unit/timeline.py:94
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Αποδεκτή η πρόταση από τον %(author)s με σχόλιο: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:113
+#: apps/pootle_store/unit/timeline.py:115
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Απόρριψη της πρότασης του %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:121
+#: apps/pootle_store/unit/timeline.py:123
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Απόρριψη πρότασης από τον %(author)s με σχόλιο: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:155
+#: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
 msgstr "Δημιουργήθηκε μονάδα"
 
-#: apps/pootle_store/unit/timeline.py:186
+#: apps/pootle_store/unit/timeline.py:188
 msgid "Comment:"
 msgstr "Σχόλιο:"
 
-#: apps/pootle_store/unit/timeline.py:189
+#: apps/pootle_store/unit/timeline.py:191
 #, fuzzy
 msgid "Removed comment"
 msgstr "Αφαίρεση σχολίου"
 
-#: apps/pootle_store/unit/timeline.py:214
+#: apps/pootle_store/unit/timeline.py:216
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr "Έλεγχος σίγασης των <a href=\"%(check_url)s\">%(check_name)s</a>"
 
-#: apps/pootle_store/unit/timeline.py:223
+#: apps/pootle_store/unit/timeline.py:225
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "Έλεγχος αποσίγασης των <a href=\"%(check_url)s\">%(check_name)s</a>"
@@ -1169,7 +1184,7 @@ msgstr "Αποτυχία στην απομάκρυνση σχολίου."
 msgid "Comment submission failed."
 msgstr "Αποτυχία υποβολής σχολίου."
 
-#: apps/pootle_store/views.py:567
+#: apps/pootle_store/views.py:572
 msgid "Failed to process suggestion."
 msgstr "Αποτυχία διαδικασίας πρότασης."
 
@@ -2329,68 +2344,43 @@ msgstr "Προβολή όλων"
 msgid "All"
 msgstr "Όλα"
 
-#: templates/browser/_progressbar.html:3
-#, python-format
-msgid ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"translated"
-msgstr ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"μεταφράστηκαν"
-
-#: templates/browser/_progressbar.html:4
-#, python-format
-msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr ""
-"<span class='value fuzzy'>%(fuzzy_percent_display)s</span> χρειάζονται "
-"επεξεργασία"
-
-#: templates/browser/_progressbar.html:5
-#, python-format
-msgid ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"untranslated"
-msgstr ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"αμετάφραστα"
-
-#: templates/browser/index.html:20
+#: templates/browser/index.html:17
 msgid "Expand details"
 msgstr "Επέκταση λεπτομερειών"
 
-#: templates/browser/index.html:27
+#: templates/browser/index.html:24
 msgid "Translation Statistics"
 msgstr "Στατιστικά μετάφρασης"
 
-#: templates/browser/index.html:49
+#: templates/browser/index.html:46
 msgid "Failing Checks"
 msgstr "Αποτυχημένοι έλεγχοι"
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:65
 msgid "More..."
 msgstr "Περισσότερα..."
 
-#: templates/browser/index.html:69
+#: templates/browser/index.html:66
 msgid "Less..."
 msgstr "Λιγότερα..."
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:77
 msgid "Updates"
 msgstr "Ενημερώσεις"
 
-#: templates/browser/index.html:87
+#: templates/browser/index.html:82
 msgid "Last updated:"
 msgstr "Τελευταία ενημέρωση:"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:97
 msgid "Translations"
 msgstr "Μεταφράσεις"
 
-#: templates/browser/index.html:106
+#: templates/browser/index.html:101
 msgid "Last action:"
 msgstr "Τελευταία ενέργεια:"
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
 msgstr "Αυτό το έργο είναι ανενεργό και ορατό μόνο σε διαχειριστές."
 
@@ -3091,6 +3081,26 @@ msgstr "Σύνδεση"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Κορυφαίοι συντελεστές για τις τελευταίες 30 ημέρες"
+
+#~ msgid ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> "
+#~ "translated"
+#~ msgstr ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> "
+#~ "μεταφράστηκαν"
+
+#~ msgid ""
+#~ "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
+#~ msgstr ""
+#~ "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> χρειάζονται "
+#~ "επεξεργασία"
+
+#~ msgid ""
+#~ "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+#~ "untranslated"
+#~ msgstr ""
+#~ "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+#~ "αμετάφραστα"
 
 #~ msgid "Score:"
 #~ msgstr "Βαθμολογία:"
@@ -4232,11 +4242,6 @@ msgstr "Κορυφαίοι συντελεστές για τις τελευταί
 #~ msgid_plural "%d words need attention"
 #~ msgstr[0] "%d λέξη χρειάζεται προσοχή"
 #~ msgstr[1] "%d λέξεις χρειάζονται προσοχή"
-
-#~ msgid "%d word untranslated"
-#~ msgid_plural "%d words untranslated"
-#~ msgstr[0] "%d αμετάφραστη λέξη"
-#~ msgstr[1] "%d αμετάφραστες λέξεις"
 
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"

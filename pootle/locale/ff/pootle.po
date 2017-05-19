@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-17 13:08+0100\n"
+"POT-Creation-Date: 2017-05-19 20:58+0100\n"
 "PO-Revision-Date: 2016-07-23 05:45+0000\n"
 "Last-Translator: Bocar Amadou <bokarba@yahoo.fr>\n"
 "Language-Team: FULA LOCALIZATION\n"
@@ -815,6 +815,21 @@ msgstr "Jowe"
 msgid "Locations"
 msgstr "Nokkuuji"
 
+#: apps/pootle_misc/templatetags/common_tags.py:53
+#, fuzzy, python-brace-format
+msgid "{percentage} untranslated"
+msgstr "%d kelme piraaka"
+
+#: apps/pootle_misc/templatetags/common_tags.py:55
+#, python-brace-format
+msgid "{percentage} needs work"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:57
+#, fuzzy, python-brace-format
+msgid "{percentage} translated"
+msgstr "Firaaka"
+
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr "Gadanol"
@@ -1091,51 +1106,51 @@ msgstr "Teelal"
 msgid "Plural"
 msgstr "Keewal"
 
-#: apps/pootle_store/unit/timeline.py:72
+#: apps/pootle_store/unit/timeline.py:74
 #, fuzzy
 msgid "Added suggestion"
 msgstr "Jaɓ wasiya"
 
-#: apps/pootle_store/unit/timeline.py:84
+#: apps/pootle_store/unit/timeline.py:86
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Jaɓ wasiya"
 
-#: apps/pootle_store/unit/timeline.py:92
+#: apps/pootle_store/unit/timeline.py:94
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Jaɓ wasiya"
 
-#: apps/pootle_store/unit/timeline.py:113
+#: apps/pootle_store/unit/timeline.py:115
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Salo wasiya"
 
-#: apps/pootle_store/unit/timeline.py:121
+#: apps/pootle_store/unit/timeline.py:123
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Salo wasiya"
 
-#: apps/pootle_store/unit/timeline.py:155
+#: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:186
+#: apps/pootle_store/unit/timeline.py:188
 msgid "Comment:"
 msgstr "Yowre:"
 
-#: apps/pootle_store/unit/timeline.py:189
+#: apps/pootle_store/unit/timeline.py:191
 #, fuzzy
 msgid "Removed comment"
 msgstr "Ɓeydu Yowre"
 
-#: apps/pootle_store/unit/timeline.py:214
+#: apps/pootle_store/unit/timeline.py:216
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr ""
 "<a href=\"%(url)s\">helmere %(num)d</a><a href=\"%(url)s\">kelme %(num)d</a>"
 
-#: apps/pootle_store/unit/timeline.py:223
+#: apps/pootle_store/unit/timeline.py:225
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "ƴeewtii ko <a href=\"%(profile_url)s\">%(reviewer)s</a>"
@@ -1166,7 +1181,7 @@ msgstr ""
 msgid "Comment submission failed."
 msgstr "Naatnugol yowre woorii."
 
-#: apps/pootle_store/views.py:567
+#: apps/pootle_store/views.py:572
 msgid "Failed to process suggestion."
 msgstr "Horiima jokkitde wasiya."
 
@@ -2268,65 +2283,46 @@ msgstr ""
 msgid "All"
 msgstr "Fof"
 
-#: templates/browser/_progressbar.html:3
-#, python-format
-msgid ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"translated"
-msgstr ""
-
-#: templates/browser/_progressbar.html:4
-#, python-format
-msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr ""
-
-#: templates/browser/_progressbar.html:5
-#, python-format
-msgid ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"untranslated"
-msgstr ""
-
-#: templates/browser/index.html:20
+#: templates/browser/index.html:17
 msgid "Expand details"
 msgstr "Wetu cariiɗe"
 
-#: templates/browser/index.html:27
+#: templates/browser/index.html:24
 msgid "Translation Statistics"
 msgstr "Limlimtooje Firooji"
 
-#: templates/browser/index.html:49
+#: templates/browser/index.html:46
 msgid "Failing Checks"
 msgstr "Ƴeewndite ɗe peewaani"
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:65
 msgid "More..."
 msgstr "Jokku..."
 
-#: templates/browser/index.html:69
+#: templates/browser/index.html:66
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:77
 msgid "Updates"
 msgstr ""
 
-#: templates/browser/index.html:87
+#: templates/browser/index.html:82
 #, fuzzy
 msgid "Last updated:"
 msgstr "Taƴtaa Sakket"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:97
 #, fuzzy
 msgid "Translations"
 msgstr "Firo"
 
-#: templates/browser/index.html:106
+#: templates/browser/index.html:101
 #, fuzzy
 msgid "Last action:"
 msgstr "Dille cakkitiiɗe"
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -3855,10 +3851,6 @@ msgstr "Gollooɓe Rowrowɓe"
 #~ msgid_plural "%d words need attention"
 #~ msgstr[0] "%d kelme ena cokli ƴeewteede"
 #~ msgstr[1] ""
-
-#~ msgid "%d word untranslated"
-#~ msgid_plural "%d words untranslated"
-#~ msgstr[0] "%d kelme piraaka"
 
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"

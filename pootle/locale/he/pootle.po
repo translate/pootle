@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-17 13:08+0100\n"
+"POT-Creation-Date: 2017-05-19 20:58+0100\n"
 "PO-Revision-Date: 2017-04-15 22:33+0000\n"
 "Last-Translator: Yaron <sh.yaron@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -791,6 +791,21 @@ msgstr "הערות"
 msgid "Locations"
 msgstr "מיקומים"
 
+#: apps/pootle_misc/templatetags/common_tags.py:53
+#, fuzzy, python-brace-format
+msgid "{percentage} untranslated"
+msgstr "מילה אחת אינה מתורגמת"
+
+#: apps/pootle_misc/templatetags/common_tags.py:55
+#, python-brace-format
+msgid "{percentage} needs work"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:57
+#, fuzzy, python-brace-format
+msgid "{percentage} translated"
+msgstr "לא תורגמו"
+
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr "ראשון"
@@ -1066,49 +1081,49 @@ msgstr "יחיד"
 msgid "Plural"
 msgstr "רבים"
 
-#: apps/pootle_store/unit/timeline.py:72
+#: apps/pootle_store/unit/timeline.py:74
 msgid "Added suggestion"
 msgstr "נוספה הצעה"
 
-#: apps/pootle_store/unit/timeline.py:84
+#: apps/pootle_store/unit/timeline.py:86
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "התקבלה הצעה מאת %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:92
+#: apps/pootle_store/unit/timeline.py:94
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "התקבלה הצעה מאת %(author)s עם ההערה: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:113
+#: apps/pootle_store/unit/timeline.py:115
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "נדחתה הצעה מאת %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:121
+#: apps/pootle_store/unit/timeline.py:123
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "התקבלה הצעה מאת %(author)s עם ההערה: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:155
+#: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
 msgstr "נוצרה יחידה"
 
-#: apps/pootle_store/unit/timeline.py:186
+#: apps/pootle_store/unit/timeline.py:188
 msgid "Comment:"
 msgstr "הערה:"
 
-#: apps/pootle_store/unit/timeline.py:189
+#: apps/pootle_store/unit/timeline.py:191
 #, fuzzy
 msgid "Removed comment"
 msgstr "הסרת הערה"
 
-#: apps/pootle_store/unit/timeline.py:214
+#: apps/pootle_store/unit/timeline.py:216
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr "הושתקה הבדיקה <a href=\"%(check_url)s\">%(check_name)s</a>"
 
-#: apps/pootle_store/unit/timeline.py:223
+#: apps/pootle_store/unit/timeline.py:225
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "בוטלה השתקת הבדיקה <a href=\"%(check_url)s\">%(check_name)s</a>"
@@ -1138,7 +1153,7 @@ msgstr "הסרת ההערה נכשלה."
 msgid "Comment submission failed."
 msgstr "הגשת ההערה נכשלה."
 
-#: apps/pootle_store/views.py:567
+#: apps/pootle_store/views.py:572
 msgid "Failed to process suggestion."
 msgstr "עיבוד ההצעה נכשל."
 
@@ -2242,66 +2257,43 @@ msgstr "להציג הכול"
 msgid "All"
 msgstr "הכול"
 
-#: templates/browser/_progressbar.html:3
-#, python-format
-msgid ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"translated"
-msgstr ""
-"<span class='value translated'>%(translated_percent_display)s</span> תורגמו"
-
-#: templates/browser/_progressbar.html:4
-#, python-format
-msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr ""
-"<span class='value fuzzy'>%(fuzzy_percent_display)s</span> דורשים טיפול"
-
-#: templates/browser/_progressbar.html:5
-#, python-format
-msgid ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"untranslated"
-msgstr ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> לא "
-"תורגמו"
-
-#: templates/browser/index.html:20
+#: templates/browser/index.html:17
 msgid "Expand details"
 msgstr "הרחבת פרטים"
 
-#: templates/browser/index.html:27
+#: templates/browser/index.html:24
 msgid "Translation Statistics"
 msgstr "סטטיסטיקת תרגום"
 
-#: templates/browser/index.html:49
+#: templates/browser/index.html:46
 msgid "Failing Checks"
 msgstr "בדיקות שכשלו"
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:65
 msgid "More..."
 msgstr "עוד…"
 
-#: templates/browser/index.html:69
+#: templates/browser/index.html:66
 msgid "Less..."
 msgstr "פחות…"
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:77
 msgid "Updates"
 msgstr "עדכונים"
 
-#: templates/browser/index.html:87
+#: templates/browser/index.html:82
 msgid "Last updated:"
 msgstr "מועד עדכון אחרון:"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:97
 msgid "Translations"
 msgstr "תרגומים"
 
-#: templates/browser/index.html:106
+#: templates/browser/index.html:101
 msgid "Last action:"
 msgstr "פעילות אחרונה:"
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
 msgstr "מיזם זה מנוטרל וגלוי למנהלים בלבד."
 
@@ -2972,6 +2964,25 @@ msgstr "כניסה"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "התורמים המובילים ב־30 הימים האחרונים"
+
+#~ msgid ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> "
+#~ "translated"
+#~ msgstr ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> "
+#~ "תורגמו"
+
+#~ msgid ""
+#~ "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
+#~ msgstr ""
+#~ "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> דורשים טיפול"
+
+#~ msgid ""
+#~ "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+#~ "untranslated"
+#~ msgstr ""
+#~ "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+#~ "לא תורגמו"
 
 #~ msgid "Score:"
 #~ msgstr "ניקוד:"
@@ -3941,11 +3952,6 @@ msgstr "התורמים המובילים ב־30 הימים האחרונים"
 #~ msgid_plural "%d words need attention"
 #~ msgstr[0] "מילה אחת דורשת התייחסות"
 #~ msgstr[1] "%d מילים דורשות התייחסות"
-
-#~ msgid "%d word untranslated"
-#~ msgid_plural "%d words untranslated"
-#~ msgstr[0] "מילה אחת אינה מתורגמת"
-#~ msgstr[1] "%d מילים אינן מתורגמות"
 
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"

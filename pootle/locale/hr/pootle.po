@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-17 13:08+0100\n"
+"POT-Creation-Date: 2017-05-19 20:58+0100\n"
 "PO-Revision-Date: 2014-10-15 05:17+0000\n"
 "Last-Translator: Ivica  <ikoli@yahoo.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -822,6 +822,21 @@ msgstr "Komentari"
 msgid "Locations"
 msgstr "Lokacije"
 
+#: apps/pootle_misc/templatetags/common_tags.py:53
+#, fuzzy, python-brace-format
+msgid "{percentage} untranslated"
+msgstr "%d riječ je neprevedena"
+
+#: apps/pootle_misc/templatetags/common_tags.py:55
+#, python-brace-format
+msgid "{percentage} needs work"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:57
+#, fuzzy, python-brace-format
+msgid "{percentage} translated"
+msgstr "Nije prevedeno"
+
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr "Prvi"
@@ -1097,51 +1112,51 @@ msgstr "Jednina"
 msgid "Plural"
 msgstr "Množina"
 
-#: apps/pootle_store/unit/timeline.py:72
+#: apps/pootle_store/unit/timeline.py:74
 #, fuzzy
 msgid "Added suggestion"
 msgstr "Prihvaćen prijedlog"
 
-#: apps/pootle_store/unit/timeline.py:84
+#: apps/pootle_store/unit/timeline.py:86
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Prihvaćen prijedlog"
 
-#: apps/pootle_store/unit/timeline.py:92
+#: apps/pootle_store/unit/timeline.py:94
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Prihvaćen prijedlog"
 
-#: apps/pootle_store/unit/timeline.py:113
+#: apps/pootle_store/unit/timeline.py:115
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Odbačen prijedlog"
 
-#: apps/pootle_store/unit/timeline.py:121
+#: apps/pootle_store/unit/timeline.py:123
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Odbačen prijedlog"
 
-#: apps/pootle_store/unit/timeline.py:155
+#: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:186
+#: apps/pootle_store/unit/timeline.py:188
 #, fuzzy
 msgid "Comment:"
 msgstr "Komentari"
 
-#: apps/pootle_store/unit/timeline.py:189
+#: apps/pootle_store/unit/timeline.py:191
 #, fuzzy
 msgid "Removed comment"
 msgstr "Dodaj komentar"
 
-#: apps/pootle_store/unit/timeline.py:214
+#: apps/pootle_store/unit/timeline.py:216
 #, python-format
 msgid "Muted %(check_name)s check"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:223
+#: apps/pootle_store/unit/timeline.py:225
 #, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr ""
@@ -1172,7 +1187,7 @@ msgstr ""
 msgid "Comment submission failed."
 msgstr ""
 
-#: apps/pootle_store/views.py:567
+#: apps/pootle_store/views.py:572
 msgid "Failed to process suggestion."
 msgstr ""
 
@@ -2259,66 +2274,47 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: templates/browser/_progressbar.html:3
-#, python-format
-msgid ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"translated"
-msgstr ""
-
-#: templates/browser/_progressbar.html:4
-#, python-format
-msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr ""
-
-#: templates/browser/_progressbar.html:5
-#, python-format
-msgid ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"untranslated"
-msgstr ""
-
-#: templates/browser/index.html:20
+#: templates/browser/index.html:17
 msgid "Expand details"
 msgstr "Proširi pojedinosti"
 
-#: templates/browser/index.html:27
+#: templates/browser/index.html:24
 msgid "Translation Statistics"
 msgstr ""
 
-#: templates/browser/index.html:49
+#: templates/browser/index.html:46
 msgid "Failing Checks"
 msgstr "Greška u provjeri"
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:65
 msgid "More..."
 msgstr "Više..."
 
-#: templates/browser/index.html:69
+#: templates/browser/index.html:66
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:77
 #, fuzzy
 msgid "Updates"
 msgstr "Ažuriraj"
 
-#: templates/browser/index.html:87
+#: templates/browser/index.html:82
 #, fuzzy
 msgid "Last updated:"
 msgstr "Posljednja aktivnost"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:97
 #, fuzzy
 msgid "Translations"
 msgstr "Prijevod"
 
-#: templates/browser/index.html:106
+#: templates/browser/index.html:101
 #, fuzzy
 msgid "Last action:"
 msgstr "Posljednja aktivnost"
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -3572,12 +3568,6 @@ msgstr "Najveći pridonositelji"
 #~ msgstr[0] "%d riječ treba tvoju pozornost"
 #~ msgstr[1] "%d riječi treba tvoju pozornost"
 #~ msgstr[2] "%d riječi treba tvoju pozornost"
-
-#~ msgid "%d word untranslated"
-#~ msgid_plural "%d words untranslated"
-#~ msgstr[0] "%d riječ je neprevedena"
-#~ msgstr[1] "%d riječi su neprevedene"
-#~ msgstr[2] "%d riječi su neprevedeno"
 
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"

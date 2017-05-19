@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-17 13:08+0100\n"
+"POT-Creation-Date: 2017-05-19 20:58+0100\n"
 "PO-Revision-Date: 2013-10-28 14:37+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -785,6 +785,21 @@ msgstr ""
 msgid "Locations"
 msgstr ""
 
+#: apps/pootle_misc/templatetags/common_tags.py:53
+#, python-brace-format
+msgid "{percentage} untranslated"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:55
+#, python-brace-format
+msgid "{percentage} needs work"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:57
+#, python-brace-format
+msgid "{percentage} translated"
+msgstr ""
+
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr ""
@@ -1051,48 +1066,48 @@ msgstr ""
 msgid "Plural"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:72
+#: apps/pootle_store/unit/timeline.py:74
 msgid "Added suggestion"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:84
+#: apps/pootle_store/unit/timeline.py:86
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:92
+#: apps/pootle_store/unit/timeline.py:94
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:113
+#: apps/pootle_store/unit/timeline.py:115
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:121
+#: apps/pootle_store/unit/timeline.py:123
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:155
+#: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:186
+#: apps/pootle_store/unit/timeline.py:188
 msgid "Comment:"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:189
+#: apps/pootle_store/unit/timeline.py:191
 msgid "Removed comment"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:214
+#: apps/pootle_store/unit/timeline.py:216
 #, python-format
 msgid "Muted %(check_name)s check"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:223
+#: apps/pootle_store/unit/timeline.py:225
 #, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr ""
@@ -1122,7 +1137,7 @@ msgstr ""
 msgid "Comment submission failed."
 msgstr ""
 
-#: apps/pootle_store/views.py:567
+#: apps/pootle_store/views.py:572
 msgid "Failed to process suggestion."
 msgstr ""
 
@@ -2179,64 +2194,45 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: templates/browser/_progressbar.html:3
-#, python-format
-msgid ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"translated"
-msgstr ""
-
-#: templates/browser/_progressbar.html:4
-#, python-format
-msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr ""
-
-#: templates/browser/_progressbar.html:5
-#, python-format
-msgid ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"untranslated"
-msgstr ""
-
-#: templates/browser/index.html:20
+#: templates/browser/index.html:17
 msgid "Expand details"
 msgstr ""
 
-#: templates/browser/index.html:27
+#: templates/browser/index.html:24
 msgid "Translation Statistics"
 msgstr ""
 
-#: templates/browser/index.html:49
+#: templates/browser/index.html:46
 msgid "Failing Checks"
 msgstr ""
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:65
 msgid "More..."
 msgstr ""
 
-#: templates/browser/index.html:69
+#: templates/browser/index.html:66
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:77
 msgid "Updates"
 msgstr ""
 
-#: templates/browser/index.html:87
+#: templates/browser/index.html:82
 #, fuzzy
 msgid "Last updated:"
 msgstr "Last name"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:97
 #, fuzzy
 msgid "Translations"
 msgstr "Can submit a translation"
 
-#: templates/browser/index.html:106
+#: templates/browser/index.html:101
 msgid "Last action:"
 msgstr ""
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 

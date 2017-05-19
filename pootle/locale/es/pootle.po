@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-17 13:08+0100\n"
+"POT-Creation-Date: 2017-05-19 20:58+0100\n"
 "PO-Revision-Date: 2017-03-06 13:42+0000\n"
 "Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -806,6 +806,21 @@ msgstr "Comentarios"
 msgid "Locations"
 msgstr "Lugares"
 
+#: apps/pootle_misc/templatetags/common_tags.py:53
+#, fuzzy, python-brace-format
+msgid "{percentage} untranslated"
+msgstr "%d palabra sin traducir"
+
+#: apps/pootle_misc/templatetags/common_tags.py:55
+#, python-brace-format
+msgid "{percentage} needs work"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:57
+#, fuzzy, python-brace-format
+msgid "{percentage} translated"
+msgstr "Sin traducir"
+
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr "Primera"
@@ -1089,49 +1104,49 @@ msgstr "Singular"
 msgid "Plural"
 msgstr "Plural"
 
-#: apps/pootle_store/unit/timeline.py:72
+#: apps/pootle_store/unit/timeline.py:74
 msgid "Added suggestion"
 msgstr "Añadió una sugerencia"
 
-#: apps/pootle_store/unit/timeline.py:84
+#: apps/pootle_store/unit/timeline.py:86
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Aceptó la sugerencia de %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:92
+#: apps/pootle_store/unit/timeline.py:94
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Aceptó la sugerencia de %(author)s con el comentario: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:113
+#: apps/pootle_store/unit/timeline.py:115
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Rechazó la sugerencia de %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:121
+#: apps/pootle_store/unit/timeline.py:123
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Rechazó la sugerencia de %(author)s con el comentario: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:155
+#: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
 msgstr "Unidad creada"
 
-#: apps/pootle_store/unit/timeline.py:186
+#: apps/pootle_store/unit/timeline.py:188
 msgid "Comment:"
 msgstr "Comentario:"
 
-#: apps/pootle_store/unit/timeline.py:189
+#: apps/pootle_store/unit/timeline.py:191
 #, fuzzy
 msgid "Removed comment"
 msgstr "Eliminar comentario"
 
-#: apps/pootle_store/unit/timeline.py:214
+#: apps/pootle_store/unit/timeline.py:216
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr "Silenció la comprobación <a href=\"%(check_url)s\">%(check_name)s</a>"
 
-#: apps/pootle_store/unit/timeline.py:223
+#: apps/pootle_store/unit/timeline.py:225
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "Reactivó la comprobación <a href=\"%(check_url)s\">%(check_name)s</a>"
@@ -1161,7 +1176,7 @@ msgstr "Se produjo un error al eliminar el comentario."
 msgid "Comment submission failed."
 msgstr "Falló el envío de comentarios."
 
-#: apps/pootle_store/views.py:567
+#: apps/pootle_store/views.py:572
 msgid "Failed to process suggestion."
 msgstr "Falló al procesar la sugerencia."
 
@@ -2301,67 +2316,43 @@ msgstr "Ver todo"
 msgid "All"
 msgstr "Todos"
 
-#: templates/browser/_progressbar.html:3
-#, python-format
-msgid ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"translated"
-msgstr ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"traducido"
-
-#: templates/browser/_progressbar.html:4
-#, python-format
-msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr ""
-"<span class='value fuzzy'>%(fuzzy_percent_display)s</span> necesita trabajo"
-
-#: templates/browser/_progressbar.html:5
-#, python-format
-msgid ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"untranslated"
-msgstr ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> sin "
-"traducir"
-
-#: templates/browser/index.html:20
+#: templates/browser/index.html:17
 msgid "Expand details"
 msgstr "Ampliar detalles"
 
-#: templates/browser/index.html:27
+#: templates/browser/index.html:24
 msgid "Translation Statistics"
 msgstr "Estadísticas de traducción"
 
-#: templates/browser/index.html:49
+#: templates/browser/index.html:46
 msgid "Failing Checks"
 msgstr "Comprobaciones fallidas"
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:65
 msgid "More..."
 msgstr "Más…"
 
-#: templates/browser/index.html:69
+#: templates/browser/index.html:66
 msgid "Less..."
 msgstr "Menos…"
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:77
 msgid "Updates"
 msgstr "Actualizaciones"
 
-#: templates/browser/index.html:87
+#: templates/browser/index.html:82
 msgid "Last updated:"
 msgstr "Última actualización:"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:97
 msgid "Translations"
 msgstr "Traducciones"
 
-#: templates/browser/index.html:106
+#: templates/browser/index.html:101
 msgid "Last action:"
 msgstr "Última acción:"
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 "Este proyecto está desactivado y solo pueden verlo los administradores."
@@ -3058,6 +3049,26 @@ msgstr "Acceder"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Colaboradores más activos de los últimos 30 días"
+
+#~ msgid ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> "
+#~ "translated"
+#~ msgstr ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> "
+#~ "traducido"
+
+#~ msgid ""
+#~ "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
+#~ msgstr ""
+#~ "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> necesita "
+#~ "trabajo"
+
+#~ msgid ""
+#~ "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+#~ "untranslated"
+#~ msgstr ""
+#~ "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+#~ "sin traducir"
 
 #~ msgid "Score:"
 #~ msgstr "Puntuación:"
@@ -4160,11 +4171,6 @@ msgstr "Colaboradores más activos de los últimos 30 días"
 #~ msgid_plural "%d words need attention"
 #~ msgstr[0] "%d palabra necesita atención"
 #~ msgstr[1] "%d palabras necesitan atención"
-
-#~ msgid "%d word untranslated"
-#~ msgid_plural "%d words untranslated"
-#~ msgstr[0] "%d palabra sin traducir"
-#~ msgstr[1] "%d palabras sin traducir"
 
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"

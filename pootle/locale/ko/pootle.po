@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-17 13:08+0100\n"
+"POT-Creation-Date: 2017-05-19 20:58+0100\n"
 "PO-Revision-Date: 2017-05-17 15:30+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -813,6 +813,21 @@ msgstr "주석"
 msgid "Locations"
 msgstr "위치"
 
+#: apps/pootle_misc/templatetags/common_tags.py:53
+#, fuzzy, python-brace-format
+msgid "{percentage} untranslated"
+msgstr "미번역: %d 개 단어"
+
+#: apps/pootle_misc/templatetags/common_tags.py:55
+#, python-brace-format
+msgid "{percentage} needs work"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:57
+#, fuzzy, python-brace-format
+msgid "{percentage} translated"
+msgstr "미번역"
+
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr "처음"
@@ -1089,50 +1104,50 @@ msgstr "단수형"
 msgid "Plural"
 msgstr "복수형"
 
-#: apps/pootle_store/unit/timeline.py:72
+#: apps/pootle_store/unit/timeline.py:74
 msgid "Added suggestion"
 msgstr "추가된 제안"
 
-#: apps/pootle_store/unit/timeline.py:84
+#: apps/pootle_store/unit/timeline.py:86
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "%s 제안 수락"
 
-#: apps/pootle_store/unit/timeline.py:92
+#: apps/pootle_store/unit/timeline.py:94
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "%(source_string)s위해 받아들여진 제안"
 
-#: apps/pootle_store/unit/timeline.py:113
+#: apps/pootle_store/unit/timeline.py:115
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "%s 제안 거부"
 
-#: apps/pootle_store/unit/timeline.py:121
+#: apps/pootle_store/unit/timeline.py:123
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "%(source_string)s때문에 취소된 제안"
 
-#: apps/pootle_store/unit/timeline.py:155
+#: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
 msgstr "유닛 만들기"
 
-#: apps/pootle_store/unit/timeline.py:186
+#: apps/pootle_store/unit/timeline.py:188
 #, fuzzy
 msgid "Comment:"
 msgstr "주석"
 
-#: apps/pootle_store/unit/timeline.py:189
+#: apps/pootle_store/unit/timeline.py:191
 #, fuzzy
 msgid "Removed comment"
 msgstr "코멘트 제거"
 
-#: apps/pootle_store/unit/timeline.py:214
+#: apps/pootle_store/unit/timeline.py:216
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr "검토자 <a href=\"%(profile_url)s\">%(reviewer)s</a>의해 검토 됨"
 
-#: apps/pootle_store/unit/timeline.py:223
+#: apps/pootle_store/unit/timeline.py:225
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "검토자 <a href=\"%(profile_url)s\">%(reviewer)s</a>의해 검토 됨"
@@ -1163,7 +1178,7 @@ msgstr "커멘트 삭제에 실패하였습니다."
 msgid "Comment submission failed."
 msgstr "커멘트 제출을 실패하였습니다."
 
-#: apps/pootle_store/views.py:567
+#: apps/pootle_store/views.py:572
 msgid "Failed to process suggestion."
 msgstr "요청을 처리하는데 실패했습니다."
 
@@ -2277,66 +2292,47 @@ msgstr "전체 보기"
 msgid "All"
 msgstr "전부"
 
-#: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
-msgid ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"translated"
-msgstr "<span class='value translated'>0</span>%% 번역 됨"
-
-#: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
-msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr "<span class='value fuzzy'>0</span>%% 작업 필요"
-
-#: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
-msgid ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"untranslated"
-msgstr "<span class='value untranslated'>0</span>%% 미번역"
-
-#: templates/browser/index.html:20
+#: templates/browser/index.html:17
 msgid "Expand details"
 msgstr "세부사항 추가"
 
-#: templates/browser/index.html:27
+#: templates/browser/index.html:24
 msgid "Translation Statistics"
 msgstr "번역 통계"
 
-#: templates/browser/index.html:49
+#: templates/browser/index.html:46
 msgid "Failing Checks"
 msgstr "검사 실패"
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:65
 msgid "More..."
 msgstr "더 보기..."
 
-#: templates/browser/index.html:69
+#: templates/browser/index.html:66
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:77
 #, fuzzy
 msgid "Updates"
 msgstr "업데이트"
 
-#: templates/browser/index.html:87
+#: templates/browser/index.html:82
 #, fuzzy
 msgid "Last updated:"
 msgstr "최근 업데이트"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:97
 #, fuzzy
 msgid "Translations"
 msgstr "번역"
 
-#: templates/browser/index.html:106
+#: templates/browser/index.html:101
 #, fuzzy
 msgid "Last action:"
 msgstr "마지막 활동"
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
 msgstr "이 프로젝트는 비활성되었고 관리자만 볼 수 있습니다."
 
@@ -3021,6 +3017,23 @@ msgstr "로그인"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "기여자"
+
+#, fuzzy
+#~ msgid ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> "
+#~ "translated"
+#~ msgstr "<span class='value translated'>0</span>%% 번역 됨"
+
+#, fuzzy
+#~ msgid ""
+#~ "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
+#~ msgstr "<span class='value fuzzy'>0</span>%% 작업 필요"
+
+#, fuzzy
+#~ msgid ""
+#~ "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+#~ "untranslated"
+#~ msgstr "<span class='value untranslated'>0</span>%% 미번역"
 
 #~ msgid "Score:"
 #~ msgstr "점수:"
@@ -4069,10 +4082,6 @@ msgstr "기여자"
 #~ msgid "%d word needs attention"
 #~ msgid_plural "%d words need attention"
 #~ msgstr[0] "번역 및 리뷰 필요 단어: %d 개 단어"
-
-#~ msgid "%d word untranslated"
-#~ msgid_plural "%d words untranslated"
-#~ msgstr[0] "미번역: %d 개 단어"
 
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"

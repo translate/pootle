@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-17 13:08+0100\n"
+"POT-Creation-Date: 2017-05-19 20:58+0100\n"
 "PO-Revision-Date: 2017-01-26 17:04+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
@@ -806,6 +806,21 @@ msgstr "Sylwadau"
 msgid "Locations"
 msgstr "Lleoliadau"
 
+#: apps/pootle_misc/templatetags/common_tags.py:53
+#, fuzzy, python-brace-format
+msgid "{percentage} untranslated"
+msgstr "%d gair heb ei gyfieithu"
+
+#: apps/pootle_misc/templatetags/common_tags.py:55
+#, python-brace-format
+msgid "{percentage} needs work"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:57
+#, fuzzy, python-brace-format
+msgid "{percentage} translated"
+msgstr "Dim Cyfieithiad"
+
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr "Cyntaf"
@@ -1089,49 +1104,49 @@ msgstr "Unigol"
 msgid "Plural"
 msgstr "Lluosog"
 
-#: apps/pootle_store/unit/timeline.py:72
+#: apps/pootle_store/unit/timeline.py:74
 msgid "Added suggestion"
 msgstr "Awgrym wedi ei ychwanegu"
 
-#: apps/pootle_store/unit/timeline.py:84
+#: apps/pootle_store/unit/timeline.py:86
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Derbyn yr awgrym gan %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:92
+#: apps/pootle_store/unit/timeline.py:94
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Derbyn awgrym gan %(author)s a sylw: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:113
+#: apps/pootle_store/unit/timeline.py:115
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Gwrthod yr awgrym gan %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:121
+#: apps/pootle_store/unit/timeline.py:123
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Gwrthod awgrym gan %(author)s a sylw: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:155
+#: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
 msgstr "Crëwyd uned"
 
-#: apps/pootle_store/unit/timeline.py:186
+#: apps/pootle_store/unit/timeline.py:188
 msgid "Comment:"
 msgstr "Sylwadau:"
 
-#: apps/pootle_store/unit/timeline.py:189
+#: apps/pootle_store/unit/timeline.py:191
 #, fuzzy
 msgid "Removed comment"
 msgstr "Tynnu sylw"
 
-#: apps/pootle_store/unit/timeline.py:214
+#: apps/pootle_store/unit/timeline.py:216
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr "Mudwyd gwiriad <a href=\"%(check_url)s\">%(check_name)s</a>"
 
-#: apps/pootle_store/unit/timeline.py:223
+#: apps/pootle_store/unit/timeline.py:225
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "Dad-fudwyd gwiriad <a href=\"%(check_url)s\">%(check_name)s</a>"
@@ -1161,7 +1176,7 @@ msgstr "Methu tynnu'r sylw."
 msgid "Comment submission failed."
 msgstr "Methodd cyflwyno sylwadau."
 
-#: apps/pootle_store/views.py:567
+#: apps/pootle_store/views.py:572
 msgid "Failed to process suggestion."
 msgstr "Methu prosesu'r awgrym."
 
@@ -2309,67 +2324,43 @@ msgstr "Gweld popeth"
 msgid "All"
 msgstr "Popeth"
 
-#: templates/browser/_progressbar.html:3
-#, python-format
-msgid ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"translated"
-msgstr ""
-"<span class='value translated'>%(translated_percent_display)s</span> wedi ei "
-"gyfieithu"
-
-#: templates/browser/_progressbar.html:4
-#, python-format
-msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr ""
-"Mae <span class='value fuzzy'>%(fuzzy_percent_display)s</span> angen gwaith"
-
-#: templates/browser/_progressbar.html:5
-#, python-format
-msgid ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"untranslated"
-msgstr ""
-"Nid yw <span class='value untranslated'>%(untranslated_percent_display)s</"
-"span> wedi eu cyfieithu"
-
-#: templates/browser/index.html:20
+#: templates/browser/index.html:17
 msgid "Expand details"
 msgstr "Ehangu'r manylion"
 
-#: templates/browser/index.html:27
+#: templates/browser/index.html:24
 msgid "Translation Statistics"
 msgstr "Ystadegau Cyfieithu"
 
-#: templates/browser/index.html:49
+#: templates/browser/index.html:46
 msgid "Failing Checks"
 msgstr "Gwiriadau'n Methu"
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:65
 msgid "More..."
 msgstr "Rhagor..."
 
-#: templates/browser/index.html:69
+#: templates/browser/index.html:66
 msgid "Less..."
 msgstr "Llai..."
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:77
 msgid "Updates"
 msgstr "Diweddariadau"
 
-#: templates/browser/index.html:87
+#: templates/browser/index.html:82
 msgid "Last updated:"
 msgstr "Diweddarwyd diwethaf:"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:97
 msgid "Translations"
 msgstr "Cyfieithiadau"
 
-#: templates/browser/index.html:106
+#: templates/browser/index.html:101
 msgid "Last action:"
 msgstr "Gweithred ddiwethaf:"
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 "Mae'r project hwn wedi ei analluogi ac yn weladwy i'r gweinyddwr yn unig."
@@ -3067,6 +3058,26 @@ msgstr "Mewngofnodi"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Prif Gyfranwyr y 30 Diwrnod Diwethaf"
+
+#~ msgid ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> "
+#~ "translated"
+#~ msgstr ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> wedi "
+#~ "ei gyfieithu"
+
+#~ msgid ""
+#~ "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
+#~ msgstr ""
+#~ "Mae <span class='value fuzzy'>%(fuzzy_percent_display)s</span> angen "
+#~ "gwaith"
+
+#~ msgid ""
+#~ "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+#~ "untranslated"
+#~ msgstr ""
+#~ "Nid yw <span class='value untranslated'>%(untranslated_percent_display)s</"
+#~ "span> wedi eu cyfieithu"
 
 #~ msgid "Score:"
 #~ msgstr "Sgôr:"
@@ -4042,11 +4053,6 @@ msgstr "Prif Gyfranwyr y 30 Diwrnod Diwethaf"
 #~ msgid_plural "%d words need attention"
 #~ msgstr[0] "%d gair angen sylw"
 #~ msgstr[1] "%d gair angen sylw"
-
-#~ msgid "%d word untranslated"
-#~ msgid_plural "%d words untranslated"
-#~ msgstr[0] "%d gair heb ei gyfieithu"
-#~ msgstr[1] "%d gair heb eu cyfieithu"
 
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"

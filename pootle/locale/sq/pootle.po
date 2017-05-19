@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-17 13:08+0100\n"
+"POT-Creation-Date: 2017-05-19 20:58+0100\n"
 "PO-Revision-Date: 2017-01-24 12:31+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: Albanian <gnome-albanian-perkthyesit@lists.sourceforge.net>\n"
@@ -819,6 +819,21 @@ msgstr "Komente"
 msgid "Locations"
 msgstr "Vendndodhja"
 
+#: apps/pootle_misc/templatetags/common_tags.py:53
+#, fuzzy, python-brace-format
+msgid "{percentage} untranslated"
+msgstr "Fjala %d e pa përkthyer"
+
+#: apps/pootle_misc/templatetags/common_tags.py:55
+#, python-brace-format
+msgid "{percentage} needs work"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:57
+#, fuzzy, python-brace-format
+msgid "{percentage} translated"
+msgstr "E papërkthyer"
+
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr "E Para"
@@ -1095,50 +1110,50 @@ msgstr "Njëjës"
 msgid "Plural"
 msgstr "Shumës"
 
-#: apps/pootle_store/unit/timeline.py:72
+#: apps/pootle_store/unit/timeline.py:74
 #, fuzzy
 msgid "Added suggestion"
 msgstr "Prano sygjerimin"
 
-#: apps/pootle_store/unit/timeline.py:84
+#: apps/pootle_store/unit/timeline.py:86
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Prano sygjerimin"
 
-#: apps/pootle_store/unit/timeline.py:92
+#: apps/pootle_store/unit/timeline.py:94
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Prano sygjerimin"
 
-#: apps/pootle_store/unit/timeline.py:113
+#: apps/pootle_store/unit/timeline.py:115
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Refuzo sygjerimin"
 
-#: apps/pootle_store/unit/timeline.py:121
+#: apps/pootle_store/unit/timeline.py:123
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Refuzo sygjerimin"
 
-#: apps/pootle_store/unit/timeline.py:155
+#: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:186
+#: apps/pootle_store/unit/timeline.py:188
 msgid "Comment:"
 msgstr "Koment:"
 
-#: apps/pootle_store/unit/timeline.py:189
+#: apps/pootle_store/unit/timeline.py:191
 #, fuzzy
 msgid "Removed comment"
 msgstr "Shto Koment"
 
-#: apps/pootle_store/unit/timeline.py:214
+#: apps/pootle_store/unit/timeline.py:216
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr "<a href=\"%(url)s\"> %(num)d fjala</ a>"
 
-#: apps/pootle_store/unit/timeline.py:223
+#: apps/pootle_store/unit/timeline.py:225
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "Rishikuar nga <a href=\"%(profili_url)s\">%(rishikuesi)s</a>"
@@ -1169,7 +1184,7 @@ msgstr "Dështim heqje komenti."
 msgid "Comment submission failed."
 msgstr "Parashtrimi i komentit dështoi."
 
-#: apps/pootle_store/views.py:567
+#: apps/pootle_store/views.py:572
 msgid "Failed to process suggestion."
 msgstr "Dështoi në sygjerimin e proçesit."
 
@@ -2273,67 +2288,48 @@ msgstr ""
 msgid "All"
 msgstr "Te Gjitha"
 
-#: templates/browser/_progressbar.html:3
-#, python-format
-msgid ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"translated"
-msgstr ""
-
-#: templates/browser/_progressbar.html:4
-#, python-format
-msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr ""
-
-#: templates/browser/_progressbar.html:5
-#, python-format
-msgid ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"untranslated"
-msgstr ""
-
-#: templates/browser/index.html:20
+#: templates/browser/index.html:17
 msgid "Expand details"
 msgstr "Zgjero detajet"
 
-#: templates/browser/index.html:27
+#: templates/browser/index.html:24
 msgid "Translation Statistics"
 msgstr ""
 
-#: templates/browser/index.html:49
+#: templates/browser/index.html:46
 #, fuzzy
 msgid "Failing Checks"
 msgstr "Kontrollet dështuar:"
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:65
 msgid "More..."
 msgstr "Më shumë..."
 
-#: templates/browser/index.html:69
+#: templates/browser/index.html:66
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:77
 #, fuzzy
 msgid "Updates"
 msgstr "Azhuro"
 
-#: templates/browser/index.html:87
+#: templates/browser/index.html:82
 #, fuzzy
 msgid "Last updated:"
 msgstr "Aktiviteti i Fundit"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:97
 #, fuzzy
 msgid "Translations"
 msgstr "Përkthimi"
 
-#: templates/browser/index.html:106
+#: templates/browser/index.html:101
 #, fuzzy
 msgid "Last action:"
 msgstr "Aktiviteti i Fundit"
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -3820,11 +3816,6 @@ msgstr "Kontribuesit Kryesor"
 #~ msgid_plural "%d words need attention"
 #~ msgstr[0] "Fjala %d kërkon kujdes"
 #~ msgstr[1] "Fjala %d kërkon kujdes"
-
-#~ msgid "%d word untranslated"
-#~ msgid_plural "%d words untranslated"
-#~ msgstr[0] "Fjala %d e pa përkthyer"
-#~ msgstr[1] "Fjala %d e pa përkthyer"
 
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"

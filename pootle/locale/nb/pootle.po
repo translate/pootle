@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-17 13:08+0100\n"
+"POT-Creation-Date: 2017-05-19 20:58+0100\n"
 "PO-Revision-Date: 2017-03-24 05:22+0000\n"
 "Last-Translator: kingu <epost@anotheragency.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -819,6 +819,21 @@ msgstr "Kommentarer"
 msgid "Locations"
 msgstr "Plasseringer"
 
+#: apps/pootle_misc/templatetags/common_tags.py:53
+#, fuzzy, python-brace-format
+msgid "{percentage} untranslated"
+msgstr "%d ord uoversatt"
+
+#: apps/pootle_misc/templatetags/common_tags.py:55
+#, python-brace-format
+msgid "{percentage} needs work"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:57
+#, fuzzy, python-brace-format
+msgid "{percentage} translated"
+msgstr "Uoversatt"
+
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr "Først"
@@ -1101,49 +1116,49 @@ msgstr "Entall"
 msgid "Plural"
 msgstr "Flertall"
 
-#: apps/pootle_store/unit/timeline.py:72
+#: apps/pootle_store/unit/timeline.py:74
 msgid "Added suggestion"
 msgstr "La til forslag"
 
-#: apps/pootle_store/unit/timeline.py:84
+#: apps/pootle_store/unit/timeline.py:86
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Godkjente forslag fra %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:92
+#: apps/pootle_store/unit/timeline.py:94
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Godkjente forslag fra %(author)s med kommentaren: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:113
+#: apps/pootle_store/unit/timeline.py:115
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Avslo forslag fra %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:121
+#: apps/pootle_store/unit/timeline.py:123
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Avslo forslag fra %(author)s med kommentaren: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:155
+#: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
 msgstr "Enhet opprettet"
 
-#: apps/pootle_store/unit/timeline.py:186
+#: apps/pootle_store/unit/timeline.py:188
 msgid "Comment:"
 msgstr "Kommentar:"
 
-#: apps/pootle_store/unit/timeline.py:189
+#: apps/pootle_store/unit/timeline.py:191
 #, fuzzy
 msgid "Removed comment"
 msgstr "Fjern kommentar"
 
-#: apps/pootle_store/unit/timeline.py:214
+#: apps/pootle_store/unit/timeline.py:216
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr "Tok bort <a href=\"%(check_url)s\">%(check_name)s</a> kontroll"
 
-#: apps/pootle_store/unit/timeline.py:223
+#: apps/pootle_store/unit/timeline.py:225
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "Anvendte <a href=\"%(check_url)s\">%(check_name)s</a> kontroll"
@@ -1174,7 +1189,7 @@ msgstr "Klarte ikke å fjerne kommentar."
 msgid "Comment submission failed."
 msgstr "Sending av kommentar mislykket."
 
-#: apps/pootle_store/views.py:567
+#: apps/pootle_store/views.py:572
 msgid "Failed to process suggestion."
 msgstr "Klarte ikke å behandle forslag."
 
@@ -2330,69 +2345,46 @@ msgstr "Vis alle"
 msgid "All"
 msgstr "Alle"
 
-#: templates/browser/_progressbar.html:3
-#, python-format
-msgid ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"translated"
-msgstr ""
-"<span class='value translated'>%(translated_percent_display)s</span> oversatt"
-
-#: templates/browser/_progressbar.html:4
-#, python-format
-msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr ""
-"<span class='value fuzzy'>%(fuzzy_percent_display)s</span> må arbeides med"
-
-#: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
-msgid ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"untranslated"
-msgstr ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"uoversatt"
-
-#: templates/browser/index.html:20
+#: templates/browser/index.html:17
 msgid "Expand details"
 msgstr "Utvid detaljer"
 
-#: templates/browser/index.html:27
+#: templates/browser/index.html:24
 msgid "Translation Statistics"
 msgstr "Oversettelsesstatistikk"
 
-#: templates/browser/index.html:49
+#: templates/browser/index.html:46
 msgid "Failing Checks"
 msgstr "Mislykkede kontroller"
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:65
 msgid "More..."
 msgstr "Mer…"
 
-#: templates/browser/index.html:69
+#: templates/browser/index.html:66
 msgid "Less..."
 msgstr "Mindre…"
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:77
 #, fuzzy
 msgid "Updates"
 msgstr "Oppdateringer"
 
-#: templates/browser/index.html:87
+#: templates/browser/index.html:82
 #, fuzzy
 msgid "Last updated:"
 msgstr "Sist oppdatert"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:97
 msgid "Translations"
 msgstr "Oversettelser"
 
-#: templates/browser/index.html:106
+#: templates/browser/index.html:101
 #, fuzzy
 msgid "Last action:"
 msgstr "Siste aktivitet"
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
 msgstr "Dette prosjektet er avskrudd og bare synlig for administratorer."
 
@@ -3097,6 +3089,26 @@ msgstr "Logg inn"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Topp bidragsytere de siste 30 dagene"
+
+#~ msgid ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> "
+#~ "translated"
+#~ msgstr ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> "
+#~ "oversatt"
+
+#~ msgid ""
+#~ "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
+#~ msgstr ""
+#~ "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> må arbeides med"
+
+#, fuzzy
+#~ msgid ""
+#~ "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+#~ "untranslated"
+#~ msgstr ""
+#~ "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+#~ "uoversatt"
 
 #~ msgid "Score:"
 #~ msgstr "Poengsum:"
@@ -4186,11 +4198,6 @@ msgstr "Topp bidragsytere de siste 30 dagene"
 #~ msgid_plural "%d words need attention"
 #~ msgstr[0] "%d ord trenger oppmerksomhet"
 #~ msgstr[1] "%d ord trenger oppmerksomhet"
-
-#~ msgid "%d word untranslated"
-#~ msgid_plural "%d words untranslated"
-#~ msgstr[0] "%d ord uoversatt"
-#~ msgstr[1] "%d ord uoversatt"
 
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"

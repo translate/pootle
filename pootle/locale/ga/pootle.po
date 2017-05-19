@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-17 13:08+0100\n"
+"POT-Creation-Date: 2017-05-19 20:58+0100\n"
 "PO-Revision-Date: 2017-05-18 15:43+0000\n"
 "Last-Translator: Seanán <seananoc@gmail.com>\n"
 "Language-Team: Irish\n"
@@ -811,6 +811,21 @@ msgstr "Nótaí Tráchta"
 msgid "Locations"
 msgstr "Suíomhanna"
 
+#: apps/pootle_misc/templatetags/common_tags.py:53
+#, fuzzy, python-brace-format
+msgid "{percentage} untranslated"
+msgstr "%d fhocal gan aistriú"
+
+#: apps/pootle_misc/templatetags/common_tags.py:55
+#, python-brace-format
+msgid "{percentage} needs work"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:57
+#, fuzzy, python-brace-format
+msgid "{percentage} translated"
+msgstr "Neamhaistrithe"
+
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr "An chéad cheann"
@@ -1086,48 +1101,48 @@ msgstr "Uatha"
 msgid "Plural"
 msgstr "Iolra"
 
-#: apps/pootle_store/unit/timeline.py:72
+#: apps/pootle_store/unit/timeline.py:74
 msgid "Added suggestion"
 msgstr "Cuir moladh leis"
 
-#: apps/pootle_store/unit/timeline.py:84
+#: apps/pootle_store/unit/timeline.py:86
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Glacadh le moladh ó %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:92
+#: apps/pootle_store/unit/timeline.py:94
 #, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Glacadh le moladh ó %(author)s le nóta: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:113
+#: apps/pootle_store/unit/timeline.py:115
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Diúltaíodh moladh ó %(author)s"
 
-#: apps/pootle_store/unit/timeline.py:121
+#: apps/pootle_store/unit/timeline.py:123
 #, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Diúltaíodh moladh ó %(author)s le nóta: %(comment)s"
 
-#: apps/pootle_store/unit/timeline.py:155
+#: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
 msgstr "Cruthaíodh an t-aonad"
 
-#: apps/pootle_store/unit/timeline.py:186
+#: apps/pootle_store/unit/timeline.py:188
 msgid "Comment:"
 msgstr "Nóta Tráchta:"
 
-#: apps/pootle_store/unit/timeline.py:189
+#: apps/pootle_store/unit/timeline.py:191
 msgid "Removed comment"
 msgstr "Baineadh an nóta tráchta"
 
-#: apps/pootle_store/unit/timeline.py:214
+#: apps/pootle_store/unit/timeline.py:216
 #, python-format
 msgid "Muted %(check_name)s check"
 msgstr "Balbhaíodh %(check_name)s check"
 
-#: apps/pootle_store/unit/timeline.py:223
+#: apps/pootle_store/unit/timeline.py:225
 #, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr "Díbhalbhaíodh %(check_name)s"
@@ -1157,7 +1172,7 @@ msgstr "Níorbh fhéidir an nóta a bhaint."
 msgid "Comment submission failed."
 msgstr "Theip ar sheoladh an nóta."
 
-#: apps/pootle_store/views.py:567
+#: apps/pootle_store/views.py:572
 msgid "Failed to process suggestion."
 msgstr "Níorbh fhéidir an moladh a phróiseáil."
 
@@ -2297,66 +2312,43 @@ msgstr "Taispeáin uile"
 msgid "All"
 msgstr "Uile"
 
-#: templates/browser/_progressbar.html:3
-#, python-format
-msgid ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"translated"
-msgstr ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"aistrithe"
-
-#: templates/browser/_progressbar.html:4
-#, python-format
-msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> le deimhniú"
-
-#: templates/browser/_progressbar.html:5
-#, python-format
-msgid ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"untranslated"
-msgstr ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> gan "
-"aistriú"
-
-#: templates/browser/index.html:20
+#: templates/browser/index.html:17
 msgid "Expand details"
 msgstr "Taispeáin mionsonraí"
 
-#: templates/browser/index.html:27
+#: templates/browser/index.html:24
 msgid "Translation Statistics"
 msgstr "Staitisticí Aistriúcháin"
 
-#: templates/browser/index.html:49
+#: templates/browser/index.html:46
 msgid "Failing Checks"
 msgstr "Fadhbanna"
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:65
 msgid "More..."
 msgstr "Níos mó..."
 
-#: templates/browser/index.html:69
+#: templates/browser/index.html:66
 msgid "Less..."
 msgstr "Níos lú..."
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:77
 msgid "Updates"
 msgstr "Nuashonruithe"
 
-#: templates/browser/index.html:87
+#: templates/browser/index.html:82
 msgid "Last updated:"
 msgstr "Nuashonraithe:"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:97
 msgid "Translations"
 msgstr "Aistriúcháin"
 
-#: templates/browser/index.html:106
+#: templates/browser/index.html:101
 msgid "Last action:"
 msgstr "An gníomh is déanaí:"
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 "Tá an tionscadal seo díchumasaithe agus is é riarthóirí amháin atá in ann é "
@@ -3057,6 +3049,25 @@ msgstr "Logáil isteach"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Na daoine a rinne an chuid is mó le 30 lá anuas"
+
+#~ msgid ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> "
+#~ "translated"
+#~ msgstr ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> "
+#~ "aistrithe"
+
+#~ msgid ""
+#~ "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
+#~ msgstr ""
+#~ "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> le deimhniú"
+
+#~ msgid ""
+#~ "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+#~ "untranslated"
+#~ msgstr ""
+#~ "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+#~ "gan aistriú"
 
 #~ msgid "Score:"
 #~ msgstr "Scór:"
@@ -3940,14 +3951,6 @@ msgstr "Na daoine a rinne an chuid is mó le 30 lá anuas"
 #~ msgstr[2] "Caithfear %d fhocal a athbhreithniú"
 #~ msgstr[3] "Caithfear %d bhfocal a athbhreithniú"
 #~ msgstr[4] "Caithfear %d focal a athbhreithniú"
-
-#~ msgid "%d word untranslated"
-#~ msgid_plural "%d words untranslated"
-#~ msgstr[0] "%d fhocal gan aistriú"
-#~ msgstr[1] "%d fhocal gan aistriú"
-#~ msgstr[2] "%d fhocal gan aistriú"
-#~ msgstr[3] "%d bhfocal gan aistriú"
-#~ msgstr[4] "%d focal gan aistriú"
 
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"

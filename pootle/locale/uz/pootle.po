@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-17 13:08+0100\n"
+"POT-Creation-Date: 2017-05-19 20:58+0100\n"
 "PO-Revision-Date: 2017-05-17 15:33+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -820,6 +820,21 @@ msgstr "Izohlar"
 msgid "Locations"
 msgstr "Manzillar"
 
+#: apps/pootle_misc/templatetags/common_tags.py:53
+#, fuzzy, python-brace-format
+msgid "{percentage} untranslated"
+msgstr "%d ta so‘z tarjima qilinmagan"
+
+#: apps/pootle_misc/templatetags/common_tags.py:55
+#, python-brace-format
+msgid "{percentage} needs work"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:57
+#, fuzzy, python-brace-format
+msgid "{percentage} translated"
+msgstr "Tarjima qilinmagan"
+
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr "Birinchi"
@@ -1109,52 +1124,52 @@ msgstr "Birlikda"
 msgid "Plural"
 msgstr "Ko‘plikda"
 
-#: apps/pootle_store/unit/timeline.py:72
+#: apps/pootle_store/unit/timeline.py:74
 msgid "Added suggestion"
 msgstr "Tavsiya qo‘shildi"
 
-#: apps/pootle_store/unit/timeline.py:84
+#: apps/pootle_store/unit/timeline.py:86
 #, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "%(author)s tavsiyasi qabul qilindi"
 
-#: apps/pootle_store/unit/timeline.py:92
+#: apps/pootle_store/unit/timeline.py:94
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "%s tavsiyasi qabul qilindi"
 
-#: apps/pootle_store/unit/timeline.py:113
+#: apps/pootle_store/unit/timeline.py:115
 #, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "%(author)s tavsiyasi rad qilindi"
 
-#: apps/pootle_store/unit/timeline.py:121
+#: apps/pootle_store/unit/timeline.py:123
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "%s tavsiyasi qabul rad qilindi"
 
-#: apps/pootle_store/unit/timeline.py:155
+#: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
 msgstr "Qism yaratildi"
 
-#: apps/pootle_store/unit/timeline.py:186
+#: apps/pootle_store/unit/timeline.py:188
 #, fuzzy
 msgid "Comment:"
 msgstr "Izoh: "
 
-#: apps/pootle_store/unit/timeline.py:189
+#: apps/pootle_store/unit/timeline.py:191
 #, fuzzy
 msgid "Removed comment"
 msgstr "Izohni olib tashlash"
 
-#: apps/pootle_store/unit/timeline.py:214
+#: apps/pootle_store/unit/timeline.py:216
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr ""
 "<a href=\"%(check_url)s\">%(check_name)s</a> ta tekshirish ovozi o‘chirib "
 "qo‘yildi"
 
-#: apps/pootle_store/unit/timeline.py:223
+#: apps/pootle_store/unit/timeline.py:225
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr ""
@@ -1185,7 +1200,7 @@ msgstr "Izoh olib tashlanmadi."
 msgid "Comment submission failed."
 msgstr "Fikr bildirish amalga oshmadi."
 
-#: apps/pootle_store/views.py:567
+#: apps/pootle_store/views.py:572
 msgid "Failed to process suggestion."
 msgstr "Tavsiya berish amalga oshmadi."
 
@@ -2328,67 +2343,48 @@ msgstr "Barchasini ko‘rish"
 msgid "All"
 msgstr "Barchasi"
 
-#: templates/browser/_progressbar.html:3
-#, fuzzy, python-format
-msgid ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"translated"
-msgstr "<span class='value translated'>0</span>%% tarjima qilindi"
-
-#: templates/browser/_progressbar.html:4
-#, fuzzy, python-format
-msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr "<span class='value fuzzy'>0</span>%% yana ishlash kerak"
-
-#: templates/browser/_progressbar.html:5
-#, fuzzy, python-format
-msgid ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"untranslated"
-msgstr "<span class='value untranslated'>0</span>%% tarjima qilinmagan"
-
-#: templates/browser/index.html:20
+#: templates/browser/index.html:17
 msgid "Expand details"
 msgstr "Tafsilotlarni kengaytirish"
 
-#: templates/browser/index.html:27
+#: templates/browser/index.html:24
 msgid "Translation Statistics"
 msgstr "Tarjima statistikasi"
 
-#: templates/browser/index.html:49
+#: templates/browser/index.html:46
 msgid "Failing Checks"
 msgstr "Xatolarni tekshirish"
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:65
 msgid "More..."
 msgstr "Ko‘proq..."
 
-#: templates/browser/index.html:69
+#: templates/browser/index.html:66
 #, fuzzy
 msgid "Less..."
 msgstr "kamroq…"
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:77
 #, fuzzy
 msgid "Updates"
 msgstr "Narxlar"
 
-#: templates/browser/index.html:87
+#: templates/browser/index.html:82
 #, fuzzy
 msgid "Last updated:"
 msgstr "So‘nggi yangilangan"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:97
 #, fuzzy
 msgid "Translations"
 msgstr "Tarjima"
 
-#: templates/browser/index.html:106
+#: templates/browser/index.html:101
 #, fuzzy
 msgid "Last action:"
 msgstr "So‘nggi faoliyat"
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
 msgstr "Ushbu loyiha o‘chirib qo‘yilgan va faqat administratorlarga ko‘rinadi."
 
@@ -3096,6 +3092,23 @@ msgstr "Kirish"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Eng ko‘p hissa qo‘shuvchilar"
+
+#, fuzzy
+#~ msgid ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> "
+#~ "translated"
+#~ msgstr "<span class='value translated'>0</span>%% tarjima qilindi"
+
+#, fuzzy
+#~ msgid ""
+#~ "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
+#~ msgstr "<span class='value fuzzy'>0</span>%% yana ishlash kerak"
+
+#, fuzzy
+#~ msgid ""
+#~ "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+#~ "untranslated"
+#~ msgstr "<span class='value untranslated'>0</span>%% tarjima qilinmagan"
 
 #~ msgid "Score:"
 #~ msgstr "Tarjima qilingan so‘zlar:"
@@ -3994,11 +4007,6 @@ msgstr "Eng ko‘p hissa qo‘shuvchilar"
 #~ msgid_plural "%d words need attention"
 #~ msgstr[0] "%d ta so‘zga e’tibor qaratish kerak"
 #~ msgstr[1] "%d ta so‘zga e’tibor qaratish kerak"
-
-#~ msgid "%d word untranslated"
-#~ msgid_plural "%d words untranslated"
-#~ msgstr[0] "%d ta so‘z tarjima qilinmagan"
-#~ msgstr[1] "%d ta so‘z tarjima qilinmagan"
 
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"

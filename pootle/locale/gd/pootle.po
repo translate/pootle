@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-17 13:08+0100\n"
+"POT-Creation-Date: 2017-05-19 20:58+0100\n"
 "PO-Revision-Date: 2017-02-20 17:22+0000\n"
 "Last-Translator: GunChleoc <fios@foramnagaidhlig.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -822,6 +822,21 @@ msgstr "Beachdan"
 msgid "Locations"
 msgstr "Àitichean"
 
+#: apps/pootle_misc/templatetags/common_tags.py:53
+#, fuzzy, python-brace-format
+msgid "{percentage} untranslated"
+msgstr "%d fhacal ri eadar-theangachadh"
+
+#: apps/pootle_misc/templatetags/common_tags.py:55
+#, python-brace-format
+msgid "{percentage} needs work"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:57
+#, fuzzy, python-brace-format
+msgid "{percentage} translated"
+msgstr "Gun eadar-theangachadh"
+
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr "A’ chiad dhiubh"
@@ -1093,51 +1108,51 @@ msgstr "Singilte"
 msgid "Plural"
 msgstr "Iolra"
 
-#: apps/pootle_store/unit/timeline.py:72
+#: apps/pootle_store/unit/timeline.py:74
 #, fuzzy
 msgid "Added suggestion"
 msgstr "Seall na molaidhean"
 
-#: apps/pootle_store/unit/timeline.py:84
+#: apps/pootle_store/unit/timeline.py:86
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "Seall na molaidhean"
 
-#: apps/pootle_store/unit/timeline.py:92
+#: apps/pootle_store/unit/timeline.py:94
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "Seall na molaidhean"
 
-#: apps/pootle_store/unit/timeline.py:113
+#: apps/pootle_store/unit/timeline.py:115
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "Seall na molaidhean"
 
-#: apps/pootle_store/unit/timeline.py:121
+#: apps/pootle_store/unit/timeline.py:123
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "Seall na molaidhean"
 
-#: apps/pootle_store/unit/timeline.py:155
+#: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
 msgstr "Chaidh aonad a chruthachadh"
 
-#: apps/pootle_store/unit/timeline.py:186
+#: apps/pootle_store/unit/timeline.py:188
 msgid "Comment:"
 msgstr "Beachd:"
 
-#: apps/pootle_store/unit/timeline.py:189
+#: apps/pootle_store/unit/timeline.py:191
 #, fuzzy
 msgid "Removed comment"
 msgstr "Thoir am beachd air falbh"
 
-#: apps/pootle_store/unit/timeline.py:214
+#: apps/pootle_store/unit/timeline.py:216
 #, fuzzy, python-format
 msgid "Muted %(check_name)s check"
 msgstr ""
 "Chaidh sgrùdadh air <a href=\"%(check_url)s\">%(check_name)s</a> a mhùchadh"
 
-#: apps/pootle_store/unit/timeline.py:223
+#: apps/pootle_store/unit/timeline.py:225
 #, fuzzy, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr ""
@@ -1169,7 +1184,7 @@ msgstr ""
 msgid "Comment submission failed."
 msgstr ""
 
-#: apps/pootle_store/views.py:567
+#: apps/pootle_store/views.py:572
 msgid "Failed to process suggestion."
 msgstr ""
 
@@ -2243,67 +2258,43 @@ msgstr "Seall na h-uile"
 msgid "All"
 msgstr "Na h-uile"
 
-#: templates/browser/_progressbar.html:3
-#, python-format
-msgid ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"translated"
-msgstr ""
-"<span class=’value translated’>%(translated_percent_display)s</span> air "
-"eadar-theangachadh"
-
-#: templates/browser/_progressbar.html:4
-#, python-format
-msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr ""
-"<span class=’value fuzzy’>%(fuzzy_percent_display)s</span> feumach air obair"
-
-#: templates/browser/_progressbar.html:5
-#, python-format
-msgid ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"untranslated"
-msgstr ""
-"<span class=’value untranslated’>%(untranslated_percent_display)s</span> gun "
-"eadar-theangachadh"
-
-#: templates/browser/index.html:20
+#: templates/browser/index.html:17
 msgid "Expand details"
 msgstr "Seall am mion-fhiosrachadh"
 
-#: templates/browser/index.html:27
+#: templates/browser/index.html:24
 msgid "Translation Statistics"
 msgstr "Stadastaireachd an eadar-theangachaidh"
 
-#: templates/browser/index.html:49
+#: templates/browser/index.html:46
 msgid "Failing Checks"
 msgstr "Dearbhadh a dh’fhàillig"
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:65
 msgid "More..."
 msgstr "Barrachd…"
 
-#: templates/browser/index.html:69
+#: templates/browser/index.html:66
 msgid "Less..."
 msgstr "Nas lugha…"
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:77
 msgid "Updates"
 msgstr "Ùrachaidhean"
 
-#: templates/browser/index.html:87
+#: templates/browser/index.html:82
 msgid "Last updated:"
 msgstr "An t-ùrachadh mu dheireadh:"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:97
 msgid "Translations"
 msgstr "Eadar-theangachaidhean"
 
-#: templates/browser/index.html:106
+#: templates/browser/index.html:101
 msgid "Last action:"
 msgstr "An gnìomh mu dheireadh:"
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -2970,6 +2961,26 @@ msgstr "Càraich a-steach"
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Na cuidichean as fhearr"
 
+#~ msgid ""
+#~ "<span class='value translated'>%(translated_percent_display)s</span> "
+#~ "translated"
+#~ msgstr ""
+#~ "<span class=’value translated’>%(translated_percent_display)s</span> air "
+#~ "eadar-theangachadh"
+
+#~ msgid ""
+#~ "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
+#~ msgstr ""
+#~ "<span class=’value fuzzy’>%(fuzzy_percent_display)s</span> feumach air "
+#~ "obair"
+
+#~ msgid ""
+#~ "<span class='value untranslated'>%(untranslated_percent_display)s</span> "
+#~ "untranslated"
+#~ msgstr ""
+#~ "<span class=’value untranslated’>%(untranslated_percent_display)s</span> "
+#~ "gun eadar-theangachadh"
+
 #~ msgid "Score:"
 #~ msgstr "Sgòr:"
 
@@ -3611,13 +3622,6 @@ msgstr "Na cuidichean as fhearr"
 #~ msgstr[1] "%d fhacal feumach air d' aire"
 #~ msgstr[2] "%d faclan feumach air d' aire"
 #~ msgstr[3] "%d facal feumach air d' aire"
-
-#~ msgid "%d word untranslated"
-#~ msgid_plural "%d words untranslated"
-#~ msgstr[0] "%d fhacal ri eadar-theangachadh"
-#~ msgstr[1] "%d fhacal ri eadar-theangachadh"
-#~ msgstr[2] "%d faclan ri eadar-theangachadh"
-#~ msgstr[3] "%d facal ri eadar-theangachadh"
 
 #~ msgid "%d word needs review"
 #~ msgid_plural "%d words need review"

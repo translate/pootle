@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-17 13:08+0100\n"
+"POT-Creation-Date: 2017-05-19 20:58+0100\n"
 "PO-Revision-Date: 2010-07-07 23:28+0200\n"
 "Last-Translator: admin <>\n"
 "Language-Team: Shankar Gowda MBN <kn@li.org>\n"
@@ -806,6 +806,21 @@ msgstr "ಟಿಪ್ಪಣಿ ವಾಖ್ಯೆ ಟೀಕಿಸು ವ್ಯಾ
 msgid "Locations"
 msgstr "ಸ್ಥಳ ನಿರ್ದೇಶನಗಳು"
 
+#: apps/pootle_misc/templatetags/common_tags.py:53
+#, fuzzy, python-brace-format
+msgid "{percentage} untranslated"
+msgstr "ಭಾಷಾಂತರವಾಗಿರುವ ಪದಗಳನ್ನು ತೋರಿಸು"
+
+#: apps/pootle_misc/templatetags/common_tags.py:55
+#, python-brace-format
+msgid "{percentage} needs work"
+msgstr ""
+
+#: apps/pootle_misc/templatetags/common_tags.py:57
+#, fuzzy, python-brace-format
+msgid "{percentage} translated"
+msgstr "ಭಾಷಾಂತರವಾಗಿರುವ"
+
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
 msgstr ""
@@ -1076,51 +1091,51 @@ msgstr "ಏಕವಚನ"
 msgid "Plural"
 msgstr "ಬಹುವಚನ"
 
-#: apps/pootle_store/unit/timeline.py:72
+#: apps/pootle_store/unit/timeline.py:74
 #, fuzzy
 msgid "Added suggestion"
 msgstr "ಸೂಚನೆಯನ್ನು ಸ್ವೀಕರಿಸು"
 
-#: apps/pootle_store/unit/timeline.py:84
+#: apps/pootle_store/unit/timeline.py:86
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s"
 msgstr "ಸೂಚನೆಯನ್ನು ಸ್ವೀಕರಿಸು"
 
-#: apps/pootle_store/unit/timeline.py:92
+#: apps/pootle_store/unit/timeline.py:94
 #, fuzzy, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
 msgstr "ಸೂಚನೆಯನ್ನು ಸ್ವೀಕರಿಸು"
 
-#: apps/pootle_store/unit/timeline.py:113
+#: apps/pootle_store/unit/timeline.py:115
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s"
 msgstr "ಸೂಚನೆಯನ್ನು ನಿರಾಕರಿಸು"
 
-#: apps/pootle_store/unit/timeline.py:121
+#: apps/pootle_store/unit/timeline.py:123
 #, fuzzy, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
 msgstr "ಸೂಚನೆಯನ್ನು ನಿರಾಕರಿಸು"
 
-#: apps/pootle_store/unit/timeline.py:155
+#: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:186
+#: apps/pootle_store/unit/timeline.py:188
 #, fuzzy
 msgid "Comment:"
 msgstr "ಟಿಪ್ಪಣಿ ವಾಖ್ಯೆ ಟೀಕಿಸು ವ್ಯಾಖ್ಯನಿಸು"
 
-#: apps/pootle_store/unit/timeline.py:189
+#: apps/pootle_store/unit/timeline.py:191
 #, fuzzy
 msgid "Removed comment"
 msgstr "ಟಿಪ್ಪಣಿ ವಾಖ್ಯೆ ಟೀಕಿಸು ವ್ಯಾಖ್ಯನಿಸು"
 
-#: apps/pootle_store/unit/timeline.py:214
+#: apps/pootle_store/unit/timeline.py:216
 #, python-format
 msgid "Muted %(check_name)s check"
 msgstr ""
 
-#: apps/pootle_store/unit/timeline.py:223
+#: apps/pootle_store/unit/timeline.py:225
 #, python-format
 msgid "Unmuted %(check_name)s check"
 msgstr ""
@@ -1150,7 +1165,7 @@ msgstr ""
 msgid "Comment submission failed."
 msgstr ""
 
-#: apps/pootle_store/views.py:567
+#: apps/pootle_store/views.py:572
 msgid "Failed to process suggestion."
 msgstr ""
 
@@ -2227,66 +2242,47 @@ msgstr ""
 msgid "All"
 msgstr ""
 
-#: templates/browser/_progressbar.html:3
-#, python-format
-msgid ""
-"<span class='value translated'>%(translated_percent_display)s</span> "
-"translated"
-msgstr ""
-
-#: templates/browser/_progressbar.html:4
-#, python-format
-msgid "<span class='value fuzzy'>%(fuzzy_percent_display)s</span> needs work"
-msgstr ""
-
-#: templates/browser/_progressbar.html:5
-#, python-format
-msgid ""
-"<span class='value untranslated'>%(untranslated_percent_display)s</span> "
-"untranslated"
-msgstr ""
-
-#: templates/browser/index.html:20
+#: templates/browser/index.html:17
 msgid "Expand details"
 msgstr ""
 
-#: templates/browser/index.html:27
+#: templates/browser/index.html:24
 msgid "Translation Statistics"
 msgstr ""
 
-#: templates/browser/index.html:49
+#: templates/browser/index.html:46
 msgid "Failing Checks"
 msgstr ""
 
-#: templates/browser/index.html:68
+#: templates/browser/index.html:65
 msgid "More..."
 msgstr ""
 
-#: templates/browser/index.html:69
+#: templates/browser/index.html:66
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:77
 #, fuzzy
 msgid "Updates"
 msgstr "ಪರಿವರ್ತಿಸು"
 
-#: templates/browser/index.html:87
+#: templates/browser/index.html:82
 #, fuzzy
 msgid "Last updated:"
 msgstr "ಸ್ಥಳ ನಿರ್ದೇಶನಗಳು"
 
-#: templates/browser/index.html:102
+#: templates/browser/index.html:97
 #, fuzzy
 msgid "Translations"
 msgstr "ಭಾಷಾಂತರ"
 
-#: templates/browser/index.html:106
+#: templates/browser/index.html:101
 #, fuzzy
 msgid "Last action:"
 msgstr "ಸ್ಥಳ ನಿರ್ದೇಶನಗಳು"
 
-#: templates/browser/index.html:158
+#: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -3195,9 +3191,6 @@ msgstr ""
 
 #~ msgid "Quick Translate"
 #~ msgstr "ಶೀಘ್ರ ಭಾಷಾಂತರಮಾಡಿ"
-
-#~ msgid "View Untranslated"
-#~ msgstr "ಭಾಷಾಂತರವಾಗಿರುವ ಪದಗಳನ್ನು ತೋರಿಸು"
 
 #~ msgid "Translate All"
 #~ msgstr "ಎಲ್ಲಾವನ್ನು ಭಾಷಾಂತರಮಾಡಿ"
