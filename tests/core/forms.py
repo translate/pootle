@@ -6,12 +6,14 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import posixpath
+
 import pytest
 
 from django import forms
 
-from pootle.core.forms import FormtableForm
-from pootle_store.models import Unit
+from pootle.core.forms import FormtableForm, PathsSearchForm
+from pootle_store.models import Store, Unit
 from pootle_project.models import Project
 
 
@@ -242,3 +244,98 @@ def test_form_formtable_no_comment():
 
     form = DummyNoCommentFormtableForm()
     assert "comment" not in form.fields
+
+
+@pytest.mark.django_db
+def test_form_project_paths(project0, member, admin):
+
+    # needs a project
+    with pytest.raises(KeyError):
+        PathsSearchForm()
+
+    # needs a q
+    form = PathsSearchForm(context=project0)
+    assert not form.is_valid()
+
+    # q max = 255
+    form = PathsSearchForm(
+        context=project0,
+        data=dict(q=("BAD" * 85)))
+    assert form.is_valid()
+
+    form = PathsSearchForm(
+        context=project0,
+        data=dict(q="x%s" % ("BAD" * 85)))
+    assert not form.is_valid()
+
+    form = PathsSearchForm(
+        context=project0,
+        data=dict(q="DOES NOT EXIST"))
+    assert form.is_valid()
+    assert form.search() == dict(
+        more_results=False,
+        results=[])
+
+    class DummyProjectPathsSearchForm(PathsSearchForm):
+        step = 2
+
+    form = DummyProjectPathsSearchForm(
+        context=project0,
+        data=dict(q="/"))
+    assert form.is_valid()
+    results = form.search()
+    assert len(results["results"]) == 2
+    assert results["more_results"] is True
+    project_stores = Store.objects.filter(
+        translation_project__project=project0)
+    stores = set(
+        project_stores.values_list(
+            "tp_path", flat=True).order_by())
+    dirs = set(
+        ("%s/" % posixpath.dirname(path))
+        for path
+        in stores
+        if (path.count("/") > 1))
+    paths = sorted(stores | dirs)
+    assert results["results"] == paths[0:2]
+
+    for i in range(0, int(round(len(paths) / 2.0))):
+        form = DummyProjectPathsSearchForm(
+            context=project0,
+            data=dict(q="/", page=i + 1))
+        assert form.is_valid()
+        results = form.search()
+        assert results["results"] == paths[i * 2:(i + 1) * 2]
+        if (i + 1) * 2 >= len(paths):
+            results["more_results"] is False
+        else:
+            results["more_results"] is True
+
+    form = DummyProjectPathsSearchForm(
+        context=project0,
+        data=dict(q="1"))
+    stores = set(
+        project_stores.filter(tp_path__contains="1").values_list(
+            "tp_path", flat=True).order_by())
+    dirs = set(
+        ("%s/" % posixpath.dirname(path))
+        for path
+        in stores
+        if (path.count("/") > 1
+            and "1" in path))
+    paths = sorted(stores | dirs)
+    assert form.is_valid()
+    results = form.search()
+    assert len(results["results"]) == 2
+    assert results["more_results"] is True
+    for i in range(0, int(round(len(paths) / 2.0))):
+        form = DummyProjectPathsSearchForm(
+            context=project0,
+            data=dict(q="1", page=i + 1))
+        assert form.is_valid()
+        results = form.search()
+        assert results["results"] == paths[i * 2:(i + 1) * 2]
+        if (i + 1) * 2 >= len(paths):
+            results["more_results"] is False
+        else:
+            results["more_results"] is True
