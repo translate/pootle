@@ -16,13 +16,25 @@ from translate.filters.decorators import Category
 from translate.misc.multistring import multistring
 
 from pootle.core.plugin import getter
-from pootle.core.delegate import tp_tool
+from pootle.core.delegate import paths, tp_tool
 from pootle.core.url_helpers import split_pootle_path
 from pootle_app.models import Directory
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.models import Store
-from pootle_translationproject.utils import TPTool
+from pootle_translationproject.utils import TPPaths, TPTool
+
+
+@pytest.mark.django_db
+def test_paths_tp_util(tp0):
+    tp_paths = paths.get(tp0.__class__)(tp0, "1")
+    assert isinstance(tp_paths, TPPaths)
+    assert tp_paths.context == tp0
+    assert (
+        sorted(tp_paths.store_qs.values_list("pk", flat=True))
+        == sorted(
+            tp0.stores.values_list(
+                "pk", flat=True)))
 
 
 @pytest.mark.django_db
