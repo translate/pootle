@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-17 13:08+0100\n"
-"PO-Revision-Date: 2017-05-16 17:44+0000\n"
+"PO-Revision-Date: 2017-05-17 20:28+0000\n"
 "Last-Translator: Mikhail <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1494956649.000000\n"
+"X-POOTLE-MTIME: 1495052914.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -862,14 +862,14 @@ msgid "Site administrator"
 msgstr "Администратор сайта"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%s's language teams"
-msgstr "Языковые команды"
+msgstr "Языковые команды %s"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:104
 #, python-format
 msgid "%s is not a member of any language teams"
-msgstr ""
+msgstr "%s не является участником какой-либо языковой команды"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
