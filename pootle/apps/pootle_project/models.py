@@ -31,8 +31,7 @@ from pootle.core.cache import make_method_key
 from pootle.core.delegate import data_tool, filetype_tool, lang_mapper, tp_tool
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.models import VirtualResource
-from pootle.core.url_helpers import (
-    get_editor_filter, get_path_sortkey, split_pootle_path)
+from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import PermissionSet
@@ -40,7 +39,6 @@ from pootle_config.utils import ObjectConfig
 from pootle_format.models import Format
 from pootle_format.utils import ProjectFiletypes
 from pootle_revision.models import Revision
-from pootle_store.models import Store
 from pootle_store.util import absolute_real_path
 from staticpages.models import StaticPage
 
@@ -379,22 +377,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         # built-in invalidation -- did I hear django-cache-machine?
         return Language.objects.filter(Q(translationproject__project=self),
                                        ~Q(code='templates'))
-
-    @cached_property
-    def resources(self):
-        """Returns a list of :cls:`~pootle_app.models.Directory` and
-        :cls:`~pootle_store.models.Store` resource paths available for
-        this :cls:`~pootle_project.models.Project` across all languages.
-        """
-        stores = Store.objects.live().order_by().filter(
-            translation_project__project_id=self.pk)
-        dirs = Directory.objects.live().order_by().filter(tp__project_id=self.pk)
-        return sorted(
-            {tp_path[1:]
-             for tp_path
-             in (set(stores.values_list("tp_path", flat=True))
-                 | set(dirs.values_list("tp_path", flat=True)))},
-            key=get_path_sortkey)
 
     # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
