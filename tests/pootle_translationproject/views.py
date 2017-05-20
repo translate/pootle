@@ -6,9 +6,15 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import json
+
 import pytest
 
+from django.core.urlresolvers import reverse
+
 from pootle.core.browser import make_directory_item, make_store_item
+from pootle.core.forms import PathsSearchForm
+from pootle.core.signals import update_revisions
 from pootle.core.url_helpers import split_pootle_path
 from pootle.core.views.browse import StatsDisplay
 from pootle_app.models import Directory
@@ -86,3 +92,71 @@ def test_view_tp_subdir_children(subdir0, rf, request_users):
     obj = view.object
     assert obj == subdir0
     _test_view_tp_children(view, obj)
+
+
+@pytest.mark.django_db
+def test_view_tp_paths_bad(tp0, client, request_users):
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    url = reverse(
+        "pootle-tp-paths",
+        kwargs=dict(
+            project_code=tp0.project.code,
+            language_code=tp0.language.code))
+    # no xhr header
+    response = client.post(url)
+    assert response.status_code == 400
+    # no query
+    response = client.post(
+        url, HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    assert response.status_code == 400
+    # query too short
+    response = client.post(
+        url,
+        data=dict(q="xy"),
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    assert response.status_code == 400
+
+
+@pytest.mark.django_db
+def test_view_tp_paths(tp0, store0, client, request_users):
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    url = reverse(
+        "pootle-tp-paths",
+        kwargs=dict(
+            project_code=tp0.project.code,
+            language_code=tp0.language.code))
+    response = client.post(
+        url,
+        data=dict(q="tore"),
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    assert response.status_code == 200
+    result = json.loads(response.content)
+    path_form = PathsSearchForm(context=tp0, data=dict(q="tore"))
+    assert path_form.is_valid()
+    assert result["items"] == path_form.search(show_all=user.is_superuser)
+    assert "store0.po" in result["items"]["results"]
+
+    stores = Store.objects.filter(name=store0.name)
+    for store in stores:
+        store.obsolete = True
+        store.save()
+        update_revisions.send(
+            store.__class__,
+            instance=store,
+            keys=["stats"])
+    response = client.post(
+        url,
+        data=dict(q="tore"),
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest')
+    assert response.status_code == 200
+    result = json.loads(response.content)
+    if user.is_superuser:
+        assert "store0.po" in result["items"]["results"]
+    else:
+        assert "store0.po" not in result["items"]["results"]
