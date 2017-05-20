@@ -15,6 +15,7 @@ from django.urls import reverse
 
 from pootle.core.browser import make_project_item
 from pootle.core.delegate import language_team
+from pootle.core.exceptions import Http400
 from pootle.core.forms import FormtableForm
 from pootle.core.views.browse import StatsDisplay
 from pootle_language.forms import (
@@ -59,24 +60,32 @@ def test_view_language_team_new_member(client, language0, request_users,
     client.login(
         username=user.username,
         password=request_users["password"])
-    response = client.get(admin_url)
     if not user.is_superuser:
+        response = client.post(admin_url)
         assert response.status_code == 403
+    else:
+        with pytest.raises(Http400):
+            client.post(admin_url)
+
+    response = client.post(admin_url, data=dict(q="DOES NOT EXIST"))
+    if not user.is_superuser:
         if user.is_anonymous:
+            assert response.status_code == 402
             return
+        assert response.status_code == 403
         team.add_member(user, "admin")
-        response = client.get(admin_url)
-    assert json.loads(response.content)["items"] == []
+        response = client.post(admin_url, data=dict(q="DOES NOT EXIST"))
+    assert json.loads(response.content)["items"]["results"] == []
     search_member = (
         member
         if user == member2
         else member2)
-    response = client.get("%s?q=%s" % (admin_url, search_member.username[:2]))
+    response = client.post(admin_url, data=dict(q=search_member.username[:2]))
     result = json.loads(response.content)
     assert search_member.username in [r["text"] for r in result["items"]["results"]]
     team = language_team.get(language0.__class__)(language0)
     team.add_member(search_member, "member")
-    response = client.get("%s?q=%s" % (admin_url, search_member.username[:2]))
+    response = client.post(admin_url, data=dict(q=search_member.username[:2]))
     result = json.loads(response.content)
     assert (
         search_member.username
