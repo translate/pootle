@@ -101,7 +101,7 @@ class LanguageTeamAdminForm(LanguageTeamBaseAdminForm):
         widget=RemoteSelectWidget(
             attrs={
                 "data-s2-placeholder": _("Search for users to add"),
-                'class': 'js-select2-remote'}))
+                'class': 'js-select2-remote js-s2-new-members'}))
     role = forms.ChoiceField(
         label=_("Role"),
         required=False,

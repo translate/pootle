@@ -1,8 +1,23 @@
 {% extends "languages/base.html" %}
 
-{% load i18n %}
+{% load assets i18n %}
 
 {% block title %}{% trans "Language team" %} | {{ block.super }}{% endblock %}
+
+{% block js %}
+{{ block.super }}
+
+{% assets 'js_admin_app' %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
+
+<script>
+  $(function () {
+    PTL.userAdmin.init()
+  });
+</script>
+
+{% endblock js %}
 
 {% block content %}
 {% block section_body %}

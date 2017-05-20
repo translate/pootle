@@ -17,6 +17,7 @@ from django.utils.safestring import mark_safe
 from pootle.core.browser import make_project_item
 from pootle.core.decorators import (
     get_object_or_404, get_path_obj, permission_required)
+from pootle.core.exceptions import Http400
 from pootle.core.views import PootleBrowseView, PootleTranslateView
 from pootle.core.views.admin import PootleFormView
 from pootle.core.views.decorators import requires_permission, set_permissions
@@ -329,5 +330,12 @@ class LanguageTeamAdminNewMembersJSON(PootleJSONMixin, PootleLanguageAdminFormVi
 
     def get_form_kwargs(self):
         kwargs = super(LanguageTeamAdminNewMembersJSON, self).get_form_kwargs()
-        kwargs["data"] = self.request.GET
+        kwargs["data"] = self.request.POST
         return kwargs
+
+    def form_valid(self, form):
+        return self.render_to_response(
+            self.get_context_data(form=form))
+
+    def form_invalid(self, form):
+        raise Http400(form.errors)
