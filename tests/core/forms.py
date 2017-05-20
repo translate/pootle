@@ -281,6 +281,7 @@ def test_form_project_paths(project0, member, admin):
 
     form = DummyProjectPathsSearchForm(
         context=project0,
+        min_length=1,
         data=dict(q="/"))
     assert form.is_valid()
     results = form.search()
@@ -304,6 +305,7 @@ def test_form_project_paths(project0, member, admin):
     for i in range(0, int(round(len(paths) / 2.0))):
         form = DummyProjectPathsSearchForm(
             context=project0,
+            min_length=1,
             data=dict(q="/", page=i + 1))
         assert form.is_valid()
         results = form.search()
@@ -315,6 +317,7 @@ def test_form_project_paths(project0, member, admin):
 
     form = DummyProjectPathsSearchForm(
         context=project0,
+        min_length=1,
         data=dict(q="1"))
     stores = set(
         st[1:]
@@ -335,6 +338,7 @@ def test_form_project_paths(project0, member, admin):
     for i in range(0, int(round(len(paths) / 2.0))):
         form = DummyProjectPathsSearchForm(
             context=project0,
+            min_length=1,
             data=dict(q="1", page=i + 1))
         assert form.is_valid()
         results = form.search()
