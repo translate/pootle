@@ -49,7 +49,10 @@ class Paths(object):
 
     @persistent_property
     def paths(self):
-        stores = set(self.stores.values_list("tp_path", flat=True))
+        stores = set(
+            st[1:]
+            for st
+            in self.stores.values_list("tp_path", flat=True))
         dirs = set(
             ("%s/" % posixpath.dirname(path))
             for path
