@@ -73,14 +73,14 @@ def test_view_language_team_new_member(client, language0, request_users,
         else member2)
     response = client.get("%s?q=%s" % (admin_url, search_member.username[:2]))
     result = json.loads(response.content)
-    assert search_member.username in [r["username"] for r in result["items"]]
+    assert search_member.username in [r["text"] for r in result["items"]["results"]]
     team = language_team.get(language0.__class__)(language0)
     team.add_member(search_member, "member")
     response = client.get("%s?q=%s" % (admin_url, search_member.username[:2]))
     result = json.loads(response.content)
     assert (
         search_member.username
-        not in [r["username"] for r in result["items"]])
+        not in [r["text"] for r in result["items"]["results"]])
     if user in team.admins:
         team.remove_member(user)
 

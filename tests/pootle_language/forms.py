@@ -27,12 +27,12 @@ def test_form_language_team_new_member(language0, member):
         data=dict(q=member.username[:2]))
     assert form.is_valid()
     assert (
-        dict(username=member.username, id=member.id)
-        in form.search())
+        dict(text=member.username, id=member.id)
+        in form.search()["results"])
     form.language_team.add_member(member, "member")
     assert (
-        dict(username=member.username, id=member.id)
-        not in form.search())
+        dict(text=member.username, id=member.id)
+        not in form.search()["results"])
 
 
 @pytest.mark.django_db
