@@ -17,6 +17,7 @@ import diff from 'utils/diff';
 
 import agreement from './agreement';
 import auth from './auth';
+import s2 from './s2';
 import browser from './browser';
 import captcha from './captcha';
 import contact from './contact';
@@ -58,6 +59,7 @@ window.PTL = window.PTL || {};
 
 PTL.auth = auth;
 PTL.agreement = agreement;
+PTL.s2 = s2;
 PTL.browser = browser;
 PTL.captcha = captcha;
 PTL.cookie = cookie;
@@ -76,6 +78,7 @@ PTL.common = {
 
   init(opts) {
     PTL.auth.init();
+    PTL.s2.init();
     PTL.browser.init(opts);
 
     if (opts.hasSidebar) {
@@ -160,53 +163,6 @@ PTL.common = {
       $formtable.find('.js-pagination-page-no input').each(function () {
         $(this).val(parseInt($(this).val(), 10) - 1);
         $formtable.submit();
-      });
-    });
-
-    $('.js-select2').select2({
-      minimumResultsForSearch: 10,
-      dropdownAutoWidth: true,
-      width: 'resolve',
-    });
-    $('.select2-selection__rendered').removeAttr('title');
-
-    const processData = (params) => {
-      const result = {
-        q: params.term,
-        page: params.page,
-      };
-      return result;
-    };
-
-    const processResults = (data) => {
-      const results = {
-        results: $.map(data.items.results, (result) => {
-          const item = {
-            id: result.id,
-            text: result.text,
-          };
-          return item;
-        }),
-      };
-      return results;
-    };
-
-    $(document).ready(() => {
-      $('.js-select2-remote').each((i, item) => {
-        const $item = $(item);
-        const select2Url = $(item).data('select2-url');
-        $item.select2({
-          ajax: {
-            url: select2Url,
-            dataType: 'json',
-            delay: 250,
-            data: processData,
-            processResults,
-          },
-          cache: true,
-          minimumInputLength: 2,
-          width: '23em',
-        });
       });
     });
 
