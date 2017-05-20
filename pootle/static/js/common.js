@@ -180,10 +180,10 @@ PTL.common = {
 
     const processResults = (data) => {
       const results = {
-        results: $.map(data.items, (result) => {
+        results: $.map(data.items.results, (result) => {
           const item = {
             id: result.id,
-            text: result.username,
+            text: result.text,
           };
           return item;
         }),
