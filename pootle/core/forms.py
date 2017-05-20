@@ -17,6 +17,7 @@ from random import randint
 from django import forms
 from django.conf import settings
 from django.core.paginator import Paginator
+from django.core.validators import MinLengthValidator
 from django.utils.safestring import mark_safe
 
 from pootle.core.delegate import paths
@@ -32,7 +33,13 @@ class PathsSearchForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.context = kwargs.pop("context")
+        min_length = kwargs.pop("min_length", 3)
         super(PathsSearchForm, self).__init__(*args, **kwargs)
+        validators = [
+            v for v in self.fields['q'].validators
+            if not isinstance(v, MinLengthValidator)]
+        validators.append(MinLengthValidator(min_length))
+        self.fields["q"].validators = validators
 
     @property
     def paths_util(self):
@@ -42,7 +49,10 @@ class PathsSearchForm(forms.Form):
         q = self.cleaned_data["q"]
         page = self.cleaned_data["page"] or 1
         offset = (page - 1) * self.step
-        results = self.paths_util(self.context, q).paths
+        results = self.paths_util(
+            self.context,
+            q,
+            show_all=kwa.get("show_all", False)).paths
         return dict(
             more_results=len(results) > (offset + self.step),
             results=results[offset:offset + self.step])
