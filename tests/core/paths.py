@@ -45,7 +45,8 @@ def test_paths_util(project0):
                 obsolete=True).exclude(is_template=True).filter(
                     tp_path__contains="1").count()
         == paths_util.stores.count())
-    stores = set(paths_util.stores.values_list("tp_path", flat=True))
+    stores = set(
+        st[1:] for st in paths_util.stores.values_list("tp_path", flat=True))
     dirs = set(
         ("%s/" % posixpath.dirname(path))
         for path
@@ -58,7 +59,8 @@ def test_paths_util(project0):
         Store.objects.exclude(is_template=True).filter(
             tp_path__contains="1").count()
         == paths_util.stores.count())
-    stores = set(paths_util.stores.values_list("tp_path", flat=True))
+    stores = set(
+        st[1:] for st in paths_util.stores.values_list("tp_path", flat=True))
     dirs = set(
         ("%s/" % posixpath.dirname(path))
         for path

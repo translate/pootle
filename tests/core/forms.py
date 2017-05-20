@@ -289,7 +289,9 @@ def test_form_project_paths(project0, member, admin):
     project_stores = Store.objects.filter(
         translation_project__project=project0)
     stores = set(
-        project_stores.values_list(
+        st[1:]
+        for st
+        in project_stores.values_list(
             "tp_path", flat=True).order_by())
     dirs = set(
         ("%s/" % posixpath.dirname(path))
@@ -315,7 +317,9 @@ def test_form_project_paths(project0, member, admin):
         context=project0,
         data=dict(q="1"))
     stores = set(
-        project_stores.filter(tp_path__contains="1").values_list(
+        st[1:]
+        for st
+        in project_stores.filter(tp_path__contains="1").values_list(
             "tp_path", flat=True).order_by())
     dirs = set(
         ("%s/" % posixpath.dirname(path))
