@@ -39,11 +39,10 @@ class Paths(object):
 
     @property
     def stores(self):
-        stores = self.store_qs
+        stores = self.store_qs.exclude(obsolete=True)
         if not self.show_all:
             stores = stores.exclude(
-                translation_project__project__disabled=True).exclude(
-                    obsolete=True)
+                translation_project__project__disabled=True)
         return stores.exclude(is_template=True).filter(
             tp_path__contains=self.q).order_by()
 
