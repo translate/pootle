@@ -156,7 +156,4 @@ def test_view_tp_paths(tp0, store0, client, request_users):
         HTTP_X_REQUESTED_WITH='XMLHttpRequest')
     assert response.status_code == 200
     result = json.loads(response.content)
-    if user.is_superuser:
-        assert "store0.po" in result["items"]["results"]
-    else:
-        assert "store0.po" not in result["items"]["results"]
+    assert "store0.po" not in result["items"]["results"]
