@@ -18,3 +18,4 @@ class PootleProfileConfig(AppConfig):
 
     def ready(self):
         importlib.import_module("pootle_profile.getters")
+        importlib.import_module("pootle_profile.providers")
