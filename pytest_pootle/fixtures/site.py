@@ -133,7 +133,7 @@ def debug_utils(request):
 def setup_db_if_needed(request, tests_use_db):
     """Sets up the site DB only if tests requested to use the DB (autouse)."""
     if tests_use_db and not request.config.getvalue('reuse_db'):
-        return request.getfuncargvalue('post_db_setup')
+        return request.getfixturevalue('post_db_setup')
 
 
 @pytest.fixture(scope='session')

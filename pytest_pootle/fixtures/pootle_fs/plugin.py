@@ -94,7 +94,7 @@ def possible_actions(possible_action_keys):
 def localfs_envs(request, localfs_env_names):
     return (
         localfs_env_names,
-        request.getfuncargvalue(
+        request.getfixturevalue(
             "localfs_%s" % localfs_env_names))
 
 
@@ -102,7 +102,7 @@ def localfs_envs(request, localfs_env_names):
 def localfs_staged_envs(request):
     return (
         request.param,
-        request.getfuncargvalue(
+        request.getfixturevalue(
             "localfs_%s" % request.param))
 
 
