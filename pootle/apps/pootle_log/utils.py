@@ -35,13 +35,6 @@ class ComparableLogEvent(BaseProxy):
                       if x not in ["__lt__", "__gt__", "__call__"])
 
     def __cmp__(self, other):
-        # valuable revisions are authoritative
-        if self.revision is not None and other.revision is not None:
-            if self.revision > other.revision:
-                return 1
-            elif self.revision < other.revision:
-                return -1
-
         # timestamps have the next priority
         if self.timestamp and other.timestamp:
             if self.timestamp > other.timestamp:
@@ -86,7 +79,7 @@ class Log(object):
 
     @property
     def created_units(self):
-        return self.source_qs.select_related("unit", "created_by")
+        return self.source_qs.select_related("unit", "created_by", "unit__store")
 
     @property
     def suggestions(self):
@@ -96,7 +89,7 @@ class Log(object):
     @property
     def submissions(self):
         return self.submission_qs.select_related(
-            "unit", "submitter", "unit__unit_source")
+            "unit", "submitter", "unit__unit_source", "quality_check")
 
     @cached_property
     def event(self):
@@ -301,6 +294,25 @@ class Log(object):
         if "submission" in event_sources:
             for event in self.get_submission_events(**kwargs):
                 yield event
+
+    def get_contributors(self, **kwargs):
+        event_sources = kwargs.pop(
+            "event_sources",
+            ("submission", "suggestion", "unit_source"))
+        users = set()
+        if "unit_source" in event_sources:
+            users |= set(
+                self.filtered_created_units().order_by().values_list(
+                    "created_by", flat=True).distinct())
+        if "suggestion" in event_sources:
+            users |= set(
+                self.filtered_suggestions().order_by().values_list(
+                    "reviewer", flat=True).distinct())
+        if "submission" in event_sources:
+            users |= set(
+                self.filtered_submissions().order_by().values_list(
+                    "submitter", flat=True).distinct())
+        return get_user_model().objects.filter(id__in=users)
 
 
 class StoreLog(Log):
