@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-19 20:58+0100\n"
-"PO-Revision-Date: 2017-05-17 13:26+0000\n"
+"PO-Revision-Date: 2017-05-20 10:53+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1495027608.000000\n"
+"X-POOTLE-MTIME: 1495277597.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -577,9 +577,8 @@ msgid "The URL or path to your translation files"
 msgstr "O URL ou ruta ao ficheiros de tradución"
 
 #: apps/pootle_fs/forms.py:47
-#, fuzzy
 msgid "Translation mapping presets"
-msgstr "Asociación de ruta de tradución"
+msgstr "Asociación de ruta de tradución predefinidas"
 
 #: apps/pootle_fs/forms.py:55
 msgid "Translation path mapping"
@@ -805,19 +804,19 @@ msgid "Locations"
 msgstr "Localizacións"
 
 #: apps/pootle_misc/templatetags/common_tags.py:53
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} untranslated"
-msgstr "%d palabra sen traducir"
+msgstr "{percentage} sen traducir"
 
 #: apps/pootle_misc/templatetags/common_tags.py:55
 #, python-brace-format
 msgid "{percentage} needs work"
-msgstr ""
+msgstr "{percentage} precisa traballo"
 
 #: apps/pootle_misc/templatetags/common_tags.py:57
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} translated"
-msgstr "Sen traducir"
+msgstr "{percentage} traducido"
 
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"

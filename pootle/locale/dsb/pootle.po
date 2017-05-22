@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-19 20:58+0100\n"
-"PO-Revision-Date: 2017-05-17 18:46+0000\n"
+"PO-Revision-Date: 2017-05-19 21:09+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1495046792.000000\n"
+"X-POOTLE-MTIME: 1495228198.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -813,17 +813,17 @@ msgstr "Městna"
 #: apps/pootle_misc/templatetags/common_tags.py:53
 #, python-brace-format
 msgid "{percentage} untranslated"
-msgstr ""
+msgstr "{percentage} njepśełožone"
 
 #: apps/pootle_misc/templatetags/common_tags.py:55
 #, python-brace-format
 msgid "{percentage} needs work"
-msgstr ""
+msgstr "{percentage} musy se wobźěłaś"
 
 #: apps/pootle_misc/templatetags/common_tags.py:57
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} translated"
-msgstr "Njepśełožony"
+msgstr "{percentage} pśełožone"
 
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"

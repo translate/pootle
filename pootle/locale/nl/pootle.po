@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-19 20:58+0100\n"
-"PO-Revision-Date: 2017-05-19 14:52+0000\n"
+"PO-Revision-Date: 2017-05-20 20:45+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1495205571.000000\n"
+"X-POOTLE-MTIME: 1495313129.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -809,19 +809,19 @@ msgid "Locations"
 msgstr "Locaties"
 
 #: apps/pootle_misc/templatetags/common_tags.py:53
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} untranslated"
-msgstr "%d woord onvertaald"
+msgstr "{percentage} onvertaald"
 
 #: apps/pootle_misc/templatetags/common_tags.py:55
 #, python-brace-format
 msgid "{percentage} needs work"
-msgstr ""
+msgstr "{percentage} vereist werk"
 
 #: apps/pootle_misc/templatetags/common_tags.py:57
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} translated"
-msgstr "Onvertaald"
+msgstr "{percentage} vertaald"
 
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
@@ -857,7 +857,7 @@ msgstr "Dit tweeten!"
 #: apps/pootle_profile/templatetags/profile_tags.py:52
 #, python-format
 msgid "#%s contributor in %s in the last 30 days"
-msgstr "#%s medewerker in het %s in de afgelopen 30 dagen"
+msgstr "Medewerker #%s in het %s in de afgelopen 30 dagen"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:56
 #, fuzzy, python-format
@@ -881,7 +881,7 @@ msgid "Site administrator"
 msgstr "Websitebeheerder"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%s's language teams"
 msgstr "Taalteams van %s"
 
@@ -2757,8 +2757,8 @@ msgstr "Pagina %(page_number)s van %(page_count)s."
 #, python-format
 msgid "Showing %(n)s result per page"
 msgid_plural "Showing %(n)s results per page"
-msgstr[0] "%(count)s resultaat per pagina getoond"
-msgstr[1] "%(count)s resultaten per pagina getoond"
+msgstr[0] "%(n)s resultaat per pagina getoond"
+msgstr[1] "%(n)s resultaten per pagina getoond"
 
 #: templates/includes/formtable.html:87
 msgid "Select all"

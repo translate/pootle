@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-19 20:58+0100\n"
-"PO-Revision-Date: 2017-05-18 15:57+0000\n"
+"PO-Revision-Date: 2017-05-21 10:40+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1495123066.000000\n"
+"X-POOTLE-MTIME: 1495363254.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -793,19 +793,19 @@ msgid "Locations"
 msgstr "Yerleri"
 
 #: apps/pootle_misc/templatetags/common_tags.py:53
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} untranslated"
-msgstr "%d kelime çevrilmemiş"
+msgstr "{percentage} çevrilmemiş"
 
 #: apps/pootle_misc/templatetags/common_tags.py:55
 #, python-brace-format
 msgid "{percentage} needs work"
-msgstr ""
+msgstr "{percentage} çalışma gerekli"
 
 #: apps/pootle_misc/templatetags/common_tags.py:57
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} translated"
-msgstr "Çevrilmemiş"
+msgstr "{percentage} çevrilmiş"
 
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
