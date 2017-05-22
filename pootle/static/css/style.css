@@ -2061,7 +2061,7 @@ html[dir="rtl"] #tabs li
 {
     display: inline-block;
     overflow: hidden;
-    border-radius: 50%;
+    border-radius: 10%;
 }
 
 .avatar-system
