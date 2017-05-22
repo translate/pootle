@@ -146,7 +146,8 @@ def profile_activity(profile, request_lang=None):
     context = dict(profile=profile)
     if profile.user.is_meta:
         return context
-    context["user_events"] = context["profile"].get_events()
-    context["user_last_event"] = (
-        context["profile"].user.last_event(locale=request_lang))
+    context["user_events"] = context["profile"].get_events(n=5)
+    if not context["user_events"]:
+        context["user_last_event"] = (
+            context["profile"].user.last_event(locale=request_lang))
     return context

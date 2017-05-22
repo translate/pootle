@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from datetime import timedelta
+from itertools import groupby
 
 from django.utils import timezone
 from django.utils.functional import cached_property
@@ -26,6 +27,14 @@ class UserProfile(object):
     def avatar(self):
         return render_as_template(
             "{% load common_tags %}{% avatar username email_hash 20 %}",
+            context=dict(
+                username=self.user.username,
+                email_hash=self.user.email_hash))
+
+    @cached_property
+    def tiny_avatar(self):
+        return render_as_template(
+            "{% load common_tags %}{% avatar username email_hash 13 %}",
             context=dict(
                 username=self.user.username,
                 email_hash=self.user.email_hash))
@@ -52,13 +61,12 @@ class UserProfile(object):
     def get_events(self, start=None, n=None):
         sortable = comparable_event.get(self.log.__class__)
         start = start or (timezone.now() - timedelta(days=30))
-        from itertools import groupby
         events = groupby(
             sorted(
                 sortable(ev)
                 for ev
                 in self.log.get_events(start=start)),
-            lambda event: event.timestamp)
+            lambda event: event.timestamp.replace(second=0))
         _events = []
         formatters = event_formatters.gather(self.user.__class__)
         for timestamp, evts in events:
@@ -68,7 +76,7 @@ class UserProfile(object):
             else:
                 _events.append(formatters.get("group")(self.user, evs))
         if n is not None:
-            events = events[-n:]
+            _events = _events[-n:]
         return reversed(_events)
 
 
