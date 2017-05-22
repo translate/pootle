@@ -58,4 +58,6 @@ class Paths(object):
             in stores
             if (path.count("/") > 1
                 and self.q in path))
-        return sorted(dirs | stores)
+        return sorted(
+            dirs | stores,
+            key=lambda path: (posixpath.dirname(path), posixpath.basename(path)))
