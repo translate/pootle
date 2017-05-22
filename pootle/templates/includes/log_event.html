@@ -1,5 +1,8 @@
 <div style="width: 10%; float: left; text-align: right; padding-right: .3em; box-sizing: border-box">
   {{ event.avatar }}
+  {% if event.committer %}
+  <span style="position: relative; left: -13px">{{ event.committer_avatar }}</span>
+  {% endif %}
 </div>
 <div style="width: 90%; float: left">
   <div>
