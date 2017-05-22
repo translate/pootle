@@ -40,14 +40,15 @@
   {% if language %}
   <select
      class="js-select2-remote js-s2-paths"
-     data-s2-placeholder="Entire project"
+     data-s2-placeholder="{{ paths_placeholder }}"
+     data-s2-allow-clear="true"
      data-select2-url="/{{ language.code }}/{{ project.code }}/paths/">
     <option>{% if resource_path %}{{ resource_path }}{% endif %}</option>
   </select>
   {% else %}
   <select
      class="js-select2-remote js-s2-paths"
-     data-s2-placeholder="Entire project"
+     data-s2-placeholder="{{ paths_placeholder }}"
      data-select2-url="/projects/{{ project.code }}/paths/"
      data-s2-allow-clear="true">
     <option>{% if resource_path %}{{ resource_path }}{% endif %}</option>

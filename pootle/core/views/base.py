@@ -15,6 +15,7 @@ from django.views.generic import DetailView
 
 from pootle.core.delegate import site_languages
 from pootle.core.url_helpers import get_path_parts
+from pootle.i18n.gettext import ugettext as _
 from pootle_app.models.permissions import check_permission
 from pootle_misc.util import ajax_required
 
@@ -108,6 +109,7 @@ class PootleDetailView(GatherContextMixin, DetailView):
             'resource_path_parts': get_path_parts(self.resource_path),
             'translate_url': self.translate_url,
             'browse_url': self.browse_url,
+            'paths_placeholder': _("Entire project"),
             'unit_api_root': "/xhr/units/"}
 
 
