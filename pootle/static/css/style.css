@@ -2619,3 +2619,10 @@ form.formtable tfoot .formtable-actions td
     float: right;
     color: #c30;
 }
+
+.evt-state-changed
+{
+    font-style: italic;
+    color: #777;
+    font-size: 0.9em;
+}
