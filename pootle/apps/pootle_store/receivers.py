@@ -45,6 +45,8 @@ def handle_unit_source_pre_save(**kwargs):
     unit_source = kwargs["instance"]
     created = not unit_source.pk
     unit = unit_source.unit
+    if created:
+        unit_source.creation_revision = unit.revision
     if created or unit.source_updated:
         unit_source.source_hash = md5(force_bytes(unit.source_f)).hexdigest()
         unit_source.source_length = len(unit.source_f)
