@@ -331,7 +331,7 @@ class RelatedStoresDataTool(DataTool):
     def sw_version(self):
         return PootleDataConfig.version
 
-    @property
+    @cached_property
     def cache_key(self):
         return (
             '%s.%s.%s'
