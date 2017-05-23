@@ -130,7 +130,7 @@ class VFoldersDataView(object):
         self.user = user
         self.has_admin_access = has_admin_access
 
-    @property
+    @cached_property
     def vfolder_data_tool(self):
         return vfolders_data_tool.get(self.context.__class__)(self.context)
 
