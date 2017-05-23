@@ -2159,7 +2159,8 @@ PTL.editor = {
 
     // FIXME: move this side-effect elsewhere
     if (results.length > 0 && results[0].source === sourceText) {
-      if (ReactEditor.stateValues[0] === '') {
+      const allowAutofill = this.settings.canSuggest || this.settings.canTranslate;
+      if (ReactEditor.stateValues[0] === '' && allowAutofill) {
         // save unit editor state to restore it after autofill changes
         const isUnitDirty = this.isUnitDirty;
         const text = results[0].target;

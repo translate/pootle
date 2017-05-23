@@ -30,6 +30,8 @@ $(function() {
     userId: {{ request.user.id }},
     localeDir: '{{ language.direction }}',
     canReview: {{ canreview|yesno:"true,false" }},
+    canSuggest: {{ cansuggest|yesno:"true,false" }},
+    canTranslate: {{ cantranslate|yesno:"true,false" }},
   };
   {% if cansuggest or cantranslate %}
   options.mt = [
