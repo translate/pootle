@@ -80,7 +80,7 @@ class TPTMXExporter(object):
     def __init__(self, context):
         self.context = context
 
-    @property
+    @cached_property
     def exported_revision(self):
         return revision.get(self.context.__class__)(
             self.context).get(key="pootle.offline.tm")
@@ -104,6 +104,8 @@ class TPTMXExporter(object):
             revision.get(self.context.__class__)(
                 self.context).set(keys=["pootle.offline.tm"],
                                   value=self.revision)
+            if "exported_revision" in self.__dict__:
+                del self.__dict__["exported_revision"]
 
     def has_changes(self):
         return self.revision != self.exported_revision
