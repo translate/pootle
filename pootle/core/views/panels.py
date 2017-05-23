@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 from django.template import loader
+from django.utils.functional import cached_property
 
 from pootle.core.decorators import persistent_property
 
@@ -27,7 +28,7 @@ class Panel(object):
         return loader.render_to_string(
             self.template_name, context=self.get_context_data())
 
-    @property
+    @cached_property
     def cache_key(self):
         return (
             "panel.%s.%s"
