@@ -95,8 +95,9 @@ class Language(models.Model, TreeItem):
 
         :param language_code: the code of the language to retrieve.
         """
+        qs = cls.objects.select_related("directory")
         try:
-            return cls.objects.get(code__iexact=language_code)
+            return qs.get(code__iexact=language_code)
         except cls.DoesNotExist:
             _lang_code = language_code
             if "-" in language_code:
@@ -104,7 +105,7 @@ class Language(models.Model, TreeItem):
             elif "_" in language_code:
                 _lang_code = language_code.replace("_", "-")
             try:
-                return cls.objects.get(code__iexact=_lang_code)
+                return qs.get(code__iexact=_lang_code)
             except cls.DoesNotExist:
                 return None
 
