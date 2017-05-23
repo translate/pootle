@@ -246,7 +246,16 @@ class TPStoreMixin(TPMixin):
         return get_object_or_404(
             Store.objects.select_related(
                 "parent",
+                "data",
+                "data__last_submission",
+                "data__last_submission__unit",
+                "data__last_submission__unit__store",
+                "data__last_submission__unit__store__parent",
+                "data__last_created_unit",
+                "data__last_created_unit__store",
+                "translation_project__directory",
                 "translation_project__language",
+                "translation_project__language__directory",
                 "translation_project__project"),
             pootle_path=path)
 
