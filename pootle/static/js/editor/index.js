@@ -177,6 +177,9 @@ const ReactEditor = {
    * Sets a new textarea value.
    */
   setValueFor(indexOrElement, value) {
+    if (this.props.isDisabled) {
+      return;
+    }
     const textareas = this.editorInstance.getAreas();
     const index = (
       typeof indexOrElement === 'object' ?
