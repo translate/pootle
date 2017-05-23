@@ -17,7 +17,8 @@ from django.utils.lru_cache import lru_cache
 
 from pootle.core.browser import (
     get_parent, make_directory_item, make_store_item)
-from pootle.core.decorators import get_path_obj, permission_required
+from pootle.core.decorators import (
+    get_path_obj, permission_required, persistent_property)
 from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.views import PootleBrowseView, PootleTranslateView
 from pootle.core.views.display import StatsDisplay
@@ -311,7 +312,7 @@ class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):
             "/%(language_code)s/%(project_code)s/%(dir_path)s%(filename)s"
             % kwargs)
 
-    @cached_property
+    @persistent_property
     def object_children(self):
         dirs_with_vfolders = []
         if 'virtualfolder' in settings.INSTALLED_APPS:
