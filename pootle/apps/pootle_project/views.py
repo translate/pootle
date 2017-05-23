@@ -18,7 +18,8 @@ from django.utils.safestring import mark_safe
 
 from pootle.core.browser import (
     make_language_item, make_project_list_item, make_xlanguage_item)
-from pootle.core.decorators import get_path_obj, permission_required
+from pootle.core.decorators import (
+    get_path_obj, permission_required, persistent_property)
 from pootle.core.helpers import get_sidebar_announcements_context
 from pootle.core.paginator import paginate
 from pootle.core.url_helpers import split_pootle_path
@@ -73,6 +74,18 @@ class ProjectMixin(object):
             raise Http404
         return project
 
+    @cached_property
+    def cache_key(self):
+        return (
+            "%s.%s.%s.%s::%s.%s.%s"
+            % (self.page_name,
+               self.view_name,
+               self.object.data_tool.cache_key,
+               self.kwargs["dir_path"],
+               self.kwargs["filename"],
+               self.show_all,
+               self.request_lang))
+
     @property
     def url_kwargs(self):
         return {
@@ -82,6 +95,11 @@ class ProjectMixin(object):
 
     @lru_cache()
     def get_object(self):
+        self.object = self.project
+        return self.object_with_children
+
+    @persistent_property
+    def object_with_children(self):
         if not (self.kwargs["dir_path"] or self.kwargs["filename"]):
             return self.project
 
@@ -108,7 +126,8 @@ class ProjectMixin(object):
             return ProjectResource(
                 resources,
                 ("/projects/%(project_code)s/%(dir_path)s%(filename)s"
-                 % self.kwargs))
+                 % self.kwargs),
+                context=self.project)
         raise Http404
 
     @property
