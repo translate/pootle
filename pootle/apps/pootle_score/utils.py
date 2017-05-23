@@ -12,6 +12,7 @@ import pytz
 
 from django.contrib.auth import get_user_model
 from django.db.models import Sum
+from django.utils.functional import cached_property
 
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import display, revision, scores
@@ -103,7 +104,7 @@ class Scores(object):
 class LanguageScores(Scores):
     ns = "pootle.score.language"
 
-    @property
+    @cached_property
     def cache_key(self):
         return (
             "%s.%s.%s"
@@ -118,7 +119,7 @@ class LanguageScores(Scores):
 class ProjectScores(Scores):
     ns = "pootle.score.project"
 
-    @property
+    @cached_property
     def cache_key(self):
         return (
             "%s.%s.%s"
@@ -133,7 +134,7 @@ class ProjectScores(Scores):
 class ProjectSetScores(Scores):
     ns = "pootle.score.projects"
 
-    @property
+    @cached_property
     def cache_key(self):
         return (
             "%s.%s"
@@ -144,7 +145,7 @@ class ProjectSetScores(Scores):
 class TPScores(Scores):
     ns = "pootle.score.tp"
 
-    @property
+    @cached_property
     def cache_key(self):
         return (
             "%s/%s.%s.%s"
@@ -160,7 +161,7 @@ class TPScores(Scores):
 class UserScores(Scores):
     ns = "pootle.score.user"
 
-    @property
+    @cached_property
     def cache_key(self):
         return (
             "%s.%s.%s"
