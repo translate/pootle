@@ -105,6 +105,12 @@ class AbstractUnitSource(models.Model):
         default=SubmissionTypes.SYSTEM,
         db_index=True)
 
+    creation_revision = models.IntegerField(
+        null=False,
+        default=0,
+        db_index=True,
+        blank=True)
+
     source_hash = models.CharField(
         null=True,
         max_length=32,
