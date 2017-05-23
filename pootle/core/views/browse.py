@@ -61,7 +61,7 @@ class PootleBrowseView(PootleDetailView):
                     state["percent"], "#,##0.0%")
         return states
 
-    @property
+    @cached_property
     def cache_key(self):
         return (
             "%s.%s.%s.%s.%s"
@@ -107,7 +107,7 @@ class PootleBrowseView(PootleDetailView):
             self.request,
             (self.object, ))
 
-    @property
+    @persistent_property
     def has_disabled(self):
         return any(
             item.get('is_disabled')
