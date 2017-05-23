@@ -27,7 +27,7 @@ class VirtualResource(TreeItem):
     def __init__(self, resources, pootle_path, *args, **kwargs):
         self.resources = resources  #: Collection of underlying resources
         self.pootle_path = pootle_path
-
+        self.context = kwargs.pop("context", None)
         super(VirtualResource, self).__init__(*args, **kwargs)
 
     def __unicode__(self):

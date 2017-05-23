@@ -81,12 +81,7 @@ class ProjectResourceRevision(RevisionContext):
 
     @property
     def revision_context(self):
-        first_child = self.context.children.first()
-        if not first_child:
-            return
-        return Directory.objects.get(
-            pootle_path="/projects/%s/"
-            % split_pootle_path(first_child.pootle_path)[1]).revisions
+        self.context.context.revisions
 
 
 class ProjectSetRevision(RevisionContext):
