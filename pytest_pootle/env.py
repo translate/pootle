@@ -271,13 +271,13 @@ class PootleTestEnv(object):
             'directory': Directory.objects.root}
         permission_set, created = PermissionSet.objects.get_or_create(**criteria)
         if created:
-            permission_set.positive_permissions = [view, suggest]
+            permission_set.positive_permissions.set([view, suggest])
             permission_set.save()
 
         criteria['user'] = default
         permission_set, created = PermissionSet.objects.get_or_create(**criteria)
         if created:
-            permission_set.positive_permissions = [view, suggest, translate]
+            permission_set.positive_permissions.set([view, suggest, translate])
             permission_set.save()
 
     def setup_site_root(self):
