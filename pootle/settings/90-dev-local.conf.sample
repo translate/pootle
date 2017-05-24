@@ -147,7 +147,7 @@ POOTLE_TRANSLATION_DIRECTORY = working_path('translations')
 # Two-tuple defining the markup filter to apply in certain textareas.
 #
 # - Accepted values for the first element are 'textile', 'markdown',
-#   'restructuredtext', 'html' and None.
+#   'restructuredtext' and 'html'.
 # - The second element should be a dictionary of keyword arguments that will be
 #   passed to the markup function.
 #
@@ -156,7 +156,6 @@ POOTLE_TRANSLATION_DIRECTORY = working_path('translations')
 #   `pip install Pootle[markdown]`
 #
 # Examples:
-#    POOTLE_MARKUP_FILTER = (None, {})
 #    POOTLE_MARKUP_FILTER = ('markdown', {})
 #    POOTLE_MARKUP_FILTER = ('restructuredtext', {
 #                                'settings_overrides': {

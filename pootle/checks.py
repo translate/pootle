@@ -387,6 +387,12 @@ def check_settings_markup(app_configs=None, **kwargs):
                            "POOTLE_MARKUP_FILTER."),
                     id="pootle.W015",
                 ))
+        if markup_filter is None:
+                errors.append(checks.Warning(
+                    _("POOTLE_MARKUP_FILTER set to 'None' is deprecated."),
+                    hint=_("Set your markup to 'html' explicitly."),
+                    id="pootle.W025",
+                ))
     return errors
 
 
