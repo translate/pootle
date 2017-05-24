@@ -254,20 +254,12 @@ Configuration settings for applications used by Pootle.
 
   Examples::
 
-    POOTLE_MARKUP_FILTER = (None, {})
-
     POOTLE_MARKUP_FILTER = ('markdown', {})
 
     POOTLE_MARKUP_FILTER = ('markdown', {
                                 'clean': {
                                     'extra_tags': ['div'],
                                 },
-                            })
-
-    POOTLE_MARKUP_FILTER = ('restructuredtext', {
-                                'settings_overrides': {
-                                    'report_level': 'quiet',
-                                 }
                             })
 
 

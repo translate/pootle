@@ -318,9 +318,6 @@ dependency_links += parse_dependency_links('requirements/_db_postgresql.txt')
 # Pootle FS plugins
 extras_require['git'] = parse_requirements('requirements/_pootle_fs_git.txt')
 dependency_links += parse_dependency_links('requirements/_pootle_fs_git.txt')
-# Markdown
-extras_require['markdown'] = parse_requirements('requirements/_markup_markdown.txt')
-dependency_links += parse_dependency_links('requirements/_markup_markdown.txt')
 # Testing
 extras_require['travis'] = parse_requirements('requirements/travis.txt',
                                               recurse=True)
