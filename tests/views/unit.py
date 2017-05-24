@@ -490,6 +490,31 @@ def test_add_suggestion(client, request_users, settings):
 
 
 @pytest.mark.django_db
+def test_add_suggestion_same_as_target(client, request_users, settings):
+    """Tests suggestion equal to target cannot be added."""
+    settings.POOTLE_CAPTCHA_ENABLED = False
+    user = request_users["user"]
+    if user.username != "nobody":
+        client.login(
+            username=user.username,
+            password=request_users["password"])
+
+    unit = Unit.objects.filter(state=TRANSLATED).first()
+    suggestion_count = unit.suggestion_set.count()
+    url = '/xhr/units/%d/suggestions' % unit.id
+    response = client.post(
+        url,
+        {
+            'target_f_0': unit.target,
+        },
+        HTTP_X_REQUESTED_WITH='XMLHttpRequest'
+    )
+
+    assert response.status_code == 200
+    assert suggestion_count == unit.suggestion_set.count()
+
+
+@pytest.mark.django_db
 def test_submit_unit(client, store0, request_users, settings, system):
     """Tests translation can be applied after suggestion is accepted."""
     settings.POOTLE_CAPTCHA_ENABLED = False
