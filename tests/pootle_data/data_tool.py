@@ -273,7 +273,10 @@ def test_data_cache_keys(language0, project0, subdir0, vfolder0):
         == subdir0.data_tool.cache_key)
     # projectresource
     resource_path = "%s%s" % (project0.pootle_path, subdir0.path)
-    projectresource = ProjectResource(Directory.objects.none(), resource_path)
+    projectresource = ProjectResource(
+        Directory.objects.none(),
+        resource_path,
+        context=project0)
     assert projectresource.data_tool.ns == "pootle.data"
     assert projectresource.data_tool.sw_version == PootleDataConfig.version
     assert (
