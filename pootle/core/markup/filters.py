@@ -59,7 +59,8 @@ def get_markup_filter_display_name():
         'textile': u'Textile',
         'markdown': u'Markdown',
         'restructuredtext': u'reStructuredText',
-    }.get(name, u'HTML')
+        'html': u'HTML',
+    }.get(name)
 
 
 def get_markup_filter():
@@ -77,6 +78,8 @@ def get_markup_filter():
             import markdown  # noqa
         elif markup_filter == 'restructuredtext':
             import docutils  # noqa
+        elif markup_filter == 'html':
+            pass
         else:
             return (None, '')
     except Exception:

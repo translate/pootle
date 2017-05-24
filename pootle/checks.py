@@ -286,6 +286,8 @@ def check_settings(app_configs=None, **kwargs):
                     import markdown  # noqa
                 elif markup_filter == 'restructuredtext':
                     import docutils  # noqa
+                elif markup_filter == 'html':
+                    pass
                 else:
                     errors.append(checks.Warning(
                         _("Invalid markup in POOTLE_MARKUP_FILTER."),
