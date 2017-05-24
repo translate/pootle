@@ -189,8 +189,8 @@ POOTLE_TRANSLATION_DIRECTORY = working_path('translations')
 
 # Two-tuple defining the markup filter to apply in certain textareas.
 #
-# - Accepted values for the first element are 'textile', 'markdown',
-#   'restructuredtext' and 'html'.
+# - Accepted values for the first element are 'markdown' and
+#   'html' (deprecated).
 # - The second element should be a dictionary of keyword arguments that will be
 #   passed to the markup function.
 #
@@ -200,11 +200,6 @@ POOTLE_TRANSLATION_DIRECTORY = working_path('translations')
 #
 # Examples:
 #    POOTLE_MARKUP_FILTER = ('markdown', {})
-#    POOTLE_MARKUP_FILTER = ('restructuredtext', {
-#                                'settings_overrides': {
-#                                    'report_level': 'quiet',
-#                                }
-#                            })
 POOTLE_MARKUP_FILTER = (None, {})
 
 # Set the backends you want to use to enable translation suggestions through

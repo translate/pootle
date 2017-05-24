@@ -242,11 +242,15 @@ Configuration settings for applications used by Pootle.
 
   Two-tuple defining the markup filter to apply in certain textareas.
 
-  - Accepted values for the first element are ``textile``, ``markdown``,
-    ``restructuredtext``, ``html`` and None
+  - Acceptable values for the first element are ``markdown`` and ``html``
+    (deprecated).
 
   - The second element should be a dictionary of keyword arguments that
     will be passed to the markup function
+
+  .. versionchanged:: 2.8
+     Support for ``textile``, ``restructuredtext`` and ``html`` formats has
+     been deprecated.
 
   Examples::
 
