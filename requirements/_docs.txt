@@ -1,4 +1,4 @@
 # Documentation
 
 readme_renderer==17.2
-Sphinx==1.6.1
+Sphinx==1.5.6  # rq.filter: <1.6
