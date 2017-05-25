@@ -44,6 +44,7 @@ class TranslationProjectFormSet(BaseModelFormSet):
     def __init__(self, *args, **kwargs):
         self.response_url = kwargs.pop("response_url")
         super(TranslationProjectFormSet, self).__init__(*args, **kwargs)
+        self.queryset = self.queryset.select_related("language", "project")
 
     def save_new(self, form, commit=True):
         return form.save(
