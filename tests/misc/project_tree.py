@@ -76,12 +76,12 @@ from pootle_store.models import Store
     (u'br', u'/path/to/file_pt-BR.po', False),
     (u'br', u'/path/to/file.pt-BR.po', False),
 
-    (u'br', u'/path/to/file-pt_br.po', False),
-    (u'br', u'/path/to/file_pt_br.po', False),
-    (u'br', u'/path/to/file.pt_br.po', False),
-    (u'br', u'/path/to/file-pt-br.po', False),
-    (u'br', u'/path/to/file_pt-br.po', False),
-    (u'br', u'/path/to/file.pt-br.po', False),
+    pytest.mark.xfail((u'br', u'/path/to/file-pt_br.po', False)),
+    pytest.mark.xfail((u'br', u'/path/to/file_pt_br.po', False)),
+    pytest.mark.xfail((u'br', u'/path/to/file.pt_br.po', False)),
+    pytest.mark.xfail((u'br', u'/path/to/file-pt-br.po', False)),
+    pytest.mark.xfail((u'br', u'/path/to/file_pt-br.po', False)),
+    pytest.mark.xfail((u'br', u'/path/to/file.pt-br.po', False)),
 
     pytest.mark.xfail((u'kmr-Latn', u'/path/to/file-kmr-Latn.po', True)),
     pytest.mark.xfail((u'ca-valencia', u'/path/to/file-ca-valencia.po', True)),
