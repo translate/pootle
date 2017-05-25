@@ -26,6 +26,8 @@ import cx from 'classnames';
 import Levenshtein from 'levenshtein';
 import mousetrap from 'mousetrap';
 import assign from 'object-assign';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
 import UnitAPI from 'api/UnitAPI';
 import cookie from 'utils/cookie';
@@ -51,6 +53,10 @@ import ReactEditor from './index';
 // be the actual entry point, entirely superseding the `app` module.
 PTL.reactEditor = ReactEditor;
 
+NProgress.configure({
+  parent: '#js-editor-progress',
+  showSpinner: false,
+});
 
 const CTX_STEP = 1;
 
@@ -135,7 +141,6 @@ PTL.editor = {
 
     /* Cached elements */
     this.backToBrowserEl = q('.js-back-to-browser');
-    this.$editorActivity = $('#js-editor-act');
     this.$editorBody = $('.js-editor-body');
     this.editorTableEl = q('.js-editor-table');
     this.$filterStatus = $('#js-filter-status');
@@ -166,8 +171,8 @@ PTL.editor = {
 
     this.isUnitDirty = false;
 
-    this.isLoading = true;
     this.showActivity();
+    this.isLoading = true;
 
     this.fetchingOffsets = [];
 
@@ -405,9 +410,7 @@ PTL.editor = {
         return;
       }
 
-      this.delayedActivityTimer = setTimeout(() => {
-        this.showActivity();
-      }, 3000);
+      this.showActivity();
     });
     $(document).ajaxStop(() => {
       clearTimeout(this.delayedActivityTimer);
@@ -642,7 +645,6 @@ PTL.editor = {
     this.isUnitDirty = false;
     this.keepState = false;
     this.isLoading = false;
-    this.hideActivity();
   },
 
   /* Things to do when no results are returned */
@@ -1028,11 +1030,18 @@ PTL.editor = {
 
   showActivity() {
     this.hideMsg();
-    this.$editorActivity.spin().fadeIn(300);
+    if (this.isLoading) {
+      return;
+    }
+    clearTimeout(this.delayedActivityTimer);
+    this.delayedActivityTimer = setTimeout(() => NProgress.start(), 2000);
   },
 
   hideActivity() {
-    this.$editorActivity.spin(false).fadeOut(300);
+    if (!this.isLoading) {
+      clearTimeout(this.delayedActivityTimer);
+      NProgress.done();
+    }
   },
 
   /* Displays an informative message */
