@@ -39,7 +39,8 @@ def direct_language_match_filename(language_code, path_name):
         return False
 
     if name.endswith(("-"+language_code, "_"+language_code)):
-        logging.debug(u"MATCH - code: »%s«, pn: »%s«, name: »%s«", language_code, path_name, name)
+        logging.debug(u"MATCH - code: »%s«, pn: »%s«, name: »%s«",
+                      language_code, path_name, name)
         return True
 
     detect = LANGCODE_POSTFIX_RE.split(name)
