@@ -196,7 +196,7 @@ class ProjectTranslateView(ProjectMixin, PootleTranslateView):
 
 class ProjectAdminView(PootleAdminView):
 
-    model = Project
+    queryset = Project.objects.select_related("directory")
     slug_field = 'code'
     slug_url_kwarg = 'project_code'
     template_name = 'projects/admin/languages.html'
