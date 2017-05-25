@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-19 20:58+0100\n"
-"PO-Revision-Date: 2017-03-06 13:42+0000\n"
+"PO-Revision-Date: 2017-05-23 02:34+0000\n"
 "Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1488807767.000000\n"
+"X-POOTLE-MTIME: 1495506846.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -424,7 +424,7 @@ msgstr "Debe traducir las palabras"
 
 #: apps/pootle_checks/constants.py:52
 msgid "Newlines"
-msgstr "Líneas nuevas"
+msgstr "Saltos de renglón"
 
 #: apps/pootle_checks/constants.py:53
 msgid "Number of plurals"
@@ -784,7 +784,7 @@ msgstr "Búsqueda"
 
 #: apps/pootle_misc/forms.py:102
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
-msgstr "Buscar (Ctrl+Mayús+S)<br/>Escriba y oprima Intro para buscar"
+msgstr "Buscar (Ctrl + Mayús. + S)<br/>Escriba y oprima Intro para buscar"
 
 #: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:368
 msgid "Exact Match"
@@ -2457,14 +2457,14 @@ msgstr "Las más antiguas primero"
 
 #: templates/editor/_toolbar.html:17
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr "Ir a la cadena anterior (Ctrl+↑)"
+msgstr "Ir a la cadena anterior (Ctrl + ↑)"
 
 #: templates/editor/_toolbar.html:20
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
-"Número de cadena actual (Ctrl + May. + U)<br/><br/>Escriba el número y "
+"Número de cadena actual (Ctrl + Mayús. + U)<br/><br/>Escriba el número y "
 "oprima Intro<br/>para ir a cualquier posición."
 
 #: templates/editor/_toolbar.html:22
@@ -2473,7 +2473,7 @@ msgstr "Cadenas totales"
 
 #: templates/editor/_toolbar.html:25
 msgid "Go to the next string (Ctrl+Down)"
-msgstr "Ir a la cadena siguiente (Ctrl+↓)"
+msgstr "Ir a la cadena siguiente (Ctrl + ↓)"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:2
 msgid ""
@@ -2556,7 +2556,7 @@ msgstr "Enviar"
 
 #: templates/editor/units/edit.html:155
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
-msgstr "Enviar traducción e ir a la siguiente cadena (Ctrl+Intro)"
+msgstr "Enviar traducción e ir a la cadena siguiente (Ctrl + Intro)"
 
 #: templates/editor/units/edit.html:160 templates/editor/units/edit.html:166
 msgid "Suggest"
@@ -2564,23 +2564,23 @@ msgstr "Sugerir"
 
 #: templates/editor/units/edit.html:161
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
-msgstr "Sugerir traducción e ir a la siguiente cadena (Ctrl+Intro)"
+msgstr "Sugerir traducción e ir a la cadena siguiente (Ctrl + Intro)"
 
 #: templates/editor/units/edit.html:165
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr "Cambiar al modo de traducción (Ctrl+Mayús+Espacio)"
+msgstr "Cambiar al modo de traducción (Ctrl + Mayús. + Espacio)"
 
 #: templates/editor/units/edit.html:166
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr "Cambiar al modo de sugerencias (Ctrl+Mayús+Espacio)"
+msgstr "Cambiar al modo de sugerencias (Ctrl + Mayús. + Espacio)"
 
 #: templates/editor/units/edit.html:171
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr "Marcar esta cadena que necesita más trabajo (Ctrl+Espacio)"
+msgstr "Indicar que esta cadena necesita más trabajo (Ctrl + Espacio)"
 
 #: templates/editor/units/edit.html:209
 msgid "Show Timeline"
-msgstr "Mostrar línea temporal"
+msgstr "Mostrar historial"
 
 #: templates/editor/units/edit.html:211
 msgid "Add Comment"
