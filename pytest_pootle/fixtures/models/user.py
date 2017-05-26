@@ -30,11 +30,11 @@ TEST_USERS = {
         email="admin@poot.le"),
     'member': dict(
         fullname='Member',
-        password='',
+        password='member',
         alt_src_lang=language0),
     'member2': dict(
         fullname='Member2',
-        password='')}
+        password='member2')}
 
 
 @pytest.fixture(
