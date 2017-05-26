@@ -128,14 +128,15 @@ PTL.editor = {
 
     this.setActiveUnit = debounce((body, newUnit) => {
       this.fetchUnits().always(() => {
-        UnitAPI.fetchUnit(newUnit.id, body)
-          .then(
-            (data) => {
-              this.setEditUnit(data);
-              this.renderUnit();
-            },
-            this.error
-          );
+        this.unitAPI({
+          method: 'fetchUnit',
+          params: { uId: newUnit.id, body },
+          success: (data) => {
+            this.setEditUnit(data);
+            this.renderUnit();
+          },
+          error: this.error,
+        });
       });
     }, 250);
 
@@ -403,22 +404,6 @@ PTL.editor = {
       this.unitIndex(e);
     });
 
-    /* XHR activity indicator */
-    $(document).ajaxStart(() => {
-      clearTimeout(this.delayedActivityTimer);
-      if (this.isLoading) {
-        return;
-      }
-
-      this.showActivity();
-    });
-    $(document).ajaxStop(() => {
-      clearTimeout(this.delayedActivityTimer);
-      if (!this.isLoading) {
-        this.hideActivity();
-      }
-    });
-
     /* Load MT providers */
     this.settings.mt.forEach((provider) => {
       require.ensure([], () => {
@@ -663,6 +648,11 @@ PTL.editor = {
     }
 
     return true;
+  },
+
+  unitAPI({ method, params, success, error, always }) {
+    this.showActivity();
+    return UnitAPI[method](params).then(success, error).always(always, () => this.hideActivity());
   },
 
 
@@ -1491,11 +1481,13 @@ PTL.editor = {
       if (previousUids.length > 0) {
         reqData.previous_uids = previousUids;
       }
-      return UnitAPI.fetchUnits(reqData)
-        .then(
-          (data) => this.storeUnitData(data, { isInitial: initial }),
-          this.error
-        ).always(() => this.markAsFetched(offsetToFetch));
+      return this.unitAPI({
+        method: 'fetchUnits',
+        params: { body: reqData },
+        success: (data) => this.storeUnitData(data, { isInitial: initial }),
+        error: this.error,
+        always: () => this.markAsFetched(offsetToFetch),
+      });
     }
     /* eslint-disable new-cap */
     return $.Deferred((deferred) => deferred.reject(false));
@@ -1636,11 +1628,12 @@ PTL.editor = {
       };
       assign(body, suggData);
     }
-    UnitAPI.addTranslation(this.units.getCurrent().id, body)
-      .then(
-        (data) => this.processSubmission(data),
-        this.error
-      );
+    this.unitAPI({
+      method: 'addTranslation',
+      params: { uId: this.units.getCurrent().id, body },
+      success: (data) => this.processSubmission(data),
+      error: this.error,
+    });
   },
 
   processSubmission(data) {
@@ -1675,11 +1668,12 @@ PTL.editor = {
     const body = assign({}, this.getValueStateData(ReactEditor.stateValues),
                         this.getReqData(), captchaCallbacks);
 
-    UnitAPI.addSuggestion(this.units.getCurrent().id, body)
-      .then(
-        (data) => this.processSuggestion(data),
-        this.error
-      );
+    this.unitAPI({
+      method: 'addSuggestion',
+      params: { uId: this.units.getCurrent().id, body },
+      success: (data) => this.processSuggestion(data),
+      error: this.error,
+    });
   },
 
   processSuggestion() {
@@ -1960,14 +1954,15 @@ PTL.editor = {
 
   /* Gets more context units */
   moreContext(amount = CTX_STEP) {
-    return (
-      UnitAPI.getContext(this.units.getCurrent().id,
-                         { gap: this.ctxGap, qty: amount })
-        .then(
-          (data) => this.handleContextSuccess(data),
-          this.error
-        )
-    );
+    return this.unitAPI({
+      method: 'getContext',
+      params: {
+        uId: this.units.getCurrent().id,
+        body: { gap: this.ctxGap, qty: amount },
+      },
+      success: (data) => this.handleContextSuccess(data),
+      error: this.error,
+    });
   },
 
   /* Shrinks context lines */
@@ -2056,11 +2051,12 @@ PTL.editor = {
     e.preventDefault();
     this.updateCommentDefaultProperties();
 
-    UnitAPI.addComment(this.units.getCurrent().id, $(e.target).serializeObject())
-      .then(
-        (data) => this.processAddComment(data),
-        this.error
-      );
+    this.unitAPI({
+      method: 'addComment',
+      params: { uId: this.units.getCurrent().id, body: $(e.target).serializeObject() },
+      success: (data) => this.processAddComment(data),
+      error: this.error,
+    });
   },
 
   processAddComment(data) {
@@ -2081,11 +2077,12 @@ PTL.editor = {
   removeComment(e) {
     e.preventDefault();
 
-    UnitAPI.removeComment(this.units.getCurrent().id)
-      .then(
-        () => $('.js-comment-first').fadeOut(200),
-        this.error
-      );
+    this.unitAPI({
+      method: 'removeComment',
+      params: { uId: this.units.getCurrent().id },
+      success: () => $('.js-comment-first').fadeOut(200),
+      error: this.error,
+    });
   },
 
 
@@ -2101,15 +2098,12 @@ PTL.editor = {
       return;
     }
 
-    const $node = $('.translate-container');
-    $node.spin();
-
-    UnitAPI.getTimeline(this.units.getCurrent().id)
-      .then(
-        (data) => this.renderTimeline(data),
-        this.error
-      )
-      .always(() => $node.spin(false));
+    this.unitAPI({
+      method: 'getTimeline',
+      params: { uId: this.units.getCurrent().id },
+      success: (data) => this.renderTimeline(data),
+      error: this.error,
+    });
   },
 
   renderTimeline(data) {
@@ -2277,11 +2271,12 @@ PTL.editor = {
   },
 
   rejectSuggestion(suggId, { requestData = {} } = {}) {
-    UnitAPI.rejectSuggestion(this.units.getCurrent().id, suggId, requestData)
-      .then(
-        (data) => this.processRejectSuggestion(data, suggId),
-        this.error
-      );
+    this.unitAPI({
+      method: 'rejectSuggestion',
+      params: { uId: this.units.getCurrent().id, suggId, body: requestData },
+      success: (data) => this.processRejectSuggestion(data, suggId),
+      error: this.error,
+    });
   },
 
   processRejectSuggestion(data, suggId) {
@@ -2310,11 +2305,12 @@ PTL.editor = {
   },
 
   acceptSuggestion(suggId, { requestData = {}, skipToNext = false } = {}) {
-    UnitAPI.acceptSuggestion(this.units.getCurrent().id, suggId, requestData)
-    .then(
-      (data) => this.processAcceptSuggestion(data, suggId, skipToNext),
-      this.error
-    );
+    this.unitAPI({
+      method: 'acceptSuggestion',
+      params: { uId: this.units.getCurrent().id, suggId, body: requestData },
+      success: (data) => this.processAcceptSuggestion(data, suggId, skipToNext),
+      error: this.error,
+    });
   },
 
   processAcceptSuggestion(data, suggId, skipToNext) {
@@ -2353,11 +2349,12 @@ PTL.editor = {
     const isFalsePositive = $check.hasClass('false-positive');
 
     const opts = isFalsePositive ? null : { mute: 1 };
-    UnitAPI.toggleCheck(this.units.getCurrent().id, checkId, opts)
-      .then(
-        () => this.processToggleCheck(checkId, isFalsePositive),
-        this.error
-      );
+    this.unitAPI({
+      method: 'toggleCheck',
+      params: { uId: this.units.getCurrent().id, checkId, body: opts },
+      success: () => this.processToggleCheck(checkId, isFalsePositive),
+      error: this.error,
+    });
   },
 
   processToggleCheck(checkId, isFalsePositive) {

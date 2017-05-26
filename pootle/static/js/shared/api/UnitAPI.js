@@ -14,14 +14,14 @@ const UnitAPI = {
 
   apiRoot: PTL.unitApiRoot,
 
-  fetchUnits(body) {
+  fetchUnits({ body }) {
     return fetch({
       body,
       url: this.apiRoot,
     });
   },
 
-  fetchUnit(uId, body = {}) {
+  fetchUnit({ uId, body = {} }) {
     return fetch({
       body,
       queue: 'unitWidget',
@@ -29,7 +29,7 @@ const UnitAPI = {
     });
   },
 
-  addTranslation(uId, body) {
+  addTranslation({ uId, body }) {
     return fetch({
       body,
       method: 'POST',
@@ -37,20 +37,20 @@ const UnitAPI = {
     });
   },
 
-  getContext(uId, body) {
+  getContext({ uId, body }) {
     return fetch({
       body,
       url: `${this.apiRoot}${uId}/context/`,
     });
   },
 
-  getTimeline(uId) {
+  getTimeline({ uId }) {
     return fetch({
       url: `${this.apiRoot}${uId}/timeline/`,
     });
   },
 
-  addComment(uId, body) {
+  addComment({ uId, body }) {
     return fetch({
       body,
       method: 'POST',
@@ -58,7 +58,7 @@ const UnitAPI = {
     });
   },
 
-  removeComment(uId) {
+  removeComment({ uId }) {
     return fetch({
       method: 'DELETE',
       url: `${this.apiRoot}${uId}/comment/`,
@@ -67,7 +67,7 @@ const UnitAPI = {
 
   /* Unit suggestions */
 
-  addSuggestion(uId, body) {
+  addSuggestion({ uId, body }) {
     return fetch({
       body,
       method: 'POST',
@@ -75,7 +75,7 @@ const UnitAPI = {
     });
   },
 
-  acceptSuggestion(uId, suggId, body) {
+  acceptSuggestion({ uId, suggId, body }) {
     return fetch({
       body,
       method: 'POST',
@@ -83,7 +83,7 @@ const UnitAPI = {
     });
   },
 
-  rejectSuggestion(uId, suggId, body) {
+  rejectSuggestion({ uId, suggId, body }) {
     return fetch({
       body,
       method: 'DELETE',
@@ -93,7 +93,7 @@ const UnitAPI = {
 
   /* Quality checks */
 
-  toggleCheck(uId, checkId, body = {}) {
+  toggleCheck({ uId, checkId, body = {} }) {
     return fetch({
       body,
       method: 'POST',
