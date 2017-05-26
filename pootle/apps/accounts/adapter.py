@@ -29,8 +29,10 @@ class PootleAccountAdapter(DefaultAccountAdapter):
       - Latin1 usernames are allowed
     """
 
-    def ajax_response(self, request, response, redirect_to=None, form=None):
-        data = {}
+    def ajax_response(self, request, response, form=None, data=None,
+                      redirect_to=None):
+        if data is None:
+            data = {}
         if redirect_to:
             status = 200
             data["location"] = redirect_to
