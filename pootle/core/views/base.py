@@ -109,7 +109,7 @@ class PootleDetailView(GatherContextMixin, DetailView):
             'resource_path_parts': get_path_parts(self.resource_path),
             'translate_url': self.translate_url,
             'browse_url': self.browse_url,
-            'paths_placeholder': _("Entire project"),
+            'paths_placeholder': _("Entire Project"),
             'unit_api_root': "/xhr/units/"}
 
 
