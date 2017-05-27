@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-19 20:58+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2015-01-04 14:36+0000\n"
 "Last-Translator: Milos <milos@kuruc.com>\n"
 "Language-Team: Slovak <sk-i18n@lists.linux.sk>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.1-rc1\n"
 "X-POOTLE-MTIME: 1420382190.000000\n"
 
-#: apps/accounts/adapter.py:66
+#: apps/accounts/adapter.py:68
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
@@ -58,7 +58,7 @@ msgid "Email Address"
 msgstr "Emailová adresa"
 
 #: apps/accounts/models.py:69 apps/pootle_language/models.py:35
-#: apps/pootle_project/models.py:206
+#: apps/pootle_project/models.py:204
 msgid "Full Name"
 msgstr "Celé meno"
 
@@ -252,7 +252,7 @@ msgstr "Môže prepísať preklady nahratím súboru"
 msgid "Language code does not follow the ISO convention"
 msgstr "Kód jazyka nezodpovedá ISO norme"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:228
 msgid "Source Language"
 msgstr "Zdrojový jazyk"
 
@@ -307,7 +307,7 @@ msgstr ""
 msgid "No files in this project."
 msgstr "Tento projekt neobsahuje žiadne súbory."
 
-#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:205
 msgid "There are errors in the form. Please review the problems below."
 msgstr ""
 "Pri vypĺňaní dotazníka došlo k chybám. Preverte, prosím, uvedené problémy."
@@ -632,66 +632,70 @@ msgstr "Skontrolovať"
 msgid "Administrator"
 msgstr "Administrácia"
 
-#: apps/pootle_language/forms.py:69
+#: apps/pootle_language/forms.py:76
 #, fuzzy
 msgid "Administrators"
 msgstr "Administrácia"
 
 # toto je fajn
-#: apps/pootle_language/forms.py:75
+#: apps/pootle_language/forms.py:82
 #, fuzzy
 msgid "Reviewers"
 msgstr "Kontroly"
 
-#: apps/pootle_language/forms.py:80
+#: apps/pootle_language/forms.py:87
 #, fuzzy
 msgid "Submitters"
 msgstr "Odoslať"
 
-#: apps/pootle_language/forms.py:85
+#: apps/pootle_language/forms.py:92
 msgid "Members"
 msgstr ""
 
-#: apps/pootle_language/forms.py:89
+#: apps/pootle_language/forms.py:96
 msgid "New member"
 msgstr ""
 
-#: apps/pootle_language/forms.py:90
+#: apps/pootle_language/forms.py:97
 msgid "Add a user to this team"
 msgstr ""
 
-#: apps/pootle_language/forms.py:97
+#: apps/pootle_language/forms.py:103
+msgid "Search for users to add"
+msgstr ""
+
+#: apps/pootle_language/forms.py:106
 msgid "Role"
 msgstr ""
 
-#: apps/pootle_language/forms.py:128
+#: apps/pootle_language/forms.py:137
 msgid "Role is required when adding a new member"
 msgstr ""
 
-#: apps/pootle_language/forms.py:154 core/forms.py:184
+#: apps/pootle_language/forms.py:163 core/forms.py:218
 msgid "Reject"
 msgstr "Zamietnuť"
 
-#: apps/pootle_language/forms.py:155 core/forms.py:185
+#: apps/pootle_language/forms.py:164 core/forms.py:219
 msgid "Accept"
 msgstr "Prijať"
 
-#: apps/pootle_language/forms.py:157
+#: apps/pootle_language/forms.py:166
 #, fuzzy
 msgid "Filter by suggester"
 msgstr "Zobraziť návrhy"
 
-#: apps/pootle_language/forms.py:163
+#: apps/pootle_language/forms.py:172
 #, fuzzy
 msgid "Filter by state"
 msgstr "Zobraziť návrhy"
 
-#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:182 apps/pootle_language/views.py:216
 #: core/browser.py:26
 msgid "Project"
 msgstr "Projekt"
 
-#: apps/pootle_language/models.py:28 apps/pootle_project/models.py:201
+#: apps/pootle_language/models.py:28 apps/pootle_project/models.py:199
 msgid "Code"
 msgstr "Kód"
 
@@ -734,34 +738,34 @@ msgstr "Počet tvarov plurálu"
 msgid "Plural Equation"
 msgstr "Rovnica množných tvarov"
 
-#: apps/pootle_language/views.py:209
+#: apps/pootle_language/views.py:210
 msgid "Unit"
 msgstr ""
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:58
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:58
 msgid "State"
 msgstr ""
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:56
+#: apps/pootle_language/views.py:212 apps/pootle_statistics/models.py:56
 msgid "Source"
 msgstr ""
 
-#: apps/pootle_language/views.py:212
+#: apps/pootle_language/views.py:213
 #, fuzzy
 msgid "Suggestion"
 msgstr "Návrhy"
 
-#: apps/pootle_language/views.py:213
+#: apps/pootle_language/views.py:214
 #, fuzzy
 msgid "Suggested by"
 msgstr "Navrhnúť"
 
-#: apps/pootle_language/views.py:214
+#: apps/pootle_language/views.py:215
 #, fuzzy
 msgid "Suggested at"
 msgstr "Navrhnúť"
 
-#: apps/pootle_language/views.py:236
+#: apps/pootle_language/views.py:237
 #, fuzzy, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
@@ -769,7 +773,7 @@ msgstr[0] "Zamietnuť návrh"
 msgstr[1] "Zamietnuť návrh"
 msgstr[2] "Zamietnuť návrh"
 
-#: apps/pootle_language/views.py:241
+#: apps/pootle_language/views.py:242
 #, fuzzy, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
@@ -777,7 +781,7 @@ msgstr[0] "Prijať návrh"
 msgstr[1] "Prijať návrh"
 msgstr[2] "Prijať návrh"
 
-#: apps/pootle_language/views.py:246
+#: apps/pootle_language/views.py:247
 #, fuzzy, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
@@ -785,7 +789,7 @@ msgstr[0] "Zamietnuť návrh"
 msgstr[1] "Zamietnuť návrh"
 msgstr[2] "Zamietnuť návrh"
 
-#: apps/pootle_language/views.py:251
+#: apps/pootle_language/views.py:252
 #, fuzzy, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
@@ -945,22 +949,22 @@ msgstr "Preklad"
 msgid "Select one or more languages"
 msgstr ""
 
-#: apps/pootle_project/forms.py:57 core/browser.py:31
+#: apps/pootle_project/forms.py:58 core/browser.py:31
 msgid "Language"
 msgstr "Jazyk"
 
-#: apps/pootle_project/models.py:179
+#: apps/pootle_project/models.py:177
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr ""
 
 #. Translators: this refers to the project quality checker
-#: apps/pootle_project/models.py:188
+#: apps/pootle_project/models.py:186
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr ""
 
-#: apps/pootle_project/models.py:195
+#: apps/pootle_project/models.py:193
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -968,60 +972,60 @@ msgstr ""
 "Krátky kód označujúci projekt. Mal by obsahovať len znaky ASCII tabuľky, "
 "čísla a podtržník (_)."
 
-#: apps/pootle_project/models.py:213
+#: apps/pootle_project/models.py:211
 msgid "Quality Checks"
 msgstr "Kontrola kvality"
 
-#: apps/pootle_project/models.py:219
+#: apps/pootle_project/models.py:217
 #, fuzzy
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
 msgstr "Automatická detekcia (pomalšie)"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:218
 msgid "GNU style: files named by language code"
 msgstr "Štýl GNU: súbory nazvané podľa kódu jazyka"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:219
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Iný ako GNU: Každý jazyk má svoje vlastné umiestnenie"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:220
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr ""
 
-#: apps/pootle_project/models.py:226
+#: apps/pootle_project/models.py:224
 msgid "Project Tree Style"
 msgstr "Typ stromovej štruktúry projektu"
 
-#: apps/pootle_project/models.py:234
+#: apps/pootle_project/models.py:232
 msgid "Ignore Files"
 msgstr "Ignorovať súbory"
 
-#: apps/pootle_project/models.py:240
+#: apps/pootle_project/models.py:238
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:239
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 
 #. Translators: This is the URL prefix to search for context screenshots
-#: apps/pootle_project/models.py:246
+#: apps/pootle_project/models.py:244
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:251
+#: apps/pootle_project/models.py:249
 msgid "Disabled"
 msgstr ""
 
-#: apps/pootle_project/views.py:266
+#: apps/pootle_project/views.py:295
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
 
-#: apps/pootle_project/views.py:273
+#: apps/pootle_project/views.py:302
 #, fuzzy, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Hlavná stránka prekladu"
@@ -1040,7 +1044,7 @@ msgstr "Komentáre"
 msgid "Check"
 msgstr "Skryť kontroly"
 
-#: apps/pootle_store/abstracts.py:215 apps/pootle_store/abstracts.py:222
+#: apps/pootle_store/abstracts.py:221 apps/pootle_store/abstracts.py:228
 msgid "Path"
 msgstr "Cesta"
 
@@ -1464,215 +1468,234 @@ msgstr ""
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
 
-#: checks.py:270
-msgid "POOTLE_MARKUP_FILTER is missing."
+#: checks.py:272
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
 msgstr ""
 
-#: checks.py:271
-msgid "Set POOTLE_MARKUP_FILTER."
+#: checks.py:273
+#, python-format
+msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
 msgstr ""
 
-#: checks.py:276
-msgid "Invalid value in POOTLE_MARKUP_FILTER."
+#: checks.py:279
+#, python-format
+msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
 msgstr ""
 
-#: checks.py:277
-msgid "Set a valid value for POOTLE_MARKUP_FILTER."
+#: checks.py:281
+msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
 msgstr ""
 
 #: checks.py:291
-msgid "Invalid markup in POOTLE_MARKUP_FILTER."
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
 msgstr ""
 
 #: checks.py:292
+#, python-format
+msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:299
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no HOST."
+msgstr ""
+
+#: checks.py:300
+#, python-format
+msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:307
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no PORT."
+msgstr ""
+
+#: checks.py:308
+#, python-format
+msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:317
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
+msgstr ""
+
+#: checks.py:319
+#, python-format
+msgid ""
+"Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:327
+#, python-format
+msgid "POOTLE_SCORES has no %s."
+msgstr ""
+
+#: checks.py:328
+#, python-format
+msgid "Set %s in POOTLE_SCORES."
+msgstr ""
+
+#: checks.py:336
+#, python-format
+msgid "Invalid value for %s in POOTLE_SCORES."
+msgstr ""
+
+#: checks.py:339
+#, python-format
+msgid "Set a valid value for %s in POOTLE_SCORES."
+msgstr ""
+
+#: checks.py:355
+msgid "POOTLE_MARKUP_FILTER is missing."
+msgstr ""
+
+#: checks.py:356
+msgid "Set POOTLE_MARKUP_FILTER."
+msgstr ""
+
+#: checks.py:361
+msgid "Invalid value in POOTLE_MARKUP_FILTER."
+msgstr ""
+
+#: checks.py:362
+msgid "Set a valid value for POOTLE_MARKUP_FILTER."
+msgstr ""
+
+#: checks.py:378
+msgid "Invalid markup in POOTLE_MARKUP_FILTER."
+msgstr ""
+
+#: checks.py:379
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:297
+#: checks.py:384
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
 
-#: checks.py:299
+#: checks.py:386
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:310
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
+#: checks.py:392
+msgid "POOTLE_MARKUP_FILTER set to 'None' is deprecated."
 msgstr ""
 
-#: checks.py:311
-#, python-format
-msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
+#: checks.py:393
+msgid "Set your markup to 'html' explicitly."
 msgstr ""
 
-#: checks.py:317
-#, python-format
-msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
-
-#: checks.py:319
-msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
-msgstr ""
-
-#: checks.py:329
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
-
-#: checks.py:330
-#, python-format
-msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
-
-#: checks.py:337
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
-
-#: checks.py:338
-#, python-format
-msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr ""
-
-#: checks.py:345
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
-
-#: checks.py:346
-#, python-format
-msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr ""
-
-#: checks.py:355
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
-msgstr ""
-
-#: checks.py:357
+#: checks.py:398
 #, python-format
 msgid ""
-"Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
+"POOTLE_MARKUP_FILTER is using '%s' markup, which is deprecated and will be "
+"removed in future."
 msgstr ""
 
-#: checks.py:365
-#, python-format
-msgid "POOTLE_SCORES has no %s."
+#: checks.py:401
+msgid "Convert your staticpages to Markdown and set your markup to 'markdown'."
 msgstr ""
 
-#: checks.py:366
-#, python-format
-msgid "Set %s in POOTLE_SCORES."
-msgstr ""
-
-#: checks.py:374
-#, python-format
-msgid "Invalid value for %s in POOTLE_SCORES."
-msgstr ""
-
-#: checks.py:377
-#, python-format
-msgid "Set a valid value for %s in POOTLE_SCORES."
-msgstr ""
-
-#: checks.py:397
+#: checks.py:422
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
 
-#: checks.py:399
+#: checks.py:424
 msgid "Remove the 'admin' user or change its password."
 msgstr ""
 
-#: checks.py:413
+#: checks.py:438
 msgid "Database connection uses transaction_hooks."
 msgstr ""
 
-#: checks.py:414
+#: checks.py:439
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
 
-#: checks.py:434
+#: checks.py:459
 msgid "Email server is not available."
 msgstr ""
 
-#: checks.py:435
+#: checks.py:460
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 
-#: checks.py:462
+#: checks.py:487
 msgid "Revision is missing or has an incorrect value."
 msgstr ""
 
-#: checks.py:463
+#: checks.py:488
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 
-#: checks.py:477
+#: checks.py:502
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 
-#: checks.py:479
+#: checks.py:504
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
 
-#: checks.py:483
+#: checks.py:508
 msgid "Canonical URL is set to http://localhost."
 msgstr ""
 
-#: checks.py:485
+#: checks.py:510
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
 
-#: checks.py:515
+#: checks.py:540
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr ""
 
-#: checks.py:519
+#: checks.py:544
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr ""
 
-#: checks.py:521
+#: checks.py:546
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
 
-#: checks.py:526
+#: checks.py:551
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
 
-#: checks.py:529
+#: checks.py:554
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
 msgstr ""
 
-#: checks.py:548
+#: checks.py:573
 msgid "MySQL requires time zone settings."
 msgstr ""
 
-#: checks.py:568
+#: checks.py:593
 msgid "Pootle does not yet support Python 3."
 msgstr ""
 
-#: checks.py:569 checks.py:575
+#: checks.py:594 checks.py:600
 msgid "Use a Python 2.7 virtualenv."
 msgstr ""
 
-#: checks.py:574
+#: checks.py:599
 msgid "Pootle no longer supports Python versions older than 2.7"
 msgstr ""
 
@@ -1721,36 +1744,36 @@ msgstr ""
 msgid "You do not have rights to administer Pootle."
 msgstr "Nemáte dostatočné práva na spravovanie Pootle."
 
-#: core/forms.py:117
+#: core/forms.py:151
 msgid "Time to answer has expired"
 msgstr ""
 
-#: core/forms.py:136
+#: core/forms.py:170
 msgid "Enter a number"
 msgstr ""
 
-#: core/forms.py:151
+#: core/forms.py:185
 msgid "Incorrect"
 msgstr ""
 
-#: core/forms.py:180
+#: core/forms.py:214
 msgid "With selected"
 msgstr ""
 
-#: core/forms.py:187
+#: core/forms.py:221
 #, fuzzy
 msgid "Add comment"
 msgstr "Komentáre"
 
-#: core/forms.py:193
+#: core/forms.py:227
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
 
-#: core/forms.py:213
+#: core/forms.py:247
 msgid "You must specify an action to take"
 msgstr ""
 
-#: core/forms.py:214
+#: core/forms.py:248
 msgid "A valid search field must be specified"
 msgstr ""
 
@@ -1779,6 +1802,11 @@ msgstr "Prejsť návrhy"
 #, fuzzy
 msgid "Can perform administrative tasks"
 msgstr "Správa Django"
+
+#: core/views/base.py:112
+#, fuzzy
+msgid "Entire Project"
+msgstr "Projekt"
 
 #: core/views/display.py:103 core/views/display.py:125
 #, python-format
@@ -1999,7 +2027,7 @@ msgstr "Jazyky"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:89
+#: templates/languages/admin/language_team.html:104
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "Projekty"
@@ -2603,7 +2631,7 @@ msgid "Critical issues with the translation"
 msgstr "Môže odoslať preklad"
 
 #: templates/editor/units/xhr_checks.html:5
-#: templates/languages/admin/language_team.html:108
+#: templates/languages/admin/language_team.html:123
 msgid "Critical errors:"
 msgstr ""
 
@@ -2753,43 +2781,43 @@ msgid "Language team"
 msgstr "Názov jazyka"
 
 #. Translators: This refers to the management of language team members
-#: templates/languages/admin/language_team.html:16
+#: templates/languages/admin/language_team.html:31
 msgid "Member admin"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:30
+#: templates/languages/admin/language_team.html:45
 msgid "Add team member"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:43
-#: templates/languages/admin/language_team.html:56
-#: templates/languages/admin/language_team.html:69
-#: templates/languages/admin/language_team.html:82
+#: templates/languages/admin/language_team.html:58
+#: templates/languages/admin/language_team.html:71
+#: templates/languages/admin/language_team.html:84
+#: templates/languages/admin/language_team.html:97
 #, fuzzy
 msgid "Remove selected"
 msgstr "Odstrániť používateľa"
 
-#: templates/languages/admin/language_team.html:103
+#: templates/languages/admin/language_team.html:118
 #, fuzzy
 msgid "Unit and suggestions admin"
 msgstr "Návrh %d:"
 
-#: templates/languages/admin/language_team.html:118
+#: templates/languages/admin/language_team.html:133
 #, fuzzy
 msgid "Pending suggestions:"
 msgstr "Nepotvrdené návrhy"
 
-#: templates/languages/admin/language_team.html:128
+#: templates/languages/admin/language_team.html:143
 #, fuzzy
 msgid "Total words:"
 msgstr "Slov celkom"
 
-#: templates/languages/admin/language_team.html:132
+#: templates/languages/admin/language_team.html:147
 #, fuzzy
 msgid "Translated:"
 msgstr "Preložené"
 
-#: templates/languages/admin/language_team.html:140
+#: templates/languages/admin/language_team.html:155
 #, fuzzy
 msgid "Needs work:"
 msgstr "Treba spraviť"
@@ -2845,7 +2873,7 @@ msgstr "Tu môžete pridať, upraviť a vymazať jazyky pre tento projekt."
 #: templates/projects/admin/languages.html:15
 msgid ""
 "Adding new languages from this screen is disabled. You will need to update "
-"your sources directly, and update pootle from there."
+"your sources directly, and update Pootle from there."
 msgstr ""
 
 #: templates/projects/admin/languages.html:17

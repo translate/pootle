@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:32+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2017-02-19 17:00+0000\n"
 "Last-Translator: Claude <claude@2xlibre.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -563,19 +563,15 @@ msgstr "Voir désactivés"
 msgid "Hide disabled"
 msgstr "Cacher désactivés"
 
-#: static/js/browser.js:286
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Toutes les langues"
 
-#: static/js/browser.js:292
+#: static/js/browser.js:273
 msgid "All Projects"
 msgstr "Tous les projets"
 
-#: static/js/browser.js:297
-msgid "Entire Project"
-msgstr "Projet entier"
-
-#: static/js/common.js:139
+#: static/js/common.js:142
 msgid "Updating data"
 msgstr "Mis à jour des données"
 
@@ -662,15 +658,15 @@ msgstr "Revenir à la navigation"
 msgid "Reload page"
 msgstr "Recharger la page"
 
-#: static/js/editor/app.js:2176
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "un certain utilisateur anonyme"
 
-#: static/js/editor/app.js:2178
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "quelqu'un"
 
-#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "Traductions similaires"
 
@@ -922,6 +918,9 @@ msgid ""
 msgstr ""
 "Traduit par %(fullname)s dans le projet « <span title=\"%(path)s\">"
 "%(project)s</span> »"
+
+#~ msgid "Entire Project"
+#~ msgstr "Projet entier"
 
 #~ msgid "Registered Tasks"
 #~ msgstr "Tâches enregistrées"

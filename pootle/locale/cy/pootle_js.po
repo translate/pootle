@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:32+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2017-01-19 10:23+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
@@ -551,19 +551,15 @@ msgstr "Dangos yr analluogwyd"
 msgid "Hide disabled"
 msgstr "Cuddio'r analluogwyd"
 
-#: static/js/browser.js:286
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Pob Iaith"
 
-#: static/js/browser.js:292
+#: static/js/browser.js:273
 msgid "All Projects"
 msgstr "Pob Project"
 
-#: static/js/browser.js:297
-msgid "Entire Project"
-msgstr "Y Project Cyfan"
-
-#: static/js/common.js:139
+#: static/js/common.js:142
 msgid "Updating data"
 msgstr "Diweddaru data"
 
@@ -650,15 +646,15 @@ msgstr "Mynd nôl i bori"
 msgid "Reload page"
 msgstr "Ail lwytho tudalen"
 
-#: static/js/editor/app.js:2176
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "rhyw ddefnyddiwr anhysbys"
 
-#: static/js/editor/app.js:2178
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "rhywun"
 
-#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "Cyfieithiadau tebyg"
 
@@ -907,6 +903,9 @@ msgid ""
 msgstr ""
 "Cyfieithwyd gan %(fullname)s yn &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
+
+#~ msgid "Entire Project"
+#~ msgstr "Y Project Cyfan"
 
 #~ msgid "Registered Tasks"
 #~ msgstr "Tasgau wedi eu Cofrestru"

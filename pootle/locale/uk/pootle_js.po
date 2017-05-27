@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:32+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2017-01-31 09:31+0000\n"
 "Last-Translator: Андрій <andriykopanytsia@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -559,19 +559,15 @@ msgstr "Показувати вимкнені"
 msgid "Hide disabled"
 msgstr "Приховати вимкнені"
 
-#: static/js/browser.js:286
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Усі мови"
 
-#: static/js/browser.js:292
+#: static/js/browser.js:273
 msgid "All Projects"
 msgstr "Усі проекти"
 
-#: static/js/browser.js:297
-msgid "Entire Project"
-msgstr "Увесь проект"
-
-#: static/js/common.js:139
+#: static/js/common.js:142
 msgid "Updating data"
 msgstr "Оновлення даних"
 
@@ -658,15 +654,15 @@ msgstr "Повернутися до огляду"
 msgid "Reload page"
 msgstr "Перезавантажити сторінку"
 
-#: static/js/editor/app.js:2176
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "якийсь анонімний корисувач"
 
-#: static/js/editor/app.js:2178
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "кимось"
 
-#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "Схожі переклади"
 
@@ -916,6 +912,9 @@ msgid ""
 msgstr ""
 "Перекладено %(fullname)s у проекті &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
+
+#~ msgid "Entire Project"
+#~ msgstr "Увесь проект"
 
 #~ msgid "Registered Tasks"
 #~ msgstr "Зареєстровані завдання"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:32+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2017-01-27 12:21+0000\n"
 "Last-Translator: Masahiko <chimantaea_mirabilis@yahoo.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -538,19 +538,15 @@ msgstr "無効なものを表示"
 msgid "Hide disabled"
 msgstr "無効なものを隠す"
 
-#: static/js/browser.js:286
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "すべての言語"
 
-#: static/js/browser.js:292
+#: static/js/browser.js:273
 msgid "All Projects"
 msgstr "すべてのプロジェクト"
 
-#: static/js/browser.js:297
-msgid "Entire Project"
-msgstr "プロジェクト全体"
-
-#: static/js/common.js:139
+#: static/js/common.js:142
 msgid "Updating data"
 msgstr "データを更新中"
 
@@ -635,15 +631,15 @@ msgstr "ブラウジングへ戻る"
 msgid "Reload page"
 msgstr "ページを再読み込み"
 
-#: static/js/editor/app.js:2176
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "匿名ユーザー"
 
-#: static/js/editor/app.js:2178
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "誰か"
 
-#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "類似翻訳"
 
@@ -891,6 +887,9 @@ msgid ""
 msgstr ""
 "%(fullname)s による &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; プロジェクトの翻訳"
+
+#~ msgid "Entire Project"
+#~ msgstr "プロジェクト全体"
 
 #~ msgid "Registered Tasks"
 #~ msgstr "登録タスク"

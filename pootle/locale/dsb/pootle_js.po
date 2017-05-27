@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:32+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2017-05-23 21:53+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -561,19 +561,15 @@ msgstr "Znjemóžnjone pokazaś"
 msgid "Hide disabled"
 msgstr "Znjemóžnjone schowaś"
 
-#: static/js/browser.js:286
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Wše rěcy"
 
-#: static/js/browser.js:292
+#: static/js/browser.js:273
 msgid "All Projects"
 msgstr "Wše projekty"
 
-#: static/js/browser.js:297
-msgid "Entire Project"
-msgstr "Ceły projekt"
-
-#: static/js/common.js:139
+#: static/js/common.js:142
 msgid "Updating data"
 msgstr "Daty se aktualizěruju"
 
@@ -660,15 +656,15 @@ msgstr "Rozglěduj se dalej"
 msgid "Reload page"
 msgstr "Bok znowego zacytaś"
 
-#: static/js/editor/app.js:2176
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "anonymny wužywaŕ"
 
-#: static/js/editor/app.js:2178
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "něchten"
 
-#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "Pódobne pśełožki"
 
@@ -919,3 +915,6 @@ msgid ""
 msgstr ""
 "Pśełožony wót %(fullname)s w projekśe “<span title=\"%(path)s\">%(project)s</"
 "span>”"
+
+#~ msgid "Entire Project"
+#~ msgstr "Ceły projekt"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:32+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2017-02-22 00:44+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -555,19 +555,15 @@ msgstr "Tonen uitgeschakeld"
 msgid "Hide disabled"
 msgstr "Verbergen uitgeschakeld"
 
-#: static/js/browser.js:286
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Alle talen"
 
-#: static/js/browser.js:292
+#: static/js/browser.js:273
 msgid "All Projects"
 msgstr "Alle projecten"
 
-#: static/js/browser.js:297
-msgid "Entire Project"
-msgstr "Hele project"
-
-#: static/js/common.js:139
+#: static/js/common.js:142
 msgid "Updating data"
 msgstr "Gegevens bijwerken"
 
@@ -654,15 +650,15 @@ msgstr "Terug naar bladeren"
 msgid "Reload page"
 msgstr "Pagina herladen"
 
-#: static/js/editor/app.js:2176
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "een anonieme server"
 
-#: static/js/editor/app.js:2178
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "iemand"
 
-#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "Soortgelijke vertalingen"
 
@@ -913,6 +909,9 @@ msgid ""
 msgstr ""
 "Vertaald door %(fullname)s in project '<span title=\"%(path)s\">%(project)s</"
 "span>'"
+
+#~ msgid "Entire Project"
+#~ msgstr "Hele project"
 
 #~ msgid "Registered Tasks"
 #~ msgstr "Geregistreerde taken"

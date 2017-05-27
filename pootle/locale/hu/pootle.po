@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-19 20:58+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2017-03-06 21:02+0000\n"
 "Last-Translator: kelemeng <kelemeng@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "X-Generator: Pootle 2.5.1-rc1\n"
 "X-POOTLE-MTIME: 1488834133.000000\n"
 
-#: apps/accounts/adapter.py:66
+#: apps/accounts/adapter.py:68
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
@@ -61,7 +61,7 @@ msgid "Email Address"
 msgstr "E-mail cím"
 
 #: apps/accounts/models.py:69 apps/pootle_language/models.py:35
-#: apps/pootle_project/models.py:206
+#: apps/pootle_project/models.py:204
 msgid "Full Name"
 msgstr "Teljes név"
 
@@ -251,7 +251,7 @@ msgstr "Hiba történt a fájl feltöltése közben"
 msgid "Language code does not follow the ISO convention"
 msgstr "A nyelvi kód nem követi az ISO-szabványokat"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:228
 msgid "Source Language"
 msgstr "Forrásnyelv"
 
@@ -306,7 +306,7 @@ msgstr "Jogosultságok visszavonása"
 msgid "No files in this project."
 msgstr "Nincs fájl ebben a projektben."
 
-#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:205
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Hiba van az űrlapon. Nézze meg az alábbiakban felsorolt problémákat."
 
@@ -617,60 +617,64 @@ msgstr "Átolvasó"
 msgid "Administrator"
 msgstr "Adminisztrátor"
 
-#: apps/pootle_language/forms.py:69
+#: apps/pootle_language/forms.py:76
 msgid "Administrators"
 msgstr "Adminisztrátorok"
 
-#: apps/pootle_language/forms.py:75
+#: apps/pootle_language/forms.py:82
 msgid "Reviewers"
 msgstr "Átolvasók"
 
-#: apps/pootle_language/forms.py:80
+#: apps/pootle_language/forms.py:87
 msgid "Submitters"
 msgstr "Beküldők"
 
-#: apps/pootle_language/forms.py:85
+#: apps/pootle_language/forms.py:92
 msgid "Members"
 msgstr "Tagok"
 
-#: apps/pootle_language/forms.py:89
+#: apps/pootle_language/forms.py:96
 msgid "New member"
 msgstr "Új tag"
 
-#: apps/pootle_language/forms.py:90
+#: apps/pootle_language/forms.py:97
 msgid "Add a user to this team"
 msgstr "Felhasználó hozzáadása a csapathoz"
 
-#: apps/pootle_language/forms.py:97
+#: apps/pootle_language/forms.py:103
+msgid "Search for users to add"
+msgstr ""
+
+#: apps/pootle_language/forms.py:106
 msgid "Role"
 msgstr "Szerep"
 
-#: apps/pootle_language/forms.py:128
+#: apps/pootle_language/forms.py:137
 msgid "Role is required when adding a new member"
 msgstr "A szerep kötelező új tag hozzáadásánál"
 
-#: apps/pootle_language/forms.py:154 core/forms.py:184
+#: apps/pootle_language/forms.py:163 core/forms.py:218
 msgid "Reject"
 msgstr "Elutasítás"
 
-#: apps/pootle_language/forms.py:155 core/forms.py:185
+#: apps/pootle_language/forms.py:164 core/forms.py:219
 msgid "Accept"
 msgstr "Elfogadás"
 
-#: apps/pootle_language/forms.py:157
+#: apps/pootle_language/forms.py:166
 msgid "Filter by suggester"
 msgstr "Szűrés javaslattevőre"
 
-#: apps/pootle_language/forms.py:163
+#: apps/pootle_language/forms.py:172
 msgid "Filter by state"
 msgstr "Szűrés állapotra"
 
-#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:182 apps/pootle_language/views.py:216
 #: core/browser.py:26
 msgid "Project"
 msgstr "Projekt"
 
-#: apps/pootle_language/models.py:28 apps/pootle_project/models.py:201
+#: apps/pootle_language/models.py:28 apps/pootle_project/models.py:199
 msgid "Code"
 msgstr "Kód"
 
@@ -718,31 +722,31 @@ msgstr "Többes alakok száma"
 msgid "Plural Equation"
 msgstr "Többesszám-képlet"
 
-#: apps/pootle_language/views.py:209
+#: apps/pootle_language/views.py:210
 msgid "Unit"
 msgstr "Egység"
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:58
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:58
 msgid "State"
 msgstr "Állapot"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:56
+#: apps/pootle_language/views.py:212 apps/pootle_statistics/models.py:56
 msgid "Source"
 msgstr "Forrás"
 
-#: apps/pootle_language/views.py:212
+#: apps/pootle_language/views.py:213
 msgid "Suggestion"
 msgstr "Javaslat"
 
-#: apps/pootle_language/views.py:213
+#: apps/pootle_language/views.py:214
 msgid "Suggested by"
 msgstr "Javasolta"
 
-#: apps/pootle_language/views.py:214
+#: apps/pootle_language/views.py:215
 msgid "Suggested at"
 msgstr "Javasolva"
 
-#: apps/pootle_language/views.py:236
+#: apps/pootle_language/views.py:237
 #, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
@@ -750,7 +754,7 @@ msgstr[0] "%s javaslat elutasítva megjegyzéssel. A felhasználó értesítve l
 msgstr[1] ""
 "%s javaslat elutasítva megjegyzéssel. A felhasználók értesítve lesznek."
 
-#: apps/pootle_language/views.py:241
+#: apps/pootle_language/views.py:242
 #, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
@@ -758,14 +762,14 @@ msgstr[0] "%s javaslat elfogadva megjegyzéssel. A felhasználó értesítve les
 msgstr[1] ""
 "%s javaslat elfogadva megjegyzéssel. A felhasználók értesítve lesznek."
 
-#: apps/pootle_language/views.py:246
+#: apps/pootle_language/views.py:247
 #, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
 msgstr[0] "%s javaslat elutasítva"
 msgstr[1] "%s javaslat elutasítva"
 
-#: apps/pootle_language/views.py:251
+#: apps/pootle_language/views.py:252
 #, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
@@ -930,22 +934,22 @@ msgstr "Fordítás"
 msgid "Select one or more languages"
 msgstr "Válasszon ki legalább egy nyelvet"
 
-#: apps/pootle_project/forms.py:57 core/browser.py:31
+#: apps/pootle_project/forms.py:58 core/browser.py:31
 msgid "Language"
 msgstr "Nyelv"
 
-#: apps/pootle_project/models.py:179
+#: apps/pootle_project/models.py:177
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "„%(code)s” nem használható projektkódként"
 
 #. Translators: this refers to the project quality checker
-#: apps/pootle_project/models.py:188
+#: apps/pootle_project/models.py:186
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "„%(code)s” nem használható projektellenőrzőként"
 
-#: apps/pootle_project/models.py:195
+#: apps/pootle_project/models.py:193
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -953,53 +957,53 @@ msgstr ""
 "A projekt rövid kódja, amely csak ASCII karaktereket, számokat és aláhúzást "
 "(_) tartalmazhat."
 
-#: apps/pootle_project/models.py:213
+#: apps/pootle_project/models.py:211
 msgid "Quality Checks"
 msgstr "Minőség-ellenőrzés"
 
-#: apps/pootle_project/models.py:219
+#: apps/pootle_project/models.py:217
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
 msgstr "A GNU/nem GNU fájlelrendezések automatikus felismerése (lassabb)"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:218
 msgid "GNU style: files named by language code"
 msgstr "GNU-típus: a fájlok elnevezése nyelvi kód szerint"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:219
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Nem-GNU: minden nyelv külön könyvtárban van"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:220
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr "A Pootle FS kezelheti a fájlrendszereket (kísérleti)"
 
-#: apps/pootle_project/models.py:226
+#: apps/pootle_project/models.py:224
 msgid "Project Tree Style"
 msgstr "Projektfa típusa"
 
-#: apps/pootle_project/models.py:234
+#: apps/pootle_project/models.py:232
 msgid "Ignore Files"
 msgstr "Kihagyott fájlok"
 
-#: apps/pootle_project/models.py:240
+#: apps/pootle_project/models.py:238
 msgid "Errors Report Email"
 msgstr "Hibajelentési e-mail"
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:239
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Egy e-mail cím, ahova a szövegekkel kapcsolatos hibákat be lehet jelenteni."
 
 #. Translators: This is the URL prefix to search for context screenshots
-#: apps/pootle_project/models.py:246
+#: apps/pootle_project/models.py:244
 msgid "Screenshot Search Prefix"
 msgstr "Képernyőkép keresési előtag"
 
-#: apps/pootle_project/models.py:251
+#: apps/pootle_project/models.py:249
 msgid "Disabled"
 msgstr "Kikapcsolva"
 
-#: apps/pootle_project/views.py:266
+#: apps/pootle_project/views.py:295
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
@@ -1008,7 +1012,7 @@ msgstr ""
 "A fordítási projekt (%s) létrejött. A fájlok frissítése a fájlsablonokból "
 "folyamatban."
 
-#: apps/pootle_project/views.py:273
+#: apps/pootle_project/views.py:302
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "A fordítási projekt (%s) törölve"
@@ -1026,7 +1030,7 @@ msgstr "Hozzászólás"
 msgid "Check"
 msgstr "Ellenőrzések"
 
-#: apps/pootle_store/abstracts.py:215 apps/pootle_store/abstracts.py:222
+#: apps/pootle_store/abstracts.py:221 apps/pootle_store/abstracts.py:228
 msgid "Path"
 msgstr "Elérési útvonal"
 
@@ -1473,31 +1477,116 @@ msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
 "A DEFAULT_FROM_EMAIL a következő alapértelmezett beállítást használja: %r."
 
-#: checks.py:270
+#: checks.py:272
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
+msgstr "POOTLE_TM_SERVER['%s']: nincs INDEX_NAME."
+
+#: checks.py:273
+#, python-format
+msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
+msgstr "Állítson be egy INDEX_NAME értéket ehhez: POOTLE_TM_SERVER['%s']."
+
+#: checks.py:279
+#, python-format
+msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
+msgstr "Többször szereplő „%s” INDEX_NAME a POOTLE_TM_SERVER-ben."
+
+#: checks.py:281
+msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
+msgstr ""
+"Állítson be másik INDEX_NAME értéket minden kiszolgálóhoz a POOTLE_TM_SERVER-"
+"ben."
+
+#: checks.py:291
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
+msgstr "POOTLE_TM_SERVER['%s']: nincs ENGINE."
+
+#: checks.py:292
+#, python-format
+msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
+msgstr "Állítsa be az ENGINE értékét ehhez: POOTLE_TM_SERVER['%s']."
+
+#: checks.py:299
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no HOST."
+msgstr "POOTLE_TM_SERVER['%s']: nincs HOST."
+
+#: checks.py:300
+#, python-format
+msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
+msgstr "Állítsa be a HOST értékét ehhez: POOTLE_TM_SERVER['%s']."
+
+#: checks.py:307
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no PORT."
+msgstr "POOTLE_TM_SERVER['%s']: nincs PORT."
+
+#: checks.py:308
+#, python-format
+msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
+msgstr "Állítsa be a PORT értékét ehhez: POOTLE_TM_SERVER['%s']."
+
+#: checks.py:317
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
+msgstr "POOTLE_TM_SERVER['%s']: a WEIGHT kisebb mint 0.0 vagy nagyobb mint 1.0"
+
+#: checks.py:319
+#, python-format
+msgid ""
+"Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
+msgstr ""
+"Állítson be egy 0.0 és 1.0 közti (ezeket is beleértve) WEIGHT értéket ehhez: "
+"POOTLE_TM_SERVER['%s']."
+
+#: checks.py:327
+#, fuzzy, python-format
+msgid "POOTLE_SCORES has no %s."
+msgstr "POOTLE_SCORE_COEFFICIENTS: nincs %s."
+
+#: checks.py:328
+#, fuzzy, python-format
+msgid "Set %s in POOTLE_SCORES."
+msgstr "Állítsa be ezt: %s a POOTLE_SCORE_COEFFICIENTS-ben."
+
+#: checks.py:336
+#, fuzzy, python-format
+msgid "Invalid value for %s in POOTLE_SCORES."
+msgstr "Érvénytelen %s érték a POOTLE_SCORE_COEFFICIENTS-ben."
+
+#: checks.py:339
+#, fuzzy, python-format
+msgid "Set a valid value for %s in POOTLE_SCORES."
+msgstr ""
+"Állítson be érvényes értéket ehhez: %s a POOTLE_SCORE_COEFFICIENTS-ben."
+
+#: checks.py:355
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "A POOTLE_MARKUP_FILTER hiányzik."
 
-#: checks.py:271
+#: checks.py:356
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr "Állítsa be a POOTLE_MARKUP_FILTER értékét."
 
-#: checks.py:276
+#: checks.py:361
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Érvénytelen érték a POOTLE_MARKUP_FILTER-ben."
 
-#: checks.py:277
+#: checks.py:362
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr "Állítson be érvényes értéket a POOTLE_MARKUP_FILTER-hez."
 
-#: checks.py:291
+#: checks.py:378
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr "Érvénytelen jelölés a POOTLE_MARKUP_FILTER-ben."
 
-#: checks.py:292
+#: checks.py:379
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr "Állítson be érvényes jelölést a POOTLE_MARKUP_FILTER-ben."
 
-#: checks.py:297
+#: checks.py:384
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
@@ -1506,108 +1595,45 @@ msgstr ""
 "A POOTLE_MARKUP_FILTER beállítva „%s” jelölésre, de az ezt biztosító csomag "
 "nem található."
 
-#: checks.py:299
+#: checks.py:386
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Telepítse a csomagot, vagy módosítsa a POOTLE_MARKUP_FILTER értékét."
 
-#: checks.py:310
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr "POOTLE_TM_SERVER['%s']: nincs INDEX_NAME."
+#: checks.py:392
+#, fuzzy
+msgid "POOTLE_MARKUP_FILTER set to 'None' is deprecated."
+msgstr "A POOTLE_MARKUP_FILTER hiányzik."
 
-#: checks.py:311
-#, python-format
-msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr "Állítson be egy INDEX_NAME értéket ehhez: POOTLE_TM_SERVER['%s']."
-
-#: checks.py:317
-#, python-format
-msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr "Többször szereplő „%s” INDEX_NAME a POOTLE_TM_SERVER-ben."
-
-#: checks.py:319
-msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
+#: checks.py:393
+msgid "Set your markup to 'html' explicitly."
 msgstr ""
-"Állítson be másik INDEX_NAME értéket minden kiszolgálóhoz a POOTLE_TM_SERVER-"
-"ben."
 
-#: checks.py:329
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr "POOTLE_TM_SERVER['%s']: nincs ENGINE."
-
-#: checks.py:330
-#, python-format
-msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr "Állítsa be az ENGINE értékét ehhez: POOTLE_TM_SERVER['%s']."
-
-#: checks.py:337
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr "POOTLE_TM_SERVER['%s']: nincs HOST."
-
-#: checks.py:338
-#, python-format
-msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr "Állítsa be a HOST értékét ehhez: POOTLE_TM_SERVER['%s']."
-
-#: checks.py:345
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr "POOTLE_TM_SERVER['%s']: nincs PORT."
-
-#: checks.py:346
-#, python-format
-msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr "Állítsa be a PORT értékét ehhez: POOTLE_TM_SERVER['%s']."
-
-#: checks.py:355
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
-msgstr "POOTLE_TM_SERVER['%s']: a WEIGHT kisebb mint 0.0 vagy nagyobb mint 1.0"
-
-#: checks.py:357
-#, python-format
+#: checks.py:398
+#, fuzzy, python-format
 msgid ""
-"Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
+"POOTLE_MARKUP_FILTER is using '%s' markup, which is deprecated and will be "
+"removed in future."
 msgstr ""
-"Állítson be egy 0.0 és 1.0 közti (ezeket is beleértve) WEIGHT értéket ehhez: "
-"POOTLE_TM_SERVER['%s']."
+"A POOTLE_MARKUP_FILTER beállítva „%s” jelölésre, de az ezt biztosító csomag "
+"nem található."
 
-#: checks.py:365
-#, fuzzy, python-format
-msgid "POOTLE_SCORES has no %s."
-msgstr "POOTLE_SCORE_COEFFICIENTS: nincs %s."
-
-#: checks.py:366
-#, fuzzy, python-format
-msgid "Set %s in POOTLE_SCORES."
-msgstr "Állítsa be ezt: %s a POOTLE_SCORE_COEFFICIENTS-ben."
-
-#: checks.py:374
-#, fuzzy, python-format
-msgid "Invalid value for %s in POOTLE_SCORES."
-msgstr "Érvénytelen %s érték a POOTLE_SCORE_COEFFICIENTS-ben."
-
-#: checks.py:377
-#, fuzzy, python-format
-msgid "Set a valid value for %s in POOTLE_SCORES."
+#: checks.py:401
+msgid "Convert your staticpages to Markdown and set your markup to 'markdown'."
 msgstr ""
-"Állítson be érvényes értéket ehhez: %s a POOTLE_SCORE_COEFFICIENTS-ben."
 
-#: checks.py:397
+#: checks.py:422
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr "Az alapértelmezett „admin” felhasználó jelszava még mindig „admin”."
 
-#: checks.py:399
+#: checks.py:424
 msgid "Remove the 'admin' user or change its password."
 msgstr "Törölje az „admin” felhasználót, vagy változtassa meg a jelszavát."
 
-#: checks.py:413
+#: checks.py:438
 msgid "Database connection uses transaction_hooks."
 msgstr "Az adatbázis-kapcsolat transaction_hooks modult használ."
 
-#: checks.py:414
+#: checks.py:439
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
@@ -1615,32 +1641,32 @@ msgstr ""
 "Állítsa be a DATABASES['default']['ENGINE'] értékét a django.db.backends "
 "egyik Django háttérprogramjára."
 
-#: checks.py:434
+#: checks.py:459
 msgid "Email server is not available."
 msgstr "Az e-mail kiszolgáló nem érhető el."
 
-#: checks.py:435
+#: checks.py:460
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 "Ellenőrizze az e-mail beállításokat, és győződjön meg róla, hogy az e-mail "
 "kiszolgáló működik."
 
-#: checks.py:462
+#: checks.py:487
 msgid "Revision is missing or has an incorrect value."
 msgstr "A revision hiányzik, vagy értéke helytelen."
 
-#: checks.py:463
+#: checks.py:488
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 "Futtassa a „revision --restore” parancsot a revíziószámláló alaphelyzetbe "
 "állításához."
 
-#: checks.py:477
+#: checks.py:502
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 "Nincs megadva kanonikus URL és az alapértelmezett oldal az example.com."
 
-#: checks.py:479
+#: checks.py:504
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
@@ -1648,11 +1674,11 @@ msgstr ""
 "Állítsa be a „POOTLE_CANONICAL_URL”-t a beállításokban, vagy frissítse az "
 "alapértelmezett oldalt, ha a django.contrib.sites-t használja."
 
-#: checks.py:483
+#: checks.py:508
 msgid "Canonical URL is set to http://localhost."
 msgstr "A kanonikus URL a http://localhost értékre van beállítva."
 
-#: checks.py:485
+#: checks.py:510
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
@@ -1660,16 +1686,16 @@ msgstr ""
 "Állítsa be a „POOTLE_CANONICAL_URL”-t az oldalhoz megfelelő értékre, vagy "
 "hagyja üresen, ha a „django.contrib.sites”-t használja."
 
-#: checks.py:515
+#: checks.py:540
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "A POOTLE_FS_WORKING_PATH nincs beállítva."
 
-#: checks.py:519
+#: checks.py:544
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr "A POOTLE_FS_WORKING_PATH által mutatott útvonal (%s) nem létezik."
 
-#: checks.py:521
+#: checks.py:546
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
@@ -1677,7 +1703,7 @@ msgstr ""
 "Hozza létre a „POOTLE_FS_WORKING_PATH” által mutatott könyvtárat, vagy "
 "módosítsa a beállítást."
 
-#: checks.py:526
+#: checks.py:551
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
@@ -1685,7 +1711,7 @@ msgstr ""
 "A POOTLE_FS_WORKING_PATH által mutatott útvonalat (%s) nem tudja írni a "
 "Pootle."
 
-#: checks.py:529
+#: checks.py:554
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
@@ -1693,19 +1719,19 @@ msgstr ""
 "Adjon írási jogosultságot a „POOTLE_FS_WORKING_PATH” könyvtárhoz, vagy "
 "módosítsa a beállítást."
 
-#: checks.py:548
+#: checks.py:573
 msgid "MySQL requires time zone settings."
 msgstr "A MySQL időzóna-beállításokat igényel."
 
-#: checks.py:568
+#: checks.py:593
 msgid "Pootle does not yet support Python 3."
 msgstr "A Pootle még nem támogatja a Python 3-at."
 
-#: checks.py:569 checks.py:575
+#: checks.py:594 checks.py:600
 msgid "Use a Python 2.7 virtualenv."
 msgstr "Használjon Python 2.7-es virtualenv-et."
 
-#: checks.py:574
+#: checks.py:599
 msgid "Pootle no longer supports Python versions older than 2.7"
 msgstr "A Pootle már nem támogatja a 2.7-nél régebbi Python verziókat"
 
@@ -1753,37 +1779,37 @@ msgstr "Vissza a szülőmappába"
 msgid "You do not have rights to administer Pootle."
 msgstr "Nincs joga a Pootle-rendszer adminisztrációjához."
 
-#: core/forms.py:117
+#: core/forms.py:151
 msgid "Time to answer has expired"
 msgstr "A válaszra szánt idő lejárt"
 
-#: core/forms.py:136
+#: core/forms.py:170
 msgid "Enter a number"
 msgstr "Írja be a számot"
 
-#: core/forms.py:151
+#: core/forms.py:185
 msgid "Incorrect"
 msgstr "Hibás"
 
-#: core/forms.py:180
+#: core/forms.py:214
 msgid "With selected"
 msgstr "A kiválasztottal"
 
-#: core/forms.py:187
+#: core/forms.py:221
 msgid "Add comment"
 msgstr "Megjegyzés hozzáadása"
 
-#: core/forms.py:193
+#: core/forms.py:227
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
 "Szűrőfeltételekre illeszkedő összes elem kijelölése, a nem láthatókat is "
 "beleértve"
 
-#: core/forms.py:213
+#: core/forms.py:247
 msgid "You must specify an action to take"
 msgstr "Meg kell adnia egy végrehajtandó műveletet"
 
-#: core/forms.py:214
+#: core/forms.py:248
 msgid "A valid search field must be specified"
 msgstr "Meg kell adni egy érvényes keresési mezőt"
 
@@ -1810,6 +1836,11 @@ msgstr "Lektorálhat javaslatokat"
 #: core/initdb.py:155
 msgid "Can perform administrative tasks"
 msgstr "Végezhet adminisztrációs feladatokat"
+
+#: core/views/base.py:112
+#, fuzzy
+msgid "Entire Project"
+msgstr "Aktív projektek"
 
 #: core/views/display.py:103 core/views/display.py:125
 #, python-format
@@ -2027,7 +2058,7 @@ msgstr "Nyelvek"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:89
+#: templates/languages/admin/language_team.html:104
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "Projektek"
@@ -2632,7 +2663,7 @@ msgid "Critical issues with the translation"
 msgstr "Kritikus problémák a fordításban"
 
 #: templates/editor/units/xhr_checks.html:5
-#: templates/languages/admin/language_team.html:108
+#: templates/languages/admin/language_team.html:123
 msgid "Critical errors:"
 msgstr "Kritikus hibák:"
 
@@ -2783,38 +2814,38 @@ msgid "Language team"
 msgstr "Nyelvi csapat"
 
 #. Translators: This refers to the management of language team members
-#: templates/languages/admin/language_team.html:16
+#: templates/languages/admin/language_team.html:31
 msgid "Member admin"
 msgstr "Tag adminisztrátor"
 
-#: templates/languages/admin/language_team.html:30
+#: templates/languages/admin/language_team.html:45
 msgid "Add team member"
 msgstr "Csapattag hozzáadása"
 
-#: templates/languages/admin/language_team.html:43
-#: templates/languages/admin/language_team.html:56
-#: templates/languages/admin/language_team.html:69
-#: templates/languages/admin/language_team.html:82
+#: templates/languages/admin/language_team.html:58
+#: templates/languages/admin/language_team.html:71
+#: templates/languages/admin/language_team.html:84
+#: templates/languages/admin/language_team.html:97
 msgid "Remove selected"
 msgstr "Kijelölt eltávolítása"
 
-#: templates/languages/admin/language_team.html:103
+#: templates/languages/admin/language_team.html:118
 msgid "Unit and suggestions admin"
 msgstr "Egység és javaslat adminisztrátor"
 
-#: templates/languages/admin/language_team.html:118
+#: templates/languages/admin/language_team.html:133
 msgid "Pending suggestions:"
 msgstr "Függőben lévő javaslatok:"
 
-#: templates/languages/admin/language_team.html:128
+#: templates/languages/admin/language_team.html:143
 msgid "Total words:"
 msgstr "Összes szó:"
 
-#: templates/languages/admin/language_team.html:132
+#: templates/languages/admin/language_team.html:147
 msgid "Translated:"
 msgstr "Lefordítva:"
 
-#: templates/languages/admin/language_team.html:140
+#: templates/languages/admin/language_team.html:155
 msgid "Needs work:"
 msgstr "Munka szükséges:"
 
@@ -2875,7 +2906,7 @@ msgstr ""
 #: templates/projects/admin/languages.html:15
 msgid ""
 "Adding new languages from this screen is disabled. You will need to update "
-"your sources directly, and update pootle from there."
+"your sources directly, and update Pootle from there."
 msgstr ""
 
 #: templates/projects/admin/languages.html:17
@@ -3447,9 +3478,6 @@ msgstr "Legaktívabb közreműködők az elmúlt 30 napban"
 
 #~ msgid "Files"
 #~ msgstr "Fájlok"
-
-#~ msgid "Active projects"
-#~ msgstr "Aktív projektek"
 
 #~ msgid "Active languages"
 #~ msgstr "Aktív nyelvek"

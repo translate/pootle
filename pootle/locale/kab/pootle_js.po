@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:32+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2017-02-23 12:53+0000\n"
 "Last-Translator: nacyabrous <nacirabrous@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -546,19 +546,15 @@ msgstr "Wali wid yensan"
 msgid "Hide disabled"
 msgstr "ffer wid yensan"
 
-#: static/js/browser.js:286
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Akk tutlayin"
 
-#: static/js/browser.js:292
+#: static/js/browser.js:273
 msgid "All Projects"
 msgstr "Akk isenfaṛen"
 
-#: static/js/browser.js:297
-msgid "Entire Project"
-msgstr "Akk asenfar"
-
-#: static/js/common.js:139
+#: static/js/common.js:142
 msgid "Updating data"
 msgstr "Aleqqem n isefka"
 
@@ -645,15 +641,15 @@ msgstr "Uɣal ar tunigin"
 msgid "Reload page"
 msgstr "Ales asali n usebter"
 
-#: static/js/editor/app.js:2176
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "yiwen n useqdac udrig"
 
-#: static/js/editor/app.js:2178
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "yiwen n useqdac"
 
-#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "Tisuqilin yemgaraden"
 
@@ -901,3 +897,6 @@ msgid ""
 msgstr ""
 "Iseqel-it %(fullname)s deg usenfaṛ “<span title=\"%(path)s\">%(project)s</"
 "span>”"
+
+#~ msgid "Entire Project"
+#~ msgstr "Akk asenfar"

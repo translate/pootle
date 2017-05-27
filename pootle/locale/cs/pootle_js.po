@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:32+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2017-02-09 17:01+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -554,19 +554,15 @@ msgstr "Zobrazit vypnuté"
 msgid "Hide disabled"
 msgstr "Skrýt vypnuté"
 
-#: static/js/browser.js:286
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Všechny jazyky"
 
-#: static/js/browser.js:292
+#: static/js/browser.js:273
 msgid "All Projects"
 msgstr "Všechny projekty"
 
-#: static/js/browser.js:297
-msgid "Entire Project"
-msgstr "Celý projekt"
-
-#: static/js/common.js:139
+#: static/js/common.js:142
 msgid "Updating data"
 msgstr "Probíhá aktualizace dat"
 
@@ -653,15 +649,15 @@ msgstr "Zpět na procházení"
 msgid "Reload page"
 msgstr "Znovu načíst stránku"
 
-#: static/js/editor/app.js:2176
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "anonymní uživatel"
 
-#: static/js/editor/app.js:2178
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "uživatel"
 
-#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "Obdobné překlady"
 
@@ -913,6 +909,9 @@ msgid ""
 msgstr ""
 "Přeložil %(fullname)s v projektu „<span title=\"%(path)s\">%(project)s</"
 "span>“"
+
+#~ msgid "Entire Project"
+#~ msgstr "Celý projekt"
 
 #~ msgid "Registered Tasks"
 #~ msgstr "Zaregistrované úlohy"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:32+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2017-05-18 15:45+0000\n"
 "Last-Translator: Seanán <seananoc@gmail.com>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -570,19 +570,15 @@ msgstr "Taispeáin díchumasaithe"
 msgid "Hide disabled"
 msgstr "Folaigh díchumasaithe"
 
-#: static/js/browser.js:286
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Gach Teanga"
 
-#: static/js/browser.js:292
+#: static/js/browser.js:273
 msgid "All Projects"
 msgstr "Gach Tionscadal"
 
-#: static/js/browser.js:297
-msgid "Entire Project"
-msgstr "An Tionscadal Ar Fad"
-
-#: static/js/common.js:139
+#: static/js/common.js:142
 msgid "Updating data"
 msgstr "Sonraí á nuashonrú"
 
@@ -670,15 +666,15 @@ msgstr "Brabhsáil"
 msgid "Reload page"
 msgstr "Athluchtaigh an leathanach"
 
-#: static/js/editor/app.js:2176
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "úsáideoir éigin gan ainm"
 
-#: static/js/editor/app.js:2178
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "duine éigin"
 
-#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "Aistriúcháin cosúil leis seo"
 
@@ -932,6 +928,9 @@ msgid ""
 msgstr ""
 "Aistrithe ag %(fullname)s sa tionscadal “<span title=\"%(path)s\">"
 "%(project)s</span>”"
+
+#~ msgid "Entire Project"
+#~ msgstr "An Tionscadal Ar Fad"
 
 #~ msgid "Registered Tasks"
 #~ msgstr "Tascanna Cláraithe"

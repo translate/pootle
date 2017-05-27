@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:32+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2017-02-08 12:45+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -562,19 +562,15 @@ msgstr "اعرض المعطّلة"
 msgid "Hide disabled"
 msgstr "أخفِ المعطّلة"
 
-#: static/js/browser.js:286
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "كلّ اللغات"
 
-#: static/js/browser.js:292
+#: static/js/browser.js:273
 msgid "All Projects"
 msgstr "كلّ المشاريع"
 
-#: static/js/browser.js:297
-msgid "Entire Project"
-msgstr "المشروع بالكامل"
-
-#: static/js/common.js:139
+#: static/js/common.js:142
 msgid "Updating data"
 msgstr "يحدّث البيانات"
 
@@ -660,15 +656,15 @@ msgstr "ارجع إلى التّصفّح"
 msgid "Reload page"
 msgstr "أعد تحميل الصّفحة"
 
-#: static/js/editor/app.js:2176
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "مستخدم ما مجهول"
 
-#: static/js/editor/app.js:2178
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "أحدهم"
 
-#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "التّرجمات المشابهة"
 
@@ -917,6 +913,9 @@ msgid ""
 msgstr ""
 "ترجمها %(fullname)s في مشروع ”&rdquo;<span title=\"%(path)s\">%(project)s</"
 "span>&ldquo;“"
+
+#~ msgid "Entire Project"
+#~ msgstr "المشروع بالكامل"
 
 #~ msgid "Registered Tasks"
 #~ msgstr "المهامّ المسجّلة"

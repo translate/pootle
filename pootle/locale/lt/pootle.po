@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-19 20:58+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2015-07-12 15:59+0000\n"
 "Last-Translator: Rimas <rq@akl.lt>\n"
 "Language-Team: Lithuanian <komp_lt@konferencijos.lt>\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Generated-By: pygettext.py 1.1\n"
 "X-POOTLE-MTIME: 1436716741.000000\n"
 
-#: apps/accounts/adapter.py:66
+#: apps/accounts/adapter.py:68
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
@@ -65,7 +65,7 @@ msgid "Email Address"
 msgstr "El. pašto adresas"
 
 #: apps/accounts/models.py:69 apps/pootle_language/models.py:35
-#: apps/pootle_project/models.py:206
+#: apps/pootle_project/models.py:204
 msgid "Full Name"
 msgstr "Vardas, Pavardė"
 
@@ -261,7 +261,7 @@ msgstr "Gali perrašyti vertimus esančiais įkeliamame faile"
 msgid "Language code does not follow the ISO convention"
 msgstr "Šis kalbos kodas neatitinka ISO standarto"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:228
 msgid "Source Language"
 msgstr "Originalo kalba"
 
@@ -315,7 +315,7 @@ msgstr "Atimti teises"
 msgid "No files in this project."
 msgstr "Šiame projekte nėra failų."
 
-#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:176
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:205
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Formos duomenyse aptikta klaidų. Išspręskite nurodytas problemas."
 
@@ -634,67 +634,71 @@ msgstr "Peržiūra"
 msgid "Administrator"
 msgstr "Administravimas"
 
-#: apps/pootle_language/forms.py:69
+#: apps/pootle_language/forms.py:76
 #, fuzzy
 msgid "Administrators"
 msgstr "Administravimas"
 
-#: apps/pootle_language/forms.py:75
+#: apps/pootle_language/forms.py:82
 #, fuzzy
 msgid "Reviewers"
 msgstr "Peržiūrėti pasiūlymai"
 
-#: apps/pootle_language/forms.py:80
+#: apps/pootle_language/forms.py:87
 #, fuzzy
 msgid "Submitters"
 msgstr "Pateikti"
 
-#: apps/pootle_language/forms.py:85
+#: apps/pootle_language/forms.py:92
 #, fuzzy
 msgid "Members"
 msgstr "Skaičiai"
 
-#: apps/pootle_language/forms.py:89
+#: apps/pootle_language/forms.py:96
 #, fuzzy
 msgid "New member"
 msgstr "Skaičiai"
 
-#: apps/pootle_language/forms.py:90
+#: apps/pootle_language/forms.py:97
 msgid "Add a user to this team"
 msgstr ""
 
-#: apps/pootle_language/forms.py:97
+#: apps/pootle_language/forms.py:103
+msgid "Search for users to add"
+msgstr ""
+
+#: apps/pootle_language/forms.py:106
 msgid "Role"
 msgstr ""
 
-#: apps/pootle_language/forms.py:128
+#: apps/pootle_language/forms.py:137
 msgid "Role is required when adding a new member"
 msgstr ""
 
-#: apps/pootle_language/forms.py:154 core/forms.py:184
+#: apps/pootle_language/forms.py:163 core/forms.py:218
 msgid "Reject"
 msgstr "Atmesti"
 
-#: apps/pootle_language/forms.py:155 core/forms.py:185
+#: apps/pootle_language/forms.py:164 core/forms.py:219
 msgid "Accept"
 msgstr "Patvirtinti"
 
-#: apps/pootle_language/forms.py:157
+#: apps/pootle_language/forms.py:166
 #, fuzzy
 msgid "Filter by suggester"
 msgstr "Naudotojų pasiūlymai"
 
-#: apps/pootle_language/forms.py:163
+#: apps/pootle_language/forms.py:172
 #, fuzzy
 msgid "Filter by state"
 msgstr "Filtruoti"
 
-#: apps/pootle_language/forms.py:173 apps/pootle_language/views.py:215
+#: apps/pootle_language/forms.py:182 apps/pootle_language/views.py:216
 #: core/browser.py:26
 msgid "Project"
 msgstr "Projektas"
 
-#: apps/pootle_language/models.py:28 apps/pootle_project/models.py:201
+#: apps/pootle_language/models.py:28 apps/pootle_project/models.py:199
 msgid "Code"
 msgstr "Kodas"
 
@@ -742,34 +746,34 @@ msgstr "Daugiskaitinių formų skaičius"
 msgid "Plural Equation"
 msgstr "Daugiskaitos lygtis"
 
-#: apps/pootle_language/views.py:209
+#: apps/pootle_language/views.py:210
 msgid "Unit"
 msgstr ""
 
-#: apps/pootle_language/views.py:210 apps/pootle_statistics/models.py:58
+#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:58
 msgid "State"
 msgstr "Būsena"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:56
+#: apps/pootle_language/views.py:212 apps/pootle_statistics/models.py:56
 msgid "Source"
 msgstr "Originalas"
 
-#: apps/pootle_language/views.py:212
+#: apps/pootle_language/views.py:213
 #, fuzzy
 msgid "Suggestion"
 msgstr "Pateikti pasiūlymai"
 
-#: apps/pootle_language/views.py:213
+#: apps/pootle_language/views.py:214
 #, fuzzy
 msgid "Suggested by"
 msgstr "Pasiūlyti"
 
-#: apps/pootle_language/views.py:214
+#: apps/pootle_language/views.py:215
 #, fuzzy
 msgid "Suggested at"
 msgstr "Pasiūlyti"
 
-#: apps/pootle_language/views.py:236
+#: apps/pootle_language/views.py:237
 #, fuzzy, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
@@ -777,7 +781,7 @@ msgstr[0] "Atmesti pasiūlymą"
 msgstr[1] "Atmesti pasiūlymą"
 msgstr[2] "Atmesti pasiūlymą"
 
-#: apps/pootle_language/views.py:241
+#: apps/pootle_language/views.py:242
 #, fuzzy, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
@@ -785,7 +789,7 @@ msgstr[0] "Priimti pasiūlymą"
 msgstr[1] "Priimti pasiūlymą"
 msgstr[2] "Priimti pasiūlymą"
 
-#: apps/pootle_language/views.py:246
+#: apps/pootle_language/views.py:247
 #, fuzzy, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
@@ -793,7 +797,7 @@ msgstr[0] "Atmesti pasiūlymą"
 msgstr[1] "Atmesti pasiūlymą"
 msgstr[2] "Atmesti pasiūlymą"
 
-#: apps/pootle_language/views.py:251
+#: apps/pootle_language/views.py:252
 #, fuzzy, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
@@ -954,22 +958,22 @@ msgstr "Vertimas"
 msgid "Select one or more languages"
 msgstr "Pasirinkite vieną ar daugiau kalbų"
 
-#: apps/pootle_project/forms.py:57 core/browser.py:31
+#: apps/pootle_project/forms.py:58 core/browser.py:31
 msgid "Language"
 msgstr "Kalba"
 
-#: apps/pootle_project/models.py:179
+#: apps/pootle_project/models.py:177
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "Žodis „%s“ negali būti naudojamas kaip projekto kodas"
 
 #. Translators: this refers to the project quality checker
-#: apps/pootle_project/models.py:188
+#: apps/pootle_project/models.py:186
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "Žodis „%s“ negali būti naudojamas kaip projekto kodas"
 
-#: apps/pootle_project/models.py:195
+#: apps/pootle_project/models.py:193
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -977,40 +981,40 @@ msgstr ""
 "Trumpas projekto kodinis pavadinimas. Jį gali sudaryti tik lotyniškos raidės "
 "be diakritinių ženklų, skaičiai ir simbolis „_“."
 
-#: apps/pootle_project/models.py:213
+#: apps/pootle_project/models.py:211
 msgid "Quality Checks"
 msgstr "Kokybės patikra"
 
-#: apps/pootle_project/models.py:219
+#: apps/pootle_project/models.py:217
 #, fuzzy
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
 msgstr "Automatiškai aptikti (užtruks ilgiau)"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:218
 msgid "GNU style: files named by language code"
 msgstr "GNU stilius: failo vardas atitinka kalbos kodą"
 
-#: apps/pootle_project/models.py:221
+#: apps/pootle_project/models.py:219
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Ne GNU: kiekvienas failas atskirame aplanke"
 
-#: apps/pootle_project/models.py:222
+#: apps/pootle_project/models.py:220
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr ""
 
-#: apps/pootle_project/models.py:226
+#: apps/pootle_project/models.py:224
 msgid "Project Tree Style"
 msgstr "Vertimo failų išdėstymo būdas projekte"
 
-#: apps/pootle_project/models.py:234
+#: apps/pootle_project/models.py:232
 msgid "Ignore Files"
 msgstr "Nepaisomi failai"
 
-#: apps/pootle_project/models.py:240
+#: apps/pootle_project/models.py:238
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:239
 #, fuzzy
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
@@ -1018,22 +1022,22 @@ msgstr ""
 "originaliame tekste."
 
 #. Translators: This is the URL prefix to search for context screenshots
-#: apps/pootle_project/models.py:246
+#: apps/pootle_project/models.py:244
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:251
+#: apps/pootle_project/models.py:249
 msgid "Disabled"
 msgstr ""
 
-#: apps/pootle_project/views.py:266
+#: apps/pootle_project/views.py:295
 #, fuzzy, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr "Vertimo projektas atnaujintas pagal šviežiausius šablonus."
 
-#: apps/pootle_project/views.py:273
+#: apps/pootle_project/views.py:302
 #, fuzzy, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Vertimo projekto failai perskenuoti."
@@ -1051,7 +1055,7 @@ msgstr "Pastabos"
 msgid "Check"
 msgstr "Testai"
 
-#: apps/pootle_store/abstracts.py:215 apps/pootle_store/abstracts.py:222
+#: apps/pootle_store/abstracts.py:221 apps/pootle_store/abstracts.py:228
 msgid "Path"
 msgstr "Kelias"
 
@@ -1484,217 +1488,237 @@ msgstr ""
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
 msgstr ""
 
-#: checks.py:270
+#: checks.py:272
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
+msgstr ""
+
+#: checks.py:273
+#, python-format
+msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:279
+#, python-format
+msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
+msgstr ""
+
+#: checks.py:281
+msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
+msgstr ""
+
+#: checks.py:291
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
+msgstr ""
+
+#: checks.py:292
+#, python-format
+msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:299
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no HOST."
+msgstr ""
+
+#: checks.py:300
+#, python-format
+msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:307
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has no PORT."
+msgstr ""
+
+#: checks.py:308
+#, python-format
+msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:317
+#, python-format
+msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
+msgstr ""
+
+#: checks.py:319
+#, python-format
+msgid ""
+"Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
+msgstr ""
+
+#: checks.py:327
+#, python-format
+msgid "POOTLE_SCORES has no %s."
+msgstr ""
+
+#: checks.py:328
+#, fuzzy, python-format
+msgid "Set %s in POOTLE_SCORES."
+msgstr "Nežinoma MARKUP_FILTER reikšmė – „%s“. Grįžtama prie HTML."
+
+#: checks.py:336
+#, fuzzy, python-format
+msgid "Invalid value for %s in POOTLE_SCORES."
+msgstr "Nežinoma MARKUP_FILTER reikšmė – „%s“. Grįžtama prie HTML."
+
+#: checks.py:339
+#, fuzzy, python-format
+msgid "Set a valid value for %s in POOTLE_SCORES."
+msgstr "Nežinoma MARKUP_FILTER reikšmė – „%s“. Grįžtama prie HTML."
+
+#: checks.py:355
 #, fuzzy
 msgid "POOTLE_MARKUP_FILTER is missing."
 msgstr "Nerastas MARKUP_FILTER. Grįžtama prie HTML."
 
-#: checks.py:271
+#: checks.py:356
 msgid "Set POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:276
+#: checks.py:361
 #, fuzzy
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
 msgstr "Nežinoma MARKUP_FILTER reikšmė – „%s“. Grįžtama prie HTML."
 
-#: checks.py:277
+#: checks.py:362
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:291
+#: checks.py:378
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:292
+#: checks.py:379
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:297
+#: checks.py:384
 #, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
 
-#: checks.py:299
+#: checks.py:386
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr ""
 
-#: checks.py:310
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
+#: checks.py:392
+#, fuzzy
+msgid "POOTLE_MARKUP_FILTER set to 'None' is deprecated."
+msgstr "Nerastas MARKUP_FILTER. Grįžtama prie HTML."
+
+#: checks.py:393
+msgid "Set your markup to 'html' explicitly."
 msgstr ""
 
-#: checks.py:311
-#, python-format
-msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
-
-#: checks.py:317
-#, python-format
-msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
-
-#: checks.py:319
-msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
-msgstr ""
-
-#: checks.py:329
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
-
-#: checks.py:330
-#, python-format
-msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
-
-#: checks.py:337
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
-
-#: checks.py:338
-#, python-format
-msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr ""
-
-#: checks.py:345
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
-
-#: checks.py:346
-#, python-format
-msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr ""
-
-#: checks.py:355
-#, python-format
-msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
-msgstr ""
-
-#: checks.py:357
+#: checks.py:398
 #, python-format
 msgid ""
-"Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
+"POOTLE_MARKUP_FILTER is using '%s' markup, which is deprecated and will be "
+"removed in future."
 msgstr ""
 
-#: checks.py:365
-#, python-format
-msgid "POOTLE_SCORES has no %s."
+#: checks.py:401
+msgid "Convert your staticpages to Markdown and set your markup to 'markdown'."
 msgstr ""
 
-#: checks.py:366
-#, fuzzy, python-format
-msgid "Set %s in POOTLE_SCORES."
-msgstr "Nežinoma MARKUP_FILTER reikšmė – „%s“. Grįžtama prie HTML."
-
-#: checks.py:374
-#, fuzzy, python-format
-msgid "Invalid value for %s in POOTLE_SCORES."
-msgstr "Nežinoma MARKUP_FILTER reikšmė – „%s“. Grįžtama prie HTML."
-
-#: checks.py:377
-#, fuzzy, python-format
-msgid "Set a valid value for %s in POOTLE_SCORES."
-msgstr "Nežinoma MARKUP_FILTER reikšmė – „%s“. Grįžtama prie HTML."
-
-#: checks.py:397
+#: checks.py:422
 msgid "The default 'admin' user still has a password set to 'admin'."
 msgstr ""
 
-#: checks.py:399
+#: checks.py:424
 msgid "Remove the 'admin' user or change its password."
 msgstr ""
 
-#: checks.py:413
+#: checks.py:438
 msgid "Database connection uses transaction_hooks."
 msgstr ""
 
-#: checks.py:414
+#: checks.py:439
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
 
-#: checks.py:434
+#: checks.py:459
 msgid "Email server is not available."
 msgstr ""
 
-#: checks.py:435
+#: checks.py:460
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
 
-#: checks.py:462
+#: checks.py:487
 msgid "Revision is missing or has an incorrect value."
 msgstr ""
 
-#: checks.py:463
+#: checks.py:488
 msgid "Run `revision --restore` to reset the revision counter."
 msgstr ""
 
-#: checks.py:477
+#: checks.py:502
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
 
-#: checks.py:479
+#: checks.py:504
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
 
-#: checks.py:483
+#: checks.py:508
 msgid "Canonical URL is set to http://localhost."
 msgstr ""
 
-#: checks.py:485
+#: checks.py:510
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
 
-#: checks.py:515
+#: checks.py:540
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr ""
 
-#: checks.py:519
+#: checks.py:544
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
 msgstr ""
 
-#: checks.py:521
+#: checks.py:546
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
 
-#: checks.py:526
+#: checks.py:551
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
 
-#: checks.py:529
+#: checks.py:554
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
 msgstr ""
 
-#: checks.py:548
+#: checks.py:573
 msgid "MySQL requires time zone settings."
 msgstr ""
 
-#: checks.py:568
+#: checks.py:593
 msgid "Pootle does not yet support Python 3."
 msgstr ""
 
-#: checks.py:569 checks.py:575
+#: checks.py:594 checks.py:600
 msgid "Use a Python 2.7 virtualenv."
 msgstr ""
 
-#: checks.py:574
+#: checks.py:599
 msgid "Pootle no longer supports Python versions older than 2.7"
 msgstr ""
 
@@ -1744,36 +1768,36 @@ msgstr ""
 msgid "You do not have rights to administer Pootle."
 msgstr "Jums nesuteiktos teisės administruoti „Pootle“."
 
-#: core/forms.py:117
+#: core/forms.py:151
 msgid "Time to answer has expired"
 msgstr "Atsakymui skirtas laikas baigėsi"
 
-#: core/forms.py:136
+#: core/forms.py:170
 msgid "Enter a number"
 msgstr "Įveskite skaičių"
 
-#: core/forms.py:151
+#: core/forms.py:185
 msgid "Incorrect"
 msgstr "Atsakymas neteisingas"
 
-#: core/forms.py:180
+#: core/forms.py:214
 msgid "With selected"
 msgstr ""
 
-#: core/forms.py:187
+#: core/forms.py:221
 #, fuzzy
 msgid "Add comment"
 msgstr "Pridėti pastabą"
 
-#: core/forms.py:193
+#: core/forms.py:227
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
 
-#: core/forms.py:213
+#: core/forms.py:247
 msgid "You must specify an action to take"
 msgstr ""
 
-#: core/forms.py:214
+#: core/forms.py:248
 msgid "A valid search field must be specified"
 msgstr ""
 
@@ -1802,6 +1826,11 @@ msgstr "Siūlymų peržiūra"
 #, fuzzy
 msgid "Can perform administrative tasks"
 msgstr "„Django“ administravimas"
+
+#: core/views/base.py:112
+#, fuzzy
+msgid "Entire Project"
+msgstr "Aktyvūs projektai"
 
 #: core/views/display.py:103 core/views/display.py:125
 #, fuzzy, python-format
@@ -2023,7 +2052,7 @@ msgstr "Kalbos"
 #: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
 #: templates/admin/project_fs.html:19 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
-#: templates/languages/admin/language_team.html:89
+#: templates/languages/admin/language_team.html:104
 #: templates/projects/base.html:5
 msgid "Projects"
 msgstr "Projektai"
@@ -2628,7 +2657,7 @@ msgid "Critical issues with the translation"
 msgstr "Galimos vertimo problemos"
 
 #: templates/editor/units/xhr_checks.html:5
-#: templates/languages/admin/language_team.html:108
+#: templates/languages/admin/language_team.html:123
 #, fuzzy
 msgid "Critical errors:"
 msgstr "Kritinės"
@@ -2791,43 +2820,43 @@ msgid "Language team"
 msgstr "Kalbos pavadinimas"
 
 #. Translators: This refers to the management of language team members
-#: templates/languages/admin/language_team.html:16
+#: templates/languages/admin/language_team.html:31
 msgid "Member admin"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:30
+#: templates/languages/admin/language_team.html:45
 msgid "Add team member"
 msgstr ""
 
-#: templates/languages/admin/language_team.html:43
-#: templates/languages/admin/language_team.html:56
-#: templates/languages/admin/language_team.html:69
-#: templates/languages/admin/language_team.html:82
+#: templates/languages/admin/language_team.html:58
+#: templates/languages/admin/language_team.html:71
+#: templates/languages/admin/language_team.html:84
+#: templates/languages/admin/language_team.html:97
 #, fuzzy
 msgid "Remove selected"
 msgstr "Šalinti vartotoją"
 
-#: templates/languages/admin/language_team.html:103
+#: templates/languages/admin/language_team.html:118
 #, fuzzy
 msgid "Unit and suggestions admin"
 msgstr "%d pasiūlymas:"
 
-#: templates/languages/admin/language_team.html:118
+#: templates/languages/admin/language_team.html:133
 #, fuzzy
 msgid "Pending suggestions:"
 msgstr "Pateikta pasiūlymų"
 
-#: templates/languages/admin/language_team.html:128
+#: templates/languages/admin/language_team.html:143
 #, fuzzy
 msgid "Total words:"
 msgstr "Viso žodžių"
 
-#: templates/languages/admin/language_team.html:132
+#: templates/languages/admin/language_team.html:147
 #, fuzzy
 msgid "Translated:"
 msgstr "Išversta"
 
-#: templates/languages/admin/language_team.html:140
+#: templates/languages/admin/language_team.html:155
 #, fuzzy
 msgid "Needs work:"
 msgstr "Tikslintina"
@@ -2885,7 +2914,7 @@ msgstr "Čia galite pridėti, keisti ir šalinti šio projekto kalbas."
 #: templates/projects/admin/languages.html:15
 msgid ""
 "Adding new languages from this screen is disabled. You will need to update "
-"your sources directly, and update pootle from there."
+"your sources directly, and update Pootle from there."
 msgstr ""
 
 #: templates/projects/admin/languages.html:17
@@ -3295,9 +3324,6 @@ msgstr "Aktyviausi talkininkai"
 
 #~ msgid "Files"
 #~ msgstr "Failai"
-
-#~ msgid "Active projects"
-#~ msgstr "Aktyvūs projektai"
 
 #~ msgid "Active languages"
 #~ msgstr "Aktyvios kalbos"

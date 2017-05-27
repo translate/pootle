@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:32+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2017-02-08 08:15+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -551,19 +551,15 @@ msgstr "Birta óvirkt"
 msgid "Hide disabled"
 msgstr "Fela óvirkt"
 
-#: static/js/browser.js:286
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Öll tungumál"
 
-#: static/js/browser.js:292
+#: static/js/browser.js:273
 msgid "All Projects"
 msgstr "Öll verkefni"
 
-#: static/js/browser.js:297
-msgid "Entire Project"
-msgstr "Allt verkefnið"
-
-#: static/js/common.js:139
+#: static/js/common.js:142
 msgid "Updating data"
 msgstr "Uppfæri gögn"
 
@@ -650,15 +646,15 @@ msgstr "Fara aftur í vafur"
 msgid "Reload page"
 msgstr "Endurlesa síðu"
 
-#: static/js/editor/app.js:2176
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "einhver nafnlaus notandi"
 
-#: static/js/editor/app.js:2178
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "einhver"
 
-#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "Svipaðar þýðingar"
 
@@ -908,6 +904,9 @@ msgid ""
 msgstr ""
 "Þýtt af %(fullname)s í “<span title=\"%(path)s\">%(project)s</span>” "
 "verkefninu"
+
+#~ msgid "Entire Project"
+#~ msgstr "Allt verkefnið"
 
 #~ msgid "Registered Tasks"
 #~ msgstr "Skráð verk"

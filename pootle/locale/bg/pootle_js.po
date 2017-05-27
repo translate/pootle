@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:32+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2016-07-02 02:36+0000\n"
 "Last-Translator: stoyan <stoyan@gmx.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -545,19 +545,15 @@ msgstr "изключено"
 msgid "Hide disabled"
 msgstr "изключено"
 
-#: static/js/browser.js:286
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "Всички езици"
 
-#: static/js/browser.js:292
+#: static/js/browser.js:273
 msgid "All Projects"
 msgstr "Всички проекти"
 
-#: static/js/browser.js:297
-msgid "Entire Project"
-msgstr "Целият проект"
-
-#: static/js/common.js:139
+#: static/js/common.js:142
 msgid "Updating data"
 msgstr ""
 
@@ -644,15 +640,15 @@ msgstr "Назад към обобщението"
 msgid "Reload page"
 msgstr "Презареждане"
 
-#: static/js/editor/app.js:2176
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "анонимен потребител"
 
-#: static/js/editor/app.js:2178
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "някой"
 
-#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "Подобни преводи"
 
@@ -894,6 +890,9 @@ msgid ""
 msgstr ""
 "Преведено от %(fullname)s в проекта &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
+
+#~ msgid "Entire Project"
+#~ msgstr "Целият проект"
 
 #~ msgid "Datetime"
 #~ msgstr "Дата и час"

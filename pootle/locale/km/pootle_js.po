@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:32+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2014-06-06 13:16+0000\n"
 "Last-Translator: sovichet.tep <sovichet.tep@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -526,20 +526,15 @@ msgstr ""
 msgid "Hide disabled"
 msgstr ""
 
-#: static/js/browser.js:286
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "គ្រប់ភាសា"
 
-#: static/js/browser.js:292
+#: static/js/browser.js:273
 msgid "All Projects"
 msgstr "គម្រោង​ទាំង​អស់"
 
-#: static/js/browser.js:297
-#, fuzzy
-msgid "Entire Project"
-msgstr "គម្រោង​ទាំង​អស់"
-
-#: static/js/common.js:139
+#: static/js/common.js:142
 msgid "Updating data"
 msgstr ""
 
@@ -620,15 +615,15 @@ msgstr ""
 msgid "Reload page"
 msgstr ""
 
-#: static/js/editor/app.js:2176
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr ""
 
-#: static/js/editor/app.js:2178
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr ""
 
-#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "ការ​បកប្រែ​ស្រដៀង​គ្នា"
 
@@ -862,6 +857,10 @@ msgid ""
 "Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
 "project"
 msgstr ""
+
+#, fuzzy
+#~ msgid "Entire Project"
+#~ msgstr "គម្រោង​ទាំង​អស់"
 
 #, fuzzy
 #~ msgid "%(user)s removed translation for %(sourceString)s"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-16 11:32+0100\n"
+"POT-Creation-Date: 2017-05-27 01:59+0100\n"
 "PO-Revision-Date: 2016-05-04 06:52+0000\n"
 "Last-Translator: wrinos <wrinos@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -543,19 +543,15 @@ msgstr "사용 안 함"
 msgid "Hide disabled"
 msgstr "사용 안 함"
 
-#: static/js/browser.js:286
+#: static/js/browser.js:267
 msgid "All Languages"
 msgstr "모든 언어"
 
-#: static/js/browser.js:292
+#: static/js/browser.js:273
 msgid "All Projects"
 msgstr "모든 프로젝트"
 
-#: static/js/browser.js:297
-msgid "Entire Project"
-msgstr "전체 프로젝트"
-
-#: static/js/common.js:139
+#: static/js/common.js:142
 msgid "Updating data"
 msgstr ""
 
@@ -643,15 +639,15 @@ msgstr "검색하기로 돌아가기"
 msgid "Reload page"
 msgstr "페이지 다시 불러오기"
 
-#: static/js/editor/app.js:2176
+#: static/js/editor/app.js:2177
 msgid "some anonymous user"
 msgstr "몇명의 익명 사용자"
 
-#: static/js/editor/app.js:2178
+#: static/js/editor/app.js:2179
 msgid "someone"
 msgstr "누군가"
 
-#: static/js/editor/app.js:2196 static/js/editor/app.js:2250
+#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
 msgid "Similar translations"
 msgstr "유사한 번역"
 
@@ -898,6 +894,9 @@ msgid ""
 msgstr ""
 "&ldquo;<span title=\"%(path)s\"> 의 %(fullname)s %(project)s</span>&rdquo; 프"
 "로젝트에 의해 번역됨"
+
+#~ msgid "Entire Project"
+#~ msgstr "전체 프로젝트"
 
 #~ msgid "Registered Tasks"
 #~ msgstr "등록된 업무"
