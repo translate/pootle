@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-19 20:58+0100\n"
-"PO-Revision-Date: 2017-03-24 05:22+0000\n"
+"PO-Revision-Date: 2017-05-26 23:27+0000\n"
 "Last-Translator: kingu <epost@anotheragency.no>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: nb\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1490332922.000000\n"
+"X-POOTLE-MTIME: 1495841225.000000\n"
 
 #: apps/accounts/adapter.py:66
 msgid ""
@@ -54,9 +54,8 @@ msgid "Enter a valid username."
 msgstr "Skriv inn et gyldig brukernavn."
 
 #: apps/accounts/models.py:65
-#, fuzzy
 msgid "A user with that username already exists."
-msgstr "Denne e-postadressen finnes allerede."
+msgstr "En bruker med det brukernavnet finnes allerede."
 
 #: apps/accounts/models.py:68
 msgid "Email Address"
@@ -169,7 +168,7 @@ msgstr "Skriv inn din melding"
 
 #: apps/contact/forms.py:115
 msgid "String context"
-msgstr ""
+msgstr "Bindeleddsinformasjon for streng"
 
 #: apps/contact/forms.py:125
 #, fuzzy
@@ -661,7 +660,7 @@ msgstr "Legg til et nytt medlem på dette laget"
 
 #: apps/pootle_language/forms.py:97
 msgid "Role"
-msgstr ""
+msgstr "Rolle"
 
 #: apps/pootle_language/forms.py:128
 msgid "Role is required when adding a new member"
@@ -827,7 +826,7 @@ msgstr "%d ord uoversatt"
 #: apps/pootle_misc/templatetags/common_tags.py:55
 #, python-brace-format
 msgid "{percentage} needs work"
-msgstr ""
+msgstr "{percentage} trenger arbeid"
 
 #: apps/pootle_misc/templatetags/common_tags.py:57
 #, fuzzy, python-brace-format
@@ -902,7 +901,7 @@ msgstr "Språkgruppe"
 #: apps/pootle_profile/templatetags/profile_tags.py:104
 #, python-format
 msgid "%s is not a member of any language teams"
-msgstr ""
+msgstr "%s er ikke medlem av noen språklag"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
@@ -1099,7 +1098,7 @@ msgstr "Oversetterkommentarer"
 #: apps/pootle_store/forms.py:481
 #, python-format
 msgid "Suggestion '%s' has already been accepted or rejected."
-msgstr ""
+msgstr "Forslaget \"%s\" har allerede blitt godtatt eller avslått."
 
 #: apps/pootle_store/forms.py:499 core/decorators.py:140
 #: core/views/decorators.py:70
@@ -1721,15 +1720,15 @@ msgstr "MySQL krever tidssoneinnstillinger."
 
 #: checks.py:568
 msgid "Pootle does not yet support Python 3."
-msgstr ""
+msgstr "Pootle støtter ikke Python 3 enda."
 
 #: checks.py:569 checks.py:575
 msgid "Use a Python 2.7 virtualenv."
-msgstr ""
+msgstr "Bruk Python 2.7 virtualenv."
 
 #: checks.py:574
 msgid "Pootle no longer supports Python versions older than 2.7"
-msgstr ""
+msgstr "Pottle støtter ikke lenger Python-versjoner eldre enn 2.7"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -2787,16 +2786,16 @@ msgid "The reported error was:"
 msgstr "Innrapportert feil var:"
 
 #: templates/includes/formtable.html:22
-#, python-format
+#, fuzzy, python-format
 msgid "Page %(page_number)s of %(page_count)s."
-msgstr ""
+msgstr "Side %(page_number)s av %(page_count)s."
 
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Showing %(n)s result per page"
 msgid_plural "Showing %(n)s results per page"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Viser %(n)s resultat per side"
+msgstr[1] "Viser %(n)s resultater per side"
 
 #: templates/includes/formtable.html:87
 msgid "Select all"
@@ -2924,6 +2923,8 @@ msgid ""
 "Adding new languages from this screen is disabled. You will need to update "
 "your sources directly, and update pootle from there."
 msgstr ""
+"Å legge til nye språk herfra er avskrudd. Du må oppdatere kildene dine "
+"direkte, og oppdatere Pootle derfra."
 
 #: templates/projects/admin/languages.html:17
 msgid ""
