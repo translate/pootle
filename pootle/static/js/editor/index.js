@@ -124,7 +124,7 @@ const ReactEditor = {
         currentLocaleCode={this.props.currentLocaleCode}
         currentLocaleDir={this.props.currentLocaleDir}
         targetNplurals={this.props.targetNplurals}
-        isDisabled={false}
+        isDisabled={this.props.isDisabled}
         {...props}
       />,
       mountNode
