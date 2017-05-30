@@ -49,42 +49,10 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
             del self.fields['captcha_answer']
             del self.fields['captcha_token']
 
-    def message(self):
-        """Render the body of the message to a string.
-
-        FIXME: this copies and adjusts upstream code to support Django 1.10+.
-        Remove once django-contact-form is fixed.
-        """
-        template_name = (
-            self.template_name()
-            if callable(self.template_name)
-            else self.template_name)
-        return loader.render_to_string(template_name,
-                                       context=self.get_context(),
-                                       request=self.request)
-
-    def subject(self):
-        """Render the subject of the message to a string.
-
-        FIXME: this copies and adjusts upstream code to support Django 1.10+.
-        Remove once django-contact-form is fixed.
-        """
-        template_name = (
-            self.subject_template_name()
-            if callable(self.subject_template_name)
-            else self.subject_template_name)
-        subject = loader.render_to_string(template_name,
-                                          context=self.get_context(),
-                                          request=self.request)
-        return ''.join(subject.splitlines())
-
     def get_context(self):
-        """Get the context to render the templates for email subject and body.
+        """Get context to render the templates for email subject and body."""
+        ctx = super(ContactForm, self).get_context()
 
-        FIXME: this copies and adjusts upstream code to support Django 1.10+.
-        Adjust properly once django-contact-form is fixed.
-        """
-        ctx = dict(self.cleaned_data)
         ctx['server_name'] = settings.POOTLE_TITLE
         return ctx
 
