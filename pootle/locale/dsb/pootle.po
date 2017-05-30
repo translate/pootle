@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-27 01:59+0100\n"
-"PO-Revision-Date: 2017-05-23 21:52+0000\n"
+"PO-Revision-Date: 2017-05-28 13:22+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1495576330.000000\n"
+"X-POOTLE-MTIME: 1495977755.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -644,7 +644,7 @@ msgstr "Toś tomu teamoju wužywarja pśidaś"
 
 #: apps/pootle_language/forms.py:103
 msgid "Search for users to add"
-msgstr ""
+msgstr "Pytajśo wužywarje, kótarež cośo pśidaś"
 
 #: apps/pootle_language/forms.py:106
 msgid "Role"
@@ -853,7 +853,7 @@ msgstr "Pytanje njejo k dispoziciji"
 #: apps/pootle_profile/templatetags/profile_tags.py:35
 #, python-format
 msgid "My current score at %s is %s"
-msgstr "Móje aktualne gódnośenje na %s  jo %s"
+msgstr "Móje aktualne gódnośenje na %s jo %s"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:38
 #: apps/pootle_profile/templatetags/profile_tags.py:63
@@ -1601,26 +1601,27 @@ msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Paket instalěrowaś abo POOTLE_MARKUP_FILTER změniś."
 
 #: checks.py:392
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER set to 'None' is deprecated."
-msgstr "POOTLE_MARKUP_FILTER felujo."
+msgstr "Gódnota 'None' za POOTLE_MARKUP_FILTER jo zestarjona."
 
 #: checks.py:393
 msgid "Set your markup to 'html' explicitly."
-msgstr ""
+msgstr "Stajśo swój wobznamjenjeńsku rěc eksplicitnje na 'html'."
 
 #: checks.py:398
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is using '%s' markup, which is deprecated and will be "
 "removed in future."
 msgstr ""
-"POOTLE_MARKUP_FILTER jo na wobznamjenje '%s' nastajony, ale paket, kótaryž "
-"pódawa, njedajo se namakaś."
+"POOTLE_MARKUP_FILTER wobznamjenjeńsku rěc '%s' wužywa, kótarež jo zestarjona "
+"a buźo se w pśichoźe wótwónoźowaś."
 
 #: checks.py:401
 msgid "Convert your staticpages to Markdown and set your markup to 'markdown'."
 msgstr ""
+"Pśepišćo swóje statiske boki na Markdown a stajśo swóju wobznamjenjeńsku rěc "
+"na 'markdown'."
 
 #: checks.py:422
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1837,9 +1838,8 @@ msgid "Can perform administrative tasks"
 msgstr "Móžo administratiwne nadawki pśewjasć"
 
 #: core/views/base.py:112
-#, fuzzy
 msgid "Entire Project"
-msgstr "Projekt"
+msgstr "Ceły projekt"
 
 #: core/views/display.py:103 core/views/display.py:125
 #, python-format
@@ -2437,7 +2437,7 @@ msgstr "Wobkšuśiś"
 
 #: templates/editor/_actions.html:5
 msgid "Go back to browsing"
-msgstr "Pśeglěduj dalej"
+msgstr "Slědk k pśeglědoju"
 
 #: templates/editor/_filters.html:12
 msgid "My suggestions"
@@ -2903,7 +2903,6 @@ msgid "Here you can add, edit, or delete the languages for this project."
 msgstr "How móžoš rěcy za toś ten projekt pśidaś, wobźěłaś abo wulašowaś."
 
 #: templates/projects/admin/languages.html:15
-#, fuzzy
 msgid ""
 "Adding new languages from this screen is disabled. You will need to update "
 "your sources directly, and update Pootle from there."

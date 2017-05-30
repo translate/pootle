@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-27 01:59+0100\n"
-"PO-Revision-Date: 2017-05-20 20:45+0000\n"
+"PO-Revision-Date: 2017-05-27 12:09+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1495313129.000000\n"
+"X-POOTLE-MTIME: 1495886995.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -647,8 +647,9 @@ msgid "Add a user to this team"
 msgstr "Een gebruiker aan dit team toevoegen"
 
 #: apps/pootle_language/forms.py:103
+#, fuzzy
 msgid "Search for users to add"
-msgstr ""
+msgstr "Zoeken naar gebruikers om toe te voegen"
 
 #: apps/pootle_language/forms.py:106
 msgid "Role"
@@ -864,7 +865,7 @@ msgid "#%s contributor in %s in the last 30 days"
 msgstr "Medewerker #%s in het %s in de afgelopen 30 dagen"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
 msgstr "Ik ben medewerker #%s in het %s in de afgelopen 30 dagen op %s!"
 
@@ -1603,27 +1604,28 @@ msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Installeer het pakket of wijzig POOTLE_MARKUP_FILTER."
 
 #: checks.py:392
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER set to 'None' is deprecated."
-msgstr "POOTLE_MARKUP_FILTER ontbreekt."
+msgstr "POOTLE_MARKUP_FILTER ingesteld op 'None' wordt niet meer ondersteund."
 
 #: checks.py:393
 msgid "Set your markup to 'html' explicitly."
-msgstr ""
+msgstr "Stel uw opmaak expliciet in op 'html'."
 
 # that provides _what_? (it, i.e. the markup?)
 #: checks.py:398
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is using '%s' markup, which is deprecated and will be "
 "removed in future."
 msgstr ""
-"POOTLE_MARKUP_FILTER is ingesteld op '%s'-opmaak, maar het pakket dat dit "
-"levert kan niet worden gevonden."
+"POOTLE_MARKUP_FILTER gebruikt '%s'-opmaak, die niet meer wordt ondersteund "
+"en in de toekomst wordt verwijderd."
 
 #: checks.py:401
 msgid "Convert your staticpages to Markdown and set your markup to 'markdown'."
 msgstr ""
+"Converteer uw statische pagina's naar Markdown en stel uw opmaak in op "
+"'markdown'."
 
 #: checks.py:422
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1840,9 +1842,8 @@ msgid "Can perform administrative tasks"
 msgstr "Kan beheerderstaken uitvoeren"
 
 #: core/views/base.py:112
-#, fuzzy
 msgid "Entire Project"
-msgstr "Actieve projecten"
+msgstr "Hele project"
 
 #: core/views/display.py:103 core/views/display.py:125
 #, python-format
@@ -2909,7 +2910,6 @@ msgstr ""
 "Hier kunt u de talen voor dit project toevoegen, bewerken of verwijderen."
 
 #: templates/projects/admin/languages.html:15
-#, fuzzy
 msgid ""
 "Adding new languages from this screen is disabled. You will need to update "
 "your sources directly, and update Pootle from there."

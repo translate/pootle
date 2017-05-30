@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-27 01:59+0100\n"
-"PO-Revision-Date: 2017-05-20 13:09+0000\n"
+"PO-Revision-Date: 2017-05-27 05:45+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1495285789.000000\n"
+"X-POOTLE-MTIME: 1495863952.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -644,7 +644,7 @@ msgstr "Přidat uživatele do tohoto týmu"
 
 #: apps/pootle_language/forms.py:103
 msgid "Search for users to add"
-msgstr ""
+msgstr "Vyhledejte uživatele které chcete přidat"
 
 #: apps/pootle_language/forms.py:106
 msgid "Role"
@@ -1594,26 +1594,27 @@ msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Nainstalujte tento balíček, nebo upravte POOTLE_MARKUP_FILTER."
 
 #: checks.py:392
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER set to 'None' is deprecated."
-msgstr "POOTLE_MARKUP_FILTER nebyl nalezen."
+msgstr "Použití hodnoty ‚None‘ pro POOTLE_MARKUP_FILTER je zastaralé."
 
 #: checks.py:393
 msgid "Set your markup to 'html' explicitly."
-msgstr ""
+msgstr "Nastavte značkovací jazyk explicitně na ‚html‘."
 
 #: checks.py:398
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is using '%s' markup, which is deprecated and will be "
 "removed in future."
 msgstr ""
-"POOTLE_MARKUP_FILTER má nastavenu značku ‚%s‘, ale balíček který ji "
-"poskytuje nebyl nalezen."
+"POOTLE_MARKUP_FILTER používá značkovací jazyk ‚%s‘, který je zastaralý a "
+"bude v budoucnu odstraněn."
 
 #: checks.py:401
 msgid "Convert your staticpages to Markdown and set your markup to 'markdown'."
 msgstr ""
+"Přepište své statické stránky pomocí jazyka Markdown a nastavte značkovací "
+"jazyk na ‚markdown‘."
 
 #: checks.py:422
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1829,9 +1830,8 @@ msgid "Can perform administrative tasks"
 msgstr "Může provádět administrativní úlohy"
 
 #: core/views/base.py:112
-#, fuzzy
 msgid "Entire Project"
-msgstr "Aktivní projekty"
+msgstr "Celý projekt"
 
 #: core/views/display.py:103 core/views/display.py:125
 #, python-format
@@ -2890,7 +2890,6 @@ msgstr ""
 "Zde můžete přidávat, upravovat nebo odstraňovat jazyky pro tento projekt."
 
 #: templates/projects/admin/languages.html:15
-#, fuzzy
 msgid ""
 "Adding new languages from this screen is disabled. You will need to update "
 "your sources directly, and update Pootle from there."

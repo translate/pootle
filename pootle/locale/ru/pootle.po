@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-27 01:59+0100\n"
-"PO-Revision-Date: 2017-05-24 10:44+0000\n"
+"PO-Revision-Date: 2017-05-27 12:43+0000\n"
 "Last-Translator: Mikhail <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1495622677.000000\n"
+"X-POOTLE-MTIME: 1495889011.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -642,7 +642,7 @@ msgstr "Добавить пользователя в эту команду"
 
 #: apps/pootle_language/forms.py:103
 msgid "Search for users to add"
-msgstr ""
+msgstr "Поиск пользователей для добавления"
 
 #: apps/pootle_language/forms.py:106
 msgid "Role"
@@ -1594,26 +1594,27 @@ msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Установите пакет или измените значение POOTLE_MARKUP_FILTER."
 
 #: checks.py:392
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER set to 'None' is deprecated."
-msgstr "POOTLE_MARKUP_FILTER отсутствует."
+msgstr "Устаревшаее значение: POOTLE_MARKUP_FILTER установлен в 'None'"
 
 #: checks.py:393
 msgid "Set your markup to 'html' explicitly."
-msgstr ""
+msgstr "Явно установите разметку в 'html'."
 
 #: checks.py:398
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is using '%s' markup, which is deprecated and will be "
 "removed in future."
 msgstr ""
-"POOTLE_MARKUP_FILTER установлен в значение '%s' , однако пакет, который "
-"предоставляет эту функциональность, не найден."
+"POOTLE_MARKUP_FILTER использует разметку '%s' , которая является устаревшей "
+"и будет удалена в будущем."
 
 #: checks.py:401
 msgid "Convert your staticpages to Markdown and set your markup to 'markdown'."
 msgstr ""
+"Сконвертируйте свои статические страницы в Markdown и установите разметку в "
+"'markdown'."
 
 #: checks.py:422
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1831,9 +1832,8 @@ msgid "Can perform administrative tasks"
 msgstr "Может выполнять административные задачи"
 
 #: core/views/base.py:112
-#, fuzzy
 msgid "Entire Project"
-msgstr "Активные проекты"
+msgstr "Весь проект"
 
 #: core/views/display.py:103 core/views/display.py:125
 #, python-format
@@ -2897,13 +2897,12 @@ msgstr ""
 "Здесь вы можете добавлять, редактировать или удалять языки для этого проекта."
 
 #: templates/projects/admin/languages.html:15
-#, fuzzy
 msgid ""
 "Adding new languages from this screen is disabled. You will need to update "
 "your sources directly, and update Pootle from there."
 msgstr ""
 "Добавление новых языков с этой страницы отключено. Вам необходимо обновить "
-"исходные данные напрямую, и затем обновить данные Pootle отсюда."
+"исходные данные напрямую, и затем обновить Pootle отсюда."
 
 #: templates/projects/admin/languages.html:17
 msgid ""

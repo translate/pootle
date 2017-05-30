@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-27 01:59+0100\n"
-"PO-Revision-Date: 2017-05-21 10:40+0000\n"
+"PO-Revision-Date: 2017-05-28 00:47+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1495363254.000000\n"
+"X-POOTLE-MTIME: 1495932469.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -642,7 +642,7 @@ msgstr "Bir kullanıcıyı bu takıma ekle"
 
 #: apps/pootle_language/forms.py:103
 msgid "Search for users to add"
-msgstr ""
+msgstr "Eklemek için kullanıcıları ara"
 
 #: apps/pootle_language/forms.py:106
 msgid "Role"
@@ -1592,22 +1592,23 @@ msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Paketi yükleyin ya da POOTLE_MARKUP_FILTER parametresini değiştirin."
 
 #: checks.py:392
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER set to 'None' is deprecated."
-msgstr "POOTLE_MARKUP_FILTER eksik."
+msgstr ""
+"POOTLE_MARKUP_FILTER parametresini 'None' olarak ayarlamak artık "
+"kullanılmamaktadır."
 
 #: checks.py:393
 msgid "Set your markup to 'html' explicitly."
-msgstr ""
+msgstr "Biçimlemenizi açıkça 'html' olarak ayarlayın."
 
 #: checks.py:398
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is using '%s' markup, which is deprecated and will be "
 "removed in future."
 msgstr ""
-"POOTLE_MARKUP_FILTER, '%s' biçimlemesine ayarlı, ancak verilen paket "
-"bulunamıyor."
+"POOTLE_MARKUP_FILTER, artık kullanılmayan ve ileride kaldırılacak olan '%s' "
+"biçimlemesi kullanıyor."
 
 #: checks.py:401
 msgid "Convert your staticpages to Markdown and set your markup to 'markdown'."
@@ -1828,9 +1829,8 @@ msgid "Can perform administrative tasks"
 msgstr "Yönetimsel görevler yapabilir"
 
 #: core/views/base.py:112
-#, fuzzy
 msgid "Entire Project"
-msgstr "Aktif projeler"
+msgstr "Bütün Proje"
 
 #: core/views/display.py:103 core/views/display.py:125
 #, python-format
@@ -2892,13 +2892,12 @@ msgstr ""
 "silebilirsiniz."
 
 #: templates/projects/admin/languages.html:15
-#, fuzzy
 msgid ""
 "Adding new languages from this screen is disabled. You will need to update "
 "your sources directly, and update Pootle from there."
 msgstr ""
 "Bu ekrandan yeni dilleri ekleme etkisizleştirildi. Kaynaklarınızı doğrudan "
-"güncellemeniz gerekecek, ve pootle'ı da oradan güncelleyin."
+"güncellemeniz gerekecek, ve Pootle'ı da oradan güncelleyin."
 
 #: templates/projects/admin/languages.html:17
 msgid ""
