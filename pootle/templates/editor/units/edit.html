@@ -3,7 +3,7 @@
 {% get_current_language_bidi as LANGUAGE_BIDI %}
 <td colspan="2" rowspan="1" class="translate-full translate-focus{% if unit.isfuzzy %} fuzzy-unit{% endif %}" dir="{% locale_dir %}">
   <div class="translate-lightbox js-translate-lightbox"></div>
-  <div class="translate-container{% if unit.get_active_critical_qualitychecks.exists %} error{% endif %}">
+  <div class="translate-container{% if critical_checks %} error{% endif %}">
     <div class="unit-path">
       <ul>
         <li><span class="content-wrapper">{{ language.name }}</span></li>
@@ -50,7 +50,6 @@
       {% endif %}
 
       <!-- Terminology suggestions -->
-      {% with unit.get_terminology as terms %}
       {% if terms %}
       <div id="tm" class="sidebar" dir="{% locale_dir %}">
         <span class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Terminology:" %}</span>
@@ -63,7 +62,6 @@
         {% endfor %}
       </div>
       {% endif %}
-      {% endwith %}
 
       {% if unit.developer_comment %}
       <!-- Developer comments -->

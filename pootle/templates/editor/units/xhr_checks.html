@@ -1,10 +1,9 @@
 {% load i18n locale staticpages %}
-{% with unit.get_critical_qualitychecks as checks_critical %}
-{% if checks_critical %}
+{% if critical_checks %}
 <div class="unit-checks">
   <span class="sidetitle" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Critical issues with the translation' %}">{% trans "Critical errors:" %}</span>
   <ul class="checks checks-critical">
-    {% for check in checks_critical %}
+    {% for check in critical_checks %}
     <li class="check{% if check.false_positive %} false-positive{% endif %} js-check-{{ check.id }}">
       <a href="{% url 'pootle-checks-descriptions' %}#{{ check.name }}" target="_blank">{{ check.display_name }}</a>
       {% if canreview %}
@@ -18,13 +17,11 @@
   </ul>
 </div>
 {% endif %}
-{% endwith %}
-{% with unit.get_warning_qualitychecks as checks_warning %}
-{% if checks_warning %}
+{% if warning_checks %}
 <div class="unit-checks">
   <span class="sidetitle" lang="{{ LANGUAGE_CODE }}" title="{% trans 'Possible issues with the translation' %}">{% trans "Watch out for:" %}</span>
   <ul class="checks checks-warning">
-    {% for check in checks_warning %}
+    {% for check in warning_checks %}
     <li class="check-warning{% if check.false_positive %} false-positive{% endif %} js-check-{{ check.id }}">
       <a href="{% url 'pootle-checks-descriptions' %}#{{ check.name }}" target="_blank">{{ check.display_name }}</a>
       {% if canreview %}
@@ -38,4 +35,3 @@
   </ul>
 </div>
 {% endif %}
-{% endwith %}
