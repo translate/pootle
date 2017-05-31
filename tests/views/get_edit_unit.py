@@ -84,3 +84,12 @@ def test_get_edit_unit(project0_nongnu, get_edit_unit, client,
         user, "review", directory)
     assert response.context["has_admin_access"] == check_user_permission(
         user, "administrate", directory)
+    assert (
+        response.context["critical_checks"]
+        == list(unit.get_active_critical_qualitychecks()))
+    assert (
+        response.context["warning_checks"]
+        == list(unit.get_warning_qualitychecks()))
+    assert (
+        response.context["terms"]
+        == unit.get_terminology())
