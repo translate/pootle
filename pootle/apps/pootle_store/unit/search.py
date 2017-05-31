@@ -159,6 +159,25 @@ class DBSearchBackend(object):
             self.previous_uids
             and self.offset)
 
+        if not find_unit and find_next_slice:
+            # if both previous_uids and offset are set then try to ensure
+            # that the results we are returning start from the end of previous
+            # result set
+            _start = start = max(self.offset - len(self.previous_uids), 0)
+            end = min(self.offset + (2 * self.chunk_size), total)
+            uid_list = self.results[start:end].values_list("pk", flat=True)
+            offset = 0
+            for i, uid in enumerate(uid_list):
+                if uid in self.previous_uids:
+                    start = _start + i + 1
+                    offset = i + 1
+            start = start or 0
+            end = min(start + (2 * self.chunk_size), total)
+            return (
+                total,
+                start,
+                end,
+                uid_list[offset:offset + (2 * self.chunk_size)])
         if find_unit:
             # find the uid in the Store
             uid_list = list(self.results.values_list("pk", flat=True))
@@ -167,18 +186,12 @@ class DBSearchBackend(object):
                 start = (
                     int(unit_index / (2 * self.chunk_size))
                     * (2 * self.chunk_size))
-        elif find_next_slice:
-            # if both previous_uids and offset are set then try to ensure
-            # that the results we are returning start from the end of previous
-            # result set
-            _start = start = max(self.offset - len(self.previous_uids), 0)
-            end = min(self.offset + (2 * self.chunk_size), total)
-            uid_list = self.results[start:end].values_list("pk", flat=True)
-            for i, uid in enumerate(uid_list):
-                if uid in self.previous_uids:
-                    start = _start + i + 1
         if self.chunk_size is None:
             return total, 0, total, self.results
         start = start or 0
         end = min(start + (2 * self.chunk_size), total)
-        return total, start, end, self.results[start:end]
+        return (
+            total,
+            start,
+            end,
+            list(self.results[start:end].values_list("pk", flat=True)))
