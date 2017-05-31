@@ -96,7 +96,7 @@ class UnitTerminologyMatcher(TextStemmer):
 
     @property
     def revision_context(self):
-        term_tp = TranslationProject.objects.filter(
+        term_tp = TranslationProject.objects.select_related("directory").filter(
             language_id=self.language_id,
             project__code="terminology").first()
         if term_tp:
