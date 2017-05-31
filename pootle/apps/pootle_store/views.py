@@ -54,34 +54,31 @@ def get_alt_src_langs(request, user, translation_project):
     language = translation_project.language
     project = translation_project.project
     source_language = project.source_language
+    langs = list(
+        user.alt_src_langs.filter(
+            translationproject__project=project))
+    if langs:
+        return langs
+    accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
+    for accept_lang, __ in parse_accept_lang_header(accept):
+        if accept_lang == '*':
+            continue
+        normalized = to_locale(
+            data.normalize_code(
+                data.simplify_to_common(accept_lang)))
+        code = to_locale(accept_lang)
+        is_source_lang = any(
+            langcode in ('en', 'en_US', source_language.code, language.code)
+            for langcode in [code, normalized])
+        if is_source_lang:
+            continue
 
-    langs = user.alt_src_langs.exclude(
-        id__in=(language.id, source_language.id)
-    ).filter(translationproject__project=project)
-
-    if not user.alt_src_langs.count():
-        accept = request.META.get('HTTP_ACCEPT_LANGUAGE', '')
-
-        for accept_lang, __ in parse_accept_lang_header(accept):
-            if accept_lang == '*':
-                continue
-
-            simplified = data.simplify_to_common(accept_lang)
-            normalized = to_locale(data.normalize_code(simplified))
-            code = to_locale(accept_lang)
-            if (normalized in
-                    ('en', 'en_US', source_language.code, language.code) or
-                code in ('en', 'en_US', source_language.code, language.code)):
-                continue
-
-            langs = Language.objects.filter(
+        langs = list(
+            Language.objects.filter(
                 code__in=(normalized, code),
-                translationproject__project=project,
-            )
-            if langs.count():
-                break
-
-    return langs
+                translationproject__project=project))
+        if langs:
+            return langs
 
 
 #
@@ -462,6 +459,7 @@ class UnitEditJSON(PootleUnitJSON):
             "store__parent",
             "store__translation_project",
             "store__translation_project__project",
+            "store__translation_project__project__directory",
             "store__translation_project__project__source_language",
             "store__translation_project__language")
 
@@ -518,7 +516,11 @@ class UnitEditJSON(PootleUnitJSON):
             'suggestions': suggestions,
             'suggestions_dict': {x.id: dict(id=x.id, target=x.target.strings)
                                  for x in suggestions},
-        }
+            "critical_checks": list(
+                self.object.get_active_critical_qualitychecks()),
+            "warning_checks": list(
+                self.object.get_warning_qualitychecks()),
+            "terms": self.object.get_terminology()}
 
     def get_response_data(self, context):
         return {
