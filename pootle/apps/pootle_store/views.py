@@ -444,6 +444,8 @@ class UnitEditJSON(PootleUnitJSON):
 
     @lru_cache()
     def get_alt_srcs(self):
+        if self.request.user.is_anonymous:
+            return []
         return find_altsrcs(
             self.object,
             get_alt_src_langs(self.request, self.request.user, self.tp),
