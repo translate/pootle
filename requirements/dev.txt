@@ -7,4 +7,4 @@
 
 django-extensions==1.7.9
 glue==0.13
-ipython==5.4.0  # rq.filter: <6.0.0
+ipython==5.4.1  # rq.filter: <6.0.0
