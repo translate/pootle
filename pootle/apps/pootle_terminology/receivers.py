@@ -34,7 +34,7 @@ def handle_unit_save(**kwargs):
 @receiver(post_save, sender=Submission)
 def handle_submission_save(**kwargs):
     sub = kwargs["instance"]
-    if sub.type != SubmissionFields.TARGET:
+    if sub.field != SubmissionFields.TARGET:
         return
     unit = sub.unit
     if unit.state != TRANSLATED:
