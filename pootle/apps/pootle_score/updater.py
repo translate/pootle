@@ -42,22 +42,23 @@ class UserStoreScoreCRUD(UserRelatedScoreCRUD):
         return qs.select_related("store", "store__translation_project")
 
     def update_scores(self, objects):
-        users = set()
-        stores = {}
         tps = {}
-        for score in objects:
-            users.add(score.user_id)
-            if score.store_id not in stores:
-                stores[score.store_id] = score.store
-        for store in stores.values():
-            if store.translation_project_id not in tps:
-                tps[store.translation_project_id] = store.translation_project
-                tp = store.translation_project
-                update_scores.send(
-                    tp.__class__,
-                    instance=tp,
-                    stores=stores.values(),
-                    users=users)
+        if not isinstance(objects, list):
+            scores = objects.select_related(
+                "user", "store", "store__translation_project")
+        else:
+            scores = objects
+        for score in scores:
+            tp = score.store.translation_project
+            tps[tp.id] = tps.get(tp.id, dict(tp=tp, stores=[], users=[]))
+            tps[tp.id]["stores"].append(score.store)
+            tps[tp.id]["users"].append(score.user)
+        for tp in tps.values():
+            update_scores.send(
+                tp["tp"].__class__,
+                instance=tp["tp"],
+                stores=tp["stores"],
+                users=tp["users"])
 
 
 class UserTPScoreCRUD(UserRelatedScoreCRUD):
@@ -67,9 +68,15 @@ class UserTPScoreCRUD(UserRelatedScoreCRUD):
         return qs.select_related("tp")
 
     def update_scores(self, objects):
+        users = (
+            set(user
+                for user
+                in objects.values_list("user_id", flat=True))
+            if not isinstance(objects, list)
+            else set(x.user_id for x in objects))
         update_scores.send(
             get_user_model(),
-            users=set(score.user_id for score in objects))
+            users=users)
 
 
 class ScoreUpdater(object):
@@ -256,6 +263,23 @@ class StoreScoreUpdater(ScoreUpdater):
             start=to_datetime(start),
             end=to_datetime(end),
             include_meta=False,
+            ordered=False,
+            only=dict(
+                suggestion=(
+                    "unit__unit_source__source_wordcount",
+                    "user_id",
+                    "reviewer_id",
+                    "state_id",),
+                submission=(
+                    "unit__unit_source__source_wordcount",
+                    "unit__unit_source__created_by_id",
+                    "unit_id",
+                    "submitter__id",
+                    "old_value",
+                    "new_value",
+                    "creation_time",
+                    "revision",
+                    "field")),
             event_sources=("suggestion", "submission"))
         for event in scored_events:
             self.score_event(event, calculated_scores)
