@@ -143,9 +143,10 @@ class SubmissionManager(models.Manager):
 
 
 class Submission(models.Model):
+
     class Meta(object):
         ordering = ["creation_time", "pk"]
-        index_together = ["submitter", "creation_time", "id"]
+        index_together = ["submitter", "creation_time"]
         get_latest_by = "creation_time"
         db_table = 'pootle_app_submission'
         base_manager_name = 'objects'
@@ -159,7 +160,7 @@ class Submission(models.Model):
     submitter = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         null=True,
-        db_index=True,
+        db_index=False,
         on_delete=models.SET(get_system_user))
     suggestion = models.ForeignKey('pootle_store.Suggestion', blank=True,
                                    null=True, db_index=True,
