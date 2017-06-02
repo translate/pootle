@@ -25,7 +25,7 @@ class AbstractUserScore(models.Model):
         null=False,
         blank=False,
         auto_now=False,
-        db_index=True)
+        db_index=False)
     score = models.FloatField(
         null=False,
         blank=False,
