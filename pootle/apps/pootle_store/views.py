@@ -34,7 +34,6 @@ from pootle.core.views import PootleJSON
 from pootle.core.views.mixins import GatherContextMixin, PootleJSONMixin
 from pootle.i18n.dates import timesince
 from pootle.i18n.gettext import ugettext as _
-from pootle_app.models.directory import Directory
 from pootle_app.models.permissions import check_user_permission
 from pootle_language.models import Language
 from pootle_misc.util import ajax_required
@@ -271,8 +270,7 @@ class PootleUnitJSON(PootleJSON):
     @cached_property
     def permission_context(self):
         self.object = self.get_object()
-        return Directory.objects.select_related("tp", "tp__project").get(
-            pk=self.store.parent_id)
+        return self.store.parent
 
     @property
     def pootle_path(self):
@@ -688,7 +686,16 @@ class UnitSubmitJSON(UnitSuggestionJSON):
     @lru_cache()
     def get_object(self):
         return get_object_or_404(
-            Unit,
+            Unit.objects.select_related(
+                "store",
+                "change",
+                "store__parent",
+                "store__translation_project",
+                "store__filetype",
+                "store__translation_project__language",
+                "store__translation_project__project",
+                "store__data",
+                "store__translation_project__data"),
             id=self.request.resolver_match.kwargs["uid"])
 
     @lru_cache()
