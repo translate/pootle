@@ -200,8 +200,7 @@ class Unit(AbstractUnit):
         index_together = [
             ["store", "index"],
             ["store", "revision"],
-            ["store", "mtime"],
-            ["store", "state"]]
+            ["store", "mtime"]]
 
     # # # # # # # # # # # # # #  Properties # # # # # # # # # # # # # # # # # #
 

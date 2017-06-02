@@ -129,7 +129,7 @@ class AbstractUnit(models.Model, base.TranslationUnit):
 
     store = models.ForeignKey(
         "pootle_store.Store",
-        db_index=True,
+        db_index=False,
         on_delete=models.CASCADE)
 
     index = models.IntegerField(db_index=True)
@@ -190,16 +190,16 @@ class AbstractStore(models.Model, CachedTreeItem, base.TranslationStore):
     parent = models.ForeignKey(
         'pootle_app.Directory',
         related_name='child_stores',
-        db_index=True,
         editable=False,
+        db_index=False,
         on_delete=models.CASCADE)
 
     translation_project_fk = 'pootle_translationproject.TranslationProject'
     translation_project = models.ForeignKey(
         translation_project_fk,
         related_name='stores',
-        db_index=True,
         editable=False,
+        db_index=False,
         on_delete=models.CASCADE)
 
     filetype = models.ForeignKey(
