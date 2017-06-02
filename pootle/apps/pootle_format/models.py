@@ -21,7 +21,6 @@ class Format(AbstractFormat):
 
     class Meta(AbstractFormat.Meta):
         db_table = "pootle_format"
-        unique_together = ["title", "extension"]
 
     extension = models.ForeignKey(
         FileExtension, related_name="formats", on_delete=models.CASCADE)

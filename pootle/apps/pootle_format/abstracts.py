@@ -30,6 +30,7 @@ class AbstractFormat(models.Model):
 
     class Meta(object):
         abstract = True
+        unique_together = ["title", "extension"]
 
     name = models.CharField(
         _('Format name'),
@@ -39,7 +40,7 @@ class AbstractFormat(models.Model):
     title = models.CharField(
         _('Format title'),
         max_length=255,
-        db_index=True)
+        db_index=False)
     enabled = models.BooleanField(
         verbose_name=_('Enabled'), default=True)
     monolingual = models.BooleanField(
