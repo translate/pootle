@@ -241,7 +241,8 @@ class Unit(AbstractUnit):
         self._rich_source = None
         self._rich_target = None
         self._encoding = 'UTF-8'
-        self._frozen = frozen.get(Unit)(self)
+        if hasattr(self, "source_f") and hasattr(self, "target_f"):
+            self._frozen = frozen.get(Unit)(self)
 
     @cached_property
     def counter(self):
