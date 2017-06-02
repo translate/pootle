@@ -146,7 +146,7 @@ class TranslationProjectManager(models.Manager):
 class TranslationProject(models.Model, CachedTreeItem):
 
     language = models.ForeignKey(
-        Language, db_index=True, on_delete=models.CASCADE)
+        Language, db_index=False, on_delete=models.CASCADE)
     project = models.ForeignKey(
         Project, db_index=True, on_delete=models.CASCADE)
     real_path = models.FilePathField(editable=False, null=True, blank=True)
