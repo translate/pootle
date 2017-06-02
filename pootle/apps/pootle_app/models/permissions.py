@@ -129,8 +129,10 @@ class PermissionSet(models.Model):
         unique_together = ('user', 'directory')
         app_label = "pootle_app"
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, db_index=True,
-                             on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        db_index=False,
+        on_delete=models.CASCADE)
     directory = models.ForeignKey('pootle_app.Directory', db_index=True,
                                   related_name='permission_sets',
                                   on_delete=models.CASCADE)
