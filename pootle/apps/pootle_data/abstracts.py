@@ -84,7 +84,7 @@ class AbstractPootleChecksData(models.Model):
 
     name = models.CharField(
         max_length=64,
-        db_index=True)
+        db_index=False)
     category = models.IntegerField(
         null=False,
         default=Category.NO_CATEGORY,
