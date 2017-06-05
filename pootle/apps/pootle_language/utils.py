@@ -10,6 +10,7 @@
 from django.utils import translation
 
 from pootle.core.decorators import persistent_property
+from pootle.core.delegate import revision
 from pootle_app.models import Directory
 
 from .apps import PootleLanguageConfig
@@ -23,14 +24,19 @@ class SiteLanguages(object):
 
     @property
     def object(self):
-        return Directory.objects.select_related("revision")
+        return Directory.objects.root
+
+    @property
+    def server_lang(self):
+        return translation.get_language()
 
     @property
     def cache_key(self):
+        rev_context = self.object
         return (
             "all_languages",
-            translation.get_language(),
-            self.object.data_tool.cache_key)
+            self.server_lang,
+            revision.get(rev_context.__class__)(rev_context).get(key="stats"))
 
     @property
     def site_languages(self):
