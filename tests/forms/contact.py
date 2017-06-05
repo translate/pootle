@@ -11,6 +11,7 @@ from __future__ import absolute_import
 import pytest
 
 from django.conf import settings
+from django.template.defaultfilters import escape
 from django.template.loader import render_to_string
 
 from contact.forms import ContactForm, ReportForm
@@ -41,6 +42,33 @@ def test_contact_form(admin, rf, mailoutbox):
     assert [recipient_email] == message.recipients()
     assert subject == message.subject
     assert data['body'] in message.body
+    assert "Your question or comment:" not in message.body
+
+
+@pytest.mark.django_db
+def test_contact_form_escaped_tags(admin, rf, mailoutbox):
+    request = rf.request()
+    request.user = admin
+    recipient_email = settings.POOTLE_CONTACT_EMAIL
+    specified_subject = "My <tag> subject"
+    subject = "[%s] %s" % (settings.POOTLE_TITLE, specified_subject)
+    data = {
+        'name': admin.full_name,
+        'email': admin.email,
+        'email_subject': specified_subject,
+        'body': "First <tag> of message.",
+    }
+    form = ContactForm(request=request, data=data)
+    assert form.is_valid()
+    form.save()
+    assert len(mailoutbox) == 1
+    message = mailoutbox[0]
+    assert message.from_email == settings.DEFAULT_FROM_EMAIL
+    reply_to = u'%s <%s>' % (data['name'], data['email'])
+    assert reply_to == message.extra_headers['Reply-To']
+    assert [recipient_email] == message.recipients()
+    assert escape(subject) == message.subject
+    assert escape(data['body']) in message.body
     assert "Your question or comment:" not in message.body
 
 
@@ -189,6 +217,43 @@ def test_report_error_form_context_cannot_be_altered(admin, rf, mailoutbox):
     assert len(mailoutbox) == 1
     message = mailoutbox[0]
     assert sent_context not in message.body
+
+
+@pytest.mark.django_db
+def test_report_error_form_escaped_tags(admin, rf, mailoutbox):
+    request = rf.request()
+    request.user = admin
+
+    unit_target = "some <tag>"
+    unit = Unit.objects.select_related(
+        'store__translation_project__project',
+        'store__translation_project__language',
+    ).last()
+    unit.target = unit_target
+    unit.save()
+    context_ctx = {
+        'unit': unit,
+        'unit_absolute_url':
+            request.build_absolute_uri(unit.get_translate_url()),
+    }
+    context = render_to_string('contact_form/report_form_context.txt',
+                               context=context_ctx)
+    context = context.strip()
+    data = {
+        'name': admin.full_name,
+        'email': admin.email,
+        'context': context,
+        'body': "The string <tag> is wrong",
+    }
+
+    # Instantiate form and test.
+    form = ReportForm(request=request, initial=data, data=data, unit=unit)
+    assert form.is_valid()
+    form.save()
+    assert len(mailoutbox) == 1
+    message = mailoutbox[0]
+    assert escape(unit_target) in message.body
+    assert escape(data['body']) in message.body
 
 
 @pytest.mark.django_db

@@ -1,7 +1,7 @@
 {% load i18n %}
 {% filter wordwrap:70 %}{% blocktrans %}The following suggestions submitted by you have been accepted with the comment:{% endblocktrans %}{% endfilter %}
 
-{{ comment }}
+{{ comment|escape }}
 
 {% for suggestion in suggestions %}
  - #{{ suggestion.id }} {{ suggestion.unit_url }}
