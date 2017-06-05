@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-27 01:59+0100\n"
-"PO-Revision-Date: 2017-05-17 15:33+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2017-06-04 22:49+0000\n"
+"Last-Translator: 炜 <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1495035229.000000\n"
+"X-POOTLE-MTIME: 1496616551.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -50,9 +50,8 @@ msgid "Enter a valid username."
 msgstr "请输入一个有效的用户名。"
 
 #: apps/accounts/models.py:65
-#, fuzzy
 msgid "A user with that username already exists."
-msgstr "已经存在一个含有这个缩略名的目标。"
+msgstr "此用户名已经存在。"
 
 #: apps/accounts/models.py:68
 msgid "Email Address"
@@ -125,14 +124,12 @@ msgid "This email address already exists."
 msgstr "此电子邮件地址已经存在。"
 
 #: apps/contact/forms.py:27
-#, fuzzy
 msgid "Subject"
-msgstr "拒绝"
+msgstr "标题"
 
 #: apps/contact/forms.py:29
-#, fuzzy
 msgid "Please enter a message subject"
-msgstr "请输入您的消息"
+msgstr "请输入一个消息标题"
 
 #: apps/contact/forms.py:36 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
@@ -160,17 +157,15 @@ msgstr "请输入您的消息"
 
 #: apps/contact/forms.py:115
 msgid "String context"
-msgstr ""
+msgstr "字符串上下文"
 
 #: apps/contact/forms.py:125
-#, fuzzy
 msgid "Question or comment"
-msgstr "建议被拒绝"
+msgstr "问题或评论"
 
 #: apps/contact/forms.py:126
-#, fuzzy
 msgid "Please enter your question or comment"
-msgstr "请输入你注册的详细信息"
+msgstr "请输入你的问题或评论"
 
 #: apps/contact/views.py:35 templates/layout.html:120
 msgid "Contact Us"
@@ -268,10 +263,10 @@ msgstr "请输入有效的 LinkedIn 用户个人资料网址。"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:58
-#, fuzzy, python-format
+#, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
-msgstr[0] "进行中 (%d个工作人员)进行中 (%d个工作人员)"
+msgstr[0] "进行中 (%d个工作人员)"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:62
@@ -1889,7 +1884,6 @@ msgid "About This Pootle Server"
 msgstr "关于此 Pootle 服务器"
 
 #: templates/about.html:16
-#, fuzzy
 msgid ""
 "This site is running Pootle — powerful web software to empower teams to do "
 "translation and translation management. This community tool is Free "
@@ -1899,7 +1893,7 @@ msgid ""
 msgstr ""
 "这个站点正在运行 Pootle ---这个强大的 web 软件可以帮助团队进行翻译和翻译管"
 "理。本社区工具是自由软件，任何团队皆可以自由使用并回馈于 Pootle 社区。请在<a "
-"href=\"http://translate.sourceforge.net/\">项目站点</a>阅读更多。"
+"href=\"http://pootle.translatehouse.org/\">项目站点</a>阅读更多。"
 
 #: templates/about.html:25
 #, python-format
@@ -2652,25 +2646,22 @@ msgid "Database Error"
 msgstr "数据库错误"
 
 #: templates/errors/db.html:11
-#, fuzzy
 msgid ""
 "Pootle can't connect to the database, the database is not initialized yet, "
 "or a schema upgrade is needed before continuing."
 msgstr ""
-"Pootle 无法连接到数据库，数据库还没有\n"
-"被初始化，或者在继续前需要进行一次架构升级。"
+"Pootle 无法连接到数据库，数据库还没有被初始化，或者在继续前需要进行一次架构升"
+"级。"
 
 #: templates/errors/db.html:18
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Please read the <a href=\"%(url)s\">Pootle documentation</a> for "
 "installation and upgrade instructions. Contact the server administrator if "
 "you feel this is a mistake."
 msgstr ""
-"\n"
-"请您阅读 <a href=\"%(url)s\">Pootle 文档</a>以获取安装\n"
-"和升级介绍。若您觉得这是一个错误，请联系\n"
-"服务器管理员。"
+"请您阅读 <a href=\"%(url)s\">Pootle 文档</a>以获取安装和升级介绍。若您觉得这"
+"是一个错误，请联系服务器管理员。"
 
 #: templates/errors/db.html:26
 msgid "The reported error was:"
@@ -2817,13 +2808,13 @@ msgid "Below you can add, edit, and delete the permissions for this project."
 msgstr "您可以在下方为这个项目增加、编辑和删除相关权限。"
 
 #: templates/staticpages/_body.html:6
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This static page is inactive and visible to administrators only. You can "
 "activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
 msgstr ""
-"这个页面是未激活且只有管理员可见的。您可以通过<a href=\"%s\">编辑属性</a>来激"
-"活它"
+"这个页面是未激活且只有管理员可见的。您可以通过<a href=\"%(edit_url)s\">编辑属"
+"性</a>来激活它"
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
