@@ -1,1 +1,1 @@
-[{{ server_name }}] {{ email_subject }}
+[{{ server_name }}] {{ email_subject|escape }}
