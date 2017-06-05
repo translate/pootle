@@ -517,7 +517,7 @@ class UnitEditJSON(PootleUnitJSON):
             'suggestions_dict': {x.id: dict(id=x.id, target=x.target.strings)
                                  for x in suggestions},
             "critical_checks": list(
-                self.object.get_active_critical_qualitychecks()),
+                self.object.get_critical_qualitychecks()),
             "warning_checks": list(
                 self.object.get_warning_qualitychecks()),
             "terms": self.object.get_terminology()}
