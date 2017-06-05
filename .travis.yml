@@ -3,10 +3,7 @@ language: python
 python:
   - 2.6
   - 2.7
-env:
-  - DJANGO_VERSION=1.4.10
 install:
-  - pip install Django==$DJANGO_VERSION --timeout=240
   - pip install -r requirements/build.txt --timeout=240
   - python -V; pip freeze  # Print all installed versions for reference.
 script:
