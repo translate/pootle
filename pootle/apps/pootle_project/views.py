@@ -80,7 +80,7 @@ class ProjectMixin(object):
             "%s.%s.%s.%s::%s.%s.%s"
             % (self.page_name,
                self.view_name,
-               self.object.data_tool.cache_key,
+               self.project.data_tool.cache_key,
                self.kwargs["dir_path"],
                self.kwargs["filename"],
                self.show_all,
@@ -93,9 +93,11 @@ class ProjectMixin(object):
             "dir_path": self.kwargs["dir_path"],
             "filename": self.kwargs["filename"]}
 
-    @lru_cache()
     def get_object(self):
-        self.object = self.project
+        return self.object
+
+    @cached_property
+    def object(self):
         return self.object_with_children
 
     @persistent_property
