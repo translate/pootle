@@ -172,7 +172,7 @@ def test_view_tp_garbage(tp0, store0, client, request_users):
     response = client.get(url)
     assert response.status_code == 200
     failed = []
-    for i in xrange(0, 10):
+    for i in xrange(0, 2):
         with memusage() as usage:
             client.get(url)
         try:
