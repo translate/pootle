@@ -14,6 +14,7 @@ from django import forms
 from django.urls import reverse
 
 from pootle.core.browser import make_project_item
+from pootle.core.debug import memusage
 from pootle.core.delegate import language_team
 from pootle.core.exceptions import Http400
 from pootle.core.forms import FormtableForm
@@ -335,3 +336,22 @@ def test_view_language_children(language0, rf, request_users):
     view.object = view.get_object()
     assert view.object == language0
     _test_view_language_children(view, language0)
+
+
+@pytest.mark.django_db
+def test_view_language_garbage(language0, store0, client, request_users):
+    url = reverse(
+        "pootle-language-browse",
+        kwargs=dict(
+            language_code=language0.code))
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    response = client.get(url)
+    response = client.get(url)
+    assert response.status_code == 200
+    for i in xrange(0, 2):
+        with memusage() as usage:
+            client.get(url)
+        assert not usage["used"]
