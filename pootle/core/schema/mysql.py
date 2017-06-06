@@ -6,17 +6,22 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from collections import OrderedDict
+
 from django.db import connection
 
 
-def fetchall_asdicts(cursor, fields):
+def fetchall_asdicts(cursor, fields, sort_by_field):
     """Return all rows from a cursor as a dict filtered by fields."""
 
-    columns = [col[0] for col in cursor.description]
-    return [
-        dict(filter(lambda x: x[0].lower() in fields, zip(columns, row)))
+    columns = [u"%s" % col[0].lower() for col in cursor.description]
+    return sorted([
+        OrderedDict(
+            sorted(
+                filter(lambda x: x[0] in fields, zip(columns, row)),
+                key=lambda x: x[0]))
         for row in cursor.fetchall()
-    ]
+    ], key=lambda x: x.get(sort_by_field))
 
 
 class MySQLSchemaDumper(object):
@@ -27,13 +32,13 @@ class MySQLSchemaDumper(object):
             cursor.execute(sql % cursor.db.settings_dict['NAME'])
             character_set, collation = cursor.fetchone()
 
-        return dict(character_set=character_set, collation=collation)
+        return OrderedDict(character_set=character_set, collation=collation)
 
     def get_table_fields(self, table_name):
         fields = ('field', 'type', 'collation', 'key', 'extra')
         with connection.cursor() as cursor:
             cursor.execute("SHOW FULL COLUMNS FROM %s" % table_name)
-            result = fetchall_asdicts(cursor, fields)
+            result = fetchall_asdicts(cursor, fields, 'field')
 
         return result
 
@@ -41,7 +46,7 @@ class MySQLSchemaDumper(object):
         fields = ('non_unique', 'key_name', 'column_name')
         with connection.cursor() as cursor:
             cursor.execute("SHOW INDEX FROM %s" % table_name)
-            result = fetchall_asdicts(cursor, fields)
+            result = fetchall_asdicts(cursor, fields, 'column_name')
 
         return result
 
@@ -59,6 +64,6 @@ class MySQLSchemaDumper(object):
 
         with connection.cursor() as cursor:
             cursor.execute(sql)
-            result = fetchall_asdicts(cursor, fields)
+            result = fetchall_asdicts(cursor, fields, 'column_name')
 
         return result
