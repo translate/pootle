@@ -101,10 +101,17 @@ lint-docs:
 
 lint-py: lint-python
 
-lint-python:
-	flake8 --config=setup.cfg && \
-	isort --check-only --diff && \
+lint-python: lint-flake8 lint-isort lint-pylint
+
+lint-flake8:
+	flake8 --config=setup.cfg
+
+lint-isort:
+	isort --check-only --diff
+
+lint-pylint:
 	pylint --rcfile=.pylint-travisrc pootle tests pytest_pootle docs pootle/settings/*.conf*
+
 
 lint-js:
 	cd ${JS_DIR} \
