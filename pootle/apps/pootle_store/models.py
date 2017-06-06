@@ -26,8 +26,7 @@ from django.utils.http import urlquote
 from pootle.core.delegate import (
     data_tool, format_syncers, format_updaters, frozen, states,
     terminology_matcher, wordcount)
-from pootle.core.log import (
-    STORE_DELETED, STORE_OBSOLETE, log, store_log)
+from pootle.core.log import STORE_DELETED, STORE_OBSOLETE, log, store_log
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
 from pootle.core.signals import toggle, update_checks, update_data
@@ -41,11 +40,11 @@ from pootle_checks.constants import CHECK_NAMES
 from pootle_statistics.models import SubmissionFields, SubmissionTypes
 
 from .abstracts import (
-    AbstractUnit, AbstractQualityCheck, AbstractStore, AbstractSuggestion,
-    AbstractSuggestionState, AbstractUnitChange, AbstractUnitSource)
+    AbstractQualityCheck, AbstractStore, AbstractSuggestion,
+    AbstractSuggestionState, AbstractUnit, AbstractUnitChange,
+    AbstractUnitSource)
 from .constants import (
-    DEFAULT_PRIORITY, FUZZY, OBSOLETE, POOTLE_WINS,
-    TRANSLATED, UNTRANSLATED)
+    DEFAULT_PRIORITY, FUZZY, OBSOLETE, POOTLE_WINS, TRANSLATED, UNTRANSLATED)
 from .managers import SuggestionManager, UnitManager
 from .store.deserialize import StoreDeserialization
 from .store.serialize import StoreSerialization

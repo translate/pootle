@@ -8,8 +8,8 @@
 
 from django.contrib.auth import get_user_model
 
-from pootle.core.models import Revision
 from pootle.core.contextmanagers import keep_data
+from pootle.core.models import Revision
 from pootle.core.paths import Paths
 from pootle.core.signals import create, update_checks
 from pootle_statistics.models import SubmissionTypes

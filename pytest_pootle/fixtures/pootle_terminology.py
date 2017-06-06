@@ -9,7 +9,6 @@
 import os
 
 import pytest
-
 from translate.storage.factory import getclass
 
 

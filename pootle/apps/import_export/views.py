@@ -17,12 +17,12 @@ from django.shortcuts import redirect
 
 from pootle.core.delegate import language_team
 from pootle.core.views.base import PootleDetailView
-from pootle_translationproject.views import TPDirectoryMixin
 from pootle_app.models.permissions import check_permission
 from pootle_store.models import Store
+from pootle_translationproject.views import TPDirectoryMixin
 
 from .forms import UploadForm
-from .utils import import_file, TPTMXExporter
+from .utils import TPTMXExporter, import_file
 
 
 def download(contents, name, content_type):

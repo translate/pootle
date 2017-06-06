@@ -9,9 +9,8 @@
 from django.conf.urls import url
 
 from .views import (
-    ProjectBrowseView, ProjectPathsJSON, ProjectsBrowseView,
-    ProjectsTranslateView, ProjectTranslateView,
-    ProjectAdminView, project_admin_permissions)
+    ProjectAdminView, ProjectBrowseView, ProjectPathsJSON, ProjectsBrowseView,
+    ProjectsTranslateView, ProjectTranslateView, project_admin_permissions)
 
 
 urlpatterns = [

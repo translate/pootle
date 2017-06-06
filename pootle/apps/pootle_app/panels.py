@@ -13,7 +13,6 @@ from django.utils.safestring import mark_safe
 from pootle.core.browser import get_table_headings
 from pootle.core.decorators import persistent_property
 from pootle.core.views.panels import TablePanel
-
 from pootle.i18n.dates import timesince
 
 

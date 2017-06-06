@@ -30,8 +30,8 @@ from pootle_store.constants import STATES_MAP
 
 from .apps import PootleLanguageConfig
 from .forms import (
-    LanguageSpecialCharsForm, LanguageSuggestionAdminForm, LanguageTeamAdminForm,
-    LanguageTeamNewMemberSearchForm)
+    LanguageSpecialCharsForm, LanguageSuggestionAdminForm,
+    LanguageTeamAdminForm, LanguageTeamNewMemberSearchForm)
 from .models import Language
 
 

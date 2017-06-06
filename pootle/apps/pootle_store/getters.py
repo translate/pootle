@@ -10,17 +10,17 @@ from django.conf import settings
 from django.core.exceptions import ValidationError
 
 from pootle.core.delegate import (
-    comparable_event, deserializers, grouped_events, frozen, lifecycle,
-    review, search_backend, serializers, states, uniqueid, wordcount)
+    comparable_event, deserializers, frozen, grouped_events, lifecycle, review,
+    search_backend, serializers, states, uniqueid, wordcount)
 from pootle.core.plugin import getter
 from pootle_config.delegate import (
-    config_should_not_be_set, config_should_not_be_appended)
+    config_should_not_be_appended, config_should_not_be_set)
 from pootle_misc.util import import_func
 
 from .models import Suggestion, SuggestionState, Unit
 from .unit.search import DBSearchBackend
 from .unit.timeline import (
-    UnitTimelineLog, ComparableUnitTimelineLogEvent, UnitTimelineGroupedEvents)
+    ComparableUnitTimelineLogEvent, UnitTimelineGroupedEvents, UnitTimelineLog)
 from .utils import (
     FrozenUnit, SuggestionsReview, UnitLifecycle, UnitUniqueId, UnitWordcount)
 

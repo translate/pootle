@@ -9,7 +9,6 @@
 from contextlib import contextmanager
 
 import pytest
-
 from pytest_pootle.utils import suppress_getter, suppress_provider
 
 from pootle_fs.delegate import fs_file, fs_finder, fs_plugins

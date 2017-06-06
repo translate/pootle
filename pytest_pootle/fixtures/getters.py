@@ -9,10 +9,9 @@
 from contextlib import contextmanager
 
 import pytest
-
 from pytest_pootle.utils import suppress_getter
 
-from pootle.core.delegate import context_data, wordcount, tp_tool
+from pootle.core.delegate import context_data, tp_tool, wordcount
 
 
 @contextmanager

@@ -24,8 +24,8 @@ from pootle_store.unit import UnitProxy
 from pootle_translationproject.models import TranslationProject
 
 from .constants import (
-    CATEGORY_CODES, CATEGORY_IDS, CATEGORY_NAMES,
-    CHECK_NAMES, EXCLUDED_FILTERS)
+    CATEGORY_CODES, CATEGORY_IDS, CATEGORY_NAMES, CHECK_NAMES,
+    EXCLUDED_FILTERS)
 
 
 logger = logging.getLogger(__name__)

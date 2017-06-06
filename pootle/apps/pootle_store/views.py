@@ -25,12 +25,12 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.views.decorators.http import require_http_methods
 from django.views.generic import FormView
 
-from pootle.core.views.decorators import requires_permission, set_permissions
 from pootle.core.delegate import review, search_backend
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle.core.utils import dateformat
 from pootle.core.views import PootleJSON
+from pootle.core.views.decorators import requires_permission, set_permissions
 from pootle.core.views.mixins import GatherContextMixin, PootleJSONMixin
 from pootle.i18n.dates import timesince
 from pootle.i18n.gettext import ugettext as _

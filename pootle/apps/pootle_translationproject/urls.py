@@ -9,8 +9,8 @@
 from django.conf.urls import url
 
 from .views import (
-    TPBrowseStoreView, TPBrowseView, TPPathsJSON,
-    TPTranslateStoreView, TPTranslateView, admin_permissions)
+    TPBrowseStoreView, TPBrowseView, TPPathsJSON, TPTranslateStoreView,
+    TPTranslateView, admin_permissions)
 
 
 urlpatterns = [

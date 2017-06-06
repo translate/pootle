@@ -11,7 +11,6 @@ import logging
 import time
 
 import pytest
-
 from pytest_pootle import utils
 
 

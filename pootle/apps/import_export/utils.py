@@ -8,12 +8,11 @@
 
 import logging
 import os
-
 from io import BytesIO
 from zipfile import ZipFile
 
-from translate.storage.factory import getclass
 from translate.storage import tmx
+from translate.storage.factory import getclass
 
 from django.conf import settings
 from django.utils.functional import cached_property

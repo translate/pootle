@@ -8,21 +8,21 @@
 
 from django.contrib.auth import get_user_model
 
-from pootle.core.delegate import crud, display, scores, score_updater
+from pootle.core.delegate import crud, display, score_updater, scores
 from pootle.core.plugin import getter
 from pootle_language.models import Language
 from pootle_project.models import Project, ProjectSet
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
 
-from .updater import (
-    StoreScoreUpdater, TPScoreUpdater, UserScoreUpdater,
-    UserStoreScoreCRUD, UserTPScoreCRUD)
 from .display import TopScoreDisplay
 from .models import UserStoreScore, UserTPScore
+from .updater import (
+    StoreScoreUpdater, TPScoreUpdater, UserScoreUpdater, UserStoreScoreCRUD,
+    UserTPScoreCRUD)
 from .utils import (
-    LanguageScores, ProjectScores, ProjectSetScores, Scores,
-    TPScores, UserScores)
+    LanguageScores, ProjectScores, ProjectSetScores, Scores, TPScores,
+    UserScores)
 
 
 User = get_user_model()

@@ -12,8 +12,8 @@ from django.utils.functional import cached_property
 
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import panels, scores
-from pootle.core.helpers import (SIDEBAR_COOKIE_NAME,
-                                 get_sidebar_announcements_context)
+from pootle.core.helpers import (
+    SIDEBAR_COOKIE_NAME, get_sidebar_announcements_context)
 from pootle.core.utils.stats import (
     TOP_CONTRIBUTORS_CHUNK_SIZE, get_translation_states)
 from pootle.i18n import formatter

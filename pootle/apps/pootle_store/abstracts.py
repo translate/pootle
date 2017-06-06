@@ -17,8 +17,8 @@ from pootle.core.mixins import CachedTreeItem
 from pootle.core.storage import PootleFileSystemStorage
 from pootle.core.user import get_system_user, get_system_user_id
 from pootle.core.utils.timezone import datetime_min
-from pootle_format.models import Format
 from pootle.i18n.gettext import ugettext_lazy as _
+from pootle_format.models import Format
 from pootle_statistics.models import SubmissionTypes
 
 from .constants import NEW, UNTRANSLATED

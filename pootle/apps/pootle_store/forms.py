@@ -19,9 +19,10 @@ from pootle.core.delegate import review
 from pootle.core.url_helpers import split_pootle_path
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models import Directory
-from pootle_app.models.permissions import check_permission, check_user_permission
-from pootle_comment.forms import UnsecuredCommentForm
+from pootle_app.models.permissions import (
+    check_permission, check_user_permission)
 from pootle_checks.constants import CATEGORY_CODES, CHECK_NAMES
+from pootle_comment.forms import UnsecuredCommentForm
 from pootle_misc.util import get_date_interval
 from pootle_project.models import Project
 from pootle_statistics.models import SubmissionFields, SubmissionTypes
@@ -30,8 +31,8 @@ from .constants import ALLOWED_SORTS, FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from .contextmanagers import update_store_after
 from .fields import to_db
 from .form_fields import (
-    CategoryChoiceField, ISODateTimeField, MultipleArgsField,
-    CommaSeparatedCheckboxSelectMultiple)
+    CategoryChoiceField, CommaSeparatedCheckboxSelectMultiple,
+    ISODateTimeField, MultipleArgsField)
 from .models import Suggestion, Unit
 
 

@@ -10,7 +10,6 @@ import os
 import shutil
 
 import pytest
-
 from pytest_pootle.fs.utils import parse_fs_action_args
 
 

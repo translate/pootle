@@ -8,14 +8,13 @@
 
 import threading
 import types
-
 from contextlib import contextmanager, nested
 
-from django.dispatch import receiver, Signal
+from django.dispatch import Signal, receiver
 
 from pootle.core.signals import (
-    create, delete, update,
-    update_checks, update_data, update_revisions, update_scores)
+    create, delete, update, update_checks, update_data, update_revisions,
+    update_scores)
 
 
 class BulkUpdated(object):

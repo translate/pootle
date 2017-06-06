@@ -12,8 +12,8 @@ from django.db import models
 from django.template.defaultfilters import truncatechars
 from django.urls import reverse
 
-from pootle.core.utils import dateformat
 from pootle.core.user import get_system_user
+from pootle.core.utils import dateformat
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_checks.constants import CHECK_NAMES
 from pootle_store.constants import FUZZY, TRANSLATED

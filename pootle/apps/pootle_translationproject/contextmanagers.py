@@ -15,9 +15,8 @@ from pootle.core.contextmanagers import bulk_operations, keep_data
 from pootle.core.signals import (
     update_checks, update_data, update_revisions, update_scores)
 from pootle_app.models import Directory
-from pootle_data.models import (
-    StoreChecksData, StoreData, TPChecksData, TPData)
-from pootle_score.models import UserTPScore, UserStoreScore
+from pootle_data.models import StoreChecksData, StoreData, TPChecksData, TPData
+from pootle_score.models import UserStoreScore, UserTPScore
 from pootle_store.models import QualityCheck, Store
 
 

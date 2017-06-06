@@ -12,12 +12,11 @@ from pootle_app.models import Directory
 from pootle_store.models import Store
 
 from .delegate import (
-    path_matcher, vfolders_data_tool, vfolder_finder, vfolders_data_view)
+    path_matcher, vfolder_finder, vfolders_data_tool, vfolders_data_view)
 from .models import VirtualFolder
 from .search import VFolderDBSearchBackend
 from .utils import (
-    DirectoryVFDataTool,
-    VirtualFolderFinder, VirtualFolderPathMatcher)
+    DirectoryVFDataTool, VirtualFolderFinder, VirtualFolderPathMatcher)
 from .views import VFoldersDataView
 
 

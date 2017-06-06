@@ -11,13 +11,13 @@ from pootle.core.plugin import getter
 from pootle_app.models import Directory
 from pootle_language.models import Language
 from pootle_project.models import Project, ProjectResource, ProjectSet
-from pootle_translationproject.models import TranslationProject
 from pootle_store.models import Store, Unit
+from pootle_translationproject.models import TranslationProject
 
 from .models import Revision
 from .utils import (
     DirectoryRevision, DirectoryRevisionUpdater, LanguageRevision,
-    ProjectRevision, ProjectResourceRevision, ProjectRevisionUpdater,
+    ProjectResourceRevision, ProjectRevision, ProjectRevisionUpdater,
     ProjectSetRevision, RevisionCRUD, StoreRevisionUpdater, TPRevision,
     UnitRevisionUpdater)
 

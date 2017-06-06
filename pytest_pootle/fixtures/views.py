@@ -13,13 +13,12 @@ from datetime import timedelta
 
 import pytest
 from dateutil.relativedelta import relativedelta
+from pytest_pootle.fixtures.models.user import TEST_USERS
+from pytest_pootle.utils import create_store, get_test_uids
 
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.urls import reverse
 from django.utils import timezone
-
-from pytest_pootle.fixtures.models.user import TEST_USERS
-from pytest_pootle.utils import create_store, get_test_uids
 
 
 DAY_AGO = (timezone.now() - timedelta(days=1))

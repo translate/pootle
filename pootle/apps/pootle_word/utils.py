@@ -10,7 +10,6 @@ import os
 import re
 
 import Levenshtein
-
 import translate
 
 from django.utils.functional import cached_property

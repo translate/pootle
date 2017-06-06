@@ -7,7 +7,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import pytest
-
 from translate.storage.factory import getclass
 
 

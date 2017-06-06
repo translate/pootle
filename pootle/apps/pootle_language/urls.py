@@ -9,9 +9,8 @@
 from django.conf.urls import url
 
 from .views import (
-    LanguageBrowseView, LanguageSuggestionAdminView,
-    LanguageTeamAdminFormView, LanguageTeamAdminNewMembersJSON,
-    LanguageTranslateView,
+    LanguageBrowseView, LanguageSuggestionAdminView, LanguageTeamAdminFormView,
+    LanguageTeamAdminNewMembersJSON, LanguageTranslateView,
     language_characters_admin)
 
 

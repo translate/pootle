@@ -14,8 +14,7 @@ from django.dispatch import receiver
 from pootle.core.contextmanagers import bulk_operations, keep_data
 from pootle.core.signals import (
     update_checks, update_data, update_revisions, update_scores)
-from pootle_data.models import (
-    StoreData, StoreChecksData, TPChecksData, TPData)
+from pootle_data.models import StoreChecksData, StoreData, TPChecksData, TPData
 from pootle_score.models import UserStoreScore, UserTPScore
 
 from .models import Unit

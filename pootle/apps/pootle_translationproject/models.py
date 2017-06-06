@@ -22,9 +22,9 @@ from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
 from pootle_app.project_tree import (does_not_exist, init_store_from_template,
                                      translation_project_dir_exists)
+from pootle_checks.constants import EXCLUDED_FILTERS
 from pootle_format.models import Format
 from pootle_language.models import Language
-from pootle_checks.constants import EXCLUDED_FILTERS
 from pootle_project.models import Project
 from pootle_revision.models import Revision
 from pootle_store.constants import PARSED

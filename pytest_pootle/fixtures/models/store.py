@@ -12,12 +12,10 @@ import os
 from collections import OrderedDict
 
 import pytest
-
-from translate.storage.factory import getclass
-
 from pytest_pootle.factories import (
     LanguageDBFactory, StoreDBFactory, TranslationProjectFactory)
 from pytest_pootle.utils import create_store, update_store
+from translate.storage.factory import getclass
 
 
 def _update_fuzzy(is_fuzzy, source):

@@ -14,14 +14,14 @@ from django.utils.functional import cached_property
 from django.utils.html import format_html
 
 from accounts.proxy import DisplayUser
-
 from pootle.core.delegate import event_formatters, grouped_events
 from pootle.core.proxy import BaseProxy
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_checks.constants import CHECK_NAMES
 from pootle_comment import get_model as get_comment_model
 from pootle_log.utils import GroupedEvents, UnitLog
-from pootle_statistics.models import Submission, SubmissionFields, SubmissionTypes
+from pootle_statistics.models import (
+    Submission, SubmissionFields, SubmissionTypes)
 from pootle_store.constants import STATES_MAP
 from pootle_store.fields import to_python
 from pootle_store.models import Suggestion

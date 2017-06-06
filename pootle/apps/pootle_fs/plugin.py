@@ -18,19 +18,18 @@ from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
 from pootle.core.delegate import (
-    config, response as pootle_response,
-    revision, state as pootle_state)
+    config, response as pootle_response, revision, state as pootle_state)
 from pootle_app.models import Directory
+from pootle_project.models import Project
 from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
 from pootle_store.models import Store
-from pootle_project.models import Project
 
 from .apps import PootleFSConfig
 from .decorators import emits_state, responds_to_state
 from .delegate import fs_finder, fs_matcher, fs_resources
 from .exceptions import FSStateError
 from .models import StoreFS
-from .signals import fs_pre_push, fs_post_push, fs_pre_pull, fs_post_pull
+from .signals import fs_post_pull, fs_post_push, fs_pre_pull, fs_pre_push
 
 
 logger = logging.getLogger(__name__)

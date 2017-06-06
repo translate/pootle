@@ -12,10 +12,10 @@ from django.contrib.auth import get_user_model
 from django.utils import timezone
 from django.utils.functional import cached_property
 
-from pootle_store.contextmanagers import update_store_after
 from pootle.core.delegate import frozen, review
 from pootle.core.log import log
 from pootle.core.models import Revision
+from pootle_store.contextmanagers import update_store_after
 
 from .constants import OBSOLETE, PARSED, POOTLE_WINS
 from .diff import StoreDiff

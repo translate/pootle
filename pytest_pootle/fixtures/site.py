@@ -11,11 +11,11 @@ import inspect
 import os
 import pdb
 import shutil
-import tempfile
 import sys
+import tempfile
 import time
-import pytest
 
+import pytest
 from pytest_pootle.env import PootleTestEnv
 
 from pootle.core.debug import debug_sql

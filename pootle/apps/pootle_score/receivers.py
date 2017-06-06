@@ -17,7 +17,6 @@ from pootle_statistics.models import Submission
 from pootle_store.models import Store, Suggestion
 from pootle_translationproject.models import TranslationProject
 
-
 from .models import UserStoreScore, UserTPScore
 
 

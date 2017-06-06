@@ -10,9 +10,9 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from pootle.core.delegate import terminology
+from pootle_statistics.models import Submission, SubmissionFields
 from pootle_store.constants import TRANSLATED
 from pootle_store.models import Unit
-from pootle_statistics.models import Submission, SubmissionFields
 
 
 @receiver(post_save, sender=Unit)

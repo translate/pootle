@@ -9,12 +9,11 @@
 from pkgutil import iter_modules
 
 from . import fixtures
-from .fixtures import models as fixtures_models
-from .fixtures import core as fixtures_core
-from .fixtures.core import management as fixtures_core_management
-from .fixtures.core import utils as fixtures_core_utils
-from .fixtures import formats as fixtures_formats
-from .fixtures import pootle_fs as fixtures_fs
+from .fixtures import (
+    core as fixtures_core, formats as fixtures_formats,
+    models as fixtures_models, pootle_fs as fixtures_fs)
+from .fixtures.core import (
+    management as fixtures_core_management, utils as fixtures_core_utils)
 
 
 def _load_fixtures(*modules):

@@ -7,7 +7,6 @@
 # AUTHORS file for copyright and authorship information.
 
 from pootle.core.delegate import context_data
-
 from pootle.core.plugin import provider
 from pootle_translationproject.views import TPBrowseView
 
