@@ -128,8 +128,8 @@ def test_view_language_team_admin(client, language0, request_users):
         if k.endswith("_display"):
             del response.context["stats"][k]
     assert (
-        list(response.context["stats"])
-        == list(
+        sorted(response.context["stats"])
+        == sorted(
             language0.data_tool.get_stats(
                 include_children=False,
                 user=user)))
