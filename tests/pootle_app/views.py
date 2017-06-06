@@ -11,6 +11,7 @@ import pytest
 from django.utils.translation import get_language
 from django.urls import reverse
 
+from pootle.core.debug import memusage
 from pootle.core.delegate import revision
 from pootle_app.views.index.index import (
     COOKIE_NAME, IndexView, WelcomeView)
@@ -64,3 +65,15 @@ def test_view_welcome(client, member, system, project_set):
             % (response.wsgi_request.user.username,
                response.context["view"].revision,
                get_language())))
+
+
+@pytest.mark.django_db
+def test_view_welcome_garbage(client):
+    url = reverse("pootle-home")
+    response = client.get(url)
+    response = client.get(url)
+    assert response.status_code == 200
+    for i in xrange(0, 2):
+        with memusage() as usage:
+            client.get(url)
+        assert not usage["used"]
