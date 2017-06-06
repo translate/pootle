@@ -19,6 +19,7 @@ def test_manage_noargs(capfd):
     assert "Available subcommands:" in out
 
 
+@pytest.mark.django_db
 @pytest.mark.cmd
 def test_manage_revision(capfd):
     """./manage.py revision, just to see that a simple command works."""
