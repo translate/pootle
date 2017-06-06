@@ -14,6 +14,7 @@ from django.core.urlresolvers import reverse
 
 from pootle.core.browser import (
     make_language_item, make_project_list_item, make_xlanguage_item)
+from pootle.core.debug import memusage
 from pootle.core.forms import PathsSearchForm
 from pootle.core.signals import update_revisions
 from pootle.core.views.browse import StatsDisplay
@@ -185,3 +186,29 @@ def test_view_project_paths(project0, store0, client, request_users):
     assert response.status_code == 200
     result = json.loads(response.content)
     assert "store0.po" not in result["items"]["results"]
+
+
+@pytest.mark.django_db
+def test_view_project_garbage(project0, store0, client, request_users):
+    url = reverse(
+        "pootle-project-browse",
+        kwargs=dict(
+            project_code=project0.code,
+            dir_path="",
+            filename=""))
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    response = client.get(url)
+    response = client.get(url)
+    assert response.status_code == 200
+    failed = []
+    for i in xrange(0, 2):
+        with memusage() as usage:
+            client.get(url)
+        try:
+            assert usage["used"] == 0
+        except:
+            failed.append((i, usage["used"]))
+    assert not failed
