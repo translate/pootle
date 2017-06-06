@@ -188,11 +188,14 @@ class TPDirectoryMixin(TPMixin):
             "tp__language__directory",
             "tp__project"]
 
-    @lru_cache()
-    def get_object(self):
+    @cached_property
+    def object(self):
         return get_object_or_404(
             Directory.objects.select_related(*self.object_related),
             pootle_path=self.path)
+
+    def get_object(self):
+        return self.object
 
     @property
     def url_kwargs(self):
