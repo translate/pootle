@@ -19,7 +19,7 @@ from pootle_misc.util import import_func
 
 from .models import Suggestion, SuggestionState, Unit
 from .unit.search import DBSearchBackend
-from unit.timeline import (
+from .unit.timeline import (
     UnitTimelineLog, ComparableUnitTimelineLogEvent, UnitTimelineGroupedEvents)
 from .utils import (
     FrozenUnit, SuggestionsReview, UnitLifecycle, UnitUniqueId, UnitWordcount)
