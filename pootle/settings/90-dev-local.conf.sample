@@ -151,7 +151,7 @@ POOTLE_TRANSLATION_DIRECTORY = working_path('translations')
 # - The second element should be a dictionary of keyword arguments that will be
 #   passed to the markup function.
 #
-POOTLE_MARKUP_FILTER = ('markdown' {})
+POOTLE_MARKUP_FILTER = ('markdown', {})
 
 # Suggestions through Machine Translation services (service name, API key).
 POOTLE_MT_BACKENDS = [
