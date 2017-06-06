@@ -180,3 +180,39 @@ def test_view_tp_garbage(tp0, store0, client, request_users):
         except:
             failed.append((i, usage["used"]))
     assert not failed
+
+
+@pytest.mark.django_db
+def test_view_tp_directory_garbage(subdir0, client, request_users):
+    tp = subdir0.translation_project
+    args = [tp.language.code, tp.project.code, "%s/" % subdir0.name]
+    url = reverse("pootle-tp-browse", args=args)
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    response = client.get(url)
+    response = client.get(url)
+    assert response.status_code == 200
+    for i in xrange(0, 2):
+        with memusage() as usage:
+            client.get(url)
+        assert not usage["used"]
+
+
+@pytest.mark.django_db
+def test_view_tp_store_garbage(store0, client, request_users):
+    tp = store0.translation_project
+    args = [tp.language.code, tp.project.code, store0.name]
+    url = reverse("pootle-tp-store-browse", args=args)
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    response = client.get(url)
+    response = client.get(url)
+    assert response.status_code == 200
+    for i in xrange(0, 2):
+        with memusage() as usage:
+            client.get(url)
+        assert not usage["used"]
