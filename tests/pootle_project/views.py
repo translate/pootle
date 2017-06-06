@@ -189,7 +189,7 @@ def test_view_project_paths(project0, store0, client, request_users):
 
 
 @pytest.mark.django_db
-def test_view_project_garbage(project0, store0, client, request_users):
+def test_view_project_garbage(project0, client, request_users):
     url = reverse(
         "pootle-project-browse",
         kwargs=dict(
@@ -203,12 +203,50 @@ def test_view_project_garbage(project0, store0, client, request_users):
     response = client.get(url)
     response = client.get(url)
     assert response.status_code == 200
-    failed = []
     for i in xrange(0, 2):
         with memusage() as usage:
             client.get(url)
-        try:
-            assert usage["used"] == 0
-        except:
-            failed.append((i, usage["used"]))
-    assert not failed
+        assert not usage["used"]
+
+
+@pytest.mark.django_db
+def test_view_project_subdir_garbage(subdir0, client, request_users):
+    url = reverse(
+        "pootle-project-browse",
+        kwargs=dict(
+            project_code=subdir0.translation_project.project.code,
+            dir_path=subdir0.name,
+            filename=""))
+    url = "%s/" % url
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    response = client.get(url)
+    response = client.get(url)
+    assert response.status_code == 200
+    for i in xrange(0, 2):
+        with memusage() as usage:
+            client.get(url)
+        assert not usage["used"]
+
+
+@pytest.mark.django_db
+def test_view_project_store_garbage(store0, client, request_users):
+    url = reverse(
+        "pootle-project-browse",
+        kwargs=dict(
+            project_code=store0.translation_project.project.code,
+            dir_path="",
+            filename=store0.name))
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    response = client.get(url)
+    response = client.get(url)
+    assert response.status_code == 200
+    for i in xrange(0, 2):
+        with memusage() as usage:
+            client.get(url)
+        assert not usage["used"]
