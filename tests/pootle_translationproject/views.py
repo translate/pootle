@@ -13,6 +13,7 @@ import pytest
 from django.core.urlresolvers import reverse
 
 from pootle.core.browser import make_directory_item, make_store_item
+from pootle.core.debug import memusage
 from pootle.core.forms import PathsSearchForm
 from pootle.core.signals import update_revisions
 from pootle.core.url_helpers import split_pootle_path
@@ -157,3 +158,25 @@ def test_view_tp_paths(tp0, store0, client, request_users):
     assert response.status_code == 200
     result = json.loads(response.content)
     assert "store0.po" not in result["items"]["results"]
+
+
+@pytest.mark.django_db
+def test_view_tp_garbage(tp0, store0, client, request_users):
+    args = [tp0.language.code, tp0.project.code]
+    url = reverse("pootle-tp-browse", args=args)
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    response = client.get(url)
+    response = client.get(url)
+    assert response.status_code == 200
+    failed = []
+    for i in xrange(0, 10):
+        with memusage() as usage:
+            client.get(url)
+        try:
+            assert usage["used"] == 0
+        except:
+            failed.append((i, usage["used"]))
+    assert not failed
