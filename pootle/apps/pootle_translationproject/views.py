@@ -13,7 +13,6 @@ from django.http import Http404
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import resolve, reverse
 from django.utils.functional import cached_property
-from django.utils.lru_cache import lru_cache
 
 from pootle.core.browser import (
     get_parent, make_directory_item, make_store_item)
@@ -241,8 +240,11 @@ class TPStoreMixin(TPMixin):
             "dir_path": self.dir_path,
             "filename": self.object.name}
 
-    @lru_cache()
     def get_object(self):
+        return self.object
+
+    @cached_property
+    def object(self):
         path = (
             "/%(language_code)s/%(project_code)s/%(dir_path)s%(filename)s"
             % self.kwargs)
