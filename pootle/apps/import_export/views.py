@@ -35,8 +35,12 @@ def export(request):
     path = request.GET.get("path")
     if not path:
         raise Http404
-
-    stores = Store.objects.live().filter(pootle_path__startswith=path)
+    stores = Store.objects.live().select_related(
+        "data",
+        "filetype__extension",
+        "translation_project",
+        "translation_project__project",
+        "translation_project__language").filter(pootle_path__startswith=path)
     num_items = stores.count()
 
     if not num_items:
