@@ -178,9 +178,12 @@ class Log(object):
         suggestions = self.filter_path(
             suggestions,
             kwargs.get("path"))
+        if kwargs.get("only") and kwargs["only"].get("suggestion"):
+            suggestions = suggestions.only(*kwargs["only"]["suggestion"])
         return suggestions
 
     def filtered_submissions(self, **kwargs):
+        ordered = kwargs.get("ordered", True)
         submissions = (
             self.filter_users(
                 self.submissions,
@@ -196,6 +199,10 @@ class Log(object):
         submissions = self.filter_store(
             submissions,
             kwargs.get("store"))
+        if kwargs.get("only") and kwargs["only"].get("submission"):
+            submissions = submissions.only(*kwargs["only"]["submission"])
+        if ordered is False:
+            submissions = submissions.order_by()
         return submissions
 
     def filtered_created_units(self, **kwargs):
