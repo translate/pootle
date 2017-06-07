@@ -172,9 +172,8 @@ complete it, you can contribute suggestions that will later be reviewed by the
 language administrators.
 
 If you can't find your language and want to have that added or have concerns of
-any other means, contact us on our `mailing list
-<https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_ or on the
-`Pootle channel <https://gitter.im/translate/pootle>`_.
+any other means, contact us on the `Pootle channel
+<https://gitter.im/translate/pootle>`_.
 
 Although desirable, it's not mandatory to use the official Pootle server to
 translate Pootle itself. In case you feel more comfortable working with files
