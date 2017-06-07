@@ -183,6 +183,11 @@ latest template and submit it to us by `opening a bug
 <https://github.com/translate/pootle/issues/new>`_ or by sending us a pull
 request.
 
+There are some `addtional localization requirements
+<https://github.com/translate/pootle/wiki/Localizing-Pootle---extras>`_ beyond
+translation, so please review those to ensure that your language is 100%
+translated.
+
 
 .. _contributing#documentation:
 
