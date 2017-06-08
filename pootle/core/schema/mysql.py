@@ -11,6 +11,12 @@ from collections import OrderedDict
 from django.db import connection
 
 
+def type_cast(value):
+    if isinstance(value, long):
+        return int(value)
+    return value
+
+
 def fetchall_asdicts(cursor, fields, sort_by_field):
     """Return all rows from a cursor as a dict filtered by fields."""
 
@@ -18,7 +24,8 @@ def fetchall_asdicts(cursor, fields, sort_by_field):
     return sorted([
         OrderedDict(
             sorted(
-                filter(lambda x: x[0] in fields, zip(columns, row)),
+                [(k, type_cast(v))
+                 for k, v in zip(columns, row) if k in fields],
                 key=lambda x: x[0]))
         for row in cursor.fetchall()
     ], key=lambda x: x.get(sort_by_field))
