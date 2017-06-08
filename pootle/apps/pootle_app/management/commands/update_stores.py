@@ -14,9 +14,13 @@ from pootle_app.management.commands import PootleCommand
 from pootle_translationproject.models import scan_translation_projects
 
 
+logger = logging.getLogger(__name__)
+
+
 class Command(PootleCommand):
     help = "Update database stores from files."
     process_disabled_projects = True
+    log_name = "update"
 
     def add_arguments(self, parser):
         super(Command, self).add_arguments(parser)
@@ -53,9 +57,9 @@ class Command(PootleCommand):
             translation_project.directory.makeobsolete()
         else:
             # Skip if project directory ceased to exist on disk.
-            logging.warning(u"Missing project directory for %s. Skipping %s.",
-                            translation_project.project, translation_project)
-
+            logger.warning(
+                u"[update] Missing project directory (skipping): %s",
+                translation_project)
         return False
 
     def handle_all(self, **options):

@@ -18,6 +18,9 @@ from pootle_project.models import Project
 from pootle_translationproject.models import TranslationProject
 
 
+logger = logging.getLogger(__name__)
+
+
 class SkipChecksMixin(object):
     def check(self, app_configs=None, tags=None, display_num_errors=False,
               include_deployment_checks=False):
@@ -89,11 +92,11 @@ class PootleCommand(BaseCommand):
 
     def do_translation_project(self, tp, **options):
         if hasattr(self, "handle_translation_project"):
-            logging.info(u"Running %s over %s", self.name, tp)
+            logging.info(u"[pootle] Running: %s for %s", self.name, tp)
             if not self.handle_translation_project(tp, **options):
                 return
         if hasattr(self, "handle_all_stores"):
-            logging.info(u"Running %s over %s's files", self.name, tp)
+            logging.info(u"[pootle] Running: %s for %s's files", self.name, tp)
             self.handle_all_stores(tp, **options)
 
     def check_projects(self, project_codes):
@@ -146,13 +149,13 @@ class PootleCommand(BaseCommand):
 
         # info start
         start = datetime.datetime.now()
-        logging.info('Start running of %s', self.name)
+        logger.info('[pootle] Running: %s', self.name)
 
         self.handle_all(**options)
 
         # info finish
         end = datetime.datetime.now()
-        logging.info('All done for %s in %s', self.name, end - start)
+        logging.info('[pootle] Complete: %s in %s', self.name, end - start)
 
     def handle_all(self, **options):
         if options["no_rq"]:
