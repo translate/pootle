@@ -12,11 +12,7 @@ Pootle tests use the full-featured `pytest testing tool
 <http://docs.pytest.org/en/latest/>`_ and its integration with Django via
 `pytest-django <https://pytest-django.readthedocs.io/en/latest/>`_.
 
-The entire test suite can be executed from a checkout by running ``make
-test``. This will create a new virtual environment, install the required
-dependencies and run the tests.
-
-However, if you're developing you can simply run
+To test simply run::
 
 .. code-block:: console
 

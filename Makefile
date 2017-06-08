@@ -8,14 +8,13 @@ CSS_DIR = ${STATIC_DIR}/css
 IMAGES_DIR = ${STATIC_DIR}/images
 SPRITE_DIR = ${IMAGES_DIR}/sprite
 FORMATS=--formats=bztar
-TEST_ENV_NAME = pootle_test_env
 
 POOTLE_CMD = $(shell sh -c "command -v pootle")
 ifeq ($(POOTLE_CMD),)
 	POOTLE_CMD=python manage.py
 endif
 
-.PHONY: all build clean sprite test pot help docs assets
+.PHONY: all build clean sprite pot help docs assets
 
 all: help
 
@@ -71,13 +70,6 @@ sprite:
 
 clean:
 	npm cache clear
-	rm -rf ${TEST_ENV_NAME}
-
-test: clean assets
-	virtualenv ${TEST_ENV_NAME} && \
-	source ${TEST_ENV_NAME}/bin/activate && \
-	pip install -r requirements/tests.txt && \
-	python setup.py test
 
 pot:
 	@${SRC_DIR}/tools/createpootlepot
@@ -138,7 +130,6 @@ help:
 	@echo "  docs-review - launch webbrowser to review docs"
 	@echo "  sprite - create CSS sprite"
 	@echo "  clean - remove any temporal files"
-	@echo "  test - run test suite"
 	@echo "  pot - update the POT translations templates"
 	@echo "  get-translations - retrieve Pootle translations from server (requires ssh config for pootletranslations)"
 	@echo "  linguas - update the LINGUAS file with languages over 80% complete"
