@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import logging
+import time
 from functools import wraps
 
 from django.core.exceptions import PermissionDenied
@@ -23,6 +25,9 @@ from pootle_translationproject.models import TranslationProject
 from .cache import get_cache
 from .exceptions import Http400
 from .url_helpers import split_pootle_path
+
+
+logger = logging.getLogger(__name__)
 
 
 CLS2ATTR = {
@@ -204,11 +209,15 @@ class persistent_property(object):
                 # cache hit
                 return cached
             # cache miss
+            start = time.time()
             res = self.func(instance)
+            timetaken = time.time() - start
             cache.set(cache_key, res)
+            logger.debug(
+                "[cache] generated %s in %s seconds",
+                cache_key, timetaken)
             return res
         elif self.always_cache:
-            # no cache_key, use instance caching
             res = instance.__dict__[self.name] = self.func(instance)
             return res
         return self.func(instance)
