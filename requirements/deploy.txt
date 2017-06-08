@@ -9,4 +9,4 @@
 # -r _db_postgresql.txt
 
 # Logging
-raven>=6.1,<6.2
+raven==6.1.0
