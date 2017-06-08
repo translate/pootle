@@ -13,7 +13,6 @@ from django.utils import timezone
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import frozen, review
-from pootle.core.log import log
 from pootle.core.models import Revision
 from pootle_store.contextmanagers import update_store_after
 
@@ -21,6 +20,9 @@ from .constants import OBSOLETE, PARSED, POOTLE_WINS
 from .diff import StoreDiff
 from .models import Suggestion
 from .util import get_change_str
+
+
+logger = logging.getLogger(__name__)
 
 
 class StoreUpdate(object):
@@ -300,10 +302,11 @@ class StoreUpdater(object):
                 self.target_store.save()
             has_changed = any(x > 0 for x in changes.values())
             if has_changed:
-                log(u"[update] %s units in %s [revision: %d]"
-                    % (get_change_str(changes),
-                       self.target_store.pootle_path,
-                       (self.target_store.data.max_unit_revision or 0)))
+                logger.info(
+                    u"[update] %s units in %s [revision: %d]",
+                    get_change_str(changes),
+                    self.target_store.pootle_path,
+                    (self.target_store.data.max_unit_revision or 0))
         return update_revision, changes
 
     def update_from_diff(self, store, store_revision,
@@ -384,9 +387,12 @@ class StoreUpdater(object):
                     update_revision)
             self.target_store.last_sync_revision = update_revision
             if update_unsynced:
-                logging.info(u"[update] unsynced %d units in %s "
-                             "[revision: %d]", update_unsynced,
-                             self.target_store.pootle_path, update_revision)
+                logger.debug(
+                    u"[update] Synced (no change): "
+                    u"%d units in %s [revision: %d]",
+                    update_unsynced,
+                    self.target_store.pootle_path,
+                    update_revision)
         if file_changed or changed:
             self.target_store.save()
         if "store" in self.target_store.file.__dict__:
