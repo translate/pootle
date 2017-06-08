@@ -34,15 +34,18 @@ from staticpages.models import StaticPage
 from .contextmanagers import update_tp_after
 
 
+logger = logging.getLogger(__name__)
+
+
 def create_or_resurrect_translation_project(language, project):
     tp = create_translation_project(language, project)
     if tp is not None:
         if tp.directory.obsolete:
             tp.directory.obsolete = False
             tp.directory.save()
-            logging.info(u"Resurrected %s", tp)
+            logger.info(u"[update] Resurrected project: %s", tp)
         else:
-            logging.info(u"Created %s", tp)
+            logger.info(u"[update] Created project: %s", tp)
 
 
 def create_translation_project(language, project):
@@ -67,9 +70,9 @@ def scan_translation_projects(languages=None, projects=None):
 
     for project in project_query.iterator():
         if does_not_exist(project.get_real_path()):
-            logging.info(u"Disabling %s", project)
             project.disabled = True
             project.save()
+            logger.info(u"[update] Disabled project: %s", project)
         else:
             lang_query = Language.objects.exclude(
                 id__in=project.translationproject_set.live().values_list('language',
@@ -274,8 +277,11 @@ class TranslationProject(models.Model, CachedTreeItem):
         return StaticPage.get_announcement_for(self.pootle_path, user)
 
     def filtererrorhandler(self, functionname, str1, str2, e):
-        logging.error(u"Error in filter %s: %r, %r, %s", functionname, str1,
-                      str2, e)
+        logger.error(
+            u"Error in filter %s: %r, %r, %s",
+            functionname,
+            str1,
+            str2, e)
         return False
 
     def is_accessible_by(self, user):
@@ -323,7 +329,7 @@ class TranslationProject(models.Model, CachedTreeItem):
         """Update all stores to reflect state on disk."""
         changed = []
 
-        logging.info(u"Scanning for new files in %s", self)
+        logger.debug(u"[update] Scanning disk: %s", self)
         # Create new, make obsolete in-DB stores to reflect state on disk
         self.scan_files()
 
@@ -339,8 +345,9 @@ class TranslationProject(models.Model, CachedTreeItem):
             disk_mtime = store.get_file_mtime()
             if not force and disk_mtime == store.file_mtime:
                 # The file on disk wasn't changed since the last sync
-                logging.debug(u"File didn't change since last sync, "
-                              u"skipping %s", store.pootle_path)
+                logger.debug(
+                    u"File didn't change since last sync, skipping %s",
+                    store.pootle_path)
                 continue
             if store.updater.update_from_disk(overwrite=overwrite):
                 changed.append(store)
