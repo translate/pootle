@@ -19,6 +19,9 @@ from pootle.core.delegate import format_classes
 from .models import Unit
 
 
+logger = logging.getLogger(__name__)
+
+
 class UnitSyncer(object):
 
     def __init__(self, unit):
@@ -157,8 +160,8 @@ class StoreSyncer(object):
     def convert(self, fileclass=None):
         """export to fileclass"""
         fileclass = fileclass or self.file_class
-        logging.debug(
-            u"Converting %s to %s",
+        logger.debug(
+            u"[sync] Converting: %s to %s",
             self.store.pootle_path,
             fileclass)
         output = fileclass()
@@ -231,7 +234,7 @@ class StoreSyncer(object):
 
     def sync(self, disk_store, last_revision,
              update_structure=False, conservative=True):
-        logging.info(u"Syncing %s", self.store.pootle_path)
+        logger.debug(u"[sync] Syncing: %s", self.store.pootle_path)
         old_ids = set(disk_store.getids())
         new_ids = set(self.dbid_index.keys())
         file_changed = False

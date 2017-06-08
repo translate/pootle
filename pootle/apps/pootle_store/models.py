@@ -26,7 +26,7 @@ from django.utils.http import urlquote
 from pootle.core.delegate import (
     data_tool, format_syncers, format_updaters, frozen, states,
     terminology_matcher, wordcount)
-from pootle.core.log import STORE_DELETED, STORE_OBSOLETE, log, store_log
+from pootle.core.log import STORE_DELETED, STORE_OBSOLETE, store_log
 from pootle.core.models import Revision
 from pootle.core.search import SearchBroker
 from pootle.core.signals import toggle, update_checks, update_data
@@ -49,6 +49,9 @@ from .managers import SuggestionManager, UnitManager
 from .store.deserialize import StoreDeserialization
 from .store.serialize import StoreSerialization
 from .util import get_change_str, vfolders_installed
+
+
+logger = logging.getLogger(__name__)
 
 
 TM_BROKER = None
@@ -1027,14 +1030,15 @@ class Store(AbstractStore):
         if self.translation_project.project.get_treestyle() != "gnu":
             path_prefix.append(path_parts[0])
         relative_file_path = os.path.join(*(path_prefix + list(path_parts[2:])))
-        logging.debug(u"Creating file %s", self.pootle_path)
         store = self.syncer.convert()
         if not os.path.exists(os.path.dirname(file_path)):
             os.makedirs(os.path.dirname(file_path))
         self.file = relative_file_path
         store.savefile(file_path)
-        log(u"Created file for %s [revision: %d]" %
-            (self.pootle_path, last_revision))
+        logger.info(
+            u"[sync] File created: %s [revision: %d]",
+            self.pootle_path,
+            last_revision)
         self.syncer.update_store_header(store, user=user)
         self.file.savestore()
         self.file_mtime = self.get_file_mtime()
@@ -1045,10 +1049,11 @@ class Store(AbstractStore):
         self.syncer.update_store_header(self.file.store, user=user)
         self.file.savestore()
         self.file_mtime = self.get_file_mtime()
-        log(u"[sync] File saved; %s units in %s [revision: %d]" %
-            (get_change_str(changes),
-             self.pootle_path,
-             last_revision))
+        logger.info(
+            u"[sync] File saved: %s units in %s [revision: %d]",
+            get_change_str(changes),
+            self.pootle_path,
+            last_revision)
 
     def sync(self, update_structure=False, conservative=True,
              user=None, skip_missing=False, only_newer=True):
@@ -1060,9 +1065,10 @@ class Store(AbstractStore):
 
         # TODO only_newer -> not force
         if only_newer and not self.syncer.update_newer(last_revision):
-            logging.info(
+            logger.debug(
                 u"[sync] No updates for %s after [revision: %d]",
-                self.pootle_path, last_revision)
+                self.pootle_path,
+                last_revision)
             return
 
         if not self.file.exists():
@@ -1081,7 +1087,7 @@ class Store(AbstractStore):
         if file_changed or not conservative:
             self.update_file_store(changes, last_revision, user)
         else:
-            logging.info(
+            logger.info(
                 u"[sync] nothing changed in %s [revision: %d]",
                 self.pootle_path,
                 last_revision)
