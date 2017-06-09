@@ -8,8 +8,8 @@
 
 import pytest
 
-from pootle.core.schema.base import SchemaTool
-from pootle.core.schema.mysql import MySQLSchemaDumper
+from pootle.core.schema.base import SchemaTool, UnsupportedDBError
+from pootle.core.schema.utils import get_current_db_type
 
 
 TEST_MYSQL_SCHEMA_PARAM_NAMES = {
@@ -29,25 +29,37 @@ TEST_MYSQL_SCHEMA_PARAM_NAMES = {
 
 
 @pytest.mark.django_db
+def test_schema_tool_supported_database():
+    if get_current_db_type() != 'mysql':
+        with pytest.raises(UnsupportedDBError):
+            SchemaTool()
+        return
+
+    assert SchemaTool()
+
+
+@pytest.mark.django_db
 def test_schema_tool():
+    if get_current_db_type() != 'mysql':
+        pytest.skip("unsupported database")
+
     schema_tool = SchemaTool()
-    if isinstance(schema_tool.schema_dumper, MySQLSchemaDumper):
-        defaults = schema_tool.get_defaults()
-        assert set(defaults.keys()) == TEST_MYSQL_SCHEMA_PARAM_NAMES['defaults']
-        for app_label in schema_tool.app_configs:
-            for table in schema_tool.get_app_tables(app_label):
-                row = schema_tool.get_table_fields(table)[0]
-                assert (
-                    set([x.lower() for x in row.keys()]) ==
-                    TEST_MYSQL_SCHEMA_PARAM_NAMES['tables']['fields']
-                )
-                row = schema_tool.get_table_indices(table)[0]
-                assert (
-                    set([x.lower() for x in row.keys()]) ==
-                    TEST_MYSQL_SCHEMA_PARAM_NAMES['tables']['indices']
-                )
-                row = schema_tool.get_table_constraints(table)[0]
-                assert (
-                    set([x.lower() for x in row.keys()]) ==
-                    TEST_MYSQL_SCHEMA_PARAM_NAMES['tables']['constraints']
-                )
+    defaults = schema_tool.get_defaults()
+    assert set(defaults.keys()) == TEST_MYSQL_SCHEMA_PARAM_NAMES['defaults']
+    for app_label in schema_tool.app_configs:
+        for table in schema_tool.get_app_tables(app_label):
+            row = schema_tool.get_table_fields(table)[0]
+            assert (
+                set([x.lower() for x in row.keys()]) ==
+                TEST_MYSQL_SCHEMA_PARAM_NAMES['tables']['fields']
+            )
+            row = schema_tool.get_table_indices(table)[0]
+            assert (
+                set([x.lower() for x in row.keys()]) ==
+                TEST_MYSQL_SCHEMA_PARAM_NAMES['tables']['indices']
+            )
+            row = schema_tool.get_table_constraints(table)[0]
+            assert (
+                set([x.lower() for x in row.keys()]) ==
+                TEST_MYSQL_SCHEMA_PARAM_NAMES['tables']['constraints']
+            )
