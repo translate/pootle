@@ -10,8 +10,10 @@
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
+from django.core.management.base import CommandError
+
 from pootle.core.management.subcommands import CommandWithSubcommands
-from pootle.core.schema.base import SchemaTool
+from pootle.core.schema.base import SchemaTool, UnsupportedDBError
 from pootle.core.utils.json import jsonify
 
 from .schema_commands import SchemaAppCommand, SchemaTableCommand
@@ -46,10 +48,13 @@ class Command(CommandWithSubcommands):
         super(Command, self).add_arguments(parser)
 
     def handle(self, **options):
-        schema_tool = SchemaTool()
+        try:
+            schema_tool = SchemaTool()
+        except UnsupportedDBError as e:
+            raise CommandError(e)
+
         if options['tables']:
             self.stdout.write(jsonify(schema_tool.get_tables()))
         else:
-            self.stdout.write(
-                jsonify(schema_tool.get_defaults())
-            )
+            json = schema_tool.get_defaults()
+            self.stdout.write(jsonify(json))

@@ -11,7 +11,7 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from django.core.management.base import BaseCommand, CommandError
 
-from pootle.core.schema.base import SchemaTool
+from pootle.core.schema.base import SchemaTool, UnsupportedDBError
 from pootle.core.utils.json import jsonify
 
 
@@ -68,7 +68,11 @@ class SchemaTableCommand(SchemaCommand):
         super(SchemaTableCommand, self).add_arguments(parser)
 
     def handle(self, *args, **options):
-        self.schema_tool = SchemaTool()
+        try:
+            self.schema_tool = SchemaTool()
+        except UnsupportedDBError as e:
+            raise CommandError(e)
+
         all_tables = self.schema_tool.get_tables()
         if not set(args).issubset(set(all_tables)):
             raise CommandError("Unrecognized tables: %s" %
@@ -103,10 +107,11 @@ class SchemaAppCommand(SchemaCommand):
     def handle(self, *args, **options):
         try:
             self.schema_tool = SchemaTool(*args)
-
         except (LookupError, ImportError) as e:
             raise CommandError("%s. Are you sure your INSTALLED_APPS "
                                "setting is correct?" % e)
+        except UnsupportedDBError as e:
+            raise CommandError(e)
 
         if options['tables']:
             result = dict(apps={})
