@@ -19,11 +19,6 @@ CMD_EXECUTED = 'X'
 SCORE_CHANGED = 'SC'
 
 
-def log(message):
-    logger = logging.getLogger('action')
-    logger.debug(message)
-
-
 def cmd_log(*args, **kwargs):
     import os
     from django.conf import settings
