@@ -8,9 +8,13 @@
 
 from django.apps import apps
 from django.conf import settings
-from django.db import connection
 
 from .mysql import MySQLSchemaDumper
+from .utils import get_current_db_type
+
+
+class UnsupportedDBError(Exception):
+    pass
 
 
 class SchemaTool(object):
@@ -20,12 +24,16 @@ class SchemaTool(object):
             app_labels = [app_label.split('.')[-1]
                           for app_label in settings.INSTALLED_APPS]
 
-        self.app_configs = dict([(app_label, apps.get_app_config(app_label))
-                                for app_label in app_labels])
+        self.app_configs = dict(
+            [(app_label, apps.get_app_config(app_label))
+             for app_label in app_labels])
 
-        with connection.cursor() as cursor:
-            if hasattr(cursor.db, "mysql_version"):
-                self.schema_dumper = MySQLSchemaDumper()
+        db_type = get_current_db_type()
+        if db_type == 'mysql':
+            self.schema_dumper = MySQLSchemaDumper()
+        else:
+            raise UnsupportedDBError(u"'%s' database is not supported"
+                                     % db_type)
 
     def get_tables(self):
         tables = []
