@@ -146,6 +146,8 @@ def _get_critical_checks_snippet(request, unit):
     ctx = {
         'canreview': can_review,
         'unit': unit,
+        'critical_checks': list(unit.get_critical_qualitychecks()),
+        'warning_checks': list(unit.get_warning_qualitychecks()),
     }
     template = loader.get_template('editor/units/xhr_checks.html')
     return template.render(context=ctx, request=request)
