@@ -331,3 +331,16 @@ form.formtable .select2-container
 {
     min-width: 13em;
 }
+
+#select2-js-filter-checks-results .select2-results__group
+{
+    visibility: hidden;
+    display: none;
+}
+
+
+#select2-js-filter-checks-results .select2-results__option[id$="-category"]
+{
+    margin-left: -0.7em;
+    font-weight: 600;
+}
