@@ -21,7 +21,6 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.encoding import force_bytes
 from django.utils.functional import cached_property
-from django.utils.lru_cache import lru_cache
 
 from allauth.account.models import EmailAddress
 from allauth.account.utils import sync_user_email_addresses
@@ -277,7 +276,6 @@ class User(AbstractBaseUser):
         """
         return Unit.objects.filter(unit_source__created_by=self)
 
-    @lru_cache()
     def last_event(self, locale=None):
         """Returns the latest submission linked with this user. If there's
         no activity, `None` is returned instead.
