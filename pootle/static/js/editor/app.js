@@ -1808,7 +1808,12 @@ PTL.editor = {
   /* Gets the failing check options for the current query */
   getCheckOptions() {
     const $checks = this.$filterChecks;
-    const selectedValue = this.checks[0] || 'none';
+    let selectedValue = 'none';
+    if (this.category) {
+      selectedValue = [this.category, '-category'].join('');
+    } else {
+      selectedValue = this.checks[0] || 'none';
+    }
     $checks.select2(filterSelectOpts);
     $checks.val(selectedValue).trigger('change.select2');
     this.$filterChecksWrapper.css('display', 'inline-block');
@@ -1827,15 +1832,21 @@ PTL.editor = {
 
     if (filterChecks !== 'none') {
       const sortBy = this.$filterSortBy.val();
-      const newHash = {
-        filter: 'checks',
-        checks: filterChecks,
-      };
-
+      let newHash = {};
+      if (filterChecks.endsWith('-category')) {
+        newHash = {
+          filter: 'checks',
+          category: filterChecks.slice(0, -9),
+        };
+      } else {
+        newHash = {
+          filter: 'checks',
+          checks: filterChecks,
+        };
+      }
       if (sortBy !== 'default') {
         newHash.sort = sortBy;
       }
-
       $.history.load($.param(newHash));
     }
     return true;
