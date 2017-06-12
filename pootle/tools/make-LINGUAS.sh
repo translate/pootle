@@ -11,7 +11,7 @@ required_langs=$*
 
 for lang in $(ls)
 do
-	if [ -d "$lang" -a "$lang" != "templates" ]; then
+	if [ -d "$lang" -a "$lang" != "templates" -a ! -L "$lang" ]; then
         completeness=$(pocount --no-color $(find $lang -name "*.po" -type f) | egrep "^Translated" | cut -d"(" -f2- | cut -d")" -f1 | sed "s/%//" | tail -1)
 		if [[ $completeness -ge $target ]]; then
 			echo $lang
