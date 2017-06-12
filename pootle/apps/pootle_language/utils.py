@@ -36,7 +36,8 @@ class SiteLanguages(object):
         return (
             "all_languages",
             self.server_lang,
-            revision.get(rev_context.__class__)(rev_context).get(key="stats"))
+            revision.get(rev_context.__class__)(
+                rev_context).get(key="languages"))
 
     @property
     def site_languages(self):
