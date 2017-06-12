@@ -4,6 +4,8 @@ script_location=$(dirname $0)
 
 cd $script_location/../locale
 
+linguas=LINGUAS
+
 default_target=80
 target=${1:-$default_target}
 shift
@@ -20,4 +22,4 @@ do
             >&2 echo "$lang included as a default language (completenes only $completeness)"
 		fi
 	fi
-done
+done > $linguas

@@ -84,7 +84,7 @@ put-translations:
 	ssh pootle.locamotion.org ". /var/www/sites/pootle/env/bin/activate; python /var/www/sites/pootle/src/manage.py update_stores --verbosity=1 --project=pootle"
 
 linguas:
-	@${SRC_DIR}/tools/make-LINGUAS.sh 80 de fr es ko ug > ${SRC_DIR}/locale/LINGUAS
+	@${SRC_DIR}/tools/make-LINGUAS.sh 80 de fr es ko ug
 
 lint: lint-python lint-js lint-css lint-docs
 
