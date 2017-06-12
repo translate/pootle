@@ -8,6 +8,9 @@
 
 import pathlib
 import posixpath
+from hashlib import md5
+
+from django.utils.encoding import force_bytes
 
 from pootle.core.decorators import persistent_property
 from pootle.core.delegate import revision
@@ -30,7 +33,7 @@ class Paths(object):
     def cache_key(self):
         return (
             "%s.%s.%s"
-            % (self.q,
+            % (md5(force_bytes(self.q)).hexdigest(),
                self.rev_cache_key,
                self.show_all))
 
