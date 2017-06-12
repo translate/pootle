@@ -6,6 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import pathlib
 import posixpath
 
 import pytest
@@ -294,12 +295,20 @@ def test_form_project_paths(project0, member, admin):
         for st
         in project_stores.values_list(
             "tp_path", flat=True).order_by())
-    dirs = set(
-        ("%s/" % posixpath.dirname(path))
-        for path
-        in stores
-        if (path.count("/") > 1))
-    paths = sorted(stores | dirs)
+    dirs = set()
+    for store in stores:
+        if posixpath.dirname(store) in dirs:
+            continue
+        dirs = (
+            dirs
+            | (set(
+                "%s/" % str(p)
+                for p
+                in pathlib.PosixPath(store).parents
+                if str(p) != ".")))
+    paths = sorted(
+        stores | dirs,
+        key=lambda path: (posixpath.dirname(path), posixpath.basename(path)))
     assert results["results"] == paths[0:2]
 
     for i in range(0, int(round(len(paths) / 2.0))):
@@ -324,13 +333,21 @@ def test_form_project_paths(project0, member, admin):
         for st
         in project_stores.filter(tp_path__contains="1").values_list(
             "tp_path", flat=True).order_by())
-    dirs = set(
-        ("%s/" % posixpath.dirname(path))
-        for path
-        in stores
-        if (path.count("/") > 1
-            and "1" in path))
-    paths = sorted(stores | dirs)
+
+    dirs = set()
+    for store in stores:
+        if posixpath.dirname(store) in dirs:
+            continue
+        dirs = (
+            dirs
+            | (set(
+                "%s/" % str(p)
+                for p
+                in pathlib.PosixPath(store).parents
+                if str(p) != ".")))
+    paths = sorted(
+        stores | dirs,
+        key=lambda path: (posixpath.dirname(path), posixpath.basename(path)))
     assert form.is_valid()
     results = form.search()
     assert len(results["results"]) == 2

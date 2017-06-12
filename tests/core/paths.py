@@ -6,9 +6,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import pathlib
 import posixpath
+from hashlib import md5
 
 import pytest
+
+from django.utils.encoding import force_bytes
 
 from pootle.core.paths import Paths
 from pootle_store.models import Store
@@ -36,7 +40,7 @@ def test_paths_util(project0):
     assert (
         paths_util.cache_key
         == ("%s.%s.%s"
-            % (paths_util.q,
+            % (md5(force_bytes(paths_util.q)).hexdigest(),
                paths_util.rev_cache_key,
                paths_util.show_all)))
     assert (
@@ -52,8 +56,22 @@ def test_paths_util(project0):
         for path
         in stores
         if (path.count("/") > 1))
-    assert paths_util.paths == sorted(stores | dirs)
-
+    dirs = set()
+    for store in stores:
+        if posixpath.dirname(store) in dirs:
+            continue
+        dirs = (
+            dirs
+            | (set(
+                "%s/" % str(p)
+                for p
+                in pathlib.PosixPath(store).parents
+                if str(p) != ".")))
+    assert (
+        paths_util.paths
+        == sorted(
+            stores | dirs,
+            key=lambda path: (posixpath.dirname(path), posixpath.basename(path))))
     paths_util = DummyPathsUtil(project0, "1", show_all=True)
     assert (
         Store.objects.exclude(is_template=True).filter(
@@ -61,10 +79,23 @@ def test_paths_util(project0):
         == paths_util.stores.count())
     stores = set(
         st[1:] for st in paths_util.stores.values_list("tp_path", flat=True))
-    dirs = set(
-        ("%s/" % posixpath.dirname(path))
-        for path
-        in stores
-        if (path.count("/") > 1
-            and "1" in path))
-    assert paths_util.paths == sorted(stores | dirs)
+    for store in stores:
+        if posixpath.dirname(store) in dirs:
+            continue
+        dirs = (
+            dirs
+            | (set(
+                "%s/" % str(p)
+                for p
+                in pathlib.PosixPath(store).parents
+                if str(p) != ".")))
+    assert (
+        paths_util.paths
+        == sorted(
+            stores | dirs,
+            key=lambda path: (posixpath.dirname(path), posixpath.basename(path))))
+    assert (
+        paths_util.paths
+        == sorted(
+            stores | dirs,
+            key=lambda path: (posixpath.dirname(path), posixpath.basename(path))))
