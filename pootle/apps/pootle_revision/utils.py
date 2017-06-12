@@ -132,6 +132,8 @@ class RevisionUpdater(object):
             pootle_path__in=self.get_parent_paths(self.all_pootle_paths))
 
     def get_parent_paths(self, pootle_paths):
+        if set(pootle_paths) == set(["/"]):
+            return pootle_paths
         paths = set(["/projects/"])
         for pootle_path in pootle_paths:
             lang_code, proj_code, dir_path, __ = split_pootle_path(pootle_path)
