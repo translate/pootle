@@ -6,6 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import pathlib
 import posixpath
 
 from pootle.core.decorators import persistent_property
@@ -52,12 +53,17 @@ class Paths(object):
             st[1:]
             for st
             in self.stores.values_list("tp_path", flat=True))
-        dirs = set(
-            ("%s/" % posixpath.dirname(path))
-            for path
-            in stores
-            if (path.count("/") > 1
-                and self.q in path))
+        dirs = set()
+        for store in stores:
+            if posixpath.dirname(store) in dirs:
+                continue
+            dirs = (
+                dirs
+                | (set(
+                    "%s/" % str(p)
+                    for p
+                    in pathlib.PosixPath(store).parents
+                    if str(p) != ".")))
         return sorted(
             dirs | stores,
             key=lambda path: (posixpath.dirname(path), posixpath.basename(path)))
