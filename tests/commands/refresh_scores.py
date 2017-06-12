@@ -36,6 +36,9 @@ def test_refresh_scores_recalculate(capfd, store0, member):
 @pytest.mark.django_db
 def test_refresh_scores_recalculate_user(capfd, member, admin):
     """Recalculate scores for given users."""
+    call_command('refresh_scores', '--reset', '--user=member')
+    call_command('refresh_scores', '--user=member')
+    member.refresh_from_db()
     member_score = round(member.score, 2)
     member.score = 777
     admin.score = 999
@@ -52,6 +55,12 @@ def test_refresh_scores_recalculate_user(capfd, member, admin):
 @pytest.mark.django_db
 def test_refresh_scores_reset_user(capfd, member, admin):
     """Set scores to zero for given users."""
+    call_command('refresh_scores', '--reset', '--user=member')
+    call_command('refresh_scores', '--user=member')
+    call_command('refresh_scores', '--reset', '--user=admin')
+    call_command('refresh_scores', '--user=admin')
+    member.refresh_from_db()
+    admin.refresh_from_db()
     admin_score = round(admin.score, 2)
     member_score = round(member.score, 2)
     call_command('refresh_scores', '--reset', '--user=member')
