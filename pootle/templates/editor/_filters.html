@@ -23,6 +23,10 @@
       <option selected value="none">{% trans 'Select type' %}</option>
       {% for category, item in checks.items %}
       <optgroup label="{{ item.title }}">
+        <option
+	   class="checks-category"
+	   value="{{ category }}-category"
+	   data-title="{{ category }}">{{ category|title }}</option>
         {% for check in item.checks %}
         <option value="{{ check.code }}" data-title="{{ check.title }}">{{ check.title }} ({{ check.count }})</option>
         {% endfor %}
