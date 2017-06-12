@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-27 01:59+0100\n"
-"PO-Revision-Date: 2017-06-04 22:49+0000\n"
+"PO-Revision-Date: 2017-06-09 16:06+0000\n"
 "Last-Translator: 炜 <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1496616551.000000\n"
+"X-POOTLE-MTIME: 1497024406.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -220,14 +220,14 @@ msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr "不支持的文件类型'%s'，暂时只支持PO文件\n"
 
 #: apps/import_export/utils.py:45
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr "文件'%s' 缺少 X-Pootle-Path header\n"
+msgstr "文件 '%s' 缺少 X-Pootle-Path 头\n"
 
 #: apps/import_export/utils.py:50
-#, fuzzy, python-format
+#, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
-msgstr "文件'%s' 缺少或使用了一个无效的X-Pootle-Revision header\n"
+msgstr "文件 '%s' 缺少或无效的 X-Pootle-Revision 头\n"
 
 #: apps/import_export/utils.py:58
 #, fuzzy, python-format
@@ -631,7 +631,7 @@ msgstr "添加用户到组"
 
 #: apps/pootle_language/forms.py:103
 msgid "Search for users to add"
-msgstr ""
+msgstr "搜索以添加用户"
 
 #: apps/pootle_language/forms.py:106
 msgid "Role"
@@ -783,19 +783,19 @@ msgid "Locations"
 msgstr "位置"
 
 #: apps/pootle_misc/templatetags/common_tags.py:53
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} untranslated"
-msgstr "%d 个字词未翻译"
+msgstr "{percentage}未翻译"
 
 #: apps/pootle_misc/templatetags/common_tags.py:55
 #, python-brace-format
 msgid "{percentage} needs work"
-msgstr ""
+msgstr "{percentage} 尚需工作"
 
 #: apps/pootle_misc/templatetags/common_tags.py:57
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} translated"
-msgstr "未翻译"
+msgstr "{percentage}已翻译"
 
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
@@ -821,22 +821,22 @@ msgstr "搜索无效"
 #: apps/pootle_profile/templatetags/profile_tags.py:35
 #, python-format
 msgid "My current score at %s is %s"
-msgstr ""
+msgstr "我在 %s 的当前分数是 %s"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:38
 #: apps/pootle_profile/templatetags/profile_tags.py:63
 msgid "Tweet this!"
-msgstr ""
+msgstr "Tweet 这个！"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "#%s contributor in %s in the last 30 days"
-msgstr "最近30天里没有贡献"
+msgstr "#%s 贡献者在  %s 在最近30天里"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
-msgstr "顶尖贡献者"
+msgstr "我是最近30天 %s 在 %s 里的 #%s 贡献者！"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
@@ -844,26 +844,25 @@ msgstr "最近30天里没有贡献"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:76
 msgid "My Website"
-msgstr ""
+msgstr "我的网站"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:86
 msgid "My LinkedIn Profile"
 msgstr "我的 LinkedIn 个人资料"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:95
-#, fuzzy
 msgid "Site administrator"
-msgstr "管理员"
+msgstr "站点管理员"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%s's language teams"
-msgstr "语言团队"
+msgstr "%s 的语言团队"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:104
 #, python-format
 msgid "%s is not a member of any language teams"
-msgstr ""
+msgstr "%s 不是任何一支语言团队的成员"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
@@ -881,7 +880,7 @@ msgstr "一些翻译是从外部文件导入的。它们在这个指定的元帐
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
-msgstr ""
+msgstr "让别人知道您是谁，描述您自己<br/>并让您的公开简介看上去高大上！"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:138
 msgid "You can set or change your avatar image at www.gravatar.com"
@@ -909,15 +908,15 @@ msgid "Language"
 msgstr "语言"
 
 #: apps/pootle_project/models.py:177
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
-msgstr "“%s”不能用作项目代码"
+msgstr "\"%(code)s\" 不能用作项目代码"
 
 #. Translators: this refers to the project quality checker
 #: apps/pootle_project/models.py:186
-#, fuzzy, python-format
+#, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr "“%s”不能用作项目代码"
+msgstr "\"%(code)s\"不能用作项目校验"
 
 #: apps/pootle_project/models.py:193
 msgid ""
@@ -1049,7 +1048,7 @@ msgstr "译者注释"
 #: apps/pootle_store/forms.py:481
 #, python-format
 msgid "Suggestion '%s' has already been accepted or rejected."
-msgstr ""
+msgstr "建议 '%s' 已经被接受或拒绝。"
 
 #: apps/pootle_store/forms.py:499 core/decorators.py:140
 #: core/views/decorators.py:70
