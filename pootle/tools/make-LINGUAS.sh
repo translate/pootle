@@ -23,3 +23,7 @@ do
 		fi
 	fi
 done > $linguas
+
+if [[ $(which git) ]]; then
+    git diff --exit-code $linguas
+fi
