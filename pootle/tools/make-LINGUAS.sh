@@ -19,7 +19,7 @@ do
 			echo $lang
         elif [[ $required_langs =~ (^|[[:space:]])$lang($|[[:space:]]) ]]; then
             echo $lang
-            >&2 echo "$lang included as a default language (completenes only $completeness)"
+            >&2 echo "$lang included as a default language (only ${completeness}% complete)"
 		fi
 	fi
 done > $linguas
