@@ -19,3 +19,4 @@ class PootleLanguageConfig(AppConfig):
 
     def ready(self):
         importlib.import_module("pootle_language.getters")
+        importlib.import_module("pootle_language.receivers")
