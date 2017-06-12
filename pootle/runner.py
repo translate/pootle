@@ -300,11 +300,16 @@ def run_app(project, default_settings_path, settings_template,
 
 def get_version():
     from pootle import __version__
+    from pootle.core.utils.version import get_git_hash
     from translate import __version__ as tt_version
     from django import get_version as django_version
 
-    return ("Pootle %s (Django %s, Translate Toolkit %s)" %
-            (__version__, django_version(), tt_version.sver))
+    githash = get_git_hash()
+    if githash:
+        githash = "[%s] " % githash
+
+    return ("Pootle %s %s(Django %s, Translate Toolkit %s)" %
+            (__version__, githash, django_version(), tt_version.sver))
 
 
 def main():
