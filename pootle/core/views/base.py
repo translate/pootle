@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from collections import OrderedDict
+
 from django.urls import reverse
 from django.utils.decorators import method_decorator
 from django.utils.functional import cached_property
@@ -91,10 +93,18 @@ class PootleDetailView(GatherContextMixin, DetailView):
     @property
     def languages(self):
         languages = site_languages.get()
-        return (
+        languages = (
             languages.all_languages
             if self.has_admin_access
             else languages.languages)
+        lang_map = {
+            v: k
+            for k, v
+            in languages.items()}
+        return OrderedDict(
+            (lang_map[v], v)
+            for v
+            in sorted(languages.values()))
 
     def get_context_data(self, *args, **kwargs):
         return {
