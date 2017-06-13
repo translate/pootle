@@ -47,6 +47,7 @@
     position: absolute;
     top: 0.3em;
     left: 55px;
+    max-height: 36px;
 }
 
 html[dir="rtl"] #navbar .logo-custom
