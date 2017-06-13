@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-27 01:59+0100\n"
+"POT-Creation-Date: 2017-06-13 15:55+0100\n"
 "PO-Revision-Date: 2017-05-27 05:45+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,38 +40,38 @@ msgstr ""
 "Zdá se, že váš uživatelský účet se ztratil. Kontaktujte správce těchto "
 "stránek."
 
-#: apps/accounts/models.py:56 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "Uživatelské jméno"
 
-#: apps/accounts/models.py:57
+#: apps/accounts/models.py:56
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr "Vyžadováno. Maximálně 30 znaků. Písmena, čísla a znaky @/./+/-/_"
 
-#: apps/accounts/models.py:61
+#: apps/accounts/models.py:60
 msgid "Enter a valid username."
 msgstr "Zadejte platné uživatelské jméno."
 
-#: apps/accounts/models.py:65
+#: apps/accounts/models.py:64
 msgid "A user with that username already exists."
 msgstr "Uživatel s tímto uživatelským jménem již existuje."
 
-#: apps/accounts/models.py:68
+#: apps/accounts/models.py:67
 msgid "Email Address"
 msgstr "E-mailová adresa"
 
-#: apps/accounts/models.py:69 apps/pootle_language/models.py:35
+#: apps/accounts/models.py:68 apps/pootle_language/models.py:35
 #: apps/pootle_project/models.py:204
 msgid "Full Name"
 msgstr "Celý název"
 
-#: apps/accounts/models.py:72 apps/staticpages/models.py:30
+#: apps/accounts/models.py:71 apps/staticpages/models.py:30
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Aktivní"
 
-#: apps/accounts/models.py:75
+#: apps/accounts/models.py:74
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -79,11 +79,11 @@ msgstr ""
 "Určuje, zda má být uživatel brán jako aktivní. Používejte zrušení zaškrtnutí "
 "u této volby místo mazání uživatelských účtů."
 
-#: apps/accounts/models.py:78
+#: apps/accounts/models.py:77
 msgid "Superuser Status"
 msgstr "Správce"
 
-#: apps/accounts/models.py:81
+#: apps/accounts/models.py:80
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
@@ -91,87 +91,87 @@ msgstr ""
 "Přiřadí uživateli všechna oprávnění, aniž by je bylo nutné přiřadit je "
 "explicitně."
 
-#: apps/accounts/models.py:84
+#: apps/accounts/models.py:83
 msgid "date joined"
 msgstr "účet vytvořen"
 
-#: apps/accounts/models.py:88
+#: apps/accounts/models.py:87
 msgid "Number of Rows"
 msgstr "Počet řádků"
 
-#: apps/accounts/models.py:92
+#: apps/accounts/models.py:91
 msgid "Alternative Source Languages"
 msgstr "Alternativní zdrojové jazyky"
 
-#: apps/accounts/models.py:95
+#: apps/accounts/models.py:94
 msgid "Score"
 msgstr "Hodnocení"
 
-#: apps/accounts/models.py:96
+#: apps/accounts/models.py:95
 msgid "Is employee?"
 msgstr "Je zaměstnanec?"
 
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:96
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:99
+#: apps/accounts/models.py:98
 msgid "Website"
 msgstr "Webová stránka"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:99
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:100
 msgid "Short Bio"
 msgstr "Stručný životopis"
 
-#: apps/accounts/models.py:241
+#: apps/accounts/models.py:240
 msgid "This email address already exists."
 msgstr "Tato e-mailová adresa již existuje."
 
-#: apps/contact/forms.py:27
+#: apps/contact/forms.py:26
 msgid "Subject"
 msgstr "Předmět"
 
-#: apps/contact/forms.py:29
+#: apps/contact/forms.py:28
 msgid "Please enter a message subject"
 msgstr "Zadejte předmět zprávy"
 
-#: apps/contact/forms.py:36 apps/virtualfolder/models.py:27 core/browser.py:16
+#: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "Název"
 
-#: apps/contact/forms.py:37
+#: apps/contact/forms.py:36
 msgid "Please enter your name"
 msgstr "Zadejte své jméno"
 
-#: apps/contact/forms.py:40
+#: apps/contact/forms.py:39
 msgid "Email address"
 msgstr "E-mailová adresa"
 
-#: apps/contact/forms.py:41
+#: apps/contact/forms.py:40
 msgid "Please enter your email address"
 msgstr "Zadejte svoji e-mailovou adresu"
 
-#: apps/contact/forms.py:44
+#: apps/contact/forms.py:43
 msgid "Message"
 msgstr "Zpráva"
 
-#: apps/contact/forms.py:45
+#: apps/contact/forms.py:44
 msgid "Please enter your message"
 msgstr "Zadejte vaši zprávu"
 
-#: apps/contact/forms.py:115
+#: apps/contact/forms.py:81
 msgid "String context"
 msgstr "Kontext řetězce"
 
-#: apps/contact/forms.py:125
+#: apps/contact/forms.py:91
 msgid "Question or comment"
 msgstr "Dotaz nebo komentář"
 
-#: apps/contact/forms.py:126
+#: apps/contact/forms.py:92
 msgid "Please enter your question or comment"
 msgstr "Zadejte svůj dotaz nebo komentář"
 
@@ -220,31 +220,31 @@ msgstr "Stáhnout offline překladovou paměť pro projekt překladu"
 msgid "Download offline TM"
 msgstr "Stáhnout offline překladovou paměť"
 
-#: apps/import_export/utils.py:39
+#: apps/import_export/utils.py:38
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
 "Nepodporovaný typ souboru ‚%s‘, v současnosti jsou podporovány jen soubory "
 "PO\n"
 
-#: apps/import_export/utils.py:45
+#: apps/import_export/utils.py:44
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr "Soubor ‚%s‘ nemá nastavenu položku hlavičky X-Pootle-Path\n"
 
-#: apps/import_export/utils.py:50
+#: apps/import_export/utils.py:49
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr ""
 "Soubor ‚%s‘ nemá nastavenu, nebo má chybně nastavenu položku hlavičky X-"
 "Pootle-Revision\n"
 
-#: apps/import_export/utils.py:58
+#: apps/import_export/utils.py:57
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Vytvoření ‚%s‘ se nezdařilo. Chybějící projekt/jazyk? (%s)"
 
-#: apps/import_export/utils.py:75
+#: apps/import_export/utils.py:74
 msgid "There was an error uploading your file"
 msgstr "Při nahrávání souboru došlo k chybě"
 
@@ -308,7 +308,7 @@ msgstr "Odebrat oprávnění"
 msgid "No files in this project."
 msgstr "Projekt neobsahuje žádné soubory."
 
-#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:205
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:207
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Do formuláře byly zadány chybné údaje. Zkontrolujte uvedené problémy."
 
@@ -530,19 +530,19 @@ msgstr "Rumunština: Vyhýbat se znaménkům cedilla"
 msgid "Romanian: Use \"niciun\"/\"nicio\""
 msgstr "Rumunština: Používat \"niciun\"/\"nicio\""
 
-#: apps/pootle_format/abstracts.py:35
+#: apps/pootle_format/abstracts.py:36
 msgid "Format name"
 msgstr "Název formátu"
 
-#: apps/pootle_format/abstracts.py:40
+#: apps/pootle_format/abstracts.py:41
 msgid "Format title"
 msgstr "Popis formátu"
 
-#: apps/pootle_format/abstracts.py:44
+#: apps/pootle_format/abstracts.py:45
 msgid "Enabled"
 msgstr "Zapnuto"
 
-#: apps/pootle_format/abstracts.py:46
+#: apps/pootle_format/abstracts.py:47
 msgid "Monolingual format"
 msgstr "Jednojazyčný formát"
 
@@ -670,7 +670,7 @@ msgstr "Filtrovat podle navrhovatele"
 msgid "Filter by state"
 msgstr "Filtrovat podle stavu"
 
-#: apps/pootle_language/forms.py:182 apps/pootle_language/views.py:216
+#: apps/pootle_language/forms.py:182 apps/pootle_language/views.py:218
 #: core/browser.py:26
 msgid "Project"
 msgstr "Projekt"
@@ -722,31 +722,31 @@ msgstr "Počet forem plurálu"
 msgid "Plural Equation"
 msgstr "Podmínky použití forem plurálu"
 
-#: apps/pootle_language/views.py:210
+#: apps/pootle_language/views.py:212
 msgid "Unit"
 msgstr "Jednotka"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:58
+#: apps/pootle_language/views.py:213 apps/pootle_statistics/models.py:58
 msgid "State"
 msgstr "Stav"
 
-#: apps/pootle_language/views.py:212 apps/pootle_statistics/models.py:56
+#: apps/pootle_language/views.py:214 apps/pootle_statistics/models.py:56
 msgid "Source"
 msgstr "Zdroj"
 
-#: apps/pootle_language/views.py:213
+#: apps/pootle_language/views.py:215
 msgid "Suggestion"
 msgstr "Návrh"
 
-#: apps/pootle_language/views.py:214
+#: apps/pootle_language/views.py:216
 msgid "Suggested by"
 msgstr "Navrženo uživatelem"
 
-#: apps/pootle_language/views.py:215
+#: apps/pootle_language/views.py:217
 msgid "Suggested at"
 msgstr "Navrženo u"
 
-#: apps/pootle_language/views.py:237
+#: apps/pootle_language/views.py:239
 #, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
@@ -754,7 +754,7 @@ msgstr[0] "Zamítl %s návrh s komentářem. Uživatel bude upozorněn"
 msgstr[1] "Zamítl %s návrhy s komentářem. Uživatelé budou upozorněni"
 msgstr[2] "Zamítl %s návrhů s komentářem. Uživatelé budou upozorněni"
 
-#: apps/pootle_language/views.py:242
+#: apps/pootle_language/views.py:244
 #, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
@@ -762,7 +762,7 @@ msgstr[0] "Přijal %s návrh s komentářem. Uživatel bude upozorněn"
 msgstr[1] "Přijal %s návrhy s komentářem. Uživatelé budou upozorněni"
 msgstr[2] "Přijal %s návrhů s komentářem. Uživatelé budou upozorněni"
 
-#: apps/pootle_language/views.py:247
+#: apps/pootle_language/views.py:249
 #, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
@@ -770,7 +770,7 @@ msgstr[0] "Odmítl %s návrh"
 msgstr[1] "Odmítl %s návrhy"
 msgstr[2] "Odmítl %s návrhů"
 
-#: apps/pootle_language/views.py:252
+#: apps/pootle_language/views.py:254
 #, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
@@ -788,23 +788,23 @@ msgstr ""
 "Hledat (Ctrl+Shift+S)<br/>Napište hledaný výraz a spusťte hledání klávesou "
 "Enter"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:368
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:369
 msgid "Exact Match"
 msgstr "Přesná shoda"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:374
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:375
 msgid "Source Text"
 msgstr "Zdrojový text"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:375
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:376
 msgid "Target Text"
 msgstr "Cílový text"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:376
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:377
 msgid "Comments"
 msgstr "Komentáře"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:377
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:378
 msgid "Locations"
 msgstr "Umístění"
 
@@ -1005,7 +1005,7 @@ msgstr "Předpona pro hledání snímků obrazovky"
 msgid "Disabled"
 msgstr "Zakázáno"
 
-#: apps/pootle_project/views.py:295
+#: apps/pootle_project/views.py:297
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
@@ -1014,7 +1014,7 @@ msgstr ""
 "Byl vytvořen překladový projekt (%s). Nyní probíhá aktualizace jeho souborů "
 "ze souborů šablon."
 
-#: apps/pootle_project/views.py:302
+#: apps/pootle_project/views.py:304
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Překladový projekt (%s) byl smazán"
@@ -1039,8 +1039,8 @@ msgstr "Cesta"
 msgid "Obsolete"
 msgstr "Zastaralé"
 
-#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:188
-#: apps/pootle_store/forms.py:563 templates/editor/_filters.html:10
+#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:189
+#: apps/pootle_store/forms.py:564 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Vyžaduje úpravy"
 
@@ -1065,7 +1065,7 @@ msgstr "Pro zadávání překladů nemáte dostatečná oprávnění."
 msgid "Insufficient rights to access review mode."
 msgstr "Pro provádění kontrol nemáte dostatečná oprávnění."
 
-#: apps/pootle_store/forms.py:100
+#: apps/pootle_store/forms.py:101
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
@@ -1073,21 +1073,21 @@ msgstr "Pro provádění kontrol nemáte dostatečná oprávnění."
 msgid "Plural Form %d"
 msgstr "Forma plurálu %d"
 
-#: apps/pootle_store/forms.py:246
+#: apps/pootle_store/forms.py:247
 msgid "Needs work flag must be cleared"
 msgstr "Musí být zrušeno označení Vyžaduje úpravy"
 
 # poznámky vývojáře
-#: apps/pootle_store/forms.py:301
+#: apps/pootle_store/forms.py:302
 msgid "Translator comment"
 msgstr "Poznámky překladatele"
 
-#: apps/pootle_store/forms.py:481
+#: apps/pootle_store/forms.py:482
 #, python-format
 msgid "Suggestion '%s' has already been accepted or rejected."
 msgstr "Návrh ‚%s‘ byl již přijat nebo zamítnut."
 
-#: apps/pootle_store/forms.py:499 core/decorators.py:140
+#: apps/pootle_store/forms.py:500 core/decorators.py:145
 #: core/views/decorators.py:70
 msgid "Insufficient rights to access this page."
 msgstr "Pro přístup k této stránce nemáte dostatečná oprávnění."
@@ -1156,24 +1156,24 @@ msgstr "Návrh byl přijat s komentářem"
 msgid "Suggestion rejected with comment"
 msgstr "Návrh byl odmítnut s komentářem"
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:105
+#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:105
 msgid "Path too long."
 msgstr "Cesta je příliš dlouhá."
 
-#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:107
-#: core/decorators.py:41
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:107
+#: core/decorators.py:46
 msgid "Arguments missing."
 msgstr "Chybějící parametry."
 
-#: apps/pootle_store/views.py:235
+#: apps/pootle_store/views.py:233
 msgid "Failed to remove comment."
 msgstr "Odstranění komentáře se nezdařilo."
 
-#: apps/pootle_store/views.py:267
+#: apps/pootle_store/views.py:265
 msgid "Comment submission failed."
 msgstr "Odeslání komentáře se nezdařilo."
 
-#: apps/pootle_store/views.py:572
+#: apps/pootle_store/views.py:576
 msgid "Failed to process suggestion."
 msgstr "Zpracování návrhu se nezdařilo."
 
@@ -1767,7 +1767,7 @@ msgstr "Zpět na stránku jazyka"
 msgid "Back to parent folder"
 msgstr "Zpět do nadřazeného adresáře"
 
-#: core/decorators.py:153 core/views/mixins.py:26
+#: core/decorators.py:158 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
 msgstr "Nemáte oprávnění pro spravování Pootle."
 
@@ -1829,7 +1829,7 @@ msgstr "Může kontrolovat návrhy"
 msgid "Can perform administrative tasks"
 msgstr "Může provádět administrativní úlohy"
 
-#: core/views/base.py:112
+#: core/views/base.py:122
 msgid "Entire Project"
 msgstr "Celý projekt"
 
@@ -1924,25 +1924,45 @@ msgstr "Zásady ochrany osobních údajů"
 msgid "Legal"
 msgstr "Právní poznámky"
 
+#. Translators: Label that refers to a legally mandated statement of the
+#. ownership and authorship of a document, which must be included in ...
+#. websites published in Germany and certain other German-speaking countries,
+#. such as Austria and Switzerland. See https://en.wikipedia.org/wiki/Impressum
+#: strings.py:46
+#, fuzzy
+msgid "Imprint"
+msgstr "printf()"
+
 #. Translators: Label that refers to the site's license requirements
-#: strings.py:43
+#: strings.py:48
 msgid "License"
 msgstr "Licence"
 
 #. Translators: Label that refers to the site's license requirements
-#: strings.py:45
+#: strings.py:50
+#, fuzzy
+msgid "License Statement"
+msgstr "Licenční podmínky"
+
+#. Translators: Label that refers to the site's license requirements
+#: strings.py:52
 msgid "Contributor License"
 msgstr "Licence pro přispěvatele"
 
 #. Translators: Label that refers to the site's terms of use
-#: strings.py:47
+#: strings.py:54
 msgid "Terms of Use"
 msgstr "Podmínky použití"
 
 #. Translators: Label that refers to the site's terms of service
-#: strings.py:49
+#: strings.py:56
 msgid "Terms of Service"
 msgstr "Podmínky služby"
+
+#. Translators: Label that refers to the site's getting started guide
+#: strings.py:58
+msgid "Getting Started"
+msgstr "Začínáme"
 
 #: templates/about.html:7 templates/layout.html:188
 msgid "About"
@@ -2533,112 +2553,112 @@ msgstr "Kontext:"
 msgid "Locations:"
 msgstr "Umístění:"
 
-#: templates/editor/units/edit.html:56
+#: templates/editor/units/edit.html:55
 msgid "Terminology:"
 msgstr "Terminologie:"
 
-#: templates/editor/units/edit.html:59
+#: templates/editor/units/edit.html:58
 msgid "Insert the translated term into the editor"
 msgstr "Kliknutím vložíte přeložený výraz do pole editoru"
 
-#: templates/editor/units/edit.html:72
+#: templates/editor/units/edit.html:70
 msgid "Comments:"
 msgstr "Komentáře:"
 
-#: templates/editor/units/edit.html:82
+#: templates/editor/units/edit.html:80
 msgid "Click to open the image in a popup"
 msgstr "Kliknutím otevřete obrázek ve vyskakovacím okně"
 
-#: templates/editor/units/edit.html:96
+#: templates/editor/units/edit.html:94
 msgid "Screenshots..."
 msgstr "Snímky obrazovky..."
 
-#: templates/editor/units/edit.html:120 templates/editor/units/edit.html:142
+#: templates/editor/units/edit.html:118 templates/editor/units/edit.html:140
 msgid "Copy into translation"
 msgstr "Kopírovat do překladu"
 
-#: templates/editor/units/edit.html:136
+#: templates/editor/units/edit.html:134
 msgid "Report a problem with this string"
 msgstr "Nahlásit chybu v řetězci"
 
-#: templates/editor/units/edit.html:154 templates/editor/units/edit.html:165
-#: templates/editor/units/edit.html:252
+#: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:250
 msgid "Submit"
 msgstr "Odeslat"
 
-#: templates/editor/units/edit.html:155
+#: templates/editor/units/edit.html:153
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Odeslat překlad a přejít na další řetězec (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:160 templates/editor/units/edit.html:166
+#: templates/editor/units/edit.html:158 templates/editor/units/edit.html:164
 msgid "Suggest"
 msgstr "Navrhnout"
 
-#: templates/editor/units/edit.html:161
+#: templates/editor/units/edit.html:159
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Navrhnout překlad a přejít na další řetězec (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:165
+#: templates/editor/units/edit.html:163
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Přepnout do režimu překladu (Ctrl+Shift+Mezerník)"
 
-#: templates/editor/units/edit.html:166
+#: templates/editor/units/edit.html:164
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Přepnout do režimu návrhu (Ctrl+Shift+Mezerník)"
 
-#: templates/editor/units/edit.html:171
+#: templates/editor/units/edit.html:169
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Označit jako řetězec vyžadující další zpracování (Ctrl+Mezerník)"
 
-#: templates/editor/units/edit.html:209
+#: templates/editor/units/edit.html:207
 msgid "Show Timeline"
 msgstr "Zobrazit časovou osu"
 
-#: templates/editor/units/edit.html:211
+#: templates/editor/units/edit.html:209
 msgid "Add Comment"
 msgstr "Přidat komentář"
 
-#: templates/editor/units/edit.html:213
+#: templates/editor/units/edit.html:211
 msgid "Raw View"
 msgstr "Neformátované zobrazení"
 
-#: templates/editor/units/edit.html:223
+#: templates/editor/units/edit.html:221
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "zkontroloval <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:233
+#: templates/editor/units/edit.html:231
 #, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
 "Vložit do editoru %(character_name)s (Unicode value %(character_code)s)"
 
-#: templates/editor/units/edit.html:271
+#: templates/editor/units/edit.html:269
 msgid "User suggestions"
 msgstr "Uživatelské návrhy"
 
-#: templates/editor/units/edit.html:291
+#: templates/editor/units/edit.html:289
 msgid "More options"
 msgstr "Další možnosti"
 
-#: templates/editor/units/edit.html:293
+#: templates/editor/units/edit.html:291
 msgid "Less options"
 msgstr "Méně možností"
 
-#: templates/editor/units/edit.html:298
+#: templates/editor/units/edit.html:296
 msgid "Accept suggestion"
 msgstr "Přijmout návrh"
 
-#: templates/editor/units/edit.html:303
+#: templates/editor/units/edit.html:301
 msgid "Reject suggestion"
 msgstr "Odmítnout návrh"
 
-#: templates/editor/units/edit.html:309
+#: templates/editor/units/edit.html:307
 msgid "Remove suggestion"
 msgstr "Odstranit návrh"
 
-#: templates/editor/units/edit.html:321
+#: templates/editor/units/edit.html:319
 msgid "A long time ago"
 msgstr "Velmi dávno"
 
@@ -2646,30 +2666,30 @@ msgstr "Velmi dávno"
 msgid "Comment: "
 msgstr "Komentář: "
 
-#: templates/editor/units/xhr_checks.html:5
+#: templates/editor/units/xhr_checks.html:4
 msgid "Critical issues with the translation"
 msgstr "Kritické problémy s překladem"
 
-#: templates/editor/units/xhr_checks.html:5
+#: templates/editor/units/xhr_checks.html:4
 #: templates/languages/admin/language_team.html:123
 msgid "Critical errors:"
 msgstr "Kritické chyby:"
 
-#: templates/editor/units/xhr_checks.html:12
-#: templates/editor/units/xhr_checks.html:32
+#: templates/editor/units/xhr_checks.html:11
+#: templates/editor/units/xhr_checks.html:29
 msgid "Mute quality check"
 msgstr "Zakázat kontrolu kvality"
 
-#: templates/editor/units/xhr_checks.html:13
-#: templates/editor/units/xhr_checks.html:33
+#: templates/editor/units/xhr_checks.html:12
+#: templates/editor/units/xhr_checks.html:30
 msgid "Unmute quality check"
 msgstr "Povolit kontrolu kvality"
 
-#: templates/editor/units/xhr_checks.html:25
+#: templates/editor/units/xhr_checks.html:22
 msgid "Possible issues with the translation"
 msgstr "Možné problémy s překladem"
 
-#: templates/editor/units/xhr_checks.html:25
+#: templates/editor/units/xhr_checks.html:22
 msgid "Watch out for:"
 msgstr "Dejte si pozor na:"
 
@@ -3538,12 +3558,6 @@ msgstr "Hlavní přispěvatelé za posledních 30 dní"
 
 #~ msgid "more..."
 #~ msgstr "podrobnosti..."
-
-#~ msgid "Getting Started"
-#~ msgstr "Začínáme"
-
-#~ msgid "License Terms"
-#~ msgstr "Licenční podmínky"
 
 #~ msgid ""
 #~ "Some data on this page is currently being calculated, and the page will "

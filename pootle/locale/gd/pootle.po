@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-27 01:59+0100\n"
+"POT-Creation-Date: 2017-06-13 15:55+0100\n"
 "PO-Revision-Date: 2017-02-20 17:22+0000\n"
 "Last-Translator: GunChleoc <fios@foramnagaidhlig.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,41 +37,41 @@ msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
 
-#: apps/accounts/models.py:56 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "Ainm-cleachdaiche"
 
-#: apps/accounts/models.py:57
+#: apps/accounts/models.py:56
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
 "Riatanach. 30 caractar air a char as motha. Litrichean gun sràcan, àireamhan "
 "agus @/./+/-/_."
 
-#: apps/accounts/models.py:61
+#: apps/accounts/models.py:60
 msgid "Enter a valid username."
 msgstr "Cuir a-steach ainm-cleachdaiche dligheach."
 
-#: apps/accounts/models.py:65
+#: apps/accounts/models.py:64
 #, fuzzy
 msgid "A user with that username already exists."
 msgstr "Tha an seòladh puist-d seo ann mar-thà."
 
-#: apps/accounts/models.py:68
+#: apps/accounts/models.py:67
 msgid "Email Address"
 msgstr "Seòladh puist-dhealain"
 
-#: apps/accounts/models.py:69 apps/pootle_language/models.py:35
+#: apps/accounts/models.py:68 apps/pootle_language/models.py:35
 #: apps/pootle_project/models.py:204
 msgid "Full Name"
 msgstr "Làn ainm:"
 
-#: apps/accounts/models.py:72 apps/staticpages/models.py:30
+#: apps/accounts/models.py:71 apps/staticpages/models.py:30
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Gnìomhach"
 
-#: apps/accounts/models.py:75
+#: apps/accounts/models.py:74
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -79,11 +79,11 @@ msgstr ""
 "Iomruinidh seo an dèid dèiligeadh ris a’ cleachdaiche seo mar fhear "
 "gnìomhach gus nach dèid. Neo-thagh seo seach an cunntas a sguabadh às."
 
-#: apps/accounts/models.py:78
+#: apps/accounts/models.py:77
 msgid "Superuser Status"
 msgstr "Staid superuser"
 
-#: apps/accounts/models.py:81
+#: apps/accounts/models.py:80
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
@@ -91,90 +91,90 @@ msgstr ""
 "Iomruinidh seo gu bheil a h-uile cead aig a’ chleachdaiche seo gun a bhith "
 "’gan iomruineadh fa leth."
 
-#: apps/accounts/models.py:84
+#: apps/accounts/models.py:83
 msgid "date joined"
 msgstr "fhuair e ballrachd"
 
-#: apps/accounts/models.py:88
+#: apps/accounts/models.py:87
 msgid "Number of Rows"
 msgstr "Àireamh de ràghan"
 
-#: apps/accounts/models.py:92
+#: apps/accounts/models.py:91
 msgid "Alternative Source Languages"
 msgstr "Tùs-chànain eile"
 
-#: apps/accounts/models.py:95
+#: apps/accounts/models.py:94
 msgid "Score"
 msgstr "Sgòr"
 
-#: apps/accounts/models.py:96
+#: apps/accounts/models.py:95
 msgid "Is employee?"
 msgstr "An e cosnaiche a th’ ann?"
 
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:96
 msgid "Twitter"
 msgstr "Twitter"
 
-#: apps/accounts/models.py:99
+#: apps/accounts/models.py:98
 msgid "Website"
 msgstr "Làrach-lìn"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:99
 msgid "LinkedIn"
 msgstr "LinkedIn"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:100
 msgid "Short Bio"
 msgstr "Cunntas-beatha goirid"
 
-#: apps/accounts/models.py:241
+#: apps/accounts/models.py:240
 msgid "This email address already exists."
 msgstr "Tha an seòladh puist-d seo ann mar-thà."
 
-#: apps/contact/forms.py:27
+#: apps/contact/forms.py:26
 #, fuzzy
 msgid "Subject"
 msgstr "Diùlt"
 
-#: apps/contact/forms.py:29
+#: apps/contact/forms.py:28
 #, fuzzy
 msgid "Please enter a message subject"
 msgstr "Cuir a-steach an teachdaireachd agad"
 
-#: apps/contact/forms.py:36 apps/virtualfolder/models.py:27 core/browser.py:16
+#: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "Ainm"
 
-#: apps/contact/forms.py:37
+#: apps/contact/forms.py:36
 msgid "Please enter your name"
 msgstr "Cuir a-steach d’ ainm"
 
-#: apps/contact/forms.py:40
+#: apps/contact/forms.py:39
 msgid "Email address"
 msgstr "Seòladh puist-dealain"
 
-#: apps/contact/forms.py:41
+#: apps/contact/forms.py:40
 msgid "Please enter your email address"
 msgstr "Cuir a-steach an seòladh puist-d agad"
 
-#: apps/contact/forms.py:44
+#: apps/contact/forms.py:43
 msgid "Message"
 msgstr "Teachdaireachd"
 
-#: apps/contact/forms.py:45
+#: apps/contact/forms.py:44
 msgid "Please enter your message"
 msgstr "Cuir a-steach an teachdaireachd agad"
 
-#: apps/contact/forms.py:115
+#: apps/contact/forms.py:81
 msgid "String context"
 msgstr ""
 
-#: apps/contact/forms.py:125
+#: apps/contact/forms.py:91
 #, fuzzy
 msgid "Question or comment"
 msgstr "Beachd an eadar-theangadair"
 
-#: apps/contact/forms.py:126
+#: apps/contact/forms.py:92
 #, fuzzy
 msgid "Please enter your question or comment"
 msgstr "Cuir a-steach d’ ainm"
@@ -236,27 +236,27 @@ msgstr ""
 "'S urrainn dhan neach seo tasg-lannan nam pròiseactan eadar-theangachaidhean "
 "a luchdadh a-nuas"
 
-#: apps/import_export/utils.py:39
+#: apps/import_export/utils.py:38
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr ""
 
-#: apps/import_export/utils.py:45
+#: apps/import_export/utils.py:44
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr ""
 
-#: apps/import_export/utils.py:50
+#: apps/import_export/utils.py:49
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr ""
 
-#: apps/import_export/utils.py:58
+#: apps/import_export/utils.py:57
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr ""
 
-#: apps/import_export/utils.py:75
+#: apps/import_export/utils.py:74
 #, fuzzy
 msgid "There was an error uploading your file"
 msgstr ""
@@ -322,7 +322,7 @@ msgstr ""
 msgid "No files in this project."
 msgstr "Chan eil faidhle sam bith sa phròiseact seo."
 
-#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:205
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:207
 msgid "There are errors in the form. Please review the problems below."
 msgstr ""
 
@@ -547,20 +547,20 @@ msgstr "Romàinis: Seachnaich comharran-litreach cedilla"
 msgid "Romanian: Use \"niciun\"/\"nicio\""
 msgstr "Romàinis: Cleachd “niciun”/“nicio”"
 
-#: apps/pootle_format/abstracts.py:35
+#: apps/pootle_format/abstracts.py:36
 #, fuzzy
 msgid "Format name"
 msgstr "Ainm"
 
-#: apps/pootle_format/abstracts.py:40
+#: apps/pootle_format/abstracts.py:41
 msgid "Format title"
 msgstr ""
 
-#: apps/pootle_format/abstracts.py:44
+#: apps/pootle_format/abstracts.py:45
 msgid "Enabled"
 msgstr ""
 
-#: apps/pootle_format/abstracts.py:46
+#: apps/pootle_format/abstracts.py:47
 #, fuzzy
 msgid "Monolingual format"
 msgstr "Iolra %d"
@@ -693,7 +693,7 @@ msgstr "Criathraich a-rèir cò mhol e"
 msgid "Filter by state"
 msgstr "Criathraich a-rèir staid"
 
-#: apps/pootle_language/forms.py:182 apps/pootle_language/views.py:216
+#: apps/pootle_language/forms.py:182 apps/pootle_language/views.py:218
 #: core/browser.py:26
 msgid "Project"
 msgstr "Pròiseact"
@@ -738,31 +738,31 @@ msgstr "Co mheud cruth iolra"
 msgid "Plural Equation"
 msgstr "Co-aontar nan iolra"
 
-#: apps/pootle_language/views.py:210
+#: apps/pootle_language/views.py:212
 msgid "Unit"
 msgstr "Aonad"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:58
+#: apps/pootle_language/views.py:213 apps/pootle_statistics/models.py:58
 msgid "State"
 msgstr "Staid"
 
-#: apps/pootle_language/views.py:212 apps/pootle_statistics/models.py:56
+#: apps/pootle_language/views.py:214 apps/pootle_statistics/models.py:56
 msgid "Source"
 msgstr "Tùs"
 
-#: apps/pootle_language/views.py:213
+#: apps/pootle_language/views.py:215
 msgid "Suggestion"
 msgstr "Moladh"
 
-#: apps/pootle_language/views.py:214
+#: apps/pootle_language/views.py:216
 msgid "Suggested by"
 msgstr "Chaidh a mholadh le"
 
-#: apps/pootle_language/views.py:215
+#: apps/pootle_language/views.py:217
 msgid "Suggested at"
 msgstr "Chaidh a mholadh"
 
-#: apps/pootle_language/views.py:237
+#: apps/pootle_language/views.py:239
 #, fuzzy, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
@@ -771,7 +771,7 @@ msgstr[1] "Seall na molaidhean"
 msgstr[2] "Seall na molaidhean"
 msgstr[3] "Seall na molaidhean"
 
-#: apps/pootle_language/views.py:242
+#: apps/pootle_language/views.py:244
 #, fuzzy, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
@@ -780,7 +780,7 @@ msgstr[1] "Seall na molaidhean"
 msgstr[2] "Seall na molaidhean"
 msgstr[3] "Seall na molaidhean"
 
-#: apps/pootle_language/views.py:247
+#: apps/pootle_language/views.py:249
 #, fuzzy, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
@@ -789,7 +789,7 @@ msgstr[1] "Seall na molaidhean"
 msgstr[2] "Seall na molaidhean"
 msgstr[3] "Seall na molaidhean"
 
-#: apps/pootle_language/views.py:252
+#: apps/pootle_language/views.py:254
 #, fuzzy, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
@@ -806,23 +806,23 @@ msgstr "Lorg"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Lorg (Ctrl+Shift+S)<br/>Sgrìobh rud is briog Enter gus lorg a dhèanamh"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:368
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:369
 msgid "Exact Match"
 msgstr "Sàr-mhaids"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:374
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:375
 msgid "Source Text"
 msgstr "An teacsa tùsail"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:375
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:376
 msgid "Target Text"
 msgstr "An t-eadar-theangachadh"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:376
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:377
 msgid "Comments"
 msgstr "Beachdan"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:377
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:378
 msgid "Locations"
 msgstr "Àitichean"
 
@@ -1017,14 +1017,14 @@ msgstr "Ro-leasachan luirg nan glacaidhean-sgrìn"
 msgid "Disabled"
 msgstr "À comas"
 
-#: apps/pootle_project/views.py:295
+#: apps/pootle_project/views.py:297
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
 
-#: apps/pootle_project/views.py:302
+#: apps/pootle_project/views.py:304
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr ""
@@ -1050,8 +1050,8 @@ msgstr "Slighe"
 msgid "Obsolete"
 msgstr "O fheum"
 
-#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:188
-#: apps/pootle_store/forms.py:563 templates/editor/_filters.html:10
+#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:189
+#: apps/pootle_store/forms.py:564 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Feumach air aire"
 
@@ -1076,7 +1076,7 @@ msgstr ""
 msgid "Insufficient rights to access review mode."
 msgstr ""
 
-#: apps/pootle_store/forms.py:100
+#: apps/pootle_store/forms.py:101
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
@@ -1084,20 +1084,20 @@ msgstr ""
 msgid "Plural Form %d"
 msgstr "Iolra %d"
 
-#: apps/pootle_store/forms.py:246
+#: apps/pootle_store/forms.py:247
 msgid "Needs work flag must be cleared"
 msgstr ""
 
-#: apps/pootle_store/forms.py:301
+#: apps/pootle_store/forms.py:302
 msgid "Translator comment"
 msgstr "Beachd an eadar-theangadair"
 
-#: apps/pootle_store/forms.py:481
+#: apps/pootle_store/forms.py:482
 #, python-format
 msgid "Suggestion '%s' has already been accepted or rejected."
 msgstr ""
 
-#: apps/pootle_store/forms.py:499 core/decorators.py:140
+#: apps/pootle_store/forms.py:500 core/decorators.py:145
 #: core/views/decorators.py:70
 msgid "Insufficient rights to access this page."
 msgstr ""
@@ -1171,24 +1171,24 @@ msgstr ""
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:105
+#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:105
 msgid "Path too long."
 msgstr ""
 
-#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:107
-#: core/decorators.py:41
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:107
+#: core/decorators.py:46
 msgid "Arguments missing."
 msgstr ""
 
-#: apps/pootle_store/views.py:235
+#: apps/pootle_store/views.py:233
 msgid "Failed to remove comment."
 msgstr ""
 
-#: apps/pootle_store/views.py:267
+#: apps/pootle_store/views.py:265
 msgid "Comment submission failed."
 msgstr ""
 
-#: apps/pootle_store/views.py:572
+#: apps/pootle_store/views.py:576
 msgid "Failed to process suggestion."
 msgstr ""
 
@@ -1736,7 +1736,7 @@ msgstr "Till dhan chànan"
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:153 core/views/mixins.py:26
+#: core/decorators.py:158 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
 msgstr ""
 
@@ -1797,7 +1797,7 @@ msgstr "Seall na molaidhean"
 msgid "Can perform administrative tasks"
 msgstr ""
 
-#: core/views/base.py:112
+#: core/views/base.py:122
 #, fuzzy
 msgid "Entire Project"
 msgstr "Pròiseactan gnìomhach"
@@ -1891,25 +1891,45 @@ msgstr "Am poileasaidh prìobhaideachd"
 msgid "Legal"
 msgstr "Nòtaichean laghail"
 
+#. Translators: Label that refers to a legally mandated statement of the
+#. ownership and authorship of a document, which must be included in ...
+#. websites published in Germany and certain other German-speaking countries,
+#. such as Austria and Switzerland. See https://en.wikipedia.org/wiki/Impressum
+#: strings.py:46
+#, fuzzy
+msgid "Imprint"
+msgstr "printf()"
+
 #. Translators: Label that refers to the site's license requirements
-#: strings.py:43
+#: strings.py:48
 msgid "License"
 msgstr "Ceadachas"
 
 #. Translators: Label that refers to the site's license requirements
-#: strings.py:45
+#: strings.py:50
+#, fuzzy
+msgid "License Statement"
+msgstr "Ceadachas"
+
+#. Translators: Label that refers to the site's license requirements
+#: strings.py:52
 msgid "Contributor License"
 msgstr "Ceadachas com-pàirtiche"
 
 #. Translators: Label that refers to the site's terms of use
-#: strings.py:47
+#: strings.py:54
 msgid "Terms of Use"
 msgstr "Na teirmichean cleachdaidh"
 
 #. Translators: Label that refers to the site's terms of service
-#: strings.py:49
+#: strings.py:56
 msgid "Terms of Service"
 msgstr "Teirmichean na Seirbheise"
+
+#. Translators: Label that refers to the site's getting started guide
+#: strings.py:58
+msgid "Getting Started"
+msgstr ""
 
 #: templates/about.html:7 templates/layout.html:188
 msgid "About"
@@ -2480,83 +2500,83 @@ msgstr "Co-theacsa:"
 msgid "Locations:"
 msgstr "Àitichean:"
 
-#: templates/editor/units/edit.html:56
+#: templates/editor/units/edit.html:55
 msgid "Terminology:"
 msgstr "Briathrachas:"
 
-#: templates/editor/units/edit.html:59
+#: templates/editor/units/edit.html:58
 msgid "Insert the translated term into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:72
+#: templates/editor/units/edit.html:70
 msgid "Comments:"
 msgstr "Beachdan:"
 
-#: templates/editor/units/edit.html:82
+#: templates/editor/units/edit.html:80
 msgid "Click to open the image in a popup"
 msgstr ""
 
-#: templates/editor/units/edit.html:96
+#: templates/editor/units/edit.html:94
 msgid "Screenshots..."
 msgstr "Glacaidhean-sgrìn…"
 
-#: templates/editor/units/edit.html:120 templates/editor/units/edit.html:142
+#: templates/editor/units/edit.html:118 templates/editor/units/edit.html:140
 msgid "Copy into translation"
 msgstr ""
 
-#: templates/editor/units/edit.html:136
+#: templates/editor/units/edit.html:134
 msgid "Report a problem with this string"
 msgstr "Innis dhuinn mu dhuilgheadas leis an t-sreang seo"
 
-#: templates/editor/units/edit.html:154 templates/editor/units/edit.html:165
-#: templates/editor/units/edit.html:252
+#: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:250
 msgid "Submit"
 msgstr "Cuir a-null"
 
-#: templates/editor/units/edit.html:155
+#: templates/editor/units/edit.html:153
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr ""
 "Cuir a-null an t-eadar-theangachadh is rach dhan ath-shreang (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:160 templates/editor/units/edit.html:166
+#: templates/editor/units/edit.html:158 templates/editor/units/edit.html:164
 msgid "Suggest"
 msgstr "Mol"
 
-#: templates/editor/units/edit.html:161
+#: templates/editor/units/edit.html:159
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Mol eadar-theangachadh is rach dhan ath-shreang (Ctrl+Enter)"
 
-#: templates/editor/units/edit.html:165
+#: templates/editor/units/edit.html:163
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Atharraich gun mhodh eadar-theangachaidh (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:166
+#: templates/editor/units/edit.html:164
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Atharraich gun mhodh molaidh (Ctrl+Shift+Space)"
 
-#: templates/editor/units/edit.html:171
+#: templates/editor/units/edit.html:169
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr ""
 "Cuir comharra gu bheil an sreang seo feumach air barrachd obair (Ctrl+Space)"
 
-#: templates/editor/units/edit.html:209
+#: templates/editor/units/edit.html:207
 msgid "Show Timeline"
 msgstr "Seall an loidhne-ama"
 
-#: templates/editor/units/edit.html:211
+#: templates/editor/units/edit.html:209
 msgid "Add Comment"
 msgstr "Cuir beachd ris"
 
-#: templates/editor/units/edit.html:213
+#: templates/editor/units/edit.html:211
 msgid "Raw View"
 msgstr ""
 
-#: templates/editor/units/edit.html:223
+#: templates/editor/units/edit.html:221
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "lèirmheas le <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:233
+#: templates/editor/units/edit.html:231
 #, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
@@ -2564,31 +2584,31 @@ msgstr ""
 "Cuir %(character_name)s (luach Unicode: %(character_code)s) a-steach dhan "
 "deasaiche"
 
-#: templates/editor/units/edit.html:271
+#: templates/editor/units/edit.html:269
 msgid "User suggestions"
 msgstr "Molaidhean luchd-cleachdaidh"
 
-#: templates/editor/units/edit.html:291
+#: templates/editor/units/edit.html:289
 msgid "More options"
 msgstr "Barrachd roghainnean"
 
-#: templates/editor/units/edit.html:293
+#: templates/editor/units/edit.html:291
 msgid "Less options"
 msgstr "Nas lugha a roghainnean"
 
-#: templates/editor/units/edit.html:298
+#: templates/editor/units/edit.html:296
 msgid "Accept suggestion"
 msgstr "Gabh ris a’ mholadh"
 
-#: templates/editor/units/edit.html:303
+#: templates/editor/units/edit.html:301
 msgid "Reject suggestion"
 msgstr "Diùilt am moladh"
 
-#: templates/editor/units/edit.html:309
+#: templates/editor/units/edit.html:307
 msgid "Remove suggestion"
 msgstr "Thoir air falbh am moladh"
 
-#: templates/editor/units/edit.html:321
+#: templates/editor/units/edit.html:319
 msgid "A long time ago"
 msgstr "O chionn fhada"
 
@@ -2596,31 +2616,31 @@ msgstr "O chionn fhada"
 msgid "Comment: "
 msgstr "Beachdan: "
 
-#: templates/editor/units/xhr_checks.html:5
+#: templates/editor/units/xhr_checks.html:4
 #, fuzzy
 msgid "Critical issues with the translation"
 msgstr "'S urrainn dhan neach seo eadar-theangachadh a chur ann"
 
-#: templates/editor/units/xhr_checks.html:5
+#: templates/editor/units/xhr_checks.html:4
 #: templates/languages/admin/language_team.html:123
 msgid "Critical errors:"
 msgstr "Mearachdan èiginneach:"
 
-#: templates/editor/units/xhr_checks.html:12
-#: templates/editor/units/xhr_checks.html:32
+#: templates/editor/units/xhr_checks.html:11
+#: templates/editor/units/xhr_checks.html:29
 msgid "Mute quality check"
 msgstr "Mùch sgrùdadh na càileachd"
 
-#: templates/editor/units/xhr_checks.html:13
-#: templates/editor/units/xhr_checks.html:33
+#: templates/editor/units/xhr_checks.html:12
+#: templates/editor/units/xhr_checks.html:30
 msgid "Unmute quality check"
 msgstr "Neo-mhùch sgrùdadh na càileachd"
 
-#: templates/editor/units/xhr_checks.html:25
+#: templates/editor/units/xhr_checks.html:22
 msgid "Possible issues with the translation"
 msgstr "Duilgheadasan a dh’fhaodadh a bhith san eadar-theangachadh"
 
-#: templates/editor/units/xhr_checks.html:25
+#: templates/editor/units/xhr_checks.html:22
 msgid "Watch out for:"
 msgstr "Thoir an aire air:"
 
@@ -3202,10 +3222,6 @@ msgstr "Na cuidichean as fhearr"
 #, fuzzy
 #~ msgid "more..."
 #~ msgstr "Barrachd..."
-
-#, fuzzy
-#~ msgid "License Terms"
-#~ msgstr "Ceadachas"
 
 #~ msgid "Can administrate a translation project"
 #~ msgstr "'S urrainn dhan neach seo pròiseact eadar-theangachaidh a rianadh"

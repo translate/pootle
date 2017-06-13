@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-27 01:59+0100\n"
+"POT-Creation-Date: 2017-06-13 15:55+0100\n"
 "PO-Revision-Date: 2017-01-19 10:23+0000\n"
 "Last-Translator: Rhoslyn <rprys@yahoo.com>\n"
 "Language-Team: Cymraeg\n"
@@ -533,12 +533,7 @@ msgstr "Rhagor..."
 msgid "Contributors, 30 Days"
 msgstr "Cyfranwyr, 30 Diwrnod"
 
-#: static/js/browser/components/TopContributorsTable.js:17
-#, python-format
-msgid "+%(score)s"
-msgstr "+%(score)s"
-
-#: static/js/browser/components/TopContributorsTable.js:31
+#: static/js/browser/components/TopContributorsTable.js:23
 #, python-format
 msgid "#%(position)s"
 msgstr "#%(position)s"
@@ -646,15 +641,15 @@ msgstr "Mynd nôl i bori"
 msgid "Reload page"
 msgstr "Ail lwytho tudalen"
 
-#: static/js/editor/app.js:2177
+#: static/js/editor/app.js:2188
 msgid "some anonymous user"
 msgstr "rhyw ddefnyddiwr anhysbys"
 
-#: static/js/editor/app.js:2179
+#: static/js/editor/app.js:2190
 msgid "someone"
 msgstr "rhywun"
 
-#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
+#: static/js/editor/app.js:2208 static/js/editor/app.js:2262
 msgid "Similar translations"
 msgstr "Cyfieithiadau tebyg"
 
@@ -903,6 +898,9 @@ msgid ""
 msgstr ""
 "Cyfieithwyd gan %(fullname)s yn &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; project"
+
+#~ msgid "+%(score)s"
+#~ msgstr "+%(score)s"
 
 #~ msgid "Entire Project"
 #~ msgstr "Y Project Cyfan"

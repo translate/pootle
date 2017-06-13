@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-27 01:59+0100\n"
+"POT-Creation-Date: 2017-06-13 15:55+0100\n"
 "PO-Revision-Date: 2017-05-22 17:43+0000\n"
 "Last-Translator: madmax2 <b1478971@mvrht.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -539,12 +539,7 @@ msgstr "Mehr..."
 msgid "Contributors, 30 Days"
 msgstr ""
 
-#: static/js/browser/components/TopContributorsTable.js:17
-#, python-format
-msgid "+%(score)s"
-msgstr ""
-
-#: static/js/browser/components/TopContributorsTable.js:31
+#: static/js/browser/components/TopContributorsTable.js:23
 #, python-format
 msgid "#%(position)s"
 msgstr ""
@@ -655,15 +650,15 @@ msgstr "Schauen Sie sich weiter um"
 msgid "Reload page"
 msgstr "Seite neu laden"
 
-#: static/js/editor/app.js:2177
+#: static/js/editor/app.js:2188
 msgid "some anonymous user"
 msgstr "ein anonymer Benutzer"
 
-#: static/js/editor/app.js:2179
+#: static/js/editor/app.js:2190
 msgid "someone"
 msgstr "jemand"
 
-#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
+#: static/js/editor/app.js:2208 static/js/editor/app.js:2262
 msgid "Similar translations"
 msgstr "Ähnliche Übersetzungen"
 

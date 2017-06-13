@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-27 01:59+0100\n"
+"POT-Creation-Date: 2017-06-13 15:55+0100\n"
 "PO-Revision-Date: 2017-02-08 11:04+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -536,12 +536,7 @@ msgstr "Més..."
 msgid "Contributors, 30 Days"
 msgstr "Col·laboradors, 30 dies"
 
-#: static/js/browser/components/TopContributorsTable.js:17
-#, python-format
-msgid "+%(score)s"
-msgstr "+%(score)s"
-
-#: static/js/browser/components/TopContributorsTable.js:31
+#: static/js/browser/components/TopContributorsTable.js:23
 #, python-format
 msgid "#%(position)s"
 msgstr "#%(position)s"
@@ -649,15 +644,15 @@ msgstr "Torna arrere a la navegació"
 msgid "Reload page"
 msgstr "Torna a carregar la pàgina"
 
-#: static/js/editor/app.js:2177
+#: static/js/editor/app.js:2188
 msgid "some anonymous user"
 msgstr "un usuari anònim"
 
-#: static/js/editor/app.js:2179
+#: static/js/editor/app.js:2190
 msgid "someone"
 msgstr "algú"
 
-#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
+#: static/js/editor/app.js:2208 static/js/editor/app.js:2262
 msgid "Similar translations"
 msgstr "Traduccions semblants"
 
@@ -907,6 +902,9 @@ msgid ""
 msgstr ""
 "Traduït per %(fullname)s en el projecte «<span title=\"%(path)s\">"
 "%(project)s</span>»"
+
+#~ msgid "+%(score)s"
+#~ msgstr "+%(score)s"
 
 #~ msgid "Entire Project"
 #~ msgstr "Projecte sencer"

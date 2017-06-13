@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-27 01:59+0100\n"
+"POT-Creation-Date: 2017-06-13 15:55+0100\n"
 "PO-Revision-Date: 2017-05-18 15:45+0000\n"
 "Last-Translator: Seanán <seananoc@gmail.com>\n"
 "Language-Team: Irish <ga@li.org>\n"
@@ -552,12 +552,7 @@ msgstr "Tuilleadh..."
 msgid "Contributors, 30 Days"
 msgstr "Rannpháirtithe, 30 Lá"
 
-#: static/js/browser/components/TopContributorsTable.js:17
-#, python-format
-msgid "+%(score)s"
-msgstr "+%(score)s"
-
-#: static/js/browser/components/TopContributorsTable.js:31
+#: static/js/browser/components/TopContributorsTable.js:23
 #, python-format
 msgid "#%(position)s"
 msgstr "#%(position)s"
@@ -666,15 +661,15 @@ msgstr "Brabhsáil"
 msgid "Reload page"
 msgstr "Athluchtaigh an leathanach"
 
-#: static/js/editor/app.js:2177
+#: static/js/editor/app.js:2188
 msgid "some anonymous user"
 msgstr "úsáideoir éigin gan ainm"
 
-#: static/js/editor/app.js:2179
+#: static/js/editor/app.js:2190
 msgid "someone"
 msgstr "duine éigin"
 
-#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
+#: static/js/editor/app.js:2208 static/js/editor/app.js:2262
 msgid "Similar translations"
 msgstr "Aistriúcháin cosúil leis seo"
 
@@ -928,6 +923,9 @@ msgid ""
 msgstr ""
 "Aistrithe ag %(fullname)s sa tionscadal “<span title=\"%(path)s\">"
 "%(project)s</span>”"
+
+#~ msgid "+%(score)s"
+#~ msgstr "+%(score)s"
 
 #~ msgid "Entire Project"
 #~ msgstr "An Tionscadal Ar Fad"

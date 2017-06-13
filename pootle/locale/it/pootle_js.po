@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-27 01:59+0100\n"
+"POT-Creation-Date: 2017-06-13 15:55+0100\n"
 "PO-Revision-Date: 2017-02-22 13:51+0000\n"
 "Last-Translator: daniele_translator <daniel.translator@mail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -540,12 +540,7 @@ msgstr "Altre..."
 msgid "Contributors, 30 Days"
 msgstr "Collaboratori, 30 giorni"
 
-#: static/js/browser/components/TopContributorsTable.js:17
-#, python-format
-msgid "+%(score)s"
-msgstr "+%(score)s"
-
-#: static/js/browser/components/TopContributorsTable.js:31
+#: static/js/browser/components/TopContributorsTable.js:23
 #, python-format
 msgid "#%(position)s"
 msgstr "#%(position)s"
@@ -653,15 +648,15 @@ msgstr "Torna alla navigazione"
 msgid "Reload page"
 msgstr "Ricarica pagina"
 
-#: static/js/editor/app.js:2177
+#: static/js/editor/app.js:2188
 msgid "some anonymous user"
 msgstr "qualche utente anonimo"
 
-#: static/js/editor/app.js:2179
+#: static/js/editor/app.js:2190
 msgid "someone"
 msgstr "qualcuno"
 
-#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
+#: static/js/editor/app.js:2208 static/js/editor/app.js:2262
 msgid "Similar translations"
 msgstr "Traduzioni simili"
 
@@ -911,6 +906,9 @@ msgid ""
 msgstr ""
 "Tradotto da %(fullname)s nel progetto &ldquo;<span title=\"%(path)s\">"
 "%(project)s</span>&rdquo;"
+
+#~ msgid "+%(score)s"
+#~ msgstr "+%(score)s"
 
 #~ msgid "Entire Project"
 #~ msgstr "Intero Progetto"

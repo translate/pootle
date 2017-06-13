@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-27 01:59+0100\n"
+"POT-Creation-Date: 2017-06-13 15:55+0100\n"
 "PO-Revision-Date: 2017-02-08 19:48+0000\n"
 "Last-Translator: Николић <miroslavnikolic@rocketmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,39 +41,39 @@ msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr "Изгледа да је ваш корисник нестао. Обавестите о овоме власнике сајта."
 
-#: apps/accounts/models.py:56 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
 msgstr "Корисничко име"
 
-#: apps/accounts/models.py:57
+#: apps/accounts/models.py:56
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr "Потребно. 30 знакова или више. Слова, бројеви и знаци @/./+/-/_"
 
-#: apps/accounts/models.py:61
+#: apps/accounts/models.py:60
 msgid "Enter a valid username."
 msgstr "Упишите исправно корисничко име."
 
-#: apps/accounts/models.py:65
+#: apps/accounts/models.py:64
 #, fuzzy
 msgid "A user with that username already exists."
 msgstr "Ова адреса е-поште већ постоји."
 
-#: apps/accounts/models.py:68
+#: apps/accounts/models.py:67
 msgid "Email Address"
 msgstr "Е-адреса"
 
-#: apps/accounts/models.py:69 apps/pootle_language/models.py:35
+#: apps/accounts/models.py:68 apps/pootle_language/models.py:35
 #: apps/pootle_project/models.py:204
 msgid "Full Name"
 msgstr "Пуно име"
 
-#: apps/accounts/models.py:72 apps/staticpages/models.py:30
+#: apps/accounts/models.py:71 apps/staticpages/models.py:30
 #: templates/admin/staticpages/_table.html:6
 msgid "Active"
 msgstr "Активно"
 
-#: apps/accounts/models.py:75
+#: apps/accounts/models.py:74
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
@@ -81,101 +81,101 @@ msgstr ""
 "Означава да ли овај корисник треба бити сматран активним. Одзначите ово "
 "уместо да бришете налоге."
 
-#: apps/accounts/models.py:78
+#: apps/accounts/models.py:77
 msgid "Superuser Status"
 msgstr "Стање суперкорисника"
 
-#: apps/accounts/models.py:81
+#: apps/accounts/models.py:80
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
 "Означава да ли овај корисник има сва овлашћења без изричитог додељивања."
 
-#: apps/accounts/models.py:84
+#: apps/accounts/models.py:83
 msgid "date joined"
 msgstr "датум приступа"
 
-#: apps/accounts/models.py:88
+#: apps/accounts/models.py:87
 msgid "Number of Rows"
 msgstr "Број редова"
 
-#: apps/accounts/models.py:92
+#: apps/accounts/models.py:91
 msgid "Alternative Source Languages"
 msgstr "Други изворни језици"
 
-#: apps/accounts/models.py:95
+#: apps/accounts/models.py:94
 msgid "Score"
 msgstr "Резултат"
 
-#: apps/accounts/models.py:96
+#: apps/accounts/models.py:95
 msgid "Is employee?"
 msgstr "Да ли је запослен?"
 
-#: apps/accounts/models.py:97
+#: apps/accounts/models.py:96
 msgid "Twitter"
 msgstr "Твитер"
 
-#: apps/accounts/models.py:99
+#: apps/accounts/models.py:98
 msgid "Website"
 msgstr "Веб сајт"
 
-#: apps/accounts/models.py:100
+#: apps/accounts/models.py:99
 msgid "LinkedIn"
 msgstr "ЛинкедИн"
 
-#: apps/accounts/models.py:101
+#: apps/accounts/models.py:100
 msgid "Short Bio"
 msgstr "Кратка биографија"
 
-#: apps/accounts/models.py:241
+#: apps/accounts/models.py:240
 msgid "This email address already exists."
 msgstr "Ова адреса е-поште већ постоји."
 
-#: apps/contact/forms.py:27
+#: apps/contact/forms.py:26
 #, fuzzy
 msgid "Subject"
 msgstr "Одбиј"
 
-#: apps/contact/forms.py:29
+#: apps/contact/forms.py:28
 #, fuzzy
 msgid "Please enter a message subject"
 msgstr "Унесите вашу поруку"
 
-#: apps/contact/forms.py:36 apps/virtualfolder/models.py:27 core/browser.py:16
+#: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
 msgstr "Име"
 
-#: apps/contact/forms.py:37
+#: apps/contact/forms.py:36
 msgid "Please enter your name"
 msgstr "Унесите ваше име"
 
-#: apps/contact/forms.py:40
+#: apps/contact/forms.py:39
 msgid "Email address"
 msgstr "Е-адреса"
 
-#: apps/contact/forms.py:41
+#: apps/contact/forms.py:40
 msgid "Please enter your email address"
 msgstr "Унесите адресу ваше е-поште"
 
-#: apps/contact/forms.py:44
+#: apps/contact/forms.py:43
 msgid "Message"
 msgstr "Порука"
 
-#: apps/contact/forms.py:45
+#: apps/contact/forms.py:44
 msgid "Please enter your message"
 msgstr "Унесите вашу поруку"
 
-#: apps/contact/forms.py:115
+#: apps/contact/forms.py:81
 msgid "String context"
 msgstr ""
 
-#: apps/contact/forms.py:125
+#: apps/contact/forms.py:91
 #, fuzzy
 msgid "Question or comment"
 msgstr "Предлог је одбијен са напоменом"
 
-#: apps/contact/forms.py:126
+#: apps/contact/forms.py:92
 #, fuzzy
 msgid "Please enter your question or comment"
 msgstr "Молимо вас унесите важе детаље за регистрацију"
@@ -225,28 +225,28 @@ msgstr "Преузмите ван мрежну меморију превода �
 msgid "Download offline TM"
 msgstr "Преузми ван мрежну МП"
 
-#: apps/import_export/utils.py:39
+#: apps/import_export/utils.py:38
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
 msgstr "Неподржана врста датотеке „%s“, за сада су подржане само ПО датотеке\n"
 
-#: apps/import_export/utils.py:45
+#: apps/import_export/utils.py:44
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
 msgstr "Датотеци „%s“ недостаје заглавље „X-Pootle-Path“\n"
 
-#: apps/import_export/utils.py:50
+#: apps/import_export/utils.py:49
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr ""
 "Датотеци „%s“ недостаје или је неисправно заглавље „X-Pootle-Revision“\n"
 
-#: apps/import_export/utils.py:58
+#: apps/import_export/utils.py:57
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
 msgstr "Не могу да направим „%s“. Недостаје пројекат/језик? (%s)"
 
-#: apps/import_export/utils.py:75
+#: apps/import_export/utils.py:74
 msgid "There was an error uploading your file"
 msgstr "Дошло је до грешке приликом отпремања ваше датотеке"
 
@@ -309,7 +309,7 @@ msgstr "Опозови овлашћења"
 msgid "No files in this project."
 msgstr "Нема датотека у овом пројекту."
 
-#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:205
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:207
 msgid "There are errors in the form. Please review the problems below."
 msgstr "Има грешака у обрасцу. Прегледајте проблеме испод."
 
@@ -531,19 +531,19 @@ msgstr "Румунски: Избегавајте диакритике седил
 msgid "Romanian: Use \"niciun\"/\"nicio\""
 msgstr "Румунски: Користите „niciun/nicio“"
 
-#: apps/pootle_format/abstracts.py:35
+#: apps/pootle_format/abstracts.py:36
 msgid "Format name"
 msgstr "Назив формата"
 
-#: apps/pootle_format/abstracts.py:40
+#: apps/pootle_format/abstracts.py:41
 msgid "Format title"
 msgstr "Наслов формата"
 
-#: apps/pootle_format/abstracts.py:44
+#: apps/pootle_format/abstracts.py:45
 msgid "Enabled"
 msgstr "Укључено"
 
-#: apps/pootle_format/abstracts.py:46
+#: apps/pootle_format/abstracts.py:47
 msgid "Monolingual format"
 msgstr "Вишејезички формат"
 
@@ -672,7 +672,7 @@ msgstr "Издвој према предлагачу"
 msgid "Filter by state"
 msgstr "Издвој према стању"
 
-#: apps/pootle_language/forms.py:182 apps/pootle_language/views.py:216
+#: apps/pootle_language/forms.py:182 apps/pootle_language/views.py:218
 #: core/browser.py:26
 msgid "Project"
 msgstr "Пројекат"
@@ -723,31 +723,31 @@ msgstr "Број множина"
 msgid "Plural Equation"
 msgstr "Једначина за множину"
 
-#: apps/pootle_language/views.py:210
+#: apps/pootle_language/views.py:212
 msgid "Unit"
 msgstr "Јединица"
 
-#: apps/pootle_language/views.py:211 apps/pootle_statistics/models.py:58
+#: apps/pootle_language/views.py:213 apps/pootle_statistics/models.py:58
 msgid "State"
 msgstr "Стање"
 
-#: apps/pootle_language/views.py:212 apps/pootle_statistics/models.py:56
+#: apps/pootle_language/views.py:214 apps/pootle_statistics/models.py:56
 msgid "Source"
 msgstr "Извор"
 
-#: apps/pootle_language/views.py:213
+#: apps/pootle_language/views.py:215
 msgid "Suggestion"
 msgstr "Предлог"
 
-#: apps/pootle_language/views.py:214
+#: apps/pootle_language/views.py:216
 msgid "Suggested by"
 msgstr "Предложио је"
 
-#: apps/pootle_language/views.py:215
+#: apps/pootle_language/views.py:217
 msgid "Suggested at"
 msgstr "Предложено је"
 
-#: apps/pootle_language/views.py:237
+#: apps/pootle_language/views.py:239
 #, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
@@ -755,7 +755,7 @@ msgstr[0] "Одбачен је %s предлог са напоменом. Кор
 msgstr[1] "Одбачена су %s предлога са напоменама. Корисници ће бити обавештени"
 msgstr[2] "Одбачено је %s предлога са напоменама. Корисници ће бити обавештени"
 
-#: apps/pootle_language/views.py:242
+#: apps/pootle_language/views.py:244
 #, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
@@ -764,7 +764,7 @@ msgstr[1] ""
 "Прихваћена су %s предлога са напоменама. Корисници ће бити обавештени"
 msgstr[2] "Одбачено је %s предлога са напоменама. Корисници ће бити обавештени"
 
-#: apps/pootle_language/views.py:247
+#: apps/pootle_language/views.py:249
 #, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
@@ -772,7 +772,7 @@ msgstr[0] "Одбачен је %s предлог"
 msgstr[1] "Одбачена су %s предлога"
 msgstr[2] "Одбачено је %s предлога"
 
-#: apps/pootle_language/views.py:252
+#: apps/pootle_language/views.py:254
 #, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
@@ -788,23 +788,23 @@ msgstr "Потражи"
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Претрага (Ктрл+Помак+S)<br/>Укуцајте и притисните „Унеси“ да потражите"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:368
+#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:369
 msgid "Exact Match"
 msgstr "Тачно поклапање"
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:374
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:375
 msgid "Source Text"
 msgstr "Изворни текст"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:375
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:376
 msgid "Target Text"
 msgstr "Циљни текст"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:376
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:377
 msgid "Comments"
 msgstr "Напомене"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:377
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:378
 msgid "Locations"
 msgstr "Места"
 
@@ -1008,7 +1008,7 @@ msgstr "Префикс претраге снимка екрана"
 msgid "Disabled"
 msgstr "Искључено"
 
-#: apps/pootle_project/views.py:295
+#: apps/pootle_project/views.py:297
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
@@ -1017,7 +1017,7 @@ msgstr ""
 "Пројекат превода (%s) је направљен. Сада освежавамо његове датотеке из "
 "шаблона датотека."
 
-#: apps/pootle_project/views.py:302
+#: apps/pootle_project/views.py:304
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr "Пројекат превода (%s) је обрисан"
@@ -1043,8 +1043,8 @@ msgstr "Путања"
 msgid "Obsolete"
 msgstr "Застарело"
 
-#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:188
-#: apps/pootle_store/forms.py:563 templates/editor/_filters.html:10
+#: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:189
+#: apps/pootle_store/forms.py:564 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Нејасно"
 
@@ -1069,7 +1069,7 @@ msgstr "Недовољна права за приступ режиму прев�
 msgid "Insufficient rights to access review mode."
 msgstr "Недовољна права за приступ режиму прегледа."
 
-#: apps/pootle_store/forms.py:100
+#: apps/pootle_store/forms.py:101
 #: apps/pootle_store/templatetags/store_tags.py:46
 #: apps/pootle_store/templatetags/store_tags.py:63
 #: apps/pootle_store/templatetags/store_tags.py:70
@@ -1077,20 +1077,20 @@ msgstr "Недовољна права за приступ режиму прег�
 msgid "Plural Form %d"
 msgstr "Облик множине %d"
 
-#: apps/pootle_store/forms.py:246
+#: apps/pootle_store/forms.py:247
 msgid "Needs work flag must be cleared"
 msgstr "Заставица потребног рада мора бити очишћена"
 
-#: apps/pootle_store/forms.py:301
+#: apps/pootle_store/forms.py:302
 msgid "Translator comment"
 msgstr "Напомена преводиоца"
 
-#: apps/pootle_store/forms.py:481
+#: apps/pootle_store/forms.py:482
 #, python-format
 msgid "Suggestion '%s' has already been accepted or rejected."
 msgstr ""
 
-#: apps/pootle_store/forms.py:499 core/decorators.py:140
+#: apps/pootle_store/forms.py:500 core/decorators.py:145
 #: core/views/decorators.py:70
 msgid "Insufficient rights to access this page."
 msgstr "Недовољна права за приступ овој страници."
@@ -1160,24 +1160,24 @@ msgstr "Предлог је прихваћен са напоменом"
 msgid "Suggestion rejected with comment"
 msgstr "Предлог је одбијен са напоменом"
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:105
+#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:105
 msgid "Path too long."
 msgstr "Путања је предуга."
 
-#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:107
-#: core/decorators.py:41
+#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:107
+#: core/decorators.py:46
 msgid "Arguments missing."
 msgstr "Недостаје аргумент."
 
-#: apps/pootle_store/views.py:235
+#: apps/pootle_store/views.py:233
 msgid "Failed to remove comment."
 msgstr "Нисам успео да уклоним напомену."
 
-#: apps/pootle_store/views.py:267
+#: apps/pootle_store/views.py:265
 msgid "Comment submission failed."
 msgstr "Предаја напомене није успела."
 
-#: apps/pootle_store/views.py:572
+#: apps/pootle_store/views.py:576
 msgid "Failed to process suggestion."
 msgstr "Нисам успео да обрадим предлог."
 
@@ -1769,7 +1769,7 @@ msgstr "Назад на језик"
 msgid "Back to parent folder"
 msgstr "Назад на родитељску фасциклу"
 
-#: core/decorators.py:153 core/views/mixins.py:26
+#: core/decorators.py:158 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
 msgstr "Немате права да администрирате Поотле."
 
@@ -1831,7 +1831,7 @@ msgstr "Може да прегледа предлоге"
 msgid "Can perform administrative tasks"
 msgstr "Може да обавља административне задатке"
 
-#: core/views/base.py:112
+#: core/views/base.py:122
 #, fuzzy
 msgid "Entire Project"
 msgstr "Активни пројекти"
@@ -1927,25 +1927,45 @@ msgstr "Политика приватности"
 msgid "Legal"
 msgstr "Права"
 
+#. Translators: Label that refers to a legally mandated statement of the
+#. ownership and authorship of a document, which must be included in ...
+#. websites published in Germany and certain other German-speaking countries,
+#. such as Austria and Switzerland. See https://en.wikipedia.org/wiki/Impressum
+#: strings.py:46
+#, fuzzy
+msgid "Imprint"
+msgstr "printf()"
+
 #. Translators: Label that refers to the site's license requirements
-#: strings.py:43
+#: strings.py:48
 msgid "License"
 msgstr "Дозвола"
 
 #. Translators: Label that refers to the site's license requirements
-#: strings.py:45
+#: strings.py:50
+#, fuzzy
+msgid "License Statement"
+msgstr "Лиценца"
+
+#. Translators: Label that refers to the site's license requirements
+#: strings.py:52
 msgid "Contributor License"
 msgstr "Дозвола сарадника"
 
 #. Translators: Label that refers to the site's terms of use
-#: strings.py:47
+#: strings.py:54
 msgid "Terms of Use"
 msgstr "Услови коришћења"
 
 #. Translators: Label that refers to the site's terms of service
-#: strings.py:49
+#: strings.py:56
 msgid "Terms of Service"
 msgstr "Услови услуге"
+
+#. Translators: Label that refers to the site's getting started guide
+#: strings.py:58
+msgid "Getting Started"
+msgstr ""
 
 #: templates/about.html:7 templates/layout.html:188
 msgid "About"
@@ -2530,81 +2550,81 @@ msgstr "Контекст:"
 msgid "Locations:"
 msgstr "Места:"
 
-#: templates/editor/units/edit.html:56
+#: templates/editor/units/edit.html:55
 msgid "Terminology:"
 msgstr "Терминологија:"
 
-#: templates/editor/units/edit.html:59
+#: templates/editor/units/edit.html:58
 msgid "Insert the translated term into the editor"
 msgstr "Унесите преведени појам у уређивач"
 
-#: templates/editor/units/edit.html:72
+#: templates/editor/units/edit.html:70
 msgid "Comments:"
 msgstr "Напомене:"
 
-#: templates/editor/units/edit.html:82
+#: templates/editor/units/edit.html:80
 msgid "Click to open the image in a popup"
 msgstr "Кликните да отворите слику у облачићу"
 
-#: templates/editor/units/edit.html:96
+#: templates/editor/units/edit.html:94
 msgid "Screenshots..."
 msgstr "Снимци екрана..."
 
-#: templates/editor/units/edit.html:120 templates/editor/units/edit.html:142
+#: templates/editor/units/edit.html:118 templates/editor/units/edit.html:140
 msgid "Copy into translation"
 msgstr "Умножите у превод"
 
-#: templates/editor/units/edit.html:136
+#: templates/editor/units/edit.html:134
 msgid "Report a problem with this string"
 msgstr "Пријавите проблем са овом ниском"
 
-#: templates/editor/units/edit.html:154 templates/editor/units/edit.html:165
-#: templates/editor/units/edit.html:252
+#: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:250
 msgid "Submit"
 msgstr "Пошаљи"
 
-#: templates/editor/units/edit.html:155
+#: templates/editor/units/edit.html:153
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr "Пошаљите превод и идите на следећу поруку (Ктрл+Унеси)"
 
-#: templates/editor/units/edit.html:160 templates/editor/units/edit.html:166
+#: templates/editor/units/edit.html:158 templates/editor/units/edit.html:164
 msgid "Suggest"
 msgstr "Предложи"
 
-#: templates/editor/units/edit.html:161
+#: templates/editor/units/edit.html:159
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr "Предложите превод и идите на следећу поруку (Ктрл+Унеси)"
 
-#: templates/editor/units/edit.html:165
+#: templates/editor/units/edit.html:163
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr "Пређите на режим превођења (Ктрл+Помак+Размак)"
 
-#: templates/editor/units/edit.html:166
+#: templates/editor/units/edit.html:164
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr "Пређите на режим за предлоге (Ктрл+Помак+Размак)"
 
-#: templates/editor/units/edit.html:171
+#: templates/editor/units/edit.html:169
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Означите ову поруку за додатни рад (Ктрл+Размак)"
 
-#: templates/editor/units/edit.html:209
+#: templates/editor/units/edit.html:207
 msgid "Show Timeline"
 msgstr "Прикажи временску осу"
 
-#: templates/editor/units/edit.html:211
+#: templates/editor/units/edit.html:209
 msgid "Add Comment"
 msgstr "Додај напомену"
 
-#: templates/editor/units/edit.html:213
+#: templates/editor/units/edit.html:211
 msgid "Raw View"
 msgstr "Сирови преглед"
 
-#: templates/editor/units/edit.html:223
+#: templates/editor/units/edit.html:221
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "прегледао је <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:233
+#: templates/editor/units/edit.html:231
 #, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
@@ -2612,31 +2632,31 @@ msgstr ""
 "Убаците „%(character_name)s“ (Јуникодна вредност „%(character_code)s“) у "
 "уређивач"
 
-#: templates/editor/units/edit.html:271
+#: templates/editor/units/edit.html:269
 msgid "User suggestions"
 msgstr "Предлози корисника"
 
-#: templates/editor/units/edit.html:291
+#: templates/editor/units/edit.html:289
 msgid "More options"
 msgstr "Више опција"
 
-#: templates/editor/units/edit.html:293
+#: templates/editor/units/edit.html:291
 msgid "Less options"
 msgstr "Мање опција"
 
-#: templates/editor/units/edit.html:298
+#: templates/editor/units/edit.html:296
 msgid "Accept suggestion"
 msgstr "Прихвати предлог"
 
-#: templates/editor/units/edit.html:303
+#: templates/editor/units/edit.html:301
 msgid "Reject suggestion"
 msgstr "Одбаци предлог"
 
-#: templates/editor/units/edit.html:309
+#: templates/editor/units/edit.html:307
 msgid "Remove suggestion"
 msgstr "Уклони предлог"
 
-#: templates/editor/units/edit.html:321
+#: templates/editor/units/edit.html:319
 msgid "A long time ago"
 msgstr "Пре много времена"
 
@@ -2644,30 +2664,30 @@ msgstr "Пре много времена"
 msgid "Comment: "
 msgstr "Напомена: "
 
-#: templates/editor/units/xhr_checks.html:5
+#: templates/editor/units/xhr_checks.html:4
 msgid "Critical issues with the translation"
 msgstr "Критични проблем са преводом"
 
-#: templates/editor/units/xhr_checks.html:5
+#: templates/editor/units/xhr_checks.html:4
 #: templates/languages/admin/language_team.html:123
 msgid "Critical errors:"
 msgstr "Критичне грешке:"
 
-#: templates/editor/units/xhr_checks.html:12
-#: templates/editor/units/xhr_checks.html:32
+#: templates/editor/units/xhr_checks.html:11
+#: templates/editor/units/xhr_checks.html:29
 msgid "Mute quality check"
 msgstr "Искључите проверу квалитета"
 
-#: templates/editor/units/xhr_checks.html:13
-#: templates/editor/units/xhr_checks.html:33
+#: templates/editor/units/xhr_checks.html:12
+#: templates/editor/units/xhr_checks.html:30
 msgid "Unmute quality check"
 msgstr "Укључите проверу квалитета"
 
-#: templates/editor/units/xhr_checks.html:25
+#: templates/editor/units/xhr_checks.html:22
 msgid "Possible issues with the translation"
 msgstr "Могући проблеми са преводом"
 
-#: templates/editor/units/xhr_checks.html:25
+#: templates/editor/units/xhr_checks.html:22
 msgid "Watch out for:"
 msgstr "Пази на:"
 
@@ -3443,10 +3463,6 @@ msgstr "Најбољи доприносиоци у последњих 30 дан�
 #, fuzzy
 #~ msgid "more..."
 #~ msgstr "Више…"
-
-#, fuzzy
-#~ msgid "License Terms"
-#~ msgstr "Лиценца"
 
 #~ msgid "Can administrate a translation project"
 #~ msgstr "Може да администрира преводилачки пројекат"

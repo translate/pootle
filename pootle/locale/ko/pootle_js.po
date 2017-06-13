@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-27 01:59+0100\n"
+"POT-Creation-Date: 2017-06-13 15:55+0100\n"
 "PO-Revision-Date: 2016-05-04 06:52+0000\n"
 "Last-Translator: wrinos <wrinos@naver.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -523,12 +523,7 @@ msgstr "더욱"
 msgid "Contributors, 30 Days"
 msgstr ""
 
-#: static/js/browser/components/TopContributorsTable.js:17
-#, python-format
-msgid "+%(score)s"
-msgstr ""
-
-#: static/js/browser/components/TopContributorsTable.js:31
+#: static/js/browser/components/TopContributorsTable.js:23
 #, python-format
 msgid "#%(position)s"
 msgstr ""
@@ -639,15 +634,15 @@ msgstr "검색하기로 돌아가기"
 msgid "Reload page"
 msgstr "페이지 다시 불러오기"
 
-#: static/js/editor/app.js:2177
+#: static/js/editor/app.js:2188
 msgid "some anonymous user"
 msgstr "몇명의 익명 사용자"
 
-#: static/js/editor/app.js:2179
+#: static/js/editor/app.js:2190
 msgid "someone"
 msgstr "누군가"
 
-#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
+#: static/js/editor/app.js:2208 static/js/editor/app.js:2262
 msgid "Similar translations"
 msgstr "유사한 번역"
 

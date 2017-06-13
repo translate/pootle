@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-05-27 01:59+0100\n"
+"POT-Creation-Date: 2017-06-13 15:55+0100\n"
 "PO-Revision-Date: 2017-05-02 01:09+0000\n"
 "Last-Translator: 炜 <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -509,12 +509,7 @@ msgstr "更多信息..."
 msgid "Contributors, 30 Days"
 msgstr "贡献者，30天"
 
-#: static/js/browser/components/TopContributorsTable.js:17
-#, python-format
-msgid "+%(score)s"
-msgstr "+%(score)s"
-
-#: static/js/browser/components/TopContributorsTable.js:31
+#: static/js/browser/components/TopContributorsTable.js:23
 #, python-format
 msgid "#%(position)s"
 msgstr "#%(position)s"
@@ -620,15 +615,15 @@ msgstr "返回浏览"
 msgid "Reload page"
 msgstr "重新载入页面"
 
-#: static/js/editor/app.js:2177
+#: static/js/editor/app.js:2188
 msgid "some anonymous user"
 msgstr "一些匿名用户"
 
-#: static/js/editor/app.js:2179
+#: static/js/editor/app.js:2190
 msgid "someone"
 msgstr "某人"
 
-#: static/js/editor/app.js:2197 static/js/editor/app.js:2251
+#: static/js/editor/app.js:2208 static/js/editor/app.js:2262
 msgid "Similar translations"
 msgstr "类似的翻译"
 
@@ -871,6 +866,9 @@ msgid ""
 msgstr ""
 "已被 %(fullname)s 在 &ldquo;<span title=\"%(path)s\">%(project)s</"
 "span>&rdquo; 项目中翻译"
+
+#~ msgid "+%(score)s"
+#~ msgstr "+%(score)s"
 
 #~ msgid "Entire Project"
 #~ msgstr "整个项目"
