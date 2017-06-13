@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-05-27 01:59+0100\n"
-"PO-Revision-Date: 2017-06-12 13:27+0000\n"
+"PO-Revision-Date: 2017-06-13 12:57+0000\n"
 "Last-Translator: IKEDA <ikeda@conversion.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ja\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1497274047.000000\n"
+"X-POOTLE-MTIME: 1497358633.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -276,12 +276,12 @@ msgstr "LinkedIn の正しいユーザープロファイル URL を入力して�
 #, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
-msgstr[0] "実働中 (%d 人の作業者)"
+msgstr[0] "実行中 (%d 個のワーカー)"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:62
 msgid "Stopped"
-msgstr "停止しました"
+msgstr "停止中"
 
 #: apps/pootle_app/views/admin/permissions.py:65
 msgid "All Users"
@@ -1356,14 +1356,13 @@ msgstr ""
 
 #. Translators: a worker processes background tasks
 #: checks.py:159
-#, fuzzy
 msgid "No worker running."
-msgstr "RQ Worker が稼働していません。"
+msgstr "RQワーカーは実行されていません。"
 
 #. Translators: a worker processes background tasks
 #: checks.py:161
 msgid "Run new workers with 'pootle rqworker'"
-msgstr "'pootle rqworker' で新しい worker を実行してください"
+msgstr "'pootle rqworker' で新しいワーカーを実行してください"
 
 #: checks.py:176
 msgid "Cache backend is not set to Redis."
