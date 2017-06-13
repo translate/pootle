@@ -8,6 +8,8 @@
 
 from django.template.loader import render_to_string
 
+from pootle.i18n.gettext import ugettext_lazy as _
+
 
 class Formtable(object):
     row_field = ""
@@ -66,6 +68,10 @@ class Formtable(object):
     @property
     def results_per_page(self):
         return self.form[self.form.per_page_field]
+
+    @property
+    def msg_results_per_page(self):
+        return _("Results per page")
 
     @property
     def rows(self):
