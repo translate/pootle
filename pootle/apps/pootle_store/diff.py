@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import difflib
+import logging
 from collections import OrderedDict
 
 from django.db import models
@@ -17,6 +18,9 @@ from pootle.core.delegate import format_diffs
 from .constants import FUZZY, OBSOLETE, TRANSLATED, UNTRANSLATED
 from .fields import to_python as multistring_to_python
 from .unit import UnitProxy
+
+
+logger = logging.getLogger(__name__)
 
 
 class UnitDiffProxy(UnitProxy):
@@ -125,6 +129,14 @@ class DiffableStore(object):
         for unit in units:
             if unit.isheader():
                 continue
+            if unit.getid() in diff_units:
+                unitid = unit.getid()
+                logger.warning(
+                    "[diff] Duplicate unit found: %s %s",
+                    self.target_store.name,
+                    (unitid
+                     if len(unitid) <= 20
+                     else "%s..." % unitid[:17]))
             diff_units[unit.getid()] = self.get_file_unit(unit)
         return diff_units
 
