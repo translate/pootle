@@ -109,8 +109,15 @@ class AboutView(TemplateView):
     def get_context_data(self, **kwargs):
         from translate.__version__ import sver as toolkit_version
         from pootle import __version__
+        from pootle.core.utils.version import get_git_hash
+
+        git_hash = get_git_hash()
+        if git_hash:
+            pootle_version = __version__ + " [%s]" % git_hash
+        else:
+            pootle_version = __version__
 
         return {
-            'pootle_version': __version__,
+            'pootle_version': pootle_version,
             'toolkit_version': toolkit_version,
         }
