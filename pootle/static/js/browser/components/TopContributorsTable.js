@@ -12,14 +12,6 @@ import Avatar from 'components/Avatar';
 import { t } from 'utils/i18n';
 
 
-function getScoreText(score) {
-  if (score > 0) {
-    return t('+%(score)s', { score });
-  }
-  return score;
-}
-
-
 function createRow(item, index) {
   const title = (`
     <span class="value">${item.suggested}</span> suggested<br/>
@@ -38,7 +30,7 @@ function createRow(item, index) {
         />
       </td>
       <td className="number">
-        <span title={title}>{getScoreText(item.public_total_score)}</span>
+        <span title={title}>{item.public_total_score}</span>
       </td>
     </tr>
   );
