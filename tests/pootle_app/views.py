@@ -48,7 +48,7 @@ def test_view_index(client, rf, request_users, language0):
 @pytest.mark.django_db
 def test_view_welcome(client, member, system, project_set):
     response = client.get(reverse('pootle-home'))
-    assert isinstance(response.context["top_scorers"], TopScoreDisplay)
+    assert isinstance(response.context["score_data"], TopScoreDisplay)
     assert isinstance(response.context["view"], WelcomeView)
     assert response.context["view"].request_lang == get_language()
     assert (
