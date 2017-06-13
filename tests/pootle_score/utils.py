@@ -55,7 +55,8 @@ def _test_scores(ns, context, score_data):
                     Sum("score"),
                     Sum("suggested"),
                     Sum("reviewed"),
-                    Sum("translated")).order_by("-score__sum")))
+                    Sum("translated")).filter(
+                        score__sum__gt=0).order_by("-score__sum")))
     assert (
         tuple(score_data.top_scorers)
         == tuple(score_data.get_top_scorers(30)))
