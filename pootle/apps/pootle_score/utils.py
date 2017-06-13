@@ -78,7 +78,8 @@ class Scores(object):
                 Sum("score"),
                 Sum("suggested"),
                 Sum("reviewed"),
-                Sum("translated")).order_by("-score__sum")
+                Sum("translated")).filter(
+                    score__sum__gt=0).order_by("-score__sum")
 
     def filter_scores(self, qs):
         return qs
