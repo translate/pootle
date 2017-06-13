@@ -24,10 +24,8 @@
 		  {% endblocktrans %}
 	      </span>
 	      <span class="pagination-info js-pagination-items-per-page">
-          {% blocktrans count n=formtable.results_per_page trimmed %}
-            Showing {{ n }} result per page
-          {% plural %}
-            Showing {{ n }} results per page
+          {% blocktrans with n=formtable.results_per_page trimmed %}
+          Results per page: {{ n }}
           {% endblocktrans %}
 	      </span>
 	    </div>
