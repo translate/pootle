@@ -160,6 +160,7 @@ def test_view_tp_paths(tp0, store0, client, request_users):
     assert "store0.po" not in result["items"]["results"]
 
 
+@pytest.mark.pootle_memusage
 @pytest.mark.django_db
 def test_view_tp_garbage(tp0, store0, client, request_users):
     args = [tp0.language.code, tp0.project.code]
@@ -182,6 +183,7 @@ def test_view_tp_garbage(tp0, store0, client, request_users):
     assert not failed
 
 
+@pytest.mark.pootle_memusage
 @pytest.mark.django_db
 def test_view_tp_directory_garbage(subdir0, client, request_users):
     tp = subdir0.translation_project
@@ -200,6 +202,7 @@ def test_view_tp_directory_garbage(subdir0, client, request_users):
         assert not usage["used"]
 
 
+@pytest.mark.pootle_memusage
 @pytest.mark.django_db
 def test_view_tp_store_garbage(store0, client, request_users):
     tp = store0.translation_project

@@ -14,6 +14,7 @@ from import_export.utils import TPTMXExporter
 from pootle.core.debug import memusage
 
 
+@pytest.mark.pootle_memusage
 @pytest.mark.django_db
 def test_view_tp_export_garbage(client, tp0, language1, request_users):
     url = (

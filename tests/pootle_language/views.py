@@ -338,6 +338,7 @@ def test_view_language_children(language0, rf, request_users):
     _test_view_language_children(view, language0)
 
 
+@pytest.mark.pootle_memusage
 @pytest.mark.django_db
 def test_view_language_garbage(language0, store0, client, request_users):
     url = reverse(

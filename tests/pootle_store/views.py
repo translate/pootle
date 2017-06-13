@@ -4,6 +4,7 @@ from pootle.core.debug import memusage
 from pootle_store.constants import UNTRANSLATED
 
 
+@pytest.mark.pootle_memusage
 @pytest.mark.django_db
 def test_submit_unit_memusage(client, store0, admin, settings, system):
     settings.POOTLE_CAPTCHA_ENABLED = False
@@ -32,6 +33,7 @@ def test_submit_unit_memusage(client, store0, admin, settings, system):
         assert not usage["used"]
 
 
+@pytest.mark.pootle_memusage
 @pytest.mark.django_db
 def test_get_units_memusage(client, tp0, request_users, settings, system):
     user = request_users["user"]
@@ -53,6 +55,7 @@ def test_get_units_memusage(client, tp0, request_users, settings, system):
         assert not usage["used"]
 
 
+@pytest.mark.pootle_memusage
 @pytest.mark.django_db
 def test_get_edit_unit_memusage(client, store0, request_users, settings, system):
     user = request_users["user"]

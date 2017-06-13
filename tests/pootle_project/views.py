@@ -188,6 +188,7 @@ def test_view_project_paths(project0, store0, client, request_users):
     assert "store0.po" not in result["items"]["results"]
 
 
+@pytest.mark.pootle_memusage
 @pytest.mark.django_db
 def test_view_project_garbage(project0, client, request_users):
     url = reverse(
@@ -209,6 +210,7 @@ def test_view_project_garbage(project0, client, request_users):
         assert not usage["used"]
 
 
+@pytest.mark.pootle_memusage
 @pytest.mark.django_db
 def test_view_project_subdir_garbage(subdir0, client, request_users):
     url = reverse(
@@ -231,6 +233,7 @@ def test_view_project_subdir_garbage(subdir0, client, request_users):
         assert not usage["used"]
 
 
+@pytest.mark.pootle_memusage
 @pytest.mark.django_db
 def test_view_project_store_garbage(store0, client, request_users):
     url = reverse(

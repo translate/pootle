@@ -27,6 +27,7 @@ def test_view_user_detail(client, member, system):
     assert profile.user == member
 
 
+@pytest.mark.pootle_memusage
 @pytest.mark.django_db
 def test_view_user_detail_garbage(member, client, request_users):
     user = request_users["user"]

@@ -67,6 +67,7 @@ def test_view_welcome(client, member, system, project_set):
                get_language())))
 
 
+@pytest.mark.pootle_memusage
 @pytest.mark.django_db
 def test_view_welcome_garbage(client):
     url = reverse("pootle-home")
