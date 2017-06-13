@@ -6,6 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import logging
 import pytest
 
 from pytest_pootle.utils import create_store
@@ -38,3 +39,18 @@ def test_store_update_with_obsolete(store_po):
     store_po.update(file_store)
     unit = store_po.UnitClass.objects.get(id=unit.id)
     assert unit.isobsolete()
+
+
+@pytest.mark.django_db
+def test_store_update_with_duplicate(store_po, caplog):
+    units = [
+        ('source1', 'target1', False),
+        ('source2', 'target2', False),
+        ('source2', 'target2', False)]
+    file_store = create_store(store_po.pootle_path, units=units)
+    caplog.set_level(logging.WARN)
+    store_po.update(file_store)
+    assert (
+        caplog.records[0].message
+        == ('[diff] Duplicate unit found: %s source2'
+            % store_po.name))
