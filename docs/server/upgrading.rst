@@ -33,7 +33,7 @@ Backup your system
 Migrate your database
 ---------------------
 
-If you are currently using SQLite for your database you will need to 
+If you are currently using SQLite for your database you will need to
 :doc:`migrate to either MySQL (InnoDB) or PostgreSQL <database_migration>`
 before you upgrade.
 
@@ -140,7 +140,7 @@ Update and check your settings
 ------------------------------
 
 You should now update your custom Pootle settings to add, remove or adjust any
-settings that have changed. You may want to view the latest 
+settings that have changed. You may want to view the latest
 :ref:`available settings <settings#available>`.
 
 You can check to see if there are any issues with your configuration
@@ -235,6 +235,21 @@ If you wish to run :djadmin:`calculate_checks` in the foreground without using
 the RQ worker you can use the :option:`--no-rq` option.
 
 
+
+.. _upgrading#refresh-scores:
+
+Refreshing scores
+-----------------
+
+If you are upgrading from a version prior to 2.8rc6, you will need to update
+user scores using :djadmin:`refresh_scores`.
+
+.. code-block:: console
+
+   (env) $ pootle refresh_scores --reset
+   (env) $ pootle refresh_scores
+
+
 .. _upgrading#drop-cached-snippets:
 
 Drop cached snippets
@@ -258,7 +273,7 @@ Any accounts that do not have an email address registered will not be able to
 log in. You can set the email for a user using the :djadmin:`update_user_email`
 command.
 
-For example to set the email for user ``admin`` to ``admin@example.com``: 
+For example to set the email for user ``admin`` to ``admin@example.com``:
 
 .. code-block:: console
 
