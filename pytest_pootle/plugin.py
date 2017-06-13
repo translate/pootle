@@ -8,6 +8,8 @@
 
 from pkgutil import iter_modules
 
+import pytest
+
 from . import fixtures
 from .fixtures import (
     core as fixtures_core, formats as fixtures_formats,
@@ -35,15 +37,21 @@ def pytest_addoption(parser):
     parser.addoption(
         "--force-migration",
         action="store_true",
-        default="False",
+        default=False,
         help="Force migration before test run")
+    parser.addoption(
+        "--memusage",
+        action="store_true",
+        default=False,
+        help="Run memusage tests")
 
 
 def pytest_configure(config):
     # register an additional marker
     config.addinivalue_line(
         "markers", "pootle_vfolders: requires special virtual folder projects")
-
+    config.addinivalue_line(
+        "markers", "pootle_memusage: memory usage tests")
     pytest_plugins = tuple(
         _load_fixtures(
             fixtures,
@@ -55,3 +63,9 @@ def pytest_configure(config):
             fixtures_fs))
     for plugin in pytest_plugins:
         config.pluginmanager.import_plugin(plugin)
+
+
+def pytest_runtest_setup(item):
+    marker = item.get_marker("pootle_memusage")
+    if marker is not None and not item.config.getoption("--memusage"):
+        pytest.skip("test requires memusage flag")
