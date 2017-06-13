@@ -39,11 +39,20 @@ from pootle.i18n.gettext import ugettext as _
 _("Privacy Policy")
 # Translators: Label that refers to the site's legal requirements
 _("Legal")
+# Translators: Label that refers to a legally mandated statement of the
+# ownership and authorship of a document, which must be included in ...
+# websites published in Germany and certain other German-speaking countries,
+# such as Austria and Switzerland. See https://en.wikipedia.org/wiki/Impressum
+_("Imprint")
 # Translators: Label that refers to the site's license requirements
 _("License")
+# Translators: Label that refers to the site's license requirements
+_("License Statement")
 # Translators: Label that refers to the site's license requirements
 _("Contributor License")
 # Translators: Label that refers to the site's terms of use
 _("Terms of Use")
 # Translators: Label that refers to the site's terms of service
 _("Terms of Service")
+# Translators: Label that refers to the site's getting started guide
+_("Getting Started")
