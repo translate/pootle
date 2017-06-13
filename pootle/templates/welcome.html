@@ -21,7 +21,7 @@
   {% endif %}
 </div>
 {% endblock %}
-
+{% if score_data.top_scorers %}
 <div class="columns">
   <div class="columns-inner">
 
@@ -38,4 +38,5 @@
 
   </div>
 </div>
+{% endif %}
 {% endblock content %}
