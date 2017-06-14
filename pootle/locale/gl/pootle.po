@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-13 15:55+0100\n"
-"PO-Revision-Date: 2017-05-30 13:22+0000\n"
+"PO-Revision-Date: 2017-06-13 15:57+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1496150523.000000\n"
+"X-POOTLE-MTIME: 1497369473.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -1936,9 +1936,8 @@ msgstr "Aviso legal"
 #. websites published in Germany and certain other German-speaking countries,
 #. such as Austria and Switzerland. See https://en.wikipedia.org/wiki/Impressum
 #: strings.py:46
-#, fuzzy
 msgid "Imprint"
-msgstr "printf()"
+msgstr "Impressum"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:48
@@ -1947,7 +1946,6 @@ msgstr "Licenza"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:50
-#, fuzzy
 msgid "License Statement"
 msgstr "Termos da licenza"
 
