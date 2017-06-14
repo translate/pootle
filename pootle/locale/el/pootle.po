@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-06-13 15:55+0100\n"
+"POT-Creation-Date: 2017-06-14 09:35+0100\n"
 "PO-Revision-Date: 2017-02-08 07:50+0000\n"
 "Last-Translator: Dimitris <dmtrs32@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2835,17 +2835,15 @@ msgid "Page %(page_number)s of %(page_count)s."
 msgstr "Σελίδα  %(page_number)s από %(page_count)s."
 
 #: templates/includes/formtable.html:27
-#, fuzzy, python-format
-msgid "Showing %(n)s result per page"
-msgid_plural "Showing %(n)s results per page"
-msgstr[0] "Εμφανίζει %(count)s αποτελέσματα ανά σελίδα"
-msgstr[1] "Εμφανίζει %(count)s αποτελέσματα ανά σελίδα"
+#, python-format
+msgid "Results per page: %(n)s"
+msgstr ""
 
-#: templates/includes/formtable.html:87
+#: templates/includes/formtable.html:85
 msgid "Select all"
 msgstr "Επιλογή όλων"
 
-#: templates/includes/formtable.html:100
+#: templates/includes/formtable.html:98
 #, fuzzy
 msgid "Go"
 msgstr "Στόχος"
@@ -3132,6 +3130,12 @@ msgstr "Σύνδεση"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Κορυφαίοι συντελεστές για τις τελευταίες 30 ημέρες"
+
+#, fuzzy
+#~ msgid "Showing %(n)s result per page"
+#~ msgid_plural "Showing %(n)s results per page"
+#~ msgstr[0] "Εμφανίζει %(count)s αποτελέσματα ανά σελίδα"
+#~ msgstr[1] "Εμφανίζει %(count)s αποτελέσματα ανά σελίδα"
 
 #~ msgid ""
 #~ "<span class='value translated'>%(translated_percent_display)s</span> "

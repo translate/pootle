@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-06-13 15:55+0100\n"
+"POT-Creation-Date: 2017-06-14 09:35+0100\n"
 "PO-Revision-Date: 2016-11-18 06:19+0000\n"
 "Last-Translator: Batsaihan <batsaihan.p@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2739,17 +2739,15 @@ msgstr ""
 
 #: templates/includes/formtable.html:27
 #, python-format
-msgid "Showing %(n)s result per page"
-msgid_plural "Showing %(n)s results per page"
-msgstr[0] ""
-msgstr[1] ""
+msgid "Results per page: %(n)s"
+msgstr ""
 
-#: templates/includes/formtable.html:87
+#: templates/includes/formtable.html:85
 #, fuzzy
 msgid "Select all"
 msgstr "Олон Сонгох"
 
-#: templates/includes/formtable.html:100
+#: templates/includes/formtable.html:98
 #, fuzzy
 msgid "Go"
 msgstr "Том болгох"

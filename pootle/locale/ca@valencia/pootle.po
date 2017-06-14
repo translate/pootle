@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-06-13 15:55+0100\n"
+"POT-Creation-Date: 2017-06-14 09:35+0100\n"
 "PO-Revision-Date: 2017-02-08 11:05+0000\n"
 "Last-Translator: jmontane <joan@montane.cat>\n"
 "Language-Team: Softcatalà\n"
@@ -2807,17 +2807,15 @@ msgid "Page %(page_number)s of %(page_count)s."
 msgstr "Pàgina %(page_number)s de %(page_count)s."
 
 #: templates/includes/formtable.html:27
-#, fuzzy, python-format
-msgid "Showing %(n)s result per page"
-msgid_plural "Showing %(n)s results per page"
-msgstr[0] "Es mostren %(count)s resultats per pàgina"
-msgstr[1] "Es mostren %(count)s resultats per pàgina"
+#, python-format
+msgid "Results per page: %(n)s"
+msgstr ""
 
-#: templates/includes/formtable.html:87
+#: templates/includes/formtable.html:85
 msgid "Select all"
 msgstr "Selecciona-ho tot"
 
-#: templates/includes/formtable.html:100
+#: templates/includes/formtable.html:98
 #, fuzzy
 msgid "Go"
 msgstr "Objectiu"
@@ -3096,6 +3094,12 @@ msgstr "Inicia la sessió"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Col·laboradors més actius dels últims 30 dies"
+
+#, fuzzy
+#~ msgid "Showing %(n)s result per page"
+#~ msgid_plural "Showing %(n)s results per page"
+#~ msgstr[0] "Es mostren %(count)s resultats per pàgina"
+#~ msgstr[1] "Es mostren %(count)s resultats per pàgina"
 
 #~ msgid ""
 #~ "<span class='value translated'>%(translated_percent_display)s</span> "

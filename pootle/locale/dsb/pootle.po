@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-06-13 15:55+0100\n"
+"POT-Creation-Date: 2017-06-14 09:35+0100\n"
 "PO-Revision-Date: 2017-06-13 18:05+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2797,18 +2797,14 @@ msgstr "Bok %(page_number)s z %(page_count)s."
 
 #: templates/includes/formtable.html:27
 #, python-format
-msgid "Showing %(n)s result per page"
-msgid_plural "Showing %(n)s results per page"
-msgstr[0] "Pokazujo se %(n)s wuslědk na bok"
-msgstr[1] "Pokazujotej se %(n)s wuslědka na bok"
-msgstr[2] "Pokazuju se %(n)s wuslědki na bok"
-msgstr[3] "Pokazujo se %(n)s wuslědkow na bok"
+msgid "Results per page: %(n)s"
+msgstr ""
 
-#: templates/includes/formtable.html:87
+#: templates/includes/formtable.html:85
 msgid "Select all"
 msgstr "Wše wubraś"
 
-#: templates/includes/formtable.html:100
+#: templates/includes/formtable.html:98
 msgid "Go"
 msgstr "Start"
 
@@ -3086,6 +3082,13 @@ msgstr "Pśizjawiś"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Głowne pśinosujuce za zachadne 30 dnjow"
+
+#~ msgid "Showing %(n)s result per page"
+#~ msgid_plural "Showing %(n)s results per page"
+#~ msgstr[0] "Pokazujo se %(n)s wuslědk na bok"
+#~ msgstr[1] "Pokazujotej se %(n)s wuslědka na bok"
+#~ msgstr[2] "Pokazuju se %(n)s wuslědki na bok"
+#~ msgstr[3] "Pokazujo se %(n)s wuslědkow na bok"
 
 #~ msgid ""
 #~ "<span class='value translated'>%(translated_percent_display)s</span> "

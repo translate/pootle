@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-06-13 15:55+0100\n"
+"POT-Creation-Date: 2017-06-14 09:35+0100\n"
 "PO-Revision-Date: 2017-06-13 12:57+0000\n"
 "Last-Translator: IKEDA <ikeda@conversion.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2783,16 +2783,15 @@ msgid "Page %(page_number)s of %(page_count)s."
 msgstr "%(page_number)s / %(page_count)s ページ"
 
 #: templates/includes/formtable.html:27
-#, fuzzy, python-format
-msgid "Showing %(n)s result per page"
-msgid_plural "Showing %(n)s results per page"
-msgstr[0] "ページごとに %(count)s 件の結果を表示"
+#, python-format
+msgid "Results per page: %(n)s"
+msgstr ""
 
-#: templates/includes/formtable.html:87
+#: templates/includes/formtable.html:85
 msgid "Select all"
 msgstr "すべて選択"
 
-#: templates/includes/formtable.html:100
+#: templates/includes/formtable.html:98
 #, fuzzy
 msgid "Go"
 msgstr "目標"
@@ -3064,6 +3063,11 @@ msgstr "サインイン"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "最近 30 日間の上位の貢献者たち"
+
+#, fuzzy
+#~ msgid "Showing %(n)s result per page"
+#~ msgid_plural "Showing %(n)s results per page"
+#~ msgstr[0] "ページごとに %(count)s 件の結果を表示"
 
 #~ msgid ""
 #~ "<span class='value translated'>%(translated_percent_display)s</span> "

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-06-13 15:55+0100\n"
+"POT-Creation-Date: 2017-06-14 09:35+0100\n"
 "PO-Revision-Date: 2017-02-08 12:47+0000\n"
 "Last-Translator: safaalfulaij <safa1996alfulaij@gmail.com>\n"
 "Language-Team: Arabic <doc@arabeyes.org>\n"
@@ -2758,21 +2758,15 @@ msgid "Page %(page_number)s of %(page_count)s."
 msgstr "صفحة %(page_number)s من %(page_count)s."
 
 #: templates/includes/formtable.html:27
-#, fuzzy, python-format
-msgid "Showing %(n)s result per page"
-msgid_plural "Showing %(n)s results per page"
-msgstr[0] "حيث تظهر في كلّ صفحة %(count)s من النّتائج"
-msgstr[1] "حيث تظهر في كلّ صفحة %(count)s من النّتائج"
-msgstr[2] "حيث تظهر في كلّ صفحة %(count)s من النّتائج"
-msgstr[3] "حيث تظهر في كلّ صفحة %(count)s من النّتائج"
-msgstr[4] "حيث تظهر في كلّ صفحة %(count)s من النّتائج"
-msgstr[5] "حيث تظهر في كلّ صفحة %(count)s من النّتائج"
+#, python-format
+msgid "Results per page: %(n)s"
+msgstr ""
 
-#: templates/includes/formtable.html:87
+#: templates/includes/formtable.html:85
 msgid "Select all"
 msgstr "حدّد الكلّ"
 
-#: templates/includes/formtable.html:100
+#: templates/includes/formtable.html:98
 #, fuzzy
 msgid "Go"
 msgstr "الهدف"
@@ -3038,6 +3032,16 @@ msgstr "لِج"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "أعلى المساهمين خلال الثلاثين يومًا الماضية"
+
+#, fuzzy
+#~ msgid "Showing %(n)s result per page"
+#~ msgid_plural "Showing %(n)s results per page"
+#~ msgstr[0] "حيث تظهر في كلّ صفحة %(count)s من النّتائج"
+#~ msgstr[1] "حيث تظهر في كلّ صفحة %(count)s من النّتائج"
+#~ msgstr[2] "حيث تظهر في كلّ صفحة %(count)s من النّتائج"
+#~ msgstr[3] "حيث تظهر في كلّ صفحة %(count)s من النّتائج"
+#~ msgstr[4] "حيث تظهر في كلّ صفحة %(count)s من النّتائج"
+#~ msgstr[5] "حيث تظهر في كلّ صفحة %(count)s من النّتائج"
 
 #~ msgid ""
 #~ "<span class='value translated'>%(translated_percent_display)s</span> "

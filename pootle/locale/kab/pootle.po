@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-06-13 15:55+0100\n"
+"POT-Creation-Date: 2017-06-14 09:35+0100\n"
 "PO-Revision-Date: 2017-04-25 18:41+0000\n"
 "Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2744,17 +2744,15 @@ msgid "Page %(page_number)s of %(page_count)s."
 msgstr "Asebter %(page_number)s n %(page_count)s."
 
 #: templates/includes/formtable.html:27
-#, fuzzy, python-format
-msgid "Showing %(n)s result per page"
-msgid_plural "Showing %(n)s results per page"
-msgstr[0] "Askan n %(count)s n igmaḍ deg usebter"
-msgstr[1] "Askan n %(count)s n igmaḍ deg usebter"
+#, python-format
+msgid "Results per page: %(n)s"
+msgstr ""
 
-#: templates/includes/formtable.html:87
+#: templates/includes/formtable.html:85
 msgid "Select all"
 msgstr "Fren akk"
 
-#: templates/includes/formtable.html:100
+#: templates/includes/formtable.html:98
 msgid "Go"
 msgstr ""
 
@@ -3031,6 +3029,12 @@ msgstr "Qqen"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Imettekiyen imezwura deg 30 ussan-agi inegura"
+
+#, fuzzy
+#~ msgid "Showing %(n)s result per page"
+#~ msgid_plural "Showing %(n)s results per page"
+#~ msgstr[0] "Askan n %(count)s n igmaḍ deg usebter"
+#~ msgstr[1] "Askan n %(count)s n igmaḍ deg usebter"
 
 #~ msgid ""
 #~ "<span class='value translated'>%(translated_percent_display)s</span> "

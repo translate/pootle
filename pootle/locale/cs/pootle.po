@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-06-13 15:55+0100\n"
+"POT-Creation-Date: 2017-06-14 09:35+0100\n"
 "PO-Revision-Date: 2017-05-27 05:45+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2788,17 +2788,14 @@ msgstr "Stránka %(page_number)s z(e) %(page_count)s."
 
 #: templates/includes/formtable.html:27
 #, python-format
-msgid "Showing %(n)s result per page"
-msgid_plural "Showing %(n)s results per page"
-msgstr[0] "Zobrazen %(n)s výsledek na stránku"
-msgstr[1] "Zobrazeny %(n)s výsledky na stránku"
-msgstr[2] "Zobrazeno %(n)s výsledků na stránku"
+msgid "Results per page: %(n)s"
+msgstr ""
 
-#: templates/includes/formtable.html:87
+#: templates/includes/formtable.html:85
 msgid "Select all"
 msgstr "Vybrat vše"
 
-#: templates/includes/formtable.html:100
+#: templates/includes/formtable.html:98
 msgid "Go"
 msgstr "Přejít"
 
@@ -3078,6 +3075,12 @@ msgstr "Přihlásit se"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Hlavní přispěvatelé za posledních 30 dní"
+
+#~ msgid "Showing %(n)s result per page"
+#~ msgid_plural "Showing %(n)s results per page"
+#~ msgstr[0] "Zobrazen %(n)s výsledek na stránku"
+#~ msgstr[1] "Zobrazeny %(n)s výsledky na stránku"
+#~ msgstr[2] "Zobrazeno %(n)s výsledků na stránku"
 
 #~ msgid ""
 #~ "<span class='value translated'>%(translated_percent_display)s</span> "
