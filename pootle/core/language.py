@@ -9,6 +9,13 @@
 from django.utils.translation import to_locale
 
 
+# these languages need to have their cldr name adjusted for use in ui
+# http://cldr.unicode.org/development/development-process/design-proposals/\
+#   grammar-and-capitalization-for-date-time-elements
+UPPERCASE_UI = [
+    "sv", "ca", "es", "ru", "uk", "it", "nl", "pt", "pt_PT", "cs", "hr"]
+
+
 class LanguageCode(object):
 
     def __init__(self, code):

@@ -55,12 +55,10 @@ ungettext_lazy = lazy(ungettext, unicode)
 
 def tr_lang(language_name):
     """Translates language names."""
-    language_code = translation.get_language()
-    if language_code is None:
-        language_code = settings.LANGUAGE_CODE
-    language_code = translation.to_locale(language_code)
-
-    return langdata.tr_lang(language_code)(language_name)
+    return langdata.tr_lang(
+        translation.to_locale(
+            translation.get_language()
+            or settings.LANGUAGE_CODE))(language_name)
 
 
 def language_dir(language_code):
