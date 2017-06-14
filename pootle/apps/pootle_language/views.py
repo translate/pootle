@@ -23,7 +23,7 @@ from pootle.core.views.decorators import requires_permission, set_permissions
 from pootle.core.views.formtable import Formtable
 from pootle.core.views.mixins import PootleJSONMixin
 from pootle.i18n import formatter
-from pootle.i18n.gettext import tr_lang, ugettext_lazy as _, ungettext_lazy
+from pootle.i18n.gettext import ugettext_lazy as _, ungettext_lazy
 from pootle_misc.util import cmp_by_last_activity
 from pootle_store.constants import STATES_MAP
 
@@ -90,7 +90,7 @@ class LanguageBrowseView(LanguageMixin, PootleBrowseView):
     def language(self):
         return {
             'code': self.object.code,
-            'name': tr_lang(self.object.fullname)}
+            'name': self.object.name}
 
     def get(self, *args, **kwargs):
         response = super(LanguageBrowseView, self).get(*args, **kwargs)
