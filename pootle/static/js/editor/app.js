@@ -1725,11 +1725,12 @@ PTL.editor = {
       return false;
     }
 
+    const $el = e.target.nodeName !== 'TR' ?
+                $(e.target).parents('tr') :
+                $(e.target);
+
     // Ctrl + click / Alt + click / Cmd + click / Middle click opens a new tab
     if (e.ctrlKey || e.altKey || e.metaKey || e.which === 2) {
-      const $el = e.target.nodeName !== 'TR' ?
-                  $(e.target).parents('tr') :
-                  $(e.target);
       window.open($el.data('target'), '_blank');
       return false;
     }
@@ -1751,6 +1752,13 @@ PTL.editor = {
       } else {
         newHash = `unit=${encodeURIComponent(uid)}`;
       }
+
+      const offset = PTL.editor.getOffsetOfUid(uid);
+      if (offset === -1) {
+        window.location.href = $el.data('target');
+        return false;
+      }
+
       $.history.load(newHash);
       PTL.editor.setOffset(uid);
     }
