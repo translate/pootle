@@ -1139,9 +1139,11 @@ PTL.editor = {
 
   /* Sets the offset in the browser location */
   setOffset(uid) {
-    $.history.load(utils.updateHashPart(
-      'offset', this.getStartOfChunk(this.getOffsetOfUid(uid)))
-    );
+    const offset = this.getOffsetOfUid(uid);
+    if (offset === -1) {
+      return;
+    }
+    $.history.load(utils.updateHashPart('offset', this.getStartOfChunk(offset)));
   },
 
   /* Gets the offset of the last unit currently held by the client */
