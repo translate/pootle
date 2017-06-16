@@ -52,6 +52,7 @@ Details of changes
   - LanguageMapper
   - FileMapper
   - Store de/serialization
+  - Removed the ability to add new TPs from the admin UI for Pootle FS projects
 
 - Refactored code for syncing stores
 - Changed the default ``robots.txt``
@@ -86,11 +87,14 @@ Details of changes
     - Fixed bugs in muting/unmuting checks
     - Fixed filtering translations by month
     - Fixed ``TypeError`` error when filter in editor gets no units
+    - Fixed bug that prevented translators from clicking on context rows to
+      edit those context units
 
   - Translation memory:
 
     - Display original and translations side-by-side for TM results
-    - amaGama Translation Memory is now queried using CORS
+    - AmaGama Translation Memory is now queried using CORS
+    - AmaGama is only queried if the source language is supported by amaGama
 
   - Perform all highlighting in the client
   - Clearly present plurals to translator
@@ -101,6 +105,14 @@ Details of changes
     impacts performance and translators are unlikely to require it
   - Removed ability to clear language or project dropdown to prevent
     performance degradation.
+  - Alternate source language translations are no longer displayed for
+    anonymous users.
+  - Editor is disabled for users without the required permissions. Reviewing
+    suggestions is similarly disabled without required permissions.
+  - Check categories can now be used in dropdown to filter units.
+  - Incomplete plural translations may now be submitted.
+  - String error reporting form is now clearer and prevents empty reports from
+    being submitted.
 
 - Added suggestion bulk management:
 
@@ -112,6 +124,7 @@ Details of changes
 - Plugin framework
 - Comment system
 - Removed Plurr format checks
+- Removed `ENChecker`
 - Added ``pootle_format`` app
 
   - Added support to have several formats in the same project
@@ -158,6 +171,8 @@ Details of changes
   - Replaces permissions with roles
   - Provides direct access to suggestion bulk management
 
+- Revamped user profile page
+
 - Removed for performance reasons:
 
   - Removed statistics from user profiles. Will be brought back in the future.
@@ -172,6 +187,7 @@ Details of changes
   - Now ``compilejsi18n`` is used to compile JavaScript translations into
     assets, thus requiring ``django-statici18n`` app.
   - Password reset email is now localizable in Pootle
+  - Multiple changes in localizable strings to ease translation
 
 - Upload and download:
 
@@ -187,6 +203,10 @@ Details of changes
     Irish
   - `Welsh <http://techiaith.cymru/api/translation/?lang=en>`_
 
+- Refactoring of models to increase performance, including dropping unnecessary
+  indices.
+
+- User input is sanitized for outgoing emails
 - Usernames using latin1 characters are now allowed
 - Improved RQ usage and new management commands
 - Changed Pootle logo and styling
@@ -213,7 +233,7 @@ Development changes
 - Tests:
 
   - Massive improvement in test framework
-  - Coverage increased from 55% to 92%
+  - Coverage increased from 55% to 94%
   - Moved to tox
   - Travis caching and optimisations
   - Added JavaScript testing
@@ -261,6 +281,7 @@ Command changes and additions
 - :djadmin:`export` is now able to export zipped TMX files per translation
   project with the :option:`--tmx <export --tmx>` option.
   :option:`--rotate <export --rotate>` option allows old files to be removed.
+- Added `schema` command that allows to dump the database schema.
 
 
 Changes in settings
@@ -283,6 +304,13 @@ Changes in settings
   sending emails to suggesters when suggestions are accepted or rejected.
 - Added new :setting:`POOTLE_CUSTOM_LOGO`, :setting:`POOTLE_FS_WORKING_PATH`
   and :setting:`POOTLE_CANONICAL_URL` settings.
+- Deprecated `POOTLE_QUALITY_CHECKER` setting.
+- Added new :setting:`POOTLE_SQL_MIGRATIONS` setting.
+- :setting:`POOTLE_MARKUP_FILTER` defaults to `'markdown'`, and `None`,
+  `'html'`, `'textile'` and `'restructuredtext'` values have been deprecated.
+  Deployments using any deprecated markup must migrate manually to Markdown.
+  This setting will be removed in the future since Markdown will be the only
+  available markup.
 
 
 Credits
@@ -291,10 +319,10 @@ Credits
 This release was made possible by the following people:
 
 Ryan Northey, Dwayne Bailey, Julen Ruiz Aizpuru, Taras Semenenko, Leandro
-Regueiro, Igor Afanasyev, Safa Alfulaij, Rene Ladan, Kevin Scannell, Jason P.
-Pickering, Eamonn Lawlor, Alexander Lakhin, Robbie Cole, Rhoslyn Prys, Prasasto
-Adi, Nootan Ghimire, Mikhail Paulyshka, Mike Robinson, Henrik Feldt, Francesc
-Ortiz, Christian Lohmaier, Burhan Khalid, Arash Mousavi, Andy Kittner, Adam
-Chainz.
+Regueiro, Igor Afanasyev, Claude Paroz, Safa Alfulaij, Rene Ladan, Kevin
+Scannell, Jason P. Pickering, Eamonn Lawlor, Alexander Lakhin, Robbie Cole,
+Rhoslyn Prys, Prasasto Adi, Nootan Ghimire, Mikhail Paulyshka, Mike Robinson,
+leonardcj, Henrik Feldt, Francesc Ortiz, Allan Nordhøy, Christian Lohmaier,
+Burhan Khalid, Arash Mousavi, Andy Kittner, Adam Chainz.
 
 And to all our bug finders, testers and translators, a Very BIG Thank You.
