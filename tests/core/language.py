@@ -9,7 +9,12 @@
 from django.conf import settings
 from django.utils import translation
 
+from pootle.core.delegate import language_code
 from pootle.core.language import LanguageCode
+
+
+def test_language_code_util():
+    assert language_code.get() == LanguageCode
 
 
 def _server_lang_matches_request(ignore_dialect=True):
