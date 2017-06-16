@@ -15,7 +15,7 @@ class AccountsConfig(AppConfig):
 
     name = "accounts"
     verbose_name = "Accounts"
-    version = "0.0.2"
+    version = "0.0.3"
 
     def ready(self):
         importlib.import_module("accounts.getters")
