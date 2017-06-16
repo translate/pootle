@@ -18,9 +18,7 @@ from django.urls import reverse
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.models.permissions import (check_permission,
                                            get_matching_permissions)
-from pootle_language.models import Language
 from pootle_project.models import Project, ProjectSet
-from pootle_translationproject.models import TranslationProject
 
 from .cache import get_cache
 from .exceptions import Http400
@@ -38,6 +36,9 @@ CLS2ATTR = {
 
 
 def get_path_obj(func):
+    from pootle_language.models import Language
+    from pootle_translationproject.models import TranslationProject
+
     @wraps(func)
     def wrapped(request, *args, **kwargs):
         if request.is_ajax():
