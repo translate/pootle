@@ -6,8 +6,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from collections import OrderedDict
-
 from django.db import connection
 
 
@@ -21,14 +19,27 @@ def fetchall_asdicts(cursor, fields, sort_by_field):
     """Return all rows from a cursor as a dict filtered by fields."""
 
     columns = [u"%s" % col[0].lower() for col in cursor.description]
-    return sorted([
-        OrderedDict(
-            sorted(
-                [(k, type_cast(v))
-                 for k, v in zip(columns, row) if k in fields],
-                key=lambda x: x[0]))
-        for row in cursor.fetchall()
-    ], key=lambda x: x.get(sort_by_field))
+    return sorted(
+        [{k: type_cast(v) for k, v in zip(columns, row) if k in fields}
+         for row in cursor.fetchall()],
+        key=lambda x: x.get(sort_by_field))
+
+
+def list2dict(items, key_field):
+    result = {}
+    for d in items:
+        key = d[key_field]
+        if key not in result:
+            del d[key_field]
+            result[key] = d
+        elif 'column_names' in result[key]:
+            result[key]['column_names'].append(d['column_name'])
+        else:
+            result[key]['column_names'] = [result[key]['column_name'],
+                                           d['column_name']]
+            del result[key]['column_name']
+
+    return result
 
 
 class MySQLSchemaDumper(object):
@@ -39,13 +50,15 @@ class MySQLSchemaDumper(object):
             cursor.execute(sql % cursor.db.settings_dict['NAME'])
             character_set, collation = cursor.fetchone()
 
-        return OrderedDict(character_set=character_set, collation=collation)
+        return dict(character_set=character_set, collation=collation)
 
     def get_table_fields(self, table_name):
         fields = ('field', 'type', 'collation', 'key', 'extra')
         with connection.cursor() as cursor:
             cursor.execute("SHOW FULL COLUMNS FROM %s" % table_name)
-            result = fetchall_asdicts(cursor, fields, 'field')
+            result = list2dict(
+                fetchall_asdicts(cursor, fields, 'field'),
+                'field')
 
         return result
 
@@ -53,7 +66,9 @@ class MySQLSchemaDumper(object):
         fields = ('non_unique', 'key_name', 'column_name')
         with connection.cursor() as cursor:
             cursor.execute("SHOW INDEX FROM %s" % table_name)
-            result = fetchall_asdicts(cursor, fields, 'column_name')
+            result = list2dict(
+                fetchall_asdicts(cursor, fields, 'column_name'),
+                'key_name')
 
         return result
 
@@ -68,9 +83,10 @@ class MySQLSchemaDumper(object):
                 table_name,
                 connection.settings_dict['NAME'])
         )
-
         with connection.cursor() as cursor:
             cursor.execute(sql)
-            result = fetchall_asdicts(cursor, fields, 'column_name')
+            result = list2dict(
+                fetchall_asdicts(cursor, fields, 'column_name'),
+                'constraint_name')
 
         return result

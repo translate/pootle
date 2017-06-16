@@ -17,14 +17,14 @@ from pootle.core.schema.dump import SchemaDump
 TEST_MYSQL_SCHEMA_PARAM_NAMES = {
     'defaults': set(['collation', 'character_set']),
     'tables': {
-        'fields': set(['collation', 'field', 'type', 'key', 'extra']),
-        'indices': set(['key_name', 'non_unique', 'column_name']),
+        'fields': set(['collation', 'type', 'key', 'extra']),
+        'indices': set(['non_unique', 'column_name', 'column_names']),
         'constraints': set([
             'referenced_table_name',
             'table_name',
             'referenced_column_name',
-            'constraint_name',
             'column_name',
+            'column_names',
         ]),
     }
 }
@@ -50,20 +50,20 @@ def test_schema_tool():
     assert set(defaults.keys()) == TEST_MYSQL_SCHEMA_PARAM_NAMES['defaults']
     for app_label in schema_tool.app_configs:
         for table in schema_tool.get_app_tables(app_label):
-            row = schema_tool.get_table_fields(table)[0]
+            row = schema_tool.get_table_fields(table).values()[0]
             assert (
-                set([x.lower() for x in row.keys()]) ==
-                TEST_MYSQL_SCHEMA_PARAM_NAMES['tables']['fields']
+                set([x.lower() for x in row.keys()]).issubset(
+                    TEST_MYSQL_SCHEMA_PARAM_NAMES['tables']['fields'])
             )
-            row = schema_tool.get_table_indices(table)[0]
+            row = schema_tool.get_table_indices(table).values()[0]
             assert (
-                set([x.lower() for x in row.keys()]) ==
-                TEST_MYSQL_SCHEMA_PARAM_NAMES['tables']['indices']
+                set([x.lower() for x in row.keys()]).issubset(
+                    TEST_MYSQL_SCHEMA_PARAM_NAMES['tables']['indices'])
             )
-            row = schema_tool.get_table_constraints(table)[0]
+            row = schema_tool.get_table_constraints(table).values()[0]
             assert (
-                set([x.lower() for x in row.keys()]) ==
-                TEST_MYSQL_SCHEMA_PARAM_NAMES['tables']['constraints']
+                set([x.lower() for x in row.keys()]).issubset(
+                    TEST_MYSQL_SCHEMA_PARAM_NAMES['tables']['constraints'])
             )
 
 
