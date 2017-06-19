@@ -38,6 +38,6 @@ Markdown==2.6.8
 
 # Translate Toolkit
 # Note: also adjust pootle/checks::TTK_MINIMUM_REQUIRED_VERSION
-translate-toolkit==2.2.0
+translate-toolkit==2.2.1
 # If you want to use Translate Toolkit 'master'
 #-e git://github.com/translate/translate.git#egg=translate-toolkit-2.0.0
