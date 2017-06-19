@@ -35,7 +35,8 @@
   </select>
 </li>
 {% if project %}
-{% if page == 'browse' or page == 'translate' %}
+{% if page == 'browse' or page == 'translate'%}
+{% if language.code != 'templates' %}
 <li id="js-breadcrumb-resource">
   {% if language %}
   <select
@@ -55,5 +56,6 @@
   </select>
   {% endif %}
 </li>
+{% endif %}
 {% endif %}
 {% endif %}
