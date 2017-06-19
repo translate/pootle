@@ -43,8 +43,6 @@ MIDDLEWARE = [
     'pootle.middleware.auth.AuthenticationMiddleware',
     #: User-related
     'django.middleware.locale.LocaleMiddleware',
-    #: Sets Python's locale based on request's locale for sorting, etc.
-    'pootle.middleware.setlocale.SetLocale',
     #: Nice 500 and 403 pages (must be after locale to have translated versions)
     'pootle.middleware.errorpages.ErrorPagesMiddleware',
     'django.middleware.common.CommonMiddleware',
