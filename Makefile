@@ -7,7 +7,6 @@ JS_DIR = ${STATIC_DIR}/js
 CSS_DIR = ${STATIC_DIR}/css
 IMAGES_DIR = ${STATIC_DIR}/images
 SPRITE_DIR = ${IMAGES_DIR}/sprite
-FORMATS=--formats=bztar
 
 POOTLE_CMD = $(shell sh -c "command -v pootle")
 ifeq ($(POOTLE_CMD),)
@@ -19,7 +18,7 @@ endif
 all: help
 
 build: docs assets
-	python setup.py sdist ${FORMATS} ${TAIL}
+	python setup.py sdist --formats=bztar ${TAIL}
 
 assets:
 	npm --version
@@ -117,9 +116,6 @@ test-js:
 	cd ${JS_DIR} \
 	&& npm test
 
-publish-pypi:
-	python setup.py sdist ${FORMATS} upload
-
 help:
 	@echo "Help"
 	@echo "----"
@@ -133,4 +129,3 @@ help:
 	@echo "  pot - update the POT translations templates"
 	@echo "  get-translations - retrieve Pootle translations from server (requires ssh config for pootletranslations)"
 	@echo "  linguas - update the LINGUAS file with languages over 80% complete"
-	@echo "  publish-pypi - publish on PyPI"
