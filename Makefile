@@ -13,7 +13,7 @@ ifeq ($(POOTLE_CMD),)
 	POOTLE_CMD=python manage.py
 endif
 
-.PHONY: all build clean sprite pot help docs assets
+.PHONY: all build sprite pot help docs assets
 
 all: help
 
@@ -65,9 +65,6 @@ docs-review: docs
 sprite:
 	glue --sprite-namespace="" --namespace="" --cachebuster ${SPRITE_DIR} --css=${CSS_DIR} --img=${IMAGES_DIR}
 	optipng -o7 ${IMAGES_DIR}/sprite*.png
-
-clean:
-	npm cache clear
 
 pot:
 	@${SRC_DIR}/tools/createpootlepot
@@ -124,7 +121,6 @@ help:
 	@echo "  docs - build Sphinx docs"
 	@echo "  docs-review - launch webbrowser to review docs"
 	@echo "  sprite - create CSS sprite"
-	@echo "  clean - remove any temporal files"
 	@echo "  pot - update the POT translations templates"
 	@echo "  get-translations - retrieve Pootle translations from server (requires ssh config for pootletranslations)"
 	@echo "  linguas - update the LINGUAS file with languages over 80% complete"
