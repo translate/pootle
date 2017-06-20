@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-14 09:35+0100\n"
-"PO-Revision-Date: 2017-05-27 05:45+0000\n"
+"PO-Revision-Date: 2017-06-15 16:17+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1495863952.000000\n"
+"X-POOTLE-MTIME: 1497543465.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -857,14 +857,14 @@ msgstr "Tweetni to!"
 #: apps/pootle_profile/templatetags/profile_tags.py:52
 #, python-format
 msgid "#%s contributor in %s in the last 30 days"
-msgstr "%s. největší přispěvatel pro jazyk %s za posledních 30 dní."
+msgstr "%s. největší přispěvatel pro jazyk %s za posledních 30 dní"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:56
 #, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
 msgstr ""
 "Za posledních 30 dní jsem %s. největší přispěvatel pro jazyk %s na serveru "
-"%s! "
+"%s!"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
@@ -1929,9 +1929,8 @@ msgstr "Právní poznámky"
 #. websites published in Germany and certain other German-speaking countries,
 #. such as Austria and Switzerland. See https://en.wikipedia.org/wiki/Impressum
 #: strings.py:46
-#, fuzzy
 msgid "Imprint"
-msgstr "printf()"
+msgstr "Tiráž"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:48
@@ -1940,9 +1939,8 @@ msgstr "Licence"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:50
-#, fuzzy
 msgid "License Statement"
-msgstr "Licenční podmínky"
+msgstr "Licenční prohlášení"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:52
@@ -2789,7 +2787,7 @@ msgstr "Stránka %(page_number)s z(e) %(page_count)s."
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Results per page: %(n)s"
-msgstr ""
+msgstr "Počet výsledků na stránku: %(n)s"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"

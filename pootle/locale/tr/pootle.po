@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-14 09:35+0100\n"
-"PO-Revision-Date: 2017-05-28 00:47+0000\n"
+"PO-Revision-Date: 2017-06-14 12:22+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1495932469.000000\n"
+"X-POOTLE-MTIME: 1497442955.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -1928,9 +1928,8 @@ msgstr "Yasal"
 #. websites published in Germany and certain other German-speaking countries,
 #. such as Austria and Switzerland. See https://en.wikipedia.org/wiki/Impressum
 #: strings.py:46
-#, fuzzy
 msgid "Imprint"
-msgstr "printf()"
+msgstr "Baskı"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:48
@@ -1939,9 +1938,8 @@ msgstr "Lisans"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:50
-#, fuzzy
 msgid "License Statement"
-msgstr "Lisans Şartları"
+msgstr "Lisans Beyanı"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:52
@@ -2790,7 +2788,7 @@ msgstr "Sayfa %(page_number)s / %(page_count)s."
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Results per page: %(n)s"
-msgstr ""
+msgstr "Sayfa başına sonuç: %(n)s"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"

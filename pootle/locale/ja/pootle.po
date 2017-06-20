@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-14 09:35+0100\n"
-"PO-Revision-Date: 2017-06-13 12:57+0000\n"
+"PO-Revision-Date: 2017-06-15 12:23+0000\n"
 "Last-Translator: IKEDA <ikeda@conversion.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ja\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1497358633.000000\n"
+"X-POOTLE-MTIME: 1497529437.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -171,9 +171,8 @@ msgid "Question or comment"
 msgstr "ご質問・ご意見"
 
 #: apps/contact/forms.py:92
-#, fuzzy
 msgid "Please enter your question or comment"
-msgstr "登録する詳細を入力してください"
+msgstr "ご質問・ご意見を入力してください"
 
 #: apps/contact/views.py:35 templates/layout.html:120
 msgid "Contact Us"
@@ -661,14 +660,12 @@ msgid "Accept"
 msgstr "採用"
 
 #: apps/pootle_language/forms.py:166
-#, fuzzy
 msgid "Filter by suggester"
-msgstr "フィルター提案"
+msgstr "提案者で絞り込み"
 
 #: apps/pootle_language/forms.py:172
-#, fuzzy
 msgid "Filter by state"
-msgstr "フィルターの状態"
+msgstr "状態で絞り込み"
 
 #: apps/pootle_language/forms.py:182 apps/pootle_language/views.py:218
 #: core/browser.py:26
