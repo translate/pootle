@@ -46,6 +46,8 @@ from staticpages.models import StaticPage
 RESERVED_PROJECT_CODES = ('admin', 'translate', 'settings')
 PROJECT_CHECKERS = {
     "standard": checks.StandardChecker,
+    "minimal": checks.MinimalChecker,
+    "reduced": checks.ReducedChecker,
     "openoffice": checks.OpenOfficeChecker,
     "libreoffice": checks.LibreOfficeChecker,
     "mozilla": checks.MozillaChecker,
