@@ -466,7 +466,7 @@ Publish on PyPI
 ---------------
 
 .. - `Submitting Packages to the Package Index
-  <http://wiki.python.org/moin/CheeseShopTutorial#Submitting_Packages_to_the_Package_Index>`_
+  <https://packaging.python.org/tutorials/distributing-packages/#uploading-your-project-to-pypi>`_
 
 
 .. note:: You need a username and password on `Python Package Index (PyPI)
@@ -474,14 +474,9 @@ Publish on PyPI
    can proceed with this step.
 
    These can be stored in :file:`$HOME/.pypirc` and will contain your username
-   and password. A first run of:
-
-   .. code-block:: console
-
-       $ ./setup.py register
-
-   will create such file. It will also actually publish the meta-data so only
-   do it when you are actually ready.
+   and password. Check `Create a PyPI account
+   <https://packaging.python.org/tutorials/distributing-packages/#create-an-account>`_
+   for more details.
 
 
 Run the following to publish the package on PyPI:
@@ -489,12 +484,10 @@ Run the following to publish the package on PyPI:
 .. code-block:: console
 
     $ workon build-pootle-release
-    (build-pootle-release)$ nvm install stable
-    (build-pootle-release)$ export PYTHONPATH="${PYTHONPATH}:`pwd`"
-    (build-pootle-release)$ export POOTLE_SETTINGS=~/.pootle/pootle_build.conf
-    (build-pootle-release)$ make publish-pypi
+    (build-pootle-release)$ pip install --upgrade pyopenssl ndg-httpsclient pyasn1
+    (build-pootle-release)$ pip install twine
+    (build-pootle-release)$ twine upload dist/Pootle-*
     (build-pootle-release)$ deactivate
-    $ unset POOTLE_SETTINGS
     $ rmvirtualenv build-pootle-release
 
 
