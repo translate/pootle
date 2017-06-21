@@ -908,9 +908,11 @@ class Store(AbstractStore):
             action=STORE_OBSOLETE,
             path=self.pootle_path,
             store=self.id)
+        update_revision = Revision.incr()
         unit_query = self.unit_set.filter(state__gt=OBSOLETE)
-        unit_query.update(state=OBSOLETE, index=0)
+        unit_query.update(state=OBSOLETE, revision=update_revision, index=0)
         self.obsolete = True
+        self.last_sync_revision = update_revision
         self.save()
         update_data.send(self.__class__, instance=self)
 
