@@ -77,3 +77,21 @@ On Debian based system the following will install all additional system requirem
 .. code:: console
 
    $ sudo apt-get install build-essential libxml2-dev libxslt-dev python-dev python-pip zlib1g-dev
+
+
+What is the optimal size for translation files?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are too many variables to give a definitive numbers.
+
+In terms of a servers ability to handle large files, this will depend on the
+size or shape of the database, available system resources, the database
+configuration and the activity on the site.
+
+What is helpful to be aware of is that Pootle does work on a file level.  So
+really large translation files might become unwealdy to process, and queries to
+find untranslated units in the file may take longer then expected.
+
+Our general advice is to keep related translations in the same file and this
+should work fine.  If performance does appear to be a problem then break the
+large files into logical divisions to create smaller files.
