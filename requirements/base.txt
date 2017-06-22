@@ -13,7 +13,7 @@ django-overextends==0.4.3
 django-redis==4.8.0
 django-rq==0.9.5
 django-sortedm2m==1.4.0
-django-statici18n==1.3.0
+django-statici18n==1.4.0
 
 # Libraries
 Babel==2.4.0
