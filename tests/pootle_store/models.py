@@ -8,6 +8,8 @@
 
 import pytest
 
+from pootle_store.constants import UNTRANSLATED
+
 
 @pytest.mark.django_db
 def test_store_update_new_unit_revision(store0):
@@ -28,3 +30,16 @@ def test_store_update_new_unit_revision(store0):
         pk=new_unit.unit_source.pk)
     assert new_unit.revision > unit_source.creation_revision
     assert unit_source.creation_revision == creation_revision
+
+
+@pytest.mark.django_db
+def test_store_update_source_change_subs(store0, member, system):
+    unit = store0.units.filter(state=UNTRANSLATED).first()
+    unit.source = "NEW SOURCE"
+    unit.save()
+    created_sub = unit.submission_set.latest()
+    assert created_sub.submitter == system
+    unit.source = "SOURCE CHANGED BY USER"
+    unit.save(user=member)
+    created_sub = unit.submission_set.latest()
+    assert created_sub.submitter == member
