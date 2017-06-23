@@ -93,12 +93,15 @@ def test_delete_mark_obsolete(project0_nongnu, project0, store0):
     # Remove on-disk file
     os.remove(store.file.path)
 
+    max_unit_revision = store.data.max_unit_revision
+
     # Update stores by rescanning TP
     tp.scan_files()
 
     # Now files that ceased to exist should be marked as obsolete
     updated_store = Store.objects.get(pootle_path=pootle_path)
     assert updated_store.obsolete
+    assert updated_store.data.max_unit_revision == max_unit_revision + 1
 
     # The units they contained are obsolete too
     assert not updated_store.units.exists()
