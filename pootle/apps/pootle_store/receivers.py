@@ -98,17 +98,6 @@ def handle_unit_pre_save(**kwargs):
         unit.setid(unitid.getid())
 
 
-@receiver(pre_save, sender=UnitChange)
-def handle_unit_pre_change(**kwargs):
-    unit_change = kwargs["instance"]
-    unit = unit_change.unit
-    if unit.state == UNTRANSLATED:
-        # clear reviewer and translator data if translation
-        # has been deleted
-        unit_change.submitted_by = None
-        unit_change.submitted_on = None
-
-
 @receiver(post_save, sender=UnitChange)
 def handle_unit_change(**kwargs):
     unit_change = kwargs["instance"]
