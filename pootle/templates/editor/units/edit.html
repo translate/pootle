@@ -172,13 +172,15 @@
           </div>
           <!-- Translation -->
           <div id="orig{{ unit.index }}" class="js-translate-translation translate-translation" lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}">
-            {% if unit.change.submitted_by %}
+            {% if unit.istranslated or unit.isfuzzy %}
+	    {% if unit.change.submitted_by %}
             <div id="target-item-gravatar">
 	      <a href="{% url 'pootle-user-profile' unit.change.submitted_by.username %}"
 		 title="{{ unit.change.submitted_by.display_name|force_escape|force_escape }}">
 		{% avatar unit.change.submitted_by.username unit.change.submitted_by.email_hash 24 %}
 	      </a>
             </div>
+            {% endif %}
             {% endif %}
 
             {% block target_field %}
@@ -210,7 +212,8 @@
               {% endblock %}
               <a class="js-toggle-raw"><i class="icon-raw-mode" title="{% trans 'Raw View' %}"></i></a>
             </div>
-            {% if unit.change.submitted_by and unit.change.submitted_on %}
+            {% if unit.istranslated or unit.isfuzzy %}
+	    {% if unit.change.submitted_by and unit.change.submitted_on %}
             <div class="unit-meta">
               <time
                 title="{{ unit.change.submitted_on|dateformat }}"
@@ -222,6 +225,7 @@
               {% endif %}
               {% endwith %}
             </div>
+            {% endif %}
             {% endif %}
             {% if special_characters %}
               {% if cantranslate or cansuggest %}
