@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-14 09:35+0100\n"
-"PO-Revision-Date: 2013-10-31 10:10+0000\n"
-"Last-Translator: Ákos <nagy.akos@libreoffice.ro>\n"
+"PO-Revision-Date: 2017-06-21 08:53+0000\n"
+"Last-Translator: Răzvan <rsandu2007@gmail.com>\n"
 "Language-Team: Romanian\n"
 "Language: ro\n"
 "MIME-Version: 1.0\n"
@@ -18,24 +18,30 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
 "20)) ? 1 : 2);\n"
-"X-Generator: Pootle 2.5.0-beta1\n"
-"X-POOTLE-MTIME: 1383214258.0\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1498035223.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
+"A apărut o eroare la încercarea de trimitere a e-mailului de confirmare. Vă "
+"rugăm să încercați mai târziu."
 
 #: apps/accounts/forms.py:32
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
 msgstr ""
+"A apărut o eroare la conectare. Vă rugăm să contactați administratorul de "
+"sistem"
 
 #: apps/accounts/forms.py:59
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
+"Numele Dvs. de utilizator pare să fi dispărut. Vă rugăm să informați "
+"administratorii sitului."
 
 #: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
@@ -45,15 +51,16 @@ msgstr "Utilizator"
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
 msgstr ""
+"Obligatoriu. Maximum 30 de caractere. Caracterele permise sunt litere, cifre "
+"și @/./+/-/_"
 
 #: apps/accounts/models.py:60
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Introduceți un nume corect de utilizator."
 
 #: apps/accounts/models.py:64
-#, fuzzy
 msgid "A user with that username already exists."
-msgstr "Acest termen există deja în fișier."
+msgstr "Un utilizator cu acest nume există deja."
 
 #: apps/accounts/models.py:67
 msgid "Email Address"
@@ -74,21 +81,24 @@ msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
+"Arată dacă acest utilizator va fi tratat ca activ. În loc să ștergeți "
+"conturile, deselectați aici."
 
 #: apps/accounts/models.py:77
-#, fuzzy
 msgid "Superuser Status"
-msgstr "rang de administrator"
+msgstr "Drepturi de administrator"
 
 #: apps/accounts/models.py:80
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
+"Arată că acest utilizator are toate drepturile fără să-i fie asignate "
+"explicit."
 
 #: apps/accounts/models.py:83
 msgid "date joined"
-msgstr ""
+msgstr "data înregistrării"
 
 #: apps/accounts/models.py:87
 msgid "Number of Rows"
@@ -100,41 +110,39 @@ msgstr "Limbă sursă alternativă"
 
 #: apps/accounts/models.py:94
 msgid "Score"
-msgstr ""
+msgstr "Punctaj"
 
 #: apps/accounts/models.py:95
 msgid "Is employee?"
-msgstr ""
+msgstr "Este angajat?"
 
 #: apps/accounts/models.py:96
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: apps/accounts/models.py:98
 msgid "Website"
-msgstr ""
+msgstr "Sit web"
 
 #: apps/accounts/models.py:99
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: apps/accounts/models.py:100
 msgid "Short Bio"
-msgstr ""
+msgstr "Scurtă biografie"
 
 #: apps/accounts/models.py:240
-#, fuzzy
 msgid "This email address already exists."
-msgstr "Acest termen există deja în fișier."
+msgstr "Această adresă e-mail există deja."
 
 #: apps/contact/forms.py:26
-#, fuzzy
 msgid "Subject"
-msgstr "Respinge"
+msgstr "Subiect"
 
 #: apps/contact/forms.py:28
 msgid "Please enter a message subject"
-msgstr ""
+msgstr "Vă rugăm să introduceți subiectul mesajului"
 
 #: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
@@ -142,7 +150,7 @@ msgstr "Nume"
 
 #: apps/contact/forms.py:36
 msgid "Please enter your name"
-msgstr ""
+msgstr "Vă rugăm să introduceți numele Dvs."
 
 #: apps/contact/forms.py:39
 msgid "Email address"
@@ -150,7 +158,7 @@ msgstr "Adresă e-mail"
 
 #: apps/contact/forms.py:40
 msgid "Please enter your email address"
-msgstr ""
+msgstr "Vă rugăm să introduceți adresa Dvs. de e-mail"
 
 #: apps/contact/forms.py:43
 msgid "Message"
@@ -158,64 +166,56 @@ msgstr "Mesaj"
 
 #: apps/contact/forms.py:44
 msgid "Please enter your message"
-msgstr ""
+msgstr "Vă rugăm să introduceți mesajul"
 
 #: apps/contact/forms.py:81
 msgid "String context"
-msgstr ""
+msgstr "Contextul șirului de caractere"
 
 #: apps/contact/forms.py:91
-#, fuzzy
 msgid "Question or comment"
-msgstr "Comentariile traducătorului"
+msgstr "Întrebări sau comentarii"
 
 #: apps/contact/forms.py:92
-#, fuzzy
 msgid "Please enter your question or comment"
-msgstr "Vă rugăm introduceţi datele dvs de înregistrare"
+msgstr "Vă rugăm să introduceți întrebarea sau comentariul"
 
 #: apps/contact/views.py:35 templates/layout.html:120
 msgid "Contact Us"
 msgstr "Contactaţi-ne"
 
 #: apps/contact/views.py:92
-#, fuzzy
 msgid "Report problem with string"
-msgstr "Reportarea problemei cu textul sursă"
+msgstr "Semnalați o eroare în șirul de caractere"
 
 #: apps/import_export/templates/browser/index.html:11
-#, fuzzy
 msgid "Download translation files for offline translation"
-msgstr "Descarcă fișier XLIFF pentru traducere offline"
+msgstr "Descărcați fișierele de traducere pentru lucru offline"
 
 #: apps/import_export/templates/browser/index.html:12
-#, fuzzy
 msgid "Download for offline translation"
-msgstr "Descarcă fișier XLIFF pentru traducere offline"
+msgstr "Descărcați, pentru traducere offline"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "Descarcă fișier XLIFF pentru traducere offline"
+msgstr "Descărcați fișierele traducerii pentru copia de siguranță"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "Descarcă fișier"
+msgstr "Descărcați, pentru copia de siguranță"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
 msgstr "Încarcă fișierele de traducere sau arhiva în format .zip"
 
 #: apps/import_export/templates/browser/index.html:27
-#, fuzzy
 msgid "Upload translations"
-msgstr "Exportare traduceri"
+msgstr "Încărcați traducerile"
 
 #: apps/import_export/templates/browser/index.html:36
 #, python-format
 msgid "Upload as %(user)s"
-msgstr ""
+msgstr "Încărcați ca %(user)"
 
 #: apps/import_export/templates/browser/index.html:54
 #, fuzzy
@@ -235,7 +235,7 @@ msgstr ""
 #: apps/import_export/utils.py:44
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr ""
+msgstr "Fișierului '%s' în lipsește antetul X-Pootle-Path\n"
 
 #: apps/import_export/utils.py:49
 #, python-format

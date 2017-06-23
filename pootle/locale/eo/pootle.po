@@ -9,15 +9,16 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-14 09:35+0100\n"
-"PO-Revision-Date: 2010-07-30 09:12+0200\n"
-"Last-Translator: admin <>\n"
+"PO-Revision-Date: 2017-06-21 09:09+0000\n"
+"Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Pootle 2.1.0-beta1\n"
+"X-Generator: Pootle 2.5.1-rc1\n"
+"X-POOTLE-MTIME: 1498036162.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -37,7 +38,7 @@ msgstr ""
 
 #: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
-msgstr "Uzantonomo"
+msgstr "Uzantnomo"
 
 #: apps/accounts/models.py:56
 msgid ""
@@ -111,7 +112,7 @@ msgstr ""
 
 #: apps/accounts/models.py:98
 msgid "Website"
-msgstr ""
+msgstr "Retejo"
 
 #: apps/accounts/models.py:99
 msgid "LinkedIn"
@@ -143,7 +144,6 @@ msgid "Please enter your name"
 msgstr ""
 
 #: apps/contact/forms.py:39
-#, fuzzy
 msgid "Email address"
 msgstr "Retpoŝtadreso"
 
@@ -153,7 +153,7 @@ msgstr ""
 
 #: apps/contact/forms.py:43
 msgid "Message"
-msgstr ""
+msgstr "Mesaĝo"
 
 #: apps/contact/forms.py:44
 msgid "Please enter your message"
@@ -282,7 +282,7 @@ msgstr ""
 
 #: apps/pootle_app/views/admin/permissions.py:65
 msgid "All Users"
-msgstr ""
+msgstr "Ĉiuj uzantoj"
 
 #: apps/pootle_app/views/admin/permissions.py:92
 #, fuzzy
@@ -368,7 +368,6 @@ msgid "Repeated word"
 msgstr ""
 
 #: apps/pootle_checks/constants.py:41
-#, fuzzy
 msgid "E-mail"
 msgstr "Retpoŝto"
 
@@ -683,13 +682,12 @@ msgstr "Montri Sugestojn"
 
 #: apps/pootle_language/forms.py:182 apps/pootle_language/views.py:218
 #: core/browser.py:26
-#, fuzzy
 msgid "Project"
-msgstr "Projektoj"
+msgstr "Projekto"
 
 #: apps/pootle_language/models.py:28 apps/pootle_project/models.py:199
 msgid "Code"
-msgstr ""
+msgstr "Kodo"
 
 #: apps/pootle_language/models.py:29
 msgid ""
@@ -722,7 +720,7 @@ msgstr ""
 
 #: apps/pootle_language/models.py:53
 msgid "Number of Plurals"
-msgstr "Nombro de Pluraloj"
+msgstr "Nombro de pluraloj"
 
 #: apps/pootle_language/models.py:56
 msgid "Plural Equation"
@@ -797,11 +795,11 @@ msgstr ""
 
 #: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:375
 msgid "Source Text"
-msgstr "Fonta Teksto"
+msgstr "Fonta teksto"
 
 #: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:376
 msgid "Target Text"
-msgstr "Cela Teksto"
+msgstr "Cela teksto"
 
 #: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:377
 msgid "Comments"
@@ -873,11 +871,11 @@ msgstr ""
 
 #: apps/pootle_profile/templatetags/profile_tags.py:76
 msgid "My Website"
-msgstr ""
+msgstr "Mia retejo"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:86
 msgid "My LinkedIn Profile"
-msgstr ""
+msgstr "Mia profilo ĉe LinkedIn"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:95
 #, fuzzy

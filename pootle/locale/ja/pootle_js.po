@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-13 15:55+0100\n"
-"PO-Revision-Date: 2017-06-14 00:39+0000\n"
+"PO-Revision-Date: 2017-06-22 03:38+0000\n"
 "Last-Translator: IKEDA <ikeda@conversion.co.jp>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ja\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1497400799.000000\n"
+"X-POOTLE-MTIME: 1498102694.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -866,22 +866,22 @@ msgid "Show"
 msgstr "表示する"
 
 #: templates/editor/units/xhr_tm.html:17
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
 "project %(time_ago)s"
 msgstr ""
-"%(fullname)s による &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; プロジェクトの翻訳 (%(time_ago)s)"
+"%(fullname)s による “<span title=\"%(path)s\">%(project)s</span>” プロジェク"
+"トの翻訳 (%(time_ago)s)"
 
 #: templates/editor/units/xhr_tm.html:20
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Translated by %(fullname)s in “<span title=\"%(path)s\">%(project)s</span>” "
 "project"
 msgstr ""
-"%(fullname)s による &ldquo;<span title=\"%(path)s\">%(project)s</"
-"span>&rdquo; プロジェクトの翻訳"
+"%(fullname)s による “<span title=\"%(path)s\">%(project)s</span>” プロジェク"
+"トの翻訳"
 
 #~ msgid "+%(score)s"
 #~ msgstr "+%(score)s"

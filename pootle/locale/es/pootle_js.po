@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-13 15:55+0100\n"
-"PO-Revision-Date: 2017-02-08 08:21+0000\n"
+"PO-Revision-Date: 2017-06-21 09:38+0000\n"
 "Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1486542092.000000\n"
+"X-POOTLE-MTIME: 1498037889.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -835,7 +835,7 @@ msgstr "No hay resultados."
 
 #: templates/admin/xhr_language_user_activity.html:6
 msgid "Project / Language"
-msgstr "Proyecto / idioma"
+msgstr "Proyecto/idioma"
 
 #: templates/admin/xhr_language_user_activity.html:7
 msgid "Suggested"
