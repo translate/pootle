@@ -64,4 +64,5 @@ Administrative features
 
    staticpages
    captcha
+   teams
    permissions
