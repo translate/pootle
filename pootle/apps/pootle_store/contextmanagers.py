@@ -8,14 +8,13 @@
 
 from contextlib import contextmanager
 
-from django.contrib.auth import get_user_model
 from django.dispatch import receiver
 
 from pootle.core.contextmanagers import bulk_operations, keep_data
 from pootle.core.signals import (
     update_checks, update_data, update_revisions, update_scores)
 from pootle_data.models import StoreChecksData, StoreData, TPChecksData, TPData
-from pootle_score.models import UserStoreScore, UserTPScore
+from pootle_score.models import UserStoreScore
 
 from .models import Unit
 
@@ -31,8 +30,6 @@ def _callback_handler(sender, updated, **kwargs):
 
     bulk_pootle = bulk_operations(
         models=(
-            get_user_model(),
-            UserTPScore,
             UserStoreScore,
             TPData,
             TPChecksData,
