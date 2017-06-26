@@ -558,6 +558,38 @@ class SuggestionSubmitForm(SubmitFormMixin, BaseSuggestionForm):
             super(SuggestionSubmitForm, self).save()
 
 
+class AddSuggestionForm(SubmitFormMixin, forms.Form):
+    target_f = MultiStringFormField(required=False, require_all_fields=False)
+
+    def clean_target_f(self):
+        target = multistring(self.cleaned_data["target_f"] or [u''])
+        if self.unit.get_suggestions().filter(target_f=target).exists():
+            self.add_error(
+                "target_f",
+                forms.ValidationError(
+                    _("Suggestion '%s' already exists.",
+                      target)))
+        elif target == self.unit.target:
+            self.add_error(
+                "target_f",
+                forms.ValidationError(
+                    _("Suggestion '%s' equals to current unit target value.",
+                      target)))
+        else:
+            return self.cleaned_data["target_f"]
+
+    def save_unit(self):
+        user = self.request_user
+        review.get(Suggestion)().add(
+            self.unit,
+            self.cleaned_data["target_f"],
+            user=user)
+
+    def save(self):
+        with update_store_after(self.unit.store):
+            self.save_unit()
+
+
 class SubmitForm(SubmitFormMixin, forms.Form):
     is_fuzzy = forms.BooleanField(
         initial=False,
