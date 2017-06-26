@@ -24,7 +24,7 @@ class UnitManager(models.Manager):
 
     def live(self):
         """Filters non-obsolete units."""
-        return self.filter(state__gt=OBSOLETE)
+        return self.filter(state__gt=OBSOLETE, store__obsolete=False)
 
     def get_for_user(self, user):
         """Filters units for a specific user.

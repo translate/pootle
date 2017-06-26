@@ -121,6 +121,7 @@ def test_timeline_view_unit_disabled_project(client, request_users,
                                              system, admin):
     unit = Unit.objects.filter(
         store__translation_project__project__disabled=True,
+        store__obsolete=False,
         state=TRANSLATED).first()
     _timeline_test(
         client,
@@ -153,7 +154,8 @@ def test_timeline_view_unit_with_qc(client, request_users, system, admin, store0
     qc_filter = dict(
         unit__store=store0,
         unit__state=TRANSLATED,
-        unit__store__translation_project__project__disabled=False)
+        unit__store__translation_project__project__disabled=False,
+        unit__store__obsolete=False)
     qc = QualityCheck.objects.filter(**qc_filter).first()
     unit = qc.unit
     unit.toggle_qualitycheck(qc.id, True, admin)

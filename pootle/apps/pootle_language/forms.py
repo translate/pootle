@@ -223,7 +223,8 @@ class LanguageSuggestionAdminForm(LanguageTeamFormtableForm):
     @property
     def suggestions_qs(self):
         return self.language_team.suggestions.select_related("unit", "user").filter(
-            unit__store__translation_project__project__disabled=False)
+            unit__store__translation_project__project__disabled=False,
+            unit__store__obsolete=False)
 
     @property
     def filter_tp_qs(self):

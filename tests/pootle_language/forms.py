@@ -121,7 +121,8 @@ def test_form_language_suggestions(language0, admin):
         form.filter_suggester_choices
         == [("", "-----")] + suggesters)
     suggestions = form.language_team.suggestions.filter(
-        unit__store__translation_project__project__disabled=False)
+        unit__store__translation_project__project__disabled=False,
+        unit__store__obsolete=False)
     assert (
         list(form.suggestions_qs.values_list("id", flat=True))
         == list(
@@ -197,7 +198,8 @@ def test_form_language_suggestions_search(language0, tp0, admin):
     team = form.language_team
     suggester = team.users_with_suggestions.pop()[0]
     suggestions = form.language_team.suggestions.filter(
-        unit__store__translation_project__project__disabled=False)
+        unit__store__translation_project__project__disabled=False,
+        unit__store__obsolete=False)
     form = LanguageSuggestionAdminForm(
         language=language0,
         user=admin,

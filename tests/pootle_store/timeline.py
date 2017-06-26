@@ -465,6 +465,7 @@ def test_timeline_unit_with_qc(store0, admin, member):
         unit__store=store0,
         unit__state=TRANSLATED,
         unit__store__translation_project__project__disabled=False,
+        unit__store__obsolete=False,
         category=Category.CRITICAL)
     qc = QualityCheck.objects.filter(**qc_filter).first()
     unit = qc.unit

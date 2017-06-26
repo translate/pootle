@@ -391,8 +391,9 @@ class RelatedStoresDataTool(DataTool):
         return self.filter_accessible(self.all_stat_data)
 
     def filter_accessible(self, qs):
-        return qs.exclude(
-            store__translation_project__project__disabled=True)
+        return (
+            qs.exclude(store__translation_project__project__disabled=True)
+              .exclude(store__obsolete=True))
 
     def filter_data(self, qs):
         return qs

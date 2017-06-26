@@ -153,11 +153,14 @@ def test_language_team_non_members(language0, member):
 @pytest.mark.django_db
 def test_language_team_suggestions(language0):
     team = language_team.get(Language)(language0)
-    suggestions = Suggestion.objects.filter(
-        state__name="pending",
-        unit__state__gt=OBSOLETE,
-        unit__store__translation_project__language=language0).exclude(
-            unit__store__translation_project__project__disabled=True)
+    suggestions = (
+        Suggestion.objects.filter(
+            state__name="pending",
+            unit__state__gt=OBSOLETE,
+            unit__store__translation_project__language=language0
+        ).exclude(
+            unit__store__translation_project__project__disabled=True
+        ).exclude(unit__store__obsolete=True))
     assert (
         list(team.suggestions)
         == list(suggestions.order_by("-creation_time", "-pk")))

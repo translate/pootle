@@ -182,7 +182,8 @@ def _test_object_stats(stats, stores):
 
 def _test_unit_stats(stats, units):
     units = units.exclude(
-        store__translation_project__language__code="templates")
+        store__translation_project__language__code="templates"
+    ).exclude(store__obsolete=True)
     wordcount = sum(
         units.filter(state__gt=OBSOLETE).values_list(
             "unit_source__source_wordcount",
@@ -365,7 +366,8 @@ def test_data_project_store_stats(project_store_resources0):
 @pytest.mark.django_db
 def test_data_project_set_stats(project_set):
     units = Unit.objects.live().exclude(
-        store__translation_project__project__disabled=True)
+        store__translation_project__project__disabled=True
+    ).exclude(store__obsolete=True)
     units = units.exclude(store__is_template=True)
     stats = project_set.data_tool.get_stats(include_children=False)
     _test_object_stats(

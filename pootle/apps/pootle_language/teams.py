@@ -77,7 +77,8 @@ class LanguageTeam(object):
             unit__state__gt=OBSOLETE,
             unit__store__translation_project__language=self.language)
         suggestions = suggestions.exclude(
-            unit__store__translation_project__project__disabled=True)
+            unit__store__translation_project__project__disabled=True
+        ).exclude(unit__store__obsolete=True)
         suggestions = suggestions.select_related(
             "unit",
             "unit__store",

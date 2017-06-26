@@ -26,7 +26,8 @@ def quality_check_submission(admin):
     # create a sub with quality check info
     qc_filter = dict(
         unit__state=TRANSLATED,
-        unit__store__translation_project__project__disabled=False)
+        unit__store__translation_project__project__disabled=False,
+        unit__store__obsolete=False)
     qc = QualityCheck.objects.filter(**qc_filter).first()
     unit = qc.unit
     unit.toggle_qualitycheck(qc.id, True, admin)

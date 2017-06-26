@@ -68,7 +68,7 @@ class DBParser(BaseParser):
         if self.exclude_disabled_projects:
             units_qs = units_qs.exclude(
                 store__translation_project__project__disabled=True
-            )
+            ).exclude(store__obsolete=True)
 
         units_qs = units_qs.values(
             'id',
