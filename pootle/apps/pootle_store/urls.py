@@ -36,7 +36,7 @@ unit_xhr_urlpatterns = [
         name='pootle-xhr-units-timeline'),
 
     url(r'^xhr/units/(?P<uid>[0-9]+)/suggestions/?$',
-        views.suggest,
+        views.UnitAddSuggestionJSON.as_view(),
         name='pootle-xhr-units-suggest'),
     url(r'^xhr/units/(?P<uid>[0-9]+)/suggestions/(?P<sugg_id>[0-9]+)/?$',
         views.UnitSuggestionJSON.as_view(),

@@ -25,7 +25,7 @@ from django.utils.translation.trans_real import parse_accept_lang_header
 from django.views.decorators.http import require_http_methods
 from django.views.generic import FormView
 
-from pootle.core.delegate import review, search_backend
+from pootle.core.delegate import search_backend
 from pootle.core.exceptions import Http400
 from pootle.core.http import JsonResponse, JsonResponseBadRequest
 from pootle.core.utils import dateformat
@@ -40,8 +40,8 @@ from pootle_misc.util import ajax_required
 
 from .decorators import get_unit_context
 from .forms import (
-    SubmitForm, SuggestionReviewForm, SuggestionSubmitForm, UnitSearchForm,
-    unit_comment_form_factory, unit_form_factory)
+    AddSuggestionForm, SubmitForm, SuggestionReviewForm, SuggestionSubmitForm,
+    UnitSearchForm, unit_comment_form_factory, unit_form_factory)
 from .models import Suggestion, Unit
 from .templatetags.store_tags import pluralize_source, pluralize_target
 from .unit.results import GroupedResults
@@ -537,45 +537,6 @@ def permalink_redirect(request, unit):
     return redirect(request.build_absolute_uri(unit.get_translate_url()))
 
 
-@ajax_required
-@get_unit_context('suggest')
-def suggest(request, unit, **kwargs_):
-    """Processes translation suggestions and stores them in the database.
-
-    :return: An object in JSON notation that contains the previous and last
-             units for the unit next to unit ``uid``.
-    """
-    json = {}
-
-    translation_project = request.translation_project
-    language = translation_project.language
-
-    if unit.hasplural():
-        snplurals = len(unit.source.strings)
-    else:
-        snplurals = None
-
-    form_class = unit_form_factory(language, snplurals, request)
-    form = form_class(request.POST, instance=unit, request=request)
-
-    unit_target = unit.target
-    if form.is_valid():
-        target = form.cleaned_data["target_f"]
-        if target and target != unit_target:
-            unit = Unit.objects.get(id=unit.id)
-            review.get(Suggestion)().add(
-                unit,
-                form.cleaned_data['target_f'],
-                user=request.user)
-
-            if not request.user.is_anonymous:
-                json['user_score'] = request.user.public_score
-
-        return JsonResponse(json)
-
-    return JsonResponseBadRequest({'msg': _("Failed to process suggestion.")})
-
-
 class UnitSuggestionJSON(PootleJSONMixin, GatherContextMixin, FormView):
 
     action = "accept"
@@ -727,3 +688,58 @@ class UnitSubmitJSON(UnitSuggestionJSON):
                 user_score=self.request.user.public_score,
                 newtargets=[target for target in form.unit.target.strings])
             return result
+
+
+class UnitAddSuggestionJSON(PootleJSONMixin, GatherContextMixin, FormView):
+    form_class = AddSuggestionForm
+    http_method_names = ['post']
+
+    @set_permissions
+    @requires_permission("suggest")
+    def dispatch(self, request, *args, **kwargs):
+        # get funky with the request 8/
+        return super(UnitAddSuggestionJSON, self).dispatch(request, *args, **kwargs)
+
+    @property
+    def permission_context(self):
+        return self.get_object().store.parent
+
+    @lru_cache()
+    def get_object(self):
+        return get_object_or_404(
+            Unit.objects.select_related(
+                "store",
+                "store__parent",
+                "store__translation_project",
+                "store__filetype",
+                "store__translation_project__language",
+                "store__translation_project__project",
+                "store__data",
+                "store__translation_project__data"),
+            id=self.request.resolver_match.kwargs["uid"])
+
+    def get_form_kwargs(self, **kwargs):
+        kwargs = dict(
+            unit=self.get_object(),
+            request_user=self.request.user,
+            data=self.request.POST)
+        return kwargs
+
+    def get_context_data(self, *args, **kwargs):
+        ctx = super(UnitAddSuggestionJSON, self).get_context_data(*args, **kwargs)
+        form = ctx["form"]
+        if form.is_valid():
+            data = dict()
+            if not self.request.user.is_anonymous:
+                data['user_score'] = self.request.user.public_score
+            return data
+
+    def form_valid(self, form):
+        form.save()
+        return self.render_to_response(
+            self.get_context_data(form=form))
+
+    def form_invalid(self, form):
+        if form.non_field_errors():
+            raise Http404
+        raise Http400(form.errors)
