@@ -205,9 +205,7 @@ def test_add_suggestion(store0, system):
     assert len(untranslated_unit.get_suggestions()) == initial_suggestions + 1
 
     # Already-suggested text can't be suggested again
-    sugg, added = suggestions.add(untranslated_unit, suggestion_text)
-    assert sugg is not None
-    assert not added
+    assert suggestions.add(untranslated_unit, suggestion_text) == (None, False)
     assert len(untranslated_unit.get_suggestions()) == initial_suggestions + 1
 
     # Removing a suggestion should allow suggesting the same text again

@@ -175,7 +175,8 @@ class SuggestionsReview(object):
         """
         dont_add = (
             not filter(None, translation)
-            or translation == unit.target)
+            or translation == unit.target
+            or unit.get_suggestions().filter(target_f=translation).exists())
         if dont_add:
             return (None, False)
         if isinstance(user, User):
