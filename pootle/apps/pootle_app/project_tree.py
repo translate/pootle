@@ -185,7 +185,7 @@ def create_or_resurrect_store(f, parent, name, translation_project):
     """Create or resurrect a store db item with given name and parent."""
     try:
         store = Store.objects.get(parent=parent, name=name)
-        store.resurrect(save=False, resurrect_units=False)
+        store.resurrect(save=False)
         store_log(user='system', action=STORE_RESURRECTED,
                   path=store.pootle_path, store=store.id)
     except Store.DoesNotExist:
