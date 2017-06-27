@@ -87,7 +87,7 @@ def test_get_altsrclangs(request_users, language0, get_edit_unit, client):
     tp.language = proj_source_lang
     tp.save()
     alt_src_langs = get_alt_src_langs(request, user, tp)
-    assert proj_source_lang in alt_src_langs
+    assert alt_src_langs is None
     assert tp.project.translationproject_set.filter(
         language=proj_source_lang).exists()
     tp.language = prev_tp_lang
