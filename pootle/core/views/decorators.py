@@ -11,7 +11,7 @@ import functools
 from django.core.exceptions import PermissionDenied
 
 from pootle.i18n.gettext import ugettext as _
-from pootle_app.models.permissions import get_matching_permissions
+from pootle_app.models.permissions import get_matching_permissions, check_permission
 
 
 def check_directory_permission(permission_codename, request, directory):
@@ -66,6 +66,24 @@ def requires_permission(permission):
                 directory_permission = check_directory_permission(
                     self.required_permission, request, self.permission_context)
             if not directory_permission:
+                raise PermissionDenied(
+                    _("Insufficient rights to access this page."), )
+            return f(self, request, *args, **kwargs)
+        return method_wrapper
+    return class_wrapper
+
+
+def requires_permission_class(permission):
+
+    def class_wrapper(f):
+
+        @functools.wraps(f)
+        def method_wrapper(self, request, *args, **kwargs):
+            has_permission = (
+                request.user.is_authenticated
+                and check_permission(permission, request))
+
+            if not has_permission:
                 raise PermissionDenied(
                     _("Insufficient rights to access this page."), )
             return f(self, request, *args, **kwargs)
