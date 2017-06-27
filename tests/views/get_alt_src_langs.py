@@ -28,7 +28,7 @@ def do_test_get_altsrclangs_nobody(nobody, language, unit, client):
     nobody.alt_src_langs.clear()
     nobody.alt_src_langs.add(language)
     alt_src_langs = get_alt_src_langs(request, nobody, tp)
-    assert language in alt_src_langs
+    assert alt_src_langs is None
 
     # HTTP_ACCEPT_LANGUAGE and no user's altsrclangs.
     nobody.alt_src_langs.clear()
@@ -43,7 +43,7 @@ def do_test_get_altsrclangs_nobody(nobody, language, unit, client):
     # HTTP_ACCEPT_LANGUAGE and user has altsrclangs.
     nobody.alt_src_langs.add(language)
     alt_src_langs = get_alt_src_langs(request, nobody, tp)
-    assert language in alt_src_langs
+    assert alt_src_langs is None
 
 
 @pytest.mark.django_db

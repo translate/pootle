@@ -50,6 +50,8 @@ from .util import find_altsrcs
 
 
 def get_alt_src_langs(request, user, translation_project):
+    if request.user.is_anonymous:
+        return
     language = translation_project.language
     project = translation_project.project
     source_language = project.source_language
