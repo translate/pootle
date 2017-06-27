@@ -77,7 +77,7 @@ def test_get_altsrclangs(request_users, language0, get_edit_unit, client):
     user.alt_src_langs.clear()
     user.alt_src_langs.add(tp_lang)
     alt_src_langs = get_alt_src_langs(request, user, tp)
-    assert tp_lang in alt_src_langs
+    assert alt_src_langs is None
     assert tp.project.translationproject_set.filter(language=tp_lang).exists()
 
     # User altsrclang is Project's source language.

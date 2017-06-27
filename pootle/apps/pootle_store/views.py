@@ -56,7 +56,9 @@ def get_alt_src_langs(request, user, translation_project):
     project = translation_project.project
     source_language = project.source_language
     langs = list(
-        user.alt_src_langs.filter(
+        user.alt_src_langs.exclude(
+            id__in=(language.id, )
+        ).filter(
             translationproject__project=project))
     if langs:
         return langs
