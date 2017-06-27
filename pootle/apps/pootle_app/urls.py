@@ -9,6 +9,7 @@
 from django.conf.urls import include, url
 
 from .views.admin import urls as admin_urls
+from .views.user import urls as user_urls
 
 
 urlpatterns = [
@@ -16,6 +17,10 @@ urlpatterns = [
         include(admin_urls)),
     url(r'^xhr/admin/',
         include(admin_urls.api_patterns)),
+    url(r'^my/',
+        include(user_urls)),
+    url(r'^xhr/my/',
+        include(user_urls.api_patterns)),
     url(r'',
         include('pootle_app.views.index.urls')),
 ]
