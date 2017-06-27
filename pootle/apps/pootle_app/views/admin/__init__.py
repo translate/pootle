@@ -7,10 +7,12 @@
 # AUTHORS file for copyright and authorship information.
 
 from .languages import LanguageAdminView, LanguageAPIView
-from .projects import ProjectAdminView, ProjectAPIView
+from .projects import (
+    ProjectGenericAdminView, ProjectAdminView, ProjectAPIView)
 from .users import UserAdminView, UserAPIView
 
 
 __all__ = (
-    'LanguageAdminView', 'LanguageAPIView', 'ProjectAdminView',
+    'LanguageAdminView', 'LanguageAPIView',
+    'ProjectGenericAdminView', 'ProjectAdminView',
     'ProjectAPIView', 'UserAdminView', 'UserAPIView')
