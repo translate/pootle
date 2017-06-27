@@ -130,6 +130,9 @@
             <ul class="dropdown-menu">
               <li><a href="{{ user.get_absolute_url }}">{% trans 'Public Profile' %}</a></li>
               <li><a href="{% url 'pootle-user-settings' user.username %}">{% trans 'Settings' %}</a></li>
+              {% if user.is_superuser or request.permissions.add_project %}
+              <li><a href="{% url 'pootle-user-projects' %}">{% trans "My Projects" %}</a></li>
+              {% endif %}
               {% if user.is_superuser %}
               <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans 'Admin' %}</a></li>
               {% endif %}

@@ -15,6 +15,15 @@
 {% endif %}
 {% if user.is_superuser or request.permissions.administrate %}
 <option disabled></option>
+  {% if settings.POOTLE_PROJECTADMIN_CAN_EDITPROJECTS %}
+  <option
+     {% if page == 'pootle-user-project-edit' %}selected="selected"{% endif %}
+     value="user-edit"
+     class="admin"
+     data-href="{% url 'pootle-user-project-edit' project.pk %}">
+    {% trans "Edit" %}
+  </option>
+  {% endif %}
 <option
    {% if page == 'admin-languages' %}selected="selected"{% endif %}
    value="admin-languages"
