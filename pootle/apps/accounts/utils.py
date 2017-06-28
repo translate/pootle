@@ -20,7 +20,8 @@ from allauth.account.utils import sync_user_email_addresses
 from pootle.core.contextmanagers import keep_data
 from pootle.core.delegate import score_updater
 from pootle.core.models import Revision
-from pootle.core.signals import update_data
+from pootle.core.signals import update_data, update_revisions
+from pootle_app.models import Directory
 from pootle_statistics.models import SubmissionFields
 from pootle_store.constants import FUZZY, UNTRANSLATED
 from pootle_store.models import SuggestionState
@@ -169,6 +170,7 @@ class UserPurger(object):
         - Revert unit comments by user.
         - Revert unit state changes by user.
         - Delete any remaining submissions and suggestions.
+        - Expire caches for relevant directories
         """
 
         stores = set()
@@ -188,6 +190,10 @@ class UserPurger(object):
             self.user.suggestions.all().delete()
         for store in stores:
             update_data.send(store.__class__, instance=store)
+        update_revisions.send(
+            Directory,
+            object_list=Directory.objects.filter(
+                id__in=set(store.parent.id for store in stores)))
 
     @write_stdout(" * Removing units created by: %(user)s... ")
     def remove_units_created(self):
