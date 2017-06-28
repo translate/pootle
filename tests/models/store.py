@@ -102,10 +102,10 @@ def test_delete_mark_obsolete(project0_nongnu, project0, store0):
 
     # The units they contained are obsolete too
     assert not updated_store.units.exists()
-    assert updated_store.unit_set.filter(state=OBSOLETE).exists()
+    assert updated_store.unit_set.exists()
 
-    obs_unit = updated_store.unit_set.filter(state=OBSOLETE).first()
-    obs_unit.submission_set.count() == 0
+    obs_unit = updated_store.unit_set.first()
+    assert obs_unit.submission_set.count() == 0
 
 
 @pytest.mark.django_db

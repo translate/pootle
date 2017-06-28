@@ -811,6 +811,8 @@ class Store(AbstractStore):
 
     @property
     def units(self):
+        if self.obsolete:
+            return self.unit_set.none()
         return self.unit_set.filter(state__gt=OBSOLETE).order_by(
             'index').select_related("change")
 
