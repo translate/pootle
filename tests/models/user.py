@@ -129,6 +129,8 @@ def _test_user_purging(store, member, evil_member, purge):
     assert latest_revision > first_revision
 
     unit = store.units[0]
+    original_revision = unit.store.parent.revisions.get(
+        key="stats").value
 
     # Test submitted/commented/reviewed times on the unit.  This is an
     # unreliable test on MySQL due to datetime precision
@@ -154,6 +156,11 @@ def _test_user_purging(store, member, evil_member, purge):
     assert unit.change.submitted_on == initial_submission_time
     assert unit.change.commented_on == initial_comment_time
     assert unit.change.reviewed_on == initial_review_time
+
+    # Revision has been expired for unit's directory
+    assert (
+        unit.store.parent.revisions.get(key="stats").value
+        != original_revision)
 
     # State is be back to how it was before evil user updated.
     _test_before_evil_user_updated(store, member)
