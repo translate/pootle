@@ -139,6 +139,8 @@ class StoreDataUpdater(DataUpdater):
             if check["category"] == Category.CRITICAL)
 
     def get_checks(self, **kwargs):
+        if self.store.obsolete:
+            return []
         return (
             QualityCheck.objects.exclude(false_positive=True)
                         .filter(unit__store_id=self.store.id)
@@ -161,3 +163,19 @@ class StoreDataUpdater(DataUpdater):
         return (
             self.units.filter(suggestion__state__name="pending")
                       .values_list("suggestion").count())
+
+    def get_store_data(self, **kwargs):
+        if self.store.obsolete:
+            kwargs["fields"] = (
+                "checks",
+                "last_created_unit",
+                "max_unit_mtime",
+                "max_unit_revision",
+                "last_submission")
+
+        data = super(StoreDataUpdater, self).get_store_data(**kwargs)
+
+        if self.store.obsolete:
+            data.update(self.aggregate_defaults)
+
+        return data
