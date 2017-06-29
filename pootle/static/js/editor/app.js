@@ -252,6 +252,13 @@ PTL.editor = {
       $.history.load('');
     });
 
+    $('#editor').on('keydown', '.js-auto-matched-translation', (e) => {
+      if (e.keyCode !== 17) {
+        $('.js-auto-matched-translation').toggleClass('js-auto-matched-translation', false);
+        $('.js-auto-match-msg').slideUp(200, 'easeOutQuad');
+      }
+    });
+
     /* Write TM results, special chars... into the currently focused element */
     $('#editor').on('click', '.js-editor-copytext', (e) => this.copyText(e));
     $('#editor').on('click', '.js-editor-copy-tm-text', (e) => this.copyTMText(e));
@@ -2186,8 +2193,9 @@ PTL.editor = {
         const isUnitDirty = this.isUnitDirty;
         const text = results[0].target;
         ReactEditor.setValueFor(this.focused || 0, text);
-        this.goFuzzy();
         this.isUnitDirty = isUnitDirty;
+        $('.js-mount-editor').toggleClass('js-auto-matched-translation', true);
+        $('.js-auto-match-msg').slideDown(200, 'easeOutQuad');
       }
     }
 
