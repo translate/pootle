@@ -1122,26 +1122,6 @@ class Store(AbstractStore):
                 changed_with=changed_with)
         return newunit
 
-    def findunits(self, source, obsolete=False):
-        if not obsolete and hasattr(self, "sourceindex"):
-            return super(Store, self).findunits(source)
-
-        # find using hash instead of index
-        source_hash = md5(force_bytes(source)).hexdigest()
-        units = self.unit_set.filter(
-            unit_source__source_hash=source_hash)
-        if obsolete:
-            units = units.filter(state=OBSOLETE)
-        else:
-            units = units.filter(state__gt=OBSOLETE)
-        if units.count():
-            return units
-
-    def findunit(self, source, obsolete=False):
-        units = self.findunits(source, obsolete)
-        if units:
-            return units[0]
-
     def findid(self, id):
         unitid_hash = md5(force_bytes(id)).hexdigest()
         try:
