@@ -348,6 +348,12 @@ div.translate-container
     clear: both;
 }
 
+
+div.translate-container.error
+{
+    background-color: blue;
+}
+
 div.translate-container.error
 {
     background-color: #fdd;
@@ -1060,7 +1066,7 @@ html[dir="rtl"] .suggestion-original
     border-bottom: 1px solid #d9d9d9;
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
-    margin: 0 auto 0.5em;
+    margin: 0 auto 0.1em;
 }
 
 .editor-area-wrapper:first-child
@@ -1727,4 +1733,17 @@ td.translate-delete-terminology input
 .right
 {
     float: right;
+}
+
+
+.js-auto-matched-translation textarea
+{
+    color: #aaa;
+}
+
+.auto-match-msg
+{
+    font-weight: bold;
+    margin-bottom: 0.5em;
+    font-style: italic;
 }
