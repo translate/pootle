@@ -185,6 +185,9 @@
 
             {% block target_field %}
             <div class="js-mount-editor"></div>
+	    <div class="js-auto-match-msg auto-match-msg hide">
+	      {% trans "Showing match from similar translations" %}
+	    </div>
 
             <script type="text/javascript">
               PTL.reactEditor.init({
