@@ -41,7 +41,11 @@ ignore="\
 	--ignore custom \
 	"
 
-django-admin.py makemessages -v $VERBOSITY $ignore --ignore static/js --extension py,txt,html,conf --locale templates
+django-admin.py makemessages -v $VERBOSITY $ignore --ignore static/js --extension py,txt,html --locale templates
+
+# settings.conf extraction
+
+find settings -name "*.conf" | xargs xgettext --join-existing --output=$DJANGO_POT --language=Python --from-code=utf-8
 
 # JavaScript extraction
 
