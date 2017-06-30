@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-06-14 09:35+0100\n"
+"POT-Creation-Date: 2017-06-30 11:49+0100\n"
 "PO-Revision-Date: 2017-06-28 15:38+0000\n"
 "Last-Translator: belkacem77 <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,8 +63,8 @@ msgstr "Tansa-agi imayl tella yakan."
 msgid "Email Address"
 msgstr "Tansa Imayl"
 
-#: apps/accounts/models.py:68 apps/pootle_language/models.py:35
-#: apps/pootle_project/models.py:204
+#: apps/accounts/models.py:68 apps/pootle_language/models.py:39
+#: apps/pootle_project/models.py:206
 msgid "Full Name"
 msgstr "Isem ummid"
 
@@ -252,7 +252,7 @@ msgstr "Teḍra-d tuccḍa deg usali n ufaylu inek"
 msgid "Language code does not follow the ISO convention"
 msgstr "Tangalt n tutlayt ur teḍfiṛ ara tizeɣt ISO"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:228
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
 msgid "Source Language"
 msgstr "Tutlayt n uɣbalu"
 
@@ -674,11 +674,11 @@ msgstr "Zizdeg n waddad"
 msgid "Project"
 msgstr "Asenfar"
 
-#: apps/pootle_language/models.py:28 apps/pootle_project/models.py:199
+#: apps/pootle_language/models.py:32 apps/pootle_project/models.py:201
 msgid "Code"
 msgstr "Tangalt"
 
-#: apps/pootle_language/models.py:29
+#: apps/pootle_language/models.py:33
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
@@ -688,17 +688,17 @@ msgstr ""
 "tengalt ISO 3166 n tmurt. <a href=\"http://www.w3.org/International/articles/"
 "language-tags/\">Ugar n telɣut</a>"
 
-#: apps/pootle_language/models.py:38 templates/languages/_nav.html:35
+#: apps/pootle_language/models.py:42 templates/languages/_nav.html:35
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
 msgstr "Isekkilen imeẓliyen"
 
-#: apps/pootle_language/models.py:39
+#: apps/pootle_language/models.py:43
 msgid "Enter any special characters that users might find difficult to type"
 msgstr "Sekcem isekkilen imeẓliyen iweɛren i tira i yiseqdacen "
 
-#: apps/pootle_language/models.py:43
+#: apps/pootle_language/models.py:47
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
@@ -708,15 +708,15 @@ msgstr ""
 "localization-guide/en/latest/l10n/pluralforms.html\">asebter-nneɣ</a> ɣef "
 "talɣa n usgwet."
 
-#: apps/pootle_language/models.py:49
+#: apps/pootle_language/models.py:53
 msgid "Unknown"
 msgstr "Arussin"
 
-#: apps/pootle_language/models.py:53
+#: apps/pootle_language/models.py:57
 msgid "Number of Plurals"
 msgstr "Amḍan n usget"
 
-#: apps/pootle_language/models.py:56
+#: apps/pootle_language/models.py:60
 msgid "Plural Equation"
 msgstr "Tagda n usget"
 
@@ -936,18 +936,18 @@ msgstr "Fren yiwet n tutlayt neɣ ugar"
 msgid "Language"
 msgstr "Tutlayt"
 
-#: apps/pootle_project/models.py:177
+#: apps/pootle_project/models.py:179
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%(code)s\" ur izmir ara ad ittaseqdec am tengalt n usenfaṛ"
 
 #. Translators: this refers to the project quality checker
-#: apps/pootle_project/models.py:186
+#: apps/pootle_project/models.py:188
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "\"%(code)s\" ur izmir ara ad ittaseqdec am umseɣtay n usenfaṛ"
 
-#: apps/pootle_project/models.py:193
+#: apps/pootle_project/models.py:195
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -955,50 +955,50 @@ msgstr ""
 "Tangalt wezzilen n usenfaṛ. Tezmer kan ad tegber isekkilen ASCII, izwilen "
 "akked usekkil n uderrer (_)."
 
-#: apps/pootle_project/models.py:211
+#: apps/pootle_project/models.py:213
 msgid "Quality Checks"
 msgstr "asenqed n tɣara"
 
-#: apps/pootle_project/models.py:217
+#: apps/pootle_project/models.py:219
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
 msgstr "Tuṭṭfa tawurmant n tneɣrufin n ifuyla GNU/mačči-GNU (aẓayan)"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:220
 msgid "GNU style: files named by language code"
 msgstr ""
 "Style GNU : ifuyla ttwasnifel yesmawen-nwen akken id-qqarent tenglain n "
 "tutlayt"
 
-#: apps/pootle_project/models.py:219
+#: apps/pootle_project/models.py:221
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Non GNU : yal tutlayt ɣur-s akaram ines"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:222
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr "Sireg Pootle FS ad iseqdec ifuyla inagrawanen (Armitan)"
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:226
 msgid "Project Tree Style"
 msgstr "Aɣani n tseklut n usenfaṛ"
 
-#: apps/pootle_project/models.py:232
+#: apps/pootle_project/models.py:234
 msgid "Ignore Files"
 msgstr "Zgel ifuyla"
 
-#: apps/pootle_project/models.py:238
+#: apps/pootle_project/models.py:240
 msgid "Errors Report Email"
 msgstr "Imayl n uneqqis n tuccḍiwin"
 
-#: apps/pootle_project/models.py:239
+#: apps/pootle_project/models.py:241
 msgid "An email address where issues with the source text can be reported."
 msgstr "Tansa n yimayl deg-s uguren akked uḍris aɣbalu tezmer ad tettwammel."
 
 #. Translators: This is the URL prefix to search for context screenshots
-#: apps/pootle_project/models.py:244
+#: apps/pootle_project/models.py:246
 msgid "Screenshot Search Prefix"
 msgstr "Azwir b unadi n tuṭṭfa n ugdil"
 
-#: apps/pootle_project/models.py:249
+#: apps/pootle_project/models.py:251
 msgid "Disabled"
 msgstr "Arurmid"
 
@@ -1037,7 +1037,7 @@ msgid "Obsolete"
 msgstr "Aqbuṛ"
 
 #: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:189
-#: apps/pootle_store/forms.py:564 templates/editor/_filters.html:10
+#: apps/pootle_store/forms.py:596 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Isra asenqed"
 
@@ -1083,10 +1083,20 @@ msgstr "Awennit n umsuqel"
 msgid "Suggestion '%s' has already been accepted or rejected."
 msgstr ""
 
-#: apps/pootle_store/forms.py:500 core/decorators.py:145
+#: apps/pootle_store/forms.py:500 core/decorators.py:146
 #: core/views/decorators.py:70
 msgid "Insufficient rights to access this page."
 msgstr "Ulac deqs n izerfan akken ad tkecmeḍ ar usebter-agi."
+
+#: apps/pootle_store/forms.py:570
+#, fuzzy, python-format
+msgid "Suggestion '%s' already exists."
+msgstr "Tansa-agi imayl tella yakan."
+
+#: apps/pootle_store/forms.py:576
+#, python-format
+msgid "Suggestion '%s' equals to current unit target value."
+msgstr ""
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -1152,26 +1162,22 @@ msgstr "Asumer yettwaqbel s uwennit"
 msgid "Suggestion rejected with comment"
 msgstr "Asumer ur ittwaqbel ara s uwennit"
 
-#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:105
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:105
 msgid "Path too long."
 msgstr "Abrid ɣezzi aṭas."
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:107
-#: core/decorators.py:46
+#: apps/pootle_store/views.py:182 apps/virtualfolder/views.py:107
+#: core/decorators.py:47
 msgid "Arguments missing."
 msgstr ""
 
-#: apps/pootle_store/views.py:233
+#: apps/pootle_store/views.py:237
 msgid "Failed to remove comment."
 msgstr "Ur izmir ara ad yekkes awennit."
 
-#: apps/pootle_store/views.py:265
+#: apps/pootle_store/views.py:269
 msgid "Comment submission failed."
 msgstr "Ur izmir ara ad yazen awennit."
-
-#: apps/pootle_store/views.py:576
-msgid "Failed to process suggestion."
-msgstr "Ur izmir ara ad isekles asumer."
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
@@ -1734,7 +1740,7 @@ msgstr "Uɣal ar tutlayt"
 msgid "Back to parent folder"
 msgstr "Uɣal ar ukaram asaraw"
 
-#: core/decorators.py:158 core/views/mixins.py:26
+#: core/decorators.py:159 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
 msgstr "Ur ɣur-k ara izerfan n tnedbelt Pootle."
 
@@ -2533,7 +2539,7 @@ msgid "Report a problem with this string"
 msgstr "Azen ugur s uzrir-agi n isekkilen"
 
 #: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
-#: templates/editor/units/edit.html:250
+#: templates/editor/units/edit.html:257
 msgid "Submit"
 msgstr "Azen"
 
@@ -2561,54 +2567,58 @@ msgstr "Ddu ar uskar n usumer (Ctrl+Shift+Ilem)"
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Creḍ azrir-agi am akken yesra acegger (Ctrl+Ilem)"
 
-#: templates/editor/units/edit.html:207
+#: templates/editor/units/edit.html:189
+msgid "Showing match from similar translations"
+msgstr ""
+
+#: templates/editor/units/edit.html:212
 msgid "Show Timeline"
 msgstr "Sken amazray"
 
-#: templates/editor/units/edit.html:209
+#: templates/editor/units/edit.html:214
 msgid "Add Comment"
 msgstr "Rnu awennit"
 
-#: templates/editor/units/edit.html:211
+#: templates/editor/units/edit.html:216
 msgid "Raw View"
 msgstr ""
 
-#: templates/editor/units/edit.html:221
+#: templates/editor/units/edit.html:227
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "yettacegger sɣuṛ <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:231
+#: templates/editor/units/edit.html:238
 #, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr "Ger %(character_name)s (Azal Unicode %(character_code)s) deg umaẓrag"
 
-#: templates/editor/units/edit.html:269
+#: templates/editor/units/edit.html:276
 msgid "User suggestions"
 msgstr "Isumar n useqdac"
 
-#: templates/editor/units/edit.html:289
+#: templates/editor/units/edit.html:296
 msgid "More options"
 msgstr "Ugar n iɣewwaṛen"
 
-#: templates/editor/units/edit.html:291
+#: templates/editor/units/edit.html:298
 msgid "Less options"
 msgstr "Drus n iɣewwaṛen"
 
-#: templates/editor/units/edit.html:296
+#: templates/editor/units/edit.html:303
 msgid "Accept suggestion"
 msgstr "Qbel asumer"
 
-#: templates/editor/units/edit.html:301
+#: templates/editor/units/edit.html:308
 msgid "Reject suggestion"
 msgstr "Aggi asumer"
 
-#: templates/editor/units/edit.html:307
+#: templates/editor/units/edit.html:314
 msgid "Remove suggestion"
 msgstr "Kkes asumer"
 
-#: templates/editor/units/edit.html:319
+#: templates/editor/units/edit.html:326
 msgid "A long time ago"
 msgstr "Acḥal aya"
 
@@ -3020,6 +3030,14 @@ msgstr "Qqen"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Imettekiyen imezwura deg 30 ussan-agi inegura"
+
+#: settings/10-base.conf:7
+#, fuzzy
+msgid "Pootle Translation Server"
+msgstr "Kemmel tasuqilt"
+
+#~ msgid "Failed to process suggestion."
+#~ msgstr "Ur izmir ara ad isekles asumer."
 
 #, fuzzy
 #~ msgid "Showing %(n)s result per page"

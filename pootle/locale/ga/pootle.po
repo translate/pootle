@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-06-14 09:35+0100\n"
+"POT-Creation-Date: 2017-06-30 11:49+0100\n"
 "PO-Revision-Date: 2017-06-24 14:54+0000\n"
 "Last-Translator: Kevin <kscanne@gmail.com>\n"
 "Language-Team: Irish\n"
@@ -65,8 +65,8 @@ msgstr "Tá duine ann a bhfuil an t-ainm úsáideora sin acu cheana."
 msgid "Email Address"
 msgstr "Seoladh Ríomhphoist"
 
-#: apps/accounts/models.py:68 apps/pootle_language/models.py:35
-#: apps/pootle_project/models.py:204
+#: apps/accounts/models.py:68 apps/pootle_language/models.py:39
+#: apps/pootle_project/models.py:206
 msgid "Full Name"
 msgstr "Ainm Iomlán"
 
@@ -252,7 +252,7 @@ msgstr "Tharla earráid agus do chomhad á uaslódáil"
 msgid "Language code does not follow the ISO convention"
 msgstr "Ní ghéilleann an cód teanga don chaighdeán ISO"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:228
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
 msgid "Source Language"
 msgstr "Bunteanga"
 
@@ -677,11 +677,11 @@ msgstr "Scag de réir an stáit"
 msgid "Project"
 msgstr "Tionscadal"
 
-#: apps/pootle_language/models.py:28 apps/pootle_project/models.py:199
+#: apps/pootle_language/models.py:32 apps/pootle_project/models.py:201
 msgid "Code"
 msgstr "Cód"
 
-#: apps/pootle_language/models.py:29
+#: apps/pootle_language/models.py:33
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
@@ -691,17 +691,17 @@ msgstr ""
 "más gá. <a href=\"http://www.w3.org/International/articles/language-tags/"
 "\">Tuilleadh eolais</a>"
 
-#: apps/pootle_language/models.py:38 templates/languages/_nav.html:35
+#: apps/pootle_language/models.py:42 templates/languages/_nav.html:35
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
 msgstr "Carachtair Speisialta"
 
-#: apps/pootle_language/models.py:39
+#: apps/pootle_language/models.py:43
 msgid "Enter any special characters that users might find difficult to type"
 msgstr "Cuir isteach aon charachtair speisialta atá deacair le clóscríobh"
 
-#: apps/pootle_language/models.py:43
+#: apps/pootle_language/models.py:47
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
@@ -711,15 +711,15 @@ msgstr ""
 "localization-guide/en/latest/l10n/pluralforms.html\">ár leathanach</a> chun "
 "tuilleadh eolais a fháil faoi iolraí."
 
-#: apps/pootle_language/models.py:49
+#: apps/pootle_language/models.py:53
 msgid "Unknown"
 msgstr "Anaithnid"
 
-#: apps/pootle_language/models.py:53
+#: apps/pootle_language/models.py:57
 msgid "Number of Plurals"
 msgstr "Líon na hIolraí"
 
-#: apps/pootle_language/models.py:56
+#: apps/pootle_language/models.py:60
 msgid "Plural Equation"
 msgstr "Cothromóid Iolrach"
 
@@ -943,18 +943,18 @@ msgstr "Roghnaigh teanga nó níos mó ná teanga amháin"
 msgid "Language"
 msgstr "Teanga"
 
-#: apps/pootle_project/models.py:177
+#: apps/pootle_project/models.py:179
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "Ní féidir \"%(code)s\" a úsáid mar chód tionscadail"
 
 #. Translators: this refers to the project quality checker
-#: apps/pootle_project/models.py:186
+#: apps/pootle_project/models.py:188
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "Ní féidir \"%(code)s\" a úsáid mar sheiceálaí tionscadail"
 
-#: apps/pootle_project/models.py:193
+#: apps/pootle_project/models.py:195
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -962,50 +962,50 @@ msgstr ""
 "Gearrchód don tionscadal seo. Ba chóir carachtair ASCII, uimhreacha, agus "
 "fostríoc (_) amháin a úsáid."
 
-#: apps/pootle_project/models.py:211
+#: apps/pootle_project/models.py:213
 msgid "Quality Checks"
 msgstr "Deimhnithe Cáilíochta"
 
-#: apps/pootle_project/models.py:217
+#: apps/pootle_project/models.py:219
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
 msgstr ""
 "Brath uathoibríoch ar leaganacha amach comhad GNU/neamh-GNU (níos moille)"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:220
 msgid "GNU style: files named by language code"
 msgstr "Nós GNU: úsáíd cód teanga mar ainm comhaid"
 
-#: apps/pootle_project/models.py:219
+#: apps/pootle_project/models.py:221
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Neamh-GNU: Cuir gach teanga ina chomhadlann féin"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:222
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr "Lig do Pootle FS córais comhad a bhainistiú (Turgnamhach)"
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:226
 msgid "Project Tree Style"
 msgstr "Stíl Chrainn an Tionscadail"
 
-#: apps/pootle_project/models.py:232
+#: apps/pootle_project/models.py:234
 msgid "Ignore Files"
 msgstr "Déan Neamhaird de Chomhaid"
 
-#: apps/pootle_project/models.py:238
+#: apps/pootle_project/models.py:240
 msgid "Errors Report Email"
 msgstr "Ríomhphost do Thuairiscí Earráide"
 
-#: apps/pootle_project/models.py:239
+#: apps/pootle_project/models.py:241
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Seoladh ríomhphoist a seolfar tuariscí faoi fhadhbanna sa mbunteanga chuige."
 
 #. Translators: This is the URL prefix to search for context screenshots
-#: apps/pootle_project/models.py:244
+#: apps/pootle_project/models.py:246
 msgid "Screenshot Search Prefix"
 msgstr "Réimír Chuardaigh do Phictiúir"
 
-#: apps/pootle_project/models.py:249
+#: apps/pootle_project/models.py:251
 msgid "Disabled"
 msgstr "Díchumasaithe"
 
@@ -1044,7 +1044,7 @@ msgid "Obsolete"
 msgstr "I léig"
 
 #: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:189
-#: apps/pootle_store/forms.py:564 templates/editor/_filters.html:10
+#: apps/pootle_store/forms.py:596 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Le deimhniú"
 
@@ -1090,10 +1090,20 @@ msgstr "Trácht de chuid an aistritheora"
 msgid "Suggestion '%s' has already been accepted or rejected."
 msgstr "Glacadh leis an moladh '%s' nó diúltaíodh dó cheana."
 
-#: apps/pootle_store/forms.py:500 core/decorators.py:145
+#: apps/pootle_store/forms.py:500 core/decorators.py:146
 #: core/views/decorators.py:70
 msgid "Insufficient rights to access this page."
 msgstr "Níl dóthain cearta agat chun an leathanach seo a rochtain."
+
+#: apps/pootle_store/forms.py:570
+#, fuzzy, python-format
+msgid "Suggestion '%s' already exists."
+msgstr "Glacadh leis an moladh '%s' nó diúltaíodh dó cheana."
+
+#: apps/pootle_store/forms.py:576
+#, python-format
+msgid "Suggestion '%s' equals to current unit target value."
+msgstr ""
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -1159,26 +1169,22 @@ msgstr "Glacadh leis an moladh agus cuireadh nóta leis"
 msgid "Suggestion rejected with comment"
 msgstr "Diúltaíodh an moladh agus cuireadh nóta leis"
 
-#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:105
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:105
 msgid "Path too long."
 msgstr "Cosán rófhada."
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:107
-#: core/decorators.py:46
+#: apps/pootle_store/views.py:182 apps/virtualfolder/views.py:107
+#: core/decorators.py:47
 msgid "Arguments missing."
 msgstr "Argóintí ar iarraidh."
 
-#: apps/pootle_store/views.py:233
+#: apps/pootle_store/views.py:237
 msgid "Failed to remove comment."
 msgstr "Níorbh fhéidir an nóta a bhaint."
 
-#: apps/pootle_store/views.py:265
+#: apps/pootle_store/views.py:269
 msgid "Comment submission failed."
 msgstr "Theip ar sheoladh an nóta."
-
-#: apps/pootle_store/views.py:576
-msgid "Failed to process suggestion."
-msgstr "Níorbh fhéidir an moladh a phróiseáil."
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
@@ -1776,7 +1782,7 @@ msgstr "Fill ar an teanga"
 msgid "Back to parent folder"
 msgstr "Fill ar an máthairfhillteán"
 
-#: core/decorators.py:158 core/views/mixins.py:26
+#: core/decorators.py:159 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
 msgstr "Níl cearta agat Pootle chun a bhainistiú."
 
@@ -2591,7 +2597,7 @@ msgid "Report a problem with this string"
 msgstr "Déan tuairisc ar fhadhb leis an teaghrán seo"
 
 #: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
-#: templates/editor/units/edit.html:250
+#: templates/editor/units/edit.html:257
 msgid "Submit"
 msgstr "Seol"
 
@@ -2621,24 +2627,28 @@ msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr ""
 "Léiríonn gur gá tuilleadh oibre a dhéanamh ar an teaghrán seo (Ctrl+Spás)"
 
-#: templates/editor/units/edit.html:207
+#: templates/editor/units/edit.html:189
+msgid "Showing match from similar translations"
+msgstr ""
+
+#: templates/editor/units/edit.html:212
 msgid "Show Timeline"
 msgstr "Taispeáin an Líne Ama"
 
-#: templates/editor/units/edit.html:209
+#: templates/editor/units/edit.html:214
 msgid "Add Comment"
 msgstr "Cuir Trácht Leis"
 
-#: templates/editor/units/edit.html:211
+#: templates/editor/units/edit.html:216
 msgid "Raw View"
 msgstr "Amharc Amh"
 
-#: templates/editor/units/edit.html:221
+#: templates/editor/units/edit.html:227
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "athbhreithnithe ag <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:231
+#: templates/editor/units/edit.html:238
 #, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
@@ -2646,31 +2656,31 @@ msgstr ""
 "Cuir %(character_name)s (carachtar Unicode %(character_code)s) isteach san "
 "eagarthóir"
 
-#: templates/editor/units/edit.html:269
+#: templates/editor/units/edit.html:276
 msgid "User suggestions"
 msgstr "Moltaí ó úsáideoirí"
 
-#: templates/editor/units/edit.html:289
+#: templates/editor/units/edit.html:296
 msgid "More options"
 msgstr "Níos mó roghanna"
 
-#: templates/editor/units/edit.html:291
+#: templates/editor/units/edit.html:298
 msgid "Less options"
 msgstr "Níos lú roghanna"
 
-#: templates/editor/units/edit.html:296
+#: templates/editor/units/edit.html:303
 msgid "Accept suggestion"
 msgstr "Glac leis an moladh"
 
-#: templates/editor/units/edit.html:301
+#: templates/editor/units/edit.html:308
 msgid "Reject suggestion"
 msgstr "Ná glac leis an moladh"
 
-#: templates/editor/units/edit.html:307
+#: templates/editor/units/edit.html:314
 msgid "Remove suggestion"
 msgstr "Bain an moladh"
 
-#: templates/editor/units/edit.html:319
+#: templates/editor/units/edit.html:326
 msgid "A long time ago"
 msgstr "Fadó fadó"
 
@@ -3092,6 +3102,14 @@ msgstr "Logáil isteach"
 #: templates/welcome.html:32
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Na daoine a rinne an chuid is mó le 30 lá anuas"
+
+#: settings/10-base.conf:7
+#, fuzzy
+msgid "Pootle Translation Server"
+msgstr "Tionscadal an Aistriúchán WordForge"
+
+#~ msgid "Failed to process suggestion."
+#~ msgstr "Níorbh fhéidir an moladh a phróiseáil."
 
 #~ msgid "Showing %(n)s result per page"
 #~ msgid_plural "Showing %(n)s results per page"
@@ -5138,6 +5156,3 @@ msgstr "Na daoine a rinne an chuid is mó le 30 lá anuas"
 
 #~ msgid "Input width must be numeric"
 #~ msgstr "Ní mór don leithead inchur bheith mar uimhir"
-
-#~ msgid "WordForge Translation Project"
-#~ msgstr "Tionscadal an Aistriúchán WordForge"

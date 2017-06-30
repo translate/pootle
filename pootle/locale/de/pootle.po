@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-06-14 09:35+0100\n"
+"POT-Creation-Date: 2017-06-30 11:49+0100\n"
 "PO-Revision-Date: 2017-03-18 20:32+0000\n"
 "Last-Translator: 7 <sebastian@utzerath.eu>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -62,8 +62,8 @@ msgstr "Diese E-Mail-Adresse ist bereits vorhanden."
 msgid "Email Address"
 msgstr "E-Mail-Adresse"
 
-#: apps/accounts/models.py:68 apps/pootle_language/models.py:35
-#: apps/pootle_project/models.py:204
+#: apps/accounts/models.py:68 apps/pootle_language/models.py:39
+#: apps/pootle_project/models.py:206
 msgid "Full Name"
 msgstr "Vollständiger Name"
 
@@ -261,7 +261,7 @@ msgstr "Kann Übersetzungen beim Hochladen von Dateien überschreiben"
 msgid "Language code does not follow the ISO convention"
 msgstr "Sprachschlüssel entspricht nicht der ISO-Konvention"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:228
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
 msgid "Source Language"
 msgstr "Quellsprache"
 
@@ -700,11 +700,11 @@ msgstr "Filter"
 msgid "Project"
 msgstr "Projekt"
 
-#: apps/pootle_language/models.py:28 apps/pootle_project/models.py:199
+#: apps/pootle_language/models.py:32 apps/pootle_project/models.py:201
 msgid "Code"
 msgstr "Code"
 
-#: apps/pootle_language/models.py:29
+#: apps/pootle_language/models.py:33
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
@@ -714,18 +714,18 @@ msgstr ""
 "folgen. <a href=\"http://www.w3.org/International/articles/language-tags/"
 "\">Weitere Informationen</a>"
 
-#: apps/pootle_language/models.py:38 templates/languages/_nav.html:35
+#: apps/pootle_language/models.py:42 templates/languages/_nav.html:35
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
 msgstr "Sonderzeichen"
 
-#: apps/pootle_language/models.py:39
+#: apps/pootle_language/models.py:43
 msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
 "Geben Sie Sonderzeichen ein, die für den Benutzer schwierig einzutippen sind."
 
-#: apps/pootle_language/models.py:43
+#: apps/pootle_language/models.py:47
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
@@ -735,16 +735,16 @@ msgstr ""
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">unsere Seite</"
 "a> über Pluralformen."
 
-#: apps/pootle_language/models.py:49
+#: apps/pootle_language/models.py:53
 msgid "Unknown"
 msgstr "Unbekannt"
 
-#: apps/pootle_language/models.py:53
+#: apps/pootle_language/models.py:57
 msgid "Number of Plurals"
 msgstr "Anzahl der Pluralformen"
 
 # Vgl. <a href="http://wiki.sugarlabs.org/go/Translation_Team/Language_Setup">http://wiki.sugarlabs.org/go/Translation_Team/Language_Setup</a>
-#: apps/pootle_language/models.py:56
+#: apps/pootle_language/models.py:60
 msgid "Plural Equation"
 msgstr "Plural-Formel"
 
@@ -962,18 +962,18 @@ msgstr "Wählen Sie eine oder mehrere Sprachen"
 msgid "Language"
 msgstr "Sprache"
 
-#: apps/pootle_project/models.py:177
+#: apps/pootle_project/models.py:179
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%s\" ist nicht als Projektcode verwendbar"
 
 #. Translators: this refers to the project quality checker
-#: apps/pootle_project/models.py:186
+#: apps/pootle_project/models.py:188
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "\"%s\" ist nicht als Projektcode verwendbar"
 
-#: apps/pootle_project/models.py:193
+#: apps/pootle_project/models.py:195
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -981,49 +981,49 @@ msgstr ""
 "Ein Kürzel für das Projekt. Es sollte nur ASCII-Zeichen, Zahlen und das "
 "Zeichen für den Unterstrich (_) beinhalten."
 
-#: apps/pootle_project/models.py:211
+#: apps/pootle_project/models.py:213
 msgid "Quality Checks"
 msgstr "Qualitätskontrollen"
 
-#: apps/pootle_project/models.py:217
+#: apps/pootle_project/models.py:219
 #, fuzzy
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
 msgstr "Automatische Erkennung (langsamer)"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:220
 msgid "GNU style: files named by language code"
 msgstr "GNU-Stil: Dateien nach dem Sprachcode benannt"
 
-#: apps/pootle_project/models.py:219
+#: apps/pootle_project/models.py:221
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Nicht-GNU: Jede Sprache in eigenem Verzeichnis"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:222
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr ""
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:226
 msgid "Project Tree Style"
 msgstr "Projekt-Baumstil"
 
-#: apps/pootle_project/models.py:232
+#: apps/pootle_project/models.py:234
 msgid "Ignore Files"
 msgstr "Dateien ignorieren"
 
-#: apps/pootle_project/models.py:238
+#: apps/pootle_project/models.py:240
 msgid "Errors Report Email"
 msgstr "Fehlerbericht-E-Mail"
 
-#: apps/pootle_project/models.py:239
+#: apps/pootle_project/models.py:241
 msgid "An email address where issues with the source text can be reported."
 msgstr "Eine E-Mail-Adresse, an die Quelltext-Probleme gemeldet werden können."
 
 #. Translators: This is the URL prefix to search for context screenshots
-#: apps/pootle_project/models.py:244
+#: apps/pootle_project/models.py:246
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:249
+#: apps/pootle_project/models.py:251
 msgid "Disabled"
 msgstr "Deaktiviert"
 
@@ -1061,7 +1061,7 @@ msgid "Obsolete"
 msgstr "Veraltet"
 
 #: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:189
-#: apps/pootle_store/forms.py:564 templates/editor/_filters.html:10
+#: apps/pootle_store/forms.py:596 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Benötigt Bearbeitung"
 
@@ -1107,10 +1107,20 @@ msgstr "Anmerkung des Übersetzers"
 msgid "Suggestion '%s' has already been accepted or rejected."
 msgstr ""
 
-#: apps/pootle_store/forms.py:500 core/decorators.py:145
+#: apps/pootle_store/forms.py:500 core/decorators.py:146
 #: core/views/decorators.py:70
 msgid "Insufficient rights to access this page."
 msgstr "Fehlende Rechte zum Zugriff auf diese Seite."
+
+#: apps/pootle_store/forms.py:570
+#, fuzzy, python-format
+msgid "Suggestion '%s' already exists."
+msgstr "Vorschlag %d von %s:"
+
+#: apps/pootle_store/forms.py:576
+#, python-format
+msgid "Suggestion '%s' equals to current unit target value."
+msgstr ""
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -1179,26 +1189,22 @@ msgstr "Vorschlag akzeptiert."
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:105
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:105
 msgid "Path too long."
 msgstr ""
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:107
-#: core/decorators.py:46
+#: apps/pootle_store/views.py:182 apps/virtualfolder/views.py:107
+#: core/decorators.py:47
 msgid "Arguments missing."
 msgstr "Argumente unvollständig."
 
-#: apps/pootle_store/views.py:233
+#: apps/pootle_store/views.py:237
 msgid "Failed to remove comment."
 msgstr "Konnte Kommentar nicht entfernen."
 
-#: apps/pootle_store/views.py:265
+#: apps/pootle_store/views.py:269
 msgid "Comment submission failed."
 msgstr "Die Übertragung des Kommentars ist gescheitert."
-
-#: apps/pootle_store/views.py:576
-msgid "Failed to process suggestion."
-msgstr "Der Vorschlag konnte nicht verarbeitet werden."
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
@@ -1755,7 +1761,7 @@ msgstr "Zurück zur Sprache"
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:158 core/views/mixins.py:26
+#: core/decorators.py:159 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
 msgstr "Sie haben keine Rechte zur Verwaltung von Pootle."
 
@@ -2570,7 +2576,7 @@ msgid "Report a problem with this string"
 msgstr "Ein Problem mit dieser Zeichenkette melden"
 
 #: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
-#: templates/editor/units/edit.html:250
+#: templates/editor/units/edit.html:257
 msgid "Submit"
 msgstr "Senden"
 
@@ -2602,56 +2608,60 @@ msgstr ""
 "Diese Zeichenkette markieren, da sie weiterer Bearbeitung bedarf (Strg"
 "+Leertaste)"
 
-#: templates/editor/units/edit.html:207
+#: templates/editor/units/edit.html:189
+msgid "Showing match from similar translations"
+msgstr ""
+
+#: templates/editor/units/edit.html:212
 msgid "Show Timeline"
 msgstr "Zeitplan anzeigen"
 
-#: templates/editor/units/edit.html:209
+#: templates/editor/units/edit.html:214
 msgid "Add Comment"
 msgstr "Kommentar hinzufügen"
 
-#: templates/editor/units/edit.html:211
+#: templates/editor/units/edit.html:216
 msgid "Raw View"
 msgstr ""
 
-#: templates/editor/units/edit.html:221
+#: templates/editor/units/edit.html:227
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "von <a href=\"%(profile_url)s\">%(reviewer)s</a> geprüft"
 
-#: templates/editor/units/edit.html:231
+#: templates/editor/units/edit.html:238
 #, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:269
+#: templates/editor/units/edit.html:276
 msgid "User suggestions"
 msgstr "Benutzervorschläge"
 
-#: templates/editor/units/edit.html:289
+#: templates/editor/units/edit.html:296
 #, fuzzy
 msgid "More options"
 msgstr "Einstellungen ändern"
 
-#: templates/editor/units/edit.html:291
+#: templates/editor/units/edit.html:298
 #, fuzzy
 msgid "Less options"
 msgstr "Einstellungen ändern"
 
-#: templates/editor/units/edit.html:296
+#: templates/editor/units/edit.html:303
 msgid "Accept suggestion"
 msgstr "Vorschlag annehmen"
 
-#: templates/editor/units/edit.html:301
+#: templates/editor/units/edit.html:308
 msgid "Reject suggestion"
 msgstr "Vorschlag ablehnen"
 
-#: templates/editor/units/edit.html:307
+#: templates/editor/units/edit.html:314
 msgid "Remove suggestion"
 msgstr "Vorschlag entfernen"
 
-#: templates/editor/units/edit.html:319
+#: templates/editor/units/edit.html:326
 msgid "A long time ago"
 msgstr "Vor langer Zeit"
 
@@ -3074,6 +3084,14 @@ msgstr "Anmelden"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Top-Beitragende"
+
+#: settings/10-base.conf:7
+#, fuzzy
+msgid "Pootle Translation Server"
+msgstr "WordForge Übersetzungsprojekt"
+
+#~ msgid "Failed to process suggestion."
+#~ msgstr "Der Vorschlag konnte nicht verarbeitet werden."
 
 #, fuzzy
 #~ msgid ""
@@ -6032,9 +6050,6 @@ msgstr "Top-Beitragende"
 #~ msgid "Shrink"
 #~ msgstr "kleiner"
 
-#~ msgid "Suggestion %d by %s:"
-#~ msgstr "Vorschlag %d von %s:"
-
 #~ msgid "You must supply a valid password of at least %d characters."
 #~ msgstr "Bitte geben Sie ein gültiges Passwort mit min. %d Zeichen an."
 
@@ -6205,9 +6220,6 @@ msgstr "Top-Beitragende"
 
 #~ msgid "The number of rows displayed in translate mode must be numeric"
 #~ msgstr "Zeilenanzahl für den Übersetzungs-Modus muss numerisch sein"
-
-#~ msgid "WordForge Translation Project"
-#~ msgstr "WordForge Übersetzungsprojekt"
 
 #~ msgid "Broaden"
 #~ msgstr "breiter"

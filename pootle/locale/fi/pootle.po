@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-06-14 09:35+0100\n"
+"POT-Creation-Date: 2017-06-30 11:49+0100\n"
 "PO-Revision-Date: 2015-06-08 15:43+0000\n"
 "Last-Translator: Jussi <jta_l10n@saunalahti.fi>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -58,8 +58,8 @@ msgstr "Tällä lyhytnimellä oleva tavoite on jo olemassa."
 msgid "Email Address"
 msgstr "Sähköpostiosoite"
 
-#: apps/accounts/models.py:68 apps/pootle_language/models.py:35
-#: apps/pootle_project/models.py:204
+#: apps/accounts/models.py:68 apps/pootle_language/models.py:39
+#: apps/pootle_project/models.py:206
 msgid "Full Name"
 msgstr "Koko nimi"
 
@@ -255,7 +255,7 @@ msgstr "Voi korvata käännöksiä lähettäessään tiedoston"
 msgid "Language code does not follow the ISO convention"
 msgstr "Kielikoodi ei ole ISO-standardien mukainen"
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:228
+#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
 msgid "Source Language"
 msgstr "Lähdekieli"
 
@@ -693,11 +693,11 @@ msgstr "Suodata"
 msgid "Project"
 msgstr "Projekti"
 
-#: apps/pootle_language/models.py:28 apps/pootle_project/models.py:199
+#: apps/pootle_language/models.py:32 apps/pootle_project/models.py:201
 msgid "Code"
 msgstr "Koodi"
 
-#: apps/pootle_language/models.py:29
+#: apps/pootle_language/models.py:33
 msgid ""
 "ISO 639 language code for the language, possibly followed by an underscore "
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
@@ -707,32 +707,32 @@ msgstr ""
 "3166 -maakoodilla. <a href=\"http://www.w3.org/International/articles/"
 "language-tags/\">Lisätietoja täältä</a>"
 
-#: apps/pootle_language/models.py:38 templates/languages/_nav.html:35
+#: apps/pootle_language/models.py:42 templates/languages/_nav.html:35
 #: templates/languages/admin/characters.html:5
 #: templates/languages/admin/characters.html:9
 msgid "Special Characters"
 msgstr "Erikoismerkit"
 
-#: apps/pootle_language/models.py:39
+#: apps/pootle_language/models.py:43
 msgid "Enter any special characters that users might find difficult to type"
 msgstr "Lisää tähän erikoismerkit joiden kirjoittaminen saattaa olla hankalaa"
 
-#: apps/pootle_language/models.py:43
+#: apps/pootle_language/models.py:47
 msgid ""
 "For more information, visit <a href=\"http://docs.translatehouse.org/"
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
 "on plural forms."
 msgstr ""
 
-#: apps/pootle_language/models.py:49
+#: apps/pootle_language/models.py:53
 msgid "Unknown"
 msgstr "Tuntematon"
 
-#: apps/pootle_language/models.py:53
+#: apps/pootle_language/models.py:57
 msgid "Number of Plurals"
 msgstr "Monikoiden määrä"
 
-#: apps/pootle_language/models.py:56
+#: apps/pootle_language/models.py:60
 msgid "Plural Equation"
 msgstr "Monikon kaava"
 
@@ -946,18 +946,18 @@ msgstr "Valitse yksi tai useampi kieli"
 msgid "Language"
 msgstr "Kieli"
 
-#: apps/pootle_project/models.py:177
+#: apps/pootle_project/models.py:179
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr "\"%s\" ei kelpaa projektikoodiksi"
 
 #. Translators: this refers to the project quality checker
-#: apps/pootle_project/models.py:186
+#: apps/pootle_project/models.py:188
 #, fuzzy, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr "\"%s\" ei kelpaa projektikoodiksi"
 
-#: apps/pootle_project/models.py:193
+#: apps/pootle_project/models.py:195
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
@@ -965,50 +965,50 @@ msgstr ""
 "Lyhyt koodi projektille. Koodin tulee sisältää ainoastaan ASCII-merkkejä, "
 "numeroita ja alaviiva (_)."
 
-#: apps/pootle_project/models.py:211
+#: apps/pootle_project/models.py:213
 msgid "Quality Checks"
 msgstr "Laatutarkastukset"
 
-#: apps/pootle_project/models.py:217
+#: apps/pootle_project/models.py:219
 #, fuzzy
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
 msgstr "Automaattinen tunnistus (hitaampi)"
 
-#: apps/pootle_project/models.py:218
+#: apps/pootle_project/models.py:220
 msgid "GNU style: files named by language code"
 msgstr "GNU-tyyli: tiedostonimet kielikoodin mukaan"
 
-#: apps/pootle_project/models.py:219
+#: apps/pootle_project/models.py:221
 msgid "Non-GNU: Each language in its own directory"
 msgstr "Ei-GNU: Jokainen kieli omassa hakemistossaan"
 
-#: apps/pootle_project/models.py:220
+#: apps/pootle_project/models.py:222
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr ""
 
-#: apps/pootle_project/models.py:224
+#: apps/pootle_project/models.py:226
 msgid "Project Tree Style"
 msgstr "Projektipuun tyyli"
 
-#: apps/pootle_project/models.py:232
+#: apps/pootle_project/models.py:234
 msgid "Ignore Files"
 msgstr "Sivuuta tiedostot"
 
-#: apps/pootle_project/models.py:238
+#: apps/pootle_project/models.py:240
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:239
+#: apps/pootle_project/models.py:241
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 "Sähköpostiosoite, johon lähdetekstissä olevista ongelmista voi ilmoittaa."
 
 #. Translators: This is the URL prefix to search for context screenshots
-#: apps/pootle_project/models.py:244
+#: apps/pootle_project/models.py:246
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:249
+#: apps/pootle_project/models.py:251
 msgid "Disabled"
 msgstr ""
 
@@ -1046,7 +1046,7 @@ msgid "Obsolete"
 msgstr "Vanhentunut"
 
 #: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:189
-#: apps/pootle_store/forms.py:564 templates/editor/_filters.html:10
+#: apps/pootle_store/forms.py:596 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Keskeneräinen"
 
@@ -1094,10 +1094,20 @@ msgstr "Kääntäjän kommentit"
 msgid "Suggestion '%s' has already been accepted or rejected."
 msgstr ""
 
-#: apps/pootle_store/forms.py:500 core/decorators.py:145
+#: apps/pootle_store/forms.py:500 core/decorators.py:146
 #: core/views/decorators.py:70
 msgid "Insufficient rights to access this page."
 msgstr "Puutteelliset käyttöoikeudet estävät pääsyn tälle sivulle."
+
+#: apps/pootle_store/forms.py:570
+#, fuzzy, python-format
+msgid "Suggestion '%s' already exists."
+msgstr "Ehdotuksen %d tehnyt %s:"
+
+#: apps/pootle_store/forms.py:576
+#, python-format
+msgid "Suggestion '%s' equals to current unit target value."
+msgstr ""
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -1166,26 +1176,22 @@ msgstr "Ehdotus hyväksytty."
 msgid "Suggestion rejected with comment"
 msgstr ""
 
-#: apps/pootle_store/views.py:176 apps/virtualfolder/views.py:105
+#: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:105
 msgid "Path too long."
 msgstr ""
 
-#: apps/pootle_store/views.py:178 apps/virtualfolder/views.py:107
-#: core/decorators.py:46
+#: apps/pootle_store/views.py:182 apps/virtualfolder/views.py:107
+#: core/decorators.py:47
 msgid "Arguments missing."
 msgstr ""
 
-#: apps/pootle_store/views.py:233
+#: apps/pootle_store/views.py:237
 msgid "Failed to remove comment."
 msgstr ""
 
-#: apps/pootle_store/views.py:265
+#: apps/pootle_store/views.py:269
 msgid "Comment submission failed."
 msgstr "Kommentin lähetys epäonnistui."
-
-#: apps/pootle_store/views.py:576
-msgid "Failed to process suggestion."
-msgstr "Ehdotuksen käsittely epäonnistui."
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
@@ -1745,7 +1751,7 @@ msgstr "Takaisin pääsivulle"
 msgid "Back to parent folder"
 msgstr ""
 
-#: core/decorators.py:158 core/views/mixins.py:26
+#: core/decorators.py:159 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
 msgstr "Sinulla ei ole Pootlen hallintaoikeuksia."
 
@@ -2569,7 +2575,7 @@ msgid "Report a problem with this string"
 msgstr "Ilmoita lähdemerkkijonossa olevasta ongelmasta"
 
 #: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
-#: templates/editor/units/edit.html:250
+#: templates/editor/units/edit.html:257
 msgid "Submit"
 msgstr "Lähetä"
 
@@ -2597,56 +2603,60 @@ msgstr "Vaihda ehdotustilaan (Ctrl+Shift+Space)"
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr "Merkitse merkkijono keskeneräiseksi (Ctrl+Space)"
 
-#: templates/editor/units/edit.html:207
+#: templates/editor/units/edit.html:189
+msgid "Showing match from similar translations"
+msgstr ""
+
+#: templates/editor/units/edit.html:212
 msgid "Show Timeline"
 msgstr "Näytä aikajana"
 
-#: templates/editor/units/edit.html:209
+#: templates/editor/units/edit.html:214
 msgid "Add Comment"
 msgstr "Lisää kommentti"
 
-#: templates/editor/units/edit.html:211
+#: templates/editor/units/edit.html:216
 msgid "Raw View"
 msgstr ""
 
-#: templates/editor/units/edit.html:221
+#: templates/editor/units/edit.html:227
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr "tarkastanut <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
-#: templates/editor/units/edit.html:231
+#: templates/editor/units/edit.html:238
 #, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:269
+#: templates/editor/units/edit.html:276
 msgid "User suggestions"
 msgstr "Käyttäjien ehdotukset"
 
-#: templates/editor/units/edit.html:289
+#: templates/editor/units/edit.html:296
 #, fuzzy
 msgid "More options"
 msgstr "Vaihda asetuksia"
 
-#: templates/editor/units/edit.html:291
+#: templates/editor/units/edit.html:298
 #, fuzzy
 msgid "Less options"
 msgstr "Vaihda asetuksia"
 
-#: templates/editor/units/edit.html:296
+#: templates/editor/units/edit.html:303
 msgid "Accept suggestion"
 msgstr "Hyväksy ehdotus"
 
-#: templates/editor/units/edit.html:301
+#: templates/editor/units/edit.html:308
 msgid "Reject suggestion"
 msgstr "Hylkää ehdotus"
 
-#: templates/editor/units/edit.html:307
+#: templates/editor/units/edit.html:314
 msgid "Remove suggestion"
 msgstr "Poista ehdotus"
 
-#: templates/editor/units/edit.html:319
+#: templates/editor/units/edit.html:326
 msgid "A long time ago"
 msgstr ""
 
@@ -3066,6 +3076,14 @@ msgstr "Osoitettava tehtävä"
 #, fuzzy
 msgid "Top Contributors for the Last 30 Days"
 msgstr "Ahkerimmat avustajat"
+
+#: settings/10-base.conf:7
+#, fuzzy
+msgid "Pootle Translation Server"
+msgstr "WordForge-käännösprojekti"
+
+#~ msgid "Failed to process suggestion."
+#~ msgstr "Ehdotuksen käsittely epäonnistui."
 
 #, fuzzy
 #~ msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
@@ -5668,9 +5686,6 @@ msgstr "Ahkerimmat avustajat"
 #~ msgid "Shrink"
 #~ msgstr "Madalla"
 
-#~ msgid "Suggestion %d by %s:"
-#~ msgstr "Ehdotuksen %d tehnyt %s:"
-
 #~ msgid "You must supply a valid password of at least %d characters."
 #~ msgstr "Valitsemasi salasanan täytyy olla vähintään %d merkin pituinen."
 
@@ -5840,9 +5855,6 @@ msgstr "Ahkerimmat avustajat"
 
 #~ msgid "The number of rows displayed in translate mode must be numeric"
 #~ msgstr "Käännöstilan rivimäärän pitää olla numeroarvo"
-
-#~ msgid "WordForge Translation Project"
-#~ msgstr "WordForge-käännösprojekti"
 
 #~ msgid "Broaden"
 #~ msgstr "Levennä"
