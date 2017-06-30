@@ -9,13 +9,14 @@ In order for this configuration changes to take effect, bear in mind that you
 need to change the extension of this file from ``.conf.sample`` to ``.conf``.
 """
 
+from pootle.i18n.gettext import ugettext_lazy as _
 
 #
 # Base
 #
 
 # Site title
-POOTLE_TITLE = u'Pootle Translation Server'
+POOTLE_TITLE = _(u'Pootle Translation Server')
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
