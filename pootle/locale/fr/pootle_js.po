@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-13 15:55+0100\n"
-"PO-Revision-Date: 2017-02-19 17:00+0000\n"
+"PO-Revision-Date: 2017-06-24 15:16+0000\n"
 "Last-Translator: Claude <claude@2xlibre.net>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: fr\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1487523607.000000\n"
+"X-POOTLE-MTIME: 1498317367.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
-msgstr "Sauvegardée avec succès."
+msgstr "Enregistrée avec succès."
 
 #: static/js/admin/components/AdminController.js:144
 msgid "Deleted successfully."

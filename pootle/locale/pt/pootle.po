@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-14 09:35+0100\n"
-"PO-Revision-Date: 2017-04-22 14:55+0000\n"
+"PO-Revision-Date: 2017-06-24 15:02+0000\n"
 "Last-Translator: smarquespt <smarquespt@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: pt\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1492872908.000000\n"
+"X-POOTLE-MTIME: 1498316523.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -59,9 +59,8 @@ msgid "Enter a valid username."
 msgstr "Digite um nome de utilizador válido"
 
 #: apps/accounts/models.py:64
-#, fuzzy
 msgid "A user with that username already exists."
-msgstr "Já existe um objetivo com este 'slug'."
+msgstr "Já existe um utilizador com este nome."
 
 #: apps/accounts/models.py:67
 msgid "Email Address"
@@ -148,14 +147,12 @@ msgid "This email address already exists."
 msgstr "Este endereço de e-mail já existe."
 
 #: apps/contact/forms.py:26
-#, fuzzy
 msgid "Subject"
-msgstr "Rejeitar"
+msgstr "Assunto"
 
 #: apps/contact/forms.py:28
-#, fuzzy
 msgid "Please enter a message subject"
-msgstr "Digite a sua mensagem"
+msgstr "Por favor digite o assunto da mensagem"
 
 #: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
@@ -183,17 +180,15 @@ msgstr "Digite a sua mensagem"
 
 #: apps/contact/forms.py:81
 msgid "String context"
-msgstr ""
+msgstr "Contexto da linha"
 
 #: apps/contact/forms.py:91
-#, fuzzy
 msgid "Question or comment"
-msgstr "Sugestão rejeitada com comentário."
+msgstr "Questão ou comentário"
 
 #: apps/contact/forms.py:92
-#, fuzzy
 msgid "Please enter your question or comment"
-msgstr "Por favor introduza os detalhes do seu registo"
+msgstr "Por favor introduza a sua questão ou comentário"
 
 #: apps/contact/views.py:35 templates/layout.html:120
 msgid "Contact Us"
@@ -596,9 +591,8 @@ msgid "The URL or path to your translation files"
 msgstr "O URL ou o caminho dos seus ficheiros de tradução"
 
 #: apps/pootle_fs/forms.py:47
-#, fuzzy
 msgid "Translation mapping presets"
-msgstr "Mapeamento do caminho da tradução"
+msgstr "Predefinições do mapeamento da tradução"
 
 #: apps/pootle_fs/forms.py:55
 msgid "Translation path mapping"
@@ -609,15 +603,16 @@ msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
+"O mapeamento do caminho da tradução que indica os ficheiros do sistema para "
+"os ficheiros do Pootle."
 
 #: apps/pootle_fs/forms.py:182
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "Os códigos de idioma do sistema de ficheiros deve ser exclusivo"
 
 #: apps/pootle_fs/forms.py:186
-#, fuzzy
 msgid "Pootle language mappings must be unique"
-msgstr "Página de idiomas do Administrador do Pootle"
+msgstr "Os mapeamentos de idioma do Pootle devem ser exclusivos"
 
 #: apps/pootle_language/forms.py:27
 msgid "Member"
@@ -663,7 +658,7 @@ msgstr "Adiciona um utilizador à equipa"
 
 #: apps/pootle_language/forms.py:103
 msgid "Search for users to add"
-msgstr ""
+msgstr "Pesquisar pelos utilizadores a adicionar"
 
 #: apps/pootle_language/forms.py:106
 msgid "Role"
@@ -825,19 +820,19 @@ msgid "Locations"
 msgstr "Localizações"
 
 #: apps/pootle_misc/templatetags/common_tags.py:53
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} untranslated"
-msgstr "%d palavra não traduzida"
+msgstr "{percentage} não traduzido"
 
 #: apps/pootle_misc/templatetags/common_tags.py:55
 #, python-brace-format
 msgid "{percentage} needs work"
-msgstr ""
+msgstr "{percentage} por rever"
 
 #: apps/pootle_misc/templatetags/common_tags.py:57
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} translated"
-msgstr "Não traduzido"
+msgstr "{percentage} traduzido"
 
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
@@ -861,9 +856,9 @@ msgid "Search unavailable"
 msgstr "Procura indisponível"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:35
-#, fuzzy, python-format
+#, python-format
 msgid "My current score at %s is %s"
-msgstr "A minha pontuação atual em %(server_title)s é %(score)s."
+msgstr "A minha pontuação atual em %s é %s"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:38
 #: apps/pootle_profile/templatetags/profile_tags.py:63
@@ -871,16 +866,14 @@ msgid "Tweet this!"
 msgstr "Tweet isto!"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "#%s contributor in %s in the last 30 days"
-msgstr "Sem contribuições nos últimos 30 dias"
+msgstr "#%s colaborador de %s nos últimos 30 dias"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
-msgstr ""
-"Neste mês, eu sou o colaborador #%(pos)s no idioma %(lang_name)s em "
-"%(server_title)s!"
+msgstr "Eu sou o #%s colaborador em %s nos últimos 30 dias para %s!"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
@@ -895,19 +888,18 @@ msgid "My LinkedIn Profile"
 msgstr "O meu perfil do linkedin"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:95
-#, fuzzy
 msgid "Site administrator"
-msgstr "Administrador"
+msgstr "Administrador do site"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%s's language teams"
-msgstr "Equipa do idioma"
+msgstr "Equipas de tradução para %s"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:104
 #, python-format
 msgid "%s is not a member of any language teams"
-msgstr ""
+msgstr "%s não é membro de qualquer equipa de tradução"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
@@ -946,9 +938,8 @@ msgid "Admin"
 msgstr "Administrador"
 
 #: apps/pootle_profile/utils.py:100
-#, fuzzy
 msgid "Translator"
-msgstr "Tradução"
+msgstr "Tradutor"
 
 #: apps/pootle_profile/views.py:61
 msgid "Select one or more languages"
@@ -982,10 +973,8 @@ msgid "Quality Checks"
 msgstr "Verificações de qualidade"
 
 #: apps/pootle_project/models.py:217
-#, fuzzy
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
-msgstr ""
-"Deteção automática das disposições de ficheiro gnu/não gnu (mais lento)"
+msgstr "Deteção automática de esquemas de ficheiro GNU/não GNU (mais lento)"
 
 #: apps/pootle_project/models.py:218
 msgid "GNU style: files named by language code"
@@ -1050,9 +1039,8 @@ msgid "Comment"
 msgstr "Comentário"
 
 #: apps/pootle_statistics/models.py:60
-#, fuzzy
 msgid "Check"
-msgstr "Verificações"
+msgstr "Verificação"
 
 #: apps/pootle_store/abstracts.py:221 apps/pootle_store/abstracts.py:228
 msgid "Path"
@@ -1107,7 +1095,7 @@ msgstr "Comentário do tradutor"
 #: apps/pootle_store/forms.py:482
 #, python-format
 msgid "Suggestion '%s' has already been accepted or rejected."
-msgstr ""
+msgstr "A sugestão '%s' já foi aceite ou rejeitada."
 
 #: apps/pootle_store/forms.py:500 core/decorators.py:145
 #: core/views/decorators.py:70
@@ -1157,19 +1145,18 @@ msgid "Comment:"
 msgstr "Comentário:"
 
 #: apps/pootle_store/unit/timeline.py:191
-#, fuzzy
 msgid "Removed comment"
-msgstr "Remover comentário"
+msgstr "Comentário removido"
 
 #: apps/pootle_store/unit/timeline.py:216
-#, fuzzy, python-format
+#, python-format
 msgid "Muted %(check_name)s check"
-msgstr "Verificação<a href=\"%(check_url)s\">%(check_name)s</a> removida"
+msgstr "Verificação %(check_name)s removida"
 
 #: apps/pootle_store/unit/timeline.py:225
-#, fuzzy, python-format
+#, python-format
 msgid "Unmuted %(check_name)s check"
-msgstr "Verificação <a href=\"%(check_url)s\">%(check_name)s</a> restaurada"
+msgstr "Verificação %(check_name)s restaurada"
 
 #: apps/pootle_store/utils.py:137
 msgid "Suggestion accepted with comment"
@@ -1564,24 +1551,24 @@ msgstr ""
 "Defina WEIGHT entre 0,0 e 1,0 (ambos incluídos) para POOTLE_TM_SERVER['%s']."
 
 #: checks.py:327
-#, fuzzy, python-format
+#, python-format
 msgid "POOTLE_SCORES has no %s."
-msgstr "POOTLE_SCORE_COEFFICIENTS não tem %s."
+msgstr "POOTLE_SCORES não tem %s."
 
 #: checks.py:328
-#, fuzzy, python-format
+#, python-format
 msgid "Set %s in POOTLE_SCORES."
-msgstr "Defina %s em POOTLE_SCORE_COEFFICIENTS."
+msgstr "Defina %s em POOTLE_SCORES."
 
 #: checks.py:336
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORES."
-msgstr "Valor inválido para %s em POOTLE_SCORE_COEFFICIENTS."
+msgstr "Valor inválido para %s em POOTLE_SCORES."
 
 #: checks.py:339
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORES."
-msgstr "Defina um valor válido para %s em POOTLE_SCORE_COEFFICIENTS."
+msgstr "Defina um valor válido para %s em POOTLE_SCORES."
 
 #: checks.py:355
 msgid "POOTLE_MARKUP_FILTER is missing."
@@ -1621,22 +1608,21 @@ msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Instale o pacote ou altere POOTLE_MARKUP_FILTER."
 
 #: checks.py:392
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER set to 'None' is deprecated."
-msgstr "POOTLE_MARKUP_FILTER está em falta."
+msgstr "A opção 'None' em POOTLE_MARKUP_FILTER foi descontinuada."
 
 #: checks.py:393
 msgid "Set your markup to 'html' explicitly."
-msgstr ""
+msgstr "Defina explicitamente a marcação como 'html'."
 
 #: checks.py:398
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is using '%s' markup, which is deprecated and will be "
 "removed in future."
 msgstr ""
-"POOTLE_MARKUP_FILTER está definido para a marcação %s, mas o pacote que a "
-"disponibiliza não pode ser encontrado."
+"POOTLE_MARKUP_FILTER está a utilizar a marcação '%s', marcação esta que foi "
+"descontinuada e será removida no futuro."
 
 #: checks.py:401
 msgid "Convert your staticpages to Markdown and set your markup to 'markdown'."
@@ -1705,49 +1691,50 @@ msgid "POOTLE_FS_WORKING_PATH setting is not set."
 msgstr "A definição POOTLE_FS_WORKING_PATH não está definida."
 
 #: checks.py:544
-#, fuzzy, python-format
+#, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr "O caminho indicado por POOTLE_FS_WORKING_PATH não existe."
+msgstr "O caminho ('%s'), indicado por POOTLE_FS_WORKING_PATH não existe."
 
 #: checks.py:546
-#, fuzzy
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
-msgstr "Criar o diretório indicado pela definição `POOTLE_FS_WORKING_PATH`."
+msgstr ""
+"Crie o diretório indicado pela definição `POOTLE_FS_WORKING_PATH` ou altere "
+"a sua definição."
 
 #: checks.py:551
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
-"O caminho indicado por by POOTLE_FS_WORKING_PATH não pode ser escrito pelo "
-"Pootle."
+"O caminho ('%s'), indicado por POOTLE_FS_WORKING_PATH não pode ser escrito "
+"pelo Pootle."
 
 #: checks.py:554
-#, fuzzy
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
 msgstr ""
-"Adicione a permissão de escrita ao diretório `POOTLE_FS_WORKING_PATH` com o "
-"comando 'chmod +w'"
+"Adicione a permissão de escrita para `POOTLE_FS_WORKING_PATH` ou altere a "
+"sua definição."
 
 #: checks.py:573
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "O MySQL necessita das definições de fuso horário."
 
 #: checks.py:593
 msgid "Pootle does not yet support Python 3."
-msgstr ""
+msgstr "O Pootle ainda não possui suporte a Python 3."
 
 #: checks.py:594 checks.py:600
 msgid "Use a Python 2.7 virtualenv."
-msgstr ""
+msgstr "Utilize um ambiente com Python 2.7."
 
 #: checks.py:599
 msgid "Pootle no longer supports Python versions older than 2.7"
 msgstr ""
+"O Pootle já não disponibiliza suporte a verões Python inferiores à 2.7."
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1814,7 +1801,6 @@ msgid "Add comment"
 msgstr "Adicionar comentário"
 
 #: core/forms.py:227
-#, fuzzy
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
 "Selecionar todos os critérios coincidentes com o filtro, incluindo os que "
@@ -1853,9 +1839,8 @@ msgid "Can perform administrative tasks"
 msgstr "Pode executar tarefas administrativas"
 
 #: core/views/base.py:122
-#, fuzzy
 msgid "Entire Project"
-msgstr "Projetos ativos"
+msgstr "Projeto completo"
 
 #: core/views/display.py:103 core/views/display.py:125
 #, python-format
@@ -1953,9 +1938,8 @@ msgstr "Requisitos legais"
 #. websites published in Germany and certain other German-speaking countries,
 #. such as Austria and Switzerland. See https://en.wikipedia.org/wiki/Impressum
 #: strings.py:46
-#, fuzzy
 msgid "Imprint"
-msgstr "printf()"
+msgstr "Imprint"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:48
@@ -1964,7 +1948,6 @@ msgstr "Licença"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:50
-#, fuzzy
 msgid "License Statement"
 msgstr "Termos da licença"
 
@@ -2720,7 +2703,6 @@ msgid "Remove comment"
 msgstr "Remover comentário"
 
 #: templates/editor/units/xhr_comment.html:19
-#, fuzzy
 msgid "Сomment:"
 msgstr "Comentário:"
 
@@ -2811,16 +2793,15 @@ msgstr "Página %(page_number)s de %(page_count)s."
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Results per page: %(n)s"
-msgstr ""
+msgstr "Resultados por página: %(n)s"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
 msgstr "Selecionar tudo"
 
 #: templates/includes/formtable.html:98
-#, fuzzy
 msgid "Go"
-msgstr "Objetivo"
+msgstr "Ir"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
@@ -3050,9 +3031,8 @@ msgid "Latest activity:"
 msgstr "Última atividade:"
 
 #: templates/user/includes/profile_score.html:3
-#, fuzzy
 msgid "Total score:"
-msgstr "Total de palavras:"
+msgstr "Pontuação total:"
 
 #: templates/user/settings.html:12
 msgid "User Account"

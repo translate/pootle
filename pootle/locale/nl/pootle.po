@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-14 09:35+0100\n"
-"PO-Revision-Date: 2017-05-27 12:09+0000\n"
+"PO-Revision-Date: 2017-06-29 01:48+0000\n"
 "Last-Translator: Tonnes <tonnes.mb@gmail.com>\n"
 "Language-Team: TOMTT (Tom's One-Man Translation Team)\n"
 "Language: nl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1495886995.000000\n"
+"X-POOTLE-MTIME: 1498700921.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -582,9 +582,8 @@ msgid "The URL or path to your translation files"
 msgstr "De URL of het pad naar uw vertaalbestanden"
 
 #: apps/pootle_fs/forms.py:47
-#, fuzzy
 msgid "Translation mapping presets"
-msgstr "Presets voor vertaaltoewijzing"
+msgstr "Voorkeuzen voor vertaaltoewijzing"
 
 #: apps/pootle_fs/forms.py:55
 msgid "Translation path mapping"
@@ -647,7 +646,6 @@ msgid "Add a user to this team"
 msgstr "Een gebruiker aan dit team toevoegen"
 
 #: apps/pootle_language/forms.py:103
-#, fuzzy
 msgid "Search for users to add"
 msgstr "Zoeken naar gebruikers om toe te voegen"
 
@@ -1032,7 +1030,6 @@ msgid "Comment"
 msgstr "Opmerking"
 
 #: apps/pootle_statistics/models.py:60
-#, fuzzy
 msgid "Check"
 msgstr "Controle"
 
@@ -1139,19 +1136,18 @@ msgid "Comment:"
 msgstr "Opmerking:"
 
 #: apps/pootle_store/unit/timeline.py:191
-#, fuzzy
 msgid "Removed comment"
-msgstr "Heeft opmerking verwijderd"
+msgstr "Opmerking verwijderd"
 
 #: apps/pootle_store/unit/timeline.py:216
-#, fuzzy, python-format
+#, python-format
 msgid "Muted %(check_name)s check"
-msgstr "Heeft controle voor %(check_name)s verborgen"
+msgstr "Controle voor %(check_name)s verborgen"
 
 #: apps/pootle_store/unit/timeline.py:225
-#, fuzzy, python-format
+#, python-format
 msgid "Unmuted %(check_name)s check"
-msgstr "Heeft controle voor %(check_name)s zichtbaar gemaakt"
+msgstr "Controle voor %(check_name)s zichtbaar gemaakt"
 
 #: apps/pootle_store/utils.py:137
 msgid "Suggestion accepted with comment"
@@ -1941,9 +1937,8 @@ msgstr "Juridisch"
 #. websites published in Germany and certain other German-speaking countries,
 #. such as Austria and Switzerland. See https://en.wikipedia.org/wiki/Impressum
 #: strings.py:46
-#, fuzzy
 msgid "Imprint"
-msgstr "printf()"
+msgstr "Impressum"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:48
@@ -1952,9 +1947,8 @@ msgstr "Licentie"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:50
-#, fuzzy
 msgid "License Statement"
-msgstr "Licentievoorwaarden"
+msgstr "Licentieverklaring"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:52
@@ -2809,7 +2803,7 @@ msgstr "Pagina %(page_number)s van %(page_count)s."
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Results per page: %(n)s"
-msgstr ""
+msgstr "Resultaten per pagina: %(n)s"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"

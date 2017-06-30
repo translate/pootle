@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-13 15:55+0100\n"
-"PO-Revision-Date: 2016-05-04 06:52+0000\n"
-"Last-Translator: wrinos <wrinos@naver.com>\n"
+"PO-Revision-Date: 2017-06-27 14:41+0000\n"
+"Last-Translator: arthur <seo@peonis.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1462344778.000000\n"
+"X-POOTLE-MTIME: 1498574464.000000\n"
 
 #: static/js/admin/components/AdminController.js:136
 msgid "Saved successfully."
@@ -113,7 +113,7 @@ msgstr "개요"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
 msgid "Team"
-msgstr ""
+msgstr "팀"
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -151,7 +151,8 @@ msgstr "프로젝트 편집"
 msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
-"프로젝트를 찾기위해 검색창을 사용하고, 편집하려면 해당 프로젝트를 클릭하세요."
+"프로젝트를 찾기 위해 검색창을 사용하고, 편집하려면 해당 프로젝트를 클릭하세"
+"요."
 
 #: static/js/admin/components/Project/ProjectForm.js:73
 msgid "Quality Checks"
@@ -197,7 +198,7 @@ msgstr "권한"
 #: static/js/admin/components/Project/ProjectForm.js:152
 #, fuzzy
 msgid "Filesystems"
-msgstr "파일 형식"
+msgstr "파일 시스템"
 
 #: static/js/admin/components/Search.js:68
 msgid "Load More"
@@ -233,7 +234,7 @@ msgstr "사용자 찾기"
 
 #: static/js/admin/components/User/UserController.js:80
 msgid "Find user by name, email, properties"
-msgstr "이름, email, 속성값 이용 유저 찾기"
+msgstr "이름, 이메일, 등록정보를 이용하여  사용자 찾기"
 
 #: static/js/admin/components/User/UserEdit.js:28
 msgid "Edit User"
@@ -241,14 +242,15 @@ msgstr "사용자 편집"
 
 #: static/js/admin/components/User/UserEdit.js:38
 msgid "Use the search form to find the user, then click on a user to edit."
-msgstr "검색창을 이용해 사용자를 찾고, 해당 사용자를 클릭해 편집하세요."
+msgstr ""
+"사용자를 찾기 위해 검색창을 이용하고, 편집을 위해 해당 사용자를 클릭하세요."
 
 #: static/js/admin/components/User/UserForm.js:47
 msgid ""
 "Note: when deleting a user their contributions to the site, e.g. comments, "
 "suggestions and translations, are attributed to the anonymous user (nobody)."
 msgstr ""
-"주의: 사이트 내의 기여한 사용자를 삭제하는 경우, 주석, 제안, 그리고 번역들과 "
+"주의: 사이트에서 기여한 사용자를 삭제하는 경우, 주석, 제안, 그리고 번역들과 "
 "같은 것들의 속성이 (그 누구도 아닌) 익명의 사용자로 처리됩니다."
 
 #: static/js/admin/components/User/UserForm.js:63
@@ -271,7 +273,7 @@ msgstr "비밀번호"
 
 #: static/js/admin/components/User/UserForm.js:82
 msgid "Set a new password"
-msgstr "새 비밀번호 지정"
+msgstr "새 비밀번호 설정"
 
 #: static/js/admin/components/User/UserForm.js:98
 #: static/js/auth/components/SignUpForm.js:92
@@ -316,7 +318,7 @@ msgstr "짧은 경력"
 
 #: static/js/admin/components/User/UserForm.js:144
 msgid "Personal description"
-msgstr "인물 묘사"
+msgstr "개인별 상세정보"
 
 #: static/js/admin/components/User/UserForm.js:160
 msgid "Public Profile"
@@ -328,24 +330,25 @@ msgstr "설정"
 
 #: static/js/admin/general/components/ContentPreview.js:32
 msgid "Preview will be displayed here."
-msgstr "미리보기가 여기에 표시될 것입니다."
+msgstr "미리보기는 여기에 표시될 것입니다."
 
 #: static/js/auth/components/AccountActivation.js:33
-#, fuzzy, python-format, javascript-format
+#, python-format, javascript-format
 msgid ""
 "We have sent an email containing the special link to <span>%s</span>. Please "
 "check your spam folder if you do not see the email."
-msgstr "<span>%s</span>로 특별한 링크가 포함된 이메일을 보냈습니다."
+msgstr ""
+"<span>%s</span>로 특별한 링크가 포함된 이메일을 보냈습니다 만약 이메일 수신되"
+"지 않으면 스팸폴더를 체크하세요."
 
 #: static/js/auth/components/AccountActivation.js:41
-#, fuzzy
 msgid ""
 "We have sent an email containing the special link to the address used to "
 "register this account. Please check your spam folder if you do not see the "
 "email."
 msgstr ""
-"해당 계정으로 등록하실 때 사용하신 주소로 특별한 링크가 포함된 이메일을 보냈"
-"습니다."
+"해당 계정을 등록하기 위해 사용된 주소로 특별한 링크가 포함된 이메일을 보냈습"
+"니다. 만약 이메일이 수신되지 않았으면 스팸폴더를 확인 하세요."
 
 #: static/js/auth/components/AccountActivation.js:47
 msgid "Your account needs activation."
@@ -353,7 +356,7 @@ msgstr "해당 계정을 활성화 시켜 주세요."
 
 #: static/js/auth/components/AccountActivation.js:49
 msgid "Please follow that link to continue the account creation."
-msgstr "계정 생성을 진행하시려면 그 링크를 따라가 주세요."
+msgstr "계속해서 계정 생성을 진행하시려면 그 링크를 따라가 주세요."
 
 #: static/js/auth/components/AccountActivation.js:64
 #: static/js/auth/components/AccountInactive.js:35
@@ -378,8 +381,8 @@ msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used. Please request a new password reset."
 msgstr ""
-"비밀번호 초기화 링크가 유효하지 않습니다, 아마도 이미 사용된 것 같습니다. 새"
-"로 비밀번호 초기화 요청을 하세요."
+"비밀번호 초기화 링크가 유효하지 않습니다, 아마도 이미 사용된 것 같습니다. 비"
+"밀번호 초기화를 다시 요청 하세요."
 
 #: static/js/auth/components/PasswordResetForm.js:89
 msgid "Reset Password"
@@ -396,7 +399,7 @@ msgstr "비밀번호 확인"
 
 #: static/js/auth/components/PasswordResetForm.js:139
 msgid "Set New Password"
-msgstr "새 비밀번호 지정"
+msgstr "새 비밀번호 설정"
 
 #: static/js/auth/components/PasswordResetForm.js:143
 msgid "After changing your password you will sign in automatically."
@@ -409,14 +412,14 @@ msgstr "%s에게 이메일 전송 중..."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:48
 msgid "Please follow that link to continue the password reset procedure."
-msgstr "비밀번호 재설정을 하시려면 링크를 따라 가주세요."
+msgstr "비밀번호 재설정 과정을 계속 하시려면 링크를 따라 가주세요."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:51
 msgid ""
 "Didn't receive an email? Check if it was accidentally filtered out as spam, "
 "or try requesting another copy of the email."
 msgstr ""
-"Email을 받지 못하셨나요? 필터링으로 스팸함에 있는지 확인 하시거나, 다른 "
+"Email을 받지 못하셨나요? 혹시 스팸으로 필터링 되었는지 확인 하시거나, 다른 "
 "email 주소로 요청하세요."
 
 #: static/js/auth/components/RequestPasswordResetSent.js:67
@@ -426,23 +429,23 @@ msgstr "Email 다시 보내기"
 #: static/js/auth/components/SignInForm.js:83
 #: static/js/auth/components/RequestPasswordResetForm.js:122
 msgid "Sign up as a new user"
-msgstr "새 사용자로 가입"
+msgstr "신규 사용자로 가입등록"
 
 #: static/js/auth/components/SignInForm.js:113
 #: static/js/auth/components/SocialVerification.js:107
 msgid "I forgot my password"
-msgstr "내 비밀번호를 잊어버렸습니다"
+msgstr "비밀번호를 잊어버렸습니다"
 
 #: static/js/auth/components/SignInForm.js:124
 #: static/js/auth/components/SocialVerification.js:118
 #: static/js/auth/containers/Auth.js:83
 msgid "Sign In"
-msgstr "접속하기"
+msgstr "로그인"
 
 #: static/js/auth/components/SignInPanel.js:47
 #: static/js/auth/components/SocialVerification.js:74
 msgid "Signed in. Redirecting..."
-msgstr "접속 완료. 리다이렉팅 중..."
+msgstr "로그인 완료. 리다이렉팅 중..."
 
 #: static/js/auth/components/SignInPanel.js:60
 msgid "Social Services"
@@ -508,11 +511,11 @@ msgstr "비밀번호 초기화"
 
 #: static/js/auth/containers/Auth.js:132
 msgid "Oops..."
-msgstr "이런..."
+msgstr "염병할.."
 
 #: static/js/auth/containers/Auth.js:138
 msgid "Social Verification"
-msgstr "사회관계망 인증"
+msgstr "SNS 인증"
 
 #: static/js/browser/components/Stats.js:54
 #, fuzzy
@@ -521,22 +524,22 @@ msgstr "더욱"
 
 #: static/js/browser/components/Stats.js:67
 msgid "Contributors, 30 Days"
-msgstr ""
+msgstr "30일 이상 기여자"
 
 #: static/js/browser/components/TopContributorsTable.js:23
 #, python-format
 msgid "#%(position)s"
-msgstr ""
+msgstr "#%(위치)"
 
 #: static/js/browser/components/VisibilityToggle.js:46
 #, fuzzy
 msgid "Show disabled"
-msgstr "사용 안 함"
+msgstr "보기기능이 비활성화됨"
 
 #: static/js/browser/components/VisibilityToggle.js:47
 #, fuzzy
 msgid "Hide disabled"
-msgstr "사용 안 함"
+msgstr "숨기기 기능을 사용 안 함"
 
 #: static/js/browser.js:267
 msgid "All Languages"
@@ -548,7 +551,7 @@ msgstr "모든 프로젝트"
 
 #: static/js/common.js:142
 msgid "Updating data"
-msgstr ""
+msgstr "데이타 업데이트중"
 
 #: static/js/editor/app.js:339 static/js/editor/app.js:658
 msgid ""
@@ -603,7 +606,7 @@ msgstr "%s의 제안"
 #: static/js/editor/app.js:528
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
-msgstr "%s 덮여쓰여진 제출"
+msgstr "%s 중복 제출"
 
 #: static/js/editor/app.js:1069
 msgid "Error while connecting to the server"
@@ -619,7 +622,7 @@ msgstr "서버 오류"
 
 #: static/js/editor/app.js:1078
 msgid "The server seems down. Try again later."
-msgstr "서버가 다운됐습니다. 나중에 다시 시도하세요."
+msgstr "서버가 다운된것으로 보입니다. 나중에 다시 시도하세요."
 
 # unit : 단위, 단일체, 장치, 학점, 부대, 교외전차, 편성 단위
 #: static/js/editor/app.js:1087
@@ -628,7 +631,7 @@ msgstr "이 문자열은 더 이상 존재하지 않습니다."
 
 #: static/js/editor/app.js:1088
 msgid "Go back to browsing"
-msgstr "검색하기로 돌아가기"
+msgstr "검색상태로 돌아가기"
 
 #: static/js/editor/app.js:1090
 msgid "Reload page"
@@ -636,7 +639,7 @@ msgstr "페이지 다시 불러오기"
 
 #: static/js/editor/app.js:2188
 msgid "some anonymous user"
-msgstr "몇명의 익명 사용자"
+msgstr "약간의 익명 사용자"
 
 #: static/js/editor/app.js:2190
 msgid "someone"
@@ -650,28 +653,28 @@ msgstr "유사한 번역"
 #: static/js/editor/components/UnitSource.js:52
 #, python-format
 msgid "Plural form %(index)s"
-msgstr ""
+msgstr "%(index)s 의 복수형"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:93
 msgid "Edit the suggestion before accepting, if necessary"
-msgstr ""
+msgstr "필요한 경우 제안을 수락 하기전에 편집을 완료하세요."
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:107
 msgid "Provide optional comment (will be publicly visible)"
-msgstr ""
+msgstr "선택적 주석 제공 (공개적으로 표시됨)"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:119
 msgid "Accept"
-msgstr ""
+msgstr "수락"
 
 #: static/js/editor/components/SuggestionFeedbackForm.js:123
 msgid "Reject"
-msgstr ""
+msgstr "거절"
 
 #: static/js/editor/components/UploadTimeSince.js:35
 #, python-format
 msgid "%(timeSince)s via file upload"
-msgstr ""
+msgstr "파일 업로드 %(timeSince)s "
 
 #: static/js/shared/components/FormSelectInput.js:39
 msgid "Clear all"
@@ -703,7 +706,7 @@ msgstr "축하합니다! 이 작업을 완료하셨습니다!"
 
 #: static/js/stats.js:127
 msgid "Collapse details"
-msgstr "세부사항 접기"
+msgstr "세부사항 숨기기"
 
 #: static/js/stats.js:127
 msgid "Expand details"
@@ -719,7 +722,7 @@ msgstr "나의 공개 프로파일"
 
 #: static/js/user/components/UserProfileEdit.js:117
 msgid "Discard changes."
-msgstr "변경 사항 무시하기."
+msgstr "변경내용 취소하기."
 
 #: static/js/user/components/UserProfileEdit.js:118
 msgid "Yes"
@@ -731,7 +734,7 @@ msgstr "아니요"
 
 #: static/js/user/components/UserProfileEdit.js:121
 msgid "There are unsaved changes. Do you want to discard them?"
-msgstr "변경사항이 저장되지 않았습니다. 변경사항을 무시하시겠습니까?"
+msgstr "변경사항이 저장되지 않았습니다. 변경사항을 취소 하시겠습니까?"
 
 #: static/js/user/components/UserProfileForm.js:59
 #, python-format
@@ -739,8 +742,8 @@ msgid ""
 "To set or change your avatar for your email address (%(email)s), please go "
 "to gravatar.com."
 msgstr ""
-"당신의 이메일 주소 (%(email)s) 에 해당하는 아바트를 설정하거나 바꾸려면, "
-"gravartar.com으로 이동 하세요."
+"당신의 이메일 주소 (%(email)s) 에 해당하는 아바타를 변경하거나 설정하기 위해"
+"서는 gravartar.com으로 이동 하세요."
 
 #: static/js/user/components/UserProfileForm.js:75
 msgid "Your Full Name"
@@ -767,8 +770,8 @@ msgid ""
 "Why are you part of our translation project? Describe yourself, inspire "
 "others!"
 msgstr ""
-"본 번역 프로젝트의 일원이 되려는 이유를 알려주시겠어요? 좀 더 여러분을 알려주"
-"시고, 다른 사람들에게 자극을 주세요!"
+"본 번역 프로젝트의 일원이 되려는 이유를 알려주시겠어요? 좀 더 본인에 대해서 "
+"알려주시고, 다른 사람들에게도 자극을 주세요!"
 
 #: static/js/auth/components/RequestPasswordResetForm.js:96
 msgid "Email Address"
@@ -779,8 +782,8 @@ msgid ""
 "Enter your email address, and we will send you a message with the special "
 "link to reset your password."
 msgstr ""
-"당신의 email주소를 입력하세요, 당신의 암호를 초기화 할 수 있는 특별한 링크가 "
-"있는 메세지를 당신에게 보내겠습니다."
+"당신의 email주소를 입력하세요, 당신의 암호를 초기화 할 수 있는 링크가 포함된 "
+"메세지를 당신에게 보내겠습니다."
 
 #: static/js/auth/components/RequestPasswordResetForm.js:108
 msgid "No, thanks"
@@ -793,7 +796,7 @@ msgstr "Email 보내기"
 #: static/js/auth/components/RequestPasswordResetSent.js:44
 #, python-format
 msgid "We have sent an email containing the special link to <span>%s</span>"
-msgstr "<span>%s</span>로 특별한 링크가 포함된 이메일을 보냈습니다."
+msgstr "<span>%s</span>로 링크가 포함된 이메일을 보냈습니다."
 
 #: static/js/auth/components/SignInForm.js:85
 msgid "Creating new user accounts is prohibited."
@@ -808,8 +811,8 @@ msgid ""
 "accounts."
 msgstr ""
 "시스템에서 email이 <span>%s</span> 인 사용자를 찾았습니다. 가입절차를 마치기 "
-"위해서 암호를 규정 하십시오. 당신의 Pootle 와 %s 계정간에 연걸 설정을 위한, "
-"절차 중 하나 입니다."
+"위해서 암호를 입력 하십시오. 당신의 Pootle %(입력된)s 계정간에 연결 설정을 위"
+"한, 절차 중 하나 입니다."
 
 #: static/js/editor/app.js:650
 msgid "No results."
@@ -828,6 +831,7 @@ msgid "Translated"
 msgstr "번역됨"
 
 #: templates/admin/xhr_language_user_activity.html:9
+#, fuzzy
 msgid "Reviewed"
 msgstr "검토됨"
 

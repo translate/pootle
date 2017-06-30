@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-14 09:35+0100\n"
-"PO-Revision-Date: 2017-05-17 15:30+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2017-06-27 14:43+0000\n"
+"Last-Translator: arthur <seo@peonis.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: ko\n"
 "MIME-Version: 1.0\n"
@@ -19,20 +19,20 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1495035002.000000\n"
+"X-POOTLE-MTIME: 1498574598.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
-"확인 이메일을 보내려고 할 때 어떤 문제가 발생했습니다. 조금 뒤에 다시 시도해 "
-"주세요."
+"확인할 이메일을 보내려고 할 때 어떤 문제가 발생했습니다. 잠시후에 다시 시도"
+"해 주세요."
 
 #: apps/accounts/forms.py:32
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
-msgstr "로그인 중 에러 발생되었습니다. 시스템 관리자에게 연락하세요"
+msgstr "로그인 중 에러가 발생되었습니다. 시스템 관리자에게 문의 하세요"
 
 #: apps/accounts/forms.py:59
 msgid ""
@@ -128,7 +128,7 @@ msgstr "짧은 경력"
 
 #: apps/accounts/models.py:240
 msgid "This email address already exists."
-msgstr "이 email 주소는 이미 존재합니다."
+msgstr "이메일 주소가 중복 됩니다."
 
 #: apps/contact/forms.py:26
 #, fuzzy
@@ -166,17 +166,17 @@ msgstr "당신의 메세지를 입력 해주세요"
 
 #: apps/contact/forms.py:81
 msgid "String context"
-msgstr ""
+msgstr "스타일 컨텍스트"
 
 #: apps/contact/forms.py:91
 #, fuzzy
 msgid "Question or comment"
-msgstr "번역자 주석"
+msgstr "질문이나 의견"
 
 #: apps/contact/forms.py:92
 #, fuzzy
 msgid "Please enter your question or comment"
-msgstr "등록 세부 사항을 입력하십시오"
+msgstr "질문이나 의견을 입력하여 주세요"
 
 #: apps/contact/views.py:35 templates/layout.html:120
 msgid "Contact Us"
@@ -203,7 +203,7 @@ msgstr "오프라인 번역을 위해 번역파일 다운로드"
 #: apps/import_export/templates/browser/index.html:17
 #, fuzzy
 msgid "Download for backup"
-msgstr "파일 내려 받기"
+msgstr "백업을 위한 다운로드"
 
 #: apps/import_export/templates/browser/index.html:26
 msgid "Upload translation files or archives in .zip format"
@@ -216,17 +216,17 @@ msgstr "번역 업로드"
 #: apps/import_export/templates/browser/index.html:36
 #, fuzzy, python-format
 msgid "Upload as %(user)s"
-msgstr "%(user)s 레포트"
+msgstr "%(user)s 로 업로드"
 
 #: apps/import_export/templates/browser/index.html:54
 #, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "오프라인 번역을 위해 다운로드"
+msgstr "번역 프로젝트를 위해 오프라인 TM 다운로드"
 
 #: apps/import_export/templates/browser/index.html:55
 #, fuzzy
 msgid "Download offline TM"
-msgstr "오프라인 번역을 위해 다운로드"
+msgstr "오프라인 TM을 위한 다운로드"
 
 #: apps/import_export/utils.py:38
 #, python-format
@@ -266,6 +266,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
+"해당 파일 유형의 파일 ( '% s')이 있는 경우 프로젝트에서 파일 유형을 제거 할 "
+"수 없습니다."
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -521,20 +523,20 @@ msgstr "XML 태그"
 #: apps/pootle_checks/constants.py:80
 #, fuzzy
 msgid "ftl format"
-msgstr "날짜 형식"
+msgstr "ftl 형식"
 
 #: apps/pootle_checks/constants.py:83
 msgid "Romanian: Avoid cedilla diacritics"
-msgstr ""
+msgstr "루마니아어 : 디유의 발음 구별 부호를 피하세요"
 
 #: apps/pootle_checks/constants.py:84
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "루마니아어: \"아니오\"/ \"아니오\" 를 사용하세요"
 
 #: apps/pootle_format/abstracts.py:36
 #, fuzzy
 msgid "Format name"
-msgstr "이름"
+msgstr "형식 이름"
 
 #: apps/pootle_format/abstracts.py:41
 msgid "Format title"
@@ -548,36 +550,36 @@ msgstr "사용 안 함"
 #: apps/pootle_format/abstracts.py:47
 #, fuzzy
 msgid "Monolingual format"
-msgstr "안드로이드 포멧"
+msgstr "단일언어 형식"
 
 #: apps/pootle_fs/forms.py:24
 msgid "GNU-style"
-msgstr ""
+msgstr "GNU-스타일"
 
 #: apps/pootle_fs/forms.py:26
 msgid "non GNU-style"
-msgstr ""
+msgstr "비 GNU-스타일"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Django-style"
-msgstr ""
+msgstr "Django-스타일"
 
 #: apps/pootle_fs/forms.py:31
 msgid "Custom"
-msgstr ""
+msgstr "커스텀"
 
 #: apps/pootle_fs/forms.py:37
 msgid "Filesystem backend"
-msgstr ""
+msgstr "백앤드 파일시스템"
 
 #: apps/pootle_fs/forms.py:38
 #, fuzzy
 msgid "Select a filesystem backend"
-msgstr "올릴 파일을 선택하십시오"
+msgstr "백앤드 파일시스템을 선택하십시오"
 
 #: apps/pootle_fs/forms.py:43
 msgid "Backend URL or path"
-msgstr ""
+msgstr "백앤드 URL 이나 경로"
 
 #: apps/pootle_fs/forms.py:45
 msgid "The URL or path to your translation files"
@@ -598,20 +600,21 @@ msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
+"파일 시스템의 현재 파일을 Pootle 파일로 매핑하도록 번역경로를 매핑 합니다."
 
 #: apps/pootle_fs/forms.py:182
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "파일시스템의 언어 코드는 유일해야 합니다."
 
 #: apps/pootle_fs/forms.py:186
 #, fuzzy
 msgid "Pootle language mappings must be unique"
-msgstr "Pootle 언어 관리자 페이지"
+msgstr "Pootle 언어는 고유하게  매핑되어야 합니다."
 
 #: apps/pootle_language/forms.py:27
 #, fuzzy
 msgid "Member"
-msgstr "숫자"
+msgstr "인원"
 
 #: apps/pootle_language/forms.py:28
 #, fuzzy
@@ -659,16 +662,16 @@ msgstr ""
 
 #: apps/pootle_language/forms.py:103
 msgid "Search for users to add"
-msgstr ""
+msgstr "추가할 사용자를 검색하세요."
 
 #: apps/pootle_language/forms.py:106
 msgid "Role"
-msgstr ""
+msgstr "규칙"
 
 #: apps/pootle_language/forms.py:137
 #, fuzzy
 msgid "Role is required when adding a new member"
-msgstr "Redis는 백엔드를 캐시메모리에 저장하는데 필요합니다."
+msgstr "규칙은 새 인원을 추가할때 필요합니다."
 
 #: apps/pootle_language/forms.py:163 core/forms.py:218
 msgid "Reject"
@@ -681,12 +684,12 @@ msgstr "수락"
 #: apps/pootle_language/forms.py:166
 #, fuzzy
 msgid "Filter by suggester"
-msgstr "사용자 제안"
+msgstr "제안자 필터"
 
 #: apps/pootle_language/forms.py:172
 #, fuzzy
 msgid "Filter by state"
-msgstr "필터"
+msgstr "상황별 필터"
 
 #: apps/pootle_language/forms.py:182 apps/pootle_language/views.py:218
 #: core/browser.py:26
@@ -758,24 +761,24 @@ msgstr "제안"
 #: apps/pootle_language/views.py:216
 #, fuzzy
 msgid "Suggested by"
-msgstr "제안"
+msgstr "~에 의해 제안됨"
 
 #: apps/pootle_language/views.py:217
 #, fuzzy
 msgid "Suggested at"
-msgstr "제안"
+msgstr "~에서 제안됨"
 
 #: apps/pootle_language/views.py:239
 #, fuzzy, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
-msgstr[0] "%(source_string)s때문에 취소된 제안"
+msgstr[0] "댓글이 있는 % s 추천을 거부했습니다. 사용자에게 알림이 전송됩니다."
 
 #: apps/pootle_language/views.py:244
 #, fuzzy, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
-msgstr[0] "%(source_string)s위해 받아들여진 제안"
+msgstr[0] "댓글이 있는 % s 제안을 수락했습니다. 사용자에게 알림이 전송됩니다."
 
 #: apps/pootle_language/views.py:249
 #, fuzzy, python-format
@@ -851,7 +854,7 @@ msgstr "마지막 (%d)"
 
 #: apps/pootle_misc/templatetags/search.py:28
 msgid "Search unavailable"
-msgstr ""
+msgstr "검색 불가능"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:35
 #, fuzzy, python-format
@@ -866,7 +869,7 @@ msgstr "이것을 트윗하세요!"
 #: apps/pootle_profile/templatetags/profile_tags.py:52
 #, fuzzy, python-format
 msgid "#%s contributor in %s in the last 30 days"
-msgstr "지난 달에 기여가 없음"
+msgstr "지난 30 일 동안 % s 명의 기여자 % s 명"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:56
 #, fuzzy, python-format

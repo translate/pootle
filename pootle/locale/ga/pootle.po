@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-14 09:35+0100\n"
-"PO-Revision-Date: 2017-05-18 15:43+0000\n"
-"Last-Translator: Seanán <seananoc@gmail.com>\n"
+"PO-Revision-Date: 2017-06-24 14:54+0000\n"
+"Last-Translator: Kevin <kscanne@gmail.com>\n"
 "Language-Team: Irish\n"
 "Language: ga\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=5; plural=(n==1) ? 0 : (n==2) ? 1 : (n>2 && n<7) ? 2 :"
 "(n>6 && n<11) ? 3 : 4;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1495122218.000000\n"
+"X-POOTLE-MTIME: 1498316072.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -646,7 +646,7 @@ msgstr "Cuir úsáideoir leis an bhfoireann seo"
 
 #: apps/pootle_language/forms.py:103
 msgid "Search for users to add"
-msgstr ""
+msgstr "Cuardaigh úsáideoirí nua"
 
 #: apps/pootle_language/forms.py:106
 msgid "Role"
@@ -816,19 +816,19 @@ msgid "Locations"
 msgstr "Suíomhanna"
 
 #: apps/pootle_misc/templatetags/common_tags.py:53
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} untranslated"
-msgstr "%d fhocal gan aistriú"
+msgstr "{percentage} gan aistriú"
 
 #: apps/pootle_misc/templatetags/common_tags.py:55
 #, python-brace-format
 msgid "{percentage} needs work"
-msgstr ""
+msgstr "{percentage} le deimhniú"
 
 #: apps/pootle_misc/templatetags/common_tags.py:57
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} translated"
-msgstr "Neamhaistrithe"
+msgstr "{percentage} neamhaistrithe"
 
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
@@ -1601,26 +1601,26 @@ msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Suiteáil an pacáiste nó athraigh POOTLE_MARKUP_FILTER."
 
 #: checks.py:392
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER set to 'None' is deprecated."
-msgstr "POOTLE_MARKUP_FILTER ar iarraidh."
+msgstr "Ní mholtar POOTLE_MARKUP_FILTER == 'None' a úsáid a thuilleadh."
 
 #: checks.py:393
 msgid "Set your markup to 'html' explicitly."
-msgstr ""
+msgstr "Sonraigh marcáil 'html' go follasach."
 
 #: checks.py:398
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "POOTLE_MARKUP_FILTER is using '%s' markup, which is deprecated and will be "
 "removed in future."
 msgstr ""
-"Is é '%s' an POOTLE_MARKUP_FILTER, ach níor aimsíodh an pacáiste a "
-"sholáthraíonn sin."
+"Is é '%s' an POOTLE_MARKUP_FILTER, ach ní mholtar é sin a úsáid a thuilleadh "
+"agus bainfear é amach anseo."
 
 #: checks.py:401
 msgid "Convert your staticpages to Markdown and set your markup to 'markdown'."
 msgstr ""
+"Athraigh do chuid leathanach statach go Markdown agus roghnaigh 'markdown'."
 
 #: checks.py:422
 msgid "The default 'admin' user still has a password set to 'admin'."
@@ -1839,9 +1839,8 @@ msgid "Can perform administrative tasks"
 msgstr "Is féidir tascanna bainistíochta a dhéanamh"
 
 #: core/views/base.py:122
-#, fuzzy
 msgid "Entire Project"
-msgstr "Tionscadail ghníomhacha"
+msgstr "Tionscadal Iomlán"
 
 #: core/views/display.py:103 core/views/display.py:125
 #, python-format
@@ -1939,9 +1938,8 @@ msgstr "Cúrsaí Dlí"
 #. websites published in Germany and certain other German-speaking countries,
 #. such as Austria and Switzerland. See https://en.wikipedia.org/wiki/Impressum
 #: strings.py:46
-#, fuzzy
 msgid "Imprint"
-msgstr "clóbhuailf()"
+msgstr "Inphrionta"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:48
@@ -1950,7 +1948,6 @@ msgstr "Ceadúnas"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:50
-#, fuzzy
 msgid "License Statement"
 msgstr "Ceadúnas"
 
@@ -2806,7 +2803,7 @@ msgstr "Leathanach %(page_number)s as %(page_count)s."
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Results per page: %(n)s"
-msgstr ""
+msgstr "Torthaí sa leathanach: %(n)s"
 
 #: templates/includes/formtable.html:85
 msgid "Select all"
@@ -2926,7 +2923,6 @@ msgstr ""
 "tionscadal seo."
 
 #: templates/projects/admin/languages.html:15
-#, fuzzy
 msgid ""
 "Adding new languages from this screen is disabled. You will need to update "
 "your sources directly, and update Pootle from there."
@@ -2988,7 +2984,7 @@ msgstr ""
 
 #: templates/translation_projects/terminology/_term_edit.html:11
 msgid "Description..."
-msgstr "Cur síos..."
+msgstr "Cur Síos..."
 
 #: templates/translation_projects/terminology/_term_edit.html:18
 msgid "Details..."

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-14 09:35+0100\n"
-"PO-Revision-Date: 2017-06-14 12:22+0000\n"
+"PO-Revision-Date: 2017-06-24 15:04+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1497442955.000000\n"
+"X-POOTLE-MTIME: 1498316652.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -848,11 +848,10 @@ msgid "#%s contributor in %s in the last 30 days"
 msgstr "Son 30 gün içindeki #%s katılımcının bulunduğu %s sitesi"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
 msgstr ""
-"Ben %(server_title)s sitesinde son 30 gün içinde %(lang_name)s dilinde #"
-"%(pos)s katılımcısıyım! "
+"Ben #%s olarak, son 30 gün içinde %s dilinde %s sitesinde katılımcıyım!"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
@@ -1613,6 +1612,8 @@ msgstr ""
 #: checks.py:401
 msgid "Convert your staticpages to Markdown and set your markup to 'markdown'."
 msgstr ""
+"Sabit sayfalarınızı Markdown'a dönüştürün ve işaretlemenizi 'markdown' "
+"olarak ayarlayın."
 
 #: checks.py:422
 msgid "The default 'admin' user still has a password set to 'admin'."

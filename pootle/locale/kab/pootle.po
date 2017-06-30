@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-14 09:35+0100\n"
-"PO-Revision-Date: 2017-04-25 18:41+0000\n"
-"Last-Translator: Dwayne Bailey <dwayne@translate.org.za>\n"
+"PO-Revision-Date: 2017-06-28 15:38+0000\n"
+"Last-Translator: belkacem77 <belkacem77@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: kab\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1493145713.000000\n"
+"X-POOTLE-MTIME: 1498664316.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -56,7 +56,6 @@ msgid "Enter a valid username."
 msgstr "Sekcem isem n useqdac ameɣtu"
 
 #: apps/accounts/models.py:64
-#, fuzzy
 msgid "A user with that username already exists."
 msgstr "Tansa-agi imayl tella yakan."
 
@@ -135,14 +134,12 @@ msgid "This email address already exists."
 msgstr "Tansa-agi imayl tella yakan."
 
 #: apps/contact/forms.py:26
-#, fuzzy
 msgid "Subject"
-msgstr "Aggi"
+msgstr "Asentel"
 
 #: apps/contact/forms.py:28
-#, fuzzy
 msgid "Please enter a message subject"
-msgstr "Ma ulac aɣlif, sekcem izen inek"
+msgstr "Ma ulac aɣlif, sekcem asentel n yizen"
 
 #: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
@@ -170,17 +167,15 @@ msgstr "Ma ulac aɣlif, sekcem izen inek"
 
 #: apps/contact/forms.py:81
 msgid "String context"
-msgstr ""
+msgstr "Asatal n uzrir"
 
 #: apps/contact/forms.py:91
-#, fuzzy
 msgid "Question or comment"
-msgstr "Asumer ur ittwaqbel ara s uwennit"
+msgstr "Asteqsi neɣ awennit"
 
 #: apps/contact/forms.py:92
-#, fuzzy
 msgid "Please enter your question or comment"
-msgstr "Ttxilek sekcem isem-ik"
+msgstr "Sekcem asteqsi neɣ awennit"
 
 #: apps/contact/views.py:35 templates/layout.html:120
 msgid "Contact Us"
@@ -486,7 +481,7 @@ msgstr ""
 
 #: apps/pootle_checks/constants.py:68
 msgid "Starting whitespace"
-msgstr ""
+msgstr "Isekkilen ilmawen n tazwara"
 
 #. Translators: This refers to tabulation characters
 #: apps/pootle_checks/constants.py:70
@@ -1132,24 +1127,22 @@ msgid "Unit created"
 msgstr "Aferdis yettwarna"
 
 #: apps/pootle_store/unit/timeline.py:188
-#, fuzzy
 msgid "Comment:"
 msgstr "Awennit:"
 
 #: apps/pootle_store/unit/timeline.py:191
-#, fuzzy
 msgid "Removed comment"
-msgstr "Kkas awennit"
+msgstr "Awennit yettwakkes"
 
 #: apps/pootle_store/unit/timeline.py:216
-#, fuzzy, python-format
+#, python-format
 msgid "Muted %(check_name)s check"
-msgstr "Sens asenqed n  <a href=\"%(check_url)s\">%(check_name)s</a>"
+msgstr "Asenqed %(check_name)s yettwanef"
 
 #: apps/pootle_store/unit/timeline.py:225
-#, fuzzy, python-format
+#, python-format
 msgid "Unmuted %(check_name)s check"
-msgstr "Rmed asenqed n <a href=\"%(check_url)s\">%(check_name)s</a>"
+msgstr "Asenqed %(check_name)s yermed"
 
 #: apps/pootle_store/utils.py:137
 msgid "Suggestion accepted with comment"
@@ -1416,11 +1409,13 @@ msgid "Not using cached_db as session engine"
 msgstr ""
 
 #: checks.py:224
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
-msgstr "Sbadu SESSION_ENGINE ar django.contrib.sessions.backend.cached_db\n"
+msgstr ""
+"Sbadu SESSION_ENGINE ar django.contrib.sessions.backend.cached_db\n"
+"Iɣewwaṛen imiranen: %r"
 
 #: checks.py:232
 msgid "POOTLE_CONTACT_EMAIL is not set."
@@ -1522,24 +1517,24 @@ msgid ""
 msgstr "Sbadu TẒẒAYT gar 0.0 akked 1.0 (i sin ddan) i POOTLE_TM_SERVER['%s']."
 
 #: checks.py:327
-#, fuzzy, python-format
+#, python-format
 msgid "POOTLE_SCORES has no %s."
-msgstr "POOTLE_SCORE_COEFFICIENTS ulac ɣur-s %s."
+msgstr "POOTLE_SCORES ulac ɣur-s %s."
 
 #: checks.py:328
-#, fuzzy, python-format
+#, python-format
 msgid "Set %s in POOTLE_SCORES."
-msgstr "Sbadu %s in POOTLE_SCORE_COEFFICIENTS."
+msgstr "Sbadu %s deg POOTLE_SCORES."
 
 #: checks.py:336
-#, fuzzy, python-format
+#, python-format
 msgid "Invalid value for %s in POOTLE_SCORES."
-msgstr "Azal arameɣtu i %s di POOTLE_SCORE_COEFFICIENTS."
+msgstr "Azal arameɣtu i %s di POOTLE_SCORES."
 
 #: checks.py:339
-#, fuzzy, python-format
+#, python-format
 msgid "Set a valid value for %s in POOTLE_SCORES."
-msgstr "Sbadu azal ameɣtu i %s in POOTLE_SCORE_COEFFICIENTS."
+msgstr "Sbadu azal ameɣtu i %s di POOTLE_SCORES."
 
 #: checks.py:355
 msgid "POOTLE_MARKUP_FILTER is missing."
@@ -1577,9 +1572,8 @@ msgid "Install the package or change POOTLE_MARKUP_FILTER."
 msgstr "Sebded akemmus neɣ snifel POOTLE_MARKUP_FILTER."
 
 #: checks.py:392
-#, fuzzy
 msgid "POOTLE_MARKUP_FILTER set to 'None' is deprecated."
-msgstr "POOTLE_MARKUP_FILTER ulac-it."
+msgstr "POOTLE_MARKUP_FILTER yettusbadun ar 'None' ulac-it.d aqbur."
 
 #: checks.py:393
 msgid "Set your markup to 'html' explicitly."
@@ -1671,11 +1665,12 @@ msgid ""
 msgstr ""
 
 #: checks.py:551
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
-"Abrid i d-yemmal POOTLE_FS_WORKING_PATH ur izmir ara ad yeru deg-s Pootle."
+"Abrid ('%s') i d-yemmal POOTLE_FS_WORKING_PATH ur izmir ara ad yeru deg-s "
+"Pootle."
 
 #: checks.py:554
 msgid ""
@@ -1800,9 +1795,8 @@ msgid "Can perform administrative tasks"
 msgstr "Yezmer ad iselkem tiwurwin n tnebdelt"
 
 #: core/views/base.py:122
-#, fuzzy
 msgid "Entire Project"
-msgstr "Asenfar"
+msgstr "Asenfar meṛṛa"
 
 #: core/views/display.py:103 core/views/display.py:125
 #, python-format
@@ -1900,9 +1894,8 @@ msgstr "Usḍif"
 #. websites published in Germany and certain other German-speaking countries,
 #. such as Austria and Switzerland. See https://en.wikipedia.org/wiki/Impressum
 #: strings.py:46
-#, fuzzy
 msgid "Imprint"
-msgstr "printf()"
+msgstr "Imprint"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:48
@@ -2655,7 +2648,6 @@ msgid "Remove comment"
 msgstr "Kkas awennit"
 
 #: templates/editor/units/xhr_comment.html:19
-#, fuzzy
 msgid "Сomment:"
 msgstr "Awennit:"
 
@@ -2982,7 +2974,6 @@ msgid "Latest activity:"
 msgstr "Armud aneggaru:"
 
 #: templates/user/includes/profile_score.html:3
-#, fuzzy
 msgid "Total score:"
 msgstr "Amḍan n wawalen:"
 
