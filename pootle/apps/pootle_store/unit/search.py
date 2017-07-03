@@ -114,6 +114,7 @@ class DBSearchBackend(object):
         category = kwargs['category']
         checks = kwargs['checks']
         exact = 'exact' in kwargs['soptions']
+        case = 'case' in kwargs['soptions']
         modified_since = kwargs['modified-since']
         month = kwargs['month']
         search = kwargs['search']
@@ -136,7 +137,7 @@ class DBSearchBackend(object):
 
         if sfields and search:
             qs = UnitTextSearch(qs).search(
-                search, sfields, exact=exact)
+                search, sfields, exact=exact, case=case)
         return qs
 
     @cached_property

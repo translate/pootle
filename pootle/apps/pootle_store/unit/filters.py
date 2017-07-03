@@ -175,19 +175,19 @@ class UnitTextSearch(object):
             return [text]
         return [t.strip() for t in text.split(" ") if t.strip()]
 
-    def search(self, text, sfields, exact=False):
+    def search(self, text, sfields, exact=False, case=False):
         result = self.qs.none()
         words = self.get_words(text, exact)
 
         for k in self.get_search_fields(sfields):
-            result |= self.search_field(k, words, exact=exact)
+            result |= self.search_field(k, words, exact=exact, case=case)
         return result
 
-    def search_field(self, k, words, exact=False):
+    def search_field(self, k, words, exact=False, case=False):
         subresult = self.qs
         contains = (
             "contains"
-            if exact
+            if case
             else "icontains")
         for word in words:
             subresult = subresult.filter(
