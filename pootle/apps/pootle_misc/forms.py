@@ -107,9 +107,8 @@ class SearchForm(forms.Form):
         required=False,
         widget=forms.CheckboxSelectMultiple,
         choices=(
-            ('exact', _('Exact Match')),
-        ),
-    )
+            ('exact', _('Phrase match')),
+            ('case', _('Case-sensitive match'))))
     sfields = forms.MultipleChoiceField(
         required=False,
         widget=forms.CheckboxSelectMultiple,
