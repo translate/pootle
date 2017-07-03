@@ -21,16 +21,16 @@ from pootle_store.unit.filters import (
 from pootle_store.unit.search import DBSearchBackend
 
 
-def _expected_text_search_words(text, exact):
-    if exact:
+def _expected_text_search_words(text, case):
+    if case:
         return [text]
     return [t.strip() for t in text.split(" ") if t.strip()]
 
 
-def _expected_text_search_results(qs, words, search_fields, exact):
+def _expected_text_search_results(qs, words, search_fields, exact, case):
     contains = (
         "contains"
-        if exact
+        if case
         else "icontains")
 
     def _search_field(k):
@@ -137,17 +137,17 @@ def _test_units_contribution_filter(qs, user, unit_filter):
         == list(result.order_by("pk")))
 
 
-def _test_unit_text_search(qs, text, sfields, exact, empty=True):
+def _test_unit_text_search(qs, text, sfields, exact, case, empty=True):
 
     unit_search = UnitTextSearch(qs)
-    result = unit_search.search(text, sfields, exact).order_by("pk")
+    result = unit_search.search(text, sfields, exact, case).order_by("pk")
     words = unit_search.get_words(text, exact)
     fields = unit_search.get_search_fields(sfields)
 
     # ensure result meets our expectation
     assert (
         list(result)
-        == _expected_text_search_results(qs, words, fields, exact))
+        == _expected_text_search_results(qs, words, fields, exact, case))
 
     # ensure that there are no dupes in result qs
     assert list(result) == list(result.distinct())
@@ -200,7 +200,7 @@ def test_get_units_text_search(units_text_searches):
 
     sfields = search["sfields"]
     fields = _expected_text_search_fields(sfields)
-    words = _expected_text_search_words(search['text'], search["exact"])
+    words = _expected_text_search_words(search['text'], search["case"])
 
     # ensure the fields parser works correctly
     assert (
@@ -209,20 +209,20 @@ def test_get_units_text_search(units_text_searches):
     # ensure the text tokeniser works correctly
     assert (
         UnitTextSearch(Unit.objects.all()).get_words(
-            search['text'], search["exact"])
+            search['text'], search["case"])
         == words)
     assert isinstance(words, list)
 
     # run the all units test first and check its not empty if it shouldnt be
     _test_unit_text_search(
         Unit.objects.all(),
-        search["text"], search["sfields"], search["exact"],
+        search["text"], search["sfields"], search["exact"], search["case"],
         search["empty"])
 
     for qs in [Unit.objects.none(), Unit.objects.live()]:
         # run tests against different qs
         _test_unit_text_search(
-            qs, search["text"], search["sfields"], search["exact"])
+            qs, search["text"], search["sfields"], search["exact"], search["case"])
 
 
 @pytest.mark.django_db
