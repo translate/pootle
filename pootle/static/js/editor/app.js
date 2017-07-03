@@ -692,10 +692,18 @@ PTL.editor = {
     ]).reduce((a, b) => a.concat(b), []);
 
     let hlRegex;
-    if (searchOptions.indexOf('exact') >= 0) {
-      hlRegex = new RegExp(`(${escapeUnsafeRegexSymbols(searchText)})`);
+    if (searchOptions.indexOf('phrase') >= 0) {
+      if (searchOptions.indexOf('case') >= 0) {
+        hlRegex = new RegExp(`(${escapeUnsafeRegexSymbols(searchText)})`, 'i');
+      } else {
+        hlRegex = new RegExp(`(${escapeUnsafeRegexSymbols(searchText)})`);
+      }
     } else {
-      hlRegex = new RegExp(makeRegexForMultipleWords(searchText), 'i');
+      if (searchOptions.indexOf('case') >= 0) {
+        hlRegex = new RegExp(makeRegexForMultipleWords(searchText), 'i');
+      } else {
+        hlRegex = new RegExp(makeRegexForMultipleWords(searchText));
+      }
     }
     $(sel.join(', ')).highlightRegex(hlRegex);
   },
@@ -978,12 +986,12 @@ PTL.editor = {
   },
 
   /* Applies highlight classes to `boxId`. */
-  highlightBox(boxId, isExact) {
+  highlightBox(boxId, isCase) {
     const bestMatchCls = 'best-match';
-    const exactMatchCls = 'exact-match';
+    const caseMatchCls = 'case-match';
 
     $('.translate-table').find(`.${bestMatchCls}`)
-                         .removeClass(`${bestMatchCls} ${exactMatchCls}`);
+                         .removeClass(`${bestMatchCls} ${caseMatchCls}`);
 
     if (boxId === null) {
       return false;
@@ -991,7 +999,7 @@ PTL.editor = {
 
     $(boxId).addClass(cx({
       [bestMatchCls]: true,
-      [exactMatchCls]: isExact,
+      [caseMatchCls]: isCase,
     }));
     return true;
   },
