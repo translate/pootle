@@ -11,8 +11,6 @@ need to change the extension of this file from ``.conf.sample`` to ``.conf``.
 
 from pootle.i18n.gettext import ugettext_lazy as _
 
-
-#
 #
 # Base
 #

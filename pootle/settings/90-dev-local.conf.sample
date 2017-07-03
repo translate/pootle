@@ -9,9 +9,6 @@ In order for this configuration changes to take effect, bear in mind that you
 need to change the extension of this file from ``.conf.sample`` to ``.conf``.
 """
 
-from __future__ import unicode_literals
-
-
 #
 # Base
 #
