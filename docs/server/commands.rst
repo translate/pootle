@@ -200,6 +200,10 @@ refresh_scores
 
 Recalculates the scores for all users.
 
+.. warning:: It is advisable to run this command while Pootle server is offline
+   since the command can fail due to data being changed by users.
+
+
 .. django-admin-option:: --reset
 
 When the :option:`--reset` option is used , all score log data is removed and
