@@ -216,6 +216,7 @@ class BuildChecksTemplatesCommand(Command):
             CHECK_NAMES, EXCLUDED_FILTERS)
         from translate.filters.checks import (TeeChecker, StandardChecker,
                                               StandardUnitChecker)
+        from translate.lang.factory import get_all_languages
         try:
             from docutils.core import publish_parts
         except ImportError:
@@ -248,8 +249,13 @@ class BuildChecksTemplatesCommand(Command):
 
         # Get a checker with the Translate Toolkit checks. Note that filters
         # that are not used in Pootle are excluded.
+        checkerclasses = [StandardChecker, StandardUnitChecker]
+        # Also include language-specific checks
+        checkerclasses.extend([type(lang.checker)
+                               for lang in get_all_languages()
+                               if lang.checker is not None])
         fd = TeeChecker(
-            checkerclasses=[StandardChecker, StandardUnitChecker]
+            checkerclasses=checkerclasses
         ).getfilters(excludefilters=EXCLUDED_FILTERS)
 
         docs = sorted(
