@@ -50,8 +50,9 @@ def handle_unit_source_pre_save(**kwargs):
     if created or unit.source_updated:
         unit_source.source_hash = md5(force_bytes(unit.source_f)).hexdigest()
         unit_source.source_length = len(unit.source_f)
-        unit_source.source_wordcount = max(
-            1, (unit.counter.count_words(unit.source_f.strings) or 0))
+        unit_source.source_wordcount = (
+            unit.counter.count_words(unit.source_f.strings)
+            or 0)
 
 
 @receiver(pre_save, sender=Unit)
