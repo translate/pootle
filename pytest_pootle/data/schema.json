@@ -3241,12 +3241,6 @@
                             "key": "MUL",
                             "extra": ""
                         },
-                        "translator_comment_f": {
-                            "collation": "utf8_general_ci",
-                            "type": "longtext",
-                            "key": "",
-                            "extra": ""
-                        },
                         "target_hash": {
                             "collation": "utf8_general_ci",
                             "type": "varchar(32)",
