@@ -9,6 +9,7 @@
 
 from __future__ import print_function
 
+import logging
 import os
 import sys
 from argparse import SUPPRESS, ArgumentParser
@@ -19,6 +20,12 @@ from django.core import management
 import syspath_override  # noqa
 from pootle.core.cache import PERSISTENT_STORES
 
+
+logger = logging.getLogger(__name__)
+formatter = logging.Formatter('%(asctime)s %(levelname)s %(message)s')
+handler = logging.StreamHandler()
+handler.setFormatter(formatter)
+logger.addHandler(handler)
 
 #: Length for the generated :setting:`SECRET_KEY`
 KEY_LENGTH = 50
@@ -138,7 +145,7 @@ def init_command(parser, settings_template, args):
             resp = input("File already exists at %r, overwrite? [Ny] "
                          % config_path).lower()
         if resp not in ("y", "yes"):
-            print("File already exists, not overwriting.")
+            logger.error("File already exists, not overwriting.")
             exit(2)
 
     try:
@@ -150,11 +157,13 @@ def init_command(parser, settings_template, args):
                           % config_path)
 
     if args.db in ['mysql', 'postgresql']:
-        print("Configuration file created at %r. Your database password is "
-              "not currently set . You may want to update the database "
-              "settings now" % config_path)
+        logger.warn(
+            "Configuration file created at %r. Your database password is "
+            "not currently set . You may want to update the database "
+            "settings now",
+            config_path)
     else:
-        print("Configuration file created at %r" % config_path)
+        logger.info("Configuration file created at %r", config_path)
 
 
 def set_sync_mode(noinput=False):
@@ -169,11 +178,11 @@ def set_sync_mode(noinput=False):
                          "It is safer to stop any workers before using "
                          "synchronous commands.\n\n")
         if noinput:
-            print("Warning: %s" % redis_warning)
+            logger.warn(redis_warning)
         else:
             resp = input("%sDo you wish to proceed? [Ny] " % redis_warning)
             if resp not in ("y", "yes"):
-                print("RQ workers running, not proceeding.")
+                logger.error("RQ workers running, not proceeding.")
                 exit(2)
 
     # Update settings to set queues to ASYNC = False.
@@ -200,11 +209,13 @@ def configure_app(project, config_path, django_settings_module, runner_name):
 
     if not (os.path.exists(config_path) or
             os.environ.get(settings_envvar, None)):
-        print(u"Configuration file does not exist at %r or "
-              u"%r environment variable has not been set.\n"
-              u"Use '%s init' to initialize the configuration file." %
-              (config_path, settings_envvar, runner_name))
-        sys.exit(2)
+        logger.warn(
+            u"Configuration file does not exist at %(config_path)r or "
+            u"%(settings_envvar)r environment variable has not been set.\n"
+            u"Use '%(runner_name)s init' to initialize the configuration file.",
+            dict(config_path=config_path,
+                 settings_envvar=settings_envvar,
+                 runner_name=runner_name))
 
     os.environ.setdefault(settings_envvar, config_path)
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', django_settings_module)
