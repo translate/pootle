@@ -21,14 +21,10 @@ def test_hash(store0):
     suggestions = review.get(Suggestion)()
 
     suggestion, created_ = suggestions.add(unit, "gras")
-
     first_hash = suggestion.target_hash
-    suggestion.translator_comment = "my nice comment"
+    suggestion.target = "gras++"
     second_hash = suggestion.target_hash
     assert first_hash != second_hash
-
-    suggestion.target = "gras++"
-    assert first_hash != second_hash != suggestion.target_hash
 
 
 @pytest.mark.django_db
