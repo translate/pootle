@@ -148,7 +148,7 @@ class StoreDataUpdater(DataUpdater):
 
     def get_last_submission(self, **kwargs):
         """Last submission for this store"""
-        submissions = Submission.objects.filter(unit__store_id=self.store)
+        submissions = Submission.objects.filter(unit__store_id=self.store.id)
         try:
             return (
                 submissions.values_list("pk", flat=True)
