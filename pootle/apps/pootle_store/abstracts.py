@@ -293,8 +293,6 @@ class AbstractSuggestion(models.Model, base.TranslationUnit):
         db_index=True,
         on_delete=models.SET(get_system_user))
 
-    translator_comment_f = models.TextField(null=True, blank=True)
-
     creation_time = models.DateTimeField(db_index=True, null=True)
     review_time = models.DateTimeField(null=True, db_index=True)
 

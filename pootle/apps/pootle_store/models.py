@@ -34,7 +34,7 @@ from pootle.core.url_helpers import (
     get_editor_filter, split_pootle_path, to_tp_relative_path)
 from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
-from pootle.core.utils.multistring import PLURAL_PLACEHOLDER, SEPARATOR
+from pootle.core.utils.multistring import PLURAL_PLACEHOLDER
 from pootle.core.utils.timezone import datetime_min, make_aware
 from pootle_checks.constants import CHECK_NAMES
 from pootle_statistics.models import SubmissionFields, SubmissionTypes
@@ -135,33 +135,16 @@ class Suggestion(AbstractSuggestion):
     @_target.setter
     def _target(self, value):
         self.target_f = value
-        self._set_hash()
+        self.target_hash = md5(force_bytes(self.target_f)).hexdigest()
 
     @property
     def _source(self):
         return self.unit._source
 
-    @property
-    def translator_comment(self):
-        return self.translator_comment_f
-
-    @translator_comment.setter
-    def translator_comment(self, value):
-        self.translator_comment_f = value
-        self._set_hash()
-
     # # # # # # # # # # # # # #  Methods # # # # # # # # # # # # # # # # # # #
 
     def __unicode__(self):
         return unicode(self.target)
-
-    def _set_hash(self):
-        string = self.translator_comment_f
-        if string:
-            string = self.target_f + SEPARATOR + string
-        else:
-            string = self.target_f
-        self.target_hash = md5(force_bytes(string)).hexdigest()
 
 
 # # # # # # # # Unit # # # # # # # # # #
