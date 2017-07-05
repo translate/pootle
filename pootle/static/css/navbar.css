@@ -22,12 +22,6 @@
     vertical-align: middle;
 }
 
-#user a > *
-{
-    vertical-align: middle;
-    line-height: 1;
-}
-
 #navbar a
 {
     color: #777;
@@ -178,6 +172,12 @@ html[dir="rtl"] #nav-main > li
     margin: 0 8px;
     border: 2px solid white;
     border-radius: 50%;
+}
+
+#user a > *
+{
+    vertical-align: middle;
+    line-height: 1;
 }
 
 #nav-main .login .btn
