@@ -123,7 +123,7 @@
           <li id="user" class="js-navbar-dropdown">
             <a href="{{ user.get_absolute_url }}" data-action="toggle">
               <img src="{{ user|gravatar:20 }}" class="avatar" />
-              <span>{{ user.display_name }}</span>
+              <span class="user-username">{{ user.display_name }}</span>
               <span class="user-score">{{ user.public_score }}</span>
             </a>
 

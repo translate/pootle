@@ -180,6 +180,11 @@ html[dir="rtl"] #nav-main > li
     line-height: 1;
 }
 
+#user .user-username
+{
+    display: inline-block;
+}
+
 #nav-main .login .btn
 {
     padding: 0.1em 1em;
