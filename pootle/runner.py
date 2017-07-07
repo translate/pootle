@@ -19,6 +19,7 @@ from django.core import management
 
 import syspath_override  # noqa
 from pootle.core.cache import PERSISTENT_STORES
+from pootle.core.log import cmd_log
 
 
 logger = logging.getLogger(__name__)
@@ -305,6 +306,7 @@ def run_app(project, default_settings_path, settings_template,
     if args.noinput:
         command += ["--noinput"]
 
+    cmd_log(runner_name, *sys.argv[1:])
     management.execute_from_command_line(command)
     sys.exit(0)
 

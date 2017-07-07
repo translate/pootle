@@ -20,7 +20,7 @@ store changes, command execution and other activities.
 The generic log message is as follows (though some actions do produce slightly
 different log entries)::
 
-  [2015-05-04T15:06:39]   system  X   ./manage.py update_tmserver
+  [2015-05-04T15:06:39]   system  X   pootle update_tmserver
 
 That is::
 
@@ -59,7 +59,7 @@ Current action types are as follows:
 +----------+--------------+-------------------------------------------------+
 |  SD      | Store        | An existing store was deleted                   |
 +----------+--------------+-------------------------------------------------+
-|  X       | Command      | A ``./manage.py`` command was executed          |
+|  X       | Command      | A ``pootle`` command was executed               |
 +----------+--------------+-------------------------------------------------+
 |  QM      | Quality      | A quality check was muted (marked as a false    |
 |          | check        | positive)                                       |
@@ -132,8 +132,8 @@ Various of the action groups have different message structures as outlined here:
 *Command*::
 
   date  user  action command
-  [2015-05-06T11:24:28]	system	X	./manage.py update_stores --project=vfolders
-  [2015-05-05T20:22:46]	system	X	./manage.py migrate
+  [2015-05-06T11:24:28]	system	X	pootle update_stores --project=vfolders
+  [2015-05-05T20:22:46]	system	X	pootle migrate
 
 *Quality check*::
 
