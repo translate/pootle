@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-                                                                                                                                                                                                                                               
+# -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
 import logging
@@ -21,18 +21,16 @@ def update_store_stats(apps, schema_editor):
         StoreDataTool(store).update()
     for tp in TranslationProject.objects.iterator():
         logger.info("Set stats for translation project: %s" % tp.pootle_path)
-        TPDataTool(tp).update()        
+        TPDataTool(tp).update()
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
         ('pootle_data', '0004_remove_last_updated'),
+        ('pootle_store', '0027_unit_created_by_squashed_0055_fill_unit_source_data'),
     ]
 
     operations = [
         migrations.RunPython(update_store_stats),
     ]
-
-
-

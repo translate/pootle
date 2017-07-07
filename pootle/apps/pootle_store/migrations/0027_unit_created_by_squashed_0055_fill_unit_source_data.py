@@ -294,6 +294,7 @@ class Migration(migrations.Migration):
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ('pootle_store', '0026_suggestion_on_delete_user'),
+        ('pootle_statistics', '0001_initial'),
     ]
 
     operations = [
