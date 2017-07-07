@@ -184,8 +184,11 @@ Details of changes
 
   - Updated translations. You can still `contribute translation updates for
     your language <http://pootle.locamotion.org/projects/pootle/>`_.
-  - Now ``compilejsi18n`` is used to compile JavaScript translations into
-    assets, thus requiring ``django-statici18n`` app.
+  - Now `compilejsi18n
+    <http://django-statici18n.readthedocs.io/en/latest/commands.html#compilejsi18n>`_
+    is used to compile JavaScript translations into assets, thus requiring
+    `django-statici18n
+    <http://django-statici18n.readthedocs.io/en/latest/index.html>`_ app.
   - Password reset email is now localizable in Pootle
   - Multiple changes in localizable strings to ease translation
 
