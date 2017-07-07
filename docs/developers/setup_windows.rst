@@ -110,8 +110,8 @@ Linux system.
 
 .. note:: Depending on how successfully your system has engaged the virtual
    environment, you may have to execute ``pootle`` commands with ``python
-   manage.py`` from the pootle root folder instead (e.g. ``python manage.py
-   migrate`` instead of ``pootle migrate``).
+   pootle/runner.py`` from the pootle root folder instead (e.g. ``python
+   pootle/runner.py migrate`` instead of ``pootle migrate``).
 
 .. code-block:: console
 
