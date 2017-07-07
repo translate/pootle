@@ -300,6 +300,48 @@ Configuration settings for applications used by Pootle.
   - ``label`` specifying the text that will be displayed next to the mark.
 
 
+.. setting:: POOTLE_SCORES
+
+``POOTLE_SCORES``
+  Default::
+
+    {
+        'suggestion_add': 0,
+        'suggestion_accept': .1,
+        'suggestion_reject': .1,
+        'comment_updated': .1,
+        'target_updated': .3,
+        'state_translated': .6,
+        'state_fuzzy': .1,
+        'state_unfuzzy': .1,
+    }
+
+  .. versionadded:: 2.8
+
+  The default score is based on the wordcount of the source text.  The values
+  of the various parameters are used as a multiplier to arrive at the score
+  atributed to the translators and reviewers.
+
+  Thus::
+
+    score = source wordcount * multiplier
+
+  When a translator translates a 10 word string they would get a score using
+  the ``state_translated`` multiplier of 0.6. ::
+
+    6 = 10 words * 0.6
+
+  Parameters:
+
+  - ``suggestion_*`` - scoring for the events of adding a new suggestions,
+    accepting or rejecting existing suggestions.  By default adding a
+    suggestion gives no score, to prevent users from gaming the system.
+  - ``comment_*`` - making changes to the string comment.
+  - ``target_*`` - adjusting the existing translation.
+  - ``state_*`` - changing the state of the string, this includes translation
+    and fuzzy setting.
+
+
 .. setting:: POOTLE_FS_WORKING_PATH
 
 ``POOTLE_FS_WORKING_PATH``
@@ -585,5 +627,5 @@ Deprecated Settings
 
 ``POOTLE_SCORE_COEFFICIENTS``
   .. removed:: 2.8
-     A rewrite of the scoring in Pootle now uses POOTLE_SCORE to store score
-     adjustment coefficients.
+     A rewrite of the scoring in Pootle now uses :setting:`POOTLE_SCORE` to
+     store score adjustment coefficients.
