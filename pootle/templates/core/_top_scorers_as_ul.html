@@ -12,7 +12,7 @@
           <span class="user-name user-info">{{ user.display_name }}</span>
         </a>
       </div>
-      <div class="number">{% if item.total_score > 0 %}+{% endif %}{{ item.public_total_score }}</div>
+      <div class="number">{{ item.public_total_score }}</div>
     </li>
     {% endwith %}
   {% endfor %}
