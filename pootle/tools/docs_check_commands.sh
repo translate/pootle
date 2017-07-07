@@ -57,6 +57,15 @@ do
     fi
 done
 
+echo
+echo "We don't want manage.py \$command we want pootle \$command"
+for command in $django_commands
+do
+    if [[ ! $(echo "$pootle_commands" | egrep $command) ]]; then
+        egrep -r $EGREP_EXCLUDE_DIR "manage.py $command ?[^<]" $DOCS_DIR
+    fi
+done
+
 
 # POOTLE_* settings
 
