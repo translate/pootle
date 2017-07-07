@@ -13,10 +13,11 @@ def migrate_localfiletype(apps, schema_editor):
     filetypes = apps.get_model("pootle_format.Format").objects.all()
 
     for project in projects:
-        filetype = filetypes.get(
-            pk=format_registry[project.localfiletype]['pk'])
-        if filetype not in project.filetypes.all():
-            project.filetypes.add(filetype)
+        if project.localfiletype in format_registry:
+            filetype = filetypes.get(
+                pk=format_registry[project.localfiletype]['pk'])
+            if filetype not in project.filetypes.all():
+                project.filetypes.add(filetype)
 
 
 class Migration(migrations.Migration):
