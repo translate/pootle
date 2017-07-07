@@ -283,7 +283,8 @@ Command changes and additions
 - :djadmin:`export` is now able to export zipped TMX files per translation
   project with the :option:`--tmx <export --tmx>` option.
   :option:`--rotate <export --rotate>` option allows old files to be removed.
-- Added `schema` command that allows to dump the database schema.
+- Added :djadmin:`schema` command that allows to dump the database schema on
+  MySQL which is useful for diagnosing differences in database schema.
 
 
 Changes in settings

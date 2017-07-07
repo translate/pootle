@@ -579,6 +579,17 @@ Gets, sets, lists, appends and clears pootle configuration settings.
   Treat data as JSON when getting, setting, or appending values.
 
 
+.. django-admin:: schema
+
+schema
+^^^^^^
+
+.. versionadded:: 2.8
+
+Dumps a JSON representation for the Pootle database schema, currently only
+MySQL, for debugging and comparison to a reference database schema.
+
+
 .. _commands#translation-memory:
 
 Translation Memory
