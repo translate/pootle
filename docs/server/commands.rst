@@ -14,12 +14,6 @@ will run:
 
     $ pootle help
 
-.. note::
-
-  If you run Pootle from a repository checkout you can use the *manage.py* file
-  found in the root of the repository.  Note that this approach is deprecated
-  and may not be supported in future.
-
 
 .. _commands#managing_pootle_projects:
 
@@ -1443,7 +1437,7 @@ For the full details on how to configure cron, read your platform documentation
 (for example ``man crontab``). Here is an example that runs the
 :djadmin:`calculate_checks` command daily at 02:00 AM::
 
-    00 02 * * * www-data /var/www/sites/pootle/manage.py calculate_checks
+    00 02 * * * www-data source /var/www/sites/pootle/env/bin/activate; pootle calculate_checks
 
 Test your command with the parameters you want from the command line. Insert it
 in the cron table, and ensure that it is executed as the correct user (the same

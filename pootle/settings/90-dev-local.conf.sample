@@ -124,8 +124,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ASSETS_DEBUG = True
 
 # Controls whether bundles should be automatically built and rebuilt. If set to
-# ``False`` you'll need to manually generate the bundles with ``manage.py
-# assets build``.
+# `False` you'll need to manually generate the bundles with `pootle assets
+# build`.
 ASSETS_AUTO_BUILD = True
 
 
