@@ -41,6 +41,7 @@ DEPRECATIONS = [
      '2.7', '2.8'),
     ('EXPORTED_DIRECTORY_MODE', None, '2.7', None),
     ('EXPORTED_FILE_MODE', 'POOTLE_SYNC_FILE_MODE', '2.7', '2.8'),
+    ('POOTLE_SCORE_COEFFICIENTS', 'POOTLE_SCORES', '2.8', '2.8'),
 ]
 
 
