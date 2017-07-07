@@ -9,14 +9,16 @@
 
 import os
 import sys
+import warnings
 
 from django.core.management import execute_from_command_line
 
 from pootle import syspath_override  # noqa
+from pootle.core.log import cmd_log
 
 
 if __name__ == "__main__":
-    from pootle.core.log import cmd_log
+    warnings.warn("Deprecated. Use 'pootle' command instead", DeprecationWarning)
     cmd_log(*sys.argv)
     os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
     execute_from_command_line()
