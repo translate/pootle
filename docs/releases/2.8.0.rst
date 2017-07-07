@@ -288,8 +288,9 @@ Changes in settings
 -------------------
 
 - MySQL database connections should now use `STRICT_TRANS_TABLES`.
-- :setting:`POOTLE_SCORE_COEFFICIENTS` accepts custom settings for user
-  scores calculation.
+- :setting:`POOTLE_SCORE_COEFFICENTS` has been removed and replaced with
+  :setting:`POOTLE_SCORES`.
+- :setting:`POOTLE_SCORES` accepts custom settings for user scores calculation.
 - :setting:`POOTLE_TM_SERVER` no longer receives the ``MIN_SCORE`` parameter,
   as it was misleading and had questionable effects.
 - :setting:`POOTLE_TM_SERVER` now accepts a ``MIN_SIMILARITY`` parameter, to
