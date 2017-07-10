@@ -419,6 +419,46 @@ Available options:
   (quotes included).
 
 
+.. django-admin:: set_filetype
+
+set_filetype
+^^^^^^^^^^^^
+
+.. versionadded:: 2.8
+
+This command sets file formats for projects, and also allows to convert files
+to another format.
+
+.. django-admin-option:: --from-filetype
+
+Convert stores of this file type.
+
+.. django-admin-option:: --matching
+
+Convert stores matching this path glob within the project.
+
+
+For example, to add the `properties` format to a project, run:
+
+.. code-block:: console
+
+    $ pootle set_filetype --project=myproj properties
+
+
+To convert stores of `po` format to `properties`, run:
+
+.. code-block:: console
+
+    $ pootle set_filetype --project=myproj --from-filetype=po properties
+
+
+To convert stores matching a given path glob to `properties` format, run:
+
+.. code-block:: console
+
+    $ pootle set_filetype --project=myproj --matching=mydir/myfile-* properties
+
+
 .. django-admin:: revision
 
 revision
