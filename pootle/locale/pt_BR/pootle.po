@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-06-30 11:49+0100\n"
+"POT-Creation-Date: 2017-07-12 11:39+0100\n"
 "PO-Revision-Date: 2017-02-08 14:15+0000\n"
 "Last-Translator: Luiz Fernando <elchevive@opensuse.org>\n"
 "Language-Team: Brazilian Portuguese <ldp-br@bazar.conectiva.com.br>\n"
@@ -783,31 +783,35 @@ msgid_plural "Accepted %s suggestions"
 msgstr[0] "Aceitou %s sugestão"
 msgstr[1] "Aceitou %s sugestões"
 
-#: apps/pootle_misc/forms.py:101
+#: apps/pootle_misc/forms.py:102
 msgid "Search"
 msgstr "Pesquisar"
 
-#: apps/pootle_misc/forms.py:102
+#: apps/pootle_misc/forms.py:103
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr "Procurar (Ctrl+Shift+S)<br/>Digite e pressione Enter para procurar"
 
-#: apps/pootle_misc/forms.py:110 apps/pootle_store/forms.py:369
-msgid "Exact Match"
-msgstr "Correspondência exata"
+#: apps/pootle_misc/forms.py:111 apps/pootle_store/forms.py:369
+msgid "Phrase match"
+msgstr ""
 
-#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:375
+#: apps/pootle_misc/forms.py:112 apps/pootle_store/forms.py:370
+msgid "Case-sensitive match"
+msgstr ""
+
+#: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:376
 msgid "Source Text"
 msgstr "Texto fonte"
 
-#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:376
+#: apps/pootle_misc/forms.py:118 apps/pootle_store/forms.py:377
 msgid "Target Text"
 msgstr "Texto de destino"
 
-#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:377
+#: apps/pootle_misc/forms.py:119 apps/pootle_store/forms.py:378
 msgid "Comments"
 msgstr "Comentários"
 
-#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:378
+#: apps/pootle_misc/forms.py:120 apps/pootle_store/forms.py:379
 msgid "Locations"
 msgstr "Localizações"
 
@@ -1049,7 +1053,7 @@ msgid "Obsolete"
 msgstr "Obsoleto"
 
 #: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:189
-#: apps/pootle_store/forms.py:596 templates/editor/_filters.html:10
+#: apps/pootle_store/forms.py:597 templates/editor/_filters.html:10
 msgid "Needs work"
 msgstr "Necessita trabalho"
 
@@ -1090,22 +1094,22 @@ msgstr "O marcador de Necessita trabalho deve ser limpo"
 msgid "Translator comment"
 msgstr "Comentário do tradutor"
 
-#: apps/pootle_store/forms.py:482
+#: apps/pootle_store/forms.py:483
 #, python-format
 msgid "Suggestion '%s' has already been accepted or rejected."
 msgstr ""
 
-#: apps/pootle_store/forms.py:500 core/decorators.py:146
+#: apps/pootle_store/forms.py:501 core/decorators.py:146
 #: core/views/decorators.py:70
 msgid "Insufficient rights to access this page."
 msgstr "Você não tem permissões para aceder a esta página."
 
-#: apps/pootle_store/forms.py:570
+#: apps/pootle_store/forms.py:571
 #, fuzzy, python-format
 msgid "Suggestion '%s' already exists."
 msgstr "Sugestão %d por %s:"
 
-#: apps/pootle_store/forms.py:576
+#: apps/pootle_store/forms.py:577
 #, python-format
 msgid "Suggestion '%s' equals to current unit target value."
 msgstr ""
@@ -3109,6 +3113,9 @@ msgstr "Maiores colaboradores dos últimos 30 dias"
 #, fuzzy
 msgid "Pootle Translation Server"
 msgstr "Projeto de Tradução WordForge"
+
+#~ msgid "Exact Match"
+#~ msgstr "Correspondência exata"
 
 #~ msgid "Failed to process suggestion."
 #~ msgstr "Não foi possível processar a sugestão."
