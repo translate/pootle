@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-30 11:49+0100\n"
-"PO-Revision-Date: 2017-06-15 16:17+0000\n"
+"PO-Revision-Date: 2017-07-01 08:01+0000\n"
 "Last-Translator: Jindřich <khagaroth@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: cs\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1497543465.000000\n"
+"X-POOTLE-MTIME: 1498896075.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -724,7 +724,7 @@ msgstr "Podmínky použití forem plurálu"
 
 #: apps/pootle_language/views.py:212
 msgid "Unit"
-msgstr "Jednotka"
+msgstr "Položka"
 
 #: apps/pootle_language/views.py:213 apps/pootle_statistics/models.py:58
 msgid "State"
@@ -1093,14 +1093,14 @@ msgid "Insufficient rights to access this page."
 msgstr "Pro přístup k této stránce nemáte dostatečná oprávnění."
 
 #: apps/pootle_store/forms.py:570
-#, fuzzy, python-format
+#, python-format
 msgid "Suggestion '%s' already exists."
-msgstr "Návrh ‚%s‘ byl již přijat nebo zamítnut."
+msgstr "Návrh ‚%s‘ již existuje."
 
 #: apps/pootle_store/forms.py:576
 #, python-format
 msgid "Suggestion '%s' equals to current unit target value."
-msgstr ""
+msgstr "Návrh ‚%s‘ je shodný s aktuální hodnotou položky."
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -1984,7 +1984,7 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
-"Tato stránka využívá Pootle — výkonný webový software umožňující týmovou "
+"Tato stránka využívá Pootle – výkonný webový software umožňující týmovou "
 "tvorbu překladů a jejich správu. Tento komunitní nástroj je svobodný "
 "software, jakýkoliv tým ho může používat a dále komunitě kolem Pootle "
 "přispívat. Více se dočtete na <a href=\"http://pootle.translatehouse.org/"
@@ -2616,7 +2616,7 @@ msgstr "Označit jako řetězec vyžadující další zpracování (Ctrl+Mezern�
 
 #: templates/editor/units/edit.html:189
 msgid "Showing match from similar translations"
-msgstr ""
+msgstr "Obdobné překlady"
 
 #: templates/editor/units/edit.html:212
 msgid "Show Timeline"
@@ -2843,7 +2843,7 @@ msgstr "Odebrat vybrané"
 
 #: templates/languages/admin/language_team.html:118
 msgid "Unit and suggestions admin"
-msgstr "Správa jednotek a návrhů"
+msgstr "Správa položek a návrhů"
 
 #: templates/languages/admin/language_team.html:133
 msgid "Pending suggestions:"
@@ -3085,9 +3085,8 @@ msgid "Top Contributors for the Last 30 Days"
 msgstr "Hlavní přispěvatelé za posledních 30 dní"
 
 #: settings/10-base.conf:7
-#, fuzzy
 msgid "Pootle Translation Server"
-msgstr "WordForge, projekt pro překlady"
+msgstr "Překladový server Pootle"
 
 #~ msgid "Failed to process suggestion."
 #~ msgstr "Zpracování návrhu se nezdařilo."

@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-30 11:49+0100\n"
-"PO-Revision-Date: 2017-06-09 16:06+0000\n"
+"PO-Revision-Date: 2017-07-03 14:11+0000\n"
 "Last-Translator: 炜 <contact@huwei.name>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: zh_CN\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1497024406.000000\n"
+"X-POOTLE-MTIME: 1499091114.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -506,9 +506,8 @@ msgid "XML tags"
 msgstr "XML 标签"
 
 #: apps/pootle_checks/constants.py:80
-#, fuzzy
 msgid "ftl format"
-msgstr "日期格式"
+msgstr "ftl 格式"
 
 #: apps/pootle_checks/constants.py:83
 msgid "Romanian: Avoid cedilla diacritics"
@@ -567,9 +566,8 @@ msgid "The URL or path to your translation files"
 msgstr "翻译文件的链接或路径"
 
 #: apps/pootle_fs/forms.py:47
-#, fuzzy
 msgid "Translation mapping presets"
-msgstr "翻译路径映射"
+msgstr "翻译映射预设"
 
 #: apps/pootle_fs/forms.py:55
 msgid "Translation path mapping"
@@ -991,7 +989,6 @@ msgid "Comment"
 msgstr "注释"
 
 #: apps/pootle_statistics/models.py:60
-#, fuzzy
 msgid "Check"
 msgstr "检查"
 
@@ -1373,14 +1370,12 @@ msgid "Set DEBUG = False in Pootle settings"
 msgstr "在Pootle设置中设置DEBUG = False"
 
 #: checks.py:215
-#, fuzzy
 msgid "The sqlite database backend is unsupported"
-msgstr "不支持SQLite数据库后端"
+msgstr "不支持 sqlite 数据库后端"
 
 #: checks.py:216
-#, fuzzy
 msgid "Set your default database engine to postgresql or mysql"
-msgstr "把你的默认数据库引擎设置为postgresql_psycopg2或者mysql"
+msgstr "将您的默认数据库引擎设置为 postgresql 或者 mysql"
 
 #: checks.py:223
 msgid "Not using cached_db as session engine"
@@ -1768,9 +1763,8 @@ msgid "Can perform administrative tasks"
 msgstr "能够执行管理任务"
 
 #: core/views/base.py:122
-#, fuzzy
 msgid "Entire Project"
-msgstr "活动的项目"
+msgstr "整个项目"
 
 #: core/views/display.py:103 core/views/display.py:125
 #, python-format

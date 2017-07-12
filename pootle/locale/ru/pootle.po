@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: pootle\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-30 11:49+0100\n"
-"PO-Revision-Date: 2017-06-14 11:27+0000\n"
+"PO-Revision-Date: 2017-06-30 19:05+0000\n"
 "Last-Translator: Mikhail <mixail@by-reservation.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "Language: ru\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1497439626.000000\n"
+"X-POOTLE-MTIME: 1498849508.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -1089,14 +1089,14 @@ msgid "Insufficient rights to access this page."
 msgstr "Недостаточно прав для доступа к этой странице."
 
 #: apps/pootle_store/forms.py:570
-#, fuzzy, python-format
+#, python-format
 msgid "Suggestion '%s' already exists."
-msgstr "Предложение '%s' уже было принято или отклонено."
+msgstr "Предложение '%s' уже существует."
 
 #: apps/pootle_store/forms.py:576
 #, python-format
 msgid "Suggestion '%s' equals to current unit target value."
-msgstr ""
+msgstr "Предложение '%s' совпадает с текущим переводом сегмента."
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -2623,7 +2623,7 @@ msgstr "Пометить эту строку как требующую вним�
 
 #: templates/editor/units/edit.html:189
 msgid "Showing match from similar translations"
-msgstr ""
+msgstr "Показывать совпадения с похожими переводами"
 
 #: templates/editor/units/edit.html:212
 msgid "Show Timeline"
@@ -3093,9 +3093,8 @@ msgid "Top Contributors for the Last 30 Days"
 msgstr "Топ переводчиков за последние 30 дней"
 
 #: settings/10-base.conf:7
-#, fuzzy
 msgid "Pootle Translation Server"
-msgstr "Проект переводов WordForge"
+msgstr "Сервер переводов Pootle"
 
 #~ msgid "Failed to process suggestion."
 #~ msgstr "Не удалось обработать предложение."

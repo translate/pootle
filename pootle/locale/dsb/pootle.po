@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-30 11:49+0100\n"
-"PO-Revision-Date: 2017-06-14 15:41+0000\n"
+"PO-Revision-Date: 2017-06-30 22:03+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: dsb\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1497454878.000000\n"
+"X-POOTLE-MTIME: 1498860204.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -1097,14 +1097,14 @@ msgid "Insufficient rights to access this page."
 msgstr "Njedosegajuce pšawa za pśistup na bok."
 
 #: apps/pootle_store/forms.py:570
-#, fuzzy, python-format
+#, python-format
 msgid "Suggestion '%s' already exists."
-msgstr "Naraźenje '%s' jo južo akceptěrowane abo wótpokazane."
+msgstr "Naraźenje '%s' južo eksistěrujo."
 
 #: apps/pootle_store/forms.py:576
 #, python-format
 msgid "Suggestion '%s' equals to current unit target value."
-msgstr ""
+msgstr "Naraźenje '%s' celowej gódnośe aktualneje jadnotki rowna."
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -2627,7 +2627,7 @@ msgstr ""
 
 #: templates/editor/units/edit.html:189
 msgid "Showing match from similar translations"
-msgstr ""
+msgstr "Naraźenje '%s' se celowej gódnośe aktualneje gódnotki rowna."
 
 #: templates/editor/units/edit.html:212
 msgid "Show Timeline"
@@ -3094,9 +3094,8 @@ msgid "Top Contributors for the Last 30 Days"
 msgstr "Głowne pśinosujuce za zachadne 30 dnjow"
 
 #: settings/10-base.conf:7
-#, fuzzy
 msgid "Pootle Translation Server"
-msgstr "Z pśełožowanim pókšacowaś"
+msgstr "Pśełožowański serwer Pootle"
 
 #~ msgid "Failed to process suggestion."
 #~ msgstr "Naraźenje njedajo se pśeźěłaś."

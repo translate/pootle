@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-30 11:49+0100\n"
-"PO-Revision-Date: 2017-06-24 14:54+0000\n"
+"PO-Revision-Date: 2017-07-07 13:35+0000\n"
 "Last-Translator: Kevin <kscanne@gmail.com>\n"
 "Language-Team: Irish\n"
 "Language: ga\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=5; plural=(n==1) ? 0 : (n==2) ? 1 : (n>2 && n<7) ? 2 :"
 "(n>6 && n<11) ? 3 : 4;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1498316072.000000\n"
+"X-POOTLE-MTIME: 1499434502.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -1096,14 +1096,14 @@ msgid "Insufficient rights to access this page."
 msgstr "Níl dóthain cearta agat chun an leathanach seo a rochtain."
 
 #: apps/pootle_store/forms.py:570
-#, fuzzy, python-format
+#, python-format
 msgid "Suggestion '%s' already exists."
-msgstr "Glacadh leis an moladh '%s' nó diúltaíodh dó cheana."
+msgstr "Tá an moladh '%s' ann cheana."
 
 #: apps/pootle_store/forms.py:576
 #, python-format
 msgid "Suggestion '%s' equals to current unit target value."
-msgstr ""
+msgstr "Is ionann an moladh '%s' agus an t-aistriúchán atá ann faoi láthair."
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -2629,7 +2629,7 @@ msgstr ""
 
 #: templates/editor/units/edit.html:189
 msgid "Showing match from similar translations"
-msgstr ""
+msgstr "Aistriúchán cosúil leis seo á thaispeáint"
 
 #: templates/editor/units/edit.html:212
 msgid "Show Timeline"
@@ -3104,9 +3104,8 @@ msgid "Top Contributors for the Last 30 Days"
 msgstr "Na daoine a rinne an chuid is mó le 30 lá anuas"
 
 #: settings/10-base.conf:7
-#, fuzzy
 msgid "Pootle Translation Server"
-msgstr "Tionscadal an Aistriúchán WordForge"
+msgstr "Freastalaí Aistriúcháin Pootle"
 
 #~ msgid "Failed to process suggestion."
 #~ msgstr "Níorbh fhéidir an moladh a phróiseáil."

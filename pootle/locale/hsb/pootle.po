@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-30 11:49+0100\n"
-"PO-Revision-Date: 2017-06-18 19:53+0000\n"
+"PO-Revision-Date: 2017-06-30 22:00+0000\n"
 "Last-Translator: milupo <milupo@sorbzilla.de>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: hsb\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n"
 "%100==4 ? 2 : 3);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1497815605.000000\n"
+"X-POOTLE-MTIME: 1498860005.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -1094,14 +1094,14 @@ msgid "Insufficient rights to access this page."
 msgstr "Njedosahace prawa za přistup na stronu."
 
 #: apps/pootle_store/forms.py:570
-#, fuzzy, python-format
+#, python-format
 msgid "Suggestion '%s' already exists."
-msgstr "Namjet '%s' je hižo akceptowany abo wotpokazany."
+msgstr "Namjet '%s' hižo eksistuje."
 
 #: apps/pootle_store/forms.py:576
 #, python-format
 msgid "Suggestion '%s' equals to current unit target value."
-msgstr ""
+msgstr "Namjet '%s' so cilowej hódnoće aktualneje jednotki runa."
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -2619,7 +2619,7 @@ msgstr ""
 
 #: templates/editor/units/edit.html:189
 msgid "Showing match from similar translations"
-msgstr ""
+msgstr "Wotpowědniki z podobnych přełožkow pokazać"
 
 #: templates/editor/units/edit.html:212
 msgid "Show Timeline"
@@ -3085,9 +3085,8 @@ msgid "Top Contributors for the Last 30 Days"
 msgstr "Hłowni přinošowarjo za zańdźene 30 dnjow"
 
 #: settings/10-base.conf:7
-#, fuzzy
 msgid "Pootle Translation Server"
-msgstr "Z přełožowanjom pokročować"
+msgstr "Přełožowanski serwer Pootle"
 
 #~ msgid "Failed to process suggestion."
 #~ msgstr "Namjet njeda so předźěłać."

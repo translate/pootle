@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-30 11:49+0100\n"
-"PO-Revision-Date: 2017-06-20 16:07+0000\n"
+"PO-Revision-Date: 2017-07-05 08:22+0000\n"
 "Last-Translator: Leandro <leandro.regueiro@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: gl\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
-"X-POOTLE-MTIME: 1497974834.000000\n"
+"X-POOTLE-MTIME: 1499242956.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -1093,14 +1093,14 @@ msgid "Insufficient rights to access this page."
 msgstr "Non ten dereitos dabondo para acceder a esta páxina."
 
 #: apps/pootle_store/forms.py:570
-#, fuzzy, python-format
+#, python-format
 msgid "Suggestion '%s' already exists."
-msgstr "A suxestión «%s» xa foi aceptada ou rexeitada."
+msgstr "A suxestión «%s» xa existe."
 
 #: apps/pootle_store/forms.py:576
 #, python-format
 msgid "Suggestion '%s' equals to current unit target value."
-msgstr ""
+msgstr "A suxestión «%s» é igual á tradución da cadea actual."
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -2630,7 +2630,7 @@ msgstr "Marcar esta cadea como que precisa máis traballo (Ctrl+Espazo)"
 
 #: templates/editor/units/edit.html:189
 msgid "Showing match from similar translations"
-msgstr ""
+msgstr "Mostrando coincidencia de traducións semellantes"
 
 #: templates/editor/units/edit.html:212
 msgid "Show Timeline"
@@ -2857,7 +2857,7 @@ msgstr "Retirar seleccionados"
 
 #: templates/languages/admin/language_team.html:118
 msgid "Unit and suggestions admin"
-msgstr "Administración de unidades e suxestións"
+msgstr "Administración de cadeas e suxestións"
 
 #: templates/languages/admin/language_team.html:133
 msgid "Pending suggestions:"
@@ -3096,9 +3096,8 @@ msgid "Top Contributors for the Last 30 Days"
 msgstr "Máximos colaboradores dos últimos 30 días"
 
 #: settings/10-base.conf:7
-#, fuzzy
 msgid "Pootle Translation Server"
-msgstr "Proxecto de tradución WordForge"
+msgstr "Servidor de tradución Pootle"
 
 #~ msgid "Failed to process suggestion."
 #~ msgstr "Produciuse un erro ao procesar a suxestión."

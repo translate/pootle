@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-30 11:49+0100\n"
-"PO-Revision-Date: 2017-06-24 15:04+0000\n"
+"PO-Revision-Date: 2017-06-30 20:16+0000\n"
 "Last-Translator: BouRock <hitowerdigit@hotmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: tr\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1498316652.000000\n"
+"X-POOTLE-MTIME: 1498853775.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -1080,14 +1080,14 @@ msgid "Insufficient rights to access this page."
 msgstr "Bu sayfaya erişmek için yetersiz haklar."
 
 #: apps/pootle_store/forms.py:570
-#, fuzzy, python-format
+#, python-format
 msgid "Suggestion '%s' already exists."
-msgstr "Öneri '%s' zaten kabul edildi veya reddedildi."
+msgstr "Öneri '%s' zaten var."
 
 #: apps/pootle_store/forms.py:576
 #, python-format
 msgid "Suggestion '%s' equals to current unit target value."
-msgstr ""
+msgstr "Öneri '%s' şu anki birim hedef değerine eşit."
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -2616,7 +2616,7 @@ msgstr "Bu satırı daha fazla çalışmak gerekiyor olarak işaretle (Ctrl+Boş
 
 #: templates/editor/units/edit.html:189
 msgid "Showing match from similar translations"
-msgstr ""
+msgstr "Benzer çevirilerden eşleşme gösteriliyor"
 
 #: templates/editor/units/edit.html:212
 msgid "Show Timeline"
@@ -3092,9 +3092,8 @@ msgid "Top Contributors for the Last 30 Days"
 msgstr "Son 30 Günün En Çok Katkıda Bulunanları"
 
 #: settings/10-base.conf:7
-#, fuzzy
 msgid "Pootle Translation Server"
-msgstr "WordForge Çeviri Projesi"
+msgstr "Pootle Çeviri Sunucusu"
 
 #~ msgid "Failed to process suggestion."
 #~ msgstr "Öneriyi işlemek başarısız."

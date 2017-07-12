@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-30 11:49+0100\n"
-"PO-Revision-Date: 2017-06-25 09:09+0000\n"
-"Last-Translator: Михаїл <Reyzi@mail.ru>\n"
+"PO-Revision-Date: 2017-07-05 21:54+0000\n"
+"Last-Translator: Михаїл Юрійович <Reyzi@mail.ru>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1498381781.000000\n"
+"X-POOTLE-MTIME: 1499291664.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -146,7 +146,7 @@ msgstr "Будь ласка, введіть тему повідомлення"
 
 #: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
-msgstr "Назва"
+msgstr "Ім'я"
 
 #: apps/contact/forms.py:36
 msgid "Please enter your name"
@@ -247,7 +247,7 @@ msgstr "Неможливо створити '%s'. Відсутній Проек�
 
 #: apps/import_export/utils.py:74
 msgid "There was an error uploading your file"
-msgstr "Сталася помилка при звантаженні вашого файлу."
+msgstr "Під час завантаження вашого файлу сталася помилка"
 
 #: apps/pootle_app/forms.py:39
 msgid "Language code does not follow the ISO convention"
@@ -687,8 +687,8 @@ msgid ""
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
-"Код мови за ISO 639, можливо, доповнений символом підкреслення „_“ та кодом "
-"країни за ISO 3166.<a href=\"http://www.w3.org/International/articles/"
+"Код мови за ISO 639, можливо, доповнений символом підкреслення (_) та кодом "
+"країни за ISO 3166. <a href=\"http://www.w3.org/International/articles/"
 "language-tags/\">Докладніше</a>"
 
 #: apps/pootle_language/models.py:42 templates/languages/_nav.html:35
@@ -859,7 +859,7 @@ msgstr "Твітніть це!"
 #: apps/pootle_profile/templatetags/profile_tags.py:52
 #, python-format
 msgid "#%s contributor in %s in the last 30 days"
-msgstr "Учасник #%s  в %s за останні 30 днів"
+msgstr "Учасник №%s в %s за останні 30 днів"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:56
 #, python-format
@@ -925,7 +925,7 @@ msgstr "Анонімний користувач"
 
 #: apps/pootle_profile/utils.py:96 templates/layout.html:134
 msgid "Admin"
-msgstr "Адміністрація"
+msgstr "Адміністратор"
 
 #: apps/pootle_profile/utils.py:100
 msgid "Translator"
@@ -956,7 +956,7 @@ msgid ""
 "numbers, and the underscore (_) character."
 msgstr ""
 "Коротка кодова назва для проекту. Вона може містити лише символи ASCII, "
-"цифри та знак підкреслення „_“."
+"цифри та знак (_) підкреслення."
 
 #: apps/pootle_project/models.py:213
 msgid "Quality Checks"
@@ -1093,14 +1093,14 @@ msgid "Insufficient rights to access this page."
 msgstr "Недостатньо прав для доступу до цієї сторінки."
 
 #: apps/pootle_store/forms.py:570
-#, fuzzy, python-format
+#, python-format
 msgid "Suggestion '%s' already exists."
-msgstr "Пропозиція '%s' вже прийнята або відхилена."
+msgstr "Пропозиція '%s' вже існує."
 
 #: apps/pootle_store/forms.py:576
 #, python-format
 msgid "Suggestion '%s' equals to current unit target value."
-msgstr ""
+msgstr "Пропозиція '%s' збігається з поточним перекладом сегменту."
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -1173,7 +1173,7 @@ msgstr "Шлях надто довгий."
 #: apps/pootle_store/views.py:182 apps/virtualfolder/views.py:107
 #: core/decorators.py:47
 msgid "Arguments missing."
-msgstr "Відсутні арґументи"
+msgstr "Аргументи відсутні."
 
 #: apps/pootle_store/views.py:237
 msgid "Failed to remove comment."
@@ -1185,7 +1185,7 @@ msgstr "Не вдалося відправити коментар."
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
-msgstr "Цей термін вже є у цьому файлі. "
+msgstr "Цей термін вже є у цьому файлі."
 
 #: apps/pootle_translationproject/receivers.py:38
 #, python-format
@@ -1384,7 +1384,7 @@ msgstr "Запустіть нові обробники з допомогою 'po
 
 #: checks.py:176
 msgid "Cache backend is not set to Redis."
-msgstr "Сервер кешу не встановлений як Redis"
+msgstr "Сервер кешу не встановлений на Redis."
 
 #: checks.py:177
 #, python-format
@@ -1559,7 +1559,7 @@ msgstr "Задайте %s в POOTLE_SCORES."
 #: checks.py:336
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORES."
-msgstr "Нечинне значення для „%s“ в POOTLE_SCORES."
+msgstr "Нечинне значення для %s в POOTLE_SCORES."
 
 #: checks.py:339
 #, python-format
@@ -1576,7 +1576,7 @@ msgstr "Задайте POOTLE_MARKUP_FILTER."
 
 #: checks.py:361
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr "Невірне значення  для POOTLE_MARKUP_FILTER."
+msgstr "Невірне значення для POOTLE_MARKUP_FILTER."
 
 #: checks.py:362
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
@@ -2155,8 +2155,8 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"Користувач „nobody“ відноситься до будь-якого користувача, який не увійшов в "
-"систему (анонімний, невідомий користувач). Користувач „default“ пов’язаний з "
+"Користувач “nobody” відноситься до будь-якого користувача, який не увійшов в "
+"систему (анонімний, невідомий користувач). Користувач “default” пов’язаний з "
 "правами, які типово надаються усім зареєстрованим користувачам, окрім інші "
 "особливих прав, наданих їм."
 
@@ -2171,7 +2171,7 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
-"Pootle FS є досі експериментальним. Ми будемо раді, якщо ви "
+"Pootle FS досі є експериментальним, ми будемо раді, якщо ви "
 "використовуватимете його, але це зажадає знань із локалізації та вміння "
 "програмувати на Python, якщо щось піде не так."
 
@@ -2377,11 +2377,11 @@ msgstr "Перевірки з помилками"
 
 #: templates/browser/index.html:65
 msgid "More..."
-msgstr "Ще…"
+msgstr "Ще..."
 
 #: templates/browser/index.html:66
 msgid "Less..."
-msgstr "Менше…"
+msgstr "Менше..."
 
 #: templates/browser/index.html:77
 msgid "Updates"
@@ -2581,7 +2581,7 @@ msgstr "Клацніть, щоб відкрити зображення у спл
 
 #: templates/editor/units/edit.html:94
 msgid "Screenshots..."
-msgstr "Знімки екрану…"
+msgstr "Знімки екрану..."
 
 #: templates/editor/units/edit.html:118 templates/editor/units/edit.html:140
 msgid "Copy into translation"
@@ -2779,8 +2779,8 @@ msgid ""
 "Pootle can't connect to the database, the database is not initialized yet, "
 "or a schema upgrade is needed before continuing."
 msgstr ""
-"Pootle не може під'єднатись до бази даних, база наразі не \n"
-"ініціалізована, або ж необхідно оновити схему перед продовженням."
+"Pootle не може під'єднатись до бази даних, база наразі не ініціалізована, "
+"або ж необхідно оновити схему перед продовженням."
 
 #: templates/errors/db.html:18
 #, python-format
@@ -2952,8 +2952,8 @@ msgid ""
 "This static page is inactive and visible to administrators only. You can "
 "activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
 msgstr ""
-"Ця статична сторінка не активна і видима тільки для адміністраторів. Ви "
-"можете активувати її <a href=\"%s\">змінивши властивості</a> "
+"Ця статична сторінка не активна та видима тільки для адміністраторів. Ви "
+"можете активувати її <a href=\"%(edit_url)s\">змінивши властивості</a>"
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
@@ -2986,11 +2986,11 @@ msgstr ""
 
 #: templates/translation_projects/terminology/_term_edit.html:11
 msgid "Description..."
-msgstr "Опис…"
+msgstr "Опис..."
 
 #: templates/translation_projects/terminology/_term_edit.html:18
 msgid "Details..."
-msgstr "Подробиці…"
+msgstr "Подробиці..."
 
 #: templates/translation_projects/terminology/_term_edit.html:32
 msgid "Translator Comments"
@@ -3059,7 +3059,7 @@ msgid ""
 "Do you want to change your password? Click the 'Reset Password' button which "
 "will initiate the process of setting a new password."
 msgstr ""
-"Ви хочете змінити парль? Клацніть по кнопці \"Відновити пароль\", яка почне "
+"Ви хочете змінити пароль? Клацніть по кнопці 'Скинути пароль', яка почне "
 "процедуру скидання пароля."
 
 #: templates/user/settings.html:25
@@ -3095,9 +3095,8 @@ msgid "Top Contributors for the Last 30 Days"
 msgstr "Найактивніші перекладачі за останні 30 днів"
 
 #: settings/10-base.conf:7
-#, fuzzy
 msgid "Pootle Translation Server"
-msgstr "Проект перекладу WordForge"
+msgstr "Сервер перекладів Pootle"
 
 #~ msgid "Failed to process suggestion."
 #~ msgstr "Не вдалося обробити пропозицію."

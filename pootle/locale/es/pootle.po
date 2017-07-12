@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-06-30 11:49+0100\n"
-"PO-Revision-Date: 2017-06-21 09:41+0000\n"
+"PO-Revision-Date: 2017-07-12 06:42+0000\n"
 "Last-Translator: Adolfo <fitojb@ubuntu.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: es\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Pootle 2.5.1-rc1\n"
 "Generated-By: pygettext.py 1.1\n"
-"X-POOTLE-MTIME: 1498038071.000000\n"
+"X-POOTLE-MTIME: 1499841738.000000\n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
@@ -625,7 +625,7 @@ msgstr "Administradores"
 
 #: apps/pootle_language/forms.py:82
 msgid "Reviewers"
-msgstr "Administradores"
+msgstr "Revisores"
 
 #: apps/pootle_language/forms.py:87
 msgid "Submitters"
@@ -843,7 +843,7 @@ msgstr "Búsqueda no disponible"
 #: apps/pootle_profile/templatetags/profile_tags.py:35
 #, python-format
 msgid "My current score at %s is %s"
-msgstr "Mi puntuación actual en %s es de %s "
+msgstr "Mi puntuación actual en %s es de %s"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:38
 #: apps/pootle_profile/templatetags/profile_tags.py:63
@@ -853,12 +853,12 @@ msgstr "Tuitearlo"
 #: apps/pootle_profile/templatetags/profile_tags.py:52
 #, python-format
 msgid "#%s contributor in %s in the last 30 days"
-msgstr "Colaborador n.º %s en los últimos 30 días"
+msgstr "Colaborador n.º %s de %s en los últimos 30 días"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:56
 #, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
-msgstr "¡Soy el n.º %s en colaboraciones en %s de este mes en %s! "
+msgstr "¡Soy el n.º %s en colaboraciones en %s de este mes en %s!"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:65
 msgid "No contributions in the last 30 days"
@@ -1088,14 +1088,15 @@ msgid "Insufficient rights to access this page."
 msgstr "No tiene permiso para acceder a esta página."
 
 #: apps/pootle_store/forms.py:570
-#, fuzzy, python-format
+#, python-format
 msgid "Suggestion '%s' already exists."
-msgstr "Ya se ha aceptado o rechazado la sugerencia «%s»."
+msgstr "Ya existe la sugerencia «%s»."
 
 #: apps/pootle_store/forms.py:576
 #, python-format
 msgid "Suggestion '%s' equals to current unit target value."
 msgstr ""
+"La sugerencia «%s» es igual que el valor actual de destino de la unidad."
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -1925,7 +1926,7 @@ msgstr ""
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:39
 msgid "Privacy Policy"
-msgstr "Política de privacidad"
+msgstr "Normativa de privacidad"
 
 #. Translators: Label that refers to the site's legal requirements
 #: strings.py:41
@@ -2623,7 +2624,7 @@ msgstr "Indicar que esta cadena necesita más trabajo (Ctrl + Espacio)"
 
 #: templates/editor/units/edit.html:189
 msgid "Showing match from similar translations"
-msgstr ""
+msgstr "Se muestra una coincidencia de traducciones semejantes"
 
 #: templates/editor/units/edit.html:212
 msgid "Show Timeline"
@@ -3096,9 +3097,8 @@ msgid "Top Contributors for the Last 30 Days"
 msgstr "Colaboradores más activos de los últimos 30 días"
 
 #: settings/10-base.conf:7
-#, fuzzy
 msgid "Pootle Translation Server"
-msgstr "Proyecto de traducción de WordForge"
+msgstr "Servidor de traducción Pootle"
 
 #~ msgid "Failed to process suggestion."
 #~ msgstr "Falló al procesar la sugerencia."
