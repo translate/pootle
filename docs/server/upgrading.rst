@@ -70,7 +70,12 @@ Activate virtualenv
 -------------------
 
 These instructions assume that you are using :command:`virtualenv` and you have
-activated a virtual environment named ``env``.
+activated a virtual environment named ``env`` as follows:
+
+.. code-block:: console
+
+   $ source env/bin/activate
+   (env) $
 
 
 .. _upgrading#update-pip-setuptools:
