@@ -200,6 +200,23 @@ class PootleBuildMo(DistutilsBuild):
         self.build_mo()
 
 
+class PootleUpdateReadme(Command):
+    user_options = []
+    # --check - to see that README is what is expected
+    # --write - to write to README.rst
+    # --release - create a release ready README.rst
+    # --branch - make a branch ready README.rst
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        print(parse_long_description('README.rst'))
+
+
 class BuildChecksTemplatesCommand(Command):
     user_options = []
 
@@ -415,6 +432,7 @@ setup(
     cmdclass={
         'build_checks_templates': BuildChecksTemplatesCommand,
         'build_mo': PootleBuildMo,
+        'update_readme': PootleUpdateReadme,
         'test': PyTest,
     },
 )
