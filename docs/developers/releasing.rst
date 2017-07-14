@@ -408,7 +408,8 @@ You can then proceed with other tests such as checking:
        $ ./setup.py --long-description
        $ ./setup.py --classifiers
 
-   The actual long description is taken from :file:`/README.rst`.
+   The actual long description is taken from :file:`/README.rst` with some
+   tweaking for releasing.
 
 Finally clean your test environment:
 
@@ -439,6 +440,16 @@ You can safely branch, if required, for a ``stable/`` branch before you tag.
     $ git push origin stable/2.6.x
     $ git tag -a 2.6.0 -m "Tag version 2.6.0"
     $ git push --tags
+
+If you branch you will want to update the :file:`README.rst` file so that it
+points correctly to branched versions of badges and documentation.  Review and
+test the actual links created, you don't need to commit everything.
+
+.. code-block:: console
+
+    $ ./setup.py update_readme -w
+    $ git diff README.rst
+    $ git commit README.rst -m "Adjust README to branch"
 
 
 Release documentation
