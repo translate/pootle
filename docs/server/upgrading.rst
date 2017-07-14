@@ -212,6 +212,12 @@ data upgrade by running. This is done as follows:
 
    (env) $ pootle migrate --fake-initial
 
+You will also need to update the stats data held in Pootle
+
+.. code-block:: console
+
+   (env) $ pootle update_data
+
 
 .. _upgrading#refresh-checks:
 
