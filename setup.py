@@ -274,7 +274,7 @@ class BuildChecksTemplatesCommand(Command):
         print("Checks templates written to %r" % (filename))
 
 
-def parse_long_description(filename):
+def parse_long_description(filename, rewrite_request='branch', tag=False):
 
     def reduce_header_level():
         # PyPI doesn't like title to be underlined with =
@@ -294,11 +294,36 @@ def parse_long_description(filename):
                 else:
                     readme_lines[ln] = "  pip install Pootle\n"
 
+    def replace_urls(rewrite_request=rewrite_request):
+        from pootle.core.utils import version
+        branch_escape = version.get_git_branch().replace('/', '%2F')
+        for ln, line in enumerate(readme_lines):
+            for pattern, replace, rewrite_type in (
+                # Release Notes
+                ('releases/[0-9]\.[0-9]\.[0-9]\.html', 'releases/%s.html' % version.get_main_version(), 'all'),
+                # Adjust docs away from /latest/
+                ('/pootle/en/latest/', '/pootle/en/%s/' % version.get_rtd_version(), 'branch'),
+
+                # Codecov link and badge 
+                ('codecov.io/gh/translate/pootle/branch/master', 'codecov.io/gh/translate/pootle/branch/%s' % branch_escape, 'branch'),
+                ('shields.io/codecov/c/github/translate/pootle/master', 'shields.io/codecov/c/github/translate/pootle/%s' % branch_escape, 'branch'),
+                # Travis - change only the badge, can't link to branch
+                ('travis/translate/pootle/master', 'travis/translate/pootle/%s' % version.get_git_branch(), 'branch'),
+                # Landscape
+                ('landscape.io/github/translate/pootle/master', 'landscape.io/github/translate/pootle/%s' % version.get_git_branch(), 'branch'),
+                # Requires.io
+                ('requires/github/translate/pootle/master', 'requires/github/translate/pootle/%s' % version.get_git_branch(), 'branch'),
+                ('requirements/\?branch=master', 'requirements/?branch=%s' % branch_escape, 'branch'),
+            ):
+                if rewrite_type == rewrite_request or rewrite_type == 'all':
+                    readme_lines[ln] = re.sub(pattern, replace, readme_lines[ln])
+
     filename = os.path.join(os.path.dirname(__file__), filename)
     with open(filename) as f:
         readme_lines = f.readlines()
     reduce_header_level()
     adjust_installation_command()
+    replace_urls()
     return "".join(readme_lines)
 
 
@@ -340,7 +365,7 @@ setup(
     version=__version__,
 
     description="An online collaborative localization tool.",
-    long_description=parse_long_description('README.rst'),
+    long_description=parse_long_description('README.rst', tag=True),
 
     author="Translate",
     author_email="dev@translate.org.za",
