@@ -274,7 +274,7 @@ class BuildChecksTemplatesCommand(Command):
         print("Checks templates written to %r" % (filename))
 
 
-def parse_long_description(filename):
+def parse_long_description(filename, tag=False):
 
     def reduce_header_level():
         # PyPI doesn't like title to be underlined with =
@@ -294,11 +294,81 @@ def parse_long_description(filename):
                 else:
                     readme_lines[ln] = "  pip install Pootle\n"
 
+    def replace_urls():
+        from pootle.core.utils import version
+        branch = version.get_git_branch()
+        branch_escape = None
+        if branch is not None:
+            branch_escape = branch.replace('/', '%2F')
+        for ln, line in enumerate(readme_lines):
+            for pattern, replace, rewrite_type in (
+                # Release Notes
+                ('releases/[0-9]\.[0-9]\.[0-9]\.html',
+                 'releases/%s.html' % version.get_main_version(),
+                 'all'),
+                # Adjust docs away from /latest/
+                ('/pootle/en/latest/',
+                 '/pootle/en/%s/' % version.get_rtd_version(),
+                 'branch'),
+                # Coverage - Codecov for branches
+                ('codecov.io/gh/translate/pootle/branch/master',
+                 'codecov.io/gh/translate/pootle/branch/%s' % branch_escape,
+                 'branch'),
+                ('shields.io/codecov/c/github/translate/pootle/master',
+                 'shields.io/codecov/c/github/translate/pootle/%s' %
+                 branch_escape,
+                 'branch'),
+                # Coverage - Coveralls for tags
+                ('codecov.io/gh/translate/pootle/branch/master',
+                 'coveralls.io/github/translate/pootle?branch=%s' %
+                 version.get_version(),
+                 'tag'),
+                ('shields.io/codecov/c/github/translate/pootle/master',
+                 'shields.io/coveralls/translate/pootle/%s' %
+                 version.get_version(),
+                 'tag'),
+                # Travis - change only the badge, can't link to branch
+                ('travis/translate/pootle/master',
+                 'travis/translate/pootle/%s' % version.get_git_branch(),
+                 'branch'),
+                ('travis/translate/pootle/master',
+                 'travis/translate/pootle/%s' % version.get_version(),
+                 'tag'),
+                # Landscape
+                ('landscape.io/github/translate/pootle/master',
+                 'landscape.io/github/translate/pootle/%s' %
+                 version.get_git_branch(),
+                 'branch'),
+                # Requires.io
+                ('requires/github/translate/pootle/master',
+                 'requires/github/translate/pootle/%s' %
+                 version.get_git_branch(),
+                 'branch'),
+                ('requirements/\?branch=master',
+                 'requirements/?branch=%s' % branch_escape,
+                 'branch'),
+                ('https://img.shields.io/requires/.*',
+                 'https://requires.io/github/translate/'
+                 'pootle/requirements.svg?tag=%s'
+                 % version.get_version(),
+                 'tag'),
+                ('requirements/\?branch=master',
+                 'requirements/?tag=%s' % version.get_version(),
+                 'tag'),
+            ):
+                if ((rewrite_type == 'tag' and tag)
+                    or (rewrite_type == 'branch'
+                        and not tag
+                        and branch is not None)
+                    or rewrite_type == 'all'):
+                    readme_lines[ln] = re.sub(pattern, replace, readme_lines[ln])
+
     filename = os.path.join(os.path.dirname(__file__), filename)
     with open(filename) as f:
         readme_lines = f.readlines()
     reduce_header_level()
     adjust_installation_command()
+    replace_urls()
     return "".join(readme_lines)
 
 
@@ -340,7 +410,7 @@ setup(
     version=__version__,
 
     description="An online collaborative localization tool.",
-    long_description=parse_long_description('README.rst'),
+    long_description=parse_long_description('README.rst', tag=True),
 
     author="Translate",
     author_email="dev@translate.org.za",
