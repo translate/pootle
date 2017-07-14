@@ -24,6 +24,9 @@ from pootle.constants import DJANGO_MINIMUM_REQUIRED_VERSION
 from pootle.core.utils import version
 
 
+README_FILE = 'README.rst'
+
+
 def check_pep440_versions():
     if require('setuptools')[0].parsed_version < parse_version('18.5'):
         exit("setuptools %s is incompatible with Pootle. Please upgrade "
@@ -200,6 +203,35 @@ class PootleBuildMo(DistutilsBuild):
         self.build_mo()
 
 
+class PootleUpdateReadme(Command):
+    """Process a README file for branching"""
+
+    user_options = [
+        ('write', 'w', 'Overwrite the %s file' % README_FILE),
+        ('branch', 'b', 'Rewrite using branch rewriting (default)'),
+        ('release', 'r', 'Rewrite using release or tag rewriting'),
+        # --check - to see that README is what is expected
+    ]
+    description = "Update the %s file" % README_FILE
+
+    def initialize_options(self):
+        self.write = False
+        self.branch = True
+        self.release = False
+
+    def finalize_options(self):
+        if self.release:
+            self.branch = False
+
+    def run(self):
+        new_readme = parse_long_description(README_FILE, self.release)
+        if self.write:
+            with open(README_FILE, 'w') as readme:
+                readme.write(new_readme)
+        else:
+            print(new_readme)
+
+
 class BuildChecksTemplatesCommand(Command):
     user_options = []
 
@@ -278,7 +310,8 @@ def parse_long_description(filename, tag=False):
 
     def reduce_header_level():
         # PyPI doesn't like title to be underlined with =
-        readme_lines[1] = readme_lines[1].replace("=", "-")
+        if tag:
+            readme_lines[1] = readme_lines[1].replace("=", "-")
 
     def adjust_installation_command():
         extra_options = []
@@ -410,7 +443,7 @@ setup(
     version=__version__,
 
     description="An online collaborative localization tool.",
-    long_description=parse_long_description('README.rst', tag=True),
+    long_description=parse_long_description(README_FILE, tag=True),
 
     author="Translate",
     author_email="dev@translate.org.za",
@@ -460,6 +493,7 @@ setup(
     cmdclass={
         'build_checks_templates': BuildChecksTemplatesCommand,
         'build_mo': PootleBuildMo,
+        'update_readme': PootleUpdateReadme,
         'test': PyTest,
     },
 )
