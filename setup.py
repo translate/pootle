@@ -24,6 +24,9 @@ from pootle.constants import DJANGO_MINIMUM_REQUIRED_VERSION
 from pootle.core.utils import version
 
 
+README_FILE = 'README.rst'
+
+
 def check_pep440_versions():
     if require('setuptools')[0].parsed_version < parse_version('18.5'):
         exit("setuptools %s is incompatible with Pootle. Please upgrade "
@@ -200,6 +203,35 @@ class PootleBuildMo(DistutilsBuild):
         self.build_mo()
 
 
+class PootleUpdateReadme(Command):
+    """Process a README file for branching"""
+
+    user_options = [
+        ('write', 'w', 'Overwrite the %s file' % README_FILE),
+        ('branch', 'b', 'Rewrite using branch rewriting (default)'),
+        ('release', 'r', 'Rewrite using release or tag rewriting'),
+        # --check - to see that README is what is expected
+    ]
+    description = "Update the %s file" % README_FILE
+
+    def initialize_options(self):
+        self.write = False
+        self.branch = True
+        self.release = False
+
+    def finalize_options(self):
+        if self.release:
+            self.branch = False
+
+    def run(self):
+        new_readme = parse_long_description(README_FILE, self.release)
+        if self.write:
+            with open(README_FILE, 'w') as readme:
+                readme.write(new_readme)
+        else:
+            print(new_readme)
+
+
 class BuildChecksTemplatesCommand(Command):
     user_options = []
 
@@ -274,11 +306,12 @@ class BuildChecksTemplatesCommand(Command):
         print("Checks templates written to %r" % (filename))
 
 
-def parse_long_description(filename):
+def parse_long_description(filename, tag=False):
 
     def reduce_header_level():
         # PyPI doesn't like title to be underlined with =
-        readme_lines[1] = readme_lines[1].replace("=", "-")
+        if tag:
+            readme_lines[1] = readme_lines[1].replace("=", "-")
 
     def adjust_installation_command():
         extra_options = []
@@ -294,11 +327,81 @@ def parse_long_description(filename):
                 else:
                     readme_lines[ln] = "  pip install Pootle\n"
 
+    def replace_urls():
+        from pootle.core.utils import version
+        branch = version.get_git_branch()
+        branch_escape = None
+        if branch is not None:
+            branch_escape = branch.replace('/', '%2F')
+        for ln, line in enumerate(readme_lines):
+            for pattern, replace, rewrite_type in (
+                # Release Notes
+                ('releases/[0-9]\.[0-9]\.[0-9]\.html',
+                 'releases/%s.html' % version.get_main_version(),
+                 'all'),
+                # Adjust docs away from /latest/
+                ('/pootle/en/latest/',
+                 '/pootle/en/%s/' % version.get_rtd_version(),
+                 'branch'),
+                # Coverage - Codecov for branches
+                ('codecov.io/gh/translate/pootle/branch/master',
+                 'codecov.io/gh/translate/pootle/branch/%s' % branch_escape,
+                 'branch'),
+                ('shields.io/codecov/c/github/translate/pootle/master',
+                 'shields.io/codecov/c/github/translate/pootle/%s' %
+                 branch_escape,
+                 'branch'),
+                # Coverage - Coveralls for tags
+                ('codecov.io/gh/translate/pootle/branch/master',
+                 'coveralls.io/github/translate/pootle?branch=%s' %
+                 version.get_version(),
+                 'tag'),
+                ('shields.io/codecov/c/github/translate/pootle/master',
+                 'shields.io/coveralls/translate/pootle/%s' %
+                 version.get_version(),
+                 'tag'),
+                # Travis - change only the badge, can't link to branch
+                ('travis/translate/pootle/master',
+                 'travis/translate/pootle/%s' % version.get_git_branch(),
+                 'branch'),
+                ('travis/translate/pootle/master',
+                 'travis/translate/pootle/%s' % version.get_version(),
+                 'tag'),
+                # Landscape
+                ('landscape.io/github/translate/pootle/master',
+                 'landscape.io/github/translate/pootle/%s' %
+                 version.get_git_branch(),
+                 'branch'),
+                # Requires.io
+                ('requires/github/translate/pootle/master',
+                 'requires/github/translate/pootle/%s' %
+                 version.get_git_branch(),
+                 'branch'),
+                ('requirements/\?branch=master',
+                 'requirements/?branch=%s' % branch_escape,
+                 'branch'),
+                ('https://img.shields.io/requires/.*',
+                 'https://requires.io/github/translate/'
+                 'pootle/requirements.svg?tag=%s'
+                 % version.get_version(),
+                 'tag'),
+                ('requirements/\?branch=master',
+                 'requirements/?tag=%s' % version.get_version(),
+                 'tag'),
+            ):
+                if ((rewrite_type == 'tag' and tag)
+                    or (rewrite_type == 'branch'
+                        and not tag
+                        and branch is not None)
+                    or rewrite_type == 'all'):
+                    readme_lines[ln] = re.sub(pattern, replace, readme_lines[ln])
+
     filename = os.path.join(os.path.dirname(__file__), filename)
     with open(filename) as f:
         readme_lines = f.readlines()
     reduce_header_level()
     adjust_installation_command()
+    replace_urls()
     return "".join(readme_lines)
 
 
@@ -340,7 +443,7 @@ setup(
     version=__version__,
 
     description="An online collaborative localization tool.",
-    long_description=parse_long_description('README.rst'),
+    long_description=parse_long_description(README_FILE, tag=True),
 
     author="Translate",
     author_email="dev@translate.org.za",
@@ -390,6 +493,7 @@ setup(
     cmdclass={
         'build_checks_templates': BuildChecksTemplatesCommand,
         'build_mo': PootleBuildMo,
+        'update_readme': PootleUpdateReadme,
         'test': PyTest,
     },
 )
