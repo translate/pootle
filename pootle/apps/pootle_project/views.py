@@ -303,8 +303,12 @@ class ProjectAdminView(PootleAdminView):
                     messages.INFO,
                     _("Translation project (%s) has been deleted" % tp))
         else:
-            messages.add_message(self.request, messages.ERROR,
-                                 self.msg_form_error)
+            for form in formset:
+                for error in form.errors.values():
+                    messages.add_message(
+                        self.request,
+                        messages.ERROR,
+                        error)
 
     def render_formset(self, formset):
 
