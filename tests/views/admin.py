@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import os
+
 import pytest
 
 from django.core.exceptions import ImproperlyConfigured, PermissionDenied
@@ -309,3 +311,32 @@ def test_admin_view_projects(client, request_users, english):
                 'source_language': english.id}}}
     for k, v in expected.items():
         assert response.context_data[k] == v
+
+
+@pytest.mark.django_db
+def test_admin_view_project_add_tp_existing_dir(project0,
+                                                english, client, admin):
+    user = admin
+    project0.treestyle = "nongnu"
+    project0.save()
+    new_language = LanguageDBFactory()
+    client.login(
+        username=user.username,
+        password=TEST_USERS["admin"]["password"])
+    get_response = _admin_view_get(client, project0)
+    post_data = {}
+    formset = get_response.context["formset"]
+    forms = formset.forms + formset.extra_forms + [formset.management_form]
+    os.makedirs(os.path.join(project0.get_real_path(), new_language.code))
+    for form in forms:
+        for field in form.fields:
+            post_data["%s-%s" % (form.prefix, field)] = (
+                form.fields[field].initial
+                or form.initial.get(field, ""))
+    post_data["%s-language" % formset.extra_forms[0].prefix] = new_language.id
+    post_data["%s-project" % formset.extra_forms[0].prefix] = project0.id
+    _admin_view_post(client, project0, **post_data)
+    with pytest.raises(TranslationProject.DoesNotExist):
+        TranslationProject.objects.get(
+            language=new_language,
+            project=project0)
