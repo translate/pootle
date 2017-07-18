@@ -43,6 +43,7 @@ def pootle_context(request):
         'settings': {
             'POOTLE_CUSTOM_LOGO': getattr(settings, "POOTLE_CUSTOM_LOGO", ""),
             'POOTLE_TITLE': settings.POOTLE_TITLE,
+            'POOTLE_FAVICONS_PATH': settings.POOTLE_FAVICONS_PATH,
             'POOTLE_INSTANCE_ID': settings.POOTLE_INSTANCE_ID,
             'POOTLE_CONTACT_ENABLED': (settings.POOTLE_CONTACT_ENABLED and
                                        settings.POOTLE_CONTACT_EMAIL),
