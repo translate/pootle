@@ -182,6 +182,16 @@ Site-specific settings.
   Custom logo URL - this can be an absolute or relative URL.
 
 
+.. setting:: POOTLE_FAVICONS_PATH
+
+``POOTLE_FAVICONS_PATH``
+  Default: ``"/assets/favicon"``
+
+  .. versionadded:: 2.8
+
+  Customisable favicon path. Should not end with trailing slash.
+
+
 40-apps.conf
 ^^^^^^^^^^^^
 

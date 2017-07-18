@@ -309,8 +309,9 @@ Changes in settings
   sessions are always remembered.
 - :setting:`POOTLE_EMAIL_FEEDBACK_ENABLED` was added, to allow disabling
   sending emails to suggesters when suggestions are accepted or rejected.
-- Added new :setting:`POOTLE_CUSTOM_LOGO`, :setting:`POOTLE_FS_WORKING_PATH`
-  and :setting:`POOTLE_CANONICAL_URL` settings.
+- Added new :setting:`POOTLE_CUSTOM_LOGO`, :setting:`POOTLE_FAVICONS_PATH`,
+  :setting:`POOTLE_FS_WORKING_PATH` and
+  :setting:`POOTLE_CANONICAL_URL` settings.
 - Deprecated `POOTLE_QUALITY_CHECKER` setting.
 - Added new :setting:`POOTLE_SQL_MIGRATIONS` setting.
 - :setting:`POOTLE_MARKUP_FILTER` defaults to `'markdown'`, and `None`,
