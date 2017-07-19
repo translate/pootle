@@ -35,6 +35,11 @@
   </select>
 </li>
 {% if project %}
+{% if current_vfolder_pk %}
+<li id="js-breadcrumb-resource">
+  {{ resource_path }}
+</li>
+{% else %}
 {% if page == 'browse' or page == 'translate'%}
 {% if language.code != 'templates' %}
 <li id="js-breadcrumb-resource">
@@ -56,6 +61,7 @@
   </select>
   {% endif %}
 </li>
+{% endif %}
 {% endif %}
 {% endif %}
 {% endif %}
