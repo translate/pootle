@@ -34,9 +34,6 @@
       <!-- Location comments -->
       <div class="comments sidebar">
         <span class="sidetitle" lang="{{ LANGUAGE_CODE }}">{% trans "Locations:" %}</span>
-	{% if project.treestyle == "pootle_fs" %}
-	{% upstream_link_short unit.store.translation_project.project unit.locations %}
-	{% else %}
 	{% if cantranslatexlang %}
         <a lang="en" dir="ltr" class="translate-locations" title="{{ unit.locations }}"
            href="{{ unit.get_search_locations_url }}">{{ unit.locations|truncatewords:4 }}</a>
@@ -45,6 +42,8 @@
 	      dir="ltr"
 	      class="translate-locations">{{ unit.locations|truncatewords:4 }}</span>
 	{% endif %}
+	{% if project.treestyle == "pootle_fs" %}
+	{% upstream_link_short unit.store.translation_project.project unit.locations %}
 	{% endif %}
       </div>
       {% endif %}
