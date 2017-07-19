@@ -680,7 +680,7 @@
                         },
                         "creation_time": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         },
@@ -926,7 +926,7 @@
                         },
                         "last_login": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "",
                             "extra": ""
                         },
@@ -950,7 +950,7 @@
                         },
                         "date_joined": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "",
                             "extra": ""
                         }
@@ -1039,7 +1039,7 @@
                         },
                         "creation_time": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         },
@@ -1291,7 +1291,7 @@
                         },
                         "modified_on": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "",
                             "extra": ""
                         },
@@ -1361,7 +1361,7 @@
                         },
                         "modified_on": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "",
                             "extra": ""
                         },
@@ -1420,7 +1420,7 @@
                         },
                         "agreed_on": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "",
                             "extra": ""
                         },
@@ -1595,7 +1595,7 @@
                         },
                         "creation_time": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         },
@@ -1923,7 +1923,7 @@
                         },
                         "last_sync_mtime": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "",
                             "extra": ""
                         },
@@ -2009,7 +2009,7 @@
                         },
                         "expire_date": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         }
@@ -2301,7 +2301,7 @@
                         },
                         "max_unit_mtime": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         },
@@ -2548,7 +2548,7 @@
                         },
                         "max_unit_mtime": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         },
@@ -2875,7 +2875,7 @@
                     "fields": {
                         "sent": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "",
                             "extra": ""
                         },
@@ -2899,7 +2899,7 @@
                         },
                         "created": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "",
                             "extra": ""
                         }
@@ -2979,7 +2979,7 @@
                         },
                         "submit_date": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         },
@@ -3225,7 +3225,7 @@
                         },
                         "creation_time": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         },
@@ -3237,7 +3237,7 @@
                         },
                         "review_time": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         },
@@ -3365,19 +3365,19 @@
                         },
                         "commented_on": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         },
                         "submitted_on": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         },
                         "reviewed_on": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         },
@@ -3642,7 +3642,7 @@
                         },
                         "creation_time": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         },
@@ -3678,7 +3678,7 @@
                         },
                         "mtime": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         },
@@ -3845,13 +3845,13 @@
                         },
                         "file_mtime": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "",
                             "extra": ""
                         },
                         "creation_time": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "MUL",
                             "extra": ""
                         },
@@ -4555,7 +4555,7 @@
                         },
                         "last_login": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "",
                             "extra": ""
                         },
@@ -4579,7 +4579,7 @@
                         },
                         "date_joined": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "",
                             "extra": ""
                         }
@@ -4641,7 +4641,7 @@
                         },
                         "expires_at": {
                             "collation": null,
-                            "type": "datetime",
+                            "type": "datetime(6)",
                             "key": "",
                             "extra": ""
                         },
