@@ -135,9 +135,8 @@ def test_view_language_team_admin(client, language0, request_users):
                 include_children=False,
                 user=user)))
     assert (
-        list(response.context["suggestions"])
-        == list(
-            response.context["form"].language_team.suggestions))
+        response.context["suggestions"]
+        == response.context["form"].language_team.suggestions.count())
     assert response.context["language"] == language0
     if user in team.admins:
         team.remove_member(user)
