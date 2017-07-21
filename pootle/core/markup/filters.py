@@ -144,6 +144,7 @@ def apply_markup_filter(text):
                 u'p', u'pre',
                 u'img',
                 u'hr',
+                u'span',
             ]
             attrs = bleach.ALLOWED_ATTRIBUTES
             styles = bleach.ALLOWED_STYLES
