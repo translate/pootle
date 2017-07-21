@@ -42,3 +42,6 @@ Markdown==2.6.8
 #translate-toolkit==2.2.3
 # If you want to use Translate Toolkit 'master'
 -e git+https://github.com/translate/translate.git#egg=translate-toolkit-2.2.3
+
+# Bustage workarounds
+urllib3<1.22  # elasticsearch, <2.0; requests, <1.22
