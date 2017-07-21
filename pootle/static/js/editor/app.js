@@ -1834,7 +1834,7 @@ PTL.editor = {
   getCheckOptions() {
     const $checks = this.$filterChecks;
     let selectedValue = 'none';
-    if (this.category) {
+    if (this.category && this.category.length) {
       selectedValue = [this.category, '-category'].join('');
     } else {
       selectedValue = this.checks[0] || 'none';
