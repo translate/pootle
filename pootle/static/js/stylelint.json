@@ -3,23 +3,15 @@
 # Default config: https://github.com/stylelint/stylelint-config-standard
 {
   "extends": "stylelint-config-standard",
-  "ignoreFiles": [
-    "../css/magnific-popup.css",
-    "../css/react-select.css",
-    "../css/select2.css",
-    "../css/sprite.css",
-    "../css/tipsy.css",
-    "node_modules"
-  ],
   "rules": {
     "block-opening-brace-space-before": null,
-    "block-opening-brace-newline-before": "always",
     "declaration-empty-line-before": null,
-    "indentation": 4,
-    "max-empty-lines": 2,
-    "rule-non-nested-empty-line-before": ["always", {
-        "except": ["after-single-line-comment"],
-        "ignore": ["after-comment"]
-        }]
+    "block-opening-brace-newline-before": ["always"],
+    "indentation": [4],
+    "max-empty-lines": [2],
+    "rule-empty-line-before": ["always", {
+      "except": ["after-single-line-comment", "first-nested"],
+      "ignore": ["after-comment"]
+    }]
   }
 }

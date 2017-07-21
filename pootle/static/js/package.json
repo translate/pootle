@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "stylelint": "stylelint --config=stylelint.json ../css/**/*.css **/*.css",
+    "stylelint": "stylelint --config=stylelint.json  --ignore-path=.stylelintignore ../css/**/*.css **/*.css",
     "test": "mocha --compilers js:babel-register \"./{,!(node_modules)/**/}*.test.js\"",
     "svgo": "svgo"
   },
@@ -29,8 +29,8 @@
     "lolex": "^1.5.1",
     "mocha": "^3.0.2",
     "style-loader": "^0.8.0",
-    "stylelint": "^7.1.0",
-    "stylelint-config-standard": "^12.0.0",
+    "stylelint": "^8.0.0",
+    "stylelint-config-standard": "^17.0.0",
     "svgo": "^0.7.1",
     "webpack": "^1.9.8"
   },
