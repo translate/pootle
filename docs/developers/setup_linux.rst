@@ -54,10 +54,10 @@ available, we can create our virtual environment.
 
 .. code-block:: console
 
-    $ mkvirtualenv <env-name>
+    $ mkvirtualenv pootle_env
 
 
-Replace ``<env-name>`` with a meaningful name that describes the environment
+Replace ``pootle_env`` with a meaningful name that describes the environment
 you are creating. :ref:`mkvirtualenv <virtualenvwrapper:command-mkvirtualenv>`
 accepts any options that :command:`virtualenv` accepts. We could for example
 specify to use the Python 3.3 interpreter by passing the `-p python3.3
@@ -69,7 +69,7 @@ specify to use the Python 3.3 interpreter by passing the `-p python3.3
 
    .. code-block:: console
 
-      (env-name) $ deactivate
+      (pootle_env) $ deactivate
 
 
    To activate a virtual environment again use :ref:`workon
@@ -77,7 +77,7 @@ specify to use the Python 3.3 interpreter by passing the `-p python3.3
 
    .. code-block:: console
 
-      $ workon <env-name>
+      $ workon pootle_env
 
 
 First, upgrade the version of :command:`pip` and :command:`setuptools` as
@@ -85,7 +85,7 @@ follows:
 
 .. code-block:: console
 
-   (env-name) $ pip install --upgrade pip setuptools
+   (pootle_env) $ pip install --upgrade pip setuptools
 
 
 Time to clone Pootle's source code repository. The main repository lives under
@@ -96,7 +96,7 @@ Time to clone Pootle's source code repository. The main repository lives under
 
 .. code-block:: console
 
-    (env-name) $ git clone https://github.com/translate/pootle.git
+    (pootle_env) $ git clone https://github.com/translate/pootle.git
 
 
 Install Pootle and its development dependencies into your virtualenv.  This
@@ -107,7 +107,7 @@ development (you can examine these in :file:`requirements/dev.txt`).
 
 .. code-block:: console
 
-    (env-name) $ pip install -e .[dev]
+    (pootle_env) $ pip install -e .[dev]
 
 
 .. note:: Some requirements may depend on external packages.  For these you may
@@ -125,7 +125,7 @@ this file and rename it by removing the *.sample* extension:
 
 .. code-block:: console
 
-    (env-name) $ cp pootle/settings/90-dev-local.conf.sample ~/.pootle/pootle.conf
+    (pootle_env) $ cp pootle/settings/90-dev-local.conf.sample ~/.pootle/pootle.conf
 
 
 .. note:: To learn more about how settings work in Pootle read the
@@ -137,8 +137,8 @@ schema and add initial data.
 
 .. code-block:: console
 
-    (env-name) $ pootle migrate
-    (env-name) $ pootle initdb
+    (pootle_env) $ pootle migrate
+    (pootle_env) $ pootle initdb
 
 
 Now ensure that you have built the assets by following the instructions for
@@ -148,7 +148,7 @@ Finally, run the development server.
 
 .. code-block:: console
 
-    (env-name) $ pootle runserver
+    (pootle_env) $ pootle runserver
 
 
 Once all is done, you can start the development server anytime by enabling the
