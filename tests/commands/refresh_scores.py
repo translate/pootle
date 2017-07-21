@@ -8,10 +8,11 @@
 
 import pytest
 
+from django.contrib.auth import get_user_model
 from django.core.management import call_command
 
 from pootle.core.contextmanagers import keep_data
-from pootle.core.delegate import review
+from pootle.core.delegate import review, score_updater
 
 
 @pytest.mark.cmd
@@ -90,3 +91,281 @@ def test_refresh_scores_reset(capfd, admin, member):
     assert admin.score == 0
     assert admin.scores.count() == 0
     assert admin.store_scores.count() == 0
+
+
+@pytest.mark.cmd
+@pytest.mark.django_db
+def test_refresh_scores_project(capfd, admin, member, project0):
+    """Reset and set again scores for a project."""
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    updater = score_updater.get(get_user_model())()
+    member_score = updater.calculate(users=[member]).first()[1]
+    admin_score = updater.calculate(users=[admin]).first()[1]
+    member_scores_count = member.scores.filter(tp__project=project0).count()
+    admin_scores_count = admin.scores.filter(tp__project=project0).count()
+    member_store_scores_count = member.store_scores.filter(
+        store__translation_project__project=project0).count()
+    admin_store_scores_count = admin.store_scores.filter(
+        store__translation_project__project=project0).count()
+
+    call_command('refresh_scores', '--reset', '--project=project0')
+    out, err = capfd.readouterr()
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert member.score == 0
+    assert member.scores.filter(tp__project=project0).count() == 0
+    assert member.store_scores.filter(
+        store__translation_project__project=project0).count() == 0
+    assert admin.score == 0
+    assert admin.scores.filter(tp__project=project0).count() == 0
+    assert admin.store_scores.filter(
+        store__translation_project__project=project0).count() == 0
+
+    call_command('refresh_scores', '--project=project0')
+    out, err = capfd.readouterr()
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert round(member.score, 2) == round(member_score, 2)
+    assert (member.scores.filter(tp__project=project0).count() ==
+            member_scores_count)
+    assert (member.store_scores.filter(
+        store__translation_project__project=project0).count() ==
+        member_store_scores_count)
+    assert round(admin.score, 2) == round(admin_score, 2)
+    assert (admin.scores.filter(tp__project=project0).count() ==
+            admin_scores_count)
+    assert (admin.store_scores.filter(
+        store__translation_project__project=project0).count() ==
+        admin_store_scores_count)
+
+
+@pytest.mark.cmd
+@pytest.mark.django_db
+def test_refresh_scores_language(capfd, admin, member, language0):
+    """Reset and set again scores for a language."""
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    updater = score_updater.get(get_user_model())()
+    member_score = updater.calculate(users=[member]).first()[1]
+    admin_score = updater.calculate(users=[admin]).first()[1]
+    member_scores_count = member.scores.filter(tp__language=language0).count()
+    admin_scores_count = admin.scores.filter(tp__language=language0).count()
+    member_store_scores_count = member.store_scores.filter(
+        store__translation_project__language=language0).count()
+    admin_store_scores_count = admin.store_scores.filter(
+        store__translation_project__language=language0).count()
+
+    call_command('refresh_scores', '--reset', '--language=language0')
+    out, err = capfd.readouterr()
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert member.score == 0
+    assert member.scores.filter(
+        tp__language=language0,
+        tp__project__disabled=False).count() == 0
+    assert member.store_scores.filter(
+        store__translation_project__language=language0,
+        store__translation_project__project__disabled=False).count() == 0
+    assert admin.score == 0
+    assert admin.scores.filter(
+        tp__language=language0,
+        tp__project__disabled=False).count() == 0
+    assert admin.store_scores.filter(
+        store__translation_project__language=language0,
+        store__translation_project__project__disabled=False).count() == 0
+
+    call_command('refresh_scores', '--language=language0')
+    out, err = capfd.readouterr()
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert round(member.score, 2) == round(member_score, 2)
+    assert (member.scores.filter(tp__language=language0).count() ==
+            member_scores_count)
+    assert (member.store_scores.filter(
+        store__translation_project__language=language0).count() ==
+        member_store_scores_count)
+    assert round(admin.score, 2) == round(admin_score, 2)
+    assert (admin.scores.filter(tp__language=language0).count() ==
+            admin_scores_count)
+    assert (admin.store_scores.filter(
+        store__translation_project__language=language0).count() ==
+        admin_store_scores_count)
+
+
+@pytest.mark.cmd
+@pytest.mark.django_db
+def test_refresh_scores_reset_tp(capfd, admin, member, tp0):
+    """Reset and set again scores for a TP."""
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    updater = score_updater.get(get_user_model())()
+    member_score = updater.calculate(users=[member]).first()[1]
+    admin_score = updater.calculate(users=[admin]).first()[1]
+    member_scores_count = member.scores.filter(tp=tp0).count()
+    admin_scores_count = admin.scores.filter(tp=tp0).count()
+    member_store_scores_count = member.store_scores.filter(
+        store__translation_project=tp0).count()
+    admin_store_scores_count = admin.store_scores.filter(
+        store__translation_project=tp0).count()
+
+    call_command('refresh_scores', '--reset', '--project=project0',
+                 '--language=language0')
+    out, err = capfd.readouterr()
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert member.score == 0
+    assert member.scores.filter(tp=tp0).count() == 0
+    assert member.store_scores.filter(
+        store__translation_project=tp0).count() == 0
+    assert admin.score == 0
+    assert admin.scores.filter(tp=tp0).count() == 0
+    assert admin.store_scores.filter(
+        store__translation_project=tp0).count() == 0
+
+    call_command('refresh_scores', '--project=project0',
+                 '--language=language0')
+    out, err = capfd.readouterr()
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert round(member.score, 2) == round(member_score, 2)
+    assert member.scores.filter(tp=tp0).count() == member_scores_count
+    assert (member.store_scores.filter(
+        store__translation_project=tp0).count() ==
+        member_store_scores_count)
+    assert round(admin.score, 2) == round(admin_score, 2)
+    assert admin.scores.filter(tp=tp0).count() == admin_scores_count
+    assert (admin.store_scores.filter(
+        store__translation_project=tp0).count() ==
+        admin_store_scores_count)
+
+
+@pytest.mark.cmd
+@pytest.mark.django_db
+def test_refresh_scores_user_project(capfd, admin, member, project0):
+    """Reset and set again scores for particular user in project."""
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    updater = score_updater.get(get_user_model())()
+    member_score = updater.calculate(users=[member]).first()[1]
+    admin_score = admin.score
+    member_scores_count = member.scores.filter(tp__project=project0).count()
+    admin_scores_count = admin.scores.count()
+    member_store_scores_count = member.store_scores.filter(
+        store__translation_project__project=project0).count()
+    admin_store_scores_count = admin.store_scores.count()
+
+    call_command('refresh_scores', '--reset', '--user=member',
+                 '--project=project0')
+    out, err = capfd.readouterr()
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert member.score == 0
+    assert member.scores.filter(tp__project=project0).count() == 0
+    assert member.store_scores.filter(
+        store__translation_project__project=project0).count() == 0
+    assert admin.score == admin_score
+    assert admin.scores.count() == admin_scores_count
+    assert admin.store_scores.count() == admin_store_scores_count
+
+    call_command('refresh_scores', '--user=member', '--project=project0')
+    out, err = capfd.readouterr()
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert round(member.score, 2) == round(member_score, 2)
+    assert (member.scores.filter(tp__project=project0).count() ==
+            member_scores_count)
+    assert (member.store_scores.filter(
+        store__translation_project__project=project0).count() ==
+        member_store_scores_count)
+    assert round(admin.score, 2) == round(admin_score, 2)
+
+
+@pytest.mark.cmd
+@pytest.mark.django_db
+def test_refresh_scores_user_language(capfd, admin, member, language0):
+    """Reset and set again scores for particular user in language."""
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    updater = score_updater.get(get_user_model())()
+    member_score = updater.calculate(users=[member]).first()[1]
+    admin_score = admin.score
+    member_scores_count = member.scores.filter(
+        tp__language=language0,
+        tp__project__disabled=False).count()
+    admin_scores_count = admin.scores.count()
+    member_store_scores_count = member.store_scores.filter(
+        store__translation_project__language=language0,
+        store__translation_project__project__disabled=False).count()
+    admin_store_scores_count = admin.store_scores.count()
+
+    call_command('refresh_scores', '--reset', '--user=member',
+                 '--language=language0')
+    out, err = capfd.readouterr()
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert member.score == 0
+    assert member.scores.filter(
+        tp__language=language0,
+        tp__project__disabled=False).count() == 0
+    assert member.store_scores.filter(
+        store__translation_project__language=language0,
+        store__translation_project__project__disabled=False).count() == 0
+    assert admin.score == admin_score
+    assert admin.scores.count() == admin_scores_count
+    assert admin.store_scores.count() == admin_store_scores_count
+
+    call_command('refresh_scores', '--user=member', '--language=language0')
+    out, err = capfd.readouterr()
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert round(member.score, 2) == round(member_score, 2)
+    assert (member.scores.filter(
+        tp__language=language0,
+        tp__project__disabled=False).count() == member_scores_count)
+    assert (member.store_scores.filter(
+        store__translation_project__language=language0,
+        store__translation_project__project__disabled=False).count() ==
+        member_store_scores_count)
+    assert round(admin.score, 2) == round(admin_score, 2)
+
+
+@pytest.mark.cmd
+@pytest.mark.django_db
+def test_refresh_scores_user_tp(capfd, admin, member, tp0):
+    """Reset and set again scores for particular user in TP."""
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    updater = score_updater.get(get_user_model())()
+    member_score = updater.calculate(users=[member]).first()[1]
+    admin_score = admin.score
+    member_scores_count = member.scores.filter(tp=tp0).count()
+    admin_scores_count = admin.scores.count()
+    member_store_scores_count = member.store_scores.filter(
+        store__translation_project=tp0).count()
+    admin_store_scores_count = admin.store_scores.count()
+
+    call_command('refresh_scores', '--reset', '--user=member',
+                 '--project=project0', '--language=language0')
+    out, err = capfd.readouterr()
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert member.score == 0
+    assert member.scores.filter(tp=tp0).count() == 0
+    assert member.store_scores.filter(
+        store__translation_project=tp0).count() == 0
+    assert admin.score == admin_score
+    assert admin.scores.count() == admin_scores_count
+    assert admin.store_scores.count() == admin_store_scores_count
+
+    call_command('refresh_scores', '--user=member', '--project=project0',
+                 '--language=language0')
+    out, err = capfd.readouterr()
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert round(member.score, 2) == round(member_score, 2)
+    assert member.scores.filter(tp=tp0).count() == member_scores_count
+    assert (member.store_scores.filter(
+        store__translation_project=tp0).count() ==
+        member_store_scores_count)
+    assert round(admin.score, 2) == round(admin_score, 2)
