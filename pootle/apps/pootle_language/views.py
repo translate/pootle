@@ -302,11 +302,9 @@ class LanguageTeamAdminFormView(PootleLanguageAdminFormView):
             if k in stats:
                 stats[k + "_display"] = formatter.number(stats[k])
         context["stats"] = stats
-        context["suggestions"] = form.language_team.suggestions
-        suggestions_count = 0
-        if context["suggestions"]:
-            suggestions_count = context["suggestions"].count()
-        context["suggestions_display"] = formatter.number(suggestions_count)
+        context["suggestions"] = form.language_team.suggestions.count()
+        context["suggestions_display"] = formatter.number(
+            context["suggestions"])
         context["language"] = self.language
         context["page"] = "admin-team"
         context["browse_url"] = reverse(

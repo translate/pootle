@@ -131,7 +131,7 @@
               </li>
               <li class="padded-half">
                 {% trans "Pending suggestions:" %}
-                {% if suggestions.count %}
+                {% if suggestions %}
                 <a href="{% url 'pootle-language-admin-suggestions' language_code=language.code %}">
                   {{ suggestions_display }}
                 </a>
