@@ -146,7 +146,10 @@ def apply_markup_filter(text):
                 u'hr',
                 u'span',
             ]
-            attrs = bleach.ALLOWED_ATTRIBUTES
+            attrs = bleach.ALLOWED_ATTRIBUTES.copy()
+            attrs.update({
+                'img': ['alt', 'src'],
+            })
             styles = bleach.ALLOWED_STYLES
 
             tags_provided = ('clean' in markup_kwargs
