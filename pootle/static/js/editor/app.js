@@ -1658,10 +1658,9 @@ PTL.editor = {
     }
 
     const unit = this.units.getCurrent();
+    const hasCriticalChecks = data.critical_checks_active;
     unit.setTranslation(data.newtargets);
     unit.set('isfuzzy', this.isFuzzy());
-
-    const hasCriticalChecks = !!data.checks;
     $('.translate-container').toggleClass('error', hasCriticalChecks);
 
     if (hasCriticalChecks) {

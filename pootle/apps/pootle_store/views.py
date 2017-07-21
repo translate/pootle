@@ -690,7 +690,9 @@ class UnitSubmitJSON(UnitSuggestionJSON):
             result = dict(
                 checks=_get_critical_checks_snippet(self.request, form.unit),
                 user_score=self.request.user.public_score,
-                newtargets=[target for target in form.unit.target.strings])
+                newtargets=[target for target in form.unit.target.strings],
+                critical_checks_active=(
+                    form.unit.get_active_critical_qualitychecks().exists()))
             return result
 
 
