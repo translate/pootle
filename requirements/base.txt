@@ -44,4 +44,5 @@ Markdown==2.6.8
 -e git+https://github.com/translate/translate.git#egg=translate-toolkit-2.2.3
 
 # Bustage workarounds
-urllib3<1.22  # elasticsearch, <2.0; requests, <1.22
+# urllib3: elasticsearch, <2.0; requests, <1.22
+urllib3<1.22  # rq.filter: <1.22
