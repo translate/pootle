@@ -45,8 +45,7 @@ Django supports :ref:`multiple cache backends <django:setting-up-the-cache>`
 (methods of storing cache data).  However, Redis is the only cache backend
 supported by Pootle.  We use some custom features of Redis so cannot support
 other backends. You can customise the Redis cache settings by overriding the
-value of :setting:`CACHES` in your configuration file, an example exists in
-file:`90-local.conf.sample`.
+value of :setting:`CACHES` in your configuration file.
 
 
 .. _Django's caching system: https://docs.djangoproject.com/en/1.10/topics/cache/
