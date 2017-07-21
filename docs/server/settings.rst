@@ -25,13 +25,6 @@ set the :envvar:`POOTLE_SETTINGS` environment variable to specify the path to
 the custom configuration file. The environment variable will take precedence
 over the command-line flag.
 
-If instead of an installation you deployed Pootle straight from the git
-repository, you can either set the :envvar:`POOTLE_SETTINGS` environment
-variable or put a file under the :file:`pootle/settings/` directory. Note that
-the files in this directory are read in alphabetical order, and **creating a
-90-local.conf file is recommended** (files ending in *-local.conf* will be
-ignored by git).
-
 
 .. _settings#available:
 
