@@ -1,4 +1,5 @@
 # https://travis-ci.org/#!/translate/pootle
+dist: trusty
 sudo: false
 language: python
 env:
