@@ -22,6 +22,7 @@ from pootle_store.models import Unit
 def test_contact_form(admin, rf, mailoutbox):
     request = rf.request()
     request.user = admin
+    request.META['REMOTE_ADDR'] = '127.0.0.1'
     recipient_email = settings.POOTLE_CONTACT_EMAIL
     specified_subject = "My subject"
     subject = "[%s] %s" % (settings.POOTLE_TITLE, specified_subject)
@@ -49,6 +50,7 @@ def test_contact_form(admin, rf, mailoutbox):
 def test_contact_form_escaped_tags(admin, rf, mailoutbox):
     request = rf.request()
     request.user = admin
+    request.META['REMOTE_ADDR'] = '127.0.0.1'
     recipient_email = settings.POOTLE_CONTACT_EMAIL
     specified_subject = "My <tag> subject"
     subject = "[%s] %s" % (settings.POOTLE_TITLE, specified_subject)
@@ -76,6 +78,7 @@ def test_contact_form_escaped_tags(admin, rf, mailoutbox):
 def test_contact_form_subject(admin, rf, mailoutbox):
     request = rf.request()
     request.user = admin
+    request.META['REMOTE_ADDR'] = '127.0.0.1'
     data = {
         'name': admin.full_name,
         'email': admin.email,
@@ -94,6 +97,7 @@ def test_contact_form_subject(admin, rf, mailoutbox):
 def test_contact_form_required_fields(admin, rf, mailoutbox):
     request = rf.request()
     request.user = admin
+    request.META['REMOTE_ADDR'] = '127.0.0.1'
     form = ContactForm(request=request, data={})
     assert not form.is_valid()
     assert 'email' in form.errors
@@ -109,6 +113,7 @@ def test_contact_form_required_fields(admin, rf, mailoutbox):
 def _test_report_form(unit, recipient_email, user, rf, mailoutbox):
     request = rf.request()
     request.user = user
+    request.META['REMOTE_ADDR'] = '127.0.0.1'
 
     # Get initial data for the form.
     subject_ctx = {
@@ -138,6 +143,7 @@ def _test_report_form(unit, recipient_email, user, rf, mailoutbox):
     email_body_ctx = {
         'request': request,
         'context': context,
+        'ip_address': '127.0.0.1',
         'body': translator_comment,
     }
     email_body = render_to_string('contact_form/report_form.txt',
@@ -187,6 +193,7 @@ def test_report_error_form_project_email(admin, rf, mailoutbox):
 def test_report_error_form_context_cannot_be_altered(admin, rf, mailoutbox):
     request = rf.request()
     request.user = admin
+    request.META['REMOTE_ADDR'] = '127.0.0.1'
 
     unit = Unit.objects.select_related(
         'store__translation_project__project',
@@ -223,6 +230,7 @@ def test_report_error_form_context_cannot_be_altered(admin, rf, mailoutbox):
 def test_report_error_form_escaped_tags(admin, rf, mailoutbox):
     request = rf.request()
     request.user = admin
+    request.META['REMOTE_ADDR'] = '127.0.0.1'
 
     unit_target = "some <tag>"
     unit = Unit.objects.select_related(
@@ -260,6 +268,7 @@ def test_report_error_form_escaped_tags(admin, rf, mailoutbox):
 def test_report_error_form_required_fields(admin, rf, mailoutbox):
     request = rf.request()
     request.user = admin
+    request.META['REMOTE_ADDR'] = '127.0.0.1'
 
     unit = Unit.objects.select_related(
         'store__translation_project__project',
