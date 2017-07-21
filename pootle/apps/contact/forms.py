@@ -52,6 +52,9 @@ class ContactForm(MathCaptchaForm, OriginalContactForm):
         """Get context to render the templates for email subject and body."""
         ctx = super(ContactForm, self).get_context()
         ctx['server_name'] = settings.POOTLE_TITLE
+        ctx['ip_address'] = (
+            self.request.META.get('HTTP_X_FORWARDED_FOR',
+                                  self.request.META.get('REMOTE_ADDR')))
         return ctx
 
     def recipient_list(self):

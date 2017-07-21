@@ -1,6 +1,6 @@
 Username: {% if request.user.is_authenticated %}{{ request.user.username }}{% else %}anonymous user{% endif %}
 Current URL: {{ request.META.HTTP_REFERER }}
-IP address: {{ request.META.REMOTE_ADDR }}
+IP address: {{ ip_address }}
 User-Agent: {{ request.META.HTTP_USER_AGENT }}
 
 {% block email_body %}{{ body|escape }}{% endblock %}
