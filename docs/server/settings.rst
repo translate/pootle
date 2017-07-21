@@ -269,6 +269,14 @@ Configuration settings for applications used by Pootle.
     POOTLE_MARKUP_FILTER = ('markdown', {
                                 'clean': {
                                     'extra_tags': ['div'],
+                                    'extra_attrs': {
+                                        '*': ['style']
+                                        'img': ['alt'],
+                                    },
+                                    'extra_styles': [
+                                        'color',
+                                        'font-weight'
+                                    ],
                                 },
                             })
 
