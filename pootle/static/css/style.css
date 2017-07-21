@@ -1102,7 +1102,7 @@ div.settings-container
 .module .hd h2,
 .hd h2
 {
-    font-family: 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 2.2em;
 }
 
@@ -2386,7 +2386,6 @@ form.pootle-fs-config-form input[type='text']
     width: 100%;
     margin: 0;
     padding: 0;
-    width: 100%;
     box-sizing: border-box;
 }
 
