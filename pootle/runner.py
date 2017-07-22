@@ -32,7 +32,13 @@ logger.addHandler(handler)
 KEY_LENGTH = 50
 
 #: Default path for the settings file
-DEFAULT_SETTINGS_PATH = os.path.join('~', '.pootle', 'pootle.conf')
+SYSTEM_SETTINGS_PATH = os.path.join('/etc', 'pootle', 'pootle.conf')
+HOME_SETTINGS_PATH = os.path.join('~', '.pootle', 'pootle.conf')
+VENV_SETTINGS_PATH = os.path.join(os.environ["VIRTUAL_ENV"], "pootle.conf")
+DEFAULT_SETTINGS_PATH = ":".join(
+    [SYSTEM_SETTINGS_PATH,
+     HOME_SETTINGS_PATH,
+     VENV_SETTINGS_PATH])
 
 #: Template that will be used to initialize settings from
 SETTINGS_TEMPLATE_FILENAME = 'settings/90-local.conf.template'
@@ -136,7 +142,7 @@ def init_command(parser, settings_template, args):
                               u"Not used with sqlite."))
 
     args, remainder_ = parser.parse_known_args(args)
-    config_path = os.path.expanduser(args.config)
+    config_path = args.config or VENV_SETTINGS_PATH
 
     if os.path.exists(config_path):
         resp = None
@@ -150,9 +156,14 @@ def init_command(parser, settings_template, args):
             exit(2)
 
     try:
-        init_settings(config_path, settings_template,
-                      db=args.db, db_name=args.db_name, db_user=args.db_user,
-                      db_host=args.db_host, db_port=args.db_port)
+        init_settings(
+            config_path,
+            settings_template,
+            db=args.db,
+            db_name=args.db_name,
+            db_user=args.db_user,
+            db_host=args.db_host,
+            db_port=args.db_port)
     except (IOError, OSError) as e:
         raise e.__class__('Unable to write default settings file to %r'
                           % config_path)
@@ -191,45 +202,55 @@ def set_sync_mode(noinput=False):
         q['ASYNC'] = False
 
 
-def configure_app(project, config_path, django_settings_module, runner_name):
+def configure_app(project, config_paths, django_settings_module, runner_name):
     """Determines which settings file to use and sets environment variables
     accordingly.
 
     :param project: Project's name. Will be used to generate the settings
         environment variable.
-    :param config_path: The path to the user's configuration file.
+    :param config_paths: The paths to the user's configuration file(s).
     :param django_settings_module: The module that ``DJANGO_SETTINGS_MODULE``
         will be set to.
     :param runner_name: The name of the running script.
     """
     settings_envvar = project.upper() + '_SETTINGS'
+    config_paths = (
+        config_paths
+        or os.environ.get(
+            settings_envvar,
+            DEFAULT_SETTINGS_PATH))
 
     # Normalize path and expand ~ constructions
-    config_path = os.path.normpath(
-        os.path.abspath(os.path.expanduser(config_path),))
-
-    if not (os.path.exists(config_path) or
-            os.environ.get(settings_envvar, None)):
+    _config_paths = [
+        os.path.normpath(
+            os.path.abspath(os.path.expanduser(config_path),))
+        for config_path
+        in config_paths.split(":")]
+    missing_config = (
+        not any(
+            os.path.exists(config_path)
+            for config_path
+            in _config_paths))
+    if not config_paths:
         logger.warn(
-            u"Configuration file does not exist at %(config_path)r or "
-            u"%(settings_envvar)r environment variable has not been set.\n"
+            u"%r environment variable has not been set.\n",
+            settings_envvar)
+    elif missing_config:
+        logger.error(
+            u"Configuration file does not exist at %(config_path)r. "
             u"Use '%(runner_name)s init' to initialize the configuration file.",
-            dict(config_path=config_path,
-                 settings_envvar=settings_envvar,
+            dict(config_path=VENV_SETTINGS_PATH,
                  runner_name=runner_name))
-
-    os.environ.setdefault(settings_envvar, config_path)
+        sys.exit(1)
+    os.environ.setdefault(settings_envvar, ":".join(_config_paths))
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', django_settings_module)
 
 
-def run_app(project, default_settings_path, settings_template,
+def run_app(project, settings_template,
             django_settings_module):
     """Wrapper around django-admin.py.
 
     :param project: Project's name.
-    :param default_settings_path: Default filepath to search for custom
-        settings. This will also be used as a default location for writing
-        initial settings.
     :param settings_template: Template file for initializing settings from.
     :param django_settings_module: The module that ``DJANGO_SETTINGS_MODULE``
         will be set to.
@@ -247,7 +268,7 @@ def run_app(project, default_settings_path, settings_template,
     # Add pootle args
     parser.add_argument(
         "--config",
-        default=default_settings_path,
+        default="",
         help=u"Use the specified configuration file.",
     )
     parser.add_argument(
@@ -274,9 +295,11 @@ def run_app(project, default_settings_path, settings_template,
     args, remainder = parser.parse_known_args(sys.argv[1:])
 
     # Configure settings from args.config path
-    configure_app(project=project, config_path=args.config,
-                  django_settings_module=django_settings_module,
-                  runner_name=runner_name)
+    configure_app(
+        project=project,
+        config_paths=args.config,
+        django_settings_module=django_settings_module,
+        runner_name=runner_name)
 
     # If no CACHES backend set tell user and exit. This prevents raising
     # ImproperlyConfigured error on trying to run any pootle commands
@@ -330,7 +353,6 @@ def main():
     settings_template = os.path.join(src_dir, SETTINGS_TEMPLATE_FILENAME)
 
     run_app(project='pootle',
-            default_settings_path=DEFAULT_SETTINGS_PATH,
             settings_template=settings_template,
             django_settings_module='pootle.settings')
 
