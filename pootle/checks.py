@@ -388,20 +388,20 @@ def check_settings_markup(app_configs=None, **kwargs):
                     id="pootle.W015",
                 ))
         if markup_filter is None:
-                errors.append(checks.Warning(
-                    _("POOTLE_MARKUP_FILTER set to 'None' is deprecated."),
-                    hint=_("Set your markup to 'html' explicitly."),
-                    id="pootle.W025",
-                ))
+            errors.append(checks.Warning(
+                _("POOTLE_MARKUP_FILTER set to 'None' is deprecated."),
+                hint=_("Set your markup to 'html' explicitly."),
+                id="pootle.W025",
+            ))
         if markup_filter in ('html', 'textile', 'restructuredtext'):
-                errors.append(checks.Warning(
-                    _("POOTLE_MARKUP_FILTER is using '%s' markup, which is "
-                      "deprecated and will be removed in future.",
-                      markup_filter),
-                    hint=_("Convert your staticpages to Markdown and set your "
-                           "markup to 'markdown'."),
-                    id="pootle.W026",
-                ))
+            errors.append(checks.Warning(
+                _("POOTLE_MARKUP_FILTER is using '%s' markup, which is "
+                  "deprecated and will be removed in future.",
+                  markup_filter),
+                hint=_("Convert your staticpages to Markdown and set your "
+                       "markup to 'markdown'."),
+                id="pootle.W026",
+            ))
     return errors
 
 
