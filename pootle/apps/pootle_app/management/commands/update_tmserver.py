@@ -92,7 +92,7 @@ class DBParser(BaseParser):
                     unit['change__submitted_by__username'])
 
         email_md5 = None
-        if unit['submitted_by__email']:
+        if unit['change__submitted_by__email']:
             email_md5 = md5(
                 force_bytes(unit['change__submitted_by__email'])).hexdigest()
 
