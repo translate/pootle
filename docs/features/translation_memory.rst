@@ -3,10 +3,10 @@
 Translation Memory
 ==================
 
-Pootle provides suggested translations to the current string.  Translator can
-use these suggestions as their translation or to aid their translation.
+Pootle provides matching translations to the current string.  Translator can
+use these matches as their translation or to aid their translation.
 
-Suggestions are based on previous translations of similar strings.  These
+Matches are based on previous translations of similar strings.  These
 Translation Memory (TM) matches mean that you can speed up your translation and
 ensure consistency across your work.
 
@@ -16,13 +16,13 @@ ensure consistency across your work.
 Using Translation Memory
 ------------------------
 
-Translation Memory suggestions are automatically retrieved when you enter a new
+Translation Memory matches are automatically retrieved when you enter a new
 translation unit. These are displayed below the editing widget.  You can insert
-a TM suggestion by clicking on the suggestion row.
+a TM match by clicking on a match row.
 
-The differences between the current string and the suggested string are
-highlighted, this allows you to see how the two differ and helps you make
-changes to the suggestion to make it work as the current translation.
+The differences between the current string and the match are highlighted, this
+allows you to see how the two differ and helps you make changes to the match to
+adapt it for use with the current string.
 
 
 .. _translation_memory#configuring_translation_memory:
