@@ -267,12 +267,12 @@ class InitDB(object):
             'active': True,
             'title': "Project instructions",
             'body': (
-                '<div dir="ltr" lang="en">Tutorial project where users can '
-                'play with Pootle and learn more about translation and '
-                'localisation.<br />For more help on localisation, visit the '
-                '<a href="http://docs.translatehouse.org/projects/'
-                'localization-guide/en/latest/guide/start.html">localisation '
-                'guide</a>.</div>'),
+                'Tutorial project where users can play with Pootle and learn '
+                'more about translation and localisation.\n'
+                '\n'
+                'For more help on localisation, visit the [localization '
+                'guide](http://docs.translatehouse.org/projects/'
+                'localization-guide/en/latest/guide/start.html).'),
             'virtual_path': "announcements/projects/"+tutorial.code,
         }
         self._create_object(Announcement, **criteria)
