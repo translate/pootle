@@ -69,6 +69,17 @@ installed and running.
   OpenJDK, however `elasticsearch recommends using Oracle JDK
   <https://www.elastic.co/guide/en/elasticsearch/reference/1.6/setup-service.html#_installing_the_oracle_jdk>`_.
 
+Install the required Python libraries:
+
+  .. highlight:: console
+  .. parsed-literal::
+
+    (env) $ pip install |--process-dependency-links --pre| Pootle[es5]
+
+.. note:: Elasticsearch TM should work with any version of Elasticsearch, our
+   tests run against Elasticsearch 5.x.  For support for Elasticsearch 1.x and
+   Elasticsearch 2.x, simply replace es5 with es1 and es2 respectively in the
+   above command.
 
 Pootle supports two types of Elasticsearch-based TMs:
 
