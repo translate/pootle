@@ -1,0 +1,1 @@
+elasticsearch~=5.0  # rq.filter: <6.0
