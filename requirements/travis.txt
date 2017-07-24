@@ -11,7 +11,7 @@ tox==2.7.0
 -r _db_postgresql.txt
 
 # Elasticsearch TM
--r _es_1.txt
+-r _es_5.txt
 
 # Test coverage
 codecov==2.0.9
