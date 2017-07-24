@@ -99,7 +99,7 @@ Elasticsearch-based local TM
 
 .. versionadded:: 2.7
 
-To use it, the ``local`` TM must be enabled on :setting:`POOTLE_TM_SERVER` and
+To use it, the ``local`` TM must be enabled in :setting:`POOTLE_TM_SERVER` and
 will need to be populated using the :djadmin:`update_tmserver` command:
 
 .. code-block:: console
@@ -117,7 +117,7 @@ Elasticsearch-based external TMs
 
 .. versionadded:: 2.7.3
 
-In order to use them they must be enabled on :setting:`POOTLE_TM_SERVER` and
+In order to use them they must be enabled in :setting:`POOTLE_TM_SERVER` and
 you will need to populate them using the :djadmin:`update_tmserver` command
 specifying the TM to use with :option:`--tm <update_tmserver --tm>` and the
 display name with :option:`--display-name <update_tmserver --display-name>`:
