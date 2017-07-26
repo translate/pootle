@@ -11,7 +11,8 @@ import functools
 from django.core.exceptions import PermissionDenied
 
 from pootle.i18n.gettext import ugettext as _
-from pootle_app.models.permissions import get_matching_permissions, check_permission
+from pootle_app.models.permissions import (check_permission,
+                                           get_matching_permissions)
 
 
 def check_directory_permission(permission_codename, request, directory):

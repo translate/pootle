@@ -7,8 +7,8 @@
 # AUTHORS file for copyright and authorship information.
 
 
-from pootle.core.views.decorators import (
-    set_permissions, requires_permission_class)
+from pootle.core.views.decorators import (requires_permission_class,
+                                          set_permissions)
 from pootle_app.models.directory import Directory
 from pootle_app.views.admin import ProjectGenericAdminView
 

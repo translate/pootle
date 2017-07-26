@@ -8,7 +8,7 @@
 
 from django.conf.urls import url
 
-from . import ProjectUserView, ProjectAPIView
+from . import ProjectAPIView, ProjectUserView
 
 
 urlpatterns = [
