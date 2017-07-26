@@ -327,6 +327,22 @@ class TPScoreUpdater(ScoreUpdater):
                     reviewed=Sum("reviewed"),
                     suggested=Sum("suggested"))
 
+    def clear(self, users=None):
+        tp_scores = self.score_model.objects.all()
+        store_scores = self.store_score_model.objects.all()
+        user_scores = self.user_score_model.objects.all()
+        if users:
+            tp_scores = tp_scores.filter(user_id__in=users)
+            store_scores = store_scores.filter(user_id__in=users)
+            user_scores = user_scores.filter(id__in=users)
+        if self.tp:
+            tp_scores = tp_scores.filter(tp=self.tp)
+            store_scores = store_scores.filter(
+                store__translation_project=self.tp)
+        tp_scores.delete()
+        store_scores.delete()
+        user_scores.update(score=0)
+
     def refresh_scores(self, users=None, existing=None, existing_tps=None):
         suppress_tp_scores = keep_data(
             signals=(update_scores, ),
