@@ -123,7 +123,7 @@ def init_command(parser, args):
                         default=os.path.join(src_dir,
                                              'settings/90-local.conf.template'),
                         const=os.path.join(src_dir,
-                                           'settings/90-dev-local.conf.sample'),
+                                           'settings/90-dev-local.conf.template'),
                         action='store_const',
                         help=(u"Use a development configuration."))
     parser.add_argument("--db",

@@ -18,8 +18,8 @@ POOTLE_TITLE = u'Pootle Development Server'
 
 POOTLE_INSTANCE_ID = 'development'
 
-# Some dummy secret key fine for dev
-SECRET_KEY = '__P00TL3d3vS3CR3T__'
+# A dummy secret key fine for dev
+SECRET_KEY = %(default_key)s
 
 # General Django debugging settings
 
@@ -42,21 +42,29 @@ ALLOWED_HOSTS = [
 # Database backend settings
 DATABASES = {
     'default': {
-        # Although has issues with locking, SQLite is handy for development
-        'ENGINE': 'django.db.backends.sqlite3',
+        # Replace 'sqlite3' with 'postgresql' or 'mysql'.
+        'ENGINE': %(db_engine)s,
         # Database name or path to database file if using sqlite3.
-        'NAME': working_path('dbs/pootle.db'),
+        'NAME': %(db_name)s,
         # Not used with sqlite3.
-        'USER': '',
+        'USER': %(db_user)s,
         # Not used with sqlite3.
-        'PASSWORD': '',
+        'PASSWORD': %(db_password)s,
         # Set to empty string for localhost. Not used with sqlite3.
-        'HOST': '',
+        'HOST': %(db_host)s,
         # Set to empty string for default. Not used with sqlite3.
-        'PORT': '',
+        'PORT': %(db_port)s,
         # See https://docs.djangoproject.com/en/1.10/topics/db/transactions/
         # required for Django + sqlite
         'ATOMIC_REQUESTS': True,
+        #'OPTIONS' : {
+        #    # MySQL:
+        #    # https://docs.djangoproject.com/en/1.10/ref/databases/#setting-sql-mode
+        #    'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        #},
+        'TEST': {
+            'NAME': 'test_pootle',
+        }
     }
 }
 
