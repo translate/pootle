@@ -298,7 +298,7 @@ class QualityCheckUpdater(object):
             if self.translation_project is not None:
                 # if TP is set then manually add TP.id to the Unit value dict
                 unit[tp_key] = self.translation_project.id
-            elif checker is None:
+            else:
                 checker = self.get_checker(unit[tp_key])
             if checker and self.update_translated_unit(unit, checker=checker):
                 updated_count += 1
