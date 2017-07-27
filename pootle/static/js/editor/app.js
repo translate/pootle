@@ -2183,7 +2183,7 @@ PTL.editor = {
 
 
   /*
-   * User and TM suggestions
+   * User suggestions and TM matches
    */
 
   /* Filters TM results and does some processing */
@@ -2224,7 +2224,7 @@ PTL.editor = {
     return filtered;
   },
 
-  /* TM suggestions */
+  /* TM matches */
   getTMUnitsContent(data) {
     const unit = this.units.getCurrent();
     const store = unit.get('store');
@@ -2244,7 +2244,7 @@ PTL.editor = {
     return '';
   },
 
-  /* Gets TM suggestions from amaGama */
+  /* Gets TM matches from amaGama */
   getTMUnits() {
     const unit = this.units.getCurrent();
     const sText = unit.get('source')[0];
