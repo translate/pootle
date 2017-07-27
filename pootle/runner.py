@@ -40,9 +40,6 @@ DEFAULT_SETTINGS_PATH = ":".join(
      HOME_SETTINGS_PATH,
      VENV_SETTINGS_PATH])
 
-#: Template that will be used to initialize settings from
-SETTINGS_TEMPLATE_FILENAME = 'settings/90-local.conf.template'
-
 # Python 2+3 support for input()
 if sys.version_info[0] < 3:
     input = raw_input
@@ -112,16 +109,23 @@ def init_settings(settings_filepath, template_filename,
                 (template.read().decode("utf8") % context).encode("utf8"))
 
 
-def init_command(parser, settings_template, args):
+def init_command(parser, args):
     """Parse and run the `pootle init` command
 
     :param parser: `argparse.ArgumentParser` instance to use for parsing
-    :param settings_template: Template file for initializing settings from.
     :param args: Arguments to call init command with.
     """
 
     src_dir = os.path.abspath(os.path.dirname(__file__))
     add_help_to_parser(parser)
+    parser.add_argument("--dev",
+                        dest='settings_template',
+                        default=os.path.join(src_dir,
+                                             'settings/90-local.conf.template'),
+                        const=os.path.join(src_dir,
+                                           'settings/90-dev-local.conf.sample'),
+                        action='store_const',
+                        help=(u"Use a development configuration."))
     parser.add_argument("--db",
                         default="sqlite",
                         choices=['sqlite', 'mysql', 'postgresql'],
@@ -158,7 +162,7 @@ def init_command(parser, settings_template, args):
     try:
         init_settings(
             config_path,
-            settings_template,
+            args.settings_template,
             db=args.db,
             db_name=args.db_name,
             db_user=args.db_user,
@@ -246,12 +250,10 @@ def configure_app(project, config_paths, django_settings_module, runner_name):
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', django_settings_module)
 
 
-def run_app(project, settings_template,
-            django_settings_module):
+def run_app(project, django_settings_module):
     """Wrapper around django-admin.py.
 
     :param project: Project's name.
-    :param settings_template: Template file for initializing settings from.
     :param django_settings_module: The module that ``DJANGO_SETTINGS_MODULE``
         will be set to.
     """
@@ -289,7 +291,7 @@ def run_app(project, settings_template,
     # parsing
     args_provided = [c for c in sys.argv[1:] if not c.startswith("-")]
     if args_provided and args_provided[0] == "init":
-        init_command(parser, settings_template, sys.argv[1:])
+        init_command(parser, sys.argv[1:])
         sys.exit(0)
 
     args, remainder = parser.parse_known_args(sys.argv[1:])
@@ -349,12 +351,7 @@ def get_version():
 
 
 def main():
-    src_dir = os.path.abspath(os.path.dirname(__file__))
-    settings_template = os.path.join(src_dir, SETTINGS_TEMPLATE_FILENAME)
-
-    run_app(project='pootle',
-            settings_template=settings_template,
-            django_settings_module='pootle.settings')
+    run_app(project='pootle', django_settings_module='pootle.settings')
 
 
 if __name__ == '__main__':
