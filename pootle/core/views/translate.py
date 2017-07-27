@@ -15,7 +15,6 @@ from pootle_app.models.permissions import check_permission
 from pootle_checks.constants import CATEGORY_IDS, CHECK_NAMES
 from pootle_checks.utils import get_qualitycheck_schema, get_qualitychecks
 from pootle_misc.forms import make_search_form
-from pootle_store.constants import AMAGAMA_SOURCE_LANGUAGES
 
 from .base import PootleDetailView
 
@@ -83,6 +82,6 @@ class PootleTranslateView(PootleDetailView):
              'previous_url': get_previous_url(self.request),
              'POOTLE_MT_BACKENDS': settings.POOTLE_MT_BACKENDS,
              'AMAGAMA_URL': settings.AMAGAMA_URL,
-             'AMAGAMA_SOURCE_LANGUAGES': AMAGAMA_SOURCE_LANGUAGES,
+             'AMAGAMA_SOURCE_LANGUAGES': settings.AMAGAMA_SOURCE_LANGUAGES,
              'editor_extends': self.template_extends})
         return ctx

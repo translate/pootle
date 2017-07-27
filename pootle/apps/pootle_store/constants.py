@@ -77,6 +77,3 @@ STATES_NAMES = {
 # Default store priority - used by vfolders atm
 #  - valid range = 0 < n <= 999.99
 DEFAULT_PRIORITY = 1.0
-
-# List of available source languages in AMAGAMA
-AMAGAMA_SOURCE_LANGUAGES = ('en', 'en_US')
