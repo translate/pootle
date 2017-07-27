@@ -117,15 +117,11 @@ development (you can examine these in :file:`requirements/dev.txt`).
 
 With all the dependencies installed within the virtual environment, Pootle is
 almost ready to run. In development environments you will want to use settings
-that vastly differ from those used in production environments.
-
-For that purpose there is a sample configuration file with settings adapted for
-development scenarios, :file:`pootle/settings/90-dev-local.conf.sample`. Copy
-this file and rename it by removing the *.sample* extension:
+that differ from those used in production environments.
 
 .. code-block:: console
 
-    (pootle_env) $ cp pootle/settings/90-dev-local.conf.sample ~/.pootle/pootle.conf
+    (pootle_env) $ pootle init --dev
 
 
 .. note:: To learn more about how settings work in Pootle read the
