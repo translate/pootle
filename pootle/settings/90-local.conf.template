@@ -4,9 +4,6 @@
 
 This file includes the settings that administrators will likely change.
 You can find the defaults in the ``*.conf`` files for more advanced settings.
-
-In order for this configuration changes to take effect, bear in mind that you
-need to change the extension of this file from ``.conf.sample`` to ``.conf``.
 """
 
 from pootle.i18n.gettext import ugettext_lazy as _

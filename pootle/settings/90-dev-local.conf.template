@@ -4,9 +4,6 @@
 
 This file includes settings that are suited for hacking Pootle. For further
 customizations, you can find the defaults in the ``*.conf`` files.
-
-In order for this configuration changes to take effect, bear in mind that you
-need to change the extension of this file from ``.conf.sample`` to ``.conf``.
 """
 
 #
