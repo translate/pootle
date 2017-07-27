@@ -15,7 +15,9 @@ from pootle.core.debug import memusage
 from pootle.core.delegate import revision
 from pootle_app.views.index.index import (
     COOKIE_NAME, IndexView, WelcomeView)
+from pootle_language.models import Language
 from pootle_score.display import TopScoreDisplay
+from pootle_translationproject.models import TranslationProject
 
 
 @pytest.mark.django_db
@@ -78,3 +80,37 @@ def test_view_welcome_garbage(client):
         with memusage() as usage:
             client.get(url)
         assert not usage["used"]
+
+
+@pytest.mark.django_db
+def test_view_index_redirect(client, language0, project0, request_users):
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    response = client.get("/")
+    if user.is_authenticated:
+        assert response.status_code == 302
+        assert response.url == "/projects/"
+    else:
+        assert response.status_code == 200
+
+    # cookie test
+    client.cookies["pootle-language"] = language0.code
+    response = client.get("/")
+    if user.is_authenticated:
+        assert response.status_code == 302
+        assert response.url == "/%s/" % language0.code
+    else:
+        assert response.status_code == 200
+
+    # accept lang test
+    del client.cookies["pootle-language"]
+    es = Language.objects.create(code="es")
+    TranslationProject.objects.create(language=es, project=project0)
+    response = client.get("/", HTTP_ACCEPT_LANGUAGE="es")
+    if user.is_authenticated:
+        assert response.status_code == 302
+        assert response.url == "/es/"
+    else:
+        assert response.status_code == 200
