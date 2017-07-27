@@ -51,10 +51,6 @@ Clone your fork of the Pootle master using your favourite Windows
 implementation of Git so that you have a working copy somewhere accessible on
 your computer (e.g. ``C:\git\pootle``).
 
-First, rename ``90-dev-local.conf.sample`` to ``90-dev-local.conf`` (in
-``pootle\settings``) to enable a basic configuration suitable for local
-hacking.
-
 Then go to the Pootle ``requirements\base.txt`` and comment out the following
 packages:
 
@@ -115,6 +111,7 @@ Linux system.
 
 .. code-block:: console
 
+    (venv)> pootle init --dev
     (venv)> pootle migrate
     (venv)> pootle initdb
 
