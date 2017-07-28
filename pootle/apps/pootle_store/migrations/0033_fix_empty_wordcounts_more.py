@@ -17,12 +17,7 @@ def fix_empty_wordcounts(apps, schema_editor):
     unit_sources = apps.get_model("pootle_store.UnitSource").objects
     Store = apps.get_model("pootle_store.Store")
     TranslationProject = apps.get_model("pootle_translationproject.TranslationProject")
-    unit_sources = unit_sources.filter(source_wordcount=1)
-
-    unit_sources = (
-        unit_sources.filter(unit__source_f__regex="^$")
-        | unit_sources.filter(unit__source_f__regex="-$"))
-
+    unit_sources = unit_sources.filter(source_wordcount=1).filter(unit__source_f__regex="^.$")
     stores = set(unit_sources.values_list("unit__store", flat=True).distinct())
     tps = set(unit_sources.values_list("unit__store__translation_project", flat=True).distinct())
     unit_sources.update(source_wordcount=0)
@@ -37,8 +32,7 @@ def fix_empty_wordcounts(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('pootle_store', '0031_remove_suggestion_translator_comment_f'),
-        ('pootle_data', '0007_add_store_and_tp_data_again'),
+        ('pootle_store', '0032_fix_empty_wordcounts'),
     ]
 
     operations = [
