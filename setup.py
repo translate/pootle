@@ -427,6 +427,13 @@ dependency_links += parse_dependency_links('requirements/_db_postgresql.txt')
 # Pootle FS plugins
 extras_require['git'] = parse_requirements('requirements/_pootle_fs_git.txt')
 dependency_links += parse_dependency_links('requirements/_pootle_fs_git.txt')
+# Elasticsearch
+extras_require['es1'] = parse_requirements('requirements/_es_1.txt')
+dependency_links += parse_dependency_links('requirements/_es_1.txt')
+extras_require['es2'] = parse_requirements('requirements/_es_2.txt')
+dependency_links += parse_dependency_links('requirements/_es_2.txt')
+extras_require['es5'] = parse_requirements('requirements/_es_5.txt')
+dependency_links += parse_dependency_links('requirements/_es_5.txt')
 # Testing
 extras_require['travis'] = parse_requirements('requirements/travis.txt',
                                               recurse=True)
