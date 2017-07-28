@@ -20,7 +20,6 @@ Babel==2.4.0
 cssmin==0.2.0
 diff-match-patch==20121119
 dirsync==2.2.2
-elasticsearch~=1.0  # rq.filter: <2.0
 jsonfield==2.0.2
 # Note: also adjust pootle/checks::LXML_MINIMUM_REQUIRED_VERSION
 lxml>=3.5,<=3.8.0
