@@ -22,8 +22,8 @@ Detailed setup
 ^^^^^^^^^^^^^^
 
 .. note:: For convenience these instructions consistently specify paths
-    ``C:\venv``, ``C:\git\pootle`` and ``C:\temp``, but you can change these to
-    suit your environment and needs.
+    ``C:\pootle_venv``, ``C:\git\pootle`` and ``C:\temp``, but you can change
+    these to suit your environment and needs.
 
 .. note:: Depending on how correctly your environment is set up (depending on
    factors beyond your control such as virus scanners, Windows system health,
@@ -38,14 +38,14 @@ virtualenv.
 .. code-block:: console
 
     > pip install virtualenv
-    > virtualenv C:\venv
+    > virtualenv C:\pootle_venv
 
 Activate the new virtualenv and upgrade pip:
 
 .. code-block:: console
 
-    > C:\venv\Scripts\activate
-    (venv)> pip install --upgrade pip setuptools
+    > C:\pootle_venv\Scripts\activate
+    (pootle_venv)> pip install --upgrade pip setuptools
 
 Clone your fork of the Pootle master using your favourite Windows
 implementation of Git so that you have a working copy somewhere accessible on
@@ -71,9 +71,9 @@ Now install them explicitly:
 
 .. code-block:: console
 
-    (venv)> pip install C:\temp\lxml-3.6.4-cp27-cp27m-win32.whl
-    (venv)> pip install C:\temp\python_Levenshtein-0.12.0-cp27-none-win32.whl
-    (venv)> pip install C:\temp\scandir-1.2-cp27-none-win32.whl
+    (pootle_venv)> pip install C:\temp\lxml-3.6.4-cp27-cp27m-win32.whl
+    (pootle_venv)> pip install C:\temp\python_Levenshtein-0.12.0-cp27-none-win32.whl
+    (pootle_venv)> pip install C:\temp\scandir-1.2-cp27-none-win32.whl
 
 At this point, you may be able to install Pootle and its requirements using the
 following command. However, pip installation of requirements may fail with
@@ -82,8 +82,8 @@ use the commands in the next note block.
 
 .. code-block:: console
 
-    (venv)> cd C:\git\pootle
-    (venv)> pip install -e .[dev]
+    (pootle_venv)> cd C:\git\pootle
+    (pootle_venv)> pip install -e .[dev]
 
 .. note:: "Directory was not empty" and "file not found" issues come from
    modern versions of Windows' tighter control over permissions for special
@@ -94,10 +94,10 @@ use the commands in the next note block.
     
     .. code-block:: console
     
-        (venv)> pip download -d C:\temp -r requirements\dev.txt -b C:\temp
-        (venv)> pip install -r requirements\dev.txt -b C:\temp -t C:\venv\Lib\site-packages\ --no-index --find-links="C:\temp"
-        (venv)> cd C:\git\pootle
-        (venv)> pip install -e .
+        (pootle_venv)> pip download -d C:\temp -r requirements\dev.txt -b C:\temp
+        (pootle_venv)> pip install -r requirements\dev.txt -b C:\temp -t C:\pootle_venv\Lib\site-packages\ --no-index --find-links="C:\temp"
+        (pootle_venv)> cd C:\git\pootle
+        (pootle_venv)> pip install -e .
 
 
 Now that all the requirements are lined up, we are ready to initialise Pootle.
@@ -111,9 +111,9 @@ Linux system.
 
 .. code-block:: console
 
-    (venv)> pootle init --dev
-    (venv)> pootle migrate
-    (venv)> pootle initdb
+    (pootle_venv)> pootle init --dev
+    (pootle_venv)> pootle migrate
+    (pootle_venv)> pootle initdb
 
 Next, you will need to set up the client-side bundles with NPM. It might be
 necessary to deactivate the virtual environment or use a separate command
@@ -129,8 +129,8 @@ Once NPM install has completed, the actual javascript bundles can be compiled:
 
 .. code-block:: console
 
-    (venv)> cd C:\git\pootle
-    (venv)> pootle webpack --dev
+    (pootle_venv)> cd C:\git\pootle
+    (pootle_venv)> pootle webpack --dev
 
 The :djadmin:`webpack` command will keep running after it's completed, to
 monitor your javascript files for changes so that it can auto-recompile as you
@@ -143,15 +143,15 @@ preparations:
 
 .. code-block:: console
 
-    (venv)> pootle compilejsi18n
+    (pootle_venv)> pootle compilejsi18n
 
 Now create and verify a super-user as normal:
 
 .. code-block:: console
 
-    (venv)> pootle createsuperuser
+    (pootle_venv)> pootle createsuperuser
     [Follow on-screen prompts.]
-    (venv)> pootle verify_user [username]
+    (pootle_venv)> pootle verify_user [username]
 
 Pootle is now ready to be fired up!
 
@@ -161,11 +161,11 @@ server):
 
 .. code-block:: console
 
-    (venv)> pootle rqworker
+    (pootle_venv)> pootle rqworker
 
 .. code-block:: console
 
-    (venv)> pootle runserver
+    (pootle_venv)> pootle runserver
 
 Congratulations, Pootle should now be running comfortably! Happy hacking on
 Windows!!
