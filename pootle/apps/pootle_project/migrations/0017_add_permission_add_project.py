@@ -16,7 +16,7 @@ def create_permission_add_project(apps, schema_editor):
         )
         try:
             add_project_permission = Permission.objects.get(
-                codename="add_project",
+                codename="create_project",
                 content_type=pootle_project_model
             )
         except Permission.DoesNotExist:
@@ -26,8 +26,8 @@ def create_permission_add_project(apps, schema_editor):
             )
             add_project_permission = Permission(
                 content_type=pootle_project_model,
-                name="Can add project",
-                codename="add_project"
+                name="Can create a project",
+                codename="create_project"
             )
             add_project_permission.save()
     except ContentType.DoesNotExist:

@@ -25,6 +25,6 @@ class ProjectUserView(ProjectGenericAdminView):
         return Directory.objects.root
 
     @set_permissions
-    @requires_permission_class("add_project")
+    @requires_permission_class("create_project")
     def dispatch(self, request, *args, **kwargs):
         return super(ProjectUserView, self).dispatch(request, *args, **kwargs)

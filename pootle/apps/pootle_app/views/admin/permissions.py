@@ -22,7 +22,7 @@ User = get_user_model()
 PERMISSIONS = {
     'positive': [
         'view', 'suggest', 'translate', 'review',
-        'administrate', 'add_project'
+        'administrate', 'create_project'
     ],
     'negative': ['hide'],
 }

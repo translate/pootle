@@ -156,8 +156,8 @@ class InitDB(object):
                 'codename': "administrate",
             },
             {
-                'name': _("Can add projects"),
-                'codename': "add_project",
+                'name': _("Can create a project"),
+                'codename': "create_project",
             },
         ]
 

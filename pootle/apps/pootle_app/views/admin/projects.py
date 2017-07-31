@@ -83,7 +83,7 @@ class ProjectAPIView(APIView):
         return Directory.objects.root
 
     @set_permissions
-    @requires_permission_class("add_project")
+    @requires_permission_class("create_project")
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_superuser:
             exclude_projects = [project.pk
