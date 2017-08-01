@@ -284,7 +284,6 @@ checkout run:
     (build-pootle-release)$ export POOTLE_SETTINGS=~/.pootle/pootle_build.conf
     (build-pootle-release)$ ./setup.py build_mo        # Build all LINGUAS enabled languages
     (build-pootle-release)$ ./setup.py build_mo --all  # If we are shipping an RC
-    (build-pootle-release)$ make clean
     (build-pootle-release)$ make build
     (build-pootle-release)$ deactivate
     $ unset POOTLE_SETTINGS
