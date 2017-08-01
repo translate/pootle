@@ -384,6 +384,15 @@ Translation environment configuration settings.
   the trailing slash.
 
 
+.. setting:: AMAGAMA_SOURCE_LANGUAGES
+
+``AMAGAMA_SOURCE_LANGUAGES``
+  Default: ``('en', 'en_US', 'en-US')``
+
+  List of available source languages in amaGama server pointed to by
+  ``AMAGAMA_URL``.
+
+
 .. setting:: POOTLE_SYNC_FILE_MODE
 
 ``POOTLE_SYNC_FILE_MODE``
