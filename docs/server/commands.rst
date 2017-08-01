@@ -939,6 +939,12 @@ Available options:
   Port to connect to database on. Defaults to database backend's default port.
   Not used with sqlite.
 
+.. django-admin-option:: --dev
+
+  .. versionadded:: 2.8
+
+  Creates a development configuration instead.
+
 
 .. django-admin:: initdb
 
