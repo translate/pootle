@@ -215,7 +215,8 @@ refresh_scores
 
 .. versionadded:: 2.7
 
-Recalculates the scores for all users.
+Recalculates the scores for all users. It is possible to narrow down the
+calculation to specific projects and/or languages.
 
 .. warning:: It is advisable to run this command while Pootle server is offline
    since the command can fail due to data being changed by users.
