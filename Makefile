@@ -26,6 +26,7 @@ assets:
 	cd ${JS_DIR} && \
 	npm install && \
 	cd ${CWD}
+	cp ${JS_DIR}/node_modules/select2/dist/js/i18n/*.js ${JS_DIR}/select2_l10n/
 	${POOTLE_CMD} compilejsi18n
 	${POOTLE_CMD} webpack --extra=--display-error-details
 	mkdir -p ${ASSETS_DIR}
@@ -44,6 +45,7 @@ travis-assets:
 		cd ${JS_DIR} && \
 		npm install && \
 		cd ${CWD}; \
+		cp ${JS_DIR}/node_modules/select2/dist/js/i18n/*.js ${JS_DIR}/select2_l10n/; \
 		${POOTLE_CMD} compilejsi18n; \
 		${POOTLE_CMD} webpack --dev --nowatch; \
 		mkdir -p ${ASSETS_DIR}; \

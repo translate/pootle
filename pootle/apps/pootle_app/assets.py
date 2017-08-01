@@ -6,7 +6,11 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import os
+
 from django_assets import Bundle, register
+
+from django.conf import settings
 
 
 # <Webpack>
@@ -48,6 +52,19 @@ js_editor = Bundle(
     'js/editor/app.bundle.js',
     output='js/editor/app.min.%(version)s.js')
 register('js_editor', js_editor)
+
+
+rel_path = os.path.join('js', 'select2_l10n')
+select2_l10n_dir = os.path.join(settings.WORKING_DIR, 'static', rel_path)
+l10n_files = [os.path.join(rel_path, f)
+              for f in os.listdir(select2_l10n_dir)
+              if (os.path.isfile(os.path.join(select2_l10n_dir, f))
+                  and f.endswith('.js'))]
+for l10n_file in l10n_files:
+    lang = l10n_file.split(os.sep)[-1].split('.')[-2]
+    register('select2-l10n-%s' % lang,
+             Bundle(l10n_file,
+                    output='js/select2-l10n-' + lang + '.min.%(version)s.js'))
 
 
 # </Webpack>
