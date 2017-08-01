@@ -71,6 +71,8 @@ Details of changes
 
     - Accept suggestion without "can review" permissions if submitted
       translation is 100% match.
+    - Prevent sending suggestions matching a previously submitted suggestion or
+      current translation.
 
   - Current unit is shown at the top of the unit list so it is easier to use
     the navigation bar and it doesn't jump so much.
@@ -110,6 +112,7 @@ Details of changes
   - Editor is disabled for users without the required permissions. Reviewing
     suggestions is similarly disabled without required permissions.
   - Check categories can now be used in dropdown to filter units.
+  - Auto-matched translations are now highlighted as such.
   - Incomplete plural translations may now be submitted.
   - String error reporting form is now clearer and prevents empty reports from
     being submitted.
@@ -164,6 +167,12 @@ Details of changes
   - Files dropdown no longer keeps references to empty directories
   - Fixed issue where "Back" button not always worked
   - Fixed issue with project dropdown when there are projects without name
+
+- Search:
+
+  - No longer autocompletes
+  - Old 'Exact Match' was separated into 'Case-sensitive match' and
+    'Phrase match' allowing finer-grained searches.
 
 - Added team page:
 
@@ -261,12 +270,13 @@ Command changes and additions
 
 - Running Pootle commands using `manage.py` is no longer supported, use
   `pootle` instead.
+- `pootle` warns if configuration is missing.
 - :djadmin:`run_cherrypy` has been removed.
 - :djadmin:`start` has been removed, use :djadmin:`runserver` instead.
 - :djadmin:`verify_user` and :djadmin:`purge_user` now accept multiple
   usernames.
 - :djadmin:`refresh_scores` now recalculates user scores and accepts
-  multiple usernames.
+  multiple usernames. It can be run by projects and/or languages.
 - :djadmin:`contributors` command has been refactored in order to return more
   accurate results and has new options
   :option:`--since <contributors --since>`,
@@ -288,6 +298,9 @@ Command changes and additions
   :option:`--rotate <export --rotate>` option allows old files to be removed.
 - Added :djadmin:`schema` command that allows to dump the database schema on
   MySQL which is useful for diagnosing differences in database schema.
+- Added :djadmin:`update_data` command that allows to update the stats data.
+- :djadmin:`init` now creates a development configuration with
+  :option:`--dev <init --dev>` option.
 
 
 Changes in settings
@@ -319,6 +332,7 @@ Changes in settings
   Deployments using any deprecated markup must migrate manually to Markdown.
   This setting will be removed in the future since Markdown will be the only
   available markup.
+- Added new :setting:`AMAGAMA_SOURCE_LANGUAGES` setting.
 
 
 Credits
