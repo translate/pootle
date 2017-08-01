@@ -15,7 +15,7 @@ class PootleLogConfig(AppConfig):
 
     name = "pootle_log"
     verbose_name = "Pootle Log"
-    version = "0.0.3"
+    version = "0.0.4"
 
     def ready(self):
         importlib.import_module("pootle_log.getters")
