@@ -114,6 +114,29 @@ queue you can run this command.
 Examine the RQ worker logs for tracebacks before trying to requeue your jobs.
 
 
+.. django-admin:: update_data
+
+update_data
+^^^^^^^^^^^
+
+.. versionadded:: 2.8
+
+This command updates the stats data. The stats data update can be triggered for
+specific languages or projects.
+
+.. django-admin-option:: --store
+
+Use the :option:`--store` option to narrow the stats data calculation to a
+specific store:
+
+.. code-block:: console
+
+    $ pootle update_data --store=/fr/proj/mydir/mystore.po
+
+Note this will also trigger the update of the stats data for items above the
+store, like for example directories above it, its language and its project.
+
+
 .. django-admin:: calculate_checks
 
 calculate_checks
