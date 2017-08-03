@@ -1,6 +1,6 @@
 # Testing
 
-factory-boy==2.9.1
+factory-boy==2.9.2
 pytest==3.2.0
 pytest-catchlog==1.2.2
 pytest-cov==2.5.1
