@@ -12,6 +12,10 @@ from django.utils.safestring import mark_safe
 from pootle.i18n.gettext import ugettext as _
 
 
+register = template.Library()
+
+
+@register.filter
 def render_pager(pager):
     """Render a pager block with next and previous links"""
     if not pager.has_other_pages():
@@ -46,7 +50,3 @@ def render_pager(pager):
 
     result += '</ul>'
     return mark_safe(result)
-
-
-register = template.Library()
-register.filter('render_pager', render_pager)
