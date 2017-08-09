@@ -1,4 +1,5 @@
 **/*.bundle.js
 **/*.js.map
+select2_l10n/**
 vendor/**
 webpack.config.js
