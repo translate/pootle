@@ -1,0 +1,34 @@
+{% extends "projects/admin/base.html" %}
+
+{% load core i18n assets %}
+
+{% get_current_language as LANGUAGE_CODE %}
+
+{% block title %}{% trans "Projects" %} | {{ block.super }}{% endblock %}
+
+{% block scripts_extra %}
+{{ block.super }}
+{% assets 'js_admin_app' %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+<script type="text/javascript">
+$(function () {
+  PTL.admin.init({itemType: 'project',
+                  appRoot: '{% url "pootle-user-projects" %}',
+                  formChoices: {{ form_choices|to_js }}});
+});
+</script>
+{% endassets %}
+{% endblock %}
+
+{% block content %}
+
+{% block breadcrumbs %}
+{{ block.super }}<li>{% trans "Projects" %}</li>
+{% endblock %}
+<div class="settings-container centered" lang="{{ LANGUAGE_CODE }}">
+    <p class="info">{% block section_description %}{% endblock %}</p>
+
+    <div class="js-admin-app settings-container"></div>
+</div>
+
+{% endblock %}

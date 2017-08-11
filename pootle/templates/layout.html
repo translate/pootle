@@ -1,4 +1,4 @@
-{% load core i18n assets locale profile_tags static statici18n %}
+{% load check_permissions core i18n assets locale profile_tags static statici18n %}
 {% get_current_language as LANGUAGE_CODE %}
 <!DOCTYPE html>
 <html lang="{{ LANGUAGE_CODE }}" dir="{% locale_dir %}" id="{% block html_id %}pootle-base{% endblock %}" class="{{ settings.POOTLE_INSTANCE_ID }}">
@@ -130,6 +130,9 @@
             <ul class="dropdown-menu">
               <li><a href="{{ user.get_absolute_url }}">{% trans 'Public Profile' %}</a></li>
               <li><a href="{% url 'pootle-user-settings' user.username %}">{% trans 'Settings' %}</a></li>
+              {% if user.is_superuser or request|can_create_project %}
+              <li><a href="{% url 'pootle-user-projects' %}">{% trans "My Projects" %}</a></li>
+              {% endif %}
               {% if user.is_superuser %}
               <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans 'Admin' %}</a></li>
               {% endif %}
