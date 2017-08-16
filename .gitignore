@@ -23,6 +23,10 @@
 # /pootle/static/translations/*
 /pootle/static/translations/
 
+# Select2 l10n
+/pootle/static/js/select2_l10n/*
+/pootle/static/js/package-lock.json
+
 # /pootle/settings/
 /pootle/settings/*-local.conf
 
