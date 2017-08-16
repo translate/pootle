@@ -347,7 +347,7 @@ def get_version():
         githash = "[%s] " % githash
 
     return ("Pootle %s %s(Django %s, Translate Toolkit %s)" %
-            (__version__, githash, django_version(), tt_version.sver))
+            (__version__, githash or '', django_version(), tt_version.sver))
 
 
 def main():

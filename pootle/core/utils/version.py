@@ -236,14 +236,17 @@ def get_git_branch():
 
 @lru_cache()
 def get_git_hash():
-    """Returns the current git commit hash.
+    """Returns the current git commit hash or None.
 
     >>> get_git_hash()
     'ad768e8'
     """
-    return _shell_command(
+    git_hash = _shell_command(
         ['/usr/bin/git', 'rev-parse', '--verify', '--short', 'HEAD']
-    ).strip()
+    )
+    if git_hash:
+        return git_hash.strip()
+    return None
 
 
 if __name__ == "__main__":
