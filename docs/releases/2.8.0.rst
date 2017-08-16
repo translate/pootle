@@ -1,8 +1,8 @@
-============================================
-Pootle 2.8 release notes - UNDER DEVELOPMENT
-============================================
+========================
+Pootle 2.8 release notes
+========================
 
-*Not yet released*
+*Released on 16 August 2017*
 
 Welcome to Pootle 2.8!
 

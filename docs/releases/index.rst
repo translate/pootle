@@ -12,19 +12,16 @@ Also be aware of the :ref:`important changes in the Translate Toolkit
 If you are upgrading Pootle, you might want to see some tips to ensure your
 :doc:`upgrade goes smoothly </server/upgrading>`.
 
-Upcoming releases
-=================
-
-2.8 release
------------
-.. toctree::
-   :maxdepth: 1
-
-   2.8.0
-
 
 Final releases
 ==============
+
+2.8 series
+----------
+.. toctree::
+   :maxdepth: 1
+
+   2.8.0 <2.8.0>
 
 2.7 series
 ----------
