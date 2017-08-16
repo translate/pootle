@@ -200,6 +200,7 @@ Details of changes
     <http://django-statici18n.readthedocs.io/en/latest/index.html>`_ app.
   - Password reset email is now localizable in Pootle
   - Multiple changes in localizable strings to ease translation
+  - Now Pootle bundles Select2 localization.
 
 - Upload and download:
 
@@ -345,6 +346,6 @@ Regueiro, Igor Afanasyev, Claude Paroz, Safa Alfulaij, Rene Ladan, Kevin
 Scannell, Jason P. Pickering, Eamonn Lawlor, Alexander Lakhin, Robbie Cole,
 Rhoslyn Prys, Prasasto Adi, Nootan Ghimire, Mikhail Paulyshka, Mike Robinson,
 leonardcj, Henrik Feldt, Francesc Ortiz, Allan Nordhøy, Christian Lohmaier,
-Burhan Khalid, Arash Mousavi, Andy Kittner, Adam Chainz.
+Burhan Khalid, benbankes, Arash Mousavi, Andy Kittner, Adam Chainz.
 
 And to all our bug finders, testers and translators, a Very BIG Thank You.
