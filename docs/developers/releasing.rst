@@ -280,6 +280,7 @@ checkout run:
     (build-pootle-release)$ nvm install stable
     (build-pootle-release)$ pip install --upgrade setuptools pip
     (build-pootle-release)$ pip install -r requirements/build.txt
+    (build-pootle-release)$ pip install -e .[dev]
     (build-pootle-release)$ export PYTHONPATH="${PYTHONPATH}:`pwd`"
     (build-pootle-release)$ export POOTLE_SETTINGS=~/.pootle/pootle_build.conf
     (build-pootle-release)$ ./setup.py build_mo        # Build all LINGUAS enabled languages
