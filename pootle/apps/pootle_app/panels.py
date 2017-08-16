@@ -15,8 +15,12 @@ from pootle.core.decorators import persistent_property
 from pootle.core.views.panels import TablePanel
 from pootle.i18n.dates import timesince
 
+from .apps import PootleConfig
+
 
 class ChildrenPanel(TablePanel):
+    ns = "pootle.app"
+    sw_version = PootleConfig.version
     panel_name = "children"
     _table_fields = (
         'name', 'progress', 'activity',
