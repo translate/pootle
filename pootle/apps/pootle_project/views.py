@@ -349,6 +349,8 @@ def project_admin_permissions(request, project):
 
 
 class ProjectsMixin(object):
+    ns = "pootle.project"
+    sw_version = PootleProjectConfig.version
     template_extends = 'projects/all/base.html'
     browse_url_path = "pootle-projects-browse"
     translate_url_path = "pootle-projects-translate"
