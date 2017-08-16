@@ -232,6 +232,16 @@ We create a list of contributors using this command:
     $ git log 2.5.0..HEAD --format='%aN, ' | awk '{arr[$0]++} END{for (i in arr){print arr[i], i;}}' | sort -rn | cut -d\  -f2-
 
 
+.. _releasing#cane-caches:
+
+Cane caches
+-----------
+
+Bump the version for each of the apps so the caches are caned after upgrade:
+
+- :file:`apps.py` for each of the apps that have a `version`
+
+
 .. _releasing#up-version-numbers:
 
 Up version numbers
