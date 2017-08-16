@@ -446,10 +446,9 @@ You can safely branch, if required, for a ``stable/`` branch before you tag.
 
 .. code-block:: console
 
-    $ git checkout -b stable/2.6.x
-    $ git push origin stable/2.6.x
-    $ git tag -a 2.6.0 -m "Tag version 2.6.0"
-    $ git push --tags
+    $ git checkout -b stable/2.8.x
+    $ git push origin stable/2.8.x
+
 
 If you branch you will want to update the :file:`README.rst` file so that it
 points correctly to branched versions of badges and documentation.  Review and
@@ -457,9 +456,19 @@ test the actual links created, you don't need to commit everything.
 
 .. code-block:: console
 
-    $ ./setup.py update_readme -w
-    $ git diff README.rst
-    $ git commit README.rst -m "Adjust README to branch"
+    $ workon build-pootle-release
+    (build-pootle-release)$ ./setup.py update_readme -w
+    (build-pootle-release)$ git diff README.rst
+    (build-pootle-release)$ git commit README.rst -m "Adjust README to branch"
+    (build-pootle-release)$ deactivate
+
+
+Tag the release:
+
+.. code-block:: console
+
+    $ git tag -a 2.8.0 -m "Tag version 2.8.0"
+    $ git push --tags
 
 
 Release documentation
@@ -505,8 +514,7 @@ Run the following to publish the package on PyPI:
 .. code-block:: console
 
     $ workon build-pootle-release
-    (build-pootle-release)$ pip install --upgrade pyopenssl ndg-httpsclient pyasn1
-    (build-pootle-release)$ pip install twine
+    (build-pootle-release)$ pip install --upgrade pyopenssl ndg-httpsclient pyasn1 twine
     (build-pootle-release)$ twine upload dist/Pootle-*
     (build-pootle-release)$ deactivate
     $ rmvirtualenv build-pootle-release
