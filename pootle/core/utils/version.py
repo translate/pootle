@@ -185,13 +185,16 @@ def _shell_command(command):
     """Return the first result of a shell ``command``"""
     repo_dir = os.path.dirname(os.path.abspath(__file__))
 
-    command_subprocess = subprocess.Popen(
-        command,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-        cwd=repo_dir,
-        universal_newlines=True
-    )
+    try:
+        command_subprocess = subprocess.Popen(
+            command,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            cwd=repo_dir,
+            universal_newlines=True
+        )
+    except OSError:
+        return None
 
     return command_subprocess.communicate()[0]
 
