@@ -6,8 +6,8 @@
 
 .. Resources
 
-`Docs <http://docs.translatehouse.org/projects/pootle/en/latest/>`_ |
-`Changes <http://docs.translatehouse.org/projects/pootle/en/latest/releases/2.8.0.html>`_ |
+`Docs <http://docs.translatehouse.org/projects/pootle/en/stable-2.8.0/>`_ |
+`Changes <http://docs.translatehouse.org/projects/pootle/en/stable-2.8.0/releases/2.8.0.html>`_ |
 `Issues <https://github.com/translate/pootle/issues>`_ |
 `Community Support <https://gitter.im/translate/pootle>`_ |
 `Contributing <https://github.com/translate/pootle/blob/master/CONTRIBUTING.rst>`_ |
@@ -35,10 +35,10 @@ Installation
 
 ::
 
-  pip install --process-dependency-links --pre Pootle
+  pip install --process-dependency-links Pootle
 
 Don't forget to read the `installation guide
-<http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html>`_
+<http://docs.translatehouse.org/projects/pootle/en/stable-2.8.0/server/installation.html>`_
 for important details.
 
 
@@ -58,18 +58,18 @@ for details.
         :alt: Join the chat at https://gitter.im/translate/pootle
         :target: https://gitter.im/translate/pootle
 
-.. |build| image:: https://img.shields.io/travis/translate/pootle/master.svg?style=flat-square
+.. |build| image:: https://img.shields.io/travis/translate/pootle/stable/2.8.x.svg?style=flat-square
         :alt: Build Status
         :target: https://travis-ci.org/translate/pootle/branches
 
-.. |health| image:: https://landscape.io/github/translate/pootle/master/landscape.svg?style=flat-square
-        :target: https://landscape.io/github/translate/pootle/master
+.. |health| image:: https://landscape.io/github/translate/pootle/stable/2.8.x/landscape.svg?style=flat-square
+        :target: https://landscape.io/github/translate/pootle/stable/2.8.x
         :alt: Code Health
 
-.. |coverage| image:: https://img.shields.io/codecov/c/github/translate/pootle/master.svg?style=flat-square
-        :target: https://codecov.io/gh/translate/pootle/branch/master
+.. |coverage| image:: https://img.shields.io/codecov/c/github/translate/pootle/stable%2F2.8.x.svg?style=flat-square
+        :target: https://codecov.io/gh/translate/pootle/branch/stable%2F2.8.x
         :alt: Test Coverage
 
-.. |requirements| image:: https://img.shields.io/requires/github/translate/pootle/master.svg?style=flat-square
-        :target: https://requires.io/github/translate/pootle/requirements/?branch=master
+.. |requirements| image:: https://img.shields.io/requires/github/translate/pootle/stable/2.8.x.svg?style=flat-square
+        :target: https://requires.io/github/translate/pootle/requirements/?branch=stable%2F2.8.x
         :alt: Requirements
