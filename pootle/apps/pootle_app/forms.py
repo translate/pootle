@@ -57,7 +57,7 @@ class ProjectForm(forms.ModelForm):
     class Meta(object):
         model = Project
         fields = ('id', 'code', 'fullname', 'checkstyle',
-                  'filetypes', 'treestyle', 'source_language', 'ignoredfiles',
+                  'filetypes', 'source_language', 'ignoredfiles',
                   'report_email', 'screenshot_search_prefix', 'disabled',)
 
     def __init__(self, *args, **kwargs):
@@ -68,12 +68,6 @@ class ProjectForm(forms.ModelForm):
 
         self.fields["filetypes"].initial = [
             self.fields["filetypes"].queryset.get(name="po")]
-
-        if self.instance.id:
-            if (self.instance.treestyle != 'auto' and
-                self.instance.translationproject_set.count() and
-                self.instance.treestyle == self.instance._detect_treestyle()):
-                self.fields['treestyle'].required = False
 
     def clean_filetypes(self):
         value = self.cleaned_data.get('filetypes', [])
@@ -92,12 +86,6 @@ class ProjectForm(forms.ModelForm):
 
     def clean_fullname(self):
         return self.cleaned_data['fullname'].strip()
-
-    def clean_treestyle(self):
-        value = self.cleaned_data.get('treestyle', None)
-        if not value:
-            value = self.instance.treestyle
-        return value
 
     def clean_code(self):
         return self.cleaned_data['code'].strip()
