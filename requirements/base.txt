@@ -1,6 +1,7 @@
 # Base requirements
 
 # Note: also adjust pootle/constants::DJANGO_MINIMUM_REQUIRED_VERSION
+# and docs/releases/M.N.O.rst
 Django~=1.10.5  # rq.filter: <1.11
 
 # Django apps
