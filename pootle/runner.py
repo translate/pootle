@@ -34,7 +34,10 @@ KEY_LENGTH = 50
 #: Default path for the settings file
 SYSTEM_SETTINGS_PATH = os.path.join('/etc', 'pootle', 'pootle.conf')
 HOME_SETTINGS_PATH = os.path.join('~', '.pootle', 'pootle.conf')
-VENV_SETTINGS_PATH = os.path.join(os.environ["VIRTUAL_ENV"], "pootle.conf")
+if "VIRTUAL_ENV" in os.environ:
+    VENV_SETTINGS_PATH = os.path.join(os.environ["VIRTUAL_ENV"], "pootle.conf")
+else:
+    VENV_SETTINGS_PATH = ""
 DEFAULT_SETTINGS_PATH = ":".join(
     [SYSTEM_SETTINGS_PATH,
      HOME_SETTINGS_PATH,
@@ -146,7 +149,7 @@ def init_command(parser, args):
                               u"Not used with sqlite."))
 
     args, remainder_ = parser.parse_known_args(args)
-    config_path = args.config or VENV_SETTINGS_PATH
+    config_path = args.config or VENV_SETTINGS_PATH or HOME_SETTINGS_PATH
 
     if os.path.exists(config_path):
         resp = None
@@ -243,7 +246,7 @@ def configure_app(project, config_paths, django_settings_module, runner_name):
         logger.error(
             u"Configuration file does not exist at %(config_path)r. "
             u"Use '%(runner_name)s init' to initialize the configuration file.",
-            dict(config_path=VENV_SETTINGS_PATH,
+            dict(config_path=VENV_SETTINGS_PATH or HOME_SETTINGS_PATH,
                  runner_name=runner_name))
         sys.exit(1)
     os.environ.setdefault(settings_envvar, ":".join(_config_paths))
