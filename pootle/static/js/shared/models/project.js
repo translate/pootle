@@ -18,7 +18,6 @@ export const Project = Backbone.Model.extend({
     code: '',
     fullname: '',
     checkstyle: 'standard',
-    treestyle: 'auto',
     source_language: '',
     ignoredfiles: '',
     filetypes: [],

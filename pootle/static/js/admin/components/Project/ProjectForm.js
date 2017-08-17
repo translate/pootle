@@ -24,7 +24,7 @@ const ProjectForm = React.createClass({
 
   mixins: [ModelFormMixin],
 
-  fields: ['code', 'fullname', 'checkstyle', 'filetypes', 'treestyle',
+  fields: ['code', 'fullname', 'checkstyle', 'filetypes',
            'source_language', 'ignoredfiles', 'report_email',
            'screenshot_search_prefix', 'disabled'],
 
@@ -90,16 +90,6 @@ const ProjectForm = React.createClass({
           <FormElement
             type="select"
             clearable={false}
-            options={model.getFieldChoices('treestyle')}
-            label={gettext('Project Tree Style')}
-            handleChange={this.handleChange}
-            name="treestyle"
-            errors={errors.treestyle}
-            value={formData.treestyle}
-          />
-          <FormElement
-            type="select"
-            clearable={false}
             options={model.getFieldChoices('source_language')}
             label={gettext('Source Language')}
             handleChange={this.handleChange}
@@ -148,8 +138,7 @@ const ProjectForm = React.createClass({
             <li><a href={model.getAbsoluteUrl()}>{gettext('Overview')}</a></li>
             <li><a href={model.getLanguagesUrl()}>{gettext('Languages')}</a></li>
             <li><a href={model.getPermissionsUrl()}>{gettext('Permissions')}</a></li>
-         {model.attributes.treestyle === 'pootle_fs' &&
-          <li><a href={model.getFSUrl()}>{gettext('Filesystems')}</a></li>}
+            <li><a href={model.getFSUrl()}>{gettext('Filesystems')}</a></li>
           </ul>}
         </div>
       {this.props.onDelete &&
