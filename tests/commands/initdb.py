@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import os
+
 import pytest
 
 from django.core.management import call_command
@@ -38,10 +40,18 @@ def test_cmd_initdb_noprojects(capfd, no_permission_sets, no_permissions,
 @pytest.mark.cmd
 @pytest.mark.django_db
 def test_cmd_initdb(capfd, po_directory, no_permission_sets, no_permissions,
-                    no_users, no_projects, templates):
+                    no_users, no_projects, templates, settings):
     """Initialise the database with initdb
     """
     templates.delete()
+    os.makedirs(
+        os.path.join(
+            settings.POOTLE_TRANSLATION_DIRECTORY,
+            "terminology"))
+    os.makedirs(
+        os.path.join(
+            settings.POOTLE_TRANSLATION_DIRECTORY,
+            "tutorial"))
     call_command('initdb')
     out, err = capfd.readouterr()
     assert "Successfully populated the database." in out
