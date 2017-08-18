@@ -14,6 +14,7 @@ import uuid
 from bulk_update.helper import bulk_update
 
 from django.contrib.auth import get_user_model
+from django.db import transaction
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
@@ -239,6 +240,7 @@ class Plugin(object):
             self, fs_path=fs_path, pootle_path=pootle_path)
 
     @responds_to_state
+    @transaction.atomic
     def add(self, state, response, fs_path=None, pootle_path=None, force=False):
         """
         Stage untracked or removed Stores or files
@@ -272,6 +274,7 @@ class Plugin(object):
         return response
 
     @responds_to_state
+    @transaction.atomic
     def resolve(self, state, response, fs_path=None, pootle_path=None,
                 merge=True, pootle_wins=False):
         """
@@ -305,6 +308,7 @@ class Plugin(object):
         return response
 
     @responds_to_state
+    @transaction.atomic
     def rm(self, state, response, fs_path=None, pootle_path=None, force=False):
         """
         Stage translations for removal.
@@ -338,6 +342,7 @@ class Plugin(object):
         return response
 
     @responds_to_state
+    @transaction.atomic
     def unstage(self, state, response, fs_path=None, pootle_path=None):
         """
         Unstage files staged for addition, merge or removal
@@ -489,6 +494,7 @@ class Plugin(object):
         return response
 
     @responds_to_state
+    @transaction.atomic
     def sync(self, state, response, fs_path=None, pootle_path=None):
         """
         Synchronize all staged and non-conflicting files and Stores, and push
