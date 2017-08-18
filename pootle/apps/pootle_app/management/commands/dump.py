@@ -24,8 +24,8 @@ from pootle_translationproject.models import TranslationProject
 
 
 DUMPED = {
-    'TranslationProject': ('pootle_path', 'real_path', 'disabled'),
-    'Store': ('file', 'translation_project', 'pootle_path', 'name', 'state'),
+    'TranslationProject': ('pootle_path', 'disabled'),
+    'Store': ('translation_project', 'pootle_path', 'name', 'state'),
     'Directory': ('name', 'parent', 'pootle_path'),
     'Unit': ('source', 'target', 'target_wordcount',
              'developer_comment', 'translator_comment', 'locations',
