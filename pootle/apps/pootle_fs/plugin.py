@@ -61,8 +61,9 @@ class Plugin(object):
     @property
     def cache_key(self):
         return (
-            "%s.%s.%s"
-            % (self.pootle_revision,
+            "%s.%s.%s.%s"
+            % (self.project.code,
+               self.pootle_revision,
                self.sync_revision,
                self.fs_revision))
 
