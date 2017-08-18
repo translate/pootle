@@ -34,7 +34,7 @@ DUMPED = {
     'Suggestion': ('target_f', 'user_id'),
     'Language': ('code', 'fullname', 'pootle_path'),
     'Project': ('code', 'fullname', 'checkstyle',
-                'treestyle', 'source_language', 'ignoredfiles',
+                'source_language', 'ignoredfiles',
                 'screenshot_search_prefix', 'disabled')
 }
 
