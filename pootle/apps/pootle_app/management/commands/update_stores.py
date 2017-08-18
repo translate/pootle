@@ -11,7 +11,9 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import PootleCommand
-from pootle_translationproject.models import scan_translation_projects
+from pootle_language.models import Language
+from pootle_fs.utils import FSPlugin
+from pootle_project.models import Project
 
 
 logger = logging.getLogger(__name__)
@@ -44,26 +46,42 @@ class Command(PootleCommand):
 
     def handle_translation_project(self, translation_project, **options):
         """
-        :return: flag if child stores should be updated
         """
-        if translation_project.project.treestyle == 'pootle_fs':
-            return
-        if translation_project.directory_exists_on_disk():
-            translation_project.update_from_disk(
-                force=options['force'], overwrite=options['overwrite'])
-            return False
+        path_glob = "%s*" % translation_project.pootle_path
+        plugin = FSPlugin(translation_project.project)
+        plugin.add(pootle_path=path_glob, update="pootle")
+        plugin.rm(pootle_path=path_glob, update="pootle")
+        plugin.sync(pootle_path=path_glob, update="pootle")
 
-        if translation_project.project.directory_exists_on_disk():
-            translation_project.directory.makeobsolete()
-        else:
-            # Skip if project directory ceased to exist on disk.
-            logger.warning(
-                u"[update] Missing project directory (skipping): %s",
-                translation_project)
-        return False
+    def _parse_tps_to_create(self, project):
+        plugin = FSPlugin(project)
+        plugin.fetch()
+        untracked_languages = set(
+            fs.pootle_path.split("/")[1]
+            for fs
+            in plugin.state()["fs_untracked"])
+        new_langs = (
+            [lang for lang
+             in untracked_languages
+             if lang in self.languages]
+            if self.languages
+            else untracked_languages)
+        return Language.objects.filter(
+            code__in=new_langs).exclude(
+                code__in=project.translationproject_set.values_list(
+                    "language__code", flat=True))
+
+    def _create_tps_for_project(self, project):
+        for language in self._parse_tps_to_create(project):
+            project.translationproject_set.create(
+                language=language,
+                project=project)
 
     def handle_all(self, **options):
-        scan_translation_projects(languages=self.languages,
-                                  projects=self.projects)
-
+        projects = (
+            Project.objects.filter(code__in=self.projects)
+            if self.projects
+            else Project.objects.all())
+        for project in projects.iterator():
+            self._create_tps_for_project(project)
         super(Command, self).handle_all(**options)
