@@ -73,8 +73,8 @@ class FSProjectStateResources(object):
     If present all resources are filtered accordingly.
     """
 
-    ns = "pootle.fs.resources"
     sw_version = PootleFSConfig.version
+    ns = "pootle.fs.resources"
 
     def __init__(self, context, pootle_path=None, fs_path=None):
         self.context = context
@@ -100,7 +100,7 @@ class FSProjectStateResources(object):
         return [x[1] for x in self.found_file_matches]
     found_file_paths = persistent_property(
         _found_file_paths,
-        key_attr="fs_revision")
+        key_attr="fs_cache_key")
 
     @cached_property
     def resources(self):
@@ -164,7 +164,7 @@ class FSProjectStateResources(object):
         return dict(self.tracked.values_list("path", "pootle_path"))
     tracked_paths = persistent_property(
         _tracked_paths,
-        key_attr="sync_revision")
+        key_attr="sync_cache_key")
 
     @cached_property
     def unsynced(self):
@@ -241,3 +241,15 @@ class FSProjectStateResources(object):
     @cached_property
     def cache_key(self):
         return self.context.cache_key
+
+    @cached_property
+    def fs_cache_key(self):
+        return (
+            "%s.%s"
+            % (self.context.cache_key, self.fs_revision))
+
+    @cached_property
+    def sync_cache_key(self):
+        return (
+            "%s.%s"
+            % (self.context.cache_key, self.sync_revision))
