@@ -495,7 +495,7 @@ class Plugin(object):
 
     @responds_to_state
     @transaction.atomic
-    def sync(self, state, response, fs_path=None, pootle_path=None):
+    def sync(self, state, response, fs_path=None, pootle_path=None, update="all"):
         """
         Synchronize all staged and non-conflicting files and Stores, and push
         changes upstream if required.
@@ -508,11 +508,14 @@ class Plugin(object):
             state, response, fs_path=fs_path, pootle_path=pootle_path)
         self.sync_merge(
             state, response, fs_path=fs_path, pootle_path=pootle_path)
-        self.sync_pull(
-            state, response, fs_path=fs_path, pootle_path=pootle_path)
-        self.sync_push(
-            state, response, fs_path=fs_path, pootle_path=pootle_path)
-        self.push(response)
+        if update in ["all", "pootle"]:
+            self.sync_pull(
+                state, response, fs_path=fs_path, pootle_path=pootle_path)
+        if update in ["all", "fs"]:
+            self.sync_push(
+                state, response, fs_path=fs_path, pootle_path=pootle_path)
+        if update in ["all", "fs"]:
+            self.push(response)
         sync_types = [
             "pushed_to_fs", "pulled_to_pootle",
             "merged_from_pootle", "merged_from_fs"]
