@@ -7,6 +7,8 @@
 # AUTHORS file for copyright and authorship information.
 
 import logging
+import posixpath
+from pathlib import PurePosixPath
 
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
@@ -20,8 +22,8 @@ from pootle.core.delegate import data_tool
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
-from pootle_app.project_tree import (does_not_exist, init_store_from_template,
-                                     translation_project_dir_exists)
+from pootle_app.project_tree import (
+    does_not_exist, translation_project_dir_exists)
 from pootle_checks.constants import EXCLUDED_FILTERS
 from pootle_format.models import Format
 from pootle_language.models import Language
@@ -308,18 +310,47 @@ class TranslationProject(models.Model, CachedTreeItem):
             and not translation_project_dir_exists(self.language,
                                                    self.project))
 
+    def create_parent_dirs(self, pootle_path):
+        parent = self.directory
+        dirs_to_create = []
+        for path in PurePosixPath(pootle_path).parents:
+            path = posixpath.join(str(path), "")
+            if path == self.pootle_path:
+                break
+            dirs_to_create.append(path)
+        for path in reversed(dirs_to_create):
+            parent, __ = Directory.objects.get_or_create(
+                pootle_path=path,
+                parent=parent,
+                name=posixpath.basename(path.rstrip("/")))
+        return parent
+
+    def init_store_from_template(self, template_store):
+        """Initialize a new file for `self` using `template_store`.
+        """
+        pootle_path = posixpath.join(
+            self.pootle_path.rstrip("/"),
+            template_store.tp_path.lstrip("/"))
+        pootle_path = ".".join(
+            [posixpath.splitext(pootle_path)[0],
+             template_store.filetype.extension.name])
+        store, __ = self.stores.get_or_create(
+            parent=self.create_parent_dirs(pootle_path),
+            pootle_path=pootle_path,
+            name=posixpath.basename(pootle_path))
+        return store
+
     def init_from_templates(self):
         """Initializes the current translation project files using
         the templates TP ones.
         """
         template_stores = self.templates_tp.stores.live().select_related(
             "filetype__template_extension",
-            "filetype__extension").exclude(file="")
-
+            "filetype__extension")
         for template_store in template_stores.iterator():
-            init_store_from_template(self, template_store)
-
-        self.update_from_disk()
+            new_store = self.init_store_from_template(template_store)
+            new_store.update(
+                new_store.deserialize(template_store.serialize()))
 
     def update_from_disk(self, force=False, overwrite=False):
         with update_tp_after(self):
