@@ -47,8 +47,7 @@ class FSProjectResources(object):
 
     @property
     def tracked(self):
-        return StoreFS.objects.filter(
-            project=self.project).select_related("store")
+        return StoreFS.objects.filter(project=self.project)
 
     @property
     def synced(self):
@@ -64,7 +63,10 @@ class FSProjectResources(object):
 
     @property
     def trackable_stores(self):
-        return self.stores.exclude(obsolete=True).filter(fs__isnull=True)
+        return (
+            self.stores.exclude(obsolete=True)
+                       .filter(fs__isnull=True)
+                       .order_by())
 
 
 class FSProjectStateResources(object):
