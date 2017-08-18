@@ -367,8 +367,9 @@ def test_fs_plugin_cache_key(project_fs):
             Directory)(plugin.project.directory).get(key="stats"))
     assert (
         plugin.cache_key
-        == ("%s.%s.%s"
-            % (plugin.pootle_revision,
+        == ("%s.%s.%s.%s"
+            % (plugin.project.code,
+               plugin.pootle_revision,
                plugin.sync_revision,
                plugin.fs_revision)))
 
