@@ -7,19 +7,22 @@
 # AUTHORS file for copyright and authorship information.
 
 import logging
+import os
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
+from django.db import transaction
 from django.utils.translation import ugettext_noop as _
 
-from pootle.core.contextmanagers import bulk_operations, keep_data
+from pootle.core.contextmanagers import keep_data
 from pootle.core.models import Revision
 from pootle.core.signals import update_revisions
 from pootle_app.models import Directory
 from pootle_app.models.permissions import PermissionSet, get_pootle_permission
-from pootle_data.models import TPChecksData, TPData
 from pootle_format.models import Format
+from pootle_fs.utils import FSPlugin
 from pootle_language.models import Language
 from pootle_project.models import Project
 from staticpages.models import StaticPage as Announcement
@@ -31,8 +34,8 @@ logger = logging.getLogger(__name__)
 class InitDB(object):
 
     def init_db(self, create_projects=True):
-        with keep_data(signals=(update_revisions, )):
-            with bulk_operations(models=(TPData, TPChecksData)):
+        with transaction.atomic():
+            with keep_data(signals=(update_revisions, )):
                 self._init_db(create_projects)
 
     def _init_db(self, create_projects=True):
@@ -45,13 +48,13 @@ class InitDB(object):
         self.create_essential_users()
         self.create_root_directories()
         self.create_template_languages()
+        self.create_default_languages()
         if create_projects:
             self.create_terminology_project()
         self.create_pootle_permissions()
         self.create_pootle_permission_sets()
         if create_projects:
             self.create_default_projects()
-        self.create_default_languages()
 
     def create_formats(self):
         from pootle.core.delegate import formats
@@ -238,11 +241,22 @@ class InitDB(object):
             'code': "terminology",
             'fullname': u"Terminology",
             'source_language': self.require_english(),
+            'treestyle': "pootle_fs",
             'checkstyle': "terminology",
         }
         po = Format.objects.get(name="po")
         terminology = self._create_object(Project, **criteria)[0]
         terminology.filetypes.add(po)
+        terminology.config["pootle_fs.fs_url"] = os.path.join(
+            settings.POOTLE_TRANSLATION_DIRECTORY,
+            terminology.code)
+        terminology.config["pootle_fs.fs_type"] = "localfs"
+        terminology.config["pootle_fs.translation_mappings"] = dict(
+            default="/<language_code>/<dir_path>/<filename>.<ext>")
+        plugin = FSPlugin(terminology)
+        plugin.fetch()
+        plugin.add()
+        plugin.sync()
 
     def create_default_projects(self):
         """Create the default projects that we host.
@@ -258,11 +272,20 @@ class InitDB(object):
             'source_language': en,
             'fullname': u"Tutorial",
             'checkstyle': "standard",
-            'treestyle': "auto",
+            'treestyle': "pootle_fs",
         }
         tutorial = self._create_object(Project, **criteria)[0]
         tutorial.filetypes.add(po)
-
+        tutorial.config["pootle_fs.fs_url"] = os.path.join(
+            settings.POOTLE_TRANSLATION_DIRECTORY,
+            tutorial.code)
+        tutorial.config["pootle_fs.fs_type"] = "localfs"
+        tutorial.config["pootle_fs.translation_mappings"] = dict(
+            default="/<language_code>/<dir_path>/<filename>.<ext>")
+        plugin = FSPlugin(tutorial)
+        plugin.fetch()
+        plugin.add()
+        plugin.sync()
         criteria = {
             'active': True,
             'title': "Project instructions",
