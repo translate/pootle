@@ -10,6 +10,7 @@ import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import PootleCommand
+from pootle_fs.utils import FSPlugin
 
 
 class Command(PootleCommand):
@@ -42,11 +43,17 @@ class Command(PootleCommand):
         )
 
     def handle_all_stores(self, translation_project, **options):
-        if translation_project.project.treestyle == 'pootle_fs':
-            return
-        if translation_project.directory_exists_on_disk():
-            translation_project.sync(
-                conservative=not options['overwrite'],
-                skip_missing=options['skip_missing'],
-                only_newer=not options['force']
-            )
+        path_glob = "%s*" % translation_project.pootle_path
+        plugin = FSPlugin(translation_project.project)
+        plugin.fetch()
+        if not options["skip_missing"]:
+            plugin.add(pootle_path=path_glob, update="fs")
+        if options["overwrite"]:
+            plugin.resolve(
+                pootle_path=path_glob,
+                pootle_wins=True)
+        plugin.sync(pootle_path=path_glob, update="fs")
+        if options["force"]:
+            # touch the timestamps on disk for files that
+            # werent updated
+            pass
