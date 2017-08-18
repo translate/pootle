@@ -241,34 +241,48 @@ class Plugin(object):
 
     @responds_to_state
     @transaction.atomic
-    def add(self, state, response, fs_path=None, pootle_path=None, force=False):
+    def add(self, state, response, fs_path=None, pootle_path=None, **kwargs):
         """
         Stage untracked or removed Stores or files
 
         :param force: Re-add removed Stores or files.
+        :param update: Add to ``pootle``, ``fs`` or ``all``.
         :param fs_path: FS path glob to filter translations
         :param pootle_path: Pootle path glob to filter translations
         :returns response: Where ``response`` is an instance of self.respose_class
         """
-        self.create_store_fs(
-            state["fs_untracked"]
-            + state["pootle_untracked"])
+        force = kwargs.get("force", False)
+        update = kwargs.get("update", "all")
+        untracked = []
+        if update == "all":
+            untracked = state["fs_untracked"] + state["pootle_untracked"]
+        elif update == "pootle":
+            untracked = state["fs_untracked"]
+        elif update == "fs":
+            untracked = state["pootle_untracked"]
+        self.create_store_fs(untracked)
         if force:
-            self.update_store_fs(
-                state["fs_removed"],
-                resolve_conflict=POOTLE_WINS)
-            self.update_store_fs(
-                state["pootle_removed"],
-                resolve_conflict=SOURCE_WINS)
-        for fs_state in state["fs_untracked"]:
-            response.add("added_from_fs", fs_state=fs_state)
-        for fs_state in state["pootle_untracked"]:
-            response.add("added_from_pootle", fs_state=fs_state)
+            if update in ["all", "pootle"]:
+                self.update_store_fs(
+                    state["fs_removed"],
+                    resolve_conflict=POOTLE_WINS)
+            if update in ["all", "fs"]:
+                self.update_store_fs(
+                    state["pootle_removed"],
+                    resolve_conflict=SOURCE_WINS)
+        if update in ["all", "pootle"]:
+            for fs_state in state["fs_untracked"]:
+                response.add("added_from_fs", fs_state=fs_state)
+        if update in ["all", "fs"]:
+            for fs_state in state["pootle_untracked"]:
+                response.add("added_from_pootle", fs_state=fs_state)
         if force:
-            for fs_state in state["fs_removed"]:
-                response.add("readded_from_pootle", fs_state=fs_state)
-            for fs_state in state["pootle_removed"]:
-                response.add("readded_from_fs", fs_state=fs_state)
+            if update in ["all", "pootle"]:
+                for fs_state in state["fs_removed"]:
+                    response.add("readded_from_pootle", fs_state=fs_state)
+            if update in ["all", "fs"]:
+                for fs_state in state["pootle_removed"]:
+                    response.add("readded_from_fs", fs_state=fs_state)
         if response.made_changes:
             self.expire_sync_cache()
         return response
