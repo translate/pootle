@@ -87,30 +87,6 @@ def test_tp_create_with_files(project0_directory, project0, store0, settings):
 
 
 @pytest.mark.django_db
-def test_tp_empty_stats(project0_nongnu, project0, templates):
-    """Tests if empty stats is initialized when translation project (new language)
-    is added for a project with existing but empty template translation project.
-    """
-
-    # Create a new language to test.
-    language = LanguageDBFactory()
-    tp = TranslationProject.objects.create(
-        language=language, project=project0)
-    tp.init_from_templates()
-
-    # There are no files on disk so TP was not automagically filled.
-    assert list(tp.stores.all()) == []
-
-    # Check if zero stats is calculated and available.
-    stats = tp.data_tool.get_stats()
-    assert stats['total'] == 0
-    assert stats['translated'] == 0
-    assert stats['fuzzy'] == 0
-    assert stats['suggestions'] == 0
-    assert stats['critical'] == 0
-
-
-@pytest.mark.django_db
 def test_tp_stats_created_from_template(po_directory, templates, tutorial):
     os.mkdir(os.path.join(tutorial.get_real_path(), "foolang"))
     language = LanguageDBFactory(code="foolang")
