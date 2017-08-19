@@ -331,9 +331,15 @@ class TranslationProject(models.Model, CachedTreeItem):
         pootle_path = posixpath.join(
             self.pootle_path.rstrip("/"),
             template_store.tp_path.lstrip("/"))
-        pootle_path = ".".join(
-            [posixpath.splitext(pootle_path)[0],
-             template_store.filetype.extension.name])
+        treestyle = self.project.get_treestyle()
+        if treestyle == "gnu":
+            pootle_path = ".".join(
+                [self.language.code,
+                 template_store.filetype.extension.name])
+        else:
+            pootle_path = ".".join(
+                [posixpath.splitext(pootle_path)[0],
+                 template_store.filetype.extension.name])
         store, __ = self.stores.get_or_create(
             parent=self.create_parent_dirs(pootle_path),
             pootle_path=pootle_path,
