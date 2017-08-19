@@ -8,8 +8,10 @@
 
 import logging
 import posixpath
+import os
 from pathlib import PurePosixPath
 
+from django.conf import settings
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.db.models.signals import post_save
@@ -241,15 +243,21 @@ class TranslationProject(models.Model, CachedTreeItem):
         super(TranslationProject, self).__init__(*args, **kwargs)
 
     def save(self, *args, **kwargs):
-        self.directory = self.language.directory \
-                                      .get_or_make_subdir(self.project.code)
+        self.directory = (
+            self.language.directory.get_or_make_subdir(self.project.code))
         self.pootle_path = self.directory.pootle_path
-
-        if self.project.treestyle != 'pootle_fs':
-            from pootle_app.project_tree import get_translation_project_dir
-            self.abs_real_path = get_translation_project_dir(
-                self.language, self.project, self.file_style, make_dirs=not
-                self.directory.obsolete)
+        treestyle = self.project.get_treestyle()
+        if treestyle == 'nongnu':
+            self.abs_real_path = os.path.join(
+                settings.POOTLE_TRANSLATION_DIRECTORY,
+                self.project.code,
+                self.language.code)
+            if not os.path.exists(self.abs_real_path):
+                os.makedirs(self.abs_real_path)
+        elif treestyle == "gnu":
+            self.abs_real_path = os.path.join(
+                settings.POOTLE_TRANSLATION_DIRECTORY,
+                self.project.code)
         else:
             self.abs_real_path = None
         super(TranslationProject, self).save(*args, **kwargs)
