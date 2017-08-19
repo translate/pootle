@@ -62,62 +62,6 @@ def match_template_filename(project, filename):
     return False
 
 
-def get_matching_language_dirs(project_dir, upstream_language_code):
-    return [lang_dir for lang_dir in os.listdir(project_dir)
-            if upstream_language_code == lang_dir]
-
-
-def get_non_existant_language_dir(project_dir, upstream_language_code,
-                                  file_style, make_dirs):
-    if file_style == "gnu":
-        return project_dir
-    elif make_dirs:
-        language_dir = os.path.join(project_dir, upstream_language_code)
-        os.mkdir(language_dir)
-        return language_dir
-    else:
-        raise IndexError("Directory not found for language %s, project %s" %
-                         (upstream_language_code, project_dir))
-
-
-def get_or_make_language_dir(project_dir, upstream_language_code,
-                             file_style, make_dirs):
-    matching_language_dirs = get_matching_language_dirs(project_dir,
-                                                        upstream_language_code)
-    if len(matching_language_dirs) == 0:
-        # If no matching directories can be found, check if it is a GNU-style
-        # project.
-        return get_non_existant_language_dir(project_dir, upstream_language_code,
-                                             file_style, make_dirs)
-    else:
-        return os.path.join(project_dir, matching_language_dirs[0])
-
-
-def get_language_dir(project, language, file_style, make_dirs):
-    project_dir = project.get_real_path()
-    upstream_lang_code = project.lang_mapper.get_upstream_code(language.code)
-    language_dir = os.path.join(project_dir, upstream_lang_code)
-    if not os.path.exists(language_dir):
-        return get_or_make_language_dir(project_dir, upstream_lang_code,
-                                        file_style, make_dirs)
-    else:
-        return language_dir
-
-
-def get_translation_project_dir(language, project, file_style,
-                                make_dirs=False):
-    """Returns the base directory containing translations files for the
-    project.
-
-    :param make_dirs: if ``True``, project and language directories will be
-                      created as necessary.
-    """
-    if file_style == 'gnu':
-        return project.get_real_path()
-    else:
-        return get_language_dir(project, language, file_style, make_dirs)
-
-
 def is_hidden_file(path):
     return path[0] == '.'
 
