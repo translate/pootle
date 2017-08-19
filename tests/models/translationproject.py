@@ -18,6 +18,7 @@ from pytest_pootle.factories import (
     LanguageDBFactory, ProjectDBFactory, TranslationProjectFactory)
 
 from pootle.core.delegate import revision
+from pootle_app.models import Directory
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.models import Store
@@ -39,6 +40,15 @@ def test_tp_create_fail(po_directory, tutorial, english):
     # There is already an english tutorial was automagically set up
     with pytest.raises(IntegrityError):
         TranslationProject.objects.create(project=tutorial, language=english)
+
+
+@pytest.mark.django_db
+def test_tp_create_parent_dirs(tp0):
+    parent = tp0.create_parent_dirs("%sfoo/bar/baz.po" % tp0.pootle_path)
+    assert (
+        parent
+        == Directory.objects.get(
+            pootle_path="%sfoo/bar/" % tp0.pootle_path))
 
 
 @pytest.mark.django_db
