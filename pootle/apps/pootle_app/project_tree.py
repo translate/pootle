@@ -17,7 +17,7 @@ from pootle.core.log import STORE_RESURRECTED, store_log
 from pootle_app.models.directory import Directory
 from pootle_language.models import Language
 from pootle_store.models import Store
-from pootle_store.util import absolute_real_path, relative_real_path
+from pootle_store.util import relative_real_path
 
 
 #: Case insensitive match for language codes
@@ -327,135 +327,6 @@ def translation_project_dir_exists(language, project):
             pass
 
     return False
-
-
-def init_store_from_template(translation_project, template_store):
-    """Initialize a new file for `translation_project` using `template_store`.
-    """
-    if translation_project.file_style == 'gnu':
-        target_path = get_translated_name_gnu(
-            translation_project, template_store)
-    else:
-        target_path = get_translated_name(
-            translation_project, template_store)
-
-    # Create the missing directories for the new TP.
-    target_dir = os.path.dirname(target_path)
-    if not os.path.exists(target_dir):
-        os.makedirs(target_dir)
-
-    output_file = template_store.file.store
-    output_file.settargetlanguage(translation_project.language.code)
-    output_file.savefile(target_path)
-
-
-def get_translated_name_gnu(translation_project, store):
-    """Given a template :param:`store` and a :param:`translation_project` return
-    target filename.
-    """
-    language_code = translation_project.language.code
-    project = translation_project.project
-    pootle_path_parts = store.pootle_path.split('/')
-    pootle_path_parts[1] = language_code
-    pootle_path = '/'.join(pootle_path_parts[:-1])
-    if not pootle_path.endswith('/'):
-        pootle_path = pootle_path + '/'
-
-    upstream_lang_code = project.lang_mapper.get_upstream_code(language_code)
-    suffix = (
-        "%s%s%s"
-        % (upstream_lang_code,
-           os.extsep,
-           store.filetype.extension))
-    # try loading file first
-    try:
-        target_store = translation_project.stores.live().get(
-            parent__pootle_path=pootle_path,
-            name__iexact=suffix,
-        )
-        return target_store.file and target_store.file.path
-    except Store.DoesNotExist:
-        target_store = None
-
-    # is this GNU-style with prefix?
-    use_prefix = (store.parent.child_stores.live().exclude(file="").count() > 1
-                  or translation_project.stores.live().exclude(
-                      name__iexact=suffix, file='').count())
-    if not use_prefix:
-        # let's make sure
-        for tp in project.translationproject_set.exclude(
-                language__code='templates').iterator():
-            temp_suffix = (
-                "%s%s%s"
-                % (tp.language.code,
-                   os.extsep,
-                   store.filetype.template_extension))
-            if tp.stores.live().exclude(
-                    name__iexact=temp_suffix).exclude(file="").count():
-                use_prefix = True
-                break
-
-    if use_prefix:
-        if store.translation_project.language.code == 'templates':
-            tprefix = os.path.splitext(store.name)[0]
-            # FIXME: we should detect separator
-            prefix = tprefix + '-'
-        else:
-            prefix = os.path.splitext(store.name)[0][:-len(
-                upstream_lang_code)]
-            tprefix = prefix[:-1]
-
-        try:
-            target_store = translation_project.stores.live().filter(
-                parent__pootle_path=pootle_path,
-                name__in=[
-                    tprefix + '-' + suffix,
-                    tprefix + '_' + suffix,
-                    tprefix + '.' + suffix,
-                    tprefix + '-' + suffix.lower(),
-                    tprefix + '_' + suffix.lower(),
-                    tprefix + '.' + suffix.lower(),
-                ],
-            )[0]
-
-            return target_store.file and target_store.file.path
-        except (Store.DoesNotExist, IndexError):
-            pass
-    else:
-        prefix = ""
-
-    if store.file:
-        path_parts = store.file.path.split(os.sep)
-        name = prefix + suffix
-        path_parts[-1] = name
-    else:
-        path_parts = store.parent.get_real_path().split(os.sep)
-        path_parts.append(store.name)
-
-    return os.sep.join(path_parts)
-
-
-def get_translated_name(translation_project, store):
-    name = os.path.splitext(store.name)[0]
-    language_code = translation_project.language.code
-    project = translation_project.project
-
-    if store.file:
-        path_parts = store.file.name.split(os.sep)
-    else:
-        path_parts = store.parent.get_real_path().split(os.sep)
-        path_parts.append(store.name)
-
-    # Replace language code
-    path_parts[1] = project.lang_mapper.get_upstream_code(language_code)
-
-    # Replace extension
-    path_parts[-1] = (
-        "%s.%s"
-        % (name,
-           store.filetype.extension))
-
-    return absolute_real_path(os.sep.join(path_parts))
 
 
 def does_not_exist(path):
