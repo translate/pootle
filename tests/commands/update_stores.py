@@ -34,19 +34,6 @@ def test_update_stores_noargs(capfd, tmpdir):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_update_stores_project_tree_none(capfd, project0):
-    project0.treestyle = 'pootle_fs'
-    project0.save()
-    capfd.readouterr()
-    call_command(
-        "update_stores", "--atomic=all", "--project", project0.code)
-    out, err = capfd.readouterr()
-    assert not out
-    assert not err
-
-
-@pytest.mark.cmd
-@pytest.mark.django_db
 def test_update_stores_non_existent_lang_or_proj():
     with pytest.raises(CommandError):
         call_command("update_stores", "--project", "non_existent_project")
