@@ -20,9 +20,11 @@ def pytest_generate_tests(metafunc):
 
 def _require_tp(language, project):
     """Helper to get/create a new translation project."""
-    from pootle_translationproject.models import create_translation_project
+    from pootle_translationproject.models import TranslationProject
 
-    return create_translation_project(language, project)
+    tp, __ = TranslationProject.objects.get_or_create(
+        language=language, project=project)
+    return tp
 
 
 @pytest.fixture
