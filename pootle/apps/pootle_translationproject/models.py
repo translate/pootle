@@ -310,9 +310,7 @@ class TranslationProject(models.Model, CachedTreeItem):
         # auto-created in `save()` method.
         return (
             not self.is_template_project
-            and self.templates_tp is not None
-            and not translation_project_dir_exists(self.language,
-                                                   self.project))
+            and self.templates_tp is not None)
 
     def create_parent_dirs(self, pootle_path):
         parent = self.directory
