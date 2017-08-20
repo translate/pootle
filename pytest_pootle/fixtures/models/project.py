@@ -7,12 +7,13 @@
 # AUTHORS file for copyright and authorship information.
 
 import os
+import posixpath
 import shutil
 
 import pytest
 
 
-def _require_project(code, name, source_language, **kwargs):
+def _require_project(code, name, source_language, settings, **kwargs):
     """Helper to get/create a new project."""
     from pootle_project.models import Project
 
@@ -25,6 +26,12 @@ def _require_project(code, name, source_language, **kwargs):
     }
     criteria.update(kwargs)
     new_project = Project.objects.get_or_create(**criteria)[0]
+    new_project.config["pootle_fs.fs_type"] = "localfs"
+    new_project.config["pootle_fs.translation_mappings"] = {
+        "default": "/<language_code>/<dir_path>/<filename>.<ext>"}
+    new_project.config["pootle_fs.fs_url"] = posixpath.join(
+        settings.POOTLE_TRANSLATION_DIRECTORY,
+        "tutorial")
     return new_project
 
 
@@ -33,6 +40,8 @@ def tutorial(english, settings):
     """Require `tutorial` test project."""
     import pytest_pootle
 
+    from pootle_fs.utils import FSPlugin
+
     shutil.copytree(
         os.path.join(
             os.path.dirname(pytest_pootle.__file__),
@@ -40,27 +49,35 @@ def tutorial(english, settings):
         os.path.join(
             settings.POOTLE_TRANSLATION_DIRECTORY,
             "tutorial"))
-
-    return _require_project('tutorial', 'Tutorial', english)
+    project = _require_project('tutorial', 'Tutorial', english, settings)
+    plugin = FSPlugin(project)
+    plugin.fetch()
+    plugin.add()
+    plugin.sync()
+    return project
 
 
 @pytest.fixture
-def tutorial_disabled(english):
+def tutorial_disabled(english, settings):
     """Require `tutorial-disabled` test project in a disabled state."""
-    return _require_project('tutorial-disabled', 'Tutorial', english,
-                            disabled=True)
+    return _require_project(
+        'tutorial-disabled',
+        'Tutorial',
+        english,
+        settings,
+        disabled=True)
 
 
 @pytest.fixture
-def project_foo(english):
+def project_foo(english, settings):
     """Require `foo` test project."""
-    return _require_project('foo', 'Foo Project', english)
+    return _require_project('foo', 'Foo Project', english, settings)
 
 
 @pytest.fixture
-def project_bar(english):
+def project_bar(english, settings):
     """Require `bar` test project."""
-    return _require_project('bar', 'Bar Project', english)
+    return _require_project('bar', 'Bar Project', english, settings)
 
 
 @pytest.fixture
