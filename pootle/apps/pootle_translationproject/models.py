@@ -8,10 +8,8 @@
 
 import logging
 import posixpath
-import os
 from pathlib import PurePosixPath
 
-from django.conf import settings
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
 from django.urls import reverse
@@ -21,67 +19,14 @@ from pootle.core.delegate import data_tool
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
 from pootle_app.models.directory import Directory
-from pootle_app.project_tree import (
-    does_not_exist, translation_project_dir_exists)
 from pootle_checks.constants import EXCLUDED_FILTERS
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_revision.models import Revision
-from pootle_store.constants import PARSED
-from pootle_store.util import absolute_real_path, relative_real_path
 from staticpages.models import StaticPage
-
-from .contextmanagers import update_tp_after
 
 
 logger = logging.getLogger(__name__)
-
-
-def create_or_resurrect_translation_project(language, project):
-    tp = create_translation_project(language, project)
-    if tp is not None:
-        if tp.directory.obsolete:
-            tp.directory.obsolete = False
-            tp.directory.save()
-            logger.info(u"[update] Resurrected project: %s", tp)
-        else:
-            logger.info(u"[update] Created project: %s", tp)
-
-
-def create_translation_project(language, project):
-    if translation_project_dir_exists(language, project):
-        tps = project.translationproject_set.select_related(
-            "data", "directory")
-        try:
-            translation_project, __ = tps.get_or_create(
-                language=language, project=project)
-            return translation_project
-        except OSError:
-            return None
-        except IndexError:
-            return None
-
-
-def scan_translation_projects(languages=None, projects=None):
-    project_query = Project.objects.all()
-
-    if projects is not None:
-        project_query = project_query.filter(code__in=projects)
-
-    for project in project_query.iterator():
-        if does_not_exist(project.get_real_path()):
-            project.disabled = True
-            project.save()
-            logger.info(u"[update] Disabled project: %s", project)
-        else:
-            lang_query = Language.objects.exclude(
-                id__in=project.translationproject_set.live().values_list('language',
-                                                                         flat=True))
-            if languages is not None:
-                lang_query = lang_query.filter(code__in=languages)
-
-            for language in lang_query.iterator():
-                create_or_resurrect_translation_project(language, project)
 
 
 class TranslationProjectManager(models.Manager):
@@ -191,22 +136,6 @@ class TranslationProject(models.Model, CachedTreeItem):
         return "%s [%s]" % (self.project.fullname, self.language.name)
 
     @property
-    def abs_real_path(self):
-        if self.real_path is not None:
-            return absolute_real_path(self.real_path)
-
-    @abs_real_path.setter
-    def abs_real_path(self, value):
-        if value is not None:
-            self.real_path = relative_real_path(value)
-        else:
-            self.real_path = None
-
-    @property
-    def file_style(self):
-        return self.project.get_treestyle()
-
-    @property
     def checker(self):
         from translate.filters import checks
         checkerclasses = [
@@ -242,20 +171,6 @@ class TranslationProject(models.Model, CachedTreeItem):
         self.directory = (
             self.language.directory.get_or_make_subdir(self.project.code))
         self.pootle_path = self.directory.pootle_path
-        treestyle = self.project.get_treestyle()
-        if treestyle == 'nongnu':
-            self.abs_real_path = os.path.join(
-                settings.POOTLE_TRANSLATION_DIRECTORY,
-                self.project.code,
-                self.language.code)
-            if not os.path.exists(self.abs_real_path):
-                os.makedirs(self.abs_real_path)
-        elif treestyle == "gnu":
-            self.abs_real_path = os.path.join(
-                settings.POOTLE_TRANSLATION_DIRECTORY,
-                self.project.code)
-        else:
-            self.abs_real_path = None
         super(TranslationProject, self).save(*args, **kwargs)
         if self.directory.tp_id != self.pk:
             self.directory.tp = self
@@ -360,98 +275,9 @@ class TranslationProject(models.Model, CachedTreeItem):
             new_store.update(
                 new_store.deserialize(template_store.serialize()))
 
-    def update_from_disk(self, force=False, overwrite=False):
-        with update_tp_after(self):
-            self._update_from_disk(force=force, overwrite=overwrite)
-
-    def _update_from_disk(self, force=False, overwrite=False):
-        """Update all stores to reflect state on disk."""
-        changed = []
-
-        logger.debug(u"[update] Scanning disk: %s", self)
-        # Create new, make obsolete in-DB stores to reflect state on disk
-        self.scan_files()
-
-        stores = self.stores.live().select_related(
-            "parent",
-            "data",
-            "filetype__extension",
-            "filetype__template_extension").exclude(file='')
-        # Update store content from disk store
-        for store in stores.iterator():
-            if not store.file:
-                continue
-            disk_mtime = store.get_file_mtime()
-            if not force and disk_mtime == store.file_mtime:
-                # The file on disk wasn't changed since the last sync
-                logger.debug(
-                    u"File didn't change since last sync, skipping %s",
-                    store.pootle_path)
-                continue
-            if store.updater.update_from_disk(overwrite=overwrite):
-                changed.append(store)
-        return changed
-
-    def sync(self, conservative=True, skip_missing=False, only_newer=True):
-        """Sync unsaved work on all stores to disk"""
-        stores = self.stores.live().filter(state__gte=PARSED)
-        for store in stores.select_related("parent").iterator():
-            store.sync(update_structure=not conservative,
-                       conservative=conservative,
-                       skip_missing=skip_missing, only_newer=only_newer)
-
     # # # TreeItem
     def get_children(self):
         return self.directory.children
 
     def get_parents(self):
         return [self.project]
-
-    # # # /TreeItem
-
-    def directory_exists_on_disk(self):
-        """Checks if the actual directory for the translation project
-        exists on disk.
-        """
-        return not does_not_exist(self.abs_real_path)
-
-    def scan_files(self):
-        """Scans the file system and returns a list of translation files.
-        """
-        projects = [p.strip() for p in self.project.ignoredfiles.split(',')]
-        ignored_files = set(projects)
-
-        filetypes = self.project.filetype_tool
-        exts = filetypes.filetype_extensions
-
-        # Scan for pots if template project
-        if self.is_template_project:
-            exts = filetypes.template_extensions
-
-        from pootle_app.project_tree import (add_files,
-                                             match_template_filename,
-                                             direct_language_match_filename)
-
-        all_files = []
-        new_files = []
-
-        if self.file_style == 'gnu':
-            if self.pootle_path.startswith('/templates/'):
-                file_filter = lambda filename: match_template_filename(
-                    self.project, filename,)
-            else:
-                file_filter = lambda filename: direct_language_match_filename(
-                    self.language.code, filename,)
-        else:
-            file_filter = lambda filename: True
-
-        all_files, new_files, __ = add_files(
-            self,
-            ignored_files,
-            exts,
-            self.real_path,
-            self.directory,
-            file_filter,
-        )
-
-        return all_files, new_files
