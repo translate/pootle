@@ -97,9 +97,8 @@ def test_tp_create_with_files(project0_directory, project0, store0, settings):
 
 @pytest.mark.django_db
 def test_tp_stats_created_from_template(po_directory, templates, tutorial):
-    os.mkdir(os.path.join(tutorial.get_real_path(), "foolang"))
     language = LanguageDBFactory(code="foolang")
-    tp = TranslationProject.objects.get(language=language, project=tutorial)
+    tp = TranslationProject.objects.create(language=language, project=tutorial)
     tp.init_from_templates()
     assert tp.stores.all().count() == 1
     stats = tp.data_tool.get_stats()
