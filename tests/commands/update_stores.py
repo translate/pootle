@@ -10,11 +10,16 @@ import pytest
 
 from django.core.management import CommandError, call_command
 
+from pootle_project.models import Project
+
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_update_stores_noargs(capfd, project0_nongnu, project1, language1):
+def test_update_stores_noargs(capfd, tmpdir):
     """Site wide update_stores"""
+    for project in Project.objects.all():
+        fs_url = tmpdir.mkdir(project.code)
+        project.config["pootle_fs.fs_url"] = str(fs_url)
     call_command('update_stores', '-v3')
     out, err = capfd.readouterr()
     # Store and Unit are deleted as there are no files on disk

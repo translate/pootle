@@ -17,8 +17,11 @@ from pootle_store.models import Store
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_sync_stores_noargs(capfd, project0, project1):
+def test_sync_stores_noargs(capfd, tmpdir):
     """Site wide sync_stores"""
+    for project in Project.objects.all():
+        fs_url = tmpdir.mkdir(project.code)
+        project.config["pootle_fs.fs_url"] = str(fs_url)
     capfd.readouterr()
     call_command('sync_stores')
     out, err = capfd.readouterr()
