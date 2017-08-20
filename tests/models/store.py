@@ -99,41 +99,6 @@ def _sync_store(settings, store, resolve=None, update="all", force_add=None):
 
 
 @pytest.mark.django_db
-def test_delete_mark_obsolete(project0_nongnu, project0, store0):
-    """Tests that the in-DB Store and Directory are marked as obsolete
-    after the on-disk file ceased to exist.
-
-    Refs. #269.
-    """
-    tp = TranslationProjectFactory(
-        project=project0, language=LanguageDBFactory())
-    store = StoreDBFactory(
-        translation_project=tp,
-        parent=tp.directory)
-
-    store.update(store.deserialize(store0.serialize()))
-    store.sync()
-    pootle_path = store.pootle_path
-
-    # Remove on-disk file
-    os.remove(store.file.path)
-
-    # Update stores by rescanning TP
-    tp.scan_files()
-
-    # Now files that ceased to exist should be marked as obsolete
-    updated_store = Store.objects.get(pootle_path=pootle_path)
-    assert updated_store.obsolete
-
-    # The units they contained are obsolete too
-    assert not updated_store.units.exists()
-    assert updated_store.unit_set.exists()
-
-    obs_unit = updated_store.unit_set.first()
-    assert obs_unit.submission_set.count() == 0
-
-
-@pytest.mark.django_db
 def test_sync(project0_nongnu, project0, store0, settings):
     """Tests that the new on-disk file is created after sync for existing
     in-DB Store if the corresponding on-disk file ceased to exist.
