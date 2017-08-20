@@ -14,12 +14,9 @@ from pathlib import PurePosixPath
 from django.conf import settings
 from django.contrib.contenttypes.fields import GenericRelation
 from django.db import models
-from django.db.models.signals import post_save
-from django.dispatch import receiver
 from django.urls import reverse
 from django.utils.functional import cached_property
 
-from pootle.core.contextmanagers import keep_data
 from pootle.core.delegate import data_tool
 from pootle.core.mixins import CachedTreeItem
 from pootle.core.url_helpers import get_editor_filter, split_pootle_path
@@ -27,7 +24,6 @@ from pootle_app.models.directory import Directory
 from pootle_app.project_tree import (
     does_not_exist, translation_project_dir_exists)
 from pootle_checks.constants import EXCLUDED_FILTERS
-from pootle_format.models import Format
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_revision.models import Revision
@@ -461,46 +457,3 @@ class TranslationProject(models.Model, CachedTreeItem):
         )
 
         return all_files, new_files
-
-    ###########################################################################
-
-
-@receiver(post_save, sender=Project)
-def scan_languages(**kwargs):
-    instance = kwargs["instance"]
-    created = kwargs.get("created", False)
-    raw = kwargs.get("raw", False)
-
-    if not created or raw or instance.disabled:
-        return
-
-    if not instance.filetypes.all().exists():
-        instance.filetypes.add(Format.objects.get(name="po"))
-
-    if instance.treestyle == 'pootle_fs':
-        return
-
-    for language in Language.objects.iterator():
-        with keep_data():
-            tp = create_translation_project(language, instance)
-        if tp is not None:
-            tp.update_from_disk()
-
-
-@receiver(post_save, sender=Language)
-def scan_projects(**kwargs):
-    instance = kwargs["instance"]
-    created = kwargs.get("created", False)
-    raw = kwargs.get("raw", False)
-
-    if not created or raw:
-        return
-
-    old_style_projects = Project.objects.enabled().exclude(
-        treestyle="pootle_fs")
-
-    for project in old_style_projects.iterator():
-        with keep_data():
-            tp = create_translation_project(instance, project)
-        if tp is not None:
-            tp.update_from_disk()
