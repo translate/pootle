@@ -376,6 +376,8 @@ def test_fs_plugin_cache_key(project_fs):
 
 @pytest.mark.django_db
 def test_fs_plugin_fetch_bad(project0):
+    plugin = FSPlugin(project0)
+    plugin.clear_repo()
 
     with pytest.raises(FSStateError):
-        FSPlugin(project0).add()
+        plugin.add()
