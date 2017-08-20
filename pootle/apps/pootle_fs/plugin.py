@@ -323,7 +323,7 @@ class Plugin(object):
 
     @responds_to_state
     @transaction.atomic
-    def rm(self, state, response, fs_path=None, pootle_path=None, force=False):
+    def rm(self, state, response, fs_path=None, pootle_path=None, **kwargs):
         """
         Stage translations for removal.
 
@@ -336,17 +336,21 @@ class Plugin(object):
         :param pootle_path: Pootle path glob to filter translations
         :returns response: Where ``response`` is an instance of self.respose_class
         """
+        force = kwargs.get("force", False)
+        update = kwargs.get("update", "all")
         to_create = []
-        to_update = (
-            state["pootle_removed"]
-            + state["fs_removed"]
-            + state["both_removed"])
+        to_update = state["both_removed"]
+        if update in ["all", "fs"]:
+            to_update += state["pootle_removed"]
+        if update in ["all", "pootle"]:
+            to_update += state["fs_removed"]
         if force:
             to_update += state["conflict"]
-            to_create += (
-                state["conflict_untracked"]
-                + state["fs_untracked"]
-                + state["pootle_untracked"])
+            to_create += state["conflict_untracked"]
+            if update in ["all", "fs"]:
+                to_create += state["pootle_untracked"]
+            if update in ["all", "pootle"]:
+                to_create += state["fs_untracked"]
         self.update_store_fs(to_update, staged_for_removal=True)
         self.create_store_fs(to_create, staged_for_removal=True)
         for fs_state in to_create + to_update:
