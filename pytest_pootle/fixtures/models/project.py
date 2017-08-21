@@ -52,15 +52,32 @@ def tutorial_disabled(english):
 
 
 @pytest.fixture
-def project_foo(english):
+def project_foo(english, request):
     """Require `foo` test project."""
-    return _require_project('foo', 'Foo Project', english)
+    foo = _require_project('foo', 'Foo Project', english)
+
+    def _remove_dir():
+        foo_path = foo.get_real_path()
+        if os.path.exists(foo_path):
+            shutil.rmtree(foo_path)
+    request.addfinalizer(_remove_dir)
+
+    return foo
 
 
 @pytest.fixture
-def project_bar(english):
+def project_bar(english, request):
     """Require `bar` test project."""
-    return _require_project('bar', 'Bar Project', english)
+    bar = _require_project('bar', 'Bar Project', english)
+
+    def _remove_dir():
+        bar_path = bar.get_real_path()
+        if os.path.exists(bar_path):
+            shutil.rmtree(bar_path)
+
+    request.addfinalizer(_remove_dir)
+
+    return bar
 
 
 @pytest.fixture
