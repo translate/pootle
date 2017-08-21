@@ -43,7 +43,6 @@ def _import_file(file_name, file_dir=None,
 
 @pytest.mark.django_db
 def test_import_success(project0_nongnu, store0, admin):
-    store0.sync()
     assert store0.state == NEW
     _import_file(IMPORT_SUCCESS, user=admin)
     store = Store.objects.get(pk=store0.pk)
