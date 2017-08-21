@@ -38,7 +38,8 @@ Below we provide much more detail. These are by no means exhaustive, view the
 complete information.
 
 - MySQL now uses the ``mysqlclient`` database driver instead of ``MySQLdb``,
-  this is Django's preferred database driver.
+  this is Django's :ref:`preferred database driver
+  <django:mysql-db-api-drivers>`.
 - Undertook a security audit
 - JavaScript fixes addressing performance and memory leaks in the editor
 - Improved editor performance
