@@ -14,8 +14,7 @@ from translate.filters import checks
 
 from django.db import IntegrityError
 
-from pytest_pootle.factories import (
-    LanguageDBFactory, ProjectDBFactory, TranslationProjectFactory)
+from pytest_pootle.factories import LanguageDBFactory
 
 from pootle.core.delegate import revision
 from pootle_app.models import Directory
@@ -134,32 +133,6 @@ def test_tp_checker(po_directory, tp_checker_tests):
                                    checks.StandardChecker)
     ]
     assert [x.__class__ for x in tp.checker.checkers] == checkerclasses
-
-
-@pytest.mark.django_db
-def test_tp_create_with_none_treestyle(po_directory, english, templates, settings):
-    project = ProjectDBFactory(
-        source_language=english,
-        treestyle='pootle_fs')
-    language = LanguageDBFactory()
-    TranslationProjectFactory(
-        language=templates, project=project)
-
-    tp = TranslationProject.objects.create(
-        project=project, language=language)
-
-    assert not tp.abs_real_path
-    assert not os.path.exists(
-        os.path.join(
-            settings.POOTLE_TRANSLATION_DIRECTORY,
-            project.code))
-
-    tp.save()
-    assert not tp.abs_real_path
-    assert not os.path.exists(
-        os.path.join(
-            settings.POOTLE_TRANSLATION_DIRECTORY,
-            project.code))
 
 
 @pytest.mark.django_db
