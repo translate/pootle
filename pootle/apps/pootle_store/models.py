@@ -6,10 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import datetime
 import logging
 import operator
-import os
 from hashlib import md5
 
 from translate.filters.decorators import Category
@@ -35,7 +33,7 @@ from pootle.core.url_helpers import (
 from pootle.core.utils import dateformat
 from pootle.core.utils.aggregate import max_column
 from pootle.core.utils.multistring import PLURAL_PLACEHOLDER
-from pootle.core.utils.timezone import datetime_min, make_aware
+from pootle.core.utils.timezone import datetime_min
 from pootle_checks.constants import CHECK_NAMES
 from pootle_statistics.models import SubmissionFields, SubmissionTypes
 
@@ -48,7 +46,7 @@ from .constants import (
 from .managers import SuggestionManager, UnitManager
 from .store.deserialize import StoreDeserialization
 from .store.serialize import StoreSerialization
-from .util import get_change_str, vfolders_installed
+from .util import vfolders_installed
 
 
 logger = logging.getLogger(__name__)
@@ -798,10 +796,6 @@ class Store(AbstractStore):
         return self.translation_project
 
     @property
-    def real_path(self):
-        return self.file.name
-
-    @property
     def has_terminology(self):
         """is this a project specific terminology store?"""
         # TODO: Consider if this should check if the store belongs to a
@@ -924,14 +918,6 @@ class Store(AbstractStore):
             for unit in units.iterator():
                 yield unit
 
-    def get_file_mtime(self):
-        disk_mtime = datetime.datetime.fromtimestamp(self.file.getpomtime()[0])
-        # set microsecond to 0 for comparing with a time value without
-        # microseconds
-        disk_mtime = make_aware(disk_mtime.replace(microsecond=0))
-
-        return disk_mtime
-
     def update_index(self, start, delta):
         Unit.objects.filter(store_id=self.id, index__gte=start).update(
             index=operator.add(F('index'), delta))
@@ -999,82 +985,6 @@ class Store(AbstractStore):
 
     def serialize(self):
         return StoreSerialization(self).serialize()
-
-    def create_file_store(self, last_revision, user):
-        path_parts = split_pootle_path(self.pootle_path)
-        file_path = os.path.join(
-            self.translation_project.abs_real_path,
-            *path_parts[2:])
-        path_prefix = [path_parts[1]]
-        if self.translation_project.project.get_treestyle() != "gnu":
-            path_prefix.append(path_parts[0])
-        relative_file_path = os.path.join(*(path_prefix + list(path_parts[2:])))
-        store = self.syncer.convert()
-        if not os.path.exists(os.path.dirname(file_path)):
-            os.makedirs(os.path.dirname(file_path))
-        self.file = relative_file_path
-        store.savefile(file_path)
-        logger.info(
-            u"[sync] File created: %s [revision: %d]",
-            self.pootle_path,
-            last_revision)
-        self.syncer.update_store_header(store, user=user)
-        self.file.savestore()
-        self.file_mtime = self.get_file_mtime()
-        self.last_sync_revision = last_revision
-        self.save()
-
-    def update_file_store(self, changes, last_revision, user):
-        self.syncer.update_store_header(self.file.store, user=user)
-        self.file.savestore()
-        self.file_mtime = self.get_file_mtime()
-        logger.info(
-            u"[sync] File saved: %s units in %s [revision: %d]",
-            get_change_str(changes),
-            self.pootle_path,
-            last_revision)
-
-    def sync(self, update_structure=False, conservative=True,
-             user=None, skip_missing=False, only_newer=True):
-        """Sync file with translations from DB."""
-        if skip_missing and not self.file.exists():
-            return
-
-        last_revision = self.data.max_unit_revision or 0
-
-        # TODO only_newer -> not force
-        if only_newer and not self.syncer.update_newer(last_revision):
-            logger.debug(
-                u"[sync] No updates for %s after [revision: %d]",
-                self.pootle_path,
-                last_revision)
-            return
-
-        if not self.file.exists():
-            return self.create_file_store(last_revision, user)
-
-        if conservative and self.is_template:
-            return
-
-        file_changed, changes = self.syncer.sync(
-            self.file.store,
-            last_revision,
-            update_structure=update_structure,
-            conservative=conservative)
-
-        # TODO conservative -> not overwrite
-        if file_changed or not conservative:
-            self.update_file_store(changes, last_revision, user)
-        else:
-            logger.info(
-                u"[sync] nothing changed in %s [revision: %d]",
-                self.pootle_path,
-                last_revision)
-        self.last_sync_revision = last_revision
-        self.save()
-        if "store" in self.file.__dict__:
-            del self.file.__dict__["store"]
-
 
 # # # # # # # # # # # #  TranslationStore # # # # # # # # # # # # #
 
