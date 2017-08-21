@@ -30,13 +30,12 @@ Major Changes
 - Pootle FS
 
 
+Details of changes
+==================
+
 Below we provide much more detail. These are by no means exhaustive, view the
 `git log <https://github.com/translate/pootle/compare/2.7.6...2.8.0>`_ for
 complete information.
-
-
-Details of changes
-==================
 
 - MySQL now uses the ``mysqlclient`` database driver instead of ``MySQLdb``,
   this is Django's preferred database driver.
