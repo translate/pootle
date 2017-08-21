@@ -506,23 +506,6 @@ backend. You shouldn't need to ever run this, but if for instance you deleted
 your cache you will need to restore the counter to ensure correct operation.
 
 
-.. django-admin:: changed_languages
-
-changed_languages
-^^^^^^^^^^^^^^^^^
-
-.. versionadded:: 2.7
-
-Produces a comma-separated list of language codes that changed since the last
-sync operation.
-
-.. django-admin-option:: --after-revision
-
-When :option:`--after-revision` is specified with a revision number as an
-argument, it will print the language codes for languages that have changed
-since the specified revision.
-
-
 .. django-admin:: test_checks
 
 test_checks
