@@ -220,12 +220,6 @@ class StoreSyncer(object):
             added += 1
         return obsolete, deleted, added
 
-    def update_newer(self, last_revision):
-        return (
-            not self.store.file.exists()
-            or last_revision > self.store.last_sync_revision
-        )
-
     @cached_property
     def dbid_index(self):
         """build a quick mapping index between unit ids and database ids"""
