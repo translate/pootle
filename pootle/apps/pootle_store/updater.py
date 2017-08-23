@@ -351,54 +351,6 @@ class StoreUpdater(object):
         changes['updated'], changes['suggested'] = self.update_units(update)
         return changes
 
-    def update_from_disk(self, overwrite=False):
-        """Update DB with units from the disk Store.
-
-        :param overwrite: make db match file regardless of last_sync_revision.
-        """
-        changed = False
-
-        if not self.target_store.file:
-            return changed
-
-        if overwrite:
-            store_revision = self.target_store.data.max_unit_revision
-        else:
-            store_revision = self.target_store.last_sync_revision or 0
-
-        # update the units
-        update_revision, changes = self.update(
-            self.target_store.file.store,
-            store_revision=store_revision)
-
-        # update file_mtime
-        file_changed = False
-        file_mtime = self.target_store.get_file_mtime()
-        if file_mtime != self.target_store.file_mtime:
-            self.target_store.file_mtime = file_mtime
-            file_changed = True
-
-        # update last_sync_revision if anything changed
-        changed = changes and any(x > 0 for x in changes.values())
-        if changed:
-            update_unsynced = None
-            if self.target_store.last_sync_revision is not None:
-                update_unsynced = self.increment_unsynced_unit_revision(
-                    update_revision)
-            self.target_store.last_sync_revision = update_revision
-            if update_unsynced:
-                logger.debug(
-                    u"[update] Synced (no change): "
-                    u"%d units in %s [revision: %d]",
-                    update_unsynced,
-                    self.target_store.pootle_path,
-                    update_revision)
-        if file_changed or changed:
-            self.target_store.save()
-        if "store" in self.target_store.file.__dict__:
-            del self.target_store.file.__dict__["store"]
-        return changed
-
     def update_units(self, update):
         update_count = 0
         suggestion_count = 0
