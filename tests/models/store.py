@@ -228,7 +228,7 @@ def test_update_unit_order(project0_nongnu, ordered_po,
 
 
 @pytest.mark.django_db
-def test_update_save_changed_units(project0_nongnu, store0,
+def test_update_save_changed_units(project0_nongnu, store0, test_fs,
                                    member, system, settings):
     """Tests that any update saves changed units only.
     """
@@ -240,8 +240,11 @@ def test_update_save_changed_units(project0_nongnu, store0,
     file_path = _sync_store(settings, store0)
     store.update(store.deserialize(open(file_path).read()))
     unit_list = list(store.units)
-    store.file = 'tutorial/ru/update_save_changed_units_updated.po'
-    store.update(store.file.store, user=member)
+    update_file = test_fs.open(
+        "data/po/tutorial/ru/update_save_changed_units_updated.po",
+        "r")
+    with update_file as sourcef:
+        store.update(store.deserialize(sourcef.read()), user=member)
     updated_unit_list = list(store.units)
     # nothing changed
     for index in range(0, len(unit_list)):
@@ -269,7 +272,8 @@ def test_update_set_last_sync_revision(project0_nongnu, tp0, store0,
 
     # store.last_sync_revision is not changed after empty update
     saved_last_sync_revision = fs.last_sync_revision
-    store0.updater.update_from_disk()
+    # store0.updater.update_from_disk()
+    _sync_store(settings, store0)
     fs.refresh_from_db()
     assert fs.last_sync_revision == saved_last_sync_revision
 
