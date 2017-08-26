@@ -11,11 +11,7 @@
   <p>{% trans "Here you can add, edit, or delete the languages for this project." %}</p>
   {% if not can_add %}
   <div class="alert alert-info">
-    {% if project.treestyle == 'pootle_fs' %}
-      {% trans 'Adding new languages from this screen is disabled. You will need to update your sources directly, and update Pootle from there.' %}
-    {% else %}
-      {% trans 'There are no templates for this project, so adding new languages from this screen is disabled.' %}
-    {% endif %}
+    {% trans 'There are no templates for this project, so adding new languages from this screen is disabled.' %}
   </div>
   {% endif %}
   {% include "admin/_generic_formset.html" %}

@@ -72,7 +72,6 @@
       </div>
       <div id="js-mnt-top-contributors"></div>
       <div class="summary-3-col">
-	{% if has_admin_access or project.treestyle == "pootle_fs" %}
         <div id="js-last-updated-wrapper">
           <h3 class="top">{% trans "Updates" %}</h3>
           <div class="bd">
@@ -86,12 +85,11 @@
 	      </div>
             </div>
 	    {% endif %}
-	    {% if project.treestyle == "pootle_fs" %}
+	    {% if project %}
 	    {% upstream_link project %}
 	    {% endif %}
           </div>
         </div>
-	{% endif %}
 	{% if stats.last_submission %}
         <div id="js-last-action-wrapper">
           <h3>{% trans "Translations" %}</h3>

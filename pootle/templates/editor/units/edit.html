@@ -42,9 +42,7 @@
 	      dir="ltr"
 	      class="translate-locations">{{ unit.locations|truncatewords:4 }}</span>
 	{% endif %}
-	{% if project.treestyle == "pootle_fs" %}
 	{% upstream_link_short unit.store.translation_project.project unit.locations %}
-	{% endif %}
       </div>
       {% endif %}
 
