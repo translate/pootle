@@ -94,7 +94,6 @@ class Command(BaseCommand):
             project = Project.objects.create(
                 code=code,
                 fullname=name,
-                treestyle='pootle_fs',
                 checkstyle=options['checkstyle'],
                 source_language=source_language)
         except ValidationError as e:
