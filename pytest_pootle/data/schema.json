@@ -3760,10 +3760,6 @@
                             "non_unique": 0,
                             "column_name": "id"
                         },
-                        "pootle_store_store_8c7dd922": {
-                            "non_unique": 1,
-                            "column_name": "file"
-                        },
                         "pootle_store_store_9ed39e2e": {
                             "non_unique": 1,
                             "column_name": "state"
@@ -3882,12 +3878,6 @@
                         "translation_project_id": {
                             "collation": null,
                             "type": "int(11)",
-                            "key": "MUL",
-                            "extra": ""
-                        },
-                        "file": {
-                            "collation": "utf8_general_ci",
-                            "type": "varchar(255)",
                             "key": "MUL",
                             "extra": ""
                         },
