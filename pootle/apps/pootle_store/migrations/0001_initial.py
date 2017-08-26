@@ -7,8 +7,9 @@ from django.utils.timezone import utc
 import translate.storage.base
 import pootle_store.fields
 import pootle.core.mixins.treeitem
-import pootle.core.storage
 from django.conf import settings
+
+import django.db.models.fields.files
 
 
 class Migration(migrations.Migration):
@@ -24,7 +25,7 @@ class Migration(migrations.Migration):
             name='Store',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('file', pootle_store.fields.TranslationStoreField(storage=pootle.core.storage.PootleFileSystemStorage(), upload_to='', max_length=255, editable=False, db_index=True)),
+                ('file', django.db.models.fields.files.FileField(upload_to='', max_length=255, editable=False, db_index=True)),
                 ('pootle_path', models.CharField(unique=True, max_length=255, verbose_name='Path', db_index=True)),
                 ('name', models.CharField(max_length=128, editable=False)),
                 ('file_mtime', models.DateTimeField(default=datetime.datetime(1, 1, 1, 0, 0, tzinfo=utc))),
