@@ -8,13 +8,9 @@
 
 """Fields required for handling translation files"""
 
-import os
-
 from translate.misc.multistring import multistring
 
 from django.db import models
-from django.db.models.fields.files import FieldFile, FileField
-from django.utils.functional import cached_property
 
 from pootle.core.utils.multistring import (parse_multistring,
                                            unparse_multistring)
@@ -98,95 +94,3 @@ class MultiStringField(models.Field):
     def contribute_to_class(self, cls, name):
         super(MultiStringField, self).contribute_to_class(cls, name)
         setattr(cls, name, CastOnAssignDescriptor(self))
-
-
-# # # # # # # # # File # # # # # # # # # # # # # # # #
-
-
-class TranslationStoreFieldFile(FieldFile):
-    """FieldFile is the file-like object of a FileField, that is found in a
-    TranslationStoreField.
-    """
-
-    def getpomtime(self):
-        file_stat = os.stat(self.realpath)
-        return file_stat.st_mtime, file_stat.st_size
-
-    @property
-    def filename(self):
-        return os.path.basename(self.name)
-
-    @cached_property
-    def realpath(self):
-        """Get real path from cache before attempting to check for symlinks."""
-        if self:
-            return os.path.realpath(self.path)
-        else:
-            return ''
-
-    @cached_property
-    def store(self):
-        """Get translation store from dictionary cache, populate if store not
-        already cached.
-        """
-        from translate.storage import factory
-
-        fileclass = self.instance.syncer.file_class
-        classes = {
-            str(self.instance.filetype.extension): fileclass,
-            str(self.instance.filetype.template_extension): fileclass}
-        return factory.getobject(
-            self.path,
-            ignore=self.field.ignore,
-            classes=classes)
-
-    def exists(self):
-        return os.path.exists(self.realpath)
-
-    def savestore(self):
-        """Saves to temporary file then moves over original file. This way we
-        avoid the need for locking.
-        """
-        import shutil
-        from pootle.core.utils import ptempfile as tempfile
-        tmpfile, tmpfilename = tempfile.mkstemp(suffix=self.filename)
-        os.close(tmpfile)
-        self.store.savefile(tmpfilename)
-        shutil.move(tmpfilename, self.realpath)
-        if "store" in self.__dict__:
-            del self.__dict__["store"]
-
-    def save(self, name, content, save=True):
-        # FIXME: implement save to tmp file then move instead of directly
-        # saving
-        super(TranslationStoreFieldFile, self).save(name, content, save)
-        if "store" in self.__dict__:
-            del self.__dict__["store"]
-
-    def delete(self, save=True):
-        if "store" in self.__dict__:
-            del self.__dict__["store"]
-        if save:
-            super(TranslationStoreFieldFile, self).delete(save)
-
-
-class TranslationStoreField(FileField):
-    """This is the field class to represent a FileField in a model that
-    represents a translation store.
-    """
-
-    attr_class = TranslationStoreFieldFile
-
-    def __init__(self, ignore=None, **kwargs):
-        """ignore: postfix to be stripped from filename when trying to
-        determine file format for parsing, useful for .pending files
-        """
-        self.ignore = ignore
-        super(TranslationStoreField, self).__init__(**kwargs)
-
-    def deconstruct(self):
-        name, path, args, kwargs = super(TranslationStoreField,
-                                         self).deconstruct()
-        if self.ignore is not None:
-            kwargs['ignore'] = self.ignore
-        return name, path, args, kwargs
