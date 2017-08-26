@@ -241,7 +241,6 @@ class InitDB(object):
             'code': "terminology",
             'fullname': u"Terminology",
             'source_language': self.require_english(),
-            'treestyle': "pootle_fs",
             'checkstyle': "terminology",
         }
         po = Format.objects.get(name="po")
@@ -271,9 +270,7 @@ class InitDB(object):
             'code': u"tutorial",
             'source_language': en,
             'fullname': u"Tutorial",
-            'checkstyle': "standard",
-            'treestyle': "pootle_fs",
-        }
+            'checkstyle': "standard"}
         tutorial = self._create_object(Project, **criteria)[0]
         tutorial.filetypes.add(po)
         tutorial.config["pootle_fs.fs_url"] = os.path.join(
