@@ -41,13 +41,10 @@ def ts_directory(po_directory, request, tmpdir, settings):
 
     import pytest_pootle
 
-    from pootle_store.abstracts import fs
-
     ts_dir = str(tmpdir.mkdir("ts"))
 
     # Adjust locations
     settings.POOTLE_TRANSLATION_DIRECTORY = ts_dir
-    fs.location = ts_dir
 
     shutil.copytree(
         os.path.join(

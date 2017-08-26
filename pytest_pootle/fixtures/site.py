@@ -53,13 +53,10 @@ def po_test_dir(request, tmpdir):
 @pytest.fixture
 def po_directory(request, po_test_dir, settings):
     """Sets up a tmp directory for PO files."""
-    from pootle_store.abstracts import fs
-
     translation_directory = settings.POOTLE_TRANSLATION_DIRECTORY
 
     # Adjust locations
     settings.POOTLE_TRANSLATION_DIRECTORY = po_test_dir
-    fs.location = po_test_dir
 
     def _cleanup():
         settings.POOTLE_TRANSLATION_DIRECTORY = translation_directory
