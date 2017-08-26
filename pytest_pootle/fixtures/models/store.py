@@ -8,7 +8,6 @@
 
 from __future__ import print_function
 
-import os
 from collections import OrderedDict
 
 import pytest
@@ -205,15 +204,10 @@ def param_update_store_test(request, tp0, member, member2):
 
 def _require_store(tp, po_dir, name):
     """Helper to get/create a new store."""
-    from pootle_store.constants import PARSED
     from pootle_store.models import Store
 
     parent_dir = tp.directory
     pootle_path = tp.pootle_path + name
-
-    file_path = (
-        tp.real_path
-        and os.path.join(po_dir, tp.real_path, name))
 
     try:
         store = Store.objects.get(
@@ -222,17 +216,12 @@ def _require_store(tp, po_dir, name):
         )
     except Store.DoesNotExist:
         store = Store.objects.create_by_path(
-            file=file_path,
             create_tp=False,
             create_directory=False,
             pootle_path=(
                 "%s%s"
                 % (parent_dir.pootle_path,
                    name)))
-    if store.file.exists():
-        if store.state < PARSED:
-            store.update(store.file.store)
-
     return store
 
 
