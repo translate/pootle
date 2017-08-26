@@ -18,9 +18,7 @@ from .utils import FSPlugin
 @receiver(filetypes_changed, sender=Project)
 def handle_project_filetypes_changed(**kwargs):
     project = kwargs["instance"]
-
-    if project.treestyle == "pootle_fs":
-        try:
-            FSPlugin(project).expire_sync_cache()
-        except NotConfiguredError:
-            pass
+    try:
+        FSPlugin(project).expire_sync_cache()
+    except NotConfiguredError:
+        pass
