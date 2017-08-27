@@ -15,8 +15,6 @@ from pootle_format.models import Format
 def test_fs_filetypes_changed_receiver(project_fs, project1, po2):
 
     project1.filetype_tool.add_filetype(po2)
-    project1.treestyle = "pootle_fs"
-    project1.save()
 
     xliff = Format.objects.get(name="xliff")
     project1.filetypes.add(xliff)
