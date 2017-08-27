@@ -728,8 +728,8 @@ def test_cmd_config_bad(capfd):
         call_command(
             "config",
             "pootle_project.project",
-            "nongnu",
-            "-o", "treestyle")
+            "standard",
+            "-o", "checkstyle")
 
     with pytest.raises(CommandError):
         call_command(
