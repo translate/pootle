@@ -391,14 +391,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
         # Force validation of fields.
         self.full_clean()
-
-        requires_translation_directory = (
-            self.treestyle != 'pootle_fs'
-            and not self.disabled
-            and not self.directory_exists_on_disk())
-        if requires_translation_directory:
-            os.makedirs(self.get_real_path())
-
         self.directory = Directory.objects.projects \
                                           .get_or_make_subdir(self.code)
 
