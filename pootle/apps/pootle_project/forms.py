@@ -6,8 +6,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import os
-
 from django import forms
 from django.db import connection
 from django.forms.models import BaseModelFormSet
@@ -82,22 +80,6 @@ class TranslationProjectForm(forms.ModelForm):
                     translationproject__project_id=project_id))
         self.fields["project"].queryset = self.fields[
             "project"].queryset.filter(pk=project_id)
-
-    def clean(self):
-        if not self.cleaned_data.get("id"):
-            exists_on_disk = (
-                self.cleaned_data["language"].code
-                in os.listdir(self.cleaned_data["project"].get_real_path()))
-            if exists_on_disk:
-                errordict = dict(
-                    lang=self.cleaned_data["language"].code,
-                    path=os.path.join(
-                        self.cleaned_data["project"].get_real_path(),
-                        self.cleaned_data["language"].code))
-                raise forms.ValidationError(
-                    _("Cannot create translation project for language "
-                      "'%(lang)s', path '%(path)s' already exists",
-                      errordict))
 
     def save(self, response_url, commit=True):
         tp = self.instance
