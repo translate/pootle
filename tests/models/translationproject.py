@@ -61,8 +61,6 @@ def test_tp_create_templates(project0_nongnu, project0,
         name="foo.pot",
         translation_project=template_tp,
         parent=template_tp.directory)
-    project0.treestyle = "nongnu"
-    project0.save()
     template.update(complex_ttk)
     tp = TranslationProject.objects.create(
         project=project0, language=LanguageDBFactory())
