@@ -192,7 +192,6 @@ def test_admin_view_project_post(client, request_users):
 
 @pytest.mark.django_db
 def test_admin_view_project_add_tp(project_foo, english, client, admin):
-    assert project_foo.treestyle != 'pootle_fs'
     user = admin
 
     new_language = LanguageDBFactory()
@@ -227,8 +226,6 @@ def test_admin_view_project_add_tp(project_foo, english, client, admin):
 
 @pytest.mark.django_db
 def test_admin_view_project_add_pootle_fs_tp(project0, client, admin):
-    assert project0.treestyle == 'pootle_fs'
-
     client.login(
         username=admin.username,
         password=TEST_USERS["admin"]["password"])
