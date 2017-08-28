@@ -246,20 +246,6 @@ class Directory(models.Model, CachedTreeItem):
         """is this directory a projects root directory"""
         return self.pootle_path == '/projects/'
 
-    def get_real_path(self):
-        """physical filesystem path for directory"""
-        if self.is_project():
-            return self.project.code
-
-        translation_project = self.translation_project
-        if self.is_translationproject():
-            return translation_project.real_path
-
-        if translation_project:
-            tp_path = translation_project.pootle_path
-            path_prefix = self.pootle_path[len(tp_path)-1:-1]
-            return translation_project.real_path + path_prefix
-
     def delete(self, *args, **kwargs):
 
         self.initialize_children()
