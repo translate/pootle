@@ -666,12 +666,6 @@
                         }
                     },
                     "fields": {
-                        "real_path": {
-                            "collation": "utf8_general_ci",
-                            "type": "varchar(100)",
-                            "key": "",
-                            "extra": ""
-                        },
                         "pootle_path": {
                             "collation": "utf8_general_ci",
                             "type": "varchar(255)",
