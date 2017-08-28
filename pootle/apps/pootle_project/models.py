@@ -11,7 +11,6 @@ import shutil
 from collections import OrderedDict
 
 from translate.filters import checks
-from translate.lang.data import langcode_re
 
 from django.conf import settings
 from django.contrib.contenttypes.fields import GenericRelation
@@ -213,17 +212,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
         verbose_name=_('Quality Checks'))
 
     filetypes = SortedManyToManyField(Format)
-
-    treestyle_choices = (
-        # TODO: check that the None is stored and handled correctly
-        ('auto', _('Automatic detection of GNU/non-GNU file layouts (slower)')),
-        ('gnu', _('GNU style: files named by language code')),
-        ('nongnu', _('Non-GNU: Each language in its own directory')),
-        ('pootle_fs', _('Allow Pootle FS to manage filesystems (Experimental)')),
-    )
-    treestyle = models.CharField(max_length=20, default='auto',
-                                 choices=treestyle_choices,
-                                 verbose_name=_('Project Tree Style'))
 
     source_language = models.ForeignKey(
         'pootle_language.Language', db_index=True,
