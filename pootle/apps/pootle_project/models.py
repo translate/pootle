@@ -38,7 +38,6 @@ from pootle_config.utils import ObjectConfig
 from pootle_format.models import Format
 from pootle_format.utils import ProjectFiletypes
 from pootle_revision.models import Revision
-from pootle_store.util import absolute_real_path
 from staticpages.models import StaticPage
 
 
@@ -406,10 +405,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
         directory.delete()
 
-    def directory_exists_on_disk(self):
-        """Checks if the actual directory for the project exists on disk."""
-        return os.path.exists(self.get_real_path())
-
     # # # TreeItem
 
     def get_children(self):
@@ -426,9 +421,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
     def get_announcement(self, user=None):
         """Return the related announcement, if any."""
         return StaticPage.get_announcement_for(self.pootle_path, user)
-
-    def get_real_path(self):
-        return absolute_real_path(self.code)
 
     def is_accessible_by(self, user):
         """Returns `True` if the current project is accessible by
