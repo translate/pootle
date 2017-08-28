@@ -1623,12 +1623,6 @@
                             "key": "",
                             "extra": ""
                         },
-                        "treestyle": {
-                            "collation": "utf8_general_ci",
-                            "type": "varchar(20)",
-                            "key": "",
-                            "extra": ""
-                        },
                         "fullname": {
                             "collation": "utf8_general_ci",
                             "type": "varchar(255)",
