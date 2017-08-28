@@ -117,7 +117,6 @@ class ProjectDBFactory(factory.django.DjangoModelFactory):
         return 'Project %s' % Project.objects.count()
 
     checkstyle = "standard"
-    treestyle = 'pootle_fs'
 
 
 class StoreDBFactory(factory.django.DjangoModelFactory):

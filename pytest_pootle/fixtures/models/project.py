@@ -21,9 +21,7 @@ def _require_project(code, name, source_language, settings, **kwargs):
         'code': code,
         'fullname': name,
         'source_language': source_language,
-        'checkstyle': 'standard',
-        'treestyle': 'auto',
-    }
+        'checkstyle': 'standard'}
     criteria.update(kwargs)
     new_project = Project.objects.get_or_create(**criteria)[0]
     new_project.config["pootle_fs.fs_type"] = "localfs"
@@ -106,8 +104,6 @@ def project0_directory(po_directory, project0):
 
 @pytest.fixture
 def project0_nongnu(project0_directory, project0, settings):
-    project0.treestyle = "nongnu"
-    project0.save()
     project_dir = os.path.join(
         settings.POOTLE_TRANSLATION_DIRECTORY, project0.code)
     if not os.path.exists(project_dir):
