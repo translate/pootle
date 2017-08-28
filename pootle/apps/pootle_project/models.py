@@ -464,52 +464,6 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
             or (match_templates
                 and ext in filetypes.template_extensions))
 
-    def _detect_treestyle(self):
-        try:
-            dirlisting = os.walk(self.get_real_path())
-            dirpath_, dirnames, filenames = dirlisting.next()
-
-            if not dirnames:
-                # No subdirectories
-                if filter(self.file_belongs_to_project, filenames):
-                    # Translation files found, assume gnu
-                    return "gnu"
-
-            # There are subdirectories
-            if filter(lambda dirname: dirname == 'templates' or
-                      langcode_re.match(dirname), dirnames):
-                # Found language dirs assume nongnu
-                return "nongnu"
-
-            # No language subdirs found, look for any translation file
-            for dirpath_, dirnames, filenames in os.walk(self.get_real_path()):
-                if filter(self.file_belongs_to_project, filenames):
-                    return "gnu"
-        except:
-            pass
-
-        # Unsure
-        return None
-
-    def get_treestyle(self):
-        """Returns the real treestyle, if :attr:`Project.treestyle` is set
-        to ``auto`` it checks the project directory and tries to guess
-        if it is gnu style or nongnu style.
-
-        We are biased towards nongnu because it makes managing projects
-        from the web easier.
-        """
-        if self.treestyle != "auto":
-            return self.treestyle
-
-        detected = self._detect_treestyle()
-
-        if detected is not None:
-            return detected
-
-        # When unsure return nongnu
-        return "nongnu"
-
     def get_template_translationproject(self):
         """Returns the translation project that will be used as a template
         for this project.
