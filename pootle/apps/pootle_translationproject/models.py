@@ -97,7 +97,6 @@ class TranslationProject(models.Model, CachedTreeItem):
         Language, db_index=False, on_delete=models.CASCADE)
     project = models.ForeignKey(
         Project, db_index=True, on_delete=models.CASCADE)
-    real_path = models.FilePathField(editable=False, null=True, blank=True)
     directory = models.OneToOneField(
         Directory, db_index=True, editable=False, on_delete=models.CASCADE)
     pootle_path = models.CharField(max_length=255, null=False, unique=True,
