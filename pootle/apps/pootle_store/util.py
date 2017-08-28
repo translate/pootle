@@ -6,19 +6,10 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-import os
-
 from django.conf import settings
 
 from .constants import STATES_NAMES, TRANSLATED
 from .unit.altsrc import AltSrcUnits
-
-
-def absolute_real_path(p):
-    if not p.startswith(settings.POOTLE_TRANSLATION_DIRECTORY):
-        return os.path.join(settings.POOTLE_TRANSLATION_DIRECTORY, p)
-    else:
-        return p
 
 
 def find_altsrcs(unit, alt_src_langs, store=None, project=None):
