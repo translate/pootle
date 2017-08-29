@@ -40,6 +40,8 @@ When you enter a search box a dropdown will open allowing you to limit or
 expand your **search to specific fields**. Any combination of these fields and
 options is accepted.
 
+.. image:: ../_static/search.png
+
 Fields that you can search in include:
 
 - Source Text -- the original reference text.
@@ -49,5 +51,7 @@ Fields that you can search in include:
 
 Options:
 
-- Exact Match **(default: off)** -- search in a case sensitive manner. With
-  this option on searching for "File" will not find "file".
+- Phrase Match **(default: off)** -- search matching specified phrase. With
+  this option on searching for "file table" will not find "table file".
+- Case-sensitive Match **(default: off)** -- search in a case sensitive manner.
+  With this option on searching for "File" will not find "file".
