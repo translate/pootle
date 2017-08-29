@@ -233,7 +233,12 @@ When the :option:`--reset` option is used , all score log data is removed and
 sync_stores
 ^^^^^^^^^^^
 
-.. versionchanged:: 2.7
+.. versionchanged:: 2.9
+
+
+.. note:: Since version 2.9 all projects are managed by Pootle FS and therefore
+   this command is now able to work with those projects.
+
 
 Save all translations currently in the database to the file system, thereby
 bringing the files under the :setting:`POOTLE_TRANSLATION_DIRECTORY` directory
@@ -275,7 +280,12 @@ these parameters:
 update_stores
 ^^^^^^^^^^^^^
 
-.. versionchanged:: 2.7
+.. versionchanged:: 2.9
+
+
+.. note:: Since version 2.9 all projects are managed by Pootle FS and therefore
+   this command is now able to work with those projects.
+
 
 Load translation files currently on the file system into the database, thereby
 bringing the Pootle database in sync with the files under the
