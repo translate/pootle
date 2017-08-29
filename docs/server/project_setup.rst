@@ -78,8 +78,8 @@ Below you can see an example with two projects using the GNU layout:
 Among the regular translation files there are two files named 
 :file:`templates.pot`. These are the template (master or reference) files that
 contain the original strings. Usually these files contain only English strings,
-it is much less confusing to use the term ``templates`` than e.g. ``en`` or
-``English``.
+however it is much less confusing to use the term ``templates`` than e.g.
+``en`` or ``English``.
 
 To get started, create a :file:`my-project` directory in the location pointed
 to by :setting:`POOTLE_TRANSLATION_DIRECTORY` and place within it the 
