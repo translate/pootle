@@ -92,7 +92,7 @@ use the commands in the next note block.
    packages to a folder with no special permissions and building and installing
    them from there we can circumvent these problems:
     
-    .. code-block:: console
+   .. code-block:: console
     
         (pootle_venv)> pip download -d C:\temp -r requirements\dev.txt -b C:\temp
         (pootle_venv)> pip install -r requirements\dev.txt -b C:\temp -t C:\pootle_venv\Lib\site-packages\ --no-index --find-links="C:\temp"
