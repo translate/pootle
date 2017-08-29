@@ -241,13 +241,6 @@ html[dir="rtl"] .select2-resource-root .file
     max-width: 20em;
 }
 
-.select2-treestyle
-{
-    width: 26em;
-    min-width: 26em;
-    max-width: 30em;
-}
-
 .select2-language
 {
     width: 21em;
