@@ -122,7 +122,7 @@ of the Pootle server:
 
 .. code-block:: console
 
-    $ pootle update_stores --project=my-project
+    (env) $ pootle update_stores --project=my-project
 
 
 This will import all the translations from disk into Pootle, calculate the
@@ -192,7 +192,7 @@ update the template translations in the Pootle database.
 
 .. code-block:: console
 
-    $ pootle update_stores --project=my-project --language=templates
+    (env) $ pootle update_stores --project=my-project --language=templates
 
 
 This command will ensure that new strings are added to the project and any
@@ -204,7 +204,7 @@ language. The first step is to save all the Pootle translations to disk:
 
 .. code-block:: console
 
-    $ pootle sync_stores --project=my-project
+    (env) $ pootle sync_stores --project=my-project
 
 
 Then update all those translations on disk against the newer templates. We
@@ -213,9 +213,9 @@ command line tool because it can handle other formats besides Gettext PO.
 
 .. code-block:: console
 
-    $ cd $POOTLE_TRANSLATION_DIRECTORY  # Use the actual path!
-    $ cd my-project
-    $ pot2po -t af.po templates.pot af.po  # Repeat for each language by changing the language code.
+    (env) $ cd $POOTLE_TRANSLATION_DIRECTORY  # Use the actual path!
+    (env) $ cd my-project
+    (env) $ pot2po -t af.po templates.pot af.po  # Repeat for each language by changing the language code.
 
 
 .. note:: To preserve the existing translations we pass the previous
@@ -227,7 +227,7 @@ to Pootle:
 
 .. code-block:: console
 
-    $ pootle update_stores --project=my-project
+    (env) $ pootle update_stores --project=my-project
 
 
 .. note:: If your project languages contain many translations you might want to

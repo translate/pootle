@@ -12,7 +12,7 @@ will run:
 
 .. code-block:: console
 
-    $ pootle help
+    (env) $ pootle help
 
 
 .. _commands#managing_pootle_projects:
@@ -36,14 +36,14 @@ For example, to *calculate_checks* for the tutorial project only, run:
 
 .. code-block:: console
 
-    $ pootle calculate_checks --project=tutorial
+    (env) $ pootle calculate_checks --project=tutorial
 
 To only calculate the Zulu and Basque language files within the tutorial
 project, run:
 
 .. code-block:: console
 
-    $ pootle calculate_checks --project=tutorial --language=zu --language=eu
+    (env) $ pootle calculate_checks --project=tutorial --language=zu --language=eu
 
 
 Running commands with --no-rq option
@@ -66,7 +66,7 @@ for the process to terminate:
 
 .. code-block:: console
 
-    $ pootle calculate_checks --no-rq
+    (env) $ pootle calculate_checks --no-rq
 
 It is *not* generally safe to run commands in this mode if you have RQ workers
 active at the same time, as there is a risk that they conflict with other jobs
@@ -88,7 +88,7 @@ dispatched to the workers.
 
 .. code-block:: console
 
-    $ pootle update_stores --atomic=all
+    (env) $ pootle update_stores --atomic=all
 
 
 
@@ -131,7 +131,7 @@ specific store:
 
 .. code-block:: console
 
-    $ pootle update_data --store=/fr/proj/mydir/mystore.po
+    (env) $ pootle update_data --store=/fr/proj/mydir/mystore.po
 
 Note this will also trigger the update of the stats data for items above the
 store, like for example directories above it, its language and its project.
@@ -167,13 +167,13 @@ recalculate only the ``date_format`` quality checks, run:
 
 .. code-block:: console
 
-    $ pootle calculate_checks --check=date_format
+    (env) $ pootle calculate_checks --check=date_format
 
 Multiple checks can be specifed in one run as well:
 
 .. code-block:: console
 
-    $ pootle calculate_checks --check=date_format --check=accelerators
+    (env) $ pootle calculate_checks --check=date_format --check=accelerators
 
 
 .. django-admin:: flush_cache
@@ -466,21 +466,21 @@ For example, to add the `properties` format to a project, run:
 
 .. code-block:: console
 
-    $ pootle set_filetype --project=myproj properties
+    (env) $ pootle set_filetype --project=myproj properties
 
 
 To convert stores of `po` format to `properties`, run:
 
 .. code-block:: console
 
-    $ pootle set_filetype --project=myproj --from-filetype=po properties
+    (env) $ pootle set_filetype --project=myproj --from-filetype=po properties
 
 
 To convert stores matching a given path glob to `properties` format, run:
 
 .. code-block:: console
 
-    $ pootle set_filetype --project=myproj --matching=mydir/myfile-* properties
+    (env) $ pootle set_filetype --project=myproj --matching=mydir/myfile-* properties
 
 
 .. django-admin:: revision
@@ -710,9 +710,9 @@ no actual data will be loaded or deleted (the TM will be left unchanged):
 
 .. code-block:: console
 
-    $ pootle update_tmserver --dry-run
-    $ pootle update_tmserver --refresh --dry-run
-    $ pootle update_tmserver --rebuild --dry-run
+    (env) $ pootle update_tmserver --dry-run
+    (env) $ pootle update_tmserver --refresh --dry-run
+    (env) $ pootle update_tmserver --rebuild --dry-run
 
 
 This command also allows to read translations from files and build the TM
@@ -799,7 +799,7 @@ This command requires a mandatory filename argument.
 
 .. code-block:: console
 
-    $ pootle add_vfolders virtual_folders.json
+    (env) $ pootle add_vfolders virtual_folders.json
 
 
 .. _commands#import_export:
@@ -1301,7 +1301,7 @@ if they are superusers of the site.
 
 .. code-block:: console
 
-    $ pootle find_duplicate_emails
+    (env) $ pootle find_duplicate_emails
 
 
 .. django-admin:: merge_user
@@ -1327,7 +1327,7 @@ merged. You can prevent this by using the :option:`--no-delete` option.
 
 .. code-block:: console
 
-    $ pootle merge_user src_username target_username
+    (env) $ pootle merge_user src_username target_username
 
 
 .. django-admin:: purge_user
@@ -1349,7 +1349,7 @@ username for a user of your site.
 
 .. code-block:: console
 
-    $ pootle purge_user username [username ...]
+    (env) $ pootle purge_user username [username ...]
 
 
 .. django-admin:: update_user_email
@@ -1362,7 +1362,7 @@ update_user_email
 
 .. code-block:: console
 
-    $ pootle update_user_email username email
+    (env) $ pootle update_user_email username email
 
 This command can be used if you wish to update a user's email address. This
 might be useful if you have users with duplicate email addresses.
@@ -1372,7 +1372,7 @@ username for a user of your site, and a mandatory valid ``email`` address.
 
 .. code-block:: console
 
-    $ pootle update_user_email username email
+    (env) $ pootle update_user_email username email
 
 
 .. django-admin:: verify_user
@@ -1396,7 +1396,7 @@ wish to verify all users of your site.
 
 .. code-block:: console
 
-    $ pootle verify_user username [username ...]
+    (env) $ pootle verify_user username [username ...]
 
 Available options:
 

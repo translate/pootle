@@ -87,7 +87,7 @@ re-run by using the :djadmin:`retry_failed_jobs` management command:
 
 .. code-block:: console
 
-   $ pootle retry_failed_jobs
+   (env) $ pootle retry_failed_jobs
 
 
 In order to delete all the failed jobs you must first **stop the workers**.
