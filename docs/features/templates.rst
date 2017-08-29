@@ -18,12 +18,12 @@ used as templates.
 The *"Templates"* language
 --------------------------
 
-Pootle can manage a special language called *templates*. This is not strictly
+Pootle can manage a special language called *Templates*. This is not strictly
 speaking a language but rather a place to store translation templates for a
 project.
 
 If the *Templates* language is present then Pootle will initialise brand new
-languages with files from the *Templates* language.
+languages from the *Templates* files present in Pootle.
 
 If the *Templates* language is absent from a project, Pootle will assume all
 initialisation of files for new languages happens outside of Pootle.
@@ -37,17 +37,15 @@ Starting a new translation
 It is helpful to understand in more detail how a new language is created or
 added to Pootle.
 
-When adding a new language to a project from the Pootle interface, Pootle will
-first scan the file system and look for translation files for that language. If
-they exist then these are imported into Pootle.  If no files are present and if
-the *Templates* language exists then a fresh copy will be generated based on the
-templates files (in a manner similar to :ref:`pot2po <toolkit:pot2po>`).
+When adding a new language to a project from the Pootle interface, and the
+*Templates* language exists for the project in Pootle then a fresh copy
+will be generated based on those template files.
 
-If there is no *Templates* language it is usual to manage all initialisation of
-languages from the Pootle command line.  When using :djadmin:`update_stores`
-new languages will be initialised if they are present on the filesystem. You
-are responsible for initialisation of these new languages from template files
-as required.
+If there is no *Templates* language it is necessary to manage all
+initialisation of languages from the Pootle command line.  When using
+:djadmin:`update_stores` new languages will be initialised if they are present
+on the filesystem. You are responsible for initialisation of these new
+languages from template files as required.
 
 
 .. _templates#updating_translations:
