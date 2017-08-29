@@ -42,7 +42,7 @@ Python 2 and try again.
 
 Something like this will be needed to setup your virtual environment.
 
-.. code:: console
+.. code-block:: console
 
    $ mkvirtualenv --python=/path/to/python2 pootle
 
@@ -57,7 +57,7 @@ locale.
 
 On a Debian based server simply run:
 
-.. code:: console
+.. code-block:: console
 
    $ sudo dpkg-reconfigure locales
 
@@ -74,7 +74,7 @@ for ``libxml``, ``libxslt`` and Python.
 
 On Debian based system the following will install all additional system requirements:
 
-.. code:: console
+.. code-block:: console
 
    $ sudo apt-get install build-essential libxml2-dev libxslt-dev python-dev python-pip zlib1g-dev
 

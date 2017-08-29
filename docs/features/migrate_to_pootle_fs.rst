@@ -20,7 +20,7 @@ Preparation
    the filesystem. The filesystem and Pootle should now have exactly the same
    data.
 
-   .. code:: console
+   .. code-block:: console
 
       (env) $ pootle sync_stores --project=MYPROJECT
 
@@ -52,7 +52,7 @@ First synchronization
 Now that our project is setup we can initiate the first synchronization to
 ensure all files are tracked:
 
-.. code:: console
+.. code-block:: console
 
    (env) $ pootle fs add --force MYPROJECT
    (env) $ pootle fs sync MYPROJECT
@@ -76,7 +76,7 @@ The :djadmin:`sync_stores` in our recipe above ensures that everything is in
 sync. However if you have scripts that commit and update files you might prefer
 to let the filesystem win in which case rather use:
 
-.. code:: console
+.. code-block:: console
 
    (env) $ pootle fs fetch --force MYPROJECT
 
@@ -93,7 +93,7 @@ Migrating to version control
 5. Set the URL to your version control repository.
 6. Synchronize as follows:
 
-   .. code:: console
+   .. code-block:: console
 
      (env) $ pootle fs fetch --force MYPROJECT
      (env) $ pootle fs sync MYPROJECT
