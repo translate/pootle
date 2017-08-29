@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 import logging
 import os
 from functools import partial
+from pathlib import PosixPath
 
 import dirsync
 
@@ -105,7 +106,7 @@ def convert_to_localfs(apps, schema_editor):
     old_translation_path = settings.POOTLE_TRANSLATION_DIRECTORY
 
     for project in Project.objects.exclude(treestyle="pootle_fs"):
-        proj_trans_path = os.path.join(old_translation_path, project.code)
+        proj_trans_path = str(PosixPath().joinpath(old_translation_path, project.code))
         proj_stores = Store.objects.filter(
             translation_project__project=project).exclude(file="")
         _set_project_config(Config, project_ct, project)
@@ -115,19 +116,20 @@ def convert_to_localfs(apps, schema_editor):
             store__translation_project__project=project)
         store_fs.delete()
         for store in proj_stores:
-            filepath = store.file.path[len(proj_trans_path):]
+            filepath = PosixPath().joinpath(
+                proj_trans_path, str(store.file)[len(project.code):])
             StoreFS.objects.update_or_create(
                 project=project,
                 store=store,
                 defaults=dict(
-                    path=filepath,
+                    path=str(filepath),
                     pootle_path=store.pootle_path,
                     last_sync_revision=store.last_sync_revision,
                     last_sync_mtime=store.file_mtime))
         fs_temp = os.path.join(
             settings.POOTLE_FS_WORKING_PATH, project.code)
         dirsync.sync(
-            proj_trans_path,
+            str(proj_trans_path),
             fs_temp,
             "sync",
             create=True,
