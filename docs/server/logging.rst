@@ -69,10 +69,6 @@ Current action types are as follows:
 +----------+--------------+-------------------------------------------------+
 |  SC      | Score        | A users score has changed because of an action  |
 +----------+--------------+-------------------------------------------------+
-|  PTA     | Paid Task    | A paid task has been added                      |
-+----------+--------------+-------------------------------------------------+
-|  PTD     | Paid Task    | A paid task has been deleted                    |
-+----------+--------------+-------------------------------------------------+
 
 
 Score Translation Actions
@@ -145,11 +141,6 @@ Various of the action groups have different message structures as outlined here:
 
   date  user    SC  score_delta  score_action    #unit  NS=wordcount    S=similarity   total
   [2015-05-19T14:19:11]   admin   SC      1.0     TA      #1      NS=1    S=0.0   (total: 2.28571428571)
-
-*Paid Task*::
-
-  date  user    action  Task: [id, user, date, type, amount, comment]
-  [2015-05-19T14:35:34]   admin   PTA     Task: [id=1, user=admin, month=2015-05, type=Translation, amount=1000.0, comment=Translate UI]
 
 
 Sync and Update messages
