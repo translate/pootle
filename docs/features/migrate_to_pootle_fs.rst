@@ -28,22 +28,18 @@ Preparation
 Setup Pootle FS
 ---------------
 
-1. In the Project Admin interface, change the *Project Tree Style* to
-   ``Allow Pootle FS to manage filesystems``.
+Click on the ``Filesystems`` link below the project edit form and set the
+following:
 
-   .. image:: ../_static/set_project_pootle_fs.png
+.. image:: ../_static/pootle_fs_link.png
 
-2. Click on the ``Filesystems`` link below the project edit form and set the
-   following:
 
-   .. image:: ../_static/pootle_fs_link.png
-
-   * **Filesystem backend** to ``localfs``
-   * **Backend URL or path** to the value of
-     :setting:`POOTLE_TRANSLATION_DIRECTORY` + MYPROJECT, e.g.
-     :file:`/path/to/pootle/translations/MYPROJECT`
-   * **Translation path mapping** to the one your project uses, or pick one of
-     the existing **Translation mapping presets**.
+* **Filesystem backend** to ``localfs``
+* **Backend URL or path** to the value of
+  :setting:`POOTLE_TRANSLATION_DIRECTORY` + MYPROJECT, e.g.
+  :file:`/path/to/pootle/translations/MYPROJECT`
+* **Translation path mapping** to the one your project uses, or pick one of the
+  existing **Translation mapping presets**.
 
 
 First synchronization

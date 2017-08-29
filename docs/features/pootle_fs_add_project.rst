@@ -20,18 +20,10 @@ Synchronizing against any version control system requires you add some
 :ref:`additional packages and configuration <pootle_fs_install_plugins>`.
 
 
-Create a project to be managed by Pootle FS
--------------------------------------------
+Create a project and set Pootle FS configuration for it
+-------------------------------------------------------
 
-Create a project as usual, setting the *Project Tree Style* to
-``Allow Pootle FS to manage filesystems``.
-
-
-.. image:: ../_static/set_project_pootle_fs.png
-
-
-Provide Pootle FS configuration for the project
------------------------------------------------
+First create a project as usual.
 
 Once the project is created you need to configure Pootle FS. You can accomplish
 this with the command line or the web UI. The UI is by far the simplest way and
