@@ -108,9 +108,13 @@ will see a **New Project** button:
 Click on that button and the **Add Project** form will be displayed. Enter the
 new project's details. **Code** must match the name of the directory within
 :setting:`POOTLE_TRANSLATION_DIRECTORY` that contains the project translation
-files, in our example :file:`my-project`. You can also provide a **Full Name**
-easily readable for humans. You don't need to change the rest of the fields
-unless you need to further customize your project.
+files, in our example :file:`my-project`. Also you must specify the
+**File Types** used in this new project, in our example
+``Gettext PO (po/pot)``.
+
+You can also provide a **Full Name** easily readable for humans. You don't need
+to change the rest of the fields unless you need to further customize your
+project.
 
 .. image:: ../_static/add_project_form.png
 
