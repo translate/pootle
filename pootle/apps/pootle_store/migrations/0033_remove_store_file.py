@@ -8,6 +8,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
+        ('pootle_fs', '0002_convert_localfs'),
         ('pootle_store', '0032_fix_empty_wordcounts'),
     ]
 
