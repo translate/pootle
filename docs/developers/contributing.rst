@@ -11,9 +11,9 @@ know programming! Want to know how? Please keep reading.
   <https://lists.sourceforge.net/lists/listinfo/translate-pootle>`_ or in the
   `Pootle channel <https://gitter.im/translate/pootle>`_.
 
-- Found a bug? Report it in our `Bugzilla tracker
+- Found a bug? Report it in our `Issue tracker
   <https://github.com/translate/pootle/issues/>`_. You can also always contact
-  us on IRC. Make sure to read more about :ref:`how to report bugs
+  us on Pootle channel. Make sure to read more about :ref:`how to report bugs
   <contributing#reporting_bugs>`.
 
 - Translate the User Interface into your own language. Pootle is translated
