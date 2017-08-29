@@ -120,7 +120,25 @@ project.
 
 
 Once you are done click on the **Save** button below the form to create the
-project. Creating the project doesn't actually import all the translations to
+project.
+
+Please not that **just creating the project is not enough**, now it is
+necessary to set the the filesystem configuration. So now click on the
+``Filesystems`` link below the project edit form and set the following:
+
+.. image:: ../_static/pootle_fs_link.png
+
+
+* **Filesystem backend** to ``localfs``
+* **Backend URL or path** to the value of
+  :setting:`POOTLE_TRANSLATION_DIRECTORY` + project code, e.g.
+  :file:`/path/to/pootle/translations/my-project` in our example
+* **Translation mapping presets** to ``GNU-style``
+
+And then click on the **Update filesystem configuration** button to save the
+Pootle FS configuration for the project.
+
+Creating the project doesn't actually import all the translations to
 Pootle. To do that you need to run :djadmin:`update_stores` on the command line
 of the Pootle server:
 
