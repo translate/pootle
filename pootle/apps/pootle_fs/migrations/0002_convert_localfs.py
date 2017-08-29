@@ -107,7 +107,7 @@ def convert_to_localfs(apps, schema_editor):
     for project in Project.objects.exclude(treestyle="pootle_fs"):
         proj_trans_path = os.path.join(old_translation_path, project.code)
         proj_stores = Store.objects.filter(
-            translation_project__project=project)
+            translation_project__project=project).exclude(file="")
         _set_project_config(Config, project_ct, project)
         project.treestyle = "pootle_fs"
         project.save()
