@@ -49,14 +49,17 @@ GitHub
 
 2. Let Allauth know about your social provider.
 
-.. code-block:: sql
+   .. code-block:: sql
 
-  UPDATE django_site SET DOMAIN = 'foo.bar.tld', name = 'Site name' WHERE id=1;
-  INSERT INTO socialaccount_socialapp (provider, name, secret, client_id, 'key')
-         VALUES ("github", "GitHub", "---Client-Secret-from-above---",
-                 "---Client-ID-from-above---", "");
-  INSERT INTO socialaccount_socialapp_sites (socialapp_id, site_id)
-         VALUES (1,1);
+     UPDATE django_site SET DOMAIN = 'foo.bar.tld', name = 'Site name' WHERE id=1;
+
+     INSERT INTO socialaccount_socialapp (provider, name, secret, client_id, 'key')
+            VALUES ("github", "GitHub", "---Client-Secret-from-above---",
+                    "---Client-ID-from-above---", "");
+
+     INSERT INTO socialaccount_socialapp_sites (socialapp_id, site_id)
+            VALUES (1,1);
+
 
 Note the first line simply sets the domain name for the default site; you
 can omit it if it's already up-to-date.

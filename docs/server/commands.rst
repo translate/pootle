@@ -334,7 +334,7 @@ directly on the file system.
 list_serializers
 ^^^^^^^^^^^^^^^^
 
-  .. versionadded:: 2.8.0
+.. versionadded:: 2.8.0
 
 List the installed serializers and deserializers on your system.
 
@@ -1192,9 +1192,9 @@ without user input:
 
 .. django-admin-option:: --overwrite
 
-   Discard all translations.  Use only those translations from the filesytem,
-   by default, or from Pootle if used together with :option:`--pootle-wins
-   <resolve --pootle-wins>`
+  Discard all translations.  Use only those translations from the filesytem,
+  by default, or from Pootle if used together with :option:`--pootle-wins
+  <resolve --pootle-wins>`
 
   .. code-block:: console
 

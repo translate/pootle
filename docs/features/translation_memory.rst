@@ -71,8 +71,8 @@ installed and running.
 
 Install the required Python libraries:
 
-  .. highlight:: console
-  .. parsed-literal::
+.. highlight:: console
+.. parsed-literal::
 
     (env) $ pip install |--process-dependency-links --pre| Pootle[es5]
 
