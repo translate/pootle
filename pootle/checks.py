@@ -16,7 +16,7 @@ from pootle.i18n.gettext import ugettext as _
 
 
 # Minimum Translate Toolkit version required for Pootle to run.
-TTK_MINIMUM_REQUIRED_VERSION = (2, 2, 3)
+TTK_MINIMUM_REQUIRED_VERSION = (2, 2, 4)
 
 # Minimum lxml version required for Pootle to run.
 LXML_MINIMUM_REQUIRED_VERSION = (3, 5, 0, 0)
