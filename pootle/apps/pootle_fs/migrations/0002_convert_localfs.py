@@ -116,14 +116,18 @@ def convert_to_localfs(apps, schema_editor):
             store__translation_project__project=project)
         store_fs.delete()
         for store in proj_stores:
-            filepath = PosixPath().joinpath(
-                proj_trans_path, str(store.file)[len(project.code):])
+            filepath = str(store.file)[len(project.code):]
+            fullpath = str(
+                PosixPath().joinpath(
+                    proj_trans_path,
+                    filepath.lstrip("/")))
             StoreFS.objects.update_or_create(
                 project=project,
                 store=store,
                 defaults=dict(
                     path=str(filepath),
                     pootle_path=store.pootle_path,
+                    last_sync_hash=str(os.stat(fullpath).st_mtime),
                     last_sync_revision=store.last_sync_revision,
                     last_sync_mtime=store.file_mtime))
         fs_temp = os.path.join(
