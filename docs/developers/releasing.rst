@@ -463,6 +463,17 @@ test the actual links created, you don't need to commit everything.
     (build-pootle-release)$ deactivate
 
 
+Also if you branch you will want to limit requires.io to requirements in the
+branch. To do so check how it was done in `this commit
+<https://github.com/translate/pootle/commit/a94ea7af>`_:
+
+.. code-block:: console
+
+    $ nano .requires.yml
+    $ git add .requires.yml
+    $ git commit -m "Requirements: Limit requires.io to branch requirements"
+
+
 Tag the release:
 
 .. code-block:: console
