@@ -16,7 +16,7 @@ django-sortedm2m==1.5.0
 django-statici18n==1.4.0
 
 # Libraries
-Babel==2.4.0
+Babel==2.5.0
 cssmin==0.2.0
 diff-match-patch==20121119
 dirsync==2.2.2
