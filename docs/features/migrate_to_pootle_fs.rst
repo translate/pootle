@@ -38,8 +38,8 @@ Setup Pootle FS
 
    .. image:: ../_static/pootle_fs_link.png
 
-   * *Filesystem backend* to ``localfs``
-   * *Backend URL or path* to the value of
+   * **Filesystem backend** to ``localfs``
+   * **Backend URL or path** to the value of
      :setting:`POOTLE_TRANSLATION_DIRECTORY` + MYPROJECT, e.g.
      :file:`/path/to/pootle/translations/MYPROJECT`
 
