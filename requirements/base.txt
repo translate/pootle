@@ -34,7 +34,7 @@ pycountry==17.5.14
 
 # Markup: Markdown filter for POOTLE_MARKUP_FILTER
 bleach==2.0.0
-Markdown==2.6.8
+Markdown==2.6.9
 
 # Translate Toolkit
 # Note: also adjust pootle/checks::TTK_MINIMUM_REQUIRED_VERSION
