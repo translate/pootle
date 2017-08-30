@@ -4,7 +4,7 @@
 Django~=1.10.5  # rq.filter: <1.11
 
 # Django apps
-django-allauth==0.32.0
+django-allauth==0.33.0
 django-assets==0.12
 django-bulk-update==2.2.0
 django-contact-form==1.4.2
@@ -16,7 +16,7 @@ django-sortedm2m==1.5.0
 django-statici18n==1.4.0
 
 # Libraries
-Babel==2.4.0
+Babel==2.5.0
 cssmin==0.2.0
 diff-match-patch==20121119
 dirsync==2.2.2
@@ -34,7 +34,7 @@ pycountry==17.5.14
 
 # Markup: Markdown filter for POOTLE_MARKUP_FILTER
 bleach==2.0.0
-Markdown==2.6.8
+Markdown==2.6.9
 
 # Translate Toolkit
 # Note: also adjust pootle/checks::TTK_MINIMUM_REQUIRED_VERSION
