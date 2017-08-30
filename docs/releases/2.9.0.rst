@@ -1,0 +1,55 @@
+========================
+Pootle 2.9 release notes
+========================
+
+*Not yet released*
+
+Welcome to Pootle 2.9!
+
+If you want to try it, check one of the following:
+
+- :doc:`Installation instructions </server/installation>`
+- :doc:`Upgrading instructions </server/upgrading>`
+
+
+Changes in Requirements
+=======================
+
+- Django>=1.10.5,<1.11
+
+
+Changes
+=======
+
+- Pootle FS:
+
+  - Several bugfixes for Pootle FS.
+  - All projects are now handled using Pootle FS:
+
+    - Creating projects no longer automatically imports translations from disk,
+      neither creates project directory on disk if missing.
+    - It is mandatory to set filesystem configuration right after creating a
+      new project.
+    - New languages in a project are initiliazed using the templates in Pootle
+      database.
+
+- All caches are now correctly obsoleted when relevant changes happen.
+- Overall documentation review and updates
+
+
+Command changes and additions
+-----------------------------
+
+- Removed ``changed_languages`` command.
+- :djadmin:`sync_stores` and :djadmin:`update_stores` commands can now work
+  with projects managed by Pootle FS.
+
+
+Credits
+=======
+
+This release was made possible by the following people:
+
+Ryan Northey, Leandro Regueiro, boite.
+
+And to all our bug finders, testers and translators, a Very BIG Thank You.
