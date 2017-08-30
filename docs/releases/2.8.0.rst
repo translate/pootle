@@ -15,7 +15,7 @@ If you want to try it, check one of the following:
 Changes in Requirements
 =======================
 
-- Django>=1.10.4,<1.11
+- Django>=1.10.5,<1.11
 - zlib1g-dev required for lxml
 - MySQL support uses mysqlclient instead of MySQLdb
 - django-transaction-hooks is no longer used
@@ -31,7 +31,7 @@ Major Changes
 
 
 Below we provide much more detail. These are by no means exhaustive, view the
-`git log <https://github.com/translate/pootle/compare/2.7.6...master>`_ for
+`git log <https://github.com/translate/pootle/compare/2.7.6...2.8.0>`_ for
 complete information.
 
 
