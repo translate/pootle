@@ -955,7 +955,7 @@ class Store(AbstractStore):
         :param allow_add_and_obsolete: allow to add new units
             and make obsolete existing units
         """
-        self.updater.update(
+        return self.updater.update(
             store, user=user, store_revision=store_revision,
             submission_type=submission_type, resolve_conflict=resolve_conflict,
             allow_add_and_obsolete=allow_add_and_obsolete)
