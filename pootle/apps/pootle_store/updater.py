@@ -9,10 +9,9 @@
 import logging
 
 from django.contrib.auth import get_user_model
-from django.utils import timezone
 from django.utils.functional import cached_property
 
-from pootle.core.delegate import frozen, review
+from pootle.core.delegate import frozen, review, versioned
 from pootle.core.models import Revision
 from pootle_store.contextmanagers import update_store_after
 
@@ -30,8 +29,9 @@ class StoreUpdate(object):
     a target db store
     """
 
-    def __init__(self, source_store, **kwargs):
+    def __init__(self, source_store, target_store, **kwargs):
         self.source_store = source_store
+        self.target_store = target_store
         self.kwargs = kwargs
 
     def find_source_unit(self, uid):
@@ -76,142 +76,155 @@ class StoreUpdate(object):
     def suggest_on_conflict(self):
         return self.kwargs.get("suggest_on_conflict", True)
 
+    @property
+    def versioned_store(self):
+        return versioned.get(
+            self.target_store.__class__)(self.target_store)
+
+    @property
+    def last_sync_store(self):
+        return self.versioned_store.at_revision(
+            self.store_revision or 0)
+
 
 class UnitUpdater(object):
     """Updates a unit from a source with configuration"""
 
-    def __init__(self, unit, update):
-        self.unit = unit
+    def __init__(self, db_unit, update):
+        self.db_unit = db_unit
         self.update = update
-        self.original = frozen.get(unit.__class__)(unit)
+        self.original = frozen.get(db_unit.__class__)(db_unit)
         self.original_submitter = (
-            unit.changed and unit.change.submitted_by)
-
-    @property
-    def translator_comment(self):
-        comment = self.newunit.getnotes(origin="translator")
-        return None if comment == '' else comment
-
-    @property
-    def translator_comment_updated(self):
-        return (
-            (self.original.translator_comment or self.translator_comment)
-            and self.original.translator_comment != self.translator_comment)
+            db_unit.changed and db_unit.change.submitted_by)
 
     @cached_property
-    def at(self):
-        return timezone.now()
+    def old_unit(self):
+        return self.update.last_sync_store.findid(
+            self.db_unit.getid())
 
     @property
     def uid(self):
-        return self.unit.getid()
+        return self.db_unit.getid()
 
     @cached_property
     def newunit(self):
         return self.update.find_source_unit(self.uid)
 
     @cached_property
-    def conflict_found(self):
+    def db_comment_updated(self):
+        if not self.old_unit:
+            return True
+        return (self.db_unit.translator_comment or ""
+                != self.old_unit.getnotes(origin="translator"))
+
+    @cached_property
+    def db_state_updated(self):
+        if not self.old_unit:
+            return True
+        return not (
+            self.db_unit.isfuzzy() == self.old_unit.isfuzzy()
+            and self.db_unit.istranslated() == self.old_unit.istranslated()
+            and self.db_unit.isobsolete() == self.old_unit.isobsolete())
+
+    @cached_property
+    def db_target_updated(self):
+        if not self.old_unit:
+            return True
+        return self.db_unit.target != self.old_unit.target
+
+    @cached_property
+    def fs_comment_updated(self):
+        if not self.old_unit and self.newunit:
+            return True
+        return (
+            self.old_unit
+            and self.newunit
+            and (self.newunit.getnotes(origin="translator")
+                 != self.old_unit.getnotes(origin="translator")))
+
+    @cached_property
+    def fs_state_updated(self):
+        if not self.old_unit and self.newunit:
+            return True
+        return not (
+            self.newunit.isfuzzy() == self.old_unit.isfuzzy()
+            and self.newunit.istranslated() == self.old_unit.istranslated()
+            and self.newunit.isobsolete() == self.old_unit.isobsolete())
+
+    @cached_property
+    def fs_target_updated(self):
+        if not self.old_unit and self.newunit:
+            return True
         return (
             self.newunit
-            and self.update.store_revision is not None
-            and self.update.store_revision < self.unit.revision
-            and (self.target_updated
-                 or self.state_updated
-                 or self.unit.source != self.newunit.source))
+            and self.newunit.target != self.old_unit.target)
+
+    @cached_property
+    def comment_conflict_found(self):
+        return (
+            self.fs_comment_updated
+            and self.db_comment_updated)
+
+    @cached_property
+    def state_conflict_found(self):
+        return (
+            self.fs_state_updated
+            and self.db_state_updated)
+
+    @cached_property
+    def target_conflict_found(self):
+        return (
+            self.fs_target_updated
+            and self.db_target_updated
+            and self.newunit.target != self.db_unit.target)
 
     @property
     def should_create_suggestion(self):
         return (
             self.update.suggest_on_conflict
-            and self.conflict_found)
+            and self.target_conflict_found)
+
+    @property
+    def should_update_comment(self):
+        return (
+            self.newunit
+            and self.fs_comment_updated
+            and not (
+                self.comment_conflict_found
+                and self.update.resolve_conflict == POOTLE_WINS))
 
     @property
     def should_update_index(self):
         return (
             self.update.change_indices
             and self.uid in self.update.indices
-            and self.unit.index != self.update.get_index(self.uid))
+            and self.db_unit.index != self.update.get_index(self.uid))
 
-    @property
-    def should_update_target(self):
+    @cached_property
+    def should_update_source(self):
         return (
             self.newunit
-            and self.target_updated
-            and not (
-                self.conflict_found
-                and self.update.resolve_conflict == POOTLE_WINS))
+            and (self.db_unit.source
+                 != self.newunit.source))
 
     @property
     def should_update_state(self):
         return (
             self.newunit
-            and self.state_updated
+            and self.fs_state_updated
             and not (
-                self.conflict_found
+                self.state_conflict_found
                 and self.update.resolve_conflict == POOTLE_WINS))
 
     @property
-    def should_update_comment(self):
+    def should_update_target(self):
         return (
             self.newunit
-            and self.translator_comment_updated
+            and self.fs_target_updated
+            and self.newunit.target != self.db_unit.target
             and not (
-                self.conflict_found
+                self.target_conflict_found
                 and self.update.resolve_conflict == POOTLE_WINS))
-
-    @cached_property
-    def should_update_source(self):
-        return (self.newunit
-                and self.unit.source != self.newunit.source)
-
-    @cached_property
-    def resurrected(self):
-        return (
-            self.newunit
-            and not self.newunit.isobsolete()
-            and self.unit.isobsolete())
-
-    @cached_property
-    def state_updated(self):
-        # `fuzzy` state change is checked here.
-        # `translated` and `obsolete` states are handled separately.
-        if not self.newunit:
-            return False
-        source_fuzzy = (
-            self.newunit.isfuzzy()
-            and not self.newunit.isobsolete())
-        target_fuzzy = (
-            self.unit.isfuzzy()
-            and not self.unit.isobsolete())
-        return source_fuzzy != target_fuzzy
-
-    @cached_property
-    def target_updated(self):
-        if not self.update.store_revision:
-            return True
-        if self.unit.target == self.newunit.target:
-            return False
-        return True
-
-    def create_suggestion(self):
-        suggestion_review = review.get(Suggestion)()
-        return bool(
-            suggestion_review.add(
-                self.unit,
-                self.newunit.target,
-                self.update.user)[1]
-            if self.update.resolve_conflict == POOTLE_WINS
-            else suggestion_review.add(
-                self.unit,
-                self.original.target,
-                self.original_submitter)[1])
-
-    def save_unit(self):
-        self.unit.revision = self.update.update_revision
-        self.unit.save(
-            user=self.update.user,
-            changed_with=self.update.submission_type)
 
     @property
     def should_unobsolete(self):
@@ -220,30 +233,57 @@ class UnitUpdater(object):
             and self.resurrected
             and self.update.store_revision is not None
             and not (
-                self.unit.revision > self.update.store_revision
+                self.db_unit.revision > self.update.store_revision
                 and self.update.resolve_conflict == POOTLE_WINS))
+
+    @cached_property
+    def resurrected(self):
+        return (
+            self.newunit
+            and not self.newunit.isobsolete()
+            and self.db_unit.isobsolete())
+
+    def create_suggestion(self):
+        suggestion_review = review.get(Suggestion)()
+        return bool(
+            suggestion_review.add(
+                self.db_unit,
+                self.newunit.target,
+                self.update.user)[1]
+            if self.update.resolve_conflict == POOTLE_WINS
+            else suggestion_review.add(
+                self.db_unit,
+                self.original.target,
+                self.original_submitter)[1])
+
+    def save_unit(self):
+        self.db_unit.revision = self.update.update_revision
+        self.db_unit.save(
+            user=self.update.user,
+            changed_with=self.update.submission_type)
 
     def update_unit(self):
         reordered = False
         suggested = False
         updated = False
-        need_update = (self.should_unobsolete
-                       or self.should_update_target
-                       or self.should_update_source
-                       or self.should_update_state
-                       or self.should_update_comment)
+        need_update = (
+            self.should_unobsolete
+            or self.should_update_target
+            or self.should_update_source
+            or self.should_update_state
+            or self.should_update_comment)
         if need_update:
-            updated = self.unit.update(
+            updated = self.db_unit.update(
                 self.newunit, user=self.update.user)
         if self.should_update_index:
-            self.unit.index = self.update.get_index(self.uid)
+            self.db_unit.index = self.update.get_index(self.uid)
             reordered = True
             if not updated:
-                self.unit.save(user=self.update.user)
-        if updated:
-            self.save_unit()
+                self.db_unit.save(user=self.update.user)
         if self.should_create_suggestion:
             suggested = self.create_suggestion()
+        if updated:
+            self.save_unit()
         return (updated or reordered), suggested
 
 
@@ -340,6 +380,7 @@ class StoreUpdater(object):
         update_dbids, uid_index_map = to_change['update']
         update = StoreUpdate(
             store,
+            self.target_store,
             user=user,
             submission_type=submission_type,
             resolve_conflict=resolve_conflict,
@@ -358,7 +399,8 @@ class StoreUpdater(object):
             return update_count, suggestion_count
         for unit in self.units(update.uids):
             updated, suggested = self.unit_updater_class(
-                unit, update).update_unit()
+                unit,
+                update).update_unit()
             if updated:
                 update_count += 1
             if suggested:
