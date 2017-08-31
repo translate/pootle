@@ -12,12 +12,6 @@ If you want to try it, check one of the following:
 - :doc:`Upgrading instructions </server/upgrading>`
 
 
-Changes in Requirements
-=======================
-
-- Django>=1.10.5,<1.11
-
-
 Changes
 =======
 
@@ -37,6 +31,8 @@ Changes
 
 - Several bugfixes for Pootle FS.
 - Overall documentation review and updates.
+- `pootle` command can now be run with no `VIRTUAL_ENV` environment variable
+  set.
 - :djadmin:`sync_stores` and :djadmin:`update_stores` commands can now work
   with projects managed by Pootle FS.
 - Removed ``changed_languages`` command. Use :djadmin:`list_languages` instead.
