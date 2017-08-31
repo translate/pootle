@@ -162,7 +162,9 @@ def test_update_ts_plurals(store_po, test_fs, ts):
 
     with test_fs.open(['data', 'ts', 'update_plurals.ts']) as f:
         file_store = getclass(f)(f.read())
-    store_po.update(file_store)
+    store_po.update(
+        file_store,
+        store_revision=store_po.data.max_unit_revision)
     unit = store_po.units[0]
     assert unit.hasplural()
     assert unit.submission_set.count() == 1
@@ -531,17 +533,22 @@ def test_update_upload_old_revision_unit_conflict(store0, admin, member):
     last_submit_time = unit.change.submitted_on
     assert last_submit_time >= unit.creation_time
     # load update with expired revision and conflicting unit
+    unit = store0.units[0]
+    unit.target = "Hello, world KEEP"
+    unit.save()
+    updated_revision = unit.revision
+    subs_count = unit.submission_set.count()
     update_store(
         store0,
         [("Hello, world", "Hello, world CONFLICT", False)],
         submission_type=SubmissionTypes.WEB,
         store_revision=original_revision,
         user=member)
-    unit = store0.units[0]
-    assert unit.submission_set.count() == 0
+    assert subs_count == unit.submission_set.count()
     unit_source = unit.unit_source
     # unit target is not updated and revision remains the same
-    assert store0.units[0].target == "Hello, world UPDATED"
+    unit.refresh_from_db()
+    assert store0.units[0].target == "Hello, world KEEP"
     assert unit.revision == updated_revision
     unit_source = original_unit.unit_source
     unit_source.created_by == admin
@@ -622,6 +629,10 @@ def _test_store_update_units_before(*test_args):
 
     updates = {unit[0]: unit[1] for unit in units_update}
 
+    from pootle.core.delegate import versioned
+    vers = versioned.get(store.__class__)(store)
+    old_store = vers.at_revision(store_revision or 0)
+
     for unit, change in units_before:
         updated_unit = store.unit_set.get(unitid=unit.unitid)
 
@@ -677,15 +688,19 @@ def _test_store_update_units_before(*test_args):
                     assert updated_unit.get_suggestions().count() == 0
                 else:
                     # conflict found
-                    suggestion = updated_unit.get_suggestions()[0]
-                    if resolve_conflict == POOTLE_WINS:
+                    old_unit = old_store.findid(unit.getid())
+                    target_conflict = False
+                    if not old_unit or old_unit.target != unit.target:
+                        suggestion = updated_unit.get_suggestions()[0]
+                        target_conflict = True
+                    if target_conflict and resolve_conflict == POOTLE_WINS:
                         assert updated_unit.target == unit.target
                         assert (
                             updated_unit.change.submitted_by
                             == change.submitted_by)
                         assert suggestion.target == updates[unit.source]
                         assert suggestion.user == member2
-                    else:
+                    elif target_conflict:
                         assert updated_unit.target == updates[unit.source]
                         assert updated_unit.change.submitted_by == member2
                         assert suggestion.target == unit.target
