@@ -57,15 +57,6 @@ def to_tp_relative_path(pootle_path):
     return u'/'.join(pootle_path.split(u'/')[3:])
 
 
-def get_path_sortkey(path):
-    """Returns the sortkey to use for a `path`."""
-    if path == '' or path.endswith('/'):
-        return path
-
-    head = os.path.split(path)[0]
-    return u'~'.join([head, path])
-
-
 def get_path_parts(path):
     """Returns a list of `path`'s parent paths plus `path`."""
     if not path:
