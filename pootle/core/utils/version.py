@@ -173,11 +173,11 @@ def get_docs_version(version=None, positions=2):
 
 def get_rtd_version(version=None):
     """Return the docs version string reported in the RTD site."""
-    version_str = get_docs_version(version=version, positions=3)
+    version_str = get_docs_version(version=version, positions=2)
     return (
         'latest'
         if version_str == 'dev'
-        else 'stable-%s' % (version_str, )
+        else 'stable-%s.x' % (version_str, )
     )
 
 
