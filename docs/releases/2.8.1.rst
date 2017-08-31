@@ -1,0 +1,30 @@
+==========================
+Pootle 2.8.1 release notes
+==========================
+
+*Released on 31 August 2017*
+
+Welcome to Pootle 2.8.1!
+
+If you want to try it, check one of the following:
+
+- :doc:`Installation instructions </server/installation>`
+- :doc:`Upgrading instructions </server/upgrading>`
+
+
+Changes
+=======
+
+- `pootle` command can now be run with no `VIRTUAL_ENV` environment variable
+  set.
+- Updated documentation
+
+
+Credits
+=======
+
+This release was made possible by the following people:
+
+Leandro Regueiro, boite.
+
+And to all our bug finders, testers and translators, a Very BIG Thank You.
