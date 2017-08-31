@@ -11,6 +11,8 @@ import pytest
 
 from pytest_pootle.utils import create_store
 
+from pootle_store.constants import POOTLE_WINS, SOURCE_WINS
+
 
 @pytest.mark.django_db
 def test_store_update_new_unit_order(store0):
@@ -54,3 +56,65 @@ def test_store_update_with_duplicate(store_po, caplog):
         caplog.records[0].message
         == ('[diff] Duplicate unit found: %s source2'
             % store_po.name))
+
+
+@pytest.mark.django_db
+def test_store_update_conflict_fs_wins(store0, caplog):
+    unit0 = store0.units[0]
+    unit0.target = "foo0"
+    unit0.save()
+
+    unit1 = store0.units[1]
+    unit1.target = "foo1"
+    unit1.save()
+
+    last_revision = store0.data.max_unit_revision
+    ttk = store0.deserialize(store0.serialize())
+
+    unit0.refresh_from_db()
+    unit0.target = "bar0"
+    unit0.save()
+
+    fsunit0 = ttk.findid(unit0.getid())
+    fsunit0.target = "baz0"
+
+    store0.update(ttk, store_revision=last_revision, resolve_conflict=SOURCE_WINS)
+    unit0.refresh_from_db()
+    unit1.refresh_from_db()
+    # only the fs change is updated
+    assert unit0.target == "baz0"
+    assert unit1.target == "foo1"
+
+
+@pytest.mark.django_db
+def test_store_update_conflict_pootle_wins(store0, caplog):
+    unit0 = store0.units[0]
+    unit0.target = "foo0"
+    unit0.save()
+
+    unit1 = store0.units[1]
+    unit1.target = "foo1"
+    unit1.save()
+
+    unit2 = store0.units[2]
+
+    last_revision = store0.data.max_unit_revision
+    ttk = store0.deserialize(store0.serialize())
+
+    unit0.refresh_from_db()
+    unit0.target = "bar0"
+    unit0.save()
+
+    fsunit0 = ttk.findid(unit0.getid())
+    fsunit0.target = "baz0"
+
+    fsunit2 = ttk.findid(unit2.getid())
+    fsunit2.target = "baz2"
+
+    store0.update(ttk, store_revision=last_revision, resolve_conflict=POOTLE_WINS)
+    unit0.refresh_from_db()
+    unit1.refresh_from_db()
+    unit2.refresh_from_db()
+    assert unit0.target == "bar0"
+    assert unit1.target == "foo1"
+    assert unit2.target == "baz2"
