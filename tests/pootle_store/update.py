@@ -38,7 +38,8 @@ def test_store_update_with_obsolete(store_po):
     unit = store_po.units[0]
     assert not unit.isobsolete()
     file_store.units[1].makeobsolete()
-    store_po.update(file_store)
+    store_po.update(
+        file_store, store_revision=store_po.data.max_unit_revision)
     unit = store_po.UnitClass.objects.get(id=unit.id)
     assert unit.isobsolete()
 
