@@ -6,8 +6,8 @@
 
 .. Resources
 
-`Docs <http://docs.translatehouse.org/projects/pootle/en/stable-2.8.0/>`_ |
-`Changes <http://docs.translatehouse.org/projects/pootle/en/stable-2.8.0/releases/2.8.1.html>`_ |
+`Docs <http://docs.translatehouse.org/projects/pootle/en/stable-2.8.x/>`_ |
+`Changes <http://docs.translatehouse.org/projects/pootle/en/stable-2.8.x/releases/2.8.1.html>`_ |
 `Issues <https://github.com/translate/pootle/issues>`_ |
 `Community Support <https://gitter.im/translate/pootle>`_ |
 `Contributing <https://github.com/translate/pootle/blob/master/CONTRIBUTING.rst>`_ |
@@ -38,7 +38,7 @@ Installation
   pip install --process-dependency-links Pootle
 
 Don't forget to read the `installation guide
-<http://docs.translatehouse.org/projects/pootle/en/stable-2.8.0/server/installation.html>`_
+<http://docs.translatehouse.org/projects/pootle/en/stable-2.8.x/server/installation.html>`_
 for important details.
 
 
