@@ -269,11 +269,11 @@ Development changes
 Command changes and additions
 -----------------------------
 
-- Running Pootle commands using `manage.py` is no longer supported, use
-  `pootle` instead.
-- `pootle` warns if configuration is missing.
+- Running Pootle commands using :command:`manage.py` is no longer supported,
+  use :command:`pootle` instead.
+- :command:`pootle` warns if configuration is missing.
 - :djadmin:`run_cherrypy` has been removed.
-- :djadmin:`start` has been removed, use :djadmin:`runserver` instead.
+- :command:`start` has been removed, use :djadmin:`runserver` instead.
 - :djadmin:`verify_user` and :djadmin:`purge_user` now accept multiple
   usernames.
 - :djadmin:`refresh_scores` now recalculates user scores and accepts
@@ -293,7 +293,7 @@ Command changes and additions
   settings.
 - :djadmin:`init_fs_project` was added.
 - :djadmin:`set_filetype` was added.
-- Removed ``refresh_stats`` and ``clear_stats`` commands.
+- Removed :command:`refresh_stats` and :command:`clear_stats` commands.
 - :djadmin:`export` is now able to export zipped TMX files per translation
   project with the :option:`--tmx <export --tmx>` option.
   :option:`--rotate <export --rotate>` option allows old files to be removed.
@@ -307,7 +307,7 @@ Command changes and additions
 Changes in settings
 -------------------
 
-- MySQL database connections should now use `STRICT_TRANS_TABLES`.
+- MySQL database connections should now use ``STRICT_TRANS_TABLES``.
 - :setting:`POOTLE_SCORE_COEFFICENTS` has been removed and replaced with
   :setting:`POOTLE_SCORES`.
 - :setting:`POOTLE_SCORES` accepts custom settings for user scores calculation.
@@ -326,13 +326,13 @@ Changes in settings
 - Added new :setting:`POOTLE_CUSTOM_LOGO`, :setting:`POOTLE_FAVICONS_PATH`,
   :setting:`POOTLE_FS_WORKING_PATH` and
   :setting:`POOTLE_CANONICAL_URL` settings.
-- Deprecated `POOTLE_QUALITY_CHECKER` setting.
+- Deprecated ``POOTLE_QUALITY_CHECKER`` setting.
 - Added new :setting:`POOTLE_SQL_MIGRATIONS` setting.
-- :setting:`POOTLE_MARKUP_FILTER` defaults to `'markdown'`, and `None`,
-  `'html'`, `'textile'` and `'restructuredtext'` values have been deprecated.
-  Deployments using any deprecated markup must migrate manually to Markdown.
-  This setting will be removed in the future since Markdown will be the only
-  available markup.
+- :setting:`POOTLE_MARKUP_FILTER` defaults to ``'markdown'``, and ``None``,
+  ``'html'``, ``'textile'`` and ``'restructuredtext'`` values have been
+  deprecated. Deployments using any deprecated markup must migrate manually to
+  Markdown. This setting will be removed in the future since Markdown will be
+  the only available markup.
 - Added new :setting:`AMAGAMA_SOURCE_LANGUAGES` setting.
 
 
