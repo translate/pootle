@@ -6,7 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-VERSION = (2, 8, 0, 'final', 0)
+VERSION = (2, 8, 1, 'final', 0)
 
 # Minimum Django version required for Pootle to run.
 DJANGO_MINIMUM_REQUIRED_VERSION = (1, 10, 5)
