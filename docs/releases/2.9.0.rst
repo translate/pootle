@@ -21,28 +21,25 @@ Changes in Requirements
 Changes
 =======
 
-- Pootle FS:
+- Pootle FS is enabled by default:
 
-  - Several bugfixes for Pootle FS.
-  - All projects are now handled using Pootle FS:
+  - All projects are now handled by Pootle FS.
+  - When creating new projects:
 
-    - Creating projects no longer automatically imports translations from disk,
-      neither creates project directory on disk if missing.
-    - It is mandatory to set filesystem configuration right after creating a
-      new project.
-    - New languages in a project are initiliazed using the templates in Pootle
-      database.
+    - It is mandatory to set filesystem configuration right after creating it,
+    - Pootle no longer automatically imports translations from disk,
+    - Pootle no longer creates project directory on disk if missing.
 
-- All caches are now correctly obsoleted when relevant changes happen.
-- Overall documentation review and updates
+  - When adding new languages to a project:
 
+    - Pootle no longer tries to first import existing translations from disk,
+    - Pootle initializes the new languages using the templates in the database.
 
-Command changes and additions
------------------------------
-
-- Removed ``changed_languages`` command.
+- Several bugfixes for Pootle FS.
+- Overall documentation review and updates.
 - :djadmin:`sync_stores` and :djadmin:`update_stores` commands can now work
   with projects managed by Pootle FS.
+- Removed ``changed_languages`` command. Use :djadmin:`list_languages` instead.
 
 
 Credits
