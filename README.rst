@@ -50,7 +50,7 @@ the `LICENSE <https://github.com/translate/pootle/blob/master/LICENSE>`_ file
 for details.
 
 
-.. |logo| image:: https://cdn.rawgit.com/dwaynebailey/pootle/master/pootle/static/images/logo-color.svg
+.. |logo| image:: https://cdn.rawgit.com/translate/pootle/master/pootle/static/images/logo-color.svg
           :target: https://github.com/translate/pootle
           :align: bottom
 
