@@ -15,7 +15,7 @@ class PootleDataConfig(AppConfig):
 
     name = "pootle_data"
     verbose_name = "Pootle Data"
-    version = "0.0.8"
+    version = "0.1.0"
 
     def ready(self):
         importlib.import_module("pootle_data.models")

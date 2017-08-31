@@ -24,7 +24,7 @@ from pootle.core.utils import deprecation
 class PootleConfig(AppConfig):
     name = "pootle_app"
     verbose_name = "Pootle"
-    version = "0.0.2"
+    version = "0.0.4"
 
     def ready(self):
         checks.register(deprecation.check_deprecated_settings, "settings")
