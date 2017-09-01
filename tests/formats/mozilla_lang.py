@@ -40,9 +40,16 @@ def test_mozlang_update(tp0):
     translated.save()
 
     # source is translated
-    foo_lang.update(foo_lang.deserialize(serialized))
-    # unit is set back to TRANSLATED
-    translated = Unit.objects.get(pk=translated.pk)
+    old_ttk = foo_lang.deserialize(serialized)
+    foo_lang.update(old_ttk)
+    # unit is still fuzzy
+    translated.refresh_from_db()
+    assert translated.state == FUZZY
+
+    # source target changes state also gets updated
+    old_ttk.findid(translated.getid()).target = "something else {ok}"
+    foo_lang.update(old_ttk, store_revision=translated.revision)
+    translated.refresh_from_db()
     assert translated.state == TRANSLATED
 
     translated = foo_lang.units.filter(state=TRANSLATED).first()
