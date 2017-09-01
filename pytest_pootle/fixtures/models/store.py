@@ -248,40 +248,13 @@ def _create_submission_and_suggestion(store, user,
 
 
 def _create_comment_on_unit(unit, user, comment):
-    from pootle_statistics.models import (Submission, SubmissionFields,
-                                          SubmissionTypes)
-
     unit.translator_comment = comment
     unit.save(user=user)
-    sub = Submission(
-        creation_time=unit.change.commented_on,
-        translation_project=unit.store.translation_project,
-        submitter=user,
-        unit=unit,
-        field=SubmissionFields.COMMENT,
-        type=SubmissionTypes.WEB,
-        new_value=comment,
-    )
-    sub.save()
 
 
 def _mark_unit_fuzzy(unit, user):
-    from pootle_store.constants import FUZZY
-    from pootle_statistics.models import (Submission, SubmissionFields,
-                                          SubmissionTypes)
     unit.markfuzzy()
-    unit.save()
-    sub = Submission(
-        creation_time=unit.mtime,
-        translation_project=unit.store.translation_project,
-        submitter=user,
-        unit=unit,
-        field=SubmissionFields.STATE,
-        type=SubmissionTypes.WEB,
-        old_value=unit.state,
-        new_value=FUZZY,
-    )
-    sub.save()
+    unit.save(user=user)
 
 
 def _make_member_updates(store, member):
