@@ -129,13 +129,16 @@ def _setup_store_test(store, member, member2, test):
 
     for units in setup:
         store_revision = store.get_max_unit_revision()
-        print("setup store: %s %s" % (store_revision, units))
-        update_store(store, store_revision=store_revision, units=units,
-                     user=member)
-        for unit in store.units:
-            comment = ("Set up unit(%s) with store_revision: %s"
-                       % (unit.source_f, store_revision))
-            _create_comment_on_unit(unit, member, comment)
+        ttkstore = create_store(units=units)
+        for unit in ttkstore.units[1:]:
+            unit.addnote(
+                origin="translator",
+                text=("Set up unit(%s) with store_revision: %s"
+                      % (unit.source, store_revision)))
+        store.update(
+            store=ttkstore,
+            store_revision=store_revision,
+            user=member)
 
     store_revision, units_update = test["update_store"]
     units_before = [
