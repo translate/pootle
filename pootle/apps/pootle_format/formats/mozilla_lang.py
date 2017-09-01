@@ -17,7 +17,7 @@ class LangUnitSyncer(UnitSyncer):
 
     @property
     def target(self):
-        if self.isfuzzy:
+        if self.isfuzzy and not self.raw:
             return multistring("")
         return self.unit.target
 
