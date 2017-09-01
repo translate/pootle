@@ -6,7 +6,6 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.core.cache import caches
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import config, serializers
@@ -65,14 +64,4 @@ class StoreSerialization(object):
         return data
 
     def serialize(self):
-        cache = caches["exports"]
-        ret = cache.get(
-            self.pootle_path,
-            version=self.max_unit_revision)
-        if not ret:
-            ret = self.pipeline(self.tostring())
-            cache.set(
-                self.pootle_path,
-                ret,
-                version=self.max_unit_revision)
-        return ret
+        return self.pipeline(self.tostring())
