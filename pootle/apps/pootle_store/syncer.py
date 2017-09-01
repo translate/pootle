@@ -24,8 +24,9 @@ logger = logging.getLogger(__name__)
 
 class UnitSyncer(object):
 
-    def __init__(self, unit):
+    def __init__(self, unit, raw=False):
         self.unit = unit
+        self.raw = raw
 
     @property
     def context(self):
@@ -157,7 +158,7 @@ class StoreSyncer(object):
                          str(self.store.filetype.extension)])))
         return self._getclass(self.store)
 
-    def convert(self, fileclass=None, include_obsolete=False):
+    def convert(self, fileclass=None, include_obsolete=False, raw=False):
         """export to fileclass"""
         fileclass = fileclass or self.file_class
         logger.debug(
@@ -173,7 +174,7 @@ class StoreSyncer(object):
             else self.store.units)
         for unit in units.iterator():
             output.addunit(
-                self.unit_sync_class(unit).convert(output.UnitClass))
+                self.unit_sync_class(unit, raw=raw).convert(output.UnitClass))
         return output
 
     def _getclass(self, obj):
