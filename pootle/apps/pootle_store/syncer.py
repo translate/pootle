@@ -157,7 +157,7 @@ class StoreSyncer(object):
                          str(self.store.filetype.extension)])))
         return self._getclass(self.store)
 
-    def convert(self, fileclass=None):
+    def convert(self, fileclass=None, include_obsolete=False):
         """export to fileclass"""
         fileclass = fileclass or self.file_class
         logger.debug(
@@ -167,7 +167,11 @@ class StoreSyncer(object):
         output = fileclass()
         output.settargetlanguage(self.language.code)
         # FIXME: we should add some headers
-        for unit in self.store.units.iterator():
+        units = (
+            self.store.unit_set
+            if include_obsolete
+            else self.store.units)
+        for unit in units.iterator():
             output.addunit(
                 self.unit_sync_class(unit).convert(output.UnitClass))
         return output

@@ -983,8 +983,9 @@ class Store(AbstractStore):
     def deserialize(self, data):
         return StoreDeserialization(self).deserialize(data)
 
-    def serialize(self):
-        return StoreSerialization(self).serialize()
+    def serialize(self, include_obsolete=False):
+        return StoreSerialization(self).serialize(
+            include_obsolete=include_obsolete)
 
 # # # # # # # # # # # #  TranslationStore # # # # # # # # # # # # #
 

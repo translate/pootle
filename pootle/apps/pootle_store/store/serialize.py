@@ -46,8 +46,8 @@ class StoreSerialization(object):
             found_serializers.append(available_serializers[serializer])
         return found_serializers
 
-    def tostring(self):
-        store = self.store.syncer.convert()
+    def tostring(self, include_obsolete=False):
+        store = self.store.syncer.convert(include_obsolete=include_obsolete)
         if hasattr(store, "updateheader"):
             # FIXME We need those headers on import
             # However some formats just don't support setting metadata
@@ -63,5 +63,5 @@ class StoreSerialization(object):
             data = serializer(self.store, data).output
         return data
 
-    def serialize(self):
-        return self.pipeline(self.tostring())
+    def serialize(self, include_obsolete=False):
+        return self.pipeline(self.tostring(include_obsolete=include_obsolete))
