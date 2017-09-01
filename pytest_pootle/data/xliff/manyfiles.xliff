@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='utf-8'?>
+<xliff version="1.2">
+  <file original="file0" source-language="en" datatype="plaintext" target-language="language0">
+    <body>
+      <trans-unit id="hello" approved="yes">
+        <source>Hello</source>
+        <target></target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="file1" source-language="en" datatype="plaintext" target-language="language0">
+    <body>
+      <trans-unit id="world" approved="yes">
+        <source>World</source>
+        <target></target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

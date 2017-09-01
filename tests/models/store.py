@@ -1732,6 +1732,20 @@ def test_store_update_with_state_change(store0, admin):
 
 
 @pytest.mark.django_db
+def test_roundtrip_xliff(store_po, test_fs, xliff):
+    project = store_po.translation_project.project
+    filetype_tool = project.filetype_tool
+    project.filetypes.add(xliff)
+    filetype_tool.set_store_filetype(store_po, xliff)
+    with test_fs.open(['data', 'xliff', 'manyfiles.xliff']) as f:
+        file_store = getclass(f)(f.read())
+    store_po.update(file_store)
+    serialized = store_po.deserialize(store_po.serialize())
+    assert serialized.units[0].getid() == u'file0\x04hello'
+    assert serialized.units[1].getid() == u'file1\x04world'
+
+
+@pytest.mark.django_db
 def test_update_xliff(store_po, test_fs, xliff):
     project = store_po.translation_project.project
     filetype_tool = project.filetype_tool
