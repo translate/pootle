@@ -82,6 +82,21 @@ changes. It also ensures that someone else could replicate your process.
     $ git submodule update --init
 
 
+Create a working branch
+-----------------------
+
+It is extremely advisable to create a Pull Request with the changes necessary
+for the release. This means that it is best to create a working branch to
+clearly separate those changes from `master` branch, which can be altered while
+doing the release, and ease rebasing if needed.
+
+.. code-block:: console
+
+    $ git remote add my-fork git@github.com:my-fork/pootle.git
+    $ git fetch my-fork
+    $ git checkout -b releasing
+
+
 Update requirements versions
 ----------------------------
 
@@ -434,6 +449,20 @@ Publish the new release
 
 Once we have a valid package it is necessary to publish it and announce the
 release.
+
+
+Create a Pull Request
+---------------------
+
+Before merging the changes you must create a Pull Request to ensure that all
+tests and checks pass:
+
+.. code-block:: console
+
+    $ git push my-fork releasing
+
+
+.. note:: Of course you must wait until all automatic checks pass.
 
 
 Tag and branch the release
