@@ -17,7 +17,9 @@ class VersionedStore(object):
     def current_store(self):
         return StoreVersion(
             self.store.deserialize(
-                self.store.serialize(include_obsolete=True)))
+                self.store.serialize(
+                    include_obsolete=True,
+                    raw=True)))
 
     def _revert_state(self, unit, sub):
         if sub.old_value == "50":
@@ -37,6 +39,13 @@ class VersionedStore(object):
                 revision__gt=revision).order_by(
                     "revision", "creation_time")
         checking = dict(target=[], state=[])
+        unit_creation = self.store.unit_set.filter(
+            unit_source__creation_revision__gt=revision).values_list(
+                "unitid", flat=True)
+        for unit in unit_creation:
+            del store.units[store.units.index(store.findid(unit))]
+            del store.id_index[unit]
+
         for sub in subs.iterator():
             unit = store.findid(sub.unit.getid())
             if not unit:
