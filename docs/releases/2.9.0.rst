@@ -30,6 +30,12 @@ Changes
     - Pootle initializes the new languages using the templates in the database.
 
 - Several bugfixes for Pootle FS.
+- Serialization:
+
+  - Don't cache on serialization
+  - Allow serializing obsolete units
+  - Serialization and sync bugfixes
+
 - Overall documentation review and updates.
 - `pootle` command can now be run with no `VIRTUAL_ENV` environment variable
   set.
