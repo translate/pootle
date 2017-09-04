@@ -19,7 +19,7 @@ from django.apps import AppConfig
 class PootleTPConfig(AppConfig):
     name = "pootle_translationproject"
     verbose_name = "PootleTranslationProject"
-    version = "0.0.9"
+    version = "0.1.1"
 
     def ready(self):
         importlib.import_module("pootle_translationproject.receivers")
