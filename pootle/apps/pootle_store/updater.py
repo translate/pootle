@@ -213,6 +213,9 @@ class UnitUpdater(object):
             self.newunit
             and self.fs_state_updated
             and not (
+                self.db_target_updated
+                and not self.should_update_target)
+            and not (
                 self.state_conflict_found
                 and self.update.resolve_conflict == POOTLE_WINS))
 
