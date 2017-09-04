@@ -15,7 +15,7 @@ class PootleLanguageConfig(AppConfig):
 
     name = "pootle_language"
     verbose_name = "Pootle Language"
-    version = "0.0.9"
+    version = "0.1.1"
 
     def ready(self):
         importlib.import_module("pootle_language.getters")
