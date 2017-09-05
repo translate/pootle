@@ -239,6 +239,7 @@ def test_update_save_changed_units(project0_nongnu, store0, test_fs,
 
     # Set last sync revision
     store.fs.all().delete()
+
     file_path = _sync_store(settings, store0)
     store.update(store.deserialize(open(file_path).read()))
     unit_list = list(store.units)
@@ -246,13 +247,17 @@ def test_update_save_changed_units(project0_nongnu, store0, test_fs,
         "data/po/tutorial/ru/update_save_changed_units_updated.po",
         "r")
     with update_file as sourcef:
-        store.update(store.deserialize(sourcef.read()), user=member)
+        store.update(
+            store.deserialize(sourcef.read()),
+            user=member)
     updated_unit_list = list(store.units)
-    # nothing changed
+    # nothing changed except revisions of unsynced units
+    # to ensure its synced back to fs
     for index in range(0, len(unit_list)):
         unit = unit_list[index]
         updated_unit = updated_unit_list[index]
-        assert unit.revision == updated_unit.revision
+        if unit.revision > 0:
+            assert unit.revision < updated_unit.revision
         assert unit.mtime == updated_unit.mtime
         assert unit.target == updated_unit.target
 
@@ -279,7 +284,6 @@ def test_update_set_last_sync_revision(project0_nongnu, tp0, store0,
     fs.refresh_from_db()
     assert fs.last_sync_revision == saved_last_sync_revision
 
-    orig = str(store0)
     update_file = test_fs.open(
         "data/po/tutorial/ru/update_set_last_sync_revision_updated.po",
         "r")
@@ -296,7 +300,6 @@ def test_update_set_last_sync_revision(project0_nongnu, tp0, store0,
 
     # store.last_sync_revision is not changed after empty update (even if it
     # has unsynced units)
-    # item_index = 0
     next_unit_revision = Revision.get() + 1
     dbunit = store0.units.first()
     dbunit.target = "ANOTHER DB TARGET UPDATE"
@@ -311,20 +314,24 @@ def test_update_set_last_sync_revision(project0_nongnu, tp0, store0,
     # Non-empty update sets store.last_sync_revision to next global revision
     # (even the store has unsynced units).  There is only one unsynced unit in
     # this case so its revision should be set next to store.last_sync_revision
+    dbunit = store0.units.first()
+    dbunit.target = "ANOTHER DB TARGET UPDATE AGAIN"
+    dbunit.save()
     next_revision = Revision.get() + 1
-
+    orig = store0.deserialize(store0.serialize())
+    orig.units[2].target = "SOMETHING ELSE"
     with open(file_path, "wb") as targetf:
-        targetf.write(orig)
-
-    _sync_store(settings, store0, resolve="fs_wins")
+        targetf.write(str(orig))
+    _sync_store(settings, store0, resolve="fs_wins", update="pootle")
     fs.refresh_from_db()
     assert fs.last_sync_revision == next_revision
     # Get unsynced unit in DB. Its revision should be greater
     # than store.last_sync_revision to allow to keep this change during
     # update from a file
-    # THIS IS CURRENTLY DISABLED
-    # dbunit = store0.units[item_index]
-    # assert dbunit.revision == store0.last_sync_revision + 1
+    dbunit.refresh_from_db()
+    store0.data.refresh_from_db()
+    assert store0.data.max_unit_revision == dbunit.revision
+    assert dbunit.revision == fs.last_sync_revision + 1
 
 
 @pytest.mark.django_db
@@ -546,10 +553,11 @@ def test_update_upload_old_revision_unit_conflict(store0, admin, member):
         user=member)
     assert subs_count == unit.submission_set.count()
     unit_source = unit.unit_source
-    # unit target is not updated and revision remains the same
+    # unit target is not updated and revision is incremented
+    # to force update to fs on next sync
     unit.refresh_from_db()
     assert store0.units[0].target == "Hello, world KEEP"
-    assert unit.revision == updated_revision
+    assert unit.revision > updated_revision
     unit_source = original_unit.unit_source
     unit_source.created_by == admin
     assert unit_source.created_with == SubmissionTypes.SYSTEM
