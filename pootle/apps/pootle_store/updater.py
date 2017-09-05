@@ -352,11 +352,55 @@ class StoreUpdater(object):
                     (self.target_store.data.max_unit_revision or 0))
         return update_revision, changes
 
+    def mark_units_obsolete(self, uids_to_obsolete, update):
+        """Marks a bulk of units as obsolete.
+
+        :param uids_to_obsolete: UIDs of the units to be marked as obsolete.
+        :return: The number of units marked as obsolete.
+        """
+        obsoleted = 0
+        old_store = update.last_sync_store
+        for unit in self.target_store.findid_bulk(uids_to_obsolete):
+            # Use the same (parent) object since units will
+            # accumulate the list of cache attributes to clear
+            # in the parent Store object
+            added_since_sync = not bool(old_store.findid(unit.getid()))
+            pootle_wins = (
+                (unit.revision > update.store_revision or 0)
+                and update.resolve_conflict == POOTLE_WINS)
+            if added_since_sync or pootle_wins:
+                continue
+            unit.store = self.target_store
+            if not unit.isobsolete():
+                unit.makeobsolete()
+                unit.revision = update.update_revision
+                unit.save(user=update.user)
+                obsoleted += 1
+        return obsoleted
+
     def update_from_diff(self, store, store_revision,
                          to_change, update_revision, user,
                          submission_type, resolve_conflict=POOTLE_WINS,
                          allow_add_and_obsolete=True):
         changes = {}
+        update_dbids, uid_index_map = to_change['update']
+        update = StoreUpdate(
+            store,
+            self.target_store,
+            user=user,
+            submission_type=submission_type,
+            resolve_conflict=resolve_conflict,
+            change_indices=allow_add_and_obsolete,
+            uids=update_dbids,
+            indices=uid_index_map,
+            store_revision=store_revision,
+            update_revision=update_revision)
+
+        if resolve_conflict == POOTLE_WINS:
+            to_change["obsolete"] = [
+                x for x
+                in to_change["obsolete"]
+                if x not in to_change["update"][0]]
 
         if allow_add_and_obsolete:
             # Update indexes
@@ -374,24 +418,10 @@ class StoreUpdater(object):
             changes["added"] = len(to_change["add"])
 
             # Obsolete units
-            changes["obsoleted"] = self.target_store.mark_units_obsolete(
-                to_change["obsolete"],
-                update_revision,
-                user=user)
+            changes["obsoleted"] = self.mark_units_obsolete(
+                to_change["obsolete"], update)
 
         # Update units
-        update_dbids, uid_index_map = to_change['update']
-        update = StoreUpdate(
-            store,
-            self.target_store,
-            user=user,
-            submission_type=submission_type,
-            resolve_conflict=resolve_conflict,
-            change_indices=allow_add_and_obsolete,
-            uids=update_dbids,
-            indices=uid_index_map,
-            store_revision=store_revision,
-            update_revision=update_revision)
         changes['updated'], changes['suggested'] = self.update_units(update)
         return changes
 
