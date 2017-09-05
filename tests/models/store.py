@@ -1314,15 +1314,6 @@ def test_store_diff_delete_source_unit(diffable_stores):
     assert len(result["add"]) == 0
     assert len(result["index"]) == 0
 
-    # set the source_revision to less that than the target_stores' max_revision
-    # and the unit will be ignored, as its assumed to have been previously
-    # deleted
-    differ = StoreDiff(
-        target_store,
-        source_store,
-        target_store.get_max_unit_revision() - 1)
-    assert not differ.diff()
-
 
 @pytest.mark.django_db
 def test_store_diff_delete_obsoleted_target_unit(diffable_stores):
