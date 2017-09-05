@@ -81,7 +81,7 @@ class StoreUpdate(object):
         return versioned.get(
             self.target_store.__class__)(self.target_store)
 
-    @property
+    @cached_property
     def last_sync_store(self):
         return self.versioned_store.at_revision(
             self.store_revision or 0)
