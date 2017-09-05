@@ -399,7 +399,8 @@ class Plugin(object):
         return response
 
     @responds_to_state
-    def sync_merge(self, state, response, fs_path=None, pootle_path=None):
+    def sync_merge(self, state, response, fs_path=None,
+                   pootle_path=None, update="all"):
         """
         Perform merge between Pootle and working directory
 
@@ -417,13 +418,14 @@ class Plugin(object):
             fs_state.store_fs = store_fs
             pootle_wins = (fs_state.state_type == "merge_pootle_wins")
             store_fs = fs_state.store_fs
-            store_fs.file.pull(
+            update_revision = store_fs.file.pull(
                 merge=True,
                 pootle_wins=pootle_wins,
                 user=self.pootle_user)
-            store_fs.file.push()
+            if update == "all":
+                update_revision = store_fs.file.push()
             state.resources.pootle_revisions[
-                store_fs.store_id] = store_fs.store.data.max_unit_revision
+                store_fs.store_id] = update_revision
             state.resources.file_hashes[
                 store_fs.pootle_path] = store_fs.file.latest_hash
             if pootle_wins:
@@ -524,15 +526,17 @@ class Plugin(object):
         """
         self.sync_rm(
             state, response, fs_path=fs_path, pootle_path=pootle_path)
-        self.sync_merge(
-            state, response, fs_path=fs_path, pootle_path=pootle_path)
         if update in ["all", "pootle"]:
+            self.sync_merge(
+                state, response,
+                fs_path=fs_path,
+                pootle_path=pootle_path,
+                update=update)
             self.sync_pull(
                 state, response, fs_path=fs_path, pootle_path=pootle_path)
         if update in ["all", "fs"]:
             self.sync_push(
                 state, response, fs_path=fs_path, pootle_path=pootle_path)
-        if update in ["all", "fs"]:
             self.push(response)
         sync_types = [
             "pushed_to_fs", "pulled_to_pootle",
