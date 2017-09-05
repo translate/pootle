@@ -7,7 +7,6 @@
 # AUTHORS file for copyright and authorship information.
 
 import logging
-import time
 
 
 logger = logging.getLogger(__name__)
@@ -110,10 +109,10 @@ class State(object):
 
     def reload(self):
         self.clear_cache()
-        logger.debug("Checking state")
-        reload_start = time.time()
+        # logger.debug("Checking state")
+        # reload_start = time.time()
         for k in self.states:
-            start = time.time()
+            # start = time.time()
             state_attr = getattr(
                 self, "%s_%s" % (self.prefix, k), None)
             count = 0
@@ -127,10 +126,10 @@ class State(object):
                     count += 1
                     self.add(
                         k, self.item_state_class(self, k, **v))
-            logger.debug(
-                "Checked '%s' (%s) in %s seconds",
-                k, count, time.time() - start)
-        logger.debug(
-            "Reloaded state in %s seconds",
-            time.time() - reload_start)
+            # logger.debug(
+            #     "Checked '%s' (%s) in %s seconds",
+            #     k, count, time.time() - start)
+        # logger.debug(
+        #     "Reloaded state in %s seconds",
+        #     time.time() - reload_start)
         return self
