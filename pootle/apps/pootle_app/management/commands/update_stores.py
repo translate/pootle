@@ -51,6 +51,7 @@ class Command(PootleCommand):
         plugin = FSPlugin(translation_project.project)
         plugin.add(pootle_path=path_glob, update="pootle")
         plugin.rm(pootle_path=path_glob, update="pootle")
+        plugin.resolve(pootle_path=path_glob)
         plugin.sync(pootle_path=path_glob, update="pootle")
 
     def _parse_tps_to_create(self, project):
