@@ -297,9 +297,9 @@ class StoreUpdater(object):
     def __init__(self, target_store):
         self.target_store = target_store
 
-    def increment_unsynced_unit_revision(self, update_revision):
+    def increment_unsynced_unit_revision(self, store_revision, update_revision):
         filter_by = {
-            'revision__gt': self.target_store.last_sync_revision,
+            'revision__gt': store_revision or 0,
             'revision__lt': update_revision,
             'state__gt': OBSOLETE}
         return self.target_store.unit_set.filter(
@@ -423,6 +423,8 @@ class StoreUpdater(object):
 
         # Update units
         changes['updated'], changes['suggested'] = self.update_units(update)
+        self.increment_unsynced_unit_revision(
+            update.store_revision, update.update_revision)
         return changes
 
     def update_units(self, update):
