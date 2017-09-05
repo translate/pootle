@@ -9,10 +9,9 @@
 import logging
 import uuid
 
-import dirsync
-
 from django import forms
 
+from pootle.core import sync
 from pootle.core.delegate import revision
 from pootle_project.models import Project
 
@@ -31,23 +30,23 @@ class LocalFSPlugin(Plugin):
             self.project).get(key="pootle.fs.fs_hash")
 
     def push(self, response):
-        dirsync.sync(
+        sync.sync(
             self.project.local_fs_path,
             self.fs_url,
             "sync",
             purge=True,
-            logger=logging.getLogger(dirsync.__name__))
+            logger=logging.getLogger(sync.__name__))
         return response
 
     def fetch(self):
         try:
-            synced = dirsync.sync(
+            synced = sync.sync(
                 self.fs_url,
                 self.project.local_fs_path,
                 "sync",
                 create=True,
                 purge=True,
-                logger=logging.getLogger(dirsync.__name__))
+                logger=logging.getLogger(sync.__name__))
         except ValueError as e:
             raise FSFetchError(e)
         if synced:
