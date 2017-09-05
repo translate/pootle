@@ -922,26 +922,6 @@ class Store(AbstractStore):
         Unit.objects.filter(store_id=self.id, index__gte=start).update(
             index=operator.add(F('index'), delta))
 
-    def mark_units_obsolete(self, uids_to_obsolete,
-                            update_revision=None, user=None):
-        """Marks a bulk of units as obsolete.
-
-        :param uids_to_obsolete: UIDs of the units to be marked as obsolete.
-        :return: The number of units marked as obsolete.
-        """
-        obsoleted = 0
-        for unit in self.findid_bulk(uids_to_obsolete):
-            # Use the same (parent) object since units will
-            # accumulate the list of cache attributes to clear
-            # in the parent Store object
-            unit.store = self
-            if not unit.isobsolete():
-                unit.makeobsolete()
-                unit.revision = update_revision
-                unit.save(user=user)
-                obsoleted += 1
-        return obsoleted
-
     @cached_property
     def data_tool(self):
         return data_tool.get(self.__class__)(self)
