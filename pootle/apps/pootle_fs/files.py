@@ -162,7 +162,8 @@ class FSFile(object):
             self.create_store()
         if self.store.obsolete:
             self.store.resurrect()
-        self._sync_to_pootle(merge=merge, pootle_wins=pootle_wins)
+        return self._sync_to_pootle(
+            merge=merge, pootle_wins=pootle_wins)
 
     def push(self, user=None):
         """
@@ -178,7 +179,7 @@ class FSFile(object):
         if not os.path.exists(directory):
             logger.debug("Creating directory: %s", directory)
             os.makedirs(directory)
-        self._sync_from_pootle()
+        return self._sync_from_pootle()
 
     def read(self):
         if not self.file_exists:
@@ -219,6 +220,7 @@ class FSFile(object):
         with open(self.file_path, "w") as f:
             f.write(str(disk_store))
         logger.debug("Pushed file: %s", self.path)
+        return self.store.data.max_unit_revision
 
     def _sync_to_pootle(self, merge=False, pootle_wins=None):
         """
@@ -242,10 +244,11 @@ class FSFile(object):
             # This is analogous to the `overwrite` option in
             # Store.update_from_disk
             revision = Revision.get() + 1
-        self.store.update(
+        update_revision, __ = self.store.update(
             tmp_store,
             submission_type=SubmissionTypes.SYSTEM,
             user=self.latest_user,
             store_revision=revision,
             resolve_conflict=resolve_conflict)
         logger.debug("Pulled file: %s", self.path)
+        return update_revision
