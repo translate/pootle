@@ -272,7 +272,8 @@ def test_fs_plugin_sync_all():
             self.sync_order.append("plugin_push")
             return response
 
-        def sync_merge(self, state, response, fs_path=None, pootle_path=None):
+        def sync_merge(self, state, response, fs_path=None,
+                       pootle_path=None, update=None):
             self._merged = (state, response, fs_path, pootle_path)
             self.sync_order.append("merge")
 
