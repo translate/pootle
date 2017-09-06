@@ -15,6 +15,7 @@ from django.http import Http404
 from django.views.generic import View
 
 from pootle.core.http import JsonResponse
+from pootle_config.utils import ObjectConfig
 
 
 class APIView(View):
@@ -58,6 +59,7 @@ class APIView(View):
     search_fields = None
 
     m2m = ()
+    config = ()
 
     @property
     def allowed_methods(self):
@@ -207,6 +209,62 @@ class APIView(View):
                 str(x) for x
                 in getattr(item, k).values_list("pk", flat=True)]
 
+    def serialize_config(self, info, item):
+        config = ObjectConfig(item)
+        for k, v in self.config:
+            info[k] = config.get(v)
+
+    def handle_single(self, queryset):
+        result = queryset.values(*self.serialize_fields)[0]
+        if self.m2m:
+            self.serialize_m2m(result, queryset[0])
+        if self.config:
+            config = ObjectConfig(queryset[0])
+            for k, v in self.config:
+                result[k] = config.get(v)
+        return result
+
+    def _filter_keyword(self, queryset):
+        search_keyword = self.request.GET.get(self.search_param_name, None)
+        if search_keyword is not None:
+            filter_by = self.get_search_filter(search_keyword)
+            return queryset.filter(filter_by)
+        return queryset
+
+    def _paginate(self, queryset):
+        # Process pagination options if they are enabled
+        if isinstance(self.page_size, int):
+            try:
+                page_param = self.request.GET.get(self.page_param_name, 1)
+                page_number = int(page_param)
+                offset = (page_number - 1) * self.page_size
+            except ValueError:
+                offset = 0
+            queryset = queryset.all()[offset:offset + self.page_size]
+        return queryset
+
+    def handle_multiple(self, queryset):
+        queryset = self._filter_keyword(queryset)
+        queryset = self._paginate(queryset)
+        fields = set(self.serialize_fields) | set(["pk"])
+        result = {
+            x["pk"]: x
+            for x
+            in queryset.values(*fields)}
+        if self.m2m:
+            queryset = queryset.prefetch_related(*self.m2m)
+        for item in queryset.iterator():
+            info = result[item.pk]
+            if "pk" not in fields:
+                del info["pk"]
+            if self.m2m:
+                self.serialize_m2m(info, item)
+            if self.config:
+                self.serialize_config(info, item)
+        return {
+            'models': result.values(),
+            'count': queryset.count()}
+
     def qs_to_values(self, queryset, single_object=False):
         """Convert a queryset to values for further serialization.
 
@@ -217,58 +275,9 @@ class APIView(View):
         """
 
         if single_object or self.kwargs.get(self.pk_field_name):
-            values = queryset.values(
-                *[k for k in self.serialize_fields if k not in self.m2m])
-            # For single-item requests, convert ValuesQueryset to a dict simply
-            # by slicing the first item
-            return_values = values[0]
-            if self.m2m:
-                self.serialize_m2m(return_values, queryset[0])
+            return self.handle_single(queryset)
         else:
-            search_keyword = self.request.GET.get(self.search_param_name, None)
-            if search_keyword is not None:
-                filter_by = self.get_search_filter(search_keyword)
-                queryset = queryset.filter(filter_by)
-
-            values = queryset.all()
-            # Process pagination options if they are enabled
-            if isinstance(self.page_size, int):
-                try:
-                    page_param = self.request.GET.get(self.page_param_name, 1)
-                    page_number = int(page_param)
-                    offset = (page_number - 1) * self.page_size
-                except ValueError:
-                    offset = 0
-                values = values[offset:offset+self.page_size]
-            # handle m2m fields
-            if self.m2m:
-                serialize_fields = set(self.serialize_fields)
-                _serialize_fields = serialize_fields | set(["pk"])
-                all_values = []
-                # first retrieve the non-m2m fields
-                field_values = {
-                    x["pk"]: x
-                    for x
-                    in values.values(
-                        *[k for k in _serialize_fields if k not in self.m2m])}
-                # now add the m2m fields
-                related_fields = values.prefetch_related(*self.m2m).iterator()
-                for item in related_fields:
-                    info = field_values[item.pk]
-                    if "pk" not in serialize_fields:
-                        del info["pk"]
-                    self.serialize_m2m(info, item)
-                    all_values.append(info)
-                values = all_values
-            else:
-                values = values.values(*self.serialize_fields)
-
-            return_values = {
-                'models': list(values),
-                'count': queryset.count(),
-            }
-
-        return return_values
+            return self.handle_multiple(queryset)
 
     def get_search_filter(self, keyword):
         search_fields = getattr(self, 'search_fields', None)
