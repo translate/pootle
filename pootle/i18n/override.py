@@ -72,8 +72,6 @@ def get_lang_from_http_header(request, supported):
             return None
 
         normalized = data.normalize_code(data.simplify_to_common(accept_lang))
-        if normalized in ['en-us', 'en']:
-            return None
         if normalized in supported:
             return normalized
 
