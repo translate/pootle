@@ -21,6 +21,7 @@ export const Project = Backbone.Model.extend({
     source_language: '',
     ignoredfiles: '',
     filetypes: [],
+    fs_plugin: 'localfs',
     screenshot_search_prefix: '',
     disabled: false,
   },
