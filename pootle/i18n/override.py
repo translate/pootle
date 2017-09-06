@@ -98,7 +98,9 @@ def get_language_from_request(request, check_path=False):
         if lang is not None:
             return lang
     from django.conf import settings
-    return settings.LANGUAGE_CODE
+    if settings.LANGUAGE_CODE in supported:
+        return settings.LANGUAGE_CODE
+    return 'en-us'
 
 
 def get_language_bidi():
