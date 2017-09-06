@@ -12,6 +12,7 @@ from pootle.core.delegate import formats
 from pootle.core.views import APIView
 from pootle.core.views.mixins import SuperuserRequiredMixin
 from pootle_app.forms import ProjectForm
+from pootle_fs.delegate import fs_plugins
 from pootle_language.models import Language
 from pootle_project.models import PROJECT_CHECKERS, Project
 
@@ -40,12 +41,14 @@ class ProjectAdminView(SuperuserRequiredMixin, TemplateView):
             (checker, checker)
             for checker
             in sorted(PROJECT_CHECKERS.keys())]
+        plugin_choices = sorted([(x, x) for x in fs_plugins.gather()])
 
         return {
             'page': 'admin-projects',
             'form_choices': {
                 'checkstyle': project_checker_choices,
                 'filetypes': filetypes,
+                'fs_plugin': plugin_choices,
                 'source_language': language_choices,
                 'defaults': {
                     'source_language': default_language,
@@ -62,3 +65,4 @@ class ProjectAPIView(SuperuserRequiredMixin, APIView):
     page_size = 10
     search_fields = ('code', 'fullname', 'disabled')
     m2m = ("filetypes", )
+    config = (("fs_plugin", "pootle_fs.fs_type"), )
