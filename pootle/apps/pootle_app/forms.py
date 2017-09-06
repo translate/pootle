@@ -14,6 +14,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 
 from pootle.i18n.gettext import ugettext_lazy as _
+from pootle_fs.delegate import fs_plugins
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.models import Store
@@ -53,11 +54,14 @@ class ProjectForm(forms.ModelForm):
 
     source_language = forms.ModelChoiceField(label=_('Source Language'),
                                              queryset=Language.objects.none())
+    fs_plugin = forms.ChoiceField(
+        label=_('FS Plugin'),
+        choices=[])
 
     class Meta(object):
         model = Project
         fields = ('id', 'code', 'fullname', 'checkstyle',
-                  'filetypes', 'source_language', 'ignoredfiles',
+                  'filetypes', 'fs_plugin', 'source_language', 'ignoredfiles',
                   'report_email', 'screenshot_search_prefix', 'disabled',)
 
     def __init__(self, *args, **kwargs):
@@ -68,6 +72,7 @@ class ProjectForm(forms.ModelForm):
 
         self.fields["filetypes"].initial = [
             self.fields["filetypes"].queryset.get(name="po")]
+        self.fields["fs_plugin"].choices = [(x, x) for x in fs_plugins.gather()]
 
     def clean_filetypes(self):
         value = self.cleaned_data.get('filetypes', [])
@@ -89,6 +94,11 @@ class ProjectForm(forms.ModelForm):
 
     def clean_code(self):
         return self.cleaned_data['code'].strip()
+
+    def save(self, commit=True):
+        project = super(ProjectForm, self).save(commit=commit)
+        project.config["pootle_fs.fs_type"] = self.cleaned_data["fs_plugin"]
+        return project
 
 
 class UserForm(forms.ModelForm):
