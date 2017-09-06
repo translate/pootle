@@ -64,11 +64,9 @@ def get_lang_from_cookie(request, supported):
     """See if the user's browser sent a cookie with a preferred language."""
     from django.conf import settings
     lang_code = request.COOKIES.get(settings.LANGUAGE_COOKIE_NAME)
-
-    if lang_code and lang_code in supported:
-        return lang_code
-
-    return None
+    if not lang_code:
+        return None
+    return get_language_supported(lang_code, supported)
 
 
 def get_lang_from_http_header(request, supported):

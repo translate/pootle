@@ -100,16 +100,16 @@ def test_get_lang_from_cookie(rf):
 
     # Test cookie with longer supported language.
     request.COOKIES[settings.LANGUAGE_COOKIE_NAME] = 'es-AR'
-    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) is None
+    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) == 'es-ar'
 
     # Test cookie with longer underscore language code for a supported
     # language.
     request.COOKIES[settings.LANGUAGE_COOKIE_NAME] = 'gl_ES'
-    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) is None
+    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) == 'gl'
 
     # Test cookie with longer hyphen language code for a supported language.
     request.COOKIES[settings.LANGUAGE_COOKIE_NAME] = 'fr-FR'
-    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) is None
+    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) == 'fr'
 
     # Test cookie with shorter language code for a supported language.
     request.COOKIES[settings.LANGUAGE_COOKIE_NAME] = 'es'
