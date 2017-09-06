@@ -202,7 +202,8 @@ class FSFile(object):
                     self.store.syncer.file_class(f)
                     if self.store and self.store.syncer.file_class
                     else getclass(f)(f.read()))
-            return store_file
+            if store_file.units:
+                return store_file
         if self.store_exists:
             return self.store.deserialize(self.store.serialize())
 
