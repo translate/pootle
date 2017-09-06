@@ -465,13 +465,12 @@ tests and checks pass:
 .. note:: Of course you must wait until all automatic checks pass.
 
 
-Tag and branch the release
---------------------------
+Branch the release
+------------------
 
-You should only tag once you are happy with your release as there are some
-things that we can't undo.
-
-You can safely branch, if required, for a ``stable/`` branch before you tag.
+You should branch only when you are releasing the first stable version of a new
+version series, since betas and release candidates can be developed in the
+`master` branch. To branch do:
 
 .. code-block:: console
 
@@ -503,7 +502,11 @@ branch. To do so check how it was done in `this commit
     $ git commit -m "Requirements: Limit requires.io to branch requirements"
 
 
-Tag the release:
+Tag the release
+---------------
+
+You should only tag once you are happy with your release as there are some
+things that are difficult to undo:
 
 .. code-block:: console
 
