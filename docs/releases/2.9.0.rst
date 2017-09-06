@@ -29,13 +29,18 @@ Changes
     - Pootle no longer tries to first import existing translations from disk,
     - Pootle initializes the new languages using the templates in the database.
 
-- Several bugfixes for Pootle FS.
+- Several bugfixes for Pootle FS:
+
+  - Fix handling of obsolete and unsynced units,
+  - Allow to sync to empty file.
+
 - Serialization:
 
-  - Don't cache on serialization
-  - Allow serializing obsolete units
-  - Serialization and sync bugfixes
+  - Don't cache on serialization,
+  - Allow serializing obsolete units,
+  - Serialization and sync bugfixes.
 
+- Fixed issues with variables in translations.
 - Overall documentation review and updates.
 - `pootle` command can now be run with no `VIRTUAL_ENV` environment variable
   set.
