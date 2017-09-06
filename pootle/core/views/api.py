@@ -89,7 +89,12 @@ class APIView(View):
         if len(self.fields) < 1:
             form = self.add_form_class or self.edit_form_class
             if form is not None:
-                self.fields = form._meta.fields
+                config_fields = dict(self.config).keys()
+                self.fields = [
+                    x for x
+                    in form._meta.fields
+                    if x not in self.m2m
+                    and x not in config_fields]
             else:  # Assume all fields by default
                 self.fields = (f.name for f in self.model._meta.fields)
 
