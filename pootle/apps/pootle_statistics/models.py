@@ -165,8 +165,10 @@ class Submission(models.Model):
     suggestion = models.ForeignKey('pootle_store.Suggestion', blank=True,
                                    null=True, db_index=True,
                                    on_delete=models.CASCADE)
-    unit = models.ForeignKey('pootle_store.Unit', blank=True, null=True,
-                             db_index=True, on_delete=models.CASCADE)
+    unit = models.ForeignKey(
+        'pootle_store.Unit',
+        db_index=True,
+        on_delete=models.CASCADE)
     quality_check = models.ForeignKey('pootle_store.QualityCheck', blank=True,
                                       null=True, db_index=True,
                                       on_delete=models.CASCADE)
