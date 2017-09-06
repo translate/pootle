@@ -296,9 +296,7 @@ def test_data_store_updater_fields(store0, stats_data_dict, stats_data_types):
     assert (
         getattr(store0.data, match)
         == result[data_type])
-    assert (
-        sorted(result.keys())
-        == sorted([data_type, "fields"]))
+    assert data_type in result.keys()
     if data_type in store0.data_tool.updater.fk_fields:
         new_value = None
     elif isinstance(result[data_type], int):
@@ -372,7 +370,7 @@ def test_data_store_updater_checks(store0):
 def test_data_store_updater_no_fields(store0):
     assert (
         store0.data_tool.updater.get_store_data(fields=[])
-        == dict(fields=[]))
+        == dict(fields=[], max_unit_revision=0))
     orig_words = store0.data.total_words
     store0.data.total_words = orig_words + 3
     store0.data.save()
