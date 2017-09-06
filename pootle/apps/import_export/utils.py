@@ -54,8 +54,10 @@ def import_file(f, user=None):
     try:
         store = Store.objects.get(pootle_path=pootle_path)
     except Store.DoesNotExist as e:
-        raise FileImportError(_("Could not create '%s'. Missing "
-                                "Project/Language? (%s)", (f.name, e)))
+        raise FileImportError(
+            _("Could not create '%(filename)s'. Missing "
+              "Project/Language? (%(error)s)",
+              dict(filename=f.name, error=e)))
 
     tp = store.translation_project
     allow_add_and_obsolete = ((tp.project.checkstyle == 'terminology'

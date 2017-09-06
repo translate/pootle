@@ -32,9 +32,9 @@ def profile_score(request, profile):
     if top_lang and not top_lang[0] == -1 and top_lang[1]:
         if context["own_profile"]:
             score_tweet_content = _(
-                "My current score at %s is %s"
-                % (settings.POOTLE_TITLE,
-                   profile.scores.public_score))
+                "My current score at %(pootle_title)s is %(score)s",
+                dict(pootle_title=settings.POOTLE_TITLE,
+                     score=profile.scores.public_score))
             context["score_tweet_message"] = _("Tweet this!")
             context["score_tweet_link"] = (
                 "https://twitter.com/share?text=%s"
@@ -49,14 +49,15 @@ def profile_ranking(request, profile):
     context["own_profile"] = request.user == profile.user
     if top_lang and not top_lang[0] == -1 and top_lang[1]:
         context["ranking_text"] = _(
-            "#%s contributor in %s in the last 30 days"
-            % (top_lang[0], top_lang[1].name))
+            "#%(rank)s contributor in %(language)s in the last 30 days",
+            dict(rank=top_lang[0], language=top_lang[1].name))
         if context["own_profile"]:
             ranking_tweet_content = _(
-                "I am #%s contributor in %s in the last 30 days at %s!"
-                % (top_lang[0],
-                   top_lang[1].name,
-                   settings.POOTLE_TITLE))
+                "I am #%(rank)s contributor in %(language)s in the last 30 "
+                "days at %(pootle_title)s!",
+                dict(rank=top_lang[0],
+                     language=top_lang[1].name,
+                     pootle_title=settings.POOTLE_TITLE))
             context["ranking_tweet_link"] = (
                 "https://twitter.com/share?text=%s"
                 % urllib.quote_plus(ranking_tweet_content.encode("utf8")))
