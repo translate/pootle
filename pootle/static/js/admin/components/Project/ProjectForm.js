@@ -24,7 +24,7 @@ const ProjectForm = React.createClass({
 
   mixins: [ModelFormMixin],
 
-  fields: ['code', 'fullname', 'checkstyle', 'filetypes',
+  fields: ['code', 'fullname', 'checkstyle', 'filetypes', 'fs_plugin',
            'source_language', 'ignoredfiles', 'report_email',
            'screenshot_search_prefix', 'disabled'],
 
@@ -86,6 +86,16 @@ const ProjectForm = React.createClass({
             name="filetypes"
             errors={errors.filetypes}
             value={formData.filetypes}
+          />
+          <FormElement
+            type="select"
+            clearable={false}
+            options={model.getFieldChoices('fs_plugin')}
+            label={gettext('FS backend')}
+            handleChange={this.handleChange}
+            name="fs_plugin"
+            errors={errors.fs_plugin}
+            value={formData.fs_plugin}
           />
           <FormElement
             type="select"
