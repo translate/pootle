@@ -183,6 +183,7 @@ class DataUpdater(object):
     def get_store_data(self, **kwargs):
         data = self.get_fields(self.filter_fields(**kwargs))
         data.update(kwargs)
+        data["max_unit_revision"] = data.get("max_unit_revision") or 0
         return data
 
     def set_check_data(self, store_data=None):
