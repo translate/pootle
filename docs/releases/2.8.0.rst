@@ -24,10 +24,13 @@ Changes in Requirements
 Major Changes
 =============
 
-- Undertook a security audit
-- Improved editor performance
-- Added pluggable search backend
-- Pootle FS
+- Performed a security audit.  Made various changes to close potential security
+  vectors including DOS type atacks.
+- Browse view optimisation. The performance of the brose mode now scales well
+  for large projects.  Statistics are now in real time.
+- Improved editor performance.  Retrieval of editable units now correctly
+  retrieves pages and prevents massive database load.
+- Pootle FS (beta) - provides bidirectional version control synchronisation.
 
 
 Details of changes
