@@ -24,6 +24,7 @@ from pootle.core.views.browse import PootleBrowseView
 from pootle.core.views.display import StatsDisplay
 from pootle.core.views.panels import Panel
 from pootle.core.views.widgets import TableSelectMultiple
+from pootle_config.utils import ObjectConfig
 
 
 def _test_stats_display(obj):
@@ -78,6 +79,16 @@ class UserM2MAPIView(APIView):
     page_size = 10
     fields = ('username', 'alt_src_langs',)
     m2m = ('alt_src_langs', )
+
+
+class UserConfigAPIView(APIView):
+    model = User
+    restrict_to_methods = ('get', 'delete',)
+    page_size = 10
+    fields = ('username', )
+    config = (
+        ("foo0", "foo0.bar"),
+        ("foo1", "foo1.bar"))
 
 
 def test_apiview_invalid_method(rf):
@@ -444,6 +455,69 @@ def test_apiview_get_multi_m2m(rf):
             == list(
                 str(l) for l
                 in user.alt_src_langs.values_list("pk", flat=True)))
+
+
+@pytest.mark.django_db
+def test_apiview_get_single_config(rf):
+    """Tests retrieving a single object with an m2m field using the API."""
+    view = UserConfigAPIView.as_view()
+    user0 = UserFactory.create(username='user0')
+    user1 = UserFactory.create(username='user1')
+
+    request = create_api_request(rf)
+    response = view(request, id=user0.id)
+    response_data = json.loads(response.content)
+    assert response_data["foo0"] is None
+    assert response_data["foo1"] is None
+
+    # string config
+    user_config = ObjectConfig(user1)
+    user_config["foo0.bar"] = "foo0.baz"
+    user_config["foo1.bar"] = "foo1.baz"
+    request = create_api_request(rf)
+    response = view(request, id=user1.id)
+    response_data = json.loads(response.content)
+    assert response_data["foo0"] == "foo0.baz"
+    assert response_data["foo1"] == "foo1.baz"
+
+    # list config
+    user_config["foo0.bar"] = ["foo0.baz"]
+    user_config["foo1.bar"] = ["foo1.baz"]
+    request = create_api_request(rf)
+    response = view(request, id=user1.id)
+    response_data = json.loads(response.content)
+    assert response_data["foo0"] == ["foo0.baz"]
+    assert response_data["foo1"] == ["foo1.baz"]
+
+
+@pytest.mark.django_db
+def test_apiview_get_multi_config(rf):
+    """Tests retrieving a single object with an m2m field using the API."""
+    view = UserConfigAPIView.as_view()
+    user0 = UserFactory.create(username='user0')
+    user1 = UserFactory.create(username='user1')
+
+    request = create_api_request(rf)
+    response = view(request)
+    response_data = json.loads(response.content)
+
+    for model in response_data["models"]:
+        assert model["foo0"] is None
+        assert model["foo1"] is None
+
+    user_config = ObjectConfig(user0)
+    user_config["foo0.bar"] = "user0.foo0.baz"
+    user_config["foo1.bar"] = "user0.foo1.baz"
+    user_config = ObjectConfig(user1)
+    user_config["foo0.bar"] = "user1.foo0.baz"
+    user_config["foo1.bar"] = "user1.foo1.baz"
+    request = create_api_request(rf)
+    response = view(request)
+    response_data = json.loads(response.content)
+    for model in response_data["models"]:
+        if model["username"] in ["user0", "user1"]:
+            model["foo0"] == "%s.foo0.baz" % model["username"]
+            model["foo1"] == "%s.foo1.baz" % model["username"]
 
 
 @pytest.mark.django_db
