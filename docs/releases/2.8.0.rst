@@ -30,6 +30,13 @@ Major Changes
   for large projects.  Statistics are now in real time.
 - Improved editor performance.  Retreival of editable units now correctly
   retreives pages and prevents massive database load.
+- Timeline data.  The timeline data has been migrated and improved to store
+  more data changes and clean up past data.  This is a step to providing more
+  detailed change history and is needed to do unit level comparisons for Pootl
+  FS.
+- Statistics genration and display. We no longer use rqworkers to calculate
+  statistics.  Instead these are live and always correct being updated on unit
+  changes.  The system is faster then previous statistics calculations.
 - Pootle FS (beta) - provides bidirectional version control synchronisation.
 
 
@@ -43,26 +50,16 @@ complete information.
 - MySQL now uses the ``mysqlclient`` database driver instead of ``MySQLdb``,
   this is Django's :ref:`preferred database driver
   <django:mysql-db-api-drivers>`.
-- Undertook a security audit
+- Performend a security audit
 - JavaScript fixes addressing performance and memory leaks in the editor
 - Improved editor performance
 - Extensive review and fixes to RTL layout
 - Added pluggable search backend
-- Pootle FS:
-
-  - Added admin UI to set up projects configuration and language mapping
-  - CLI
-  - LanguageMapper
-  - FileMapper
-  - Store de/serialization
-  - Removed the ability to add new TPs from the admin UI for Pootle FS projects
-
-- Refactored code for syncing stores
-- Changed the default ``robots.txt``
-
-  - It is now a static file
-  - Now the site is ``allow`` by default
-
+- Refactored code for syncing stores - as part of the internal rework of core
+  functionality in Pootle we reworked synchronisation code.  This will
+  eventually be dropped when we move fully onto Pootle FS.
+- Changed the default ``robots.txt``. It is now a static file which you can
+  adjust for your site. The site is ``allow`` by default.
 - Editor:
 
   - Suggestions:
@@ -74,19 +71,23 @@ complete information.
 
     - Accept suggestion without "can review" permissions if submitted
       translation is 100% match.
-    - Prevent sending suggestions matching a previously submitted suggestion or
-      current translation.
+    - Users cannot submit suggestions that match a previously submitted
+      suggestion or the current translation.
 
-  - Current unit is shown at the top of the unit list so it is easier to use
-    the navigation bar and it doesn't jump so much.
-  - Faster terminology matching yielding more results by using stemming
-  - Special characters are depicted by symbols from a custom-built font:
+  - Current unit is shown at the top of the unit list with one context row,
+    this makes it is easier to use the navigation bar and prevents UI
+    jumpiness.
+  - Faster terminology matching yielding more results by using stemming.
+  - Special non-display characters are depicted by symbols from a custom-built
+    font:
 
-    - Properly display whitespace as special character
+    - Properly display whitespace as special character e.g. non breaking space,
+      newline, tab.
     - Technical details of escape sequences are omitted in the output displayed
-      to end users
+      to end users, making it easier to enter correct data.
 
-  - Buttons to add special characters display helpful information when hovering
+  - Buttons to add language specific special characters display helpful
+    information in tooltips.
   - Errors fixed:
 
     - Fixed bugs in muting/unmuting checks
@@ -101,21 +102,26 @@ complete information.
     - AmaGama Translation Memory is now queried using CORS
     - AmaGama is only queried if the source language is supported by amaGama
 
-  - Perform all highlighting in the client
-  - Clearly present plurals to translator
-  - Allow selecting similar translations' text in editor
-  - Force word wrapping on long strings with no spaces
-  - Improvements on timeline
-  - Cross-language translation is now restricted to admins as it heavily
-    impacts performance and translators are unlikely to require it
+  - Perform all highlighting in the client.
+  - Clearly present plurals to translator.
+  - Allow text from the similar translations area to be selected.
+  - Force word wrapping on long strings with no spaces.
+  - Improvements on timeline.
+  - Cross-language translation is now restricted to admins. It heavily impacts
+    performance and translators are unlikely to require it while admins may
+    have a valid reason to use it.
   - Removed ability to clear language or project dropdown to prevent
-    performance degradation.
+    performance degradation.  This prevents users inadvertantly hitting very
+    expensive queries.
   - Alternate source language translations are no longer displayed for
-    anonymous users.
+    anonymous users to prevent performance costs for users who aren't able to
+    translate.
   - Editor is disabled for users without the required permissions. Reviewing
     suggestions is similarly disabled without required permissions.
-  - Check categories can now be used in dropdown to filter units.
-  - Auto-matched translations are now highlighted as such.
+  - Check categories can now be used in dropdown to filter units. You can
+    review all 'critical' check failures at once.
+  - Auto-matched translations are now highlighted to indicate that they came
+    from translation memory to prevent confusing users.
   - Incomplete plural translations may now be submitted.
   - String error reporting form is now clearer and prevents empty reports from
     being submitted.
@@ -126,8 +132,8 @@ complete information.
   - Allows to review multiple suggestions at once and reject/accept them at
     once optionally providing a comment for the suggesters
 
-- Configuration system
-- Plugin framework
+- Configuration system - a generic system to store configration information for Pootle.
+- Plugin framework - allowing Pootle to use plugins to expand its functionality.
 - Comment system
 - Removed Plurr format checks
 - Removed `ENChecker`
@@ -139,11 +145,15 @@ complete information.
 
   - Refactored stats backend:
 
-    - Removed stats refresh notice
-    - Faster stats retrieval
+    - We now store statistics in the database and have removed the need for
+      rqworkers to calculate stats.
+    - The stats refresh notice has been removed as all stats are now
+      up-to-date, always.
+    - Faster stats retrieval is now possible as stats are always up-to-date and
+      we can get it directly from the database.
 
-  - Hide disabled items and allow showing them to admin users
-  - Altered order of columns to highlight latest activity and pending work
+  - Disabled items are hidden by default but admin users can select to shown them.
+  - Altered order of columns to highlight latest activity and pending work:
 
     - Last updated data is now only shown to admin users
 
@@ -154,7 +164,7 @@ complete information.
     - Virtual folders are sorted by priority to highlight most important
       strings to translate
 
-  - Hid most of the special templates language data as it is unnecessary
+  - Hid most of the special 'templates' language data as it is unnecessary and can be confusing.
   - Got rid of fat cookies:
 
     - Increases responsiveness and removes security issue
@@ -162,20 +172,26 @@ complete information.
     - Sidebar is no longer automatically open for anonymous users when an
       announcement changes.
 
-  - Show leaderboard on top panel and expanded stats panel
-  - Numbers are rendered in a locale aware fashion
-  - Search widget is disabled if user cannot translate
+  - Leaderboard on top panel and expanded stats panel:
+
+    - The top panel will show the three users with the highest score.
+    - Expanded stats shows the top contributors scores.
+
+  - Numbers are rendered in a locale aware fashion.
+  - Search widget is disabled if user cannot translate.  This is to prevent any
+    load on the server for users who are not able to contribute.
   - Improvements to the statistics table for overly long filenames and smaller
-    screens
-  - Files dropdown no longer keeps references to empty directories
-  - Fixed issue where "Back" button not always worked
-  - Fixed issue with project dropdown when there are projects without name
+    screens.
+  - Files dropdown no longer keeps references to empty directories.
+  - Fixed issue where the "Back" button would sometimes not work.
+  - Fixed issue with project dropdown when there are projects without a name.
 
 - Search:
 
   - No longer autocompletes
   - Old 'Exact Match' was separated into 'Case-sensitive match' and
-    'Phrase match' allowing finer-grained searches.
+    'Phrase match' allowing finer-grained searches and removing the previous
+    confusion about the actual intent of the options.
 
 - Added team page:
 
@@ -183,16 +199,20 @@ complete information.
   - Replaces permissions with roles
   - Provides direct access to suggestion bulk management
 
-- Revamped user profile page
+- Revamped user profile page. The aim is to slowly draw more information onto
+  this page and make it a hub for translators.
 
 - Removed for performance reasons:
 
   - Removed statistics from user profiles. Will be brought back in the future.
-  - Removed export view
-  - Removed unperformant "More stats" in admin dashboard
+  - Removed export view. This has been replaced with TMX export functionality,
+    download still remains.
+  - Removed performance hogging "More stats" in admin dashboard. While it has
+    some useful information there are better ways to get this data.
 
-- Removed reports feature
-- Own Pootle localization changes
+- Removed reports feature. This was a potential security area and data leak.
+  We will bring this back now that we have finer grained change tracking.
+- Pootle's own localization changes
 
   - Updated translations. You can still `contribute translation updates for
     your language <http://pootle.locamotion.org/projects/pootle/>`_.
@@ -201,17 +221,18 @@ complete information.
     is used to compile JavaScript translations into assets, thus requiring
     `django-statici18n
     <http://django-statici18n.readthedocs.io/en/latest/index.html>`_ app.
-  - Password reset email is now localizable in Pootle
-  - Multiple changes in localizable strings to ease translation
-  - Now Pootle bundles Select2 localization.
+  - Password reset email is now localizable in Pootle.
+  - Multiple changes in localizable strings to ease translation.
+  - Bundles Select2 localization.
 
 - Upload and download:
 
   - Disabled upload for non-PO projects as conflict handling currently only
-    works in PO
-  - Admins can upload translations as other user
-  - Fixed error for stores with no revision
-  - Added ability to download TMX exports
+    works in PO.
+  - Admins can upload translations as other user allowing correct crediting for
+    translations.
+  - Fixed error for stores with no revision.
+  - Added the ability to download TMX exports.
 
 - New Machine Translation providers:
 
@@ -221,7 +242,6 @@ complete information.
 
 - Refactoring of models to increase performance, including dropping unnecessary
   indices.
-
 - User input is sanitized for outgoing emails
 - Usernames using latin1 characters are now allowed
 - Improved RQ usage and new management commands
@@ -230,12 +250,36 @@ complete information.
 - Documentation updates
 
 
-Pootle FS
----------
+Pootle FS (beta)
+----------------
 
 :ref:`Pootle FS <pootle_fs>` enables synchronization of Pootle against a
 filesystem, or version control system, handling conflict resolution and other
 situations of two files being out of sync.
+
+Pootle FS follows a git like command execution.  We've designed it such that we
+expect there to be no data loss when conflicts are discovered. Any conflicts
+are turned into suggestions which can be resolved in Pootle.
+
+Pootle FS is still in beta as we'd like to make sure that all the bugs are
+washed out before making it an official and default part of Pootle.
+
+sync_stores and update_stores are still the default method of interacting with
+Pootle.  We expect these to remain for some time, but expect the next version
+of Pootle to use to Pootle FS infrastructure to manage and handle these
+commands.
+
+- Added admin UI to set up projects configuration and language mapping
+- CLI - adds: info, fetch, resolve, sync, add and rm commands
+- LanguageMapper - allows differing codes on th filesystem vs Pootle
+- FileMapper - maps the file layout on the filesystem to the expected Pootle
+  layout
+- Store de/serialization - makes it possible to customise and adapt file
+  serialisation, most likely for slight deviations from the official file
+  format specification.
+- Removed the ability to add new TPs from the admin UI for Pootle FS projects,
+  we will initialise new TPs differently in Pootle FS.
+
 
 
 Development changes
@@ -244,29 +288,29 @@ Development changes
 - Updated and pinned PyPI requirements:
 
   - From now on requirements will be pinned in order to simplify support and
-    development
+    development.
 
 - Tests:
 
-  - Massive improvement in test framework
-  - Coverage increased from 55% to 94%
-  - Moved to tox
-  - Travis caching and optimisations
-  - Added JavaScript testing
+  - Massive improvement in test framework.
+  - Coverage increased from 55% to 94%.
+  - Moved to tox.
+  - Travis caching and optimisations.
+  - Added JavaScript testing.
 
 - Code sanity:
 
-  - Python code cleanup/linting pep8/pyflakes/pep257 to increase code health
-  - Javascript code linting and cleanups
-  - CSS code linting and cleanups
+  - Python code cleanup/linting pep8/pyflakes/pep257 to increase code health.
+  - Javascript code linting and cleanups.
+  - CSS code linting and cleanups.
 
 - Code polishing:
 
-  - Moved all commands to argparse
-  - Moved shortcuts to Mousetrap
-  - JS improvements, move to React components
+  - Moved all commands to argparse.
+  - Moved shortcuts to Mousetrap.
+  - JS improvements, move to React components.
 
-- Triage meetings are now held on a weekly basis
+- Triage meetings are now held on a weekly basis.
 
 
 Command changes and additions
@@ -280,7 +324,7 @@ Command changes and additions
 - :djadmin:`verify_user` and :djadmin:`purge_user` now accept multiple
   usernames.
 - :djadmin:`refresh_scores` now recalculates user scores and accepts
-  multiple usernames. It can be run by projects and/or languages.
+  multiple usernames. It can be run across projects and/or languages.
 - :djadmin:`contributors` command has been refactored in order to return more
   accurate results and has new options
   :option:`--since <contributors --since>`,
@@ -327,8 +371,8 @@ Changes in settings
 - :setting:`POOTLE_EMAIL_FEEDBACK_ENABLED` was added, to allow disabling
   sending emails to suggesters when suggestions are accepted or rejected.
 - Added new :setting:`POOTLE_CUSTOM_LOGO`, :setting:`POOTLE_FAVICONS_PATH`,
-  :setting:`POOTLE_FS_WORKING_PATH` and
-  :setting:`POOTLE_CANONICAL_URL` settings.
+  :setting:`POOTLE_FS_WORKING_PATH` and :setting:`POOTLE_CANONICAL_URL`
+  settings to allow easy customisations.
 - Deprecated ``POOTLE_QUALITY_CHECKER`` setting.
 - Added new :setting:`POOTLE_SQL_MIGRATIONS` setting.
 - :setting:`POOTLE_MARKUP_FILTER` defaults to ``'markdown'``, and ``None``,
