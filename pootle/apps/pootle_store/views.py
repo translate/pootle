@@ -486,6 +486,11 @@ class UnitEditJSON(PootleUnitJSON):
         accepted_suggestion = None
         if latest_target_submission is not None:
             accepted_suggestion = latest_target_submission.suggestion
+        critical_checks = list(self.object.get_critical_qualitychecks())
+        failing_checks = any(
+            not check.false_positive
+            for check
+            in critical_checks)
         return {
             'unit': self.object,
             'accepted_suggestion': accepted_suggestion,
@@ -522,8 +527,8 @@ class UnitEditJSON(PootleUnitJSON):
             'suggestions': suggestions,
             'suggestions_dict': {x.id: dict(id=x.id, target=x.target.strings)
                                  for x in suggestions},
-            "critical_checks": list(
-                self.object.get_critical_qualitychecks()),
+            "failing_checks": failing_checks,
+            "critical_checks": critical_checks,
             "warning_checks": list(
                 self.object.get_warning_qualitychecks()),
             "terms": self.object.get_terminology()}
