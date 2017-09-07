@@ -21,6 +21,7 @@ def test_clean_code_invalid(reserved_code, format_registry):
         'code': reserved_code,
         'checkstyle': PROJECT_CHECKERS.keys()[0],
         'fullname': 'Foo',
+        'fs_plugin': "localfs",
         'filetypes': [format_registry["po"]["pk"]],
         'source_language': 1}
     form = ProjectForm(form_data)
@@ -35,6 +36,7 @@ def test_clean_code_blank_invalid(format_registry):
         'code': '  ',
         'checkstyle': PROJECT_CHECKERS.keys()[0],
         'fullname': 'Foo',
+        'fs_plugin': "localfs",
         'filetypes': [format_registry["po"]["pk"]],
         'source_language': 1}
     form = ProjectForm(form_data)
@@ -49,6 +51,7 @@ def test_clean_localfiletype_invalid(format_registry):
         'code': 'foo',
         'checkstyle': PROJECT_CHECKERS.keys()[0],
         'fullname': 'Foo',
+        'fs_plugin': "localfs",
         'filetypes': ["NO_SUCH_FORMAT"],
         'source_language': 1}
     form = ProjectForm(form_data)
@@ -64,6 +67,7 @@ def test_project_form_bad_filetype_removal(format_registry):
         'code': "project0",
         'checkstyle': PROJECT_CHECKERS.keys()[0],
         'disabled': False,
+        'fs_plugin': "localfs",
         'filetypes': [Format.objects.get(name="xliff").pk],
         'source_language': 1,
         'screenshot_search_prefix': "",
@@ -87,6 +91,7 @@ def test_project_form_change_filetypes(format_registry):
         'checkstyle': PROJECT_CHECKERS.keys()[0],
         'disabled': False,
         'filetypes': filetypes,
+        'fs_plugin': "localfs",
         'source_language': 1,
         'screenshot_search_prefix': "",
         'ignoredfiles': "",
@@ -98,3 +103,32 @@ def test_project_form_change_filetypes(format_registry):
     assert (
         list(project0.filetypes.values_list("pk", flat=True))
         == filetypes)
+
+
+@pytest.mark.django_db
+def test_form_project_plugin_missing(format_registry):
+    form_data = {
+        'code': 'foo0',
+        'checkstyle': PROJECT_CHECKERS.keys()[0],
+        'fullname': 'Foo',
+        'filetypes': [format_registry["po"]["pk"]],
+        'source_language': 1}
+    form = ProjectForm(form_data)
+    assert not form.is_valid()
+    assert 'fs_plugin' in form.errors
+    assert len(form.errors.keys()) == 1
+
+
+@pytest.mark.django_db
+def test_form_project_plugin_invalid(format_registry):
+    form_data = {
+        'code': 'foo0',
+        'checkstyle': PROJECT_CHECKERS.keys()[0],
+        'fullname': 'Foo',
+        'fs_plugin': "DOES NOT EXIST",
+        'filetypes': [format_registry["po"]["pk"]],
+        'source_language': 1}
+    form = ProjectForm(form_data)
+    assert not form.is_valid()
+    assert 'fs_plugin' in form.errors
+    assert len(form.errors.keys()) == 1
