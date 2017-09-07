@@ -38,6 +38,19 @@ def supported_langs():
     return settings.LANGUAGES
 
 
+def get_language_supported(lang_code, supported):
+    normalized = data.normalize_code(data.simplify_to_common(lang_code))
+    if normalized in supported:
+        return normalized
+
+    # FIXME: horribly slow way of dealing with languages with @ in them
+    for lang in supported.keys():
+        if normalized == data.normalize_code(lang):
+            return lang
+
+    return None
+
+
 def get_lang_from_session(request, supported):
     if hasattr(request, 'session'):
         lang_code = request.session.get(LANGUAGE_SESSION_KEY, None)
@@ -70,15 +83,9 @@ def get_lang_from_http_header(request, supported):
     for accept_lang, __ in trans_real.parse_accept_lang_header(accept):
         if accept_lang == '*':
             return None
-
-        normalized = data.normalize_code(data.simplify_to_common(accept_lang))
-        if normalized in supported:
-            return normalized
-
-        # FIXME: horribly slow way of dealing with languages with @ in them
-        for lang in supported.keys():
-            if normalized == data.normalize_code(lang):
-                return lang
+        supported_lang = get_language_supported(accept_lang, supported)
+        if supported_lang:
+            return supported_lang
     return None
 
 
