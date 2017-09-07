@@ -8,9 +8,10 @@
 
 import pytest
 
+from django.conf import settings
 from django.utils.translation import LANGUAGE_SESSION_KEY
 
-from pootle.i18n.override import get_lang_from_session
+from pootle.i18n.override import get_lang_from_cookie, get_lang_from_session
 
 
 SUPPORTED_LANGUAGES = {
@@ -81,3 +82,44 @@ def test_get_lang_from_session(rf, client):
     request = response.wsgi_request
     request.session[LANGUAGE_SESSION_KEY] = 'the-FAIL'
     assert get_lang_from_session(request, SUPPORTED_LANGUAGES) is None
+
+
+def test_get_lang_from_cookie(rf):
+    request = rf.get("")
+
+    # Test no cookie.
+    assert settings.LANGUAGE_COOKIE_NAME not in request.COOKIES
+    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) is None
+
+    # Test cookie with supported language.
+    request.COOKIES[settings.LANGUAGE_COOKIE_NAME] = 'gl'
+    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) == 'gl'
+
+    # Test cookie with longer supported language.
+    request.COOKIES[settings.LANGUAGE_COOKIE_NAME] = 'es-AR'
+    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) is None
+
+    # Test cookie with longer underscore language code for a supported
+    # language.
+    request.COOKIES[settings.LANGUAGE_COOKIE_NAME] = 'gl_ES'
+    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) is None
+
+    # Test cookie with longer hyphen language code for a supported language.
+    request.COOKIES[settings.LANGUAGE_COOKIE_NAME] = 'fr-FR'
+    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) is None
+
+    # Test cookie with shorter language code for a supported language.
+    request.COOKIES[settings.LANGUAGE_COOKIE_NAME] = 'es'
+    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) is None
+
+    # Test cookie with unsupported language.
+    request.COOKIES[settings.LANGUAGE_COOKIE_NAME] = 'FAIL'
+    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) is None
+
+    # Test cookie with unsupported longer underscore language.
+    request.COOKIES[settings.LANGUAGE_COOKIE_NAME] = 'the_FAIL'
+    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) is None
+
+    # Test cookie with unsupported longer hyphen language.
+    request.COOKIES[settings.LANGUAGE_COOKIE_NAME] = 'the-FAIL'
+    assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) is None
