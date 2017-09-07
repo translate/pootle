@@ -11,7 +11,9 @@ import pytest
 from django.conf import settings
 from django.utils.translation import LANGUAGE_SESSION_KEY
 
-from pootle.i18n.override import get_lang_from_cookie, get_lang_from_session
+from pootle.i18n.override import (get_lang_from_cookie,
+                                  get_lang_from_http_header,
+                                  get_lang_from_session)
 
 
 SUPPORTED_LANGUAGES = {
@@ -123,3 +125,51 @@ def test_get_lang_from_cookie(rf):
     # Test cookie with unsupported longer hyphen language.
     request.COOKIES[settings.LANGUAGE_COOKIE_NAME] = 'the-FAIL'
     assert get_lang_from_cookie(request, SUPPORTED_LANGUAGES) is None
+
+
+def test_get_lang_from_http_header(rf):
+    # Test no header.
+    request = rf.get("")
+    assert 'HTTP_ACCEPT_LANGUAGE' not in request.META
+    assert get_lang_from_http_header(request, SUPPORTED_LANGUAGES) is None
+
+    # Test empty header.
+    request = rf.get("", HTTP_ACCEPT_LANGUAGE='')
+    assert get_lang_from_http_header(request, SUPPORTED_LANGUAGES) is None
+
+    # Test header with wildcard.
+    request = rf.get("", HTTP_ACCEPT_LANGUAGE='*')
+    assert get_lang_from_http_header(request, SUPPORTED_LANGUAGES) is None
+
+    # Test header with supported language.
+    request = rf.get("", HTTP_ACCEPT_LANGUAGE='gl')
+    assert get_lang_from_http_header(request, SUPPORTED_LANGUAGES) == 'gl'
+
+    # Test cookie with longer supported language.
+    request = rf.get("", HTTP_ACCEPT_LANGUAGE='es-AR')
+    assert get_lang_from_http_header(request, SUPPORTED_LANGUAGES) == 'es-ar'
+
+    # Test header with longer underscore language code for a supported
+    # language.
+    request = rf.get("", HTTP_ACCEPT_LANGUAGE='gl_ES')
+    assert get_lang_from_http_header(request, SUPPORTED_LANGUAGES) is None
+
+    # Test header with longer hyphen language code for a supported language.
+    request = rf.get("", HTTP_ACCEPT_LANGUAGE='fr-FR')
+    assert get_lang_from_http_header(request, SUPPORTED_LANGUAGES) == 'fr'
+
+    # Test header with shorter language code for a supported language.
+    request = rf.get("", HTTP_ACCEPT_LANGUAGE='es')
+    assert get_lang_from_http_header(request, SUPPORTED_LANGUAGES) is None
+
+    # Test header with unsupported language.
+    request = rf.get("", HTTP_ACCEPT_LANGUAGE='FAIL')
+    assert get_lang_from_http_header(request, SUPPORTED_LANGUAGES) is None
+
+    # Test header with unsupported longer underscore language.
+    request = rf.get("", HTTP_ACCEPT_LANGUAGE='the_FAIL')
+    assert get_lang_from_http_header(request, SUPPORTED_LANGUAGES) is None
+
+    # Test header with unsupported longer hyphen language.
+    request = rf.get("", HTTP_ACCEPT_LANGUAGE='the-FAIL')
+    assert get_lang_from_http_header(request, SUPPORTED_LANGUAGES) is None
