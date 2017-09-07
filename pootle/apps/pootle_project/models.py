@@ -67,11 +67,12 @@ class ProjectManager(models.Manager):
         for filetype in filetypes:
             project.filetypes.add(filetype)
         project.config["pootle_fs.fs_type"] = kwargs.pop("fs_type", "localfs")
-        project.config["pootle_fs.fs_url"] = kwargs.pop(
-            "fs_url",
-            os.path.join(
-                settings.POOTLE_TRANSLATION_DIRECTORY,
-                project.code))
+        if project.config["pootle_fs.fs_type"] == "localfs":
+            project.config["pootle_fs.fs_url"] = kwargs.pop(
+                "fs_url",
+                os.path.join(
+                    settings.POOTLE_TRANSLATION_DIRECTORY,
+                    project.code))
         return project
 
     def get_or_create(self, *args, **kwargs):
