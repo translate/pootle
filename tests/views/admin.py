@@ -21,6 +21,7 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle.core.views.admin import PootleAdminFormView, PootleAdminView
 from pootle_app.models import PermissionSet
 from pootle_app.views.admin.util import form_set_as_table
+from pootle_fs.delegate import fs_plugins
 from pootle_language.models import Language
 from pootle_project.models import PROJECT_CHECKERS, Project
 from pootle_translationproject.models import TranslationProject
@@ -294,10 +295,12 @@ def test_admin_view_projects(client, request_users, english):
         (checker, checker)
         for checker
         in sorted(PROJECT_CHECKERS.keys())]
+    plugin_choices = [(x, x) for x in fs_plugins.gather()]
     expected = {
         'page': 'admin-projects',
         'form_choices': {
             'checkstyle': project_checker_choices,
+            'fs_plugin': plugin_choices,
             'filetypes': filetypes,
             'source_language': language_choices,
             'defaults': {
