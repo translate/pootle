@@ -205,3 +205,20 @@ def test_timeline_view_unit_with_creation(client, request_users,
         client,
         request_users,
         unit)
+
+
+@pytest.mark.django_db
+def test_timeline_view_unit_without_creation(client, request_users,
+                                             system, admin, store0):
+    # add a creation submission for a unit and test with that
+    unit = Unit.objects.create(
+        state=TRANSLATED, source_f="Foo", target_f="Bar",
+        store=store0)
+    unit.creation_time = None
+    # save and get the unit to deal with mysql's microsecond issues
+    unit.save()
+    unit = Unit.objects.get(pk=unit.pk)
+    _timeline_test(
+        client,
+        request_users,
+        unit)
