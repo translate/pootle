@@ -6,11 +6,15 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import logging
 import os
 os.environ['DJANGO_SETTINGS_MODULE'] = 'pootle.settings'
 
 from pootle_app.management.commands import PootleCommand
 from pootle_fs.utils import FSPlugin
+
+
+logger = logging.getLogger(__name__)
 
 
 class Command(PootleCommand):
@@ -42,10 +46,22 @@ class Command(PootleCommand):
             help="Don't ignore stores synced after last change",
         )
 
+    warn_on_conflict = []
+
     def handle_all_stores(self, translation_project, **options):
         path_glob = "%s*" % translation_project.pootle_path
         plugin = FSPlugin(translation_project.project)
         plugin.fetch()
+        if translation_project.project.pk not in self.warn_on_conflict:
+            state = plugin.state()
+            if any(k in state for k in ["conflict", "conflict_untracked"]):
+                logger.warn(
+                    "The project '%s' has conflicting changes in the database "
+                    "and translation files. Use `pootle fs resolve` to tell "
+                    "pootle how to merge",
+                    translation_project.project.code)
+                self.warn_on_conflict.append(
+                    translation_project.project.pk)
         if not options["skip_missing"]:
             plugin.add(pootle_path=path_glob, update="fs")
         if options["overwrite"]:
