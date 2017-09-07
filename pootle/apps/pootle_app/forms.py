@@ -52,11 +52,8 @@ class LanguageForm(forms.ModelForm):
 
 class ProjectForm(forms.ModelForm):
 
-    source_language = forms.ModelChoiceField(label=_('Source Language'),
-                                             queryset=Language.objects.none())
-    fs_plugin = forms.ChoiceField(
-        label=_('FS Plugin'),
-        choices=[])
+    source_language = forms.ModelChoiceField(queryset=Language.objects.none())
+    fs_plugin = forms.ChoiceField(choices=[])
 
     class Meta(object):
         model = Project
