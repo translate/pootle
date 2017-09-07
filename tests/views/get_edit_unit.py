@@ -93,3 +93,8 @@ def test_get_edit_unit(project0_nongnu, get_edit_unit, client,
     assert (
         response.context["terms"]
         == unit.get_terminology())
+    failing_checks = any(
+        not check.false_positive
+        for check
+        in list(unit.get_warning_qualitychecks()))
+    assert response.context["failing_checks"] == failing_checks
