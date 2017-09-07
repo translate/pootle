@@ -47,20 +47,20 @@ def test_get_lang_from_session(rf, client):
     response = client.get("")
     request = response.wsgi_request
     request.session[LANGUAGE_SESSION_KEY] = 'es-AR'
-    assert get_lang_from_session(request, SUPPORTED_LANGUAGES) is None
+    assert get_lang_from_session(request, SUPPORTED_LANGUAGES) == 'es-ar'
 
     # Test cookie with longer underscore language code for a supported
     # language.
     response = client.get("")
     request = response.wsgi_request
     request.session[LANGUAGE_SESSION_KEY] = 'gl_ES'
-    assert get_lang_from_session(request, SUPPORTED_LANGUAGES) is None
+    assert get_lang_from_session(request, SUPPORTED_LANGUAGES) == 'gl'
 
     # Test cookie with longer hyphen language code for a supported language.
     response = client.get("")
     request = response.wsgi_request
     request.session[LANGUAGE_SESSION_KEY] = 'fr-FR'
-    assert get_lang_from_session(request, SUPPORTED_LANGUAGES) is None
+    assert get_lang_from_session(request, SUPPORTED_LANGUAGES) == 'fr'
 
     # Test header with shorter language code for a supported language.
     response = client.get("")

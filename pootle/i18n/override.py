@@ -52,12 +52,12 @@ def get_language_supported(lang_code, supported):
 
 
 def get_lang_from_session(request, supported):
-    if hasattr(request, 'session'):
-        lang_code = request.session.get(LANGUAGE_SESSION_KEY, None)
-        if lang_code and lang_code in supported:
-            return lang_code
-
-    return None
+    if not hasattr(request, 'session'):
+        return None
+    lang_code = request.session.get(LANGUAGE_SESSION_KEY, None)
+    if not lang_code:
+        return None
+    return get_language_supported(lang_code, supported)
 
 
 def get_lang_from_cookie(request, supported):
