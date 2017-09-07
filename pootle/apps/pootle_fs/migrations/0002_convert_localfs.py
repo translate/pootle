@@ -15,6 +15,9 @@ from django.db import migrations
 from translate.lang.data import langcode_re
 
 
+logger = logging.getLogger(__name__)
+
+
 def _file_belongs_to_project(project, filename):
     ext = os.path.splitext(filename)[1][1:]
     filetype_extensions = list(
@@ -88,12 +91,13 @@ def _set_project_config(Config, project_ct, project):
         key="pootle_fs.fs_type",
         defaults=dict(
             value="localfs"))
-    Config.objects.update_or_create(
-        content_type=project_ct,
-        object_pk=project.pk,
-        key="pootle_fs.translation_mappings",
-        defaults=dict(
-            value=dict(default=_get_translation_mapping(project))))
+    if os.path.exists(proj_trans_path):
+        Config.objects.update_or_create(
+            content_type=project_ct,
+            object_pk=project.pk,
+            key="pootle_fs.translation_mappings",
+            defaults=dict(
+                value=dict(default=_get_translation_mapping(project))))
 
 
 def convert_to_localfs(apps, schema_editor):
@@ -106,30 +110,54 @@ def convert_to_localfs(apps, schema_editor):
     old_translation_path = settings.POOTLE_TRANSLATION_DIRECTORY
 
     for project in Project.objects.exclude(treestyle="pootle_fs"):
+        logger.debug("Converting project '%s' to pootle fs", project.code)
         proj_trans_path = str(PosixPath().joinpath(old_translation_path, project.code))
         proj_stores = Store.objects.filter(
-            translation_project__project=project).exclude(file="")
+            translation_project__project=project).exclude(file="").exclude(obsolete=True)
         _set_project_config(Config, project_ct, project)
         project.treestyle = "pootle_fs"
         project.save()
+
+        if project.disabled:
+            continue
+        if not os.path.exists(proj_trans_path):
+            logger.warn(
+                "Missing project ('%s') translation directory '%s', "
+                "skipped adding tracking",
+                project.code,
+                proj_trans_path)
+            continue
         store_fs = StoreFS.objects.filter(
             store__translation_project__project=project)
         store_fs.delete()
+        sfs = []
         for store in proj_stores:
             filepath = str(store.file)[len(project.code):]
             fullpath = str(
                 PosixPath().joinpath(
                     proj_trans_path,
                     filepath.lstrip("/")))
-            StoreFS.objects.update_or_create(
-                project=project,
-                store=store,
-                defaults=dict(
+            if not os.path.exists(fullpath):
+                logger.warn(
+                    "No file found at '%s', not adding tracking",
+                    fullpath)
+                continue
+            sfs.append(
+                StoreFS(
+                    project=project,
+                    store=store,
                     path=str(filepath),
                     pootle_path=store.pootle_path,
                     last_sync_hash=str(os.stat(fullpath).st_mtime),
                     last_sync_revision=store.last_sync_revision,
                     last_sync_mtime=store.file_mtime))
+        if len(sfs):
+            StoreFS.objects.bulk_create(sfs, batch_size=1000)
+        logger.debug(
+            "Tracking added for %s/%s stores in project '%s'",
+            len(sfs),
+            proj_stores.count(),
+            project.code)
         fs_temp = os.path.join(
             settings.POOTLE_FS_WORKING_PATH, project.code)
         dirsync.sync(
