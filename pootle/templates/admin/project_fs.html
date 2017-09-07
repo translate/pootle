@@ -56,10 +56,10 @@ $(function() {
 	    </blockquote>
 	  </p>
 	  <p>
-	    {% blocktrans trimmed %}
-	    Only `&lt;language_code&gt;` is required, although it must end with
-	    `.&lt;ext&gt;`
+	    {% blocktrans asvar translation trimmed %}
+	    Only `<language_code>` is required, although it must end with `.<ext>`
 	    {% endblocktrans %}
+	    {{ translation|escape }}
 	  </p>
 	  <p>
 	    {% blocktrans trimmed %}
