@@ -8,11 +8,13 @@
 
 from django import forms
 from django.contrib.auth import get_user_model
+from django.urls import reverse
 
 from pootle.core.decorators import get_object_or_404
 from pootle.core.exceptions import Http400
 from pootle.core.views.admin import PootleAdminFormView
 from pootle.core.views.mixins import PootleJSONMixin
+from pootle.core.views.widgets import RemoteSelectWidget
 from pootle.i18n.gettext import ugettext as _
 from pootle_app.forms import PermissionsUsersSearchForm
 from pootle_app.models import Directory
@@ -89,10 +91,11 @@ def admin_permissions(request, current_directory, template, ctx):
             choice_groups=choice_groups,
             queryset=User.objects.all(),
             required=True,
-            widget=forms.Select(attrs={
-                'class': 'js-select2 select2-username',
-            }),
-        )
+            widget=RemoteSelectWidget(
+                attrs={
+                    "data-s2-placeholder": _("Search for users to add"),
+                    'class': ('js-select2-remote select2-username '
+                              'js-s2-new-members')}))
         positive_permissions = PermissionFormField(
             label=_('Add Permissions'),
             queryset=positive_permissions_qs,
@@ -114,6 +117,10 @@ def admin_permissions(request, current_directory, template, ctx):
 
         def __init__(self, *args, **kwargs):
             super(PermissionSetForm, self).__init__(*args, **kwargs)
+
+            self.fields["user"].widget.attrs["data-select2-url"] = reverse(
+                "pootle-permissions-users",
+                kwargs=dict(directory=current_directory.pk))
 
             # Don't display extra negative permissions field where they
             # are not applicable
