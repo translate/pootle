@@ -33,12 +33,6 @@ FS_CHOICES = (
 
 class ProjectFSAdminForm(forms.Form):
 
-    fs_type = forms.ChoiceField(
-        label=_("Filesystem backend"),
-        help_text=_("Select a filesystem backend"),
-        choices=(),
-        widget=forms.Select(
-            attrs={'class': 'js-select2'}))
     fs_url = forms.CharField(
         label=_("Backend URL or path"),
         help_text=_(
@@ -61,35 +55,25 @@ class ProjectFSAdminForm(forms.Form):
     def should_save(self):
         return self.is_valid()
 
-    @property
-    def fs_type_choices(self):
-        return (
-            (plugin_type, plugin.name or plugin.fs_type)
-            for plugin_type, plugin
-            in fs_plugins.gather().items())
-
     def __init__(self, *args, **kwargs):
         self.project = kwargs.pop("project")
         super(ProjectFSAdminForm, self).__init__(*args, **kwargs)
-        self.fields["fs_type"].choices = self.fs_type_choices
 
         self.fields["fs_url"].initial = self.project.config.get("pootle_fs.fs_url")
-        self.fields["fs_type"].initial = (
-            self.project.config.get("pootle_fs.fs_type"))
         translation_mapping = (
             self.project.config.get("pootle_fs.translation_mappings"))
         if translation_mapping:
             self.fields["translation_mapping"].initial = (
                 translation_mapping.get("default"))
 
+    @cached_property
+    def fs_plugin(self):
+        return fs_plugins.gather()[
+            self.project.config["pootle_fs.fs_type"]]
+
     @property
     def fs_path_validator(self):
         return fs_translation_mapping_validator.get()
-
-    @cached_property
-    def fs_plugin(self):
-        if self.cleaned_data.get("fs_type"):
-            return fs_plugins.gather()[self.cleaned_data["fs_type"]]
 
     @cached_property
     def fs_url_validator(self):
@@ -115,11 +99,10 @@ class ProjectFSAdminForm(forms.Form):
                 forms.ValidationError(
                     "Incorrect URL or path ('%s') for plugin type '%s': %s"
                     % (self.cleaned_data.get("fs_url"),
-                       self.cleaned_data.get("fs_type"),
+                       self.fs_plugin.fs_type,
                        e)))
 
     def save(self):
-        self.project.config["pootle_fs.fs_type"] = self.cleaned_data["fs_type"]
         self.project.config["pootle_fs.fs_url"] = self.cleaned_data["fs_url"]
         self.project.config["pootle_fs.translation_mappings"] = dict(
             default=self.cleaned_data["translation_mapping"])
