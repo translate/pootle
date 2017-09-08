@@ -54,7 +54,6 @@ complete information.
 - JavaScript fixes addressing performance and memory leaks in the editor
 - Improved editor performance
 - Extensive review and fixes to RTL layout
-- Added pluggable search backend
 - Refactored code for syncing stores - as part of the internal rework of core
   functionality in Pootle we reworked synchronisation code.  This will
   eventually be dropped when we move fully onto Pootle FS.
@@ -69,7 +68,7 @@ complete information.
       - Suggesters are emailed based on new
         :setting:`POOTLE_EMAIL_FEEDBACK_ENABLED` setting
 
-    - Accept suggestion without "can review" permissions if submitted
+    - Accept suggestion without ``can review`` permissions if submitted
       translation is 100% match.
     - Users cannot submit suggestions that match a previously submitted
       suggestion or the current translation.
@@ -139,10 +138,7 @@ complete information.
 - Comment system
 - Removed Plurr format checks
 - Removed `ENChecker`
-- Added ``pootle_format`` app
-
-  - Added support to have several formats in the same project
-
+- Added support to have several formats in the same project
 - Browse pages:
 
   - Refactored stats backend:
@@ -154,8 +150,9 @@ complete information.
     - Faster stats retrieval is now possible as stats are always up-to-date and
       we can get it directly from the database.
 
-  - Disabled items are hidden by default but admin users can select to shown them.
-  - Altered order of columns to highlight latest activity and pending work:
+  - Disabled items are hidden by default but admin users can select to shown
+    them.
+  - Changed order of columns to highlight latest activity and pending work:
 
     - Last updated data is now only shown to admin users
 
@@ -166,7 +163,8 @@ complete information.
     - Virtual folders are sorted by priority to highlight most important
       strings to translate
 
-  - Hid most of the special 'templates' language data as it is unnecessary and can be confusing.
+  - Hid most of the special 'templates' language data as it is unnecessary and
+    can be confusing.
   - Got rid of fat cookies:
 
     - Increases responsiveness and removes security issue
@@ -177,11 +175,10 @@ complete information.
   - Leaderboard on top panel and expanded stats panel:
 
     - The top panel will show the three users with the highest score.
-    - Expanded stats shows the top contributors scores.
+    - Expanded stats shows the top contributors scores and other detailed
+      information about current location.
 
   - Numbers are rendered in a locale aware fashion.
-  - Search widget is disabled if user cannot translate.  This is to prevent any
-    load on the server for users who are not able to contribute.
   - Improvements to the statistics table for overly long filenames and smaller
     screens.
   - Files dropdown no longer keeps references to empty directories.
@@ -191,6 +188,9 @@ complete information.
 - Search:
 
   - No longer autocompletes
+  - Added pluggable search backend
+  - Search widget is disabled if user cannot translate.  This is to prevent any
+    load on the server for users who are not able to contribute.
   - Old 'Exact Match' was separated into 'Case-sensitive match' and
     'Phrase match' allowing finer-grained searches and removing the previous
     confusion about the actual intent of the options.
@@ -214,7 +214,7 @@ complete information.
 
 - Removed reports feature. This was a potential security area and data leak.
   We will bring this back now that we have finer grained change tracking.
-- Pootle's own localization changes
+- Pootle's own localization changes:
 
   - Updated translations. You can still `contribute translation updates for
     your language <http://pootle.locamotion.org/projects/pootle/>`_.
@@ -225,7 +225,7 @@ complete information.
     <http://django-statici18n.readthedocs.io/en/latest/index.html>`_ app.
   - Password reset email is now localizable in Pootle.
   - Multiple changes in localizable strings to ease translation.
-  - Bundles Select2 localization.
+  - Select2 localization is bundled to ensure Select2 is shown localized.
 
 - Upload and download:
 
