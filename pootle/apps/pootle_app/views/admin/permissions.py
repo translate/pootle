@@ -9,7 +9,12 @@
 from django import forms
 from django.contrib.auth import get_user_model
 
+from pootle.core.decorators import get_object_or_404
+from pootle.core.exceptions import Http400
+from pootle.core.views.admin import PootleAdminFormView
+from pootle.core.views.mixins import PootleJSONMixin
 from pootle.i18n.gettext import ugettext as _
+from pootle_app.forms import PermissionsUsersSearchForm
 from pootle_app.models import Directory
 from pootle_app.models.permissions import (PermissionSet,
                                            get_permission_contenttype)
@@ -122,3 +127,34 @@ def admin_permissions(request, current_directory, template, ctx):
     return util.edit(request, template, PermissionSet, ctx, link,
                      linkfield='user', queryset=directory_permissions,
                      can_delete=True, form=PermissionSetForm)
+
+
+class PermissionsUsersJSON(PootleJSONMixin, PootleAdminFormView):
+    form_class = PermissionsUsersSearchForm
+
+    @property
+    def directory(self):
+        return get_object_or_404(
+            Directory.objects,
+            pk=self.kwargs["directory"])
+
+    def get_context_data(self, **kwargs):
+        context = super(
+            PermissionsUsersJSON, self).get_context_data(**kwargs)
+        form = context["form"]
+        return (
+            dict(items=form.search())
+            if form.is_valid()
+            else dict(items=[]))
+
+    def get_form_kwargs(self):
+        kwargs = super(PermissionsUsersJSON, self).get_form_kwargs()
+        kwargs["directory"] = self.directory
+        return kwargs
+
+    def form_valid(self, form):
+        return self.render_to_response(
+            self.get_context_data(form=form))
+
+    def form_invalid(self, form):
+        raise Http400(form.errors)
