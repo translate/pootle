@@ -6,11 +6,14 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import json
+
 import pytest
 
 from django.utils.translation import get_language
 from django.urls import reverse
 
+from pootle.core.decorators import Http400
 from pootle.core.debug import memusage
 from pootle.core.delegate import revision
 from pootle_app.views.index.index import (
@@ -114,3 +117,36 @@ def test_view_index_redirect(client, language0, project0, request_users):
         assert response.url == "/es/"
     else:
         assert response.status_code == 200
+
+
+@pytest.mark.django_db
+def test_view_user_permissions_json(client, request_users, project0,
+                                    member, member2):
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    response = client.get(
+        reverse(
+            'pootle-permissions-users',
+            kwargs=dict(directory=project0.directory.pk)))
+    if not user.is_superuser:
+        assert response.status_code == 403
+        return
+    result = json.loads(response.content)
+    assert result["items"] == []
+    with pytest.raises(Http400):
+        client.post(
+            reverse(
+                'pootle-permissions-users',
+                kwargs=dict(directory=project0.directory.pk)))
+    response = client.post(
+        reverse(
+            'pootle-permissions-users',
+            kwargs=dict(directory=project0.directory.pk)),
+        dict(q="mem"))
+    results = json.loads(response.content)["items"]["results"]
+    assert results[0]['text'] == member.username
+    assert results[0]['id'] == member.pk
+    assert results[1]['text'] == member2.username
+    assert results[1]['id'] == member2.pk
