@@ -12,7 +12,7 @@ from django.urls import reverse
 
 from pootle.core.delegate import language_team, review
 from pootle.core.forms import FormtableForm
-from pootle.core.views.widgets import TableSelectMultiple
+from pootle.core.views.widgets import RemoteSelectWidget, TableSelectMultiple
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_store.constants import OBSOLETE, STATES_MAP
 from pootle_store.models import Suggestion
@@ -63,12 +63,6 @@ class LanguageTeamNewMemberSearchForm(LanguageTeamBaseAdminForm):
                 for m
                 in (non_members.filter(username__contains=self.cleaned_data["q"])
                                .values("id", "username"))])
-
-
-class RemoteSelectWidget(forms.Select):
-
-    def render_options(self, selected_choices):
-        return ""
 
 
 class LanguageTeamAdminForm(LanguageTeamBaseAdminForm):

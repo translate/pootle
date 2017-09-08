@@ -6,7 +6,7 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from django.forms import CheckboxInput, SelectMultiple
+from django.forms import CheckboxInput, Select, SelectMultiple
 from django.utils.encoding import force_text
 from django.utils.html import escape
 from django.utils.safestring import SafeText, mark_safe
@@ -86,3 +86,9 @@ class TableSelectMultiple(SelectMultiple):
                 output.append(u'<td%s>%s</td>' % (css, content))
             output.append(u'</tr>')
         return mark_safe(u'\n'.join(output))
+
+
+class RemoteSelectWidget(Select):
+
+    def render_options(self, selected_choices):
+        return ""
