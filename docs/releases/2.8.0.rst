@@ -321,69 +321,89 @@ Command changes and additions
 
 - Running Pootle commands using :command:`manage.py` is no longer supported,
   use :command:`pootle` instead.
-- :command:`pootle` warns if configuration is missing.
-- :djadmin:`run_cherrypy` has been removed.
-- :command:`start` has been removed, use :djadmin:`runserver` instead.
-- :djadmin:`verify_user` and :djadmin:`purge_user` now accept multiple
-  usernames.
-- :djadmin:`refresh_scores` now recalculates user scores and accepts
-  multiple usernames. It can be run across projects and/or languages.
-- :djadmin:`contributors` command has been refactored in order to return more
-  accurate results and has new options
-  :option:`--since <contributors --since>`,
-  :option:`--until <contributors --until>` and
-  :option:`--mailmerge <contributors --mailmerge>`. The ``--from-revision``
-  option has been removed.
-- :djadmin:`list_serializers` has been added to view serializers and
-  deserializers installed on your system.
-- :djadmin:`flush_cache` flushes ``default``, ``redis`` caches,
-  accepts :option:`--rqdata <flush_cache --rqdata>`,
-  :option:`--django-cache <flush_cache --django-cache>` options.
-- :djadmin:`config` was added to get, set, list, append and clear configuration
-  settings.
-- :djadmin:`init_fs_project` was added.
-- :djadmin:`set_filetype` was added.
-- Removed :command:`refresh_stats` and :command:`clear_stats` commands.
-- :djadmin:`export` is now able to export zipped TMX files per translation
-  project with the :option:`--tmx <export --tmx>` option.
-  :option:`--rotate <export --rotate>` option allows old files to be removed.
-- Added :djadmin:`schema` command that allows to dump the database schema on
-  MySQL which is useful for diagnosing differences in database schema.
-- Added :djadmin:`update_data` command that allows to update the stats data.
-- :djadmin:`init` now creates a development configuration with
-  :option:`--dev <init --dev>` option.
+- :command:`pootle` command warns if configuration is missing.
+- Changed commands:
+
+  - :djadmin:`verify_user` and :djadmin:`purge_user` now accept multiple
+    usernames.
+  - :djadmin:`refresh_scores` now recalculates user scores and accepts
+    multiple usernames. It can be run across projects and/or languages.
+  - :djadmin:`contributors` command has been refactored in order to return more
+    accurate results and has new options
+    :option:`--since <contributors --since>`,
+    :option:`--until <contributors --until>` and
+    :option:`--mailmerge <contributors --mailmerge>`. The ``--from-revision``
+    option has been removed.
+  - :djadmin:`flush_cache` flushes ``default``, ``redis`` caches,
+    accepts :option:`--rqdata <flush_cache --rqdata>`,
+    :option:`--django-cache <flush_cache --django-cache>` options.
+  - :djadmin:`export` is now able to export zipped TMX files per translation
+    project with the :option:`--tmx <export --tmx>` option.
+    :option:`--rotate <export --rotate>` option allows old files to be removed.
+  - :djadmin:`init` now creates a development configuration with
+    :option:`--dev <init --dev>` option.
+
+- Added new commands:
+
+  - :djadmin:`list_serializers` allows to view serializers and deserializers
+    installed on your system.
+  - :djadmin:`config` allows to get, set, list, append and clear configuration
+    settings.
+  - :djadmin:`init_fs_project`.
+  - :djadmin:`set_filetype`.
+  - :djadmin:`schema` allows to dump the database schema on MySQL which is
+    useful for diagnosing differences in database schema.
+  - :djadmin:`update_data` allows to update the stats data.
+
+- Removed commands:
+
+  - :command:`run_cherrypy`.
+  - :command:`start` has been removed, use :djadmin:`runserver` instead.
+  - :command:`refresh_stats`.
+  - :command:`clear_stats`.
 
 
 Changes in settings
 -------------------
 
-- MySQL database connections should now use ``STRICT_TRANS_TABLES``.
-- :setting:`POOTLE_SCORE_COEFFICENTS` has been removed and replaced with
-  :setting:`POOTLE_SCORES`.
-- :setting:`POOTLE_SCORES` accepts custom settings for user scores calculation.
-- :setting:`POOTLE_TM_SERVER` no longer receives the ``MIN_SCORE`` parameter,
-  as it was misleading and had questionable effects.
-- :setting:`POOTLE_TM_SERVER` now accepts a ``MIN_SIMILARITY`` parameter, to
-  filter out results which might be irrelevant. To learn more, check the
-  documenation on :setting:`MIN_SIMILARITY <POOTLE_TM_SERVER-MIN_SIMILARITY>`.
-- :setting:`POOTLE_SEARCH_BACKEND` was added, to allow configuring the search
-  backend to be used.
-- Changed the default value for `ACCOUNT_SESSION_REMEMBER
-  <https://django-allauth.readthedocs.io/en/latest/configuration.html>`_ so now
-  sessions are always remembered.
-- :setting:`POOTLE_EMAIL_FEEDBACK_ENABLED` was added, to allow disabling
-  sending emails to suggesters when suggestions are accepted or rejected.
-- Added new :setting:`POOTLE_CUSTOM_LOGO`, :setting:`POOTLE_FAVICONS_PATH`,
-  :setting:`POOTLE_FS_WORKING_PATH` and :setting:`POOTLE_CANONICAL_URL`
-  settings to allow easy customisations.
-- Deprecated ``POOTLE_QUALITY_CHECKER`` setting.
-- Added new :setting:`POOTLE_SQL_MIGRATIONS` setting.
-- :setting:`POOTLE_MARKUP_FILTER` defaults to ``'markdown'``, and ``None``,
-  ``'html'``, ``'textile'`` and ``'restructuredtext'`` values have been
-  deprecated. Deployments using any deprecated markup must migrate manually to
-  Markdown. This setting will be removed in the future since Markdown will be
-  the only available markup.
-- Added new :setting:`AMAGAMA_SOURCE_LANGUAGES` setting.
+- Changes in settings:
+
+  - MySQL database connections should now use ``STRICT_TRANS_TABLES``.
+  - :setting:`POOTLE_TM_SERVER` no longer receives the ``MIN_SCORE`` parameter,
+    as it was misleading and had questionable effects.
+  - :setting:`POOTLE_TM_SERVER` now accepts a ``MIN_SIMILARITY`` parameter, to
+    filter out results which might be irrelevant. To learn more, check the
+    documentation on
+    :setting:`MIN_SIMILARITY <POOTLE_TM_SERVER-MIN_SIMILARITY>`.
+  - Changed the default value for `ACCOUNT_SESSION_REMEMBER
+    <https://django-allauth.readthedocs.io/en/latest/configuration.html>`_ so
+    now sessions are always remembered.
+  - :setting:`POOTLE_MARKUP_FILTER` defaults to ``'markdown'``, and ``None``,
+    ``'html'``, ``'textile'`` and ``'restructuredtext'`` values have been
+    deprecated. Deployments using any deprecated markup must migrate manually
+    to Markdown. This setting will be removed in the future since Markdown will
+    be the only available markup.
+
+- Added new settings:
+
+  - :setting:`POOTLE_SCORES` accepts custom settings for user scores
+    calculation.
+  - :setting:`POOTLE_SEARCH_BACKEND` to allow configuring the search backend to
+    be used.
+  - :setting:`POOTLE_EMAIL_FEEDBACK_ENABLED` to allow disabling sending emails
+    to suggesters when suggestions are accepted or rejected.
+  - :setting:`POOTLE_CUSTOM_LOGO`, :setting:`POOTLE_FAVICONS_PATH`,
+    :setting:`POOTLE_FS_WORKING_PATH` and :setting:`POOTLE_CANONICAL_URL`
+    settings to allow easy customisations.
+  - :setting:`POOTLE_SQL_MIGRATIONS`.
+  - :setting:`AMAGAMA_SOURCE_LANGUAGES`.
+
+- Removed settings:
+
+  - ``POOTLE_QUALITY_CHECKER`` since the custom quality checkers feature is
+    gone.
+  - ``POOTLE_SCORE_COEFFICENTS`` has been removed and replaced with
+    :setting:`POOTLE_SCORES`.
 
 
 Credits
