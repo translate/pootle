@@ -139,3 +139,23 @@ class UserForm(forms.ModelForm):
                 )
 
         return url
+
+
+class PermissionsUsersSearchForm(forms.Form):
+    q = forms.CharField(max_length=255)
+
+    def __init__(self, *args, **kwargs):
+        self.directory = kwargs.pop("directory")
+        super(PermissionsUsersSearchForm, self).__init__(*args, **kwargs)
+
+    def search(self):
+        existing_permission_users = (
+            self.directory.permission_sets.values_list("user"))
+        users = get_user_model().objects.exclude(
+            pk__in=existing_permission_users)
+        return dict(
+            results=[
+                dict(id=int(m["id"]), text=m["username"])
+                for m
+                in (users.filter(username__contains=self.cleaned_data["q"])
+                         .values("id", "username"))])
