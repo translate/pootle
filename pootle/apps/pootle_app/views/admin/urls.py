@@ -10,9 +10,9 @@ from django.conf.urls import include, url
 
 import staticpages.urls
 
-from . import (LanguageAdminView, LanguageAPIView, ProjectAdminView,
-               ProjectAPIView, UserAdminView, UserAPIView, adminroot,
-               dashboard)
+from . import (LanguageAdminView, LanguageAPIView, PermissionsUsersJSON,
+               ProjectAdminView, ProjectAPIView, UserAdminView, UserAPIView,
+               adminroot, dashboard)
 
 
 urlpatterns = [
@@ -48,7 +48,10 @@ urlpatterns = [
     url(r'^permissions/$',
         adminroot.view,
         name='pootle-admin-permissions'),
-]
+
+    url(r'^xhr/permissions/users/(?P<directory>[^/]*)/$',
+        PermissionsUsersJSON.as_view(),
+        name='pootle-permissions-users')]
 
 
 api_patterns = [

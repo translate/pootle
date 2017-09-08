@@ -9,8 +9,9 @@
 from .languages import LanguageAdminView, LanguageAPIView
 from .projects import ProjectAdminView, ProjectAPIView
 from .users import UserAdminView, UserAPIView
+from .permissions import PermissionsUsersJSON
 
 
 __all__ = (
-    'LanguageAdminView', 'LanguageAPIView', 'ProjectAdminView',
-    'ProjectAPIView', 'UserAdminView', 'UserAPIView')
+    'LanguageAdminView', 'LanguageAPIView', 'PermissionsUsersJSON',
+    'ProjectAdminView', 'ProjectAPIView', 'UserAdminView', 'UserAPIView')
