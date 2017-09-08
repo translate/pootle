@@ -21,9 +21,13 @@
 {% assets 'js_admin_general_app' %}
 <script type="text/javascript" src="{{ ASSET_URL }}"></script>
 {% endassets %}
+{% assets 'js_admin_app' %}
+<script type="text/javascript" src="{{ ASSET_URL }}"></script>
+{% endassets %}
 <script type="text/javascript">
   $(function () {
     PTL.commonAdmin.init({page: 'formset'});
+    PTL.userAdmin.init();
   });
 </script>
 {% endblock %}
