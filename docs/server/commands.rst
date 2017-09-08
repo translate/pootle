@@ -1031,6 +1031,7 @@ To interact with Pootle FS we use multiple subcommands:
   * :djadmin:`add` - Add a store from Pootle to the filesystem
   * :djadmin:`merge` - Handle conflicts in stores and files
   * :djadmin:`rm` - Remove a store and file from both Pootle and the filesystem
+  * :djadmin:`resolve` - Revert a staged action
   * :djadmin:`unstage` - Revert a staged action
 
 * Execute:
