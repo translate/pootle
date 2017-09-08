@@ -14,7 +14,7 @@ from django.utils.translation import LANGUAGE_SESSION_KEY
 from pootle.i18n.override import (get_lang_from_cookie,
                                   get_lang_from_http_header,
                                   get_language_from_request,
-                                  get_lang_from_session)
+                                  get_lang_from_session, supported_langs)
 
 
 SUPPORTED_LANGUAGES = {
@@ -177,6 +177,8 @@ def test_get_lang_from_http_header(rf):
 
 
 def test_get_language_from_request(rf):
+    settings_lang = settings.LANGUAGE_CODE
+    supported = dict(supported_langs())  # Get Django supported languages.
     request = rf.get("")
 
     # Ensure the response doesn't come from any of the `lang_getter` functions.
@@ -185,12 +187,13 @@ def test_get_language_from_request(rf):
     assert 'HTTP_ACCEPT_LANGUAGE' not in request.META
 
     # Test default server language fallback.
-    SUPPORTED_LANGUAGES[settings.LANGUAGE_CODE] = settings.LANGUAGE_CODE
-    assert settings.LANGUAGE_CODE in SUPPORTED_LANGUAGES
-    assert (get_language_from_request(request, SUPPORTED_LANGUAGES) ==
-            settings.LANGUAGE_CODE)
+    settings.LANGUAGE_CODE = 'it'
+    assert settings.LANGUAGE_CODE in supported
+    assert get_language_from_request(request) == settings.LANGUAGE_CODE
 
     # Test ultimate fallback.
-    SUPPORTED_LANGUAGES.pop(settings.LANGUAGE_CODE)
-    assert settings.LANGUAGE_CODE not in SUPPORTED_LANGUAGES
-    assert get_language_from_request(request, SUPPORTED_LANGUAGES) == 'en-us'
+    settings.LANGUAGE_CODE = 'FAIL-BABY-FAIL'
+    assert settings.LANGUAGE_CODE not in supported
+    assert get_language_from_request(request) == 'en-us'
+
+    settings.LANGUAGE_CODE = settings_lang
