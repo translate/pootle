@@ -57,29 +57,21 @@ def test_form_fs_project_admin(no_fs_plugins, project0):
         def fs_url_validator_getter(**kwargs_):
             return DummyURLValidator
 
+        project0.config["pootle_fs.fs_type"] = "dummy2"
         form = ProjectFSAdminForm(
             project=project0,
             data=dict(
                 fs_url="/tmp/dummy2",
-                fs_type="dummy2",
                 translation_mapping=(
                     "/some/path/to/<language_code>/<filename>.<ext>")))
         assert form.is_valid()
         assert form.fs_path_validator is TranslationMappingValidator
-        fs_type_choices = list(
-            (plugin_type, plugin.name or plugin.fs_type)
-            for plugin_type, plugin
-            in fs_plugins.gather().items())
-        assert list(form.fs_type_choices) == fs_type_choices
-        assert list(form.fields["fs_type"].choices) == fs_type_choices
-        assert form.fields["fs_type"].initial == "dummy1_plugin"
         assert form.fields["fs_url"].initial == "/foo/bar"
         assert form.fields["translation_mapping"].initial == (
             "/<language_code>/<filename>.<ext>")
         assert isinstance(
             form.fs_url_validator, DummyURLValidator)
         form.save()
-        assert project0.config["pootle_fs.fs_type"] == "dummy2"
         assert project0.config["pootle_fs.fs_url"] == "/tmp/dummy2"
         assert project0.config["pootle_fs.translation_mappings"] == dict(
             default="/some/path/to/<language_code>/<filename>.<ext>")
@@ -116,32 +108,26 @@ def test_form_fs_project_bad(no_fs_plugins, project0):
         def fs_url_validator_getter(**kwargs_):
             return DummyURLValidator
 
+        project0.config["pootle_fs.fs_type"] = "dummy1"
         form = ProjectFSAdminForm(
             project=project0,
             data={})
         assert not form.is_valid()
         assert (
             sorted(form.errors.keys())
-            == ['fs_type', 'fs_url', 'translation_mapping'])
-        form = ProjectFSAdminForm(
-            project=project0,
-            data=dict(fs_type="DOES_NOT_EXIST"))
-        assert not form.is_valid()
-        assert (
-            sorted(form.errors.keys())
-            == ['fs_type', 'fs_url', 'translation_mapping'])
+            == ['fs_url', 'translation_mapping'])
         form = ProjectFSAdminForm(
             project=project0,
             data=dict(
                 fs_type="DOES_NOT_EXIST",
                 fs_url="foo/bar"))
         assert not form.is_valid()
-        assert sorted(form.errors.keys()) == ["fs_type", "translation_mapping"]
+        assert sorted(form.errors.keys()) == ["translation_mapping"]
+        project0.config["pootle_fs.fs_type"] = "dummy2"
         form = ProjectFSAdminForm(
             project=project0,
             data=dict(
                 translation_mapping="/good/path/<language_code>/<filename>.<ext>",
-                fs_type="dummy2",
                 fs_url="DONT_SET_THIS"))
         assert not form.is_valid()
         assert form.errors.keys() == ["fs_url"]
