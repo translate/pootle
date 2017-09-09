@@ -1662,7 +1662,6 @@ PTL.editor = {
     unit.setTranslation(data.newtargets);
     unit.set('isfuzzy', this.isFuzzy());
     $('.translate-container').toggleClass('error', hasCriticalChecks);
-
     if (hasCriticalChecks) {
       _refreshChecksSnippet(data.checks);
     } else {
@@ -1724,8 +1723,28 @@ PTL.editor = {
       $.history.load(newHash);
       this.setOffset(newUnit.id);
     } else if (opts.isSubmission) {
-      cookie('finished', '1', { path: '/' });
-      window.location.href = this.backToBrowserEl.getAttribute('href');
+      const reqData = {
+        path: this.settings.pootlePath,
+      };
+      assign(reqData, this.getReqData());
+      reqData.filter = 'incomplete';
+      const $this = this;
+      UnitAPI.fetchUnits(reqData).then((data) => {
+        if (data.total === 0) {
+          cookie('finished', '1', { path: '/' });
+          window.location.href = $this.backToBrowserEl.getAttribute('href');
+        } else {
+          // reload check data on the current unit
+          UnitAPI.fetchUnit($this.units.getCurrent().id)
+            .then(
+              (unitData) => {
+                $this.setEditUnit(unitData);
+                $this.renderUnit();
+              },
+              $this.error
+            );
+        }
+      });
     }
     return true;
   },
