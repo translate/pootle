@@ -27,7 +27,6 @@ def test_sync_stores_noargs(capfd, tmpdir):
     out, err = capfd.readouterr()
     # FIXME we should work out how to get something here
     assert out == ''
-    assert err == ''
 
 
 @pytest.mark.cmd
