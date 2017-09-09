@@ -28,9 +28,7 @@ class Command(PootleCommand):
             action='store_true',
             dest='overwrite',
             default=False,
-            help="Don't just save translations, but "
-                 "overwrite files to reflect state in database",
-        )
+            help="This option has been removed.")
         parser.add_argument(
             '--skip-missing',
             action='store_true',
@@ -43,10 +41,20 @@ class Command(PootleCommand):
             action='store_true',
             dest='force',
             default=False,
-            help="Don't ignore stores synced after last change",
-        )
+            help="This option has been removed.")
 
     warn_on_conflict = []
+
+    def handle(self, **options):
+        logger.warn(
+            "The sync_stores command is deprecated, use pootle fs instead")
+        if options["force"]:
+            logger.warn(
+                "The force option no longer has any affect on this command")
+        if options["overwrite"]:
+            logger.warn(
+                "The overwrite option no longer has any affect on this command")
+        super(Command, self).handle(**options)
 
     def handle_all_stores(self, translation_project, **options):
         path_glob = "%s*" % translation_project.pootle_path
@@ -64,12 +72,4 @@ class Command(PootleCommand):
                     translation_project.project.pk)
         if not options["skip_missing"]:
             plugin.add(pootle_path=path_glob, update="fs")
-        if options["overwrite"]:
-            plugin.resolve(
-                pootle_path=path_glob,
-                pootle_wins=True)
         plugin.sync(pootle_path=path_glob, update="fs")
-        if options["force"]:
-            # touch the timestamps on disk for files that
-            # werent updated
-            pass
