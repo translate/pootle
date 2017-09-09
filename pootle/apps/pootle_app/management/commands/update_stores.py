@@ -40,9 +40,7 @@ class Command(PootleCommand):
             action='store_true',
             dest='force',
             default=False,
-            help="Unconditionally process all files (even if they "
-                 "appear unchanged).",
-        )
+            help="This option has been removed.")
 
     def handle_translation_project(self, translation_project, **options):
         """
@@ -51,7 +49,9 @@ class Command(PootleCommand):
         plugin = FSPlugin(translation_project.project)
         plugin.add(pootle_path=path_glob, update="pootle")
         plugin.rm(pootle_path=path_glob, update="pootle")
-        plugin.resolve(pootle_path=path_glob)
+        plugin.resolve(
+            pootle_path=path_glob,
+            merge=not options["overwrite"])
         plugin.sync(pootle_path=path_glob, update="pootle")
 
     def _parse_tps_to_create(self, project):
@@ -79,6 +79,11 @@ class Command(PootleCommand):
                 project=project)
 
     def handle_all(self, **options):
+        logger.warn(
+            "The update_stores command is deprecated, use pootle fs instead")
+        if options["force"]:
+            logger.warn(
+                "The force option no longer has any affect on this command")
         projects = (
             Project.objects.filter(code__in=self.projects)
             if self.projects
