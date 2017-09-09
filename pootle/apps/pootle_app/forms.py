@@ -158,4 +158,4 @@ class PermissionsUsersSearchForm(forms.Form):
                 dict(id=int(m["id"]), text=m["username"])
                 for m
                 in (users.filter(username__contains=self.cleaned_data["q"])
-                         .values("id", "username"))])
+                         .values("id", "username").order_by("username"))])
