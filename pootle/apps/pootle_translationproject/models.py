@@ -250,11 +250,20 @@ class TranslationProject(models.Model, CachedTreeItem):
         pootle_path = ".".join(
             [posixpath.splitext(pootle_path)[0],
              template_store.filetype.extension.name])
-        store, __ = self.stores.get_or_create(
-            parent=self.create_parent_dirs(pootle_path),
-            pootle_path=pootle_path,
-            name=posixpath.basename(pootle_path))
-        return store
+        name = posixpath.basename(pootle_path)
+        if name in ["template.po", "templates.po"]:
+            # gnu-style layout
+            # use language code instead of template name
+            name = ".".join(
+                [self.language.code,
+                 template_store.filetype.extension.name])
+            dirname = posixpath.dirname(pootle_path)
+            pootle_path = posixpath.join(dirname, name)
+        if not self.stores.filter(pootle_path=pootle_path).exists():
+            return self.stores.create(
+                parent=self.create_parent_dirs(pootle_path),
+                pootle_path=pootle_path,
+                name=name)
 
     def init_from_templates(self):
         """Initializes the current translation project files using
@@ -262,11 +271,12 @@ class TranslationProject(models.Model, CachedTreeItem):
         """
         template_stores = self.templates_tp.stores.live().select_related(
             "filetype__template_extension",
-            "filetype__extension")
+            "filetype__extension").order_by("creation_time")
         for template_store in template_stores.iterator():
             new_store = self.init_store_from_template(template_store)
-            new_store.update(
-                new_store.deserialize(template_store.serialize()))
+            if new_store:
+                new_store.update(
+                    new_store.deserialize(template_store.serialize()))
 
     # # # TreeItem
     def get_children(self):
