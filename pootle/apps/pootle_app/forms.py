@@ -12,9 +12,10 @@ from collections import OrderedDict
 
 from django import forms
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 
 from pootle.i18n.gettext import ugettext_lazy as _
-from pootle_fs.delegate import fs_plugins
+from pootle_fs.delegate import fs_plugins, fs_url_validator
 from pootle_language.models import Language
 from pootle_project.models import Project
 from pootle_store.models import Store
@@ -53,13 +54,16 @@ class LanguageForm(forms.ModelForm):
 class ProjectForm(forms.ModelForm):
 
     source_language = forms.ModelChoiceField(queryset=Language.objects.none())
-    fs_plugin = forms.ChoiceField(choices=[])
+    fs_plugin = forms.ChoiceField(choices=[], required=True)
+    fs_url = forms.CharField(required=True)
 
     class Meta(object):
         model = Project
-        fields = ('id', 'code', 'fullname', 'checkstyle',
-                  'filetypes', 'fs_plugin', 'source_language', 'ignoredfiles',
-                  'report_email', 'screenshot_search_prefix', 'disabled',)
+        fields = (
+            'id', 'code', 'fullname', 'checkstyle',
+            'filetypes', 'fs_plugin', 'fs_url', 'source_language',
+            'ignoredfiles', 'report_email', 'screenshot_search_prefix',
+            'disabled',)
 
     def __init__(self, *args, **kwargs):
         super(ProjectForm, self).__init__(*args, **kwargs)
@@ -92,9 +96,26 @@ class ProjectForm(forms.ModelForm):
     def clean_code(self):
         return self.cleaned_data['code'].strip()
 
+    def clean(self):
+        fs_plugin = self.cleaned_data.get("fs_plugin")
+        if not fs_plugin:
+            return
+        plugin = fs_plugins.gather()[fs_plugin]
+        fs_url = self.cleaned_data.get("fs_url")
+        if not fs_url:
+            return
+        validator = fs_url_validator.get(plugin)()
+        try:
+            validator.validate(fs_url)
+        except ValidationError:
+            self.errors["fs_url"] = self.error_class(
+                [_("Invalid fs url or path for plugin '%s'",
+                   self.cleaned_data["fs_plugin"])])
+
     def save(self, commit=True):
         project = super(ProjectForm, self).save(commit=commit)
         project.config["pootle_fs.fs_type"] = self.cleaned_data["fs_plugin"]
+        project.config["pootle_fs.fs_url"] = self.cleaned_data["fs_url"]
         return project
 
 
