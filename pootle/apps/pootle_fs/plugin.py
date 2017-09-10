@@ -13,6 +13,7 @@ import uuid
 
 from bulk_update.helper import bulk_update
 
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db import transaction
 from django.utils.functional import cached_property
@@ -82,7 +83,16 @@ class Plugin(object):
 
     @property
     def fs_url(self):
-        return self.project.config["pootle_fs.fs_url"]
+        fs_type = self.project.config["pootle_fs.fs_type"]
+        fs_url = self.project.config["pootle_fs.fs_url"]
+        parse_placeholder = (
+            fs_type == "localfs"
+            and fs_url.startswith("{POOTLE_TRANSLATION_DIRECTORY}"))
+        if parse_placeholder:
+            return os.path.join(
+                settings.POOTLE_TRANSLATION_DIRECTORY,
+                fs_url[30:])
+        return fs_url
 
     @property
     def fs_revision(self):
