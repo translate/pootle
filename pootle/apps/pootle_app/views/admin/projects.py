@@ -65,4 +65,6 @@ class ProjectAPIView(SuperuserRequiredMixin, APIView):
     page_size = 10
     search_fields = ('code', 'fullname', 'disabled')
     m2m = ("filetypes", )
-    config = (("fs_plugin", "pootle_fs.fs_type"), )
+    config = (
+        ("fs_plugin", "pootle_fs.fs_type"),
+        ("fs_url", "pootle_fs.fs_url"))
