@@ -10,14 +10,12 @@ import uuid
 from collections import Counter, OrderedDict
 
 from django import forms
-from django.utils.functional import cached_property
 
 from pootle.core.delegate import revision
 from pootle.i18n.gettext import ugettext_lazy as _
 from pootle_language.models import Language
 
-from .delegate import (
-    fs_plugins, fs_translation_mapping_validator, fs_url_validator)
+from .delegate import fs_translation_mapping_validator
 
 
 FS_CHOICES = (
@@ -33,10 +31,6 @@ FS_CHOICES = (
 
 class ProjectFSAdminForm(forms.Form):
 
-    fs_url = forms.CharField(
-        label=_("Backend URL or path"),
-        help_text=_(
-            "The URL or path to your translation files"))
     translation_mapping_presets = forms.ChoiceField(
         label=_("Translation mapping presets"),
         required=False,
@@ -59,26 +53,15 @@ class ProjectFSAdminForm(forms.Form):
         self.project = kwargs.pop("project")
         super(ProjectFSAdminForm, self).__init__(*args, **kwargs)
 
-        self.fields["fs_url"].initial = self.project.config.get("pootle_fs.fs_url")
         translation_mapping = (
             self.project.config.get("pootle_fs.translation_mappings"))
         if translation_mapping:
             self.fields["translation_mapping"].initial = (
                 translation_mapping.get("default"))
 
-    @cached_property
-    def fs_plugin(self):
-        return fs_plugins.gather()[
-            self.project.config["pootle_fs.fs_type"]]
-
     @property
     def fs_path_validator(self):
         return fs_translation_mapping_validator.get()
-
-    @cached_property
-    def fs_url_validator(self):
-        validator = fs_url_validator.get(self.fs_plugin)
-        return validator and validator()
 
     def clean(self):
         if not hasattr(self, "cleaned_data") or not self.cleaned_data:
@@ -89,21 +72,8 @@ class ProjectFSAdminForm(forms.Form):
                     self.cleaned_data["translation_mapping"]).validate()
             except ValueError as e:
                 self.add_error("translation_mapping", e)
-        if not self.fs_url_validator or not self.cleaned_data.get("fs_url"):
-            return
-        try:
-            self.fs_url_validator.validate(self.cleaned_data["fs_url"])
-        except forms.ValidationError as e:
-            self.add_error(
-                "fs_url",
-                forms.ValidationError(
-                    "Incorrect URL or path ('%s') for plugin type '%s': %s"
-                    % (self.cleaned_data.get("fs_url"),
-                       self.fs_plugin.fs_type,
-                       e)))
 
     def save(self):
-        self.project.config["pootle_fs.fs_url"] = self.cleaned_data["fs_url"]
         self.project.config["pootle_fs.translation_mappings"] = dict(
             default=self.cleaned_data["translation_mapping"])
 
