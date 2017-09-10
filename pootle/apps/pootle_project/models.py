@@ -70,9 +70,7 @@ class ProjectManager(models.Manager):
         if project.config["pootle_fs.fs_type"] == "localfs":
             project.config["pootle_fs.fs_url"] = kwargs.pop(
                 "fs_url",
-                os.path.join(
-                    settings.POOTLE_TRANSLATION_DIRECTORY,
-                    project.code))
+                "{POOTLE_TRANSLATION_DIRECTORY}%s" % project.code)
         return project
 
     def get_or_create(self, *args, **kwargs):
