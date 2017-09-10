@@ -59,5 +59,8 @@ class LocalFSUrlValidator(object):
     help_text = "Enter an absolute path to a directory on your filesystem"
 
     def validate(self, url):
-        if not url.startswith("/"):
+        is_valid = (
+            url.startswith("/")
+            or url.startswith("{POOTLE_TRANSLATION_DIRECTORY}"))
+        if not is_valid:
             raise forms.ValidationError(self.help_text)
