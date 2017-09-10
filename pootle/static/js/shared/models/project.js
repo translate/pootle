@@ -23,6 +23,8 @@ export const Project = Backbone.Model.extend({
     filetypes: [],
     fs_plugin: 'localfs',
     fs_url: '',
+    fs_preset: '',
+    fs_mapping: '',
     screenshot_search_prefix: '',
     disabled: false,
   },
