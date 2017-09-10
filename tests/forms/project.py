@@ -22,6 +22,7 @@ def test_clean_code_invalid(reserved_code, format_registry):
         'checkstyle': PROJECT_CHECKERS.keys()[0],
         'fullname': 'Foo',
         'fs_plugin': "localfs",
+        'fs_mapping': "/<language_code>.<ext>",
         'fs_url': "{POOTLE_TRANSLATION_DIRECTORY}%s" % reserved_code,
         'filetypes': [format_registry["po"]["pk"]],
         'source_language': 1}
@@ -39,6 +40,7 @@ def test_clean_code_blank_invalid(format_registry):
         'fullname': 'Foo',
         'fs_plugin': "localfs",
         'fs_url': "{POOTLE_TRANSLATION_DIRECTORY}foo",
+        'fs_mapping': "/<language_code>.<ext>",
         'filetypes': [format_registry["po"]["pk"]],
         'source_language': 1}
     form = ProjectForm(form_data)
@@ -55,6 +57,7 @@ def test_clean_localfiletype_invalid(format_registry):
         'fullname': 'Foo',
         'fs_plugin': "localfs",
         'fs_url': "{POOTLE_TRANSLATION_DIRECTORY}foo",
+        'fs_mapping': "/<language_code>.<ext>",
         'filetypes': ["NO_SUCH_FORMAT"],
         'source_language': 1}
     form = ProjectForm(form_data)
@@ -72,6 +75,7 @@ def test_project_form_bad_filetype_removal(format_registry):
         'disabled': False,
         'fs_plugin': "localfs",
         'fs_url': "{POOTLE_TRANSLATION_DIRECTORY}project0",
+        'fs_mapping': "/<language_code>.<ext>",
         'filetypes': [Format.objects.get(name="xliff").pk],
         'source_language': 1,
         'screenshot_search_prefix': "",
@@ -97,6 +101,7 @@ def test_project_form_change_filetypes(format_registry):
         'filetypes': filetypes,
         'fs_plugin': "localfs",
         'fs_url': "{POOTLE_TRANSLATION_DIRECTORY}project0",
+        'fs_mapping': "/<language_code>.<ext>",
         'source_language': 1,
         'screenshot_search_prefix': "",
         'ignoredfiles': "",
@@ -117,6 +122,7 @@ def test_form_project_plugin_missing(format_registry):
         'checkstyle': PROJECT_CHECKERS.keys()[0],
         'fullname': 'Foo',
         'fs_url': "{POOTLE_TRANSLATION_DIRECTORY}foo0",
+        'fs_mapping': "/<language_code>.<ext>",
         'filetypes': [format_registry["po"]["pk"]],
         'source_language': 1}
     form = ProjectForm(form_data)
@@ -133,6 +139,7 @@ def test_form_project_plugin_invalid(format_registry):
         'fullname': 'Foo',
         'fs_plugin': "DOES NOT EXIST",
         'fs_url': "{POOTLE_TRANSLATION_DIRECTORY}foo0",
+        'fs_mapping': "/<language_code>.<ext>",
         'filetypes': [format_registry["po"]["pk"]],
         'source_language': 1}
     form = ProjectForm(form_data)
@@ -149,6 +156,7 @@ def test_form_project_fs_url(format_registry):
         'fullname': 'Foo',
         'fs_plugin': "localfs",
         'fs_url': "{POOTLE_TRANSLATION_DIRECTORY}foo0",
+        'fs_mapping': "/<language_code>.<ext>",
         'filetypes': [format_registry["po"]["pk"]],
         'source_language': 1}
     form = ProjectForm(form_data)
