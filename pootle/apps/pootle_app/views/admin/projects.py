@@ -12,7 +12,9 @@ from pootle.core.delegate import formats
 from pootle.core.views import APIView
 from pootle.core.views.mixins import SuperuserRequiredMixin
 from pootle_app.forms import ProjectForm
+from pootle_config.utils import ObjectConfig
 from pootle_fs.delegate import fs_plugins
+from pootle_fs.presets import FS_PRESETS
 from pootle_language.models import Language
 from pootle_project.models import PROJECT_CHECKERS, Project
 
@@ -42,13 +44,14 @@ class ProjectAdminView(SuperuserRequiredMixin, TemplateView):
             for checker
             in sorted(PROJECT_CHECKERS.keys())]
         plugin_choices = sorted([(x, x) for x in fs_plugins.gather()])
-
+        fs_presets = FS_PRESETS
         return {
             'page': 'admin-projects',
             'form_choices': {
                 'checkstyle': project_checker_choices,
                 'filetypes': filetypes,
                 'fs_plugin': plugin_choices,
+                'fs_preset': fs_presets,
                 'source_language': language_choices,
                 'defaults': {
                     'source_language': default_language,
@@ -67,4 +70,14 @@ class ProjectAPIView(SuperuserRequiredMixin, APIView):
     m2m = ("filetypes", )
     config = (
         ("fs_plugin", "pootle_fs.fs_type"),
-        ("fs_url", "pootle_fs.fs_url"))
+        ("fs_url", "pootle_fs.fs_url"),
+        ("fs_mapping", "pootle_fs.translation_mappings"))
+
+    def serialize_config(self, info, item):
+        config = ObjectConfig(item)
+        for k, v in self.config:
+            if k == "fs_mapping":
+                mapping = config.get(v) or {}
+                info[k] = mapping.get("default")
+            else:
+                info[k] = config.get(v)
