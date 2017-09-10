@@ -25,7 +25,7 @@ const ProjectForm = React.createClass({
   mixins: [ModelFormMixin],
 
   fields: ['code', 'fullname', 'checkstyle', 'filetypes', 'fs_plugin',
-           'fs_url', 'source_language', 'ignoredfiles', 'report_email',
+           'fs_url', 'fs_mapping', 'source_language', 'ignoredfiles', 'report_email',
            'screenshot_search_prefix', 'disabled'],
 
 
@@ -51,13 +51,26 @@ const ProjectForm = React.createClass({
     }
   },
 
+  handlePresetChange(mapping) {
+    const formData = this.state.formData;
+    formData.fs_mapping = mapping;
+    this.setState({ formData });
+  },
+
   /* Layout */
 
   render() {
     const model = this.getResource();
     const { errors } = this.state;
     const { formData } = this.state;
-
+    const presets = model.getFieldChoices('fs_preset');
+    let fsPreset = 'Custom';
+    for (let i = 0; i < presets.length; i++) {
+      const preset = presets[i];
+      if (preset.value === formData.fs_mapping) {
+        fsPreset = preset.label;
+      }
+    }
     return (
       <form
         method="post"
@@ -119,6 +132,22 @@ const ProjectForm = React.createClass({
             name="fs_url"
             errors={errors.fs_url}
             value={formData.fs_url}
+          />
+          <FormElement
+            type="select"
+            clearable={false}
+            options={model.getFieldChoices('fs_preset')}
+            label={gettext('Filesystem preset')}
+            onChange={this.handlePresetChange}
+            name="fs_preset"
+            value={fsPreset}
+          />
+          <FormElement
+            label={gettext('Filesystem mapping')}
+            handleChange={this.handleChange}
+            name="fs_mapping"
+            errors={errors.fs_mapping}
+            value={formData.fs_mapping}
           />
           <FormElement
             type="select"
