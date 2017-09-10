@@ -10,7 +10,7 @@ from translate.filters.decorators import Category
 from translate.storage import base
 
 from django.conf import settings
-from django.core.validators import MinValueValidator
+from django.core.validators import MaxLengthValidator, MinValueValidator
 from django.db import models
 
 from pootle.core.mixins import CachedTreeItem
@@ -138,10 +138,22 @@ class AbstractUnit(models.Model, base.TranslationUnit):
     target_length = models.SmallIntegerField(db_index=True, default=0,
                                              editable=False)
 
-    developer_comment = models.TextField(null=True, blank=True)
-    translator_comment = models.TextField(null=True, blank=True)
-    locations = models.TextField(null=True, editable=False)
-    context = models.TextField(null=True, editable=False)
+    developer_comment = models.TextField(
+        null=True,
+        blank=True,
+        validators=[MaxLengthValidator(4096)])
+    translator_comment = models.TextField(
+        null=True,
+        blank=True,
+        validators=[MaxLengthValidator(4096)])
+    locations = models.TextField(
+        null=True,
+        editable=False,
+        validators=[MaxLengthValidator(4096)])
+    context = models.TextField(
+        null=True,
+        editable=False,
+        validators=[MaxLengthValidator(4096)])
 
     state = models.IntegerField(null=False, default=UNTRANSLATED,
                                 db_index=True)
@@ -169,7 +181,7 @@ class AbstractQualityCheck(models.Model):
         db_index=True,
         on_delete=models.CASCADE)
     category = models.IntegerField(null=False, default=Category.NO_CATEGORY)
-    message = models.TextField()
+    message = models.TextField(validators=[MaxLengthValidator(4096)])
     false_positive = models.BooleanField(default=False, db_index=True)
 
 
