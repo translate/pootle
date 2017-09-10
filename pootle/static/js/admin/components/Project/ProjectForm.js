@@ -25,7 +25,7 @@ const ProjectForm = React.createClass({
   mixins: [ModelFormMixin],
 
   fields: ['code', 'fullname', 'checkstyle', 'filetypes', 'fs_plugin',
-           'source_language', 'ignoredfiles', 'report_email',
+           'fs_url', 'source_language', 'ignoredfiles', 'report_email',
            'screenshot_search_prefix', 'disabled'],
 
 
@@ -35,6 +35,21 @@ const ProjectForm = React.createClass({
     this.props.onSuccess(model);
   },
 
+  handleCodeChange(e) {
+    if (e.target.name === 'code') {
+      const formData = this.state.formData;
+      if (formData.fs_plugin === 'localfs') {
+        const localfsPrefix = '{POOTLE_TRANSLATION_DIRECTORY}';
+        const urlsToUpdate = ['', [localfsPrefix, this.state.formData.code].join('')];
+
+        if (urlsToUpdate.indexOf(formData.fs_url) !== -1) {
+          formData.code = e.target.value;
+          formData.fs_url = [localfsPrefix, e.target.value].join('');
+          this.setState({ formData });
+        }
+      }
+    }
+  },
 
   /* Layout */
 
@@ -47,6 +62,7 @@ const ProjectForm = React.createClass({
       <form
         method="post"
         id="item-form"
+        onChange={this.handleCodeChange}
         onSubmit={this.handleFormSubmit}
       >
         <div className="fields">
@@ -96,6 +112,13 @@ const ProjectForm = React.createClass({
             name="fs_plugin"
             errors={errors.fs_plugin}
             value={formData.fs_plugin}
+          />
+          <FormElement
+            label={gettext('Filesystem path/url')}
+            handleChange={this.handleChange}
+            name="fs_url"
+            errors={errors.fs_url}
+            value={formData.fs_url}
           />
           <FormElement
             type="select"
