@@ -224,9 +224,7 @@ class APIView(View):
         if self.m2m:
             self.serialize_m2m(result, queryset[0])
         if self.config:
-            config = ObjectConfig(queryset[0])
-            for k, v in self.config:
-                result[k] = config.get(v)
+            self.serialize_config(result, queryset[0])
         return result
 
     def _filter_keyword(self, queryset):
