@@ -56,6 +56,7 @@ class ProjectForm(forms.ModelForm):
     source_language = forms.ModelChoiceField(queryset=Language.objects.none())
     fs_plugin = forms.ChoiceField(choices=[], required=True)
     fs_url = forms.CharField(required=True)
+    fs_mapping = forms.CharField(required=True)
 
     class Meta(object):
         model = Project
@@ -96,6 +97,18 @@ class ProjectForm(forms.ModelForm):
     def clean_code(self):
         return self.cleaned_data['code'].strip()
 
+    def clean_fs_mapping(self):
+        fs_mapping = self.cleaned_data["fs_mapping"].strip()
+        bad = (
+            not fs_mapping.startswith("/")
+            or not fs_mapping.endswith(".<ext>")
+            or "<language_code>" not in fs_mapping)
+        if bad:
+            raise forms.ValidationError(
+                _('Filesystem mapping should start with "/", end with ".<ext>", '
+                  'and contain "<language_code>"'))
+        return fs_mapping
+
     def clean(self):
         fs_plugin = self.cleaned_data.get("fs_plugin")
         if not fs_plugin:
@@ -116,6 +129,8 @@ class ProjectForm(forms.ModelForm):
         project = super(ProjectForm, self).save(commit=commit)
         project.config["pootle_fs.fs_type"] = self.cleaned_data["fs_plugin"]
         project.config["pootle_fs.fs_url"] = self.cleaned_data["fs_url"]
+        project.config["pootle_fs.translation_mappings"] = dict(
+            default=self.cleaned_data["fs_mapping"])
         return project
 
 
