@@ -13,8 +13,6 @@ import pytest
 
 from pytest_pootle.factories import LanguageDBFactory
 
-from django import forms
-
 from pootle.core.delegate import revision
 from pootle.core.plugin import provider
 from pootle_fs.delegate import fs_plugins, fs_url_validator
@@ -61,18 +59,13 @@ def test_form_fs_project_admin(no_fs_plugins, project0):
         form = ProjectFSAdminForm(
             project=project0,
             data=dict(
-                fs_url="/tmp/dummy2",
                 translation_mapping=(
                     "/some/path/to/<language_code>/<filename>.<ext>")))
         assert form.is_valid()
         assert form.fs_path_validator is TranslationMappingValidator
-        assert form.fields["fs_url"].initial == "/foo/bar"
         assert form.fields["translation_mapping"].initial == (
             "/<language_code>/<filename>.<ext>")
-        assert isinstance(
-            form.fs_url_validator, DummyURLValidator)
         form.save()
-        assert project0.config["pootle_fs.fs_url"] == "/tmp/dummy2"
         assert project0.config["pootle_fs.translation_mappings"] == dict(
             default="/some/path/to/<language_code>/<filename>.<ext>")
 
@@ -83,61 +76,18 @@ def test_form_fs_project_admin(no_fs_plugins, project0):
 def test_form_fs_project_bad(no_fs_plugins, project0):
 
     with no_fs_plugins():
-
-        class Dummy1FSPlugin(object):
-            fs_type = "dummy1_plugin"
-            name = "dummy1"
-
-        class Dummy2FSPlugin(object):
-            fs_type = "dummy2_plugin"
-            name = "dummy2"
-
-        class DummyURLValidator(object):
-
-            def validate(self, v):
-                if v == "DONT_SET_THIS":
-                    raise forms.ValidationError("dont set it!")
-
-        @provider(fs_plugins)
-        def fs_plugin_provider(**kwargs_):
-            return dict(
-                dummy1=Dummy1FSPlugin,
-                dummy2=Dummy2FSPlugin)
-
-        @provider(fs_url_validator, sender=Dummy2FSPlugin)
-        def fs_url_validator_getter(**kwargs_):
-            return DummyURLValidator
-
-        project0.config["pootle_fs.fs_type"] = "dummy1"
         form = ProjectFSAdminForm(
             project=project0,
             data={})
         assert not form.is_valid()
         assert (
             sorted(form.errors.keys())
-            == ['fs_url', 'translation_mapping'])
-        form = ProjectFSAdminForm(
-            project=project0,
-            data=dict(
-                fs_type="DOES_NOT_EXIST",
-                fs_url="foo/bar"))
-        assert not form.is_valid()
-        assert sorted(form.errors.keys()) == ["translation_mapping"]
-        project0.config["pootle_fs.fs_type"] = "dummy2"
-        form = ProjectFSAdminForm(
-            project=project0,
-            data=dict(
-                translation_mapping="/good/path/<language_code>/<filename>.<ext>",
-                fs_url="DONT_SET_THIS"))
-        assert not form.is_valid()
-        assert form.errors.keys() == ["fs_url"]
+            == ['translation_mapping'])
         form = ProjectFSAdminForm(
             project=project0,
             data=dict(
                 translation_mapping=(
-                    "/good/path/<NO_language_code>/<filename>.<ext>"),
-                fs_type="dummy2",
-                fs_url="/good/path"))
+                    "/good/path/<NO_language_code>/<filename>.<ext>")))
         assert not form.is_valid()
         assert form.errors.keys() == ["translation_mapping"]
 
