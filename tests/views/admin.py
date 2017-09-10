@@ -22,6 +22,7 @@ from pootle.core.views.admin import PootleAdminFormView, PootleAdminView
 from pootle_app.models import PermissionSet
 from pootle_app.views.admin.util import form_set_as_table
 from pootle_fs.delegate import fs_plugins
+from pootle_fs.presets import FS_PRESETS
 from pootle_language.models import Language
 from pootle_project.models import PROJECT_CHECKERS, Project
 from pootle_translationproject.models import TranslationProject
@@ -302,6 +303,7 @@ def test_admin_view_projects(client, request_users, english):
             'checkstyle': project_checker_choices,
             'fs_plugin': plugin_choices,
             'filetypes': filetypes,
+            'fs_preset': FS_PRESETS,
             'source_language': language_choices,
             'defaults': {
                 'source_language': english.id}}}
