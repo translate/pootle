@@ -6,11 +6,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import os
 import re
 import urlparse
 from collections import OrderedDict
 
 from django import forms
+from django.conf import settings
 from django.contrib.auth import get_user_model
 
 from pootle.i18n.gettext import ugettext_lazy as _
@@ -93,8 +95,13 @@ class ProjectForm(forms.ModelForm):
         return self.cleaned_data['code'].strip()
 
     def save(self, commit=True):
+        created = bool(not self.instance.pk)
         project = super(ProjectForm, self).save(commit=commit)
         project.config["pootle_fs.fs_type"] = self.cleaned_data["fs_plugin"]
+        if created and self.cleaned_data["fs_plugin"] == "localfs":
+            project.config["pootle_fs.fs_url"] = os.path.join(
+                settings.POOTLE_TRANSLATION_DIRECTORY,
+                project.code)
         return project
 
 
