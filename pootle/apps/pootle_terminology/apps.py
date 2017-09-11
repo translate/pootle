@@ -15,7 +15,7 @@ class PootleTerminologyConfig(AppConfig):
 
     name = "pootle_terminology"
     verbose_name = "Pootle Terminology"
-    version = "0.0.9"
+    version = "0.1.0"
 
     def ready(self):
         importlib.import_module("pootle_terminology.getters")

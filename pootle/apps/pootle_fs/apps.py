@@ -15,7 +15,7 @@ class PootleFSConfig(AppConfig):
 
     name = "pootle_fs"
     verbose_name = "Pootle Filesystem synchronisation"
-    version = "0.1.1"
+    version = "0.1.2"
 
     def ready(self):
         importlib.import_module("pootle_fs.models")
