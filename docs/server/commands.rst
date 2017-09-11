@@ -938,6 +938,12 @@ Available options:
 
   Creates a development configuration instead.
 
+.. django-admin-option:: --yes
+
+  .. versionadded:: 2.9
+
+  Answer 'yes' to any questions blocking overwrite of existing config files.
+
 
 .. django-admin:: initdb
 

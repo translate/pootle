@@ -121,6 +121,12 @@ def init_command(parser, args):
 
     src_dir = os.path.abspath(os.path.dirname(__file__))
     add_help_to_parser(parser)
+    parser.add_argument("--yes", "-y",
+                        dest='overwrite_template',
+                        default=False,
+                        action='store_true',
+                        help=(u"Overwrite existing configuration file "
+                              "without asking."))
     parser.add_argument("--dev",
                         dest='settings_template',
                         default=os.path.join(src_dir,
@@ -153,7 +159,9 @@ def init_command(parser, args):
 
     if os.path.exists(config_path):
         resp = None
-        if args.noinput:
+        if args.overwrite_template:
+            resp = "yes"
+        elif args.noinput:
             resp = 'n'
         else:
             resp = input("File already exists at %r, overwrite? [Ny] "
