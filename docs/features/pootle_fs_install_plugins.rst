@@ -3,16 +3,14 @@
 Install Pootle FS plugins for VCS
 =================================
 
-To work with VCS systems Pootle FS requires some additional packages and
-configuration.
+.. note:: Pootle FS doesn't need any plugin to be installed for synchronizing
+   with the local file system. If this is all you need then you can safely skip
+   this.
 
-
-Install the Pootle FS plugins
------------------------------
 
 Pootle FS provides support for different VCS systems through plugins, so in
-order to work with a specific VCS it is necessary to install its plugin.  For
-examples for Git:
+order for Pootle to work with a specific VCS it is necessary to install its
+plugin.  For examples for Git:
 
 - Install the plugin:
 
