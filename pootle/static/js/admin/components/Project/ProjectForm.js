@@ -127,7 +127,7 @@ const ProjectForm = React.createClass({
             value={formData.fs_plugin}
           />
           <FormElement
-            label={gettext('Filesystem path/url')}
+            label={gettext('Path or URL')}
             handleChange={this.handleChange}
             name="fs_url"
             errors={errors.fs_url}

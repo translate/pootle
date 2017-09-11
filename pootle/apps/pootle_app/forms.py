@@ -122,8 +122,8 @@ class ProjectForm(forms.ModelForm):
             validator.validate(fs_url)
         except ValidationError:
             self.errors["fs_url"] = self.error_class(
-                [_("Invalid fs url or path for plugin '%s'",
-                   self.cleaned_data["fs_plugin"])])
+                [_("Invalid Path or URL for chosen Filesystem backend "
+                   "'%s'") % self.cleaned_data["fs_plugin"]])
 
     def save(self, commit=True):
         project = super(ProjectForm, self).save(commit=commit)
