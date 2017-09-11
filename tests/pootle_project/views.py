@@ -20,7 +20,7 @@ from pootle.core.signals import update_revisions
 from pootle.core.views.browse import StatsDisplay
 from pootle_app.models import Directory
 from pootle_misc.util import cmp_by_last_activity
-from pootle_project.models import ProjectResource, ProjectSet
+from pootle_project.models import Project, ProjectResource, ProjectSet
 from pootle_project.views import ProjectBrowseView, ProjectsBrowseView
 from pootle_store.models import Store
 
@@ -253,3 +253,40 @@ def test_view_project_store_garbage(store0, client, request_users):
         with memusage() as usage:
             client.get(url)
         assert not usage["used"]
+
+
+@pytest.mark.django_db
+def test_view_projects_api(project0, client, request_users):
+    user = request_users["user"]
+    client.login(
+        username=user.username,
+        password=request_users["password"])
+    response = client.get(reverse('pootle-xhr-admin-projects'))
+    if not user.is_superuser:
+        assert response.status_code == 403
+        return
+    result = json.loads(response.content)
+    assert result["count"] == Project.objects.count()
+
+    for project in result["models"]:
+        if project["code"] == project0.code:
+            assert project["pk"] == project0.pk
+            assert project["checkstyle"] == project0.checkstyle
+            assert (
+                project["screenshot_search_prefix"]
+                == project0.screenshot_search_prefix)
+            assert project["ignoredfiles"] == project0.ignoredfiles
+            assert project["source_language"] == project0.source_language.pk
+            assert project["disabled"] == project0.disabled
+            assert project["report_email"] == project0.report_email
+            assert project["fs_plugin"] == project0.config["pootle_fs.fs_type"]
+            assert project["fs_url"] == project0.config["pootle_fs.fs_url"]
+            assert (
+                project["fs_mapping"]
+                == project0.config[
+                    "pootle_fs.translation_mappings"]["default"])
+            assert (
+                project["filetypes"]
+                == [str(x)
+                    for x
+                    in project0.filetypes.values_list("pk", flat=True)])
