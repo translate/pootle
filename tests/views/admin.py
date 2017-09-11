@@ -243,7 +243,8 @@ def test_admin_view_project_delete_tp(english, client, admin):
     user = admin
     project = Project.objects.get(code="project0")
 
-    TranslationProject.objects.create(language=english, project=project)
+    tp = TranslationProject.objects.create(language=english, project=project)
+    project.config["pootle.core.lang_mapping"] = {tp.language.code: "foo"}
 
     client.login(
         username=user.username,
@@ -269,6 +270,7 @@ def test_admin_view_project_delete_tp(english, client, admin):
         not in project.translationproject_set.values_list("pk", flat=True))
 
     _test_admin_view(response, project)
+    assert project.config["pootle.core.lang_mapping"] == {}
 
 
 @pytest.mark.django_db
