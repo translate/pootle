@@ -233,7 +233,8 @@ When the :option:`--reset` option is used , all score log data is removed and
 sync_stores
 ^^^^^^^^^^^
 
-.. versionchanged:: 2.9
+.. deprecated:: 2.9
+   Deprecated in favor of Pootle FS commands.
 
 
 .. note:: Since version 2.9 all projects are managed by Pootle FS and therefore
@@ -262,13 +263,13 @@ these parameters:
 
 .. django-admin-option:: --force
 
-  Synchronizes files even if nothing changed in the database.
+  .. versionchanged:: 2.9
+     This option has no effect anymore.
 
 .. django-admin-option:: --overwrite
 
-  Copies the current state of the DB stores (not only translations, but also
-  metadata) regardless if they have been modified since the last sync or
-  not. This operation will (over)write existing on-disk files.
+  .. versionchanged:: 2.9
+     This option has no effect anymore.
 
 .. django-admin-option:: --skip-missing
 
@@ -280,7 +281,8 @@ these parameters:
 update_stores
 ^^^^^^^^^^^^^
 
-.. versionchanged:: 2.9
+.. deprecated:: 2.9
+   Deprecated in favor of Pootle FS commands.
 
 
 .. note:: Since version 2.9 all projects are managed by Pootle FS and therefore
@@ -326,8 +328,8 @@ directly on the file system.
 
 .. django-admin-option:: --force
 
-  Updates in-DB translations even if the on-disk file hasn't been changed
-  since the last sync operation.
+  .. versionchanged:: 2.9
+     This option has no effect anymore.
 
 .. django-admin-option:: --overwrite
 
