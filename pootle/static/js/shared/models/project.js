@@ -45,10 +45,6 @@ export const Project = Backbone.Model.extend({
     return l(['', 'projects', this.get('code'), 'admin', 'permissions', ''].join('/'));
   },
 
-  getFSUrl() {
-    return l(['', 'admin', 'projects', this.get('code'), 'fs', ''].join('/'));
-  },
-
   getFieldChoices(fieldName) {
     if (this.fieldChoices && this.fieldChoices.hasOwnProperty(fieldName)) {
       return this.fieldChoices[fieldName].map((field) => ({
