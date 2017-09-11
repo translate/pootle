@@ -140,6 +140,8 @@ const ProjectForm = React.createClass({
             clearable={false}
             options={model.getFieldChoices('fs_preset')}
             label={gettext('Path mapping preset')}
+            // eslint-disable-next-line max-len
+            help={gettext('Presets for common Path mappings. Selecting one of these changes the "Path mapping" field below.')}
             onChange={this.handlePresetChange}
             name="fs_preset"
             value={fsPreset}
