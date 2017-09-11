@@ -150,6 +150,8 @@ const ProjectForm = React.createClass({
             label={gettext('Path mapping')}
             handleChange={this.handleChange}
             name="fs_mapping"
+            // eslint-disable-next-line max-len
+            help={gettext('Specifies the project layout using a glob like `/path/to/translation/files/<language_code>/<dir_path>/<filename>.<ext>` that must start with "/", end with ".<ext>", and contain "<language_code>".\n\n Selecting one of the available "Path mapping presets" above fills this field.\n\n If you are using the "localfs" Filesystem backend the "Path mapping" will be combined with the specified "Path or URL". For other backends the "Path mapping" will be relative to the root of the repository.')}
             errors={errors.fs_mapping}
             value={formData.fs_mapping}
           />
