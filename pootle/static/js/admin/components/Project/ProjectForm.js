@@ -130,6 +130,8 @@ const ProjectForm = React.createClass({
             label={gettext('Path or URL')}
             handleChange={this.handleChange}
             name="fs_url"
+            // eslint-disable-next-line max-len
+            help={gettext('Depending on the chosen "Filesystem backend" this must be either the path to the translation files in the disk, or the URL to the VCS repository. You can use the {POOTLE_TRANSLATION_DIRECTORY} placeholder in the Path if you are using the "localfs" Filesystem backend.')}
             errors={errors.fs_url}
             value={formData.fs_url}
           />
