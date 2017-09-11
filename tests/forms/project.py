@@ -172,3 +172,34 @@ def test_form_project_fs_url(format_registry):
     form = ProjectForm(form_data)
     assert not form.is_valid()
     assert form.errors.keys() == ["fs_url"]
+
+
+@pytest.mark.django_db
+def test_form_project_fs_mapping(format_registry):
+    form_data = {
+        'code': 'foo0',
+        'checkstyle': PROJECT_CHECKERS.keys()[0],
+        'fullname': 'Foo',
+        'fs_plugin': "localfs",
+        'fs_url': "{POOTLE_TRANSLATION_DIRECTORY}foo0",
+        'fs_mapping': "/<language_code>.<ext>",
+        'filetypes': [format_registry["po"]["pk"]],
+        'source_language': 1}
+    form = ProjectForm(form_data)
+    assert form.is_valid()
+    mapping_errors = {
+        'fs_mapping': [
+            'Filesystem mapping should start with "/", '
+            'end with ".<ext>", and contain "<language_code>"']}
+    form_data["fs_mapping"] = "<language_code>.<ext>"
+    form = ProjectForm(form_data)
+    assert not form.is_valid()
+    assert form.errors == mapping_errors
+    form_data["fs_mapping"] = "/<language_code>"
+    form = ProjectForm(form_data)
+    assert not form.is_valid()
+    assert form.errors == mapping_errors
+    form_data["fs_mapping"] = "/<foo_code>.<ext>"
+    form = ProjectForm(form_data)
+    assert not form.is_valid()
+    assert form.errors == mapping_errors
