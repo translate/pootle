@@ -129,11 +129,11 @@ necessary to set the the filesystem configuration. So now click on the
 .. image:: ../_static/pootle_fs_link.png
 
 
-* **Filesystem backend** to ``localfs``
-* **Backend URL or path** to the value of
+- **Filesystem backend** to ``localfs``
+- **Path or URL** to the value of
   :setting:`POOTLE_TRANSLATION_DIRECTORY` + project code, e.g.
   :file:`/path/to/pootle/translations/my-project` in our example
-* **Translation mapping presets** to ``GNU-style``
+- **Path mapping preset** to ``GNU style``
 
 And then click on the **Update filesystem configuration** button to save the
 Pootle FS configuration for the project.

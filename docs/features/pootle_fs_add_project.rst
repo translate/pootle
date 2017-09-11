@@ -38,17 +38,17 @@ is outlined here:
 
   - Set the **Filesystem backend** to ``localfs`` as we are working against
     files stored on the local filesystem.
-  - Set the **Backend URL or path** to point to the translation files on
+  - Set the **Path or URL** to point to the translation files on
     Pootle's local filesystem, e.g. ``/path/to/translations/MYPROJECT/``
-  - Set the **Translation path mapping** for your project, for example
+  - Set the **Path mapping** for your project, for example
     ``/<language_code>/<dir_path>/<filename>.<ext>`` or pick one of the
-    existing **Translation mapping presets**.
+    existing **Path mapping presets**.
 
   .. note:: If you are setting up Pootle FS for a VCS then configure as
      follows:
 
      - Set the **Filesystem backend** to the required VCS backend.
-     - Set the **Backend URL or path** to point to the repository, e.g.
+     - Set the **Path or URL** to point to the repository, e.g.
        ``git@github.com:user/repo.git``
 
 
