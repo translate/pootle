@@ -72,7 +72,7 @@ class TranslationProjectForm(forms.ModelForm):
         widget=forms.HiddenInput())
 
     fs_code = forms.CharField(
-        label="Filesystem code",
+        label=_("Filesystem language code"),
         required=False)
 
     class Meta(object):
