@@ -187,19 +187,15 @@ def test_form_project_fs_mapping(format_registry):
         'source_language': 1}
     form = ProjectForm(form_data)
     assert form.is_valid()
-    mapping_errors = {
-        'fs_mapping': [
-            'Filesystem mapping should start with "/", '
-            'end with ".<ext>", and contain "<language_code>"']}
     form_data["fs_mapping"] = "<language_code>.<ext>"
     form = ProjectForm(form_data)
     assert not form.is_valid()
-    assert form.errors == mapping_errors
+    assert 'fs_mapping' in form.errors
     form_data["fs_mapping"] = "/<language_code>"
     form = ProjectForm(form_data)
     assert not form.is_valid()
-    assert form.errors == mapping_errors
+    assert 'fs_mapping' in form.errors
     form_data["fs_mapping"] = "/<foo_code>.<ext>"
     form = ProjectForm(form_data)
     assert not form.is_valid()
-    assert form.errors == mapping_errors
+    assert 'fs_mapping' in form.errors

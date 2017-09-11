@@ -105,8 +105,8 @@ class ProjectForm(forms.ModelForm):
             or "<language_code>" not in fs_mapping)
         if bad:
             raise forms.ValidationError(
-                _('Filesystem mapping should start with "/", end with ".<ext>", '
-                  'and contain "<language_code>"'))
+                _('Path mapping must start with "/", end with ".<ext>", and '
+                  'contain "<language_code>"'))
         return fs_mapping
 
     def clean(self):

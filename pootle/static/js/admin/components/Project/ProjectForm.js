@@ -139,13 +139,13 @@ const ProjectForm = React.createClass({
             type="select"
             clearable={false}
             options={model.getFieldChoices('fs_preset')}
-            label={gettext('Filesystem preset')}
+            label={gettext('Path mapping preset')}
             onChange={this.handlePresetChange}
             name="fs_preset"
             value={fsPreset}
           />
           <FormElement
-            label={gettext('Filesystem mapping')}
+            label={gettext('Path mapping')}
             handleChange={this.handleChange}
             name="fs_mapping"
             errors={errors.fs_mapping}
