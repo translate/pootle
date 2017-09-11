@@ -10,9 +10,7 @@ from pootle.i18n.gettext import ugettext_lazy as _
 
 
 FS_PRESETS = (
-    ("/po/<language_code>.<ext>", _("GNU-style")),
-    ("/<language_code>/<dir_path>/<filename>.<ext>",
-     _("non GNU-style")),
-    ("/locale/<language_code>/LC_MESSAGES/<filename>.<ext>",
-     _("Django-style")),
+    ("/po/<language_code>.<ext>", _("GNU style")),
+    ("/<language_code>/<dir_path>/<filename>.<ext>", _("non-GNU style")),
+    ("/locale/<language_code>/LC_MESSAGES/<filename>.<ext>", _("Django style")),
     ("", _("Custom")))
