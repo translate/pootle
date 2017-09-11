@@ -29,10 +29,21 @@ Changes
     - Pootle no longer tries to first import existing translations from disk,
     - Pootle initializes the new languages using the templates in the database.
 
+  - Merged previously separated forms for handling Pootle FS specific settings
+    of projects into other existing forms:
+
+    - Merged project's Pootle FS backend configuration into project form.
+    - Merged project's languages mapping configuration into project's languages
+      form.
+
 - Several bugfixes for Pootle FS:
 
   - Fix handling of obsolete and unsynced units,
-  - Allow to sync to empty file.
+  - Allow to sync to empty file,
+  - Fix for initializing new languages from templates,
+  - When language mappings change now the disk files that are tracked are
+    immediately detected,
+  - Adjustments in migrations.
 
 - Serialization:
 
@@ -40,13 +51,44 @@ Changes
   - Allow serializing obsolete units,
   - Serialization and sync bugfixes.
 
+- Editor:
+
+  - No longer shows red background if all critical checks are muted.
+  - Don't redirect to browse view after translating last unit unless all
+    previous units have been translated.
+
+- Improved performance on permissions forms by using a live search field for
+  users.
 - Fixed issues with variables in translations.
+- Updated UI language discovery to try simpler language codes before trying a
+  fallback.
+- Limited several text fields in the models to 4096 characters.
 - Overall documentation review and updates.
+
+
+Command changes and additions
+-----------------------------
+
 - `pootle` command can now be run with no `VIRTUAL_ENV` environment variable
   set.
-- :djadmin:`sync_stores` and :djadmin:`update_stores` commands can now work
-  with projects managed by Pootle FS.
+- :djadmin:`sync_stores`:
+
+  - Has been deprecated in favor of Pootle FS commands,
+  - Can now work with projects managed by Pootle FS,
+  - Warns if there is any conflict between disk and database changes,
+  - The :option:`--force <sync_stores --force>` and
+    :option:`--overwrite <sync_stores --overwrite>` arguments no longer have
+    any effect in the command execution.
+
+- :djadmin:`update_stores`:
+
+  - Has been deprecated in favor of Pootle FS commands,
+  - Can now work with projects managed by Pootle FS,
+  - The :option:`--force <sync_stores --force>` argument no longer has any
+    effect in the command execution.
+
 - Removed ``changed_languages`` command. Use :djadmin:`list_languages` instead.
+- Added :option:`--yes <init --yes>` argument to :djadmin:`init` command.
 
 
 Credits
@@ -54,6 +96,6 @@ Credits
 
 This release was made possible by the following people:
 
-Ryan Northey, Leandro Regueiro, boite.
+Ryan Northey, Leandro Regueiro, Dwayne Bailey, Taras Semenenko, boite.
 
 And to all our bug finders, testers and translators, a Very BIG Thank You.
