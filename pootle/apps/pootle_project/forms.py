@@ -115,15 +115,15 @@ class TranslationProjectForm(forms.ModelForm):
                     or mapped_code in lang_codes)
                 if bad_fs_code:
                     self.errors["fs_code"] = self.error_class(
-                        ["Unable to add mapped code '%s' for language '%s'. "
-                         "Mapped filesystem codes must be unique and cannot be "
-                         "in use with an existing Translation Project"
-                         % (mapped_code,
-                            language.code)])
+                        [_("Unable to add mapped code '%(mapped_code)s' for "
+                           "language '%(code)s'. Mapped filesystem codes must "
+                           "be unique and cannot be in use with an existing "
+                           "Translation Project")
+                         % dict(mapped_code=mapped_code, code=language.code)])
             if language.code in mapping.values():
                 self.errors["language"] = self.error_class(
-                    ["Unable to add language '%s'. "
-                     "Another language is already mapped to this code"
+                    [_("Unable to add language '%s'. "
+                       "Another language is already mapped to this code")
                      % language.code])
 
     def save(self, response_url=None, commit=True):
