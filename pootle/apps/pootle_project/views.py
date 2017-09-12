@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+import posixpath
+
 from django.contrib import messages
 from django.forms.models import modelformset_factory
 from django.http import Http404
@@ -257,6 +259,31 @@ class ProjectAdminView(PootleAdminView):
             self.process_formset()
 
         formset = self.get_formset()
+        template_path = ""
+        layout_style = None
+        if not self.formset_extra:
+            layout_style = "nongnu"
+            mapping = self.object.config[
+                "pootle_fs.translation_mappings"]["default"]
+            gnustyle = (
+                "/" not in mapping[
+                    mapping.rfind("<language_code>") + 15:])
+            template_path = self.object.lang_mapper.get_upstream_code("templates")
+            if gnustyle:
+                layout_style = "gnu"
+                mapping_root, __ = posixpath.splitext(posixpath.basename(mapping))
+                template_path = mapping_root.replace(
+                    "<language_code>", template_path)
+                template_extensions = self.object.filetypes.values_list(
+                    "template_extension__name", flat=True)
+                template_path = ", ".join(
+                    ('"%(template_name)s.%(extension)s"'
+                     % dict(
+                         template_name=template_path,
+                         extension=ext))
+                    for ext in template_extensions)
+            else:
+                template_path = '"%s"' % template_path
         return {
             'page': 'admin-languages',
             'browse_url': (
@@ -274,6 +301,8 @@ class ProjectAdminView(PootleAdminView):
             'formset': formset,
             'objects': self.page,
             'error_msg': self.msg,
+            'template_path': template_path,
+            'layout_style': layout_style,
             'can_add': self.formset_extra}
 
     def get_formset(self, post=None):
