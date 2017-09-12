@@ -25,9 +25,8 @@ const ProjectForm = React.createClass({
   mixins: [ModelFormMixin],
 
   fields: ['code', 'fullname', 'checkstyle', 'filetypes', 'fs_plugin',
-           'fs_url', 'fs_mapping', 'source_language', 'ignoredfiles', 'report_email',
-           'screenshot_search_prefix', 'disabled'],
-
+           'fs_url', 'fs_mapping', 'template_name', 'source_language', 'ignoredfiles',
+           'report_email', 'screenshot_search_prefix', 'disabled'],
 
   /* Handlers */
 
@@ -148,6 +147,13 @@ const ProjectForm = React.createClass({
             name="fs_mapping"
             errors={errors.fs_mapping}
             value={formData.fs_mapping}
+          />
+          <FormElement
+            label={gettext('Template name')}
+            handleChange={this.handleChange}
+            name="template_name"
+            errors={errors.template_name}
+            value={formData.template_name}
           />
           <FormElement
             type="select"
