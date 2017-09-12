@@ -21,6 +21,7 @@ from pootle.core.url_helpers import split_pootle_path
 from pootle.core.views.admin import PootleAdminFormView, PootleAdminView
 from pootle_app.models import PermissionSet
 from pootle_app.views.admin.util import form_set_as_table
+from pootle_format.models import Format
 from pootle_fs.delegate import fs_plugins
 from pootle_fs.presets import FS_PRESETS
 from pootle_language.models import Language
@@ -311,3 +312,33 @@ def test_admin_view_projects(client, request_users, english):
                 'source_language': english.id}}}
     for k, v in expected.items():
         assert response.context_data[k] == v
+
+
+@pytest.mark.django_db
+def test_admin_view_project_templates(client, admin, project0, templates):
+    client.login(
+        username=admin.username,
+        password=TEST_USERS["admin"]["password"])
+    response = _admin_view_get(client, project0)
+    assert response.context["can_add"] is True
+    assert not response.context["template_path"]
+    assert not response.context["layout_style"]
+    project0.translationproject_set.get(
+        language__code="templates").delete()
+    response = _admin_view_get(client, project0)
+    assert response.context["can_add"] is False
+    assert response.context["layout_style"] == "nongnu"
+    assert response.context["template_path"] == '"templates"'
+
+    project0.config["pootle_fs.translation_mappings"] = dict(
+        default="/<language_code>.<ext>")
+    response = _admin_view_get(client, project0)
+    assert response.context["layout_style"] == "gnu"
+    assert response.context["template_path"] == '"templates.pot"'
+
+    project0.filetypes.add(Format.objects.get(name="xliff"))
+    response = _admin_view_get(client, project0)
+    assert response.context["layout_style"] == "gnu"
+    assert (
+        response.context["template_path"]
+        == u'"templates.pot", "templates.xliff"')
