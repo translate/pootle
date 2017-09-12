@@ -37,11 +37,10 @@ If there are untracked files you will want do some of these steps:
 3. Adding language mappings could correctly map FS and Pootle stores.
 
 
-Variations on the theme
------------------------
+.. _migrate_to_pootle_fs#adjust-existing-automation:
 
-Existing automation
-^^^^^^^^^^^^^^^^^^^
+Adjust existing automation
+--------------------------
 
 If you have scripts using :djadmin:`sync_stores` and :djadmin:`update_stores`
 then you might want to continue using those until you can migrate them to
@@ -61,14 +60,16 @@ files on disk will likely mess with direct Pootle FS change detection.
 You may want to look at the format adaptors for future massaging or formats.
 
 
+.. _migrate_to_pootle_fs#migrating-to-vcs:
+
 Migrating to version control
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+----------------------------
 
 With files moved to ``localfs`` it might be a good time to consider directly
 integrating with version control.
 
-1. Make sure you have installed the needed Pootle FS plugin for the version
-   control backend you are using.
+1. Make sure you have installed the needed Pootle FS :ref:`plugin for the
+   version control backend <pootle_fs_install_plugins>` you are using.
 2. (optional but recommended) Disable the project.
 3. Ensure you have synchronized all your files and committed them to your
    version control system.

@@ -206,7 +206,6 @@ If you run MySQL you will almost certainly need to make sure you have
 into the database.
 
 
-
 .. _upgrading#schema-migration:
 
 Migrate your database schema
