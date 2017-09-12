@@ -12,6 +12,7 @@ from django.forms.models import BaseModelFormSet
 
 from django_rq.queues import get_queue
 
+from pootle.core.signals import update_revisions
 from pootle.core.utils.db import useable_connection
 from pootle.i18n.gettext import ugettext as _
 from pootle_config.utils import ObjectConfig
@@ -140,8 +141,18 @@ class TranslationProjectForm(forms.ModelForm):
         if not self.cleaned_data["fs_code"]:
             if tp.language.code in mappings:
                 del mappings[tp.language.code]
+                context = self.instance.project.directory
+                update_revisions.send(
+                    context.__class__,
+                    instance=context,
+                    keys=["stats"])
         else:
             mappings[tp.language.code] = self.cleaned_data["fs_code"]
+            context = self.instance.project.directory
+            update_revisions.send(
+                context.__class__,
+                instance=context,
+                keys=["stats"])
         config["pootle.core.lang_mapping"] = dict(
             (v, k) for k, v in mappings.iteritems())
         if initialize_from_templates:
