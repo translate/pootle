@@ -12,8 +12,9 @@ either automatically or via user input.
 Aims
 ----
 
-* Allow Pootle data to be stored on version control systems
-* Abstract version control systems into a standard method across all systems
+* Allow Pootle translations to be stored in version control
+* Abstract diverse version control systems into a standard set of Pootle
+  commands across all systems
 * Ensure that we don't lose any data
 * Ensure that changes made on Pootle and the filesystem can seamlessly move
   from one to the other
@@ -87,8 +88,8 @@ Previous versions of Pootle made use of two commands, :djadmin:`update_stores`
 and :djadmin:`sync_stores`, to allow translations to be pushed into Pootle or
 pulled from Pootle.
 
-These two commands still exist but we will be phasing these out in the long
-term to make everything use Pootle FS.
+These two commands still exist but are now deprecated. We will be phasing these
+out in the long term to make everything use Pootle FS.
 
 You can find an outline of how to use Pootle FS on your existing Pootle
 projects in the :ref:`adding a Pootle FS managed project

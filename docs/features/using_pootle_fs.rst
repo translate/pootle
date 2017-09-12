@@ -5,7 +5,7 @@ Using Pootle FS
 
 The task of Pootle FS is to keep the filesystem and Pootle in sync. There are
 scenarios where items are not in sync and Pootle FS requires your intervention,
-these are the commands you need to bring things back into sync and to resolve
+these are the commands you will use to bring things back into sync and to resolve
 conflicts.
 
 
@@ -29,11 +29,11 @@ Pootle FS works in these stages:
 1. Actions are staged. An action is chosen to resolve each issue.
 2. The system is synchronized. The staged action are actually performed.
 
-Files that have never been synced are untracked, and thus they need to be
-explicitly staged. Files previously synced are tracked, and thus automatically
-staged if there are any changes. In the case of conflicts (changes both on disk
-and in Pootle) it is also necessary to manually stage these to resolve which
-version should prevail.
+Files that have never been synced are untracked, need to be explicitly staged.
+Files previously synced are tracked, will be automatically staged if there are
+any changes. In the case of conflicts (changes both on disk and in Pootle) it
+is also necessary to manually stage these to resolve which version should
+prevail.
 
 When staging it is possible to specify specific stores or files, or groups of
 them using the ``-P`` and ``-p`` options. It is also possible to limit which
