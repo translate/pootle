@@ -13,8 +13,16 @@
   <div class="alert alert-info">
     {% trans 'There are no templates for this project, so adding new languages from this screen is disabled.' %}
   </div>
-  {% endif %}
+  <div>
+    {% if layout_style == "gnu" %}
+    {% blocktrans %}Pootle will look on the filesystem for files named: {{ template_path }}{% endblocktrans %}
+    {% else %}
+    {% blocktrans %}Pootle will look on the filesystem for a folder named {{ template_path }}{% endblocktrans %}
+    {% endif %}
+  </div>
+  {% else %}
   {% include "admin/_generic_formset.html" %}
+  {% endif %}
 </div>
 {% endblock %}
 
