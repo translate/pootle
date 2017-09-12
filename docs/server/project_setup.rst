@@ -106,11 +106,19 @@ will see a **New Project** button:
 
 
 Click on that button and the **Add Project** form will be displayed. Enter the
-new project's details. **Code** must match the name of the directory within
+new project's details.
+
+
+**Code** must match the name of the directory within
 :setting:`POOTLE_TRANSLATION_DIRECTORY` that contains the project translation
 files, in our example :file:`my-project`. Also you must specify the
 **File Types** used in this new project, in our example
 ``Gettext PO (po/pot)``.
+
+Set **Filesystem backend** to ``localfs``. **Path or URL** must point to the
+translation files on the filesystem, in our example
+``{POOTLE_TRANSLATION_DIRECTORY}my-project``. Finally set
+**Path mapping preset** to ``GNU style``.
 
 You can also provide a **Full Name** easily readable for humans. You don't need
 to change the rest of the fields unless you need to further customize your
@@ -120,23 +128,7 @@ project.
 
 
 Once you are done click on the **Save** button below the form to create the
-project.
-
-Please not that **just creating the project is not enough**, now it is
-necessary to set the the filesystem configuration. So now click on the
-``Filesystems`` link below the project edit form and set the following:
-
-.. image:: ../_static/pootle_fs_link.png
-
-
-- **Filesystem backend** to ``localfs``
-- **Path or URL** to ``{POOTLE_TRANSLATION_DIRECTORY}my-project``
-  (``{POOTLE_TRANSLATION_DIRECTORY}`` will be transparently replaced with the
-  value of :setting:`POOTLE_TRANSLATION_DIRECTORY` setting)
-- **Path mapping preset** to ``GNU style``
-
-And then click on the **Update filesystem configuration** button to save the
-Pootle FS configuration for the project.
+project and save its Pootle FS configuration.
 
 Creating the project doesn't actually import all the translations to
 Pootle. To do that you need to run :djadmin:`update_stores` on the command line
