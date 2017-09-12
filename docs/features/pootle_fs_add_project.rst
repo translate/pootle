@@ -52,9 +52,10 @@ is outlined here:
        ``git@github.com:user/repo.git``
 
 
-- If not all of your project's language codes match those available in Pootle,
-  then add language mapping configurations for those languages. For example
-  match ``fr_FR`` on your filesystem to ``fr`` on Pootle.
+If not all of your project's language codes match those available in Pootle,
+then add language mapping configurations for those languages as explained in
+the :ref:`Enable translation to a new language
+<project_setup#initialize-new-tp>` instructions.
 
 
 Connect Pootle FS with VCS repository

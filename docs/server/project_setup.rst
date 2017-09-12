@@ -176,8 +176,10 @@ dropdown:
    .. image:: ../_static/project_form_bottom_links.png
 
 
-The existing languages enabled for the project are listed. In our example we
-are adding **Arabic** to the project:
+The existing languages enabled for the project are listed, including an
+optional mapping to the language code used in the filesystem (in the screenshot
+below you can see that ``fr_FR`` on filesystem maps to ``fr`` on Pootle). In
+our example we are adding **Arabic** to the project:
 
 .. image:: ../_static/enable_new_tp_through_admin_UI.png
 
