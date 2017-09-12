@@ -90,6 +90,7 @@ class TranslationProjectForm(forms.ModelForm):
             project = kwargs["instance"].project
             language = kwargs["instance"].language
             mappings = project.config.get("pootle.core.lang_mapping", {})
+            mappings = dict((v, k) for k, v in mappings.iteritems())
             mapped = mappings.get(language.code)
             self.fields["fs_code"].initial = mapped
         else:
@@ -110,8 +111,8 @@ class TranslationProjectForm(forms.ModelForm):
                 tps = project.translationproject_set.all()
                 lang_codes = tps.values_list("language__code", flat=True)
                 bad_fs_code = (
-                    (mapped_code in mapping.values()
-                     and not mapping.get(language.code) == mapped_code)
+                    (mapped_code in mapping.keys()
+                     and not mapping.get(mapped_code) == language.code)
                     or mapped_code in lang_codes)
                 if bad_fs_code:
                     self.errors["fs_code"] = self.error_class(
@@ -120,7 +121,7 @@ class TranslationProjectForm(forms.ModelForm):
                            "be unique and cannot be in use with an existing "
                            "Translation Project")
                          % dict(mapped_code=mapped_code, code=language.code)])
-            if language.code in mapping.values():
+            if language.code in mapping.keys():
                 self.errors["language"] = self.error_class(
                     [_("Unable to add language '%s'. "
                        "Another language is already mapped to this code")
@@ -132,12 +133,17 @@ class TranslationProjectForm(forms.ModelForm):
         if tp.id is None:
             initialize_from_templates = tp.can_be_inited_from_templates()
         tp = super(TranslationProjectForm, self).save(commit)
-        if self.cleaned_data["fs_code"]:
-            project = tp.project
-            config = ObjectConfig(project)
-            project_mapping = config.get("pootle.core.lang_mapping", {})
-            project_mapping[tp.language.code] = self.cleaned_data["fs_code"]
-            config["pootle.core.lang_mapping"] = project_mapping
+        project = tp.project
+        config = ObjectConfig(project)
+        mappings = config.get("pootle.core.lang_mapping", {})
+        mappings = dict((v, k) for k, v in mappings.iteritems())
+        if not self.cleaned_data["fs_code"]:
+            if tp.language.code in mappings:
+                del mappings[tp.language.code]
+        else:
+            mappings[tp.language.code] = self.cleaned_data["fs_code"]
+        config["pootle.core.lang_mapping"] = dict(
+            (v, k) for k, v in mappings.iteritems())
         if initialize_from_templates:
             def _enqueue_job():
                 queue = get_queue('default')
