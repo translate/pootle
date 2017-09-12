@@ -23,35 +23,31 @@ Synchronizing against any version control system requires you add some
 Create a project and set Pootle FS configuration for it
 -------------------------------------------------------
 
-First create a project as usual.
+Just follow the :ref:`Creating a project <project_setup#creating-the-project>`
+instructions.
 
-Once the project is created you need to configure Pootle FS. You can accomplish
-this with the command line or the web UI. The UI is by far the simplest way and
-is outlined here:
+The **Path or URL** field must point to the translation files on Pootle's local
+filesystem, e.g. ``/path/to/translations/MYPROJECT/``. You can use the
+``{POOTLE_TRANSLATION_DIRECTORY}`` placeholder if you are using the ``localfs``
+**Filesystem backend**, e.g. ``{POOTLE_TRANSLATION_DIRECTORY}MYPROJECT``
+(``{POOTLE_TRANSLATION_DIRECTORY}`` will be transparently replaced by the value
+of :setting:`POOTLE_TRANSLATION_DIRECTORY` setting).
 
-- Click on the ``Filesystems`` link below the project edit form in the project
-  admin UI.
+The **Path mapping** field specifies the project layout using a glob like
+``/path/to/translation/files/<language_code>/<dir_path>/<filename>.<ext>`` that
+must start with ``/``, end with ``.<ext>``, and contain ``<language_code>``
+(the rest of the placeholders are optional). Note you can easily fill this
+field by selecting one of the available **Path mapping presets**.
 
-  .. image:: ../_static/pootle_fs_link.png
+If you are using the ``localfs`` **Filesystem backend** the **Path mapping**
+will be combined with the specified **Path or URL**. For other backends it will
+be relative to the root of the repository.
 
-- Add the ``Backend configuration``:
+.. note:: If you are setting up Pootle FS for a VCS then configure as follows:
 
-  - Set the **Filesystem backend** to ``localfs`` as we are working against
-    files stored on the local filesystem.
-  - Set the **Path or URL** to point to the translation files on
-    Pootle's local filesystem, e.g. ``{POOTLE_TRANSLATION_DIRECTORY}MYPROJECT``
-    (``{POOTLE_TRANSLATION_DIRECTORY}`` will be transparently replaced by the
-    value of :setting:`POOTLE_TRANSLATION_DIRECTORY` setting)
-  - Set the **Path mapping** for your project, for example
-    ``/<language_code>/<dir_path>/<filename>.<ext>`` or pick one of the
-    existing **Path mapping presets**.
-
-  .. note:: If you are setting up Pootle FS for a VCS then configure as
-     follows:
-
-     - Set the **Filesystem backend** to the required VCS backend.
-     - Set the **Path or URL** to point to the repository, e.g.
-       ``git@github.com:user/repo.git``
+   - Set the **Filesystem backend** to the required VCS backend.
+   - Set the **Path or URL** to point to the repository, e.g.
+     ``git@github.com:user/repo.git``
 
 
 If not all of your project's language codes match those available in Pootle,
