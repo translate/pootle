@@ -57,6 +57,7 @@ class ProjectForm(forms.ModelForm):
     fs_plugin = forms.ChoiceField(choices=[], required=True)
     fs_url = forms.CharField(required=True)
     fs_mapping = forms.CharField(required=True)
+    template_name = forms.CharField(required=False)
 
     class Meta(object):
         model = Project
@@ -75,6 +76,8 @@ class ProjectForm(forms.ModelForm):
         self.fields["filetypes"].initial = [
             self.fields["filetypes"].queryset.get(name="po")]
         self.fields["fs_plugin"].choices = [(x, x) for x in fs_plugins.gather()]
+        self.fields["template_name"].initial = (
+            self.instance.lang_mapper.get_upstream_code("templates"))
 
     def clean_filetypes(self):
         value = self.cleaned_data.get('filetypes', [])
@@ -96,6 +99,9 @@ class ProjectForm(forms.ModelForm):
 
     def clean_code(self):
         return self.cleaned_data['code'].strip()
+
+    def clean_template_name(self):
+        return self.cleaned_data['template_name'].strip()
 
     def clean_fs_mapping(self):
         fs_mapping = self.cleaned_data["fs_mapping"].strip()
@@ -131,6 +137,17 @@ class ProjectForm(forms.ModelForm):
         project.config["pootle_fs.fs_url"] = self.cleaned_data["fs_url"]
         project.config["pootle_fs.translation_mappings"] = dict(
             default=self.cleaned_data["fs_mapping"])
+        lang_mapping = dict(
+            (v, k) for k, v
+            in project.config.get("pootle.core.lang_mapping", {}).iteritems())
+        if self.cleaned_data["template_name"] in ["templates", ""]:
+            if "templates" in lang_mapping:
+                del lang_mapping["templates"]
+        else:
+            lang_mapping["templates"] = self.cleaned_data["template_name"]
+        project.config["pootle.core.lang_mapping"] = dict(
+            (v, k) for k, v
+            in lang_mapping.iteritems())
         return project
 
 
