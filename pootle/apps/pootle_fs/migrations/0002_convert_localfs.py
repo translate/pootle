@@ -5,6 +5,7 @@ from __future__ import unicode_literals
 import json
 import logging
 import os
+import posixpath
 from functools import partial
 from pathlib import PosixPath
 
@@ -131,6 +132,11 @@ def convert_to_localfs(apps, schema_editor):
         proj_trans_path = str(PosixPath().joinpath(old_translation_path, project.code))
         proj_stores = Store.objects.filter(
             translation_project__project=project).exclude(file="").exclude(obsolete=True)
+        old_treestyle, old_path = (
+            _detect_treestyle_and_path(
+                Config, Language, project, proj_trans_path)
+            if project.treestyle in ["auto", "gnu"]
+            else (project.treestyle, None))
         _set_project_config(Language, Config, project_ct, project)
         project.treestyle = "pootle_fs"
         project.save()
@@ -148,6 +154,7 @@ def convert_to_localfs(apps, schema_editor):
             store__translation_project__project=project)
         store_fs.delete()
         sfs = []
+        templates = []
         for store in proj_stores:
             filepath = str(store.file)[len(project.code):]
             fullpath = str(
@@ -159,6 +166,8 @@ def convert_to_localfs(apps, schema_editor):
                     "No file found at '%s', not adding tracking",
                     fullpath)
                 continue
+            if store.is_template and old_treestyle == "gnu":
+                templates.append(store)
             sfs.append(
                 StoreFS(
                     project=project,
@@ -170,6 +179,23 @@ def convert_to_localfs(apps, schema_editor):
                     last_sync_mtime=store.file_mtime))
         if len(sfs):
             StoreFS.objects.bulk_create(sfs, batch_size=1000)
+        if old_treestyle == "gnu" and len(templates) == 1:
+            template = templates[0]
+            template_name, __ = posixpath.splitext(template.name)
+            if template_name != "templates":
+                try:
+                    mapping = Config.objects.get(
+                        content_type=project_ct,
+                        object_pk=project.pk,
+                        key="pootle.core.language_mapping")
+                except Config.DoesNotExist:
+                    mapping = {}
+                mapping[template_name] = "templates"
+                Config.objects.update_or_create(
+                    content_type=project_ct,
+                    object_pk=project.pk,
+                    key="pootle.core.language_mapping",
+                    defaults=dict(value=mapping))
         logger.debug(
             "Tracking added for %s/%s stores in project '%s'",
             len(sfs),
