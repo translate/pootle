@@ -130,8 +130,6 @@ const ProjectForm = React.createClass({
             label={gettext('Path or URL')}
             handleChange={this.handleChange}
             name="fs_url"
-            // eslint-disable-next-line max-len
-            help={gettext('Depending on the chosen "Filesystem backend" this must be either the path to the translation files in the disk, or the URL to the VCS repository. You can use the {POOTLE_TRANSLATION_DIRECTORY} placeholder in the Path if you are using the "localfs" Filesystem backend.')}
             errors={errors.fs_url}
             value={formData.fs_url}
           />
@@ -140,8 +138,6 @@ const ProjectForm = React.createClass({
             clearable={false}
             options={model.getFieldChoices('fs_preset')}
             label={gettext('Path mapping preset')}
-            // eslint-disable-next-line max-len
-            help={gettext('Presets for common Path mappings. Selecting one of these changes the "Path mapping" field below.')}
             onChange={this.handlePresetChange}
             name="fs_preset"
             value={fsPreset}
@@ -150,8 +146,6 @@ const ProjectForm = React.createClass({
             label={gettext('Path mapping')}
             handleChange={this.handleChange}
             name="fs_mapping"
-            // eslint-disable-next-line max-len
-            help={gettext('Specifies the project layout using a glob like `/path/to/translation/files/<language_code>/<dir_path>/<filename>.<ext>` that must start with "/", end with ".<ext>", and contain "<language_code>".\n\n Selecting one of the available "Path mapping presets" above fills this field.\n\n If you are using the "localfs" Filesystem backend the "Path mapping" will be combined with the specified "Path or URL". For other backends the "Path mapping" will be relative to the root of the repository.')}
             errors={errors.fs_mapping}
             value={formData.fs_mapping}
           />
