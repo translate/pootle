@@ -187,14 +187,14 @@ def convert_to_localfs(apps, schema_editor):
                     mapping = Config.objects.get(
                         content_type=project_ct,
                         object_pk=project.pk,
-                        key="pootle.core.language_mapping")
+                        key="pootle.core.lang_mapping")
                 except Config.DoesNotExist:
                     mapping = {}
                 mapping[template_name] = "templates"
                 Config.objects.update_or_create(
                     content_type=project_ct,
                     object_pk=project.pk,
-                    key="pootle.core.language_mapping",
+                    key="pootle.core.lang_mapping",
                     defaults=dict(value=mapping))
         logger.debug(
             "Tracking added for %s/%s stores in project '%s'",
