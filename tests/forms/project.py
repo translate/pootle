@@ -199,3 +199,31 @@ def test_form_project_fs_mapping(format_registry):
     form = ProjectForm(form_data)
     assert not form.is_valid()
     assert 'fs_mapping' in form.errors
+
+
+@pytest.mark.django_db
+def test_form_project_template_name(format_registry):
+    form_data = {
+        'code': 'foo0',
+        'checkstyle': PROJECT_CHECKERS.keys()[0],
+        'fullname': 'Foo',
+        'fs_plugin': "localfs",
+        'fs_url': "{POOTLE_TRANSLATION_DIRECTORY}foo0",
+        'fs_mapping': "/<language_code>.<ext>",
+        'filetypes': [format_registry["po"]["pk"]],
+        'source_language': 1}
+    form = ProjectForm(form_data)
+    assert form.is_valid()
+    assert form.cleaned_data["template_name"] == ""
+    project = form.save()
+    assert project.lang_mapper.get_upstream_code("templates") == "templates"
+    form_data["template_name"] = "foo"
+    form = ProjectForm(instance=project, data=form_data)
+    form.save()
+    del project.__dict__["lang_mapper"]
+    assert project.lang_mapper.get_upstream_code("templates") == "foo"
+    form_data["template_name"] = ""
+    form = ProjectForm(instance=project, data=form_data)
+    form.save()
+    del project.__dict__["lang_mapper"]
+    assert project.lang_mapper.get_upstream_code("templates") == "templates"
