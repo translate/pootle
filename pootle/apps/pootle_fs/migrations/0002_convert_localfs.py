@@ -82,7 +82,9 @@ def _get_translation_mapping(Config, Language, project):
     if old_treestyle == "nongnu":
         return "/<language_code>/<dir_path>/<filename>.<ext>"
     else:
-        return "%s/<language_code>.<ext>" % (old_path or "")
+        return (
+            "%s/<language_code>.<ext>"
+            % (old_path and "/<dir_path>" or ""))
 
 
 def _set_project_config(Language, Config, project_ct, project):
