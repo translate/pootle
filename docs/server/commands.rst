@@ -1037,9 +1037,8 @@ To interact with Pootle FS we use multiple subcommands:
 
   * :djadmin:`fetch` - Add a file from the filesystem to Pootle
   * :djadmin:`add` - Add a store from Pootle to the filesystem
-  * :djadmin:`merge` - Handle conflicts in stores and files
   * :djadmin:`rm` - Remove a store and file from both Pootle and the filesystem
-  * :djadmin:`resolve` - Revert a staged action
+  * :djadmin:`resolve` - Handle conflicts in stores and files
   * :djadmin:`unstage` - Revert a staged action
 
 * Execute:
@@ -1179,7 +1178,7 @@ without user input:
 
 .. code-block:: console
 
-   (env) $ pootle fs merge MYPROJECT
+   (env) $ pootle fs resolve MYPROJECT
 
 
 .. django-admin-option:: --pootle-wins
