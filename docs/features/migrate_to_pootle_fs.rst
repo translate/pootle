@@ -10,17 +10,6 @@ When upgrading Pootle your projects will be automatically migrated to use the
 Pootle FS ``localfs`` backend.
 
 
-Preparation
------------
-
-Run :djadmin:`sync_stores` to ensure that all translations in Pootle are on the
-filesystem. The filesystem and Pootle should now have exactly the same data.
-
-.. code-block:: console
-
-   (env) $ pootle sync_stores --project=MYPROJECT
-
-
 Post migration check
 --------------------
 

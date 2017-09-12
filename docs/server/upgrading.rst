@@ -28,6 +28,13 @@ Backup your system
    :ref:`backup your current system <backup>`.
 
 
+You **must** synchronize all your translations to disk:
+
+.. code-block:: console
+
+   (env) $ pootle sync_stores
+
+
 .. _upgrading#db-migration:
 
 Migrate your database
