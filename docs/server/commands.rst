@@ -1047,7 +1047,7 @@ To interact with Pootle FS we use multiple subcommands:
 
 
 .. note:: The **action** staging commands require that you run
-   :djadmin:sync in order to actually perform the staged actions.
+   :djadmin:`sync` in order to actually perform the staged actions.
 
 
 .. _commands#pootle-fs-common-options:
