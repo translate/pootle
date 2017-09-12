@@ -81,3 +81,5 @@ class ProjectAPIView(SuperuserRequiredMixin, APIView):
                 info[k] = mapping.get("default")
             else:
                 info[k] = config.get(v)
+        info["template_name"] = (
+            item.lang_mapper.get_upstream_code("templates"))
