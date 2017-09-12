@@ -37,8 +37,8 @@ def test_form_project_tp(tp0):
     del project.__dict__["config"]
     assert (
         tp0.project.config[
-            "pootle.core.lang_mapping"][tp0.language.code]
-        == "foo")
+            "pootle.core.lang_mapping"]["foo"]
+        == tp0.language.code)
     tp1 = project.translationproject_set.get(
         language__code="language1")
     form = TranslationProjectForm(
@@ -65,3 +65,17 @@ def test_form_project_tp(tp0):
             language=new_language.pk))
     assert not form.is_valid()
     assert form.errors.keys() == ["language"]
+    form = TranslationProjectForm(
+        instance=tp0,
+        data=dict(
+            project=tp0.project.pk,
+            language=tp0.language.pk,
+            fs_code=""))
+    assert form.is_valid()
+    assert form.cleaned_data["fs_code"] == ""
+    form.save()
+    del project.__dict__["config"]
+    assert (
+        "foo" not in
+        project.config[
+            "pootle.core.lang_mapping"])
