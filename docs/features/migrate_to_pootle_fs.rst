@@ -3,38 +3,16 @@
 Migrating to Pootle FS
 ======================
 
-While Pootle will continue to support :djadmin:`update_stores` and
-:djadmin:`sync_stores` these are now deprecated.
-
 When upgrading Pootle your projects will be automatically migrated to use the
 Pootle FS ``localfs`` backend.
 
-
-Post migration check
---------------------
-
-Once the Pootle migration is complete you need to check that all items where
-migrated correctly:
-
-.. code-block:: console
-
-   (env) $ pootle fs
-   (env) $ pootle fs state MYPROJECT
+.. note:: Before continuing :ref:`ensure all projects were properly migrated
+   to Pootle FS <upgrading#check-pootle-fs-migration>` when upgrading Pootle.
 
 
-The first lists all the available Pootle FS projects, the second command will
-show the state of tracked files.
-
-Ideally we want the state to show no results, i.e. that all files on disk and
-in Pootle are in sync and are being tracked.  If the migration to Pootle FS was
-not able to fully understand your layout then there may be untracked files.
-
-If there are untracked files you will want do some of these steps:
-
-1. ``fs add`` or ``fs rm`` any files that should be tracked but are currently
-   untracked.
-2. Moving and renaming files on the filesystem could resolve missing files.
-3. Adding language mappings could correctly map FS and Pootle stores.
+While Pootle will continue to support :djadmin:`update_stores` and
+:djadmin:`sync_stores` these are now deprecated, so it is advisable you start
+to adjust your workflow to use Pootle FS.
 
 
 .. _migrate_to_pootle_fs#adjust-existing-automation:

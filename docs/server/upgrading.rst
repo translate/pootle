@@ -303,6 +303,45 @@ If you wish to verify all of your existing users please see the
 :djadmin:`verify_user` command for further options.
 
 
+.. _upgrading#check-pootle-fs-migration:
+
+Check Pootle FS migration
+-------------------------
+
+Your projects should have been automatically migrated to use the Pootle FS
+``localfs`` backend, so you need to check that everything was migrated
+correctly:
+
+.. code-block:: console
+
+   (env) $ pootle fs
+
+
+This command lists all the available Pootle FS projects. Make sure that all the
+existing projects in Pootle are listed here.
+
+.. code-block:: console
+
+   (env) $ pootle fs state MYPROJECT
+
+
+This command will show the state of tracked files for a specific project. Run
+it for each of the projects listed by the previous command.
+
+Ideally we want the state to show no results, i.e. that all files on disk and
+in Pootle are in sync and are being tracked.  If the migration to Pootle FS was
+not able to fully understand your layout then there may be untracked files.
+
+If there are untracked files you will want do some of these steps:
+
+1. :command:`fs add` or :command:`fs rm` any files that should be tracked but
+   are currently untracked.
+2. Moving and renaming files on the filesystem could resolve missing files.
+3. Adding language mappings could correctly map Filesystem and Pootle stores.
+   This is explained in the :ref:`Enable translation to a new language
+   <project_setup#initialize-new-tp>` instructions.
+
+
 .. _upgrading#next-steps:
 
 Next steps
