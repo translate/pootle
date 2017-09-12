@@ -130,9 +130,9 @@ necessary to set the the filesystem configuration. So now click on the
 
 
 - **Filesystem backend** to ``localfs``
-- **Path or URL** to the value of
-  :setting:`POOTLE_TRANSLATION_DIRECTORY` + project code, e.g.
-  :file:`/path/to/pootle/translations/my-project` in our example
+- **Path or URL** to ``{POOTLE_TRANSLATION_DIRECTORY}my-project``
+  (``{POOTLE_TRANSLATION_DIRECTORY}`` will be transparently replaced with the
+  value of :setting:`POOTLE_TRANSLATION_DIRECTORY` setting)
 - **Path mapping preset** to ``GNU style``
 
 And then click on the **Update filesystem configuration** button to save the

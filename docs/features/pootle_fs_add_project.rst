@@ -39,7 +39,9 @@ is outlined here:
   - Set the **Filesystem backend** to ``localfs`` as we are working against
     files stored on the local filesystem.
   - Set the **Path or URL** to point to the translation files on
-    Pootle's local filesystem, e.g. ``/path/to/translations/MYPROJECT/``
+    Pootle's local filesystem, e.g. ``{POOTLE_TRANSLATION_DIRECTORY}MYPROJECT``
+    (``{POOTLE_TRANSLATION_DIRECTORY}`` will be transparently replaced by the
+    value of :setting:`POOTLE_TRANSLATION_DIRECTORY` setting)
   - Set the **Path mapping** for your project, for example
     ``/<language_code>/<dir_path>/<filename>.<ext>`` or pick one of the
     existing **Path mapping presets**.
