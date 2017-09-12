@@ -7,9 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import logging
-import os
 
-from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
@@ -246,9 +244,9 @@ class InitDB(object):
         po = Format.objects.get(name="po")
         terminology = self._create_object(Project, **criteria)[0]
         terminology.filetypes.add(po)
-        terminology.config["pootle_fs.fs_url"] = os.path.join(
-            settings.POOTLE_TRANSLATION_DIRECTORY,
-            terminology.code)
+        terminology.config["pootle_fs.fs_url"] = (
+            "{POOTLE_TRANSLATION_DIRECTORY}%s"
+            % terminology.code)
         terminology.config["pootle_fs.fs_type"] = "localfs"
         terminology.config["pootle_fs.translation_mappings"] = dict(
             default="/<language_code>/<dir_path>/<filename>.<ext>")
@@ -273,9 +271,9 @@ class InitDB(object):
             'checkstyle': "standard"}
         tutorial = self._create_object(Project, **criteria)[0]
         tutorial.filetypes.add(po)
-        tutorial.config["pootle_fs.fs_url"] = os.path.join(
-            settings.POOTLE_TRANSLATION_DIRECTORY,
-            tutorial.code)
+        tutorial.config["pootle_fs.fs_url"] = (
+            "{POOTLE_TRANSLATION_DIRECTORY}%s"
+            % tutorial.code)
         tutorial.config["pootle_fs.fs_type"] = "localfs"
         tutorial.config["pootle_fs.translation_mappings"] = dict(
             default="/<language_code>/<dir_path>/<filename>.<ext>")
