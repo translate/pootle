@@ -25,6 +25,7 @@ export const Project = Backbone.Model.extend({
     fs_url: '',
     fs_preset: '',
     fs_mapping: '',
+    template_name: 'templates',
     screenshot_search_prefix: '',
     disabled: false,
   },
