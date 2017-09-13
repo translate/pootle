@@ -111,10 +111,11 @@ Conflicts can occur if a tracked Pootle store and its corresponding file have
 both changed. They can also arise if a new Pootle store is added and a matching
 file has been added in the filesystem simultaneously.
 
-There are four possible ways to resolve such conflicts:
+Using the :djadmin:`resolve` command we have four possible ways to resolve such
+conflicts:
 
-1. Use the filesystem version and discard all Pootle translations
-2. Use the Pootle version and ignore all filesystem translations
+1. Keep the filesystem version and discard all Pootle translations
+2. Keep the Pootle version and discard all filesystem translations
 3. Merge translations and for unit conflicts choose Pootle's version and turn
    the filesystem version into a suggestion
 4. Merge translations and for unit conflicts choose the filesystem version and
@@ -122,6 +123,14 @@ There are four possible ways to resolve such conflicts:
 
 The merge options are most useful where you need translators to resolve the
 conflict.
+
+The default options for :djadmin:`resolve` ensure that the filesystem always
+wins and that translators will be given an opportunity to resolve the conflict.
+This ensures that changes on version control are authoritative, a fix can land
+there without anyone knowing Pootle is involved.  It also means that we have no
+data loss in that any conflicts will be presented to translators as
+suggestions, allowing them to resolve the conflicts by reviewing the
+suggestions.
 
 
 .. _using_pootle_fs#resolve_conflict_overwrite_pootle:
@@ -154,12 +163,12 @@ changes in the filesystem:
 
 .. _using_pootle_fs#resolve_conflict_pootle_suggestion:
 
-Use filesystem version and convert Pootle version into suggestion
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Use filesystem version and convert Pootle version into a suggestion
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To retain all translation and allow translators to resolve conflicts use
-:djadmin:`resolve`. This will merge any non-conflicting units and convert
-conflicts into suggestions, by default we use filesystem translations:
+You want to retain all translations and allow translators to resolve conflicts.
+This will merge any non-conflicting units. For conflicting units, keep the
+filesystem translation and convert the Pootle translation into a suggestion:
 
 .. code-block:: console
    
@@ -175,14 +184,13 @@ suggestion. You can now review these suggestions to resolve the conflicts.
 
 .. _using_pootle_fs#resolve_conflict_filesystem_suggestion:
 
-Use Pootle version and convert filesystem version into suggestion
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Use Pootle version and convert filesystem version into a suggestion
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-To retain all translation and allow translators to resolve conflicts use
-:djadmin:`resolve`. This will merge any non-conflicting units and convert
-conflicts into suggestions, the :option:`--pootle-wins <resolve --pootle-wins>`
-option ensures that we use Pootle translations and convert filesystem
-translations into suggestions:
+You want to retain all translations and allow translators to resolve conflicts.
+This will merge any non-conflicting units. For conflicting units, keep the
+Pootle translation (due to the :option:`--pootle-wins <resolve --pootle-wins>`
+option) and convert the filesystem translations into a suggestion:
 
 .. code-block:: console
    
