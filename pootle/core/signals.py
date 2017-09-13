@@ -11,6 +11,9 @@ from django.dispatch import Signal
 
 
 changed = Signal(
+    providing_args=["instance", "key", "value", "old_value"],
+    use_caching=True)
+config_updated = Signal(
     providing_args=["instance", "updates"],
     use_caching=True)
 create = Signal(
