@@ -15,9 +15,9 @@
   </div>
   <div>
     {% if layout_style == "gnu" %}
-    {% blocktrans %}Pootle will look on the filesystem for files named: {{ template_path }}{% endblocktrans %}
+    {% blocktrans %}Pootle will look on the filesystem for a file named {{ template_path }}.{% endblocktrans %}
     {% else %}
-    {% blocktrans %}Pootle will look on the filesystem for a folder named {{ template_path }}{% endblocktrans %}
+    {% blocktrans %}Pootle will look on the filesystem for a folder named {{ template_path }}.{% endblocktrans %}
     {% endif %}
   </div>
   {% else %}
