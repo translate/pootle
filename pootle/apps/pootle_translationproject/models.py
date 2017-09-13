@@ -238,6 +238,7 @@ class TranslationProject(models.Model, CachedTreeItem):
             parent, __ = Directory.objects.get_or_create(
                 pootle_path=path,
                 parent=parent,
+                tp=self,
                 name=posixpath.basename(path.rstrip("/")))
         return parent
 
