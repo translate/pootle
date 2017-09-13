@@ -263,14 +263,11 @@ class ProjectAdminView(PootleAdminView):
         layout_style = None
         if not self.formset_extra:
             layout_style = "nongnu"
-            mapping = self.object.config[
-                "pootle_fs.translation_mappings"]["default"]
-            gnustyle = (
-                "/" not in mapping[
-                    mapping.rfind("<language_code>") + 15:])
             template_path = self.object.lang_mapper.get_upstream_code("templates")
-            if gnustyle:
+            if self.object.is_gnustyle:
                 layout_style = "gnu"
+                mapping = self.object.config[
+                    "pootle_fs.translation_mappings"]["default"]
                 mapping_root, __ = posixpath.splitext(posixpath.basename(mapping))
                 template_path = mapping_root.replace(
                     "<language_code>", template_path)
