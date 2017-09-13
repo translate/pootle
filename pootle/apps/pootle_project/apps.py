@@ -19,3 +19,4 @@ class PootleProjectConfig(AppConfig):
 
     def ready(self):
         importlib.import_module("pootle_project.getters")
+        importlib.import_module("pootle_project.receivers")
