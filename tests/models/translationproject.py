@@ -78,10 +78,13 @@ def test_tp_create_templates(project0_nongnu, project0,
 
 
 @pytest.mark.django_db
-def test_tp_init_from_template_po(project0_nongnu, project0,
-                                  templates, no_templates_tps, complex_ttk):
+def test_tp_init_from_template_po(project0, templates,
+                                  no_templates_tps, complex_ttk):
     # When initing a tp from a file called `template.pot` the resulting
-    # store should be called `langcode.po`
+    # store should be called `langcode.po` if the project is gnuish
+    project0.config["pootle_fs.translation_mappings"] = dict(
+        default="/<dir_path>/<language_code>.<ext>")
+
     template_tp = TranslationProject.objects.create(
         language=templates, project=project0)
     template = Store.objects.create(
@@ -94,52 +97,6 @@ def test_tp_init_from_template_po(project0_nongnu, project0,
     tp.init_from_templates()
     store = tp.stores.get()
     assert store.name == "%s.po" % tp.language.code
-
-
-@pytest.mark.django_db
-def test_tp_init_from_templates_po(project0_nongnu, project0,
-                                   templates, no_templates_tps, complex_ttk):
-    # When initing a tp from a file called `templates.pot` the resulting
-    # store should be called `langcode.po`
-    template_tp = TranslationProject.objects.create(
-        language=templates, project=project0)
-    template = Store.objects.create(
-        name="templates.pot",
-        translation_project=template_tp,
-        parent=template_tp.directory)
-    template.update(complex_ttk)
-    tp = TranslationProject.objects.create(
-        project=project0, language=LanguageDBFactory())
-    tp.init_from_templates()
-    store = tp.stores.get()
-    assert store.name == "%s.po" % tp.language.code
-
-
-@pytest.mark.django_db
-def test_tp_init_from_templates_both(project0_nongnu, project0,
-                                     templates, no_templates_tps,
-                                     complex_ttk, store0):
-    # When initing a tp and there is both `template.pot` and
-    # `templates.pot` the first one added is used
-    template_tp = TranslationProject.objects.create(
-        language=templates, project=project0)
-    template1 = Store.objects.create(
-        name="templates.pot",
-        translation_project=template_tp,
-        parent=template_tp.directory)
-    template1.update(complex_ttk)
-    template2 = Store.objects.create(
-        name="template.pot",
-        translation_project=template_tp,
-        parent=template_tp.directory)
-    template2.update(store0.deserialize(store0.serialize()))
-    tp = TranslationProject.objects.create(
-        project=project0, language=LanguageDBFactory())
-    tp.init_from_templates()
-    store = tp.stores.get()
-    assert store.name == "%s.po" % tp.language.code
-    assert complex_ttk.units[1].target == store.units.first().target
-    assert store.units.count() == len(complex_ttk.units) - 1
 
 
 @pytest.mark.django_db
