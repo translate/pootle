@@ -8,8 +8,10 @@ these it is able to determine what to do to resolve the scenario.
 
 There are two groups of statuses:
 
-* Unstaged - these need to be resolved by the user and will become staged.
-* Staged - staged and ready to be `sync`'ed.
+* Unstaged - these need to be resolved by the user, once resolved they become
+  staged.  To resolve the user will use the :djadmin:`resolve`, :djadmin:`rm`
+  and :djadmin:`add` commands.
+* Staged - staged and ready to be :djadmin:`sync`'ed.
 
 
 Unstaged statuses
@@ -21,38 +23,38 @@ to resolve them:
 
 ``conflict``
   Both the Pootle store and the filesystem file have changed. To resolve this
-  conflict use :djadmin:`merge` to merge the two and manage conflict
-  resolution. Or if you wish to discard one or the other use :option:`fetch
-  --force <fetch --force>` or :option:`add --force <add --force>` to keep the
-  filesystem version or Pootle version respectively.
+  conflict use :djadmin:`resolve` to merge the two and manage conflict
+  resolution. Or if you wish to discard one or the other use :option:`resolve
+  --overwrite`.
 
 ``conflict_untracked``
   Conflict can also arise if both the store and file are untracked. In this
-  case you can use :djadmin:`merge` to combine the translation and manage
+  case you can use :djadmin:`resolve` to combine the translation and manage
   conflict resolution for each unit. Or to force taking the whole file or store
-  use either :option:`fetch --force <fetch --force>` or :option:`add --force
-  <add --force>` depending on whether you want to keep the filesystem file or
-  the Pootle store.
+  use either :option:`resolve --overwrite` and optionally
+  :option:`--pootle-wins <resolve --pootle-wins>` depending on whether you want
+  to keep the filesystem file or the Pootle store.
 
 ``pootle_untracked``
   A new store has been added in Pootle but does not have any matching file on
   the filesystem. You can use either :djadmin:`add` to create the file on the
   filesystem and push the translations on the store to it, or alternatively use
-  :djadmin:`rm` to stage the store for removal.
+  :option:`rm --force` to stage the store for removal.
 
 ``fs_untracked``
   A new file has been added in the filesystem but does not have any matching
-  store in Pootle. You can use either :djadmin:`fetch` to pull the file into
-  Pootle or alternatively use :djadmin:`rm` to stage the file for removal.
+  store in Pootle. You can use either :djadmin:`add` to pull the file into
+  Pootle or alternatively use :option:`rm --force` to stage the file for
+  removal.
 
 ``pootle_removed``
-  A tracked store has been removed. Either use :option:`fetch --force
-  <fetch --force>` to restore the filesystem version, or use :djadmin:`rm` to
-  stage for removal from filesystem.
+  A tracked store has been removed. Either use :option:`add --force` to restore
+  the filesystem version, or use :djadmin:`rm` to stage for removal from
+  filesystem.
 
 ``fs_removed``
-  A tracked file has been removed from the filesystem. Either use :option:`add
-  --force <add --force>` to restore the Pootle version, or use :djadmin:`rm` to
+  A tracked file has been removed from the filesystem. Either use
+  :option:`add --force` to restore the Pootle version, or use :djadmin:`rm` to
   stage for removal from Pootle.
 
 
