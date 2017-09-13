@@ -410,6 +410,14 @@ class Project(models.Model, CachedTreeItem, ProjectURLMixin):
 
         directory.delete()
 
+    @property
+    def is_gnustyle(self):
+        mapping = self.config[
+            "pootle_fs.translation_mappings"]["default"]
+        return bool(
+            "/" not in mapping[
+                mapping.rfind("<language_code>") + 15:])
+
     # # # TreeItem
 
     def get_children(self):
