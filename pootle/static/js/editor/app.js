@@ -915,6 +915,23 @@ PTL.editor = {
       this.checkSimilarTranslations();
       this.similarityTimer = null;  // So we know the code was run
     }, 200);
+
+    this.updateCharacterCount();
+  },
+
+  getCharacterCountString() {
+    if (ReactEditor.stateValues.length === 1) {
+      const counter = ReactEditor.stateValues[0].length;
+      const format = ngettext('%s character', '%s characters', counter);
+      return interpolate(format, [counter]);
+    }
+    const counters = ReactEditor.stateValues.map(e => e.length).join(' \ ');
+    const format = gettext('%s characters');
+    return interpolate(format, [counters]);
+  },
+
+  updateCharacterCount() {
+    $('#js-char-count').html(this.getCharacterCountString());
   },
 
   isTextareaValueDirty() {
