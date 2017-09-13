@@ -134,7 +134,7 @@ all changes in Pootle:
 
 .. code-block:: console
    
-   (env) $ pootle fs resolve --overwrite --pootle-wins MYPROJECT
+   (env) $ pootle fs resolve --overwrite MYPROJECT
    (env) $ pootle fs sync MYPROJECT
 
 
@@ -148,7 +148,7 @@ changes in the filesystem:
 
 .. code-block:: console
    
-   (env) $ pootle fs resolve --overwrite MYPROJECT
+   (env) $ pootle fs resolve --overwrite --pootle-wins MYPROJECT
    (env) $ pootle fs sync MYPROJECT
 
 
