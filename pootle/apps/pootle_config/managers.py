@@ -8,7 +8,10 @@
 
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.db.models.base import ModelBase
 from django.utils.encoding import force_text
+
+from pootle.core.signals import config_updated
 
 from .delegate import config_should_not_be_appended, config_should_not_be_set
 from .exceptions import ConfigurationError
@@ -100,6 +103,8 @@ class ConfigQuerySet(models.QuerySet):
         model = self.get_query_model(model)
         model_conf = self.get_config_queryset(model)
         self.should_set_config(key, value, model)
+        old_value = None
+        updated = False
         try:
             conf = model_conf.get(key=key)
         except model_conf.model.DoesNotExist:
@@ -107,9 +112,25 @@ class ConfigQuerySet(models.QuerySet):
                 key=key,
                 value=value,
                 **self.get_model_kwargs(model))
+            updated = True
         if conf.value != value:
+            old_value = conf.value
+            updated = True
             conf.value = value
             conf.save()
+        if updated:
+            if isinstance(model, ModelBase):
+                sender = model
+                instance = None
+            else:
+                sender = model.__class__
+                instance = model
+            config_updated.send(
+                sender,
+                instance=instance,
+                key=key,
+                value=value,
+                old_value=old_value)
 
     def should_append_config(self, key, value, model=None):
         sender = model
