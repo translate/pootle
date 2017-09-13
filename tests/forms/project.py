@@ -219,11 +219,13 @@ def test_form_project_template_name(format_registry):
     assert project.lang_mapper.get_upstream_code("templates") == "templates"
     form_data["template_name"] = "foo"
     form = ProjectForm(instance=project, data=form_data)
+    assert form.is_valid()
     form.save()
     del project.__dict__["lang_mapper"]
     assert project.lang_mapper.get_upstream_code("templates") == "foo"
     form_data["template_name"] = ""
     form = ProjectForm(instance=project, data=form_data)
+    assert form.is_valid()
     form.save()
     del project.__dict__["lang_mapper"]
     assert project.lang_mapper.get_upstream_code("templates") == "templates"
