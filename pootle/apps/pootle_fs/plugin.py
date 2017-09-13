@@ -315,10 +315,10 @@ class Plugin(object):
         kwargs = {}
         if pootle_wins:
             kwargs["resolve_conflict"] = POOTLE_WINS
+        else:
+            kwargs["resolve_conflict"] = SOURCE_WINS
         if merge:
             kwargs["staged_for_merge"] = True
-            if not pootle_wins:
-                kwargs["resolve_conflict"] = SOURCE_WINS
         self.create_store_fs(state["conflict_untracked"], **kwargs)
         self.update_store_fs(state["conflict"], **kwargs)
         action_type = (
