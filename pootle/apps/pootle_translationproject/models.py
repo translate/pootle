@@ -252,7 +252,7 @@ class TranslationProject(models.Model, CachedTreeItem):
             [posixpath.splitext(pootle_path)[0],
              template_store.filetype.extension.name])
         name = posixpath.basename(pootle_path)
-        if name in ["template.po", "templates.po"]:
+        if self.project.is_gnustyle:
             # gnu-style layout
             # use language code instead of template name
             name = ".".join(
