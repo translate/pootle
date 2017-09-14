@@ -22,7 +22,8 @@ Changes
 
     - It is mandatory to set filesystem configuration right after creating it,
     - Pootle no longer automatically imports translations from disk,
-    - Pootle no longer creates project directory on disk if missing.
+    - Pootle no longer creates project directory on disk if missing,
+    - Name for templates in disk is now configurable.
 
   - When adding new languages to a project:
 
@@ -40,9 +41,10 @@ Changes
 
   - Fix handling of obsolete and unsynced units,
   - Allow to sync to empty file,
-  - Fix for initializing new languages from templates,
+  - Several fixes for initializing new languages from templates,
   - When language mappings change now the disk files that are tracked are
     immediately detected,
+  - Fix for correctly stage filesystem overwrite on conflict,
   - Adjustments in migrations.
 
 - Serialization:
