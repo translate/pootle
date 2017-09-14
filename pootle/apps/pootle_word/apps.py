@@ -15,7 +15,7 @@ class PootleWordConfig(AppConfig):
 
     name = "pootle_word"
     verbose_name = "Pootle Word"
-    version = "0.1.0"
+    version = "0.1.1"
 
     def ready(self):
         importlib.import_module("pootle_word.models")

@@ -15,7 +15,7 @@ class PootleScoreConfig(AppConfig):
 
     name = "pootle_score"
     verbose_name = "Pootle Score"
-    version = "0.1.1"
+    version = "0.1.2"
 
     def ready(self):
         importlib.import_module("pootle_score.getters")
