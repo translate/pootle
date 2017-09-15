@@ -32,6 +32,7 @@ Final releases
 .. toctree::
    :maxdepth: 1
 
+   2.8.2 <2.8.2>
    2.8.1 <2.8.1>
    2.8.0 <2.8.0>
 
