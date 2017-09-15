@@ -1,0 +1,31 @@
+==========================
+Pootle 2.8.2 release notes
+==========================
+
+*Released on 15 September 2017*
+
+Welcome to Pootle 2.8.2!
+
+If you want to try it, check one of the following:
+
+- :doc:`Installation instructions </server/installation>`
+- :doc:`Upgrading instructions </server/upgrading>`
+
+
+Changes
+=======
+
+- Fix for deployments without :command:`git` command.
+- Updated UI language discovery to try simpler language codes before trying a
+  fallback.
+- Updated documentation.
+
+
+Credits
+=======
+
+This release was made possible by the following people:
+
+Leandro Regueiro, Dwayne Bailey, Ryan Northey.
+
+And to all our bug finders, testers and translators, a Very BIG Thank You.
