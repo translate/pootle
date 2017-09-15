@@ -228,10 +228,10 @@ def get_git_branch():
     'feature/proper_version'
     """
     branch = _shell_command(['/usr/bin/git', 'symbolic-ref', '-q',
-                             'HEAD']).strip()
+                             'HEAD'])
     if not branch:
         return None
-    return "/".join(branch.split("/")[2:])
+    return "/".join(branch.strip().split("/")[2:])
 
 
 @lru_cache()
