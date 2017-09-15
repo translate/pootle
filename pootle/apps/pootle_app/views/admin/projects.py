@@ -44,7 +44,7 @@ class ProjectAdminView(SuperuserRequiredMixin, TemplateView):
             for checker
             in sorted(PROJECT_CHECKERS.keys())]
         plugin_choices = sorted([(x, x) for x in fs_plugins.gather()])
-        fs_presets = FS_PRESETS
+        fs_presets = FS_PRESETS.values()
         return {
             'page': 'admin-projects',
             'form_choices': {
