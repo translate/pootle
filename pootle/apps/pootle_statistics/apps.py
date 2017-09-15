@@ -15,7 +15,7 @@ class PootleStatisticsConfig(AppConfig):
 
     name = "pootle_statistics"
     verbose_name = "Pootle Statistics"
-    version = "0.0.8"
+    version = "0.1.3"
 
     def ready(self):
         importlib.import_module("pootle_statistics.getters")
