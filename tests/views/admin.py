@@ -306,7 +306,7 @@ def test_admin_view_projects(client, request_users, english):
             'checkstyle': project_checker_choices,
             'fs_plugin': plugin_choices,
             'filetypes': filetypes,
-            'fs_preset': FS_PRESETS,
+            'fs_preset': FS_PRESETS.values(),
             'source_language': language_choices,
             'defaults': {
                 'source_language': english.id}}}
