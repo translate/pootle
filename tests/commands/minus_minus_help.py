@@ -16,6 +16,7 @@ CORE_APPS_WITH_COMMANDS = (
 
 
 @pytest.mark.cmd
+@pytest.mark.django_db
 @pytest.mark.parametrize("command,app", [
     (command, app)
     for command, app in get_commands().iteritems()
