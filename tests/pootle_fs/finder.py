@@ -12,6 +12,7 @@ import sys
 
 import pytest
 
+from django.core.exceptions import ValidationError
 from django.urls import resolve
 
 from pootle_fs.apps import PootleFSConfig
@@ -155,7 +156,7 @@ def test_finder_file_root(finder_root_paths):
 @pytest.mark.django_db
 def test_finder_bad_paths(bad_finder_paths):
     dir_path = os.sep.join(['', 'some', 'path'])
-    with pytest.raises(ValueError):
+    with pytest.raises(ValidationError):
         TranslationFileFinder(os.path.join(dir_path, bad_finder_paths))
 
 
