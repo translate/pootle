@@ -12,6 +12,7 @@ import re
 
 import scandir
 
+from django.core.exceptions import ValidationError
 from django.utils.functional import cached_property
 from django.utils.lru_cache import lru_cache
 
@@ -173,18 +174,18 @@ class TranslationMappingValidator(object):
 
     def validate_absolute(self):
         if self.path[0] != '/':
-            raise ValueError(
+            raise ValidationError(
                 "Translation mapping '%s' should start with '/'" % self.path)
 
     def validate_lang_code(self):
         if "<language_code>" not in self.path:
-            raise ValueError(
+            raise ValidationError(
                 "Translation mapping must contain a <language_code> pattern "
                 "to match.")
 
     def validate_ext(self):
         if not self.path.endswith(".<ext>"):
-            raise ValueError(
+            raise ValidationError(
                 "Translation mapping must end with <ext>.")
 
     @cached_property
@@ -196,7 +197,7 @@ class TranslationMappingValidator(object):
 
     def validate_match_tags(self):
         if "<" in self.stripped_path or ">" in self.stripped_path:
-            raise ValueError(
+            raise ValidationError(
                 "Only <language_code>, <dir_path>, <filename> and <ext> are valid "
                 "patterns to match in the translation mapping")
 
@@ -206,7 +207,7 @@ class TranslationMappingValidator(object):
         else:
             bad_chars = re.search("[^\w\/\-\.]+", self.stripped_path)
         if bad_chars:
-            raise ValueError(
+            raise ValidationError(
                 "Invalid character in translation_mapping '%s'"
                 % self.stripped_path[bad_chars.span()[0]:bad_chars.span()[1]])
 
@@ -219,5 +220,5 @@ class TranslationMappingFinderValidator(TranslationMappingValidator):
 
     def validate_absolute(self):
         if self.path != os.path.abspath(self.path):
-            raise ValueError(
+            raise ValidationError(
                 "Translation mapping '%s' should be absolute" % self.path)
