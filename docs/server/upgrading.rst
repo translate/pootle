@@ -334,8 +334,8 @@ not able to fully understand your layout then there may be untracked files.
 
 If there are untracked files you will want do some of these steps:
 
-1. :command:`fs add` or :command:`fs rm` any files that should be tracked but
-   are currently untracked.
+1. :djadmin:`fs add <add>` or :djadmin:`fs rm <rm>` any files that should be
+   tracked but are currently untracked.
 2. Moving and renaming files on the filesystem could resolve missing files.
 3. Adding language mappings could correctly map Filesystem and Pootle stores.
    This is explained in the :ref:`Enable translation to a new language

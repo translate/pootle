@@ -7,7 +7,7 @@ Database Migration
    upgrading Pootle.
 
 
-Using :command:`dumpdata` and :command:`loaddata` commands to migrate between
+Using :djadmin:`dumpdata` and :djadmin:`loaddata` commands to migrate between
 databases is no longer supported.
 
 The MySQL MyISAM backend is no longer supported. Use `InnoDB
