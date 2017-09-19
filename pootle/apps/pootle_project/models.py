@@ -62,10 +62,15 @@ PROJECT_CHECKERS = {
 class ProjectManager(models.Manager):
 
     def create(self, *args, **kwargs):
-        filetypes = Format.objects.filter(name__in=kwargs.pop("filetypes", ["po"]))
+        filetype_names = kwargs.pop("filetypes", ["po"])
+        filetypes = {
+            ft.name: ft
+            for ft
+            in Format.objects.filter(name__in=filetype_names)}
         project = super(ProjectManager, self).create(*args, **kwargs)
-        for filetype in filetypes:
-            project.filetypes.add(filetype)
+        for filetype in filetype_names:
+            if filetypes.get(filetype):
+                project.filetypes.add(filetypes[filetype])
         project.config["pootle_fs.fs_type"] = kwargs.pop("fs_type", "localfs")
         if project.config["pootle_fs.fs_type"] == "localfs":
             project.config["pootle_fs.fs_url"] = kwargs.pop(
