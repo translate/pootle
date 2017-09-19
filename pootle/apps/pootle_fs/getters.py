@@ -68,6 +68,10 @@ def fs_translation_mapping_validator_getter(**kwargs_):
 
 @getter([config_should_not_be_set, config_should_not_be_appended], sender=Project)
 def fs_url_config_validator(**kwargs):
+    if kwargs["key"] == "pootle_fs.fs_type":
+        plugin_class = fs_plugins.gather(Project).get(kwargs["value"])
+        if not plugin_class:
+            raise ValidationError("Unrecognised fs_type")
     if kwargs["key"] == "pootle_fs.fs_url":
         fs_type = kwargs["instance"].config.get("pootle_fs.fs_type")
         if not fs_type:
