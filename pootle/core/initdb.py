@@ -244,10 +244,10 @@ class InitDB(object):
         po = Format.objects.get(name="po")
         terminology = self._create_object(Project, **criteria)[0]
         terminology.filetypes.add(po)
+        terminology.config["pootle_fs.fs_type"] = "localfs"
         terminology.config["pootle_fs.fs_url"] = (
             "{POOTLE_TRANSLATION_DIRECTORY}%s"
             % terminology.code)
-        terminology.config["pootle_fs.fs_type"] = "localfs"
         terminology.config["pootle_fs.translation_mappings"] = dict(
             default="/<language_code>/<dir_path>/<filename>.<ext>")
         plugin = FSPlugin(terminology)
@@ -271,10 +271,10 @@ class InitDB(object):
             'checkstyle': "standard"}
         tutorial = self._create_object(Project, **criteria)[0]
         tutorial.filetypes.add(po)
+        tutorial.config["pootle_fs.fs_type"] = "localfs"
         tutorial.config["pootle_fs.fs_url"] = (
             "{POOTLE_TRANSLATION_DIRECTORY}%s"
             % tutorial.code)
-        tutorial.config["pootle_fs.fs_type"] = "localfs"
         tutorial.config["pootle_fs.translation_mappings"] = dict(
             default="/<language_code>/<dir_path>/<filename>.<ext>")
         plugin = FSPlugin(tutorial)
