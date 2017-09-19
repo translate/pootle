@@ -213,13 +213,6 @@ def dummyfs_plugin_no_stores(settings, no_complex_po_, dummy_fs_getters):
     from pootle_project.models import Project
     from pootle_store.models import Store
 
-    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'tmp', 'foo'])
-    project = Project.objects.get(code="project0")
-    project.config["pootle_fs.fs_type"] = "dummyfs"
-    stores = Store.objects.filter(
-        translation_project__project=project)
-    pootle_paths = list(stores.values_list("pootle_path", flat=True))
-
     class NoStoresDummyPlugin(DummyPlugin):
 
         def find_translations(self, fs_path=None, pootle_path=None):
@@ -235,6 +228,12 @@ def dummyfs_plugin_no_stores(settings, no_complex_po_, dummy_fs_getters):
     def plugin_provider_(**kwargs_):
         return dict(dummyfs=NoStoresDummyPlugin)
 
+    settings.POOTLE_FS_WORKING_PATH = os.sep.join(['', 'tmp', 'foo'])
+    project = Project.objects.get(code="project0")
+    project.config["pootle_fs.fs_type"] = "dummyfs"
+    stores = Store.objects.filter(
+        translation_project__project=project)
+    pootle_paths = list(stores.values_list("pootle_path", flat=True))
     plugin = FSPlugin(project)
     return plugin
 
