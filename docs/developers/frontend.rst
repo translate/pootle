@@ -38,6 +38,7 @@ Simply run:
 
 .. code-block:: console
 
+    (env) $ pootle compilejsi18n
     (env) $ pootle webpack --dev
 
 
