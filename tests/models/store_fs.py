@@ -16,7 +16,6 @@ from pytest_pootle.factories import (
     TranslationProjectFactory)
 from pytest_pootle.utils import setup_store
 
-from pootle.core.delegate import config
 from pootle.core.plugin import getter, provider
 from pootle_fs.delegate import fs_file, fs_plugins
 from pootle_fs.files import FSFile
@@ -53,9 +52,8 @@ def test_add_store_fs_by_path(po_directory, english):
         translation_project=tp,
         parent=tp.directory,
         name="example_store.po")
-    conf = config.get(tp.project.__class__, instance=tp.project)
-    conf.set_config("pootle_fs.fs_type", "localfs")
-    conf.set_config("pootle_fs.fs_url", "foo")
+    tp.project.config["pootle_fs.fs_type"] = "localfs"
+    tp.project.config["pootle_fs.fs_url"] = "/foo"
     fs_path = "/some/fs/example_store.po"
     pootle_path = store.pootle_path
     store_fs = StoreFS.objects.create(
@@ -82,9 +80,8 @@ def test_add_store_fs_by_store(po_directory, english):
         translation_project=tp,
         parent=tp.directory,
         name="example_store.po")
-    conf = config.get(tp.project.__class__, instance=tp.project)
-    conf.set_config("pootle_fs.fs_type", "localfs")
-    conf.set_config("pootle_fs.fs_url", "foo")
+    tp.project.config["pootle_fs.fs_type"] = "localfs"
+    tp.project.config["pootle_fs.fs_url"] = "/foo"
     store_fs = StoreFS.objects.create(
         store=store,
         path=fs_path)
@@ -152,9 +149,8 @@ def test_add_store_bad_path(po_directory, english):
     project = ProjectDBFactory(source_language=english)
     language = LanguageDBFactory()
     tp = TranslationProjectFactory(project=project, language=language)
-    conf = config.get(project.__class__, instance=project)
-    conf.set_config("pootle_fs.fs_type", "localfs")
-    conf.set_config("pootle_fs.fs_url", "foo")
+    tp.project.config["pootle_fs.fs_type"] = "localfs"
+    tp.project.config["pootle_fs.fs_url"] = "/foo"
     store = StoreDBFactory(
         translation_project=tp,
         parent=tp.directory,
@@ -264,7 +260,6 @@ def test_store_fs_plugin_bad(po_directory, tp0_store_fs):
     store_fs = tp0_store_fs
     project = store_fs.project
     project.config["pootle_fs.fs_type"] = None
-    project.config["pootle_fs.fs_url"] = None
     # no plugin hooked up
     assert store_fs.plugin is None
     assert store_fs.file is None
