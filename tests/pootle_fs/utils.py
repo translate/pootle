@@ -167,10 +167,10 @@ def test_project_fs_instance_bad(english):
     project.config["pootle_fs.fs_type"] = "foo"
     with pytest.raises(NotConfiguredError):
         FSPlugin(project)
-    project.config["pootle_fs.fs_type"] = None
-    project.config["pootle_fs.fs_url"] = "bar"
+    project.config["pootle_fs.fs_type"] = "localfs"
     with pytest.raises(NotConfiguredError):
         FSPlugin(project)
+    project.config["pootle_fs.fs_url"] = "/bar"
     project.config["pootle_fs.fs_type"] = "foo"
     with pytest.raises(MissingPluginError):
         FSPlugin(project)
