@@ -15,6 +15,7 @@ If you want to try it, check one of the following:
 Changes
 =======
 
+- Django>=1.10.8,<1.11
 - Pootle FS is enabled by default:
 
   - All projects are now handled by Pootle FS.
