@@ -13,6 +13,8 @@ import pytest
 
 from pytest_pootle.factories import ProjectDBFactory
 
+from django.core.exceptions import ValidationError
+
 from pootle.core.exceptions import MissingPluginError, NotConfiguredError
 from pootle.core.plugin import provider
 from pootle_fs.delegate import fs_plugins
@@ -164,20 +166,23 @@ def test_project_fs_instance_bad(english):
     # project is not configured
     with pytest.raises(NotConfiguredError):
         FSPlugin(project)
-    project.config["pootle_fs.fs_type"] = "foo"
-    with pytest.raises(NotConfiguredError):
-        FSPlugin(project)
+    with pytest.raises(ValidationError):
+        project.config["pootle_fs.fs_type"] = "foo"
     project.config["pootle_fs.fs_type"] = "localfs"
     with pytest.raises(NotConfiguredError):
         FSPlugin(project)
     project.config["pootle_fs.fs_url"] = "/bar"
-    project.config["pootle_fs.fs_type"] = "foo"
-    with pytest.raises(MissingPluginError):
-        FSPlugin(project)
+
+    default_receivers = fs_plugins.receivers[:]
+    default_cache = fs_plugins.sender_receivers_cache.copy()
 
     @provider(fs_plugins, sender=Project)
     def provide_fs_plugin(**kwargs):
         return dict(dummyfs=DummyFSPlugin)
+
+    project.config["pootle_fs.fs_type"] = "dummyfs"
+    fs_plugins.receivers = default_receivers
+    fs_plugins.sender_receivers_cache = default_cache
 
     with pytest.raises(MissingPluginError):
         FSPlugin(project)
