@@ -94,6 +94,13 @@ translation files for your new project. Make sure you have a
 Creating the project
 ++++++++++++++++++++
 
+.. note:: If you want to integrate your project with a version control
+   repository you need to :ref:`install the Pootle FS plugins for the VCS
+   <migrate_to_pootle_fs#install-vcs-plugins>` and :ref:`connect Pootle FS with
+   the VCS repository <migrate_to_pootle_fs#connect-with-vcs>` before creating
+   the project in Pootle.
+
+
 At the top of the user interface, you will see your newly created administrator
 username. Click on it and the main top menu will be displayed, then click on
 **Admin** (highlighted in red):
