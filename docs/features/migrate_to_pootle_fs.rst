@@ -79,13 +79,36 @@ plugin.  For examples for Git:
 This is done once for the whole Pootle server.
 
 
+.. _migrate_to_pootle_fs#connect-with-vcs:
+
+Connect Pootle FS with VCS repository
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The version control system also must provide access for Pootle FS to
+synchronize:
+
+- Create a SSH key:
+
+  .. code-block:: console
+
+    $ sudo -u USER-RUNNING-POOTLE ssh-keygen -b 4096
+
+- Tell your upstream repository about the public key, allowing Pootle to be
+  able to push to the repository. For example for GitHub:
+
+  - Either use the public key as a **Deploy key** for the repository on GitHub,
+  - Or (**preferred**) add the public key to a GitHub user's **SSH and GPG
+    Keys**. In most cases you want to create a specific user in GitHub for
+    Pootle.
+
+
 .. _migrate_to_pootle_fs#configure-project-to-use-vcs:
 
 Configure the project to use VCS
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-After installing the necessary Pootle FS plugin, it is now necessary to alter
-the project configuration:
+After installing the necessary Pootle FS plugin and connecting Pootle FS with
+the VCS repository, it is now necessary to alter the project configuration:
 
 1. Make sure you have installed the needed Pootle FS :ref:`plugin for the
    version control backend <pootle_fs_install_plugins>` you are using.

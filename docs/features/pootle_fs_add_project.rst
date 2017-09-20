@@ -45,29 +45,6 @@ the :ref:`Enable translation to a new language
 <project_setup#initialize-new-tp>` instructions.
 
 
-Connect Pootle FS with VCS repository
--------------------------------------
-
-.. note:: You can safely skip this step if you are setting up the project to
-   synchronize with the local file system.
-
-
-- Create a SSH key:
-
-  .. code-block:: console
-
-    $ sudo -u USER-RUNNING-POOTLE ssh-keygen -b 4096
-
-- Tell your upstream repo about the public key, allowing Pootle to be able to
-  push to the repo.
-
-  - In GitHub:
-
-    - Either use the public key as a *Deploy key* for the repository on GitHub,
-    - Or (**preferred**) add the public key to a GitHub user's *SSH and GPG
-      Keys*. In most cases you want to create a specific Pootle GitHub user.
-
-
 Pull the translations into Pootle
 ---------------------------------
 
