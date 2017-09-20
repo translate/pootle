@@ -93,9 +93,7 @@ out in the long term to make everything use Pootle FS, but you can
 :ref:`replace these commands with Pootle FS equivalents
 <migrate_to_pootle_fs#replacing-update_stores-and-sync_stores>`.
 
-You can find an outline of how to use Pootle FS on your existing Pootle
-projects in the :ref:`adding a Pootle FS managed project
-<pootle_fs_add_project>` instructions.
-
-Once you are familiar with Pootle FS you can start :ref:`migrating your
-projects to Pootle FS <migrate_to_pootle_fs>`.
+You can find an outline of how to use Pootle FS in the :ref:`using Pootle FS
+<using_pootle_fs>` instructions. If you have a existing project you want to
+migrate to Pootle FS please read the :ref:`migrating your projects to Pootle FS
+<migrate_to_pootle_fs>` instructions.
