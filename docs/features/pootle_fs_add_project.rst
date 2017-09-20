@@ -9,17 +9,6 @@ system.
 The following steps outline the setup of a Pootle FS based project:
 
 
-Install Pootle FS plugins
--------------------------
-
-.. note:: Pootle FS will work out of the box when synchronizing with the local
-   file system. If this is the case you can safely skip this step.
-
-
-Synchronizing against any version control system requires you add some
-:ref:`additional packages and configuration <pootle_fs_install_plugins>`.
-
-
 Create a project and set Pootle FS configuration for it
 -------------------------------------------------------
 

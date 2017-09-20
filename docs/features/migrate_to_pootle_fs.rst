@@ -38,13 +38,54 @@ files on disk will likely mess with direct Pootle FS change detection.
 You may want to look at the format adaptors for future massaging or formats.
 
 
-.. _migrate_to_pootle_fs#migrating-to-vcs:
+.. _migrate_to_pootle_fs#integrating-with-vcs:
 
-Migrating to version control
-----------------------------
+Integrating with version control
+--------------------------------
+
+.. note:: Pootle FS will work out of the box when synchronizing with the local
+   file system. If this is the case you can safely skip the integration with
+   version control.
+
 
 With files moved to ``localfs`` it might be a good time to consider directly
 integrating with version control.
+
+
+.. _migrate_to_pootle_fs#install-vcs-plugins:
+
+Install Pootle FS plugins for VCS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Pootle FS provides support for different VCS systems through plugins, so in
+order for Pootle to work with a specific VCS it is necessary to install its
+plugin.  For examples for Git:
+
+- Install the plugin:
+
+  .. highlight:: console
+  .. parsed-literal::
+
+    (env) $ pip install |--process-dependency-links --pre| Pootle[git]
+
+
+- Add the plugin to :setting:`INSTALLED_APPS`:
+
+  .. code-block:: python
+
+    INSTALLED_APPS += ['pootle_fs_git']
+
+
+This is done once for the whole Pootle server.
+
+
+.. _migrate_to_pootle_fs#configure-project-to-use-vcs:
+
+Configure the project to use VCS
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+After installing the necessary Pootle FS plugin, it is now necessary to alter
+the project configuration:
 
 1. Make sure you have installed the needed Pootle FS :ref:`plugin for the
    version control backend <pootle_fs_install_plugins>` you are using.
