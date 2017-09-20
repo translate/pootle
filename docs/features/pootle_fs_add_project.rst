@@ -39,12 +39,6 @@ be relative to the root of the repository.
      ``git@github.com:user/repo.git``
 
 
-If not all of your project's language codes match those available in Pootle,
-then add language mapping configurations for those languages as explained in
-the :ref:`Enable translation to a new language
-<project_setup#initialize-new-tp>` instructions.
-
-
 Pull the translations into Pootle
 ---------------------------------
 

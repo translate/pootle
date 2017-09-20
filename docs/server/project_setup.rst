@@ -139,6 +139,17 @@ project.
 Once you are done click on the **Save** button below the form to create the
 project and save its Pootle FS configuration.
 
+If not all of your project's language codes match those available in Pootle,
+then you must add language mapping configurations for those languages. You can
+do that by clicking on the **Languages** link that is displayed below your
+project form:
+
+.. image:: ../_static/project_form_bottom_links.png
+
+
+and then provide a different language code in the **Filesystem language code**
+field for those languages whose codes need to be mapped.
+
 Creating the project doesn't actually import all the translations to
 Pootle. To do that you need to run :djadmin:`update_stores` on the command line
 of the Pootle server:
