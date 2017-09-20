@@ -124,14 +124,53 @@ files, in our example :file:`my-project`. Also you must specify the
 **File Types** used in this new project, in our example
 ``Gettext PO (po/pot)``.
 
-Set **Filesystem backend** to ``localfs``. **Path or URL** must point to the
-translation files on the filesystem, in our example
-``{POOTLE_TRANSLATION_DIRECTORY}my-project``. Finally set
-**Path mapping preset** to ``GNU style``.
+The **Filesystem backend** tells Pootle FS how to synchronize the translations
+in the project. The default option is ``localfs`` which tells to synchronize
+with the disk. Other backends allow to synchronize with version control systems
+and they might require the installation of additional Pootle FS plugins.
+
+**Path or URL** either is a path pointing to the translation files on the disk
+if you are using the ``localfs`` **Filesystem backend**, or is a URL pointing
+to the VCS repository. The path can be an absolute path like
+``/path/to/translations/my-project/`` or it can use the
+``{POOTLE_TRANSLATION_DIRECTORY}`` placeholder if you are using the ``localfs``
+**Filesystem backend**, like ``{POOTLE_TRANSLATION_DIRECTORY}my-project``
+(the placeholder will be transparently replaced by the value of the
+:setting:`POOTLE_TRANSLATION_DIRECTORY` setting). If you are using a
+**Filesystem backend** that uses a URL instead of a Path, for example for the
+**Git** backend, this would be like ``git@github.com:user/repo.git`` for a
+GitHub repository.
+
+The **Path mapping** field specifies the project layout using a glob like
+``/path/to/translation/files/<language_code>/<dir_path>/<filename>.<ext>`` that
+must start with ``/``, end with ``.<ext>``, and contain ``<language_code>``
+(the rest of the placeholders are optional). If you are using the ``localfs``
+**Filesystem backend** the **Path mapping** will be combined with the path
+specified in the **Path or URL** field. For other backends it will be relative
+to the root of the repository. Note you can easily fill this field by selecting
+one of the available **Path mapping presets**.
 
 You can also provide a **Full Name** easily readable for humans. You don't need
 to change the rest of the fields unless you need to further customize your
 project.
+
+.. note:: If you are creating a project that is integrated with a version
+   control repository then configure as follows:
+
+   - Set the **Filesystem backend** to the required VCS backend.
+   - Set the **Path or URL** to point to the repository, e.g.
+     ``git@github.com:user/repo.git`` for a GitHub repository.
+
+
+In our example set the following:
+
+- **Code** to ``my-project``.
+- **Full Name** to ``My project``
+- **File Types** to ``Gettext PO (po/pot)``.
+- **Filesystem backend** to ``localfs``.
+- **Path or URL** to ``{POOTLE_TRANSLATION_DIRECTORY}my-project``.
+- **Path mapping preset** to ``GNU style``.
+
 
 .. image:: ../_static/add_project_form.png
 
