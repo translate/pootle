@@ -96,7 +96,7 @@ Install Pootle FS plugins for VCS
 
 Pootle FS provides support for different VCS systems through plugins, so in
 order for Pootle to work with a specific VCS it is necessary to install its
-plugin.  For examples for Git:
+plugin. For example for Git:
 
 - Install the plugin:
 
@@ -106,7 +106,7 @@ plugin.  For examples for Git:
     (env) $ pip install |--process-dependency-links --pre| Pootle[git]
 
 
-- Add the plugin to :setting:`INSTALLED_APPS`:
+- Add the plugin to :setting:`INSTALLED_APPS` in your custom Pootle settings:
 
   .. code-block:: python
 
@@ -147,16 +147,26 @@ Configure the project to use VCS
 After installing the necessary Pootle FS plugin and connecting Pootle FS with
 the VCS repository, it is now necessary to alter the project configuration:
 
-1. Make sure you have installed the needed Pootle FS :ref:`plugin for the
-   version control backend <pootle_fs_install_plugins>` you are using.
-2. (optional but recommended) Disable the project.
-3. Ensure you have synchronized all your files and committed them to your
-   version control system.
-4. Instead of ``localfs``, set the backend appropriately.
-5. Set the URL to your version control repository.
-6. Synchronize as follows:
+- Deactivate any existing automatic synchronization (like :command:`cron`
+  entries).
+- Disable the project to prevent changes from translators.
+- Ensure you have synchronized all the translation files to disk.
+- Ensure you have committed all the translation files to your version control
+  system.
+- Set the project's **Filesystem backend** to the appropriate VCS backend.
+- Set the URL to your version control repository in the project's **Path or
+  URL**, e.g. ``git@github.com:user/repo.git``.
+- Synchronize as follows:
 
-   .. code-block:: console
+  .. code-block:: console
 
-     (env) $ pootle fs fetch --force MYPROJECT
-     (env) $ pootle fs sync MYPROJECT
+    (env) $ pootle fs fetch $MYPROJECT
+    (env) $ pootle fs sync $MYPROJECT
+
+- Enable the project again.
+- Enable automatic synchronization again.
+
+
+Your project is now ready to synchronize with the configured repository using
+Pootle FS. You might want to learn more about how to :ref:`use Pootle FS
+<using_pootle_fs>`.
