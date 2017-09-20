@@ -189,13 +189,19 @@ project form:
 and then provide a different language code in the **Filesystem language code**
 field for those languages whose codes need to be mapped.
 
-Creating the project doesn't actually import all the translations to
-Pootle. To do that you need to run :djadmin:`update_stores` on the command line
-of the Pootle server:
+Creating the project doesn't actually import all the translations to Pootle. To
+do that you need to run the following on the command line of the Pootle server:
 
 .. code-block:: console
 
-    (env) $ pootle update_stores --project=my-project
+    (env) $ pootle fs fetch my-project
+    (env) $ pootle fs state my-project
+    (env) $ pootle fs add my-project
+    (env) $ pootle fs sync my-project
+
+
+.. note::  Read the :ref:`using Pootle FS <using_pootle_fs>` instructions in
+   order to learn more about Pootle FS usage.
 
 
 This will import all the translations from disk into Pootle, calculate the
