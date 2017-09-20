@@ -38,6 +38,43 @@ files on disk will likely mess with direct Pootle FS change detection.
 You may want to look at the format adaptors for future massaging or formats.
 
 
+.. _migrate_to_pootle_fs#replacing-update_stores-and-sync_stores:
+
+Replacing update_stores and sync_stores
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+:djadmin:`update_stores` can be replaced with the following set of Pootle FS
+commands:
+
+.. code-block:: console
+
+    (env) $ pootle fs fetch my-project
+    (env) $ pootle fs resolve my-project --overwrite
+    (env) $ pootle fs sync my-project --update=pootle
+
+
+.. note:: To narrow down the execution to a particular language in a project
+   you must append the ``--fs-path`` argument for each of command in the
+   previous snippet. For example ``--fs-path=my-project/fr/*`` constrains to
+   the project's French filesystem files.
+
+
+:djadmin:`sync_stores` can be replaced with the following set of Pootle FS
+commands:
+
+.. code-block:: console
+
+    (env) $ pootle fs fetch my-project
+    (env) $ pootle fs resolve my-project --overwrite --pootle-wins
+    (env) $ pootle fs sync my-project --update=fs
+
+
+.. note:: To narrow down the execution to a particular language in a project
+   you must append the ``--pootle-path`` argument for each of command in the
+   previous snippet. For example ``--pootle-path=/de/my-project/*`` constrains
+   to the project's German database stores.
+
+
 .. _migrate_to_pootle_fs#integrating-with-vcs:
 
 Integrating with version control

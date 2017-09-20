@@ -234,7 +234,8 @@ sync_stores
 ^^^^^^^^^^^
 
 .. deprecated:: 2.9
-   Deprecated in favor of Pootle FS commands.
+   Deprecated in favor of :ref:`Pootle FS equivalent
+   <migrate_to_pootle_fs#replacing-update_stores-and-sync_stores>`.
 
 
 .. note:: Since version 2.9 all projects are managed by Pootle FS and therefore
@@ -282,7 +283,8 @@ update_stores
 ^^^^^^^^^^^^^
 
 .. deprecated:: 2.9
-   Deprecated in favor of Pootle FS commands.
+   Deprecated in favor of :ref:`Pootle FS equivalent
+   <migrate_to_pootle_fs#replacing-update_stores-and-sync_stores>`.
 
 
 .. note:: Since version 2.9 all projects are managed by Pootle FS and therefore

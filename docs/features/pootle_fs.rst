@@ -89,7 +89,9 @@ and :djadmin:`sync_stores`, to allow translations to be pushed into Pootle or
 pulled from Pootle.
 
 These two commands still exist but are now deprecated. We will be phasing these
-out in the long term to make everything use Pootle FS.
+out in the long term to make everything use Pootle FS, but you can
+:ref:`replace these commands with Pootle FS equivalents
+<migrate_to_pootle_fs#replacing-update_stores-and-sync_stores>`.
 
 You can find an outline of how to use Pootle FS on your existing Pootle
 projects in the :ref:`adding a Pootle FS managed project
