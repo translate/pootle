@@ -62,17 +62,19 @@ Below you can see an example with two projects using the GNU layout:
 
     `-- translations
         `-- project1
-        |   |-- de.po
-        |   |-- fr.po
-        |   |-- gl.po
-        |   |-- pt_BR.po
-        |   `-- templates.pot
+        |   `-- po
+        |       |-- de.po
+        |       |-- fr.po
+        |       |-- gl.po
+        |       |-- pt_BR.po
+        |       `-- templates.pot
         `-- project2
-            |-- af.po
-            |-- eu.po
-            |-- pt_BR.po
-            |-- templates.pot
-            `-- zu.po
+            `-- po
+                |-- af.po
+                |-- eu.po
+                |-- pt_BR.po
+                |-- templates.pot
+                `-- zu.po
 
 
 Among the regular translation files there are two files named 
