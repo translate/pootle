@@ -189,6 +189,12 @@ project form:
 and then provide a different language code in the **Filesystem language code**
 field for those languages whose codes need to be mapped.
 
+
+.. _project_setup#import-translations:
+
+Import the translations
++++++++++++++++++++++++
+
 Creating the project doesn't actually import all the translations to Pootle. To
 do that you need to run the following on the command line of the Pootle server:
 
