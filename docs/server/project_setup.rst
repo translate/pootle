@@ -118,11 +118,8 @@ Click on that button and the **Add Project** form will be displayed. Enter the
 new project's details.
 
 
-**Code** must match the name of the directory within
-:setting:`POOTLE_TRANSLATION_DIRECTORY` that contains the project translation
-files, in our example :file:`my-project`. Also you must specify the
-**File Types** used in this new project, in our example
-``Gettext PO (po/pot)``.
+**Code** is a unique string that identifies the project. Also you must specify
+the **File Types** used in this new project.
 
 The **Filesystem backend** tells Pootle FS how to synchronize the translations
 in the project. The default option is ``localfs`` which tells to synchronize
@@ -150,9 +147,9 @@ specified in the **Path or URL** field. For other backends it will be relative
 to the root of the repository. Note you can easily fill this field by selecting
 one of the available **Path mapping presets**.
 
-You can also provide a **Full Name** easily readable for humans. You don't need
-to change the rest of the fields unless you need to further customize your
-project.
+You can also provide a **Full Name** easily readable for humans, if not the
+**Code** will be used. You don't need to change the rest of the fields unless
+you need to further customize your project.
 
 .. note:: If you are creating a project that is integrated with a version
    control repository then configure as follows:
