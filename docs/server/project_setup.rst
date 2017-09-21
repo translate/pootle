@@ -178,16 +178,31 @@ In our example set the following:
 Once you are done click on the **Save** button below the form to create the
 project and save its Pootle FS configuration.
 
-If not all of your project's language codes match those available in Pootle,
-then you must add language mapping configurations for those languages. You can
-do that by clicking on the **Languages** link that is displayed below your
-project form:
+
+.. _project_setup#specify-language-codes-mapping:
+
+Specify language codes mapping
+++++++++++++++++++++++++++++++
+
+If not all of your project's language codes **do not match** those available in
+Pootle, then you must add language mapping configurations for those languages.
+You can do that by clicking on the **Languages** link that is displayed below
+your project form:
 
 .. image:: ../_static/project_form_bottom_links.png
 
 
-and then provide a different language code in the **Filesystem language code**
-field for those languages whose codes need to be mapped.
+The existing languages enabled for the project are listed, including an
+**optional** mapping to the language code used in the filesystem. In the
+screenshot below you can see that ``fr_FR`` on filesystem maps to ``fr`` on
+Pootle:
+
+.. image:: ../_static/enable_new_tp_through_admin_UI.png
+
+
+In our example this form won't list any language, so you must add new entries
+for the languages that need to be mapped specifying their **Filesystem language
+code** field.
 
 
 .. _project_setup#import-translations:
@@ -240,9 +255,9 @@ dropdown:
 
 
 The existing languages enabled for the project are listed, including an
-optional mapping to the language code used in the filesystem (in the screenshot
-below you can see that ``fr_FR`` on filesystem maps to ``fr`` on Pootle). In
-our example we are adding **Arabic** to the project:
+**optional** mapping to the language code used in the filesystem (in the
+screenshot below you can see that ``fr_FR`` on filesystem maps to ``fr`` on
+Pootle). In our example we are adding **Arabic** to the project:
 
 .. image:: ../_static/enable_new_tp_through_admin_UI.png
 
