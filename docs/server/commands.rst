@@ -1059,27 +1059,33 @@ Pootle FS **action** and **execution** subcommands take the :option:`-p` and
 :option:`-P` options which allow you to specify a glob to limit which files or
 stores are affected by the command.
 
-.. django-admin-option:: -p --fs_path
+.. django-admin-option:: -p --fs-path
 
   Only affect files whose filesystem path matches a given glob.
 
 
   .. code-block:: console
 
-     (env) $ pootle fs add --fs_path MYPROJECT/af/directory/file.po MYPROJECT
+     (env) $ pootle fs add --fs-path=MYPROJECT/af/directory/file.po MYPROJECT
+     (env) $ pootle fs add --fs-path=MYPROJECT/af/* MYPROJECT
+     (env) $ pootle fs add --fs-path=MYPROJECT/af/*/file.po MYPROJECT
+     (env) $ pootle fs add --fs-path=MYPROJECT/af/directory/*.po MYPROJECT
 
 
   .. note:: The path should be relative to the Pootle FS URL setting for the
      project.
 
 
-.. django-admin-option:: -P --pootle_path
+.. django-admin-option:: -P --pootle-path
 
   Only affect files whose Pootle path matches a given glob.
 
   .. code-block:: console
 
-     (env) $ pootle fs add --pootle_path /af/MYPROJECT/directory/file.po MYPROJECT
+     (env) $ pootle fs add --pootle-path=/af/MYPROJECT/directory/file.po MYPROJECT
+     (env) $ pootle fs add --pootle-path=/af/MYPROJECT/* MYPROJECT
+     (env) $ pootle fs add --pootle-path=/af/MYPROJECT/*/file.po MYPROJECT
+     (env) $ pootle fs add --pootle-path=/af/MYPROJECT/directory/*.po MYPROJECT
 
 
   .. note:: Keep in mind that Pootle paths always start with `/`.

@@ -55,12 +55,12 @@ class FSAPISubCommand(ProjectSubCommand):
     def add_arguments(self, parser):
         super(FSAPISubCommand, self).add_arguments(parser)
         parser.add_argument(
-            '-p', '--fs_path',
+            '-p', '--fs-path',
             action='store',
             dest='fs_path',
             help='Filter translations by filesystem path')
         parser.add_argument(
-            '-P', '--pootle_path',
+            '-P', '--pootle-path',
             action='store',
             dest='pootle_path',
             help='Filter translations by Pootle path')
