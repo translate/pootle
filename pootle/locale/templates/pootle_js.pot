@@ -7,9 +7,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.8.0\n"
+"Project-Id-Version: Pootle 2.9.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-06-13 15:55+0100\n"
+"POT-Creation-Date: 2017-09-22 16:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -75,12 +75,12 @@ msgid ""
 msgstr ""
 
 #: static/js/admin/components/Language/LanguageForm.js:54
-#: static/js/admin/components/Project/ProjectForm.js:56
+#: static/js/admin/components/Project/ProjectForm.js:84
 msgid "Code"
 msgstr ""
 
 #: static/js/admin/components/Language/LanguageForm.js:61
-#: static/js/admin/components/Project/ProjectForm.js:63
+#: static/js/admin/components/Project/ProjectForm.js:91
 #: static/js/admin/components/User/UserForm.js:91
 #: static/js/user/components/UserProfileForm.js:74
 msgid "Full Name"
@@ -99,14 +99,14 @@ msgid "Plural Equation"
 msgstr ""
 
 #: static/js/admin/components/Language/LanguageForm.js:97
-#: static/js/admin/components/Project/ProjectForm.js:144
+#: static/js/admin/components/Project/ProjectForm.js:202
 #: static/js/admin/components/User/UserForm.js:156
 #: static/js/user/components/UserProfileForm.js:132
 msgid "Save"
 msgstr ""
 
 #: static/js/admin/components/Language/LanguageForm.js:101
-#: static/js/admin/components/Project/ProjectForm.js:148
+#: static/js/admin/components/Project/ProjectForm.js:206
 msgid "Overview"
 msgstr ""
 
@@ -151,48 +151,60 @@ msgid ""
 "Use the search form to find the project, then click on a project to edit."
 msgstr ""
 
-#: static/js/admin/components/Project/ProjectForm.js:73
+#: static/js/admin/components/Project/ProjectForm.js:101
 msgid "Quality Checks"
 msgstr ""
 
-#: static/js/admin/components/Project/ProjectForm.js:84
+#: static/js/admin/components/Project/ProjectForm.js:112
 msgid "File types"
 msgstr ""
 
-#: static/js/admin/components/Project/ProjectForm.js:94
-msgid "Project Tree Style"
+#: static/js/admin/components/Project/ProjectForm.js:122
+msgid "Filesystem backend"
 msgstr ""
 
-#: static/js/admin/components/Project/ProjectForm.js:104
-msgid "Source Language"
+#: static/js/admin/components/Project/ProjectForm.js:129
+msgid "Path or URL"
 msgstr ""
 
-#: static/js/admin/components/Project/ProjectForm.js:111
-msgid "Ignore Files"
+#: static/js/admin/components/Project/ProjectForm.js:139
+msgid "Path mapping preset"
 msgstr ""
 
-#: static/js/admin/components/Project/ProjectForm.js:119
-msgid "String Errors Contact"
-msgstr ""
-
-#: static/js/admin/components/Project/ProjectForm.js:126
-msgid "Screenshot Search Prefix"
-msgstr ""
-
-#: static/js/admin/components/Project/ProjectForm.js:134
-msgid "Disabled"
-msgstr ""
-
-#: static/js/admin/components/Project/ProjectForm.js:149
-msgid "Languages"
-msgstr ""
-
-#: static/js/admin/components/Project/ProjectForm.js:150
-msgid "Permissions"
+#: static/js/admin/components/Project/ProjectForm.js:145
+msgid "Path mapping"
 msgstr ""
 
 #: static/js/admin/components/Project/ProjectForm.js:152
-msgid "Filesystems"
+msgid "Template name"
+msgstr ""
+
+#: static/js/admin/components/Project/ProjectForm.js:162
+msgid "Source Language"
+msgstr ""
+
+#: static/js/admin/components/Project/ProjectForm.js:169
+msgid "Ignore Files"
+msgstr ""
+
+#: static/js/admin/components/Project/ProjectForm.js:177
+msgid "String Errors Contact"
+msgstr ""
+
+#: static/js/admin/components/Project/ProjectForm.js:184
+msgid "Screenshot Search Prefix"
+msgstr ""
+
+#: static/js/admin/components/Project/ProjectForm.js:192
+msgid "Disabled"
+msgstr ""
+
+#: static/js/admin/components/Project/ProjectForm.js:207
+msgid "Languages"
+msgstr ""
+
+#: static/js/admin/components/Project/ProjectForm.js:208
+msgid "Permissions"
 msgstr ""
 
 #: static/js/admin/components/Search.js:68
@@ -534,92 +546,92 @@ msgstr ""
 msgid "Updating data"
 msgstr ""
 
-#: static/js/editor/app.js:339 static/js/editor/app.js:658
+#: static/js/editor/app.js:346 static/js/editor/app.js:665
 msgid ""
 "You have unsaved changes in this string. Navigating away will discard those "
 "changes."
 msgstr ""
 
-#: static/js/editor/app.js:384
+#: static/js/editor/app.js:391
 msgid ""
 "Go to the next string (Ctrl+.)<br/><br/>Also:<br/>Next page: Ctrl+Shift+.<br/"
 ">Last page: Ctrl+Shift+End"
 msgstr ""
 
-#: static/js/editor/app.js:390
+#: static/js/editor/app.js:397
 msgid ""
 "Go to the previous string (Ctrl+,)<br/><br/>Also:<br/>Previous page: Ctrl"
 "+Shift+,<br/>First page: Ctrl+Shift+Home"
 msgstr ""
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:515
+#: static/js/editor/app.js:522
 #, python-format, javascript-format
 msgid "%s's pending suggestions"
 msgstr ""
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:518
+#: static/js/editor/app.js:525
 #, python-format, javascript-format
 msgid "%s's accepted suggestions"
 msgstr ""
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:521
+#: static/js/editor/app.js:528
 #, python-format, javascript-format
 msgid "%s's rejected suggestions"
 msgstr ""
 
 #. Translators: '%s' is a username
-#: static/js/editor/app.js:524
+#: static/js/editor/app.js:531
 #, python-format, javascript-format
 msgid "%s's submissions"
 msgstr ""
 
 #. Translators: '%s' is a username, meaning "submissions by %s,
 #. that were overwritten"
-#: static/js/editor/app.js:528
+#: static/js/editor/app.js:535
 #, python-format, javascript-format
 msgid "%s's overwritten submissions"
 msgstr ""
 
-#: static/js/editor/app.js:1069
+#: static/js/editor/app.js:1084
 msgid "Error while connecting to the server"
 msgstr ""
 
-#: static/js/editor/app.js:1074
+#: static/js/editor/app.js:1089
 msgid "Not found"
 msgstr ""
 
-#: static/js/editor/app.js:1076
+#: static/js/editor/app.js:1091
 msgid "Server error"
 msgstr ""
 
-#: static/js/editor/app.js:1078
+#: static/js/editor/app.js:1093
 msgid "The server seems down. Try again later."
 msgstr ""
 
-#: static/js/editor/app.js:1087
+#: static/js/editor/app.js:1102
 msgid "This string no longer exists."
 msgstr ""
 
-#: static/js/editor/app.js:1088
+#: static/js/editor/app.js:1103
 msgid "Go back to browsing"
 msgstr ""
 
-#: static/js/editor/app.js:1090
+#: static/js/editor/app.js:1105
 msgid "Reload page"
 msgstr ""
 
-#: static/js/editor/app.js:2188
+#: static/js/editor/app.js:2232
 msgid "some anonymous user"
 msgstr ""
 
-#: static/js/editor/app.js:2190
+#: static/js/editor/app.js:2234
 msgid "someone"
 msgstr ""
 
-#: static/js/editor/app.js:2208 static/js/editor/app.js:2262
+#: static/js/editor/app.js:2252 static/js/editor/app.js:2306
 msgid "Similar translations"
 msgstr ""
 
@@ -779,7 +791,7 @@ msgid ""
 "accounts."
 msgstr ""
 
-#: static/js/editor/app.js:650
+#: static/js/editor/app.js:657
 msgid "No results."
 msgstr ""
 

@@ -7,9 +7,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Pootle 2.8.0\n"
+"Project-Id-Version: Pootle 2.9.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
-"POT-Creation-Date: 2017-07-12 11:39+0100\n"
+"POT-Creation-Date: 2017-09-22 16:37+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,7 +35,7 @@ msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
 
-#: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
+#: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:90
 msgid "Username"
 msgstr ""
 
@@ -57,7 +57,7 @@ msgid "Email Address"
 msgstr ""
 
 #: apps/accounts/models.py:68 apps/pootle_language/models.py:39
-#: apps/pootle_project/models.py:206
+#: apps/pootle_project/models.py:214
 msgid "Full Name"
 msgstr ""
 
@@ -154,19 +154,19 @@ msgstr ""
 msgid "Please enter your message"
 msgstr ""
 
-#: apps/contact/forms.py:81
+#: apps/contact/forms.py:84
 msgid "String context"
 msgstr ""
 
-#: apps/contact/forms.py:91
+#: apps/contact/forms.py:94
 msgid "Question or comment"
 msgstr ""
 
-#: apps/contact/forms.py:92
+#: apps/contact/forms.py:95
 msgid "Please enter your question or comment"
 msgstr ""
 
-#: apps/contact/views.py:35 templates/layout.html:120
+#: apps/contact/views.py:35 templates/layout.html:127
 msgid "Contact Us"
 msgstr ""
 
@@ -226,35 +226,42 @@ msgstr ""
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr ""
 
-#: apps/import_export/utils.py:57
+#: apps/import_export/utils.py:58
 #, python-format
-msgid "Could not create '%s'. Missing Project/Language? (%s)"
+msgid "Could not create '%(filename)s'. Missing Project/Language? (%(error)s)"
 msgstr ""
 
-#: apps/import_export/utils.py:74
+#: apps/import_export/utils.py:76
 msgid "There was an error uploading your file"
 msgstr ""
 
-#: apps/pootle_app/forms.py:39
+#: apps/pootle_app/forms.py:41
 msgid "Language code does not follow the ISO convention"
 msgstr ""
 
-#: apps/pootle_app/forms.py:54 apps/pootle_project/models.py:230
-msgid "Source Language"
-msgstr ""
-
-#: apps/pootle_app/forms.py:88
+#: apps/pootle_app/forms.py:92
 #, python-format
 msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
 
-#: apps/pootle_app/forms.py:108
+#: apps/pootle_app/forms.py:114
+msgid ""
+"Path mapping must start with \"/\", end with \".<ext>\", and contain "
+"\"<language_code>\""
+msgstr ""
+
+#: apps/pootle_app/forms.py:131
+#, python-format
+msgid "Invalid Path or URL for chosen Filesystem backend '%s'"
+msgstr ""
+
+#: apps/pootle_app/forms.py:156
 msgid "Password"
 msgstr ""
 
-#: apps/pootle_app/forms.py:143 apps/pootle_profile/forms.py:28
+#: apps/pootle_app/forms.py:191 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
 msgstr ""
 
@@ -271,20 +278,25 @@ msgstr[1] ""
 msgid "Stopped"
 msgstr ""
 
-#: apps/pootle_app/views/admin/permissions.py:65
+#: apps/pootle_app/views/admin/permissions.py:72
 msgid "All Users"
 msgstr ""
 
-#: apps/pootle_app/views/admin/permissions.py:92
+#: apps/pootle_app/views/admin/permissions.py:96
+#: apps/pootle_language/forms.py:97
+msgid "Search for users to add"
+msgstr ""
+
+#: apps/pootle_app/views/admin/permissions.py:100
 msgid "Add Permissions"
 msgstr ""
 
-#: apps/pootle_app/views/admin/permissions.py:97
-#: apps/pootle_app/views/admin/permissions.py:106
+#: apps/pootle_app/views/admin/permissions.py:105
+#: apps/pootle_app/views/admin/permissions.py:114
 msgid "Select one or more permissions"
 msgstr ""
 
-#: apps/pootle_app/views/admin/permissions.py:101
+#: apps/pootle_app/views/admin/permissions.py:109
 msgid "Revoke Permissions"
 msgstr ""
 
@@ -292,7 +304,7 @@ msgstr ""
 msgid "No files in this project."
 msgstr ""
 
-#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:207
+#: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:209
 msgid "There are errors in the form. Please review the problems below."
 msgstr ""
 
@@ -530,58 +542,20 @@ msgstr ""
 msgid "Monolingual format"
 msgstr ""
 
-#: apps/pootle_fs/forms.py:24
-msgid "GNU-style"
+#: apps/pootle_fs/presets.py:15
+msgid "GNU style"
 msgstr ""
 
-#: apps/pootle_fs/forms.py:26
-msgid "non GNU-style"
+#: apps/pootle_fs/presets.py:18
+msgid "non-GNU style"
 msgstr ""
 
-#: apps/pootle_fs/forms.py:29
-msgid "Django-style"
+#: apps/pootle_fs/presets.py:21
+msgid "Django style"
 msgstr ""
 
-#: apps/pootle_fs/forms.py:31
+#: apps/pootle_fs/presets.py:22
 msgid "Custom"
-msgstr ""
-
-#: apps/pootle_fs/forms.py:37
-msgid "Filesystem backend"
-msgstr ""
-
-#: apps/pootle_fs/forms.py:38
-msgid "Select a filesystem backend"
-msgstr ""
-
-#: apps/pootle_fs/forms.py:43
-msgid "Backend URL or path"
-msgstr ""
-
-#: apps/pootle_fs/forms.py:45
-msgid "The URL or path to your translation files"
-msgstr ""
-
-#: apps/pootle_fs/forms.py:47
-msgid "Translation mapping presets"
-msgstr ""
-
-#: apps/pootle_fs/forms.py:55
-msgid "Translation path mapping"
-msgstr ""
-
-#: apps/pootle_fs/forms.py:56
-msgid ""
-"Translation path mapping that maps the localisation files on the filesystem "
-"to files on Pootle."
-msgstr ""
-
-#: apps/pootle_fs/forms.py:182
-msgid "Filesystem language codes must be unique"
-msgstr ""
-
-#: apps/pootle_fs/forms.py:186
-msgid "Pootle language mappings must be unique"
 msgstr ""
 
 #: apps/pootle_language/forms.py:27
@@ -600,64 +574,60 @@ msgstr ""
 msgid "Administrator"
 msgstr ""
 
-#: apps/pootle_language/forms.py:76
+#: apps/pootle_language/forms.py:70
 msgid "Administrators"
 msgstr ""
 
-#: apps/pootle_language/forms.py:82
+#: apps/pootle_language/forms.py:76
 msgid "Reviewers"
 msgstr ""
 
-#: apps/pootle_language/forms.py:87
+#: apps/pootle_language/forms.py:81
 msgid "Submitters"
 msgstr ""
 
-#: apps/pootle_language/forms.py:92
+#: apps/pootle_language/forms.py:86
 msgid "Members"
 msgstr ""
 
-#: apps/pootle_language/forms.py:96
+#: apps/pootle_language/forms.py:90
 msgid "New member"
 msgstr ""
 
-#: apps/pootle_language/forms.py:97
+#: apps/pootle_language/forms.py:91
 msgid "Add a user to this team"
 msgstr ""
 
-#: apps/pootle_language/forms.py:103
-msgid "Search for users to add"
-msgstr ""
-
-#: apps/pootle_language/forms.py:106
+#: apps/pootle_language/forms.py:100
 msgid "Role"
 msgstr ""
 
-#: apps/pootle_language/forms.py:137
+#: apps/pootle_language/forms.py:131
 msgid "Role is required when adding a new member"
 msgstr ""
 
-#: apps/pootle_language/forms.py:163 core/forms.py:218
+#: apps/pootle_language/forms.py:157 core/forms.py:218
 msgid "Reject"
 msgstr ""
 
-#: apps/pootle_language/forms.py:164 core/forms.py:219
+#: apps/pootle_language/forms.py:158 core/forms.py:219
 msgid "Accept"
 msgstr ""
 
-#: apps/pootle_language/forms.py:166
+#: apps/pootle_language/forms.py:160
 msgid "Filter by suggester"
 msgstr ""
 
-#: apps/pootle_language/forms.py:172
+#: apps/pootle_language/forms.py:166
 msgid "Filter by state"
 msgstr ""
 
-#: apps/pootle_language/forms.py:182 apps/pootle_language/views.py:218
+#: apps/pootle_language/forms.py:176 apps/pootle_language/views.py:218
 #: core/browser.py:26
 msgid "Project"
 msgstr ""
 
-#: apps/pootle_language/models.py:32 apps/pootle_project/models.py:201
+#: apps/pootle_language/models.py:32 apps/pootle_project/models.py:209
 msgid "Code"
 msgstr ""
 
@@ -796,19 +766,19 @@ msgstr ""
 msgid "{percentage} translated"
 msgstr ""
 
-#: apps/pootle_misc/templatetags/render_pager.py:23
+#: apps/pootle_misc/templatetags/render_pager.py:27
 msgid "First"
 msgstr ""
 
-#: apps/pootle_misc/templatetags/render_pager.py:25
+#: apps/pootle_misc/templatetags/render_pager.py:29
 msgid "Previous"
 msgstr ""
 
-#: apps/pootle_misc/templatetags/render_pager.py:42
+#: apps/pootle_misc/templatetags/render_pager.py:46
 msgid "Next"
 msgstr ""
 
-#: apps/pootle_misc/templatetags/render_pager.py:44
+#: apps/pootle_misc/templatetags/render_pager.py:48
 #, python-format
 msgid "Last (%d)"
 msgstr ""
@@ -819,69 +789,71 @@ msgstr ""
 
 #: apps/pootle_profile/templatetags/profile_tags.py:35
 #, python-format
-msgid "My current score at %s is %s"
+msgid "My current score at %(pootle_title)s is %(score)s"
 msgstr ""
 
 #: apps/pootle_profile/templatetags/profile_tags.py:38
-#: apps/pootle_profile/templatetags/profile_tags.py:63
+#: apps/pootle_profile/templatetags/profile_tags.py:64
 msgid "Tweet this!"
 msgstr ""
 
 #: apps/pootle_profile/templatetags/profile_tags.py:52
 #, python-format
-msgid "#%s contributor in %s in the last 30 days"
+msgid "#%(rank)s contributor in %(language)s in the last 30 days"
 msgstr ""
 
 #: apps/pootle_profile/templatetags/profile_tags.py:56
 #, python-format
-msgid "I am #%s contributor in %s in the last 30 days at %s!"
+msgid ""
+"I am #%(rank)s contributor in %(language)s in the last 30 days at "
+"%(pootle_title)s!"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:65
+#: apps/pootle_profile/templatetags/profile_tags.py:66
 msgid "No contributions in the last 30 days"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:76
+#: apps/pootle_profile/templatetags/profile_tags.py:77
 msgid "My Website"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:86
+#: apps/pootle_profile/templatetags/profile_tags.py:87
 msgid "My LinkedIn Profile"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:95
+#: apps/pootle_profile/templatetags/profile_tags.py:96
 msgid "Site administrator"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:101
+#: apps/pootle_profile/templatetags/profile_tags.py:102
 #, python-format
 msgid "%s's language teams"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:104
+#: apps/pootle_profile/templatetags/profile_tags.py:105
 #, python-format
 msgid "%s is not a member of any language teams"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:121
+#: apps/pootle_profile/templatetags/profile_tags.py:122
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:125
+#: apps/pootle_profile/templatetags/profile_tags.py:126
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:135
+#: apps/pootle_profile/templatetags/profile_tags.py:136
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
 
-#: apps/pootle_profile/templatetags/profile_tags.py:138
+#: apps/pootle_profile/templatetags/profile_tags.py:139
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr ""
 
@@ -889,7 +861,7 @@ msgstr ""
 msgid "Anonymous User"
 msgstr ""
 
-#: apps/pootle_profile/utils.py:96 templates/layout.html:134
+#: apps/pootle_profile/utils.py:96 templates/layout.html:141
 msgid "Admin"
 msgstr ""
 
@@ -901,80 +873,82 @@ msgstr ""
 msgid "Select one or more languages"
 msgstr ""
 
-#: apps/pootle_project/forms.py:58 core/browser.py:31
+#: apps/pootle_project/forms.py:65 core/browser.py:31
 msgid "Language"
 msgstr ""
 
-#: apps/pootle_project/models.py:179
+#: apps/pootle_project/forms.py:75
+msgid "Filesystem language code"
+msgstr ""
+
+#: apps/pootle_project/forms.py:119
+#, python-format
+msgid ""
+"Unable to add mapped code '%(mapped_code)s' for language '%(code)s'. Mapped "
+"filesystem codes must be unique and cannot be in use with an existing "
+"Translation Project"
+msgstr ""
+
+#: apps/pootle_project/forms.py:126
+#, python-format
+msgid ""
+"Unable to add language '%s'. Another language is already mapped to this code"
+msgstr ""
+
+#: apps/pootle_project/models.py:187
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
 msgstr ""
 
 #. Translators: this refers to the project quality checker
-#: apps/pootle_project/models.py:188
+#: apps/pootle_project/models.py:196
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
 msgstr ""
 
-#: apps/pootle_project/models.py:195
+#: apps/pootle_project/models.py:203
 msgid ""
 "A short code for the project. This should only contain ASCII characters, "
 "numbers, and the underscore (_) character."
 msgstr ""
 
-#: apps/pootle_project/models.py:213
+#: apps/pootle_project/models.py:221
 msgid "Quality Checks"
 msgstr ""
 
-#: apps/pootle_project/models.py:219
-msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
+#: apps/pootle_project/models.py:227
+msgid "Source Language"
 msgstr ""
 
-#: apps/pootle_project/models.py:220
-msgid "GNU style: files named by language code"
-msgstr ""
-
-#: apps/pootle_project/models.py:221
-msgid "Non-GNU: Each language in its own directory"
-msgstr ""
-
-#: apps/pootle_project/models.py:222
-msgid "Allow Pootle FS to manage filesystems (Experimental)"
-msgstr ""
-
-#: apps/pootle_project/models.py:226
-msgid "Project Tree Style"
-msgstr ""
-
-#: apps/pootle_project/models.py:234
+#: apps/pootle_project/models.py:231
 msgid "Ignore Files"
 msgstr ""
 
-#: apps/pootle_project/models.py:240
+#: apps/pootle_project/models.py:237
 msgid "Errors Report Email"
 msgstr ""
 
-#: apps/pootle_project/models.py:241
+#: apps/pootle_project/models.py:238
 msgid "An email address where issues with the source text can be reported."
 msgstr ""
 
 #. Translators: This is the URL prefix to search for context screenshots
-#: apps/pootle_project/models.py:246
+#: apps/pootle_project/models.py:243
 msgid "Screenshot Search Prefix"
 msgstr ""
 
-#: apps/pootle_project/models.py:251
+#: apps/pootle_project/models.py:248
 msgid "Disabled"
 msgstr ""
 
-#: apps/pootle_project/views.py:297
+#: apps/pootle_project/views.py:320
 #, python-format
 msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
 
-#: apps/pootle_project/views.py:304
+#: apps/pootle_project/views.py:327
 #, python-format
 msgid "Translation project (%s) has been deleted"
 msgstr ""
@@ -1722,27 +1696,27 @@ msgstr ""
 msgid "A valid search field must be specified"
 msgstr ""
 
-#: core/initdb.py:135
+#: core/initdb.py:136
 msgid "Can access a project"
 msgstr ""
 
-#: core/initdb.py:139
+#: core/initdb.py:140
 msgid "Cannot access a project"
 msgstr ""
 
-#: core/initdb.py:143
+#: core/initdb.py:144
 msgid "Can make a suggestion for a translation"
 msgstr ""
 
-#: core/initdb.py:147
+#: core/initdb.py:148
 msgid "Can submit a translation"
 msgstr ""
 
-#: core/initdb.py:151
+#: core/initdb.py:152
 msgid "Can review suggestions"
 msgstr ""
 
-#: core/initdb.py:155
+#: core/initdb.py:156
 msgid "Can perform administrative tasks"
 msgstr ""
 
@@ -1875,7 +1849,7 @@ msgstr ""
 msgid "Getting Started"
 msgstr ""
 
-#: templates/about.html:7 templates/layout.html:188
+#: templates/about.html:7 templates/layout.html:195
 msgid "About"
 msgstr ""
 
@@ -1966,8 +1940,7 @@ msgstr ""
 msgid "Languages"
 msgstr ""
 
-#: templates/admin/_tabs.html:21 templates/admin/project_fs.html:5
-#: templates/admin/project_fs.html:19 templates/admin/projects.html:4
+#: templates/admin/_tabs.html:21 templates/admin/projects.html:4
 #: templates/admin/projects.html:7
 #: templates/languages/admin/language_team.html:104
 #: templates/projects/base.html:5
@@ -2044,73 +2017,6 @@ msgid ""
 "them."
 msgstr ""
 
-#: templates/admin/project_fs.html:26
-#, python-format
-msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
-
-#: templates/admin/project_fs.html:28
-msgid ""
-"Pootle FS is still experimental, we’d love you to use it, but it does "
-"require a level of expertise in localisation, Python and Pootle in case "
-"anything goes wrong."
-msgstr ""
-
-#: templates/admin/project_fs.html:37
-msgid "Backend configuration"
-msgstr ""
-
-#: templates/admin/project_fs.html:48
-msgid "Update filesystem configuration"
-msgstr ""
-
-#: templates/admin/project_fs.html:51
-msgid "Translation path mapping should be of the format:"
-msgstr ""
-
-#: templates/admin/project_fs.html:59
-msgid ""
-"Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
-"ext&gt;`"
-msgstr ""
-
-#: templates/admin/project_fs.html:65
-msgid ""
-"If you are using the localfs backend the translation path mapping will be "
-"combined with the path specified in backend URL"
-msgstr ""
-
-#: templates/admin/project_fs.html:71
-msgid ""
-"For other backends the translation path mapping will be relative to the root "
-"of the repository."
-msgstr ""
-
-#: templates/admin/project_fs.html:81
-msgid "Language mapping configuration"
-msgstr ""
-
-#: templates/admin/project_fs.html:91
-msgid "Remove"
-msgstr ""
-
-#: templates/admin/project_fs.html:92
-msgid "Pootle code"
-msgstr ""
-
-#: templates/admin/project_fs.html:93
-msgid "Filesystem code"
-msgstr ""
-
-#: templates/admin/project_fs.html:97
-#: templates/admin/staticpages/page_create.html:4
-msgid "Add"
-msgstr ""
-
-#: templates/admin/project_fs.html:104
-msgid "Update"
-msgstr ""
-
 #: templates/admin/reports/header.html:5
 msgid "User"
 msgstr ""
@@ -2183,6 +2089,10 @@ msgstr ""
 msgid "No pages yet."
 msgstr ""
 
+#: templates/admin/staticpages/page_create.html:4
+msgid "Add"
+msgstr ""
+
 #: templates/admin/staticpages/page_list.html:7
 msgid "Legal Pages"
 msgstr ""
@@ -2252,23 +2162,23 @@ msgstr ""
 msgid "Less..."
 msgstr ""
 
-#: templates/browser/index.html:77
+#: templates/browser/index.html:76
 msgid "Updates"
 msgstr ""
 
-#: templates/browser/index.html:82
+#: templates/browser/index.html:81
 msgid "Last updated:"
 msgstr ""
 
-#: templates/browser/index.html:97
+#: templates/browser/index.html:95
 msgid "Translations"
 msgstr ""
 
-#: templates/browser/index.html:101
+#: templates/browser/index.html:99
 msgid "Last action:"
 msgstr ""
 
-#: templates/browser/index.html:148
+#: templates/browser/index.html:146
 msgid "This project is disabled and visible to administrators only."
 msgstr ""
 
@@ -2426,115 +2336,115 @@ msgstr ""
 msgid "Locations:"
 msgstr ""
 
-#: templates/editor/units/edit.html:55
+#: templates/editor/units/edit.html:52
 msgid "Terminology:"
 msgstr ""
 
-#: templates/editor/units/edit.html:58
+#: templates/editor/units/edit.html:55
 msgid "Insert the translated term into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:70
+#: templates/editor/units/edit.html:67
 msgid "Comments:"
 msgstr ""
 
-#: templates/editor/units/edit.html:80
+#: templates/editor/units/edit.html:77
 msgid "Click to open the image in a popup"
 msgstr ""
 
-#: templates/editor/units/edit.html:94
+#: templates/editor/units/edit.html:91
 msgid "Screenshots..."
 msgstr ""
 
-#: templates/editor/units/edit.html:118 templates/editor/units/edit.html:140
+#: templates/editor/units/edit.html:115 templates/editor/units/edit.html:137
 msgid "Copy into translation"
 msgstr ""
 
-#: templates/editor/units/edit.html:134
+#: templates/editor/units/edit.html:131
 msgid "Report a problem with this string"
 msgstr ""
 
-#: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
-#: templates/editor/units/edit.html:257
+#: templates/editor/units/edit.html:149 templates/editor/units/edit.html:160
+#: templates/editor/units/edit.html:254
 msgid "Submit"
 msgstr ""
 
-#: templates/editor/units/edit.html:153
+#: templates/editor/units/edit.html:150
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
 msgstr ""
 
-#: templates/editor/units/edit.html:158 templates/editor/units/edit.html:164
+#: templates/editor/units/edit.html:155 templates/editor/units/edit.html:161
 msgid "Suggest"
 msgstr ""
 
-#: templates/editor/units/edit.html:159
+#: templates/editor/units/edit.html:156
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
 msgstr ""
 
-#: templates/editor/units/edit.html:163
+#: templates/editor/units/edit.html:160
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
 msgstr ""
 
-#: templates/editor/units/edit.html:164
+#: templates/editor/units/edit.html:161
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
 msgstr ""
 
-#: templates/editor/units/edit.html:169
+#: templates/editor/units/edit.html:166
 msgid "Mark this string as needing further work (Ctrl+Space)"
 msgstr ""
 
-#: templates/editor/units/edit.html:189
+#: templates/editor/units/edit.html:186
 msgid "Showing match from similar translations"
 msgstr ""
 
-#: templates/editor/units/edit.html:212
+#: templates/editor/units/edit.html:209
 msgid "Show Timeline"
 msgstr ""
 
-#: templates/editor/units/edit.html:214
+#: templates/editor/units/edit.html:211
 msgid "Add Comment"
 msgstr ""
 
-#: templates/editor/units/edit.html:216
+#: templates/editor/units/edit.html:213
 msgid "Raw View"
 msgstr ""
 
-#: templates/editor/units/edit.html:227
+#: templates/editor/units/edit.html:224
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 msgstr ""
 
-#: templates/editor/units/edit.html:238
+#: templates/editor/units/edit.html:235
 #, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
 
-#: templates/editor/units/edit.html:276
+#: templates/editor/units/edit.html:273
 msgid "User suggestions"
 msgstr ""
 
-#: templates/editor/units/edit.html:296
+#: templates/editor/units/edit.html:293
 msgid "More options"
 msgstr ""
 
-#: templates/editor/units/edit.html:298
+#: templates/editor/units/edit.html:295
 msgid "Less options"
 msgstr ""
 
-#: templates/editor/units/edit.html:303
+#: templates/editor/units/edit.html:300
 msgid "Accept suggestion"
 msgstr ""
 
-#: templates/editor/units/edit.html:308
+#: templates/editor/units/edit.html:305
 msgid "Reject suggestion"
 msgstr ""
 
-#: templates/editor/units/edit.html:314
+#: templates/editor/units/edit.html:311
 msgid "Remove suggestion"
 msgstr ""
 
-#: templates/editor/units/edit.html:326
+#: templates/editor/units/edit.html:323
 msgid "A long time ago"
 msgstr ""
 
@@ -2722,33 +2632,33 @@ msgstr ""
 msgid "Needs work:"
 msgstr ""
 
-#: templates/layout.html:88
+#: templates/layout.html:95
 msgid "Pootle requires JavaScript"
 msgstr ""
 
-#: templates/layout.html:89
+#: templates/layout.html:96
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
 
-#: templates/layout.html:98
+#: templates/layout.html:105
 msgid "skip to navigation"
 msgstr ""
 
-#: templates/layout.html:131
+#: templates/layout.html:138
 msgid "Public Profile"
 msgstr ""
 
-#: templates/layout.html:132 templates/user/settings.html:4
+#: templates/layout.html:139 templates/user/settings.html:4
 #: templates/user/settings.html:7
 msgid "Settings"
 msgstr ""
 
-#: templates/layout.html:137
+#: templates/layout.html:144
 msgid "Sign out"
 msgstr ""
 
-#: templates/layout.html:141
+#: templates/layout.html:148
 msgid "Sign In"
 msgstr ""
 
@@ -2770,16 +2680,20 @@ msgstr ""
 msgid "Here you can add, edit, or delete the languages for this project."
 msgstr ""
 
-#: templates/projects/admin/languages.html:15
-msgid ""
-"Adding new languages from this screen is disabled. You will need to update "
-"your sources directly, and update Pootle from there."
-msgstr ""
-
-#: templates/projects/admin/languages.html:17
+#: templates/projects/admin/languages.html:14
 msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
+msgstr ""
+
+#: templates/projects/admin/languages.html:18
+#, python-format
+msgid "Pootle will look on the filesystem for files named: %(template_path)s"
+msgstr ""
+
+#: templates/projects/admin/languages.html:20
+#, python-format
+msgid "Pootle will look on the filesystem for a folder named %(template_path)s"
 msgstr ""
 
 #: templates/projects/admin/permissions.html:11
