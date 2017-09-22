@@ -96,4 +96,6 @@ out in the long term to make everything use Pootle FS, but you can
 You can find an outline of how to use Pootle FS in the :ref:`using Pootle FS
 <using_pootle_fs>` instructions. If you have a existing project you want to
 migrate to Pootle FS please read the :ref:`migrating your projects to Pootle FS
-<migrate_to_pootle_fs>` instructions.
+<migrate_to_pootle_fs>` instructions. You might also have an already correctly
+setup project that you want to :ref:`integrate directly with a version control
+system <integrate_with_vcs>`.

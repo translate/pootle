@@ -14,6 +14,7 @@ Pootle FS
 
    pootle_fs
    migrate_to_pootle_fs
+   integrate_with_vcs
    using_pootle_fs
    pootle_fs_statuses
 

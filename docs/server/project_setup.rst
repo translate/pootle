@@ -95,9 +95,9 @@ Creating the project
 ++++++++++++++++++++
 
 .. note:: If you want to integrate your project with a version control
-   repository you need to :ref:`install the Pootle FS plugins for the VCS
-   <migrate_to_pootle_fs#install-vcs-plugins>` and :ref:`connect Pootle FS with
-   the VCS repository <migrate_to_pootle_fs#connect-with-vcs>` before creating
+   system you need to :ref:`install the Pootle FS plugins for the VCS
+   <integrate_with_vcs#install-vcs-plugins>` and :ref:`connect Pootle FS with
+   the VCS repository <integrate_with_vcs#connect-with-vcs>` before creating
    the project in Pootle.
 
 
