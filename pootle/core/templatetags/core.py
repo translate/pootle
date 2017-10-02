@@ -25,6 +25,13 @@ def to_js(value):
     return mark_safe('JSON.parse("%s")' % escapejs(jsonify(value)))
 
 
+@register.filter
+def map_to_lengths(value):
+    """Maps a list value by replacing each element with its length.
+    """
+    return [len(e) for e in value]
+
+
 @register.inclusion_tag('includes/formtable.html')
 def formtable(formtable):
     return dict(formtable=formtable)

@@ -212,9 +212,23 @@
               {% endblock %}
               <a class="js-toggle-raw"><i class="icon-raw-mode" title="{% trans 'Raw View' %}"></i></a>
             </div>
-            {% if unit.istranslated or unit.isfuzzy %}
-	    {% if unit.change.submitted_by and unit.change.submitted_on %}
             <div class="unit-meta">
+              <span id="js-char-count">
+                {% if unit_values|length == 1 %}
+                  {% blocktrans count counter=unit_values|first|length %}
+                    {{ counter }} character
+                  {% plural %}
+                    {{ counter }} characters
+                  {% endblocktrans %}
+                {% else %}
+                  {% blocktrans with counter=unit_values|map_to_lengths|join:" / " %}
+                    {{ counter }} characters
+                  {% endblocktrans %}
+                {% endif %}
+              </span>
+              {% if unit.istranslated or unit.isfuzzy %}
+              {% if unit.change.submitted_by and unit.change.submitted_on %}
+              <br>
               <time
                 title="{{ unit.change.submitted_on|dateformat }}"
                 datetime="{{ unit.change.submitted_on.isoformat }}">{{ unit.change.submitted_on|relative_datetime_format }}</time>
@@ -224,9 +238,9 @@
               <span>({% blocktrans with profile_url=reviewer.get_absolute_url %}reviewed by <a href="{{ profile_url }}">{{ reviewer }}</a>{% endblocktrans %})</span>
               {% endif %}
               {% endwith %}
+              {% endif %}
+              {% endif %}
             </div>
-            {% endif %}
-            {% endif %}
             {% if special_characters %}
               {% if cantranslate or cansuggest %}
               <div class="editor-specialchars-block" lang="{{ language.code }}">
