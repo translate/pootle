@@ -1,6 +1,3 @@
-# Configuration: https://github.com/stylelint/stylelint/blob/master/docs/user-guide/configuration.md#rules
-# Example: https://github.com/stylelint/stylelint/blob/master/docs/user-guide/example-config.md
-# Default config: https://github.com/stylelint/stylelint-config-standard
 {
   "extends": "stylelint-config-standard",
   "rules": {
