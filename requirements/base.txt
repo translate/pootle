@@ -27,7 +27,7 @@ lxml>=4.1,<4.2
 pathlib==1.0.1
 python-dateutil==2.6.1
 python-levenshtein==0.12.0
-pytz==2017.2
+pytz==2017.3
 rq==0.8.2
 scandir==1.6
 stemming==1.0.1
