@@ -12,7 +12,7 @@ django-contact-form==1.4.2
 django-contrib-comments==1.7.3,!=1.8.0  # rq.filter: !=1.8.0
 django-overextends==0.4.3
 django-redis==4.8.0
-django-rq==0.9.6
+django-rq==1.0.0
 django-sortedm2m==1.5.0
 django-statici18n==1.4.0
 
