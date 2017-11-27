@@ -7,6 +7,7 @@
 # AUTHORS file for copyright and authorship information.
 
 import functools
+import importlib
 import logging
 import time
 
@@ -15,6 +16,15 @@ from pytest_pootle import utils
 
 
 logger = logging.getLogger("POOTLE_DEBUG")
+
+
+@pytest.fixture(scope="session")
+def memusage():
+    try:
+        dj_debug = importlib.import_module("dj.debug")
+    except ImportError:
+        return
+    return dj_debug.memusage
 
 
 @pytest.fixture(scope="session")
