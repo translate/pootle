@@ -18,8 +18,6 @@ import time
 import pytest
 from pytest_pootle.env import PootleTestEnv
 
-from pootle.core.debug import debug_sql
-
 
 @pytest.fixture(autouse=True)
 def test_timing(request, log_timings):
@@ -120,10 +118,6 @@ def debug_utils(request):
 
         def __str__(self):
             return "\n".join(str(item) for item in self._called)
-
-    sys.modules["__builtin__"].__dict__["_trace"] = _Trace()
-    sys.modules["__builtin__"].__dict__["pdb"] = pdb
-    sys.modules["__builtin__"].__dict__["debug_sql"] = debug_sql
 
 
 @pytest.fixture(autouse=True, scope='session')
