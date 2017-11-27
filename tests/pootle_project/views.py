@@ -14,7 +14,6 @@ from django.core.urlresolvers import reverse
 
 from pootle.core.browser import (
     make_language_item, make_project_list_item, make_xlanguage_item)
-from pootle.core.debug import memusage
 from pootle.core.forms import PathsSearchForm
 from pootle.core.signals import update_revisions
 from pootle.core.views.browse import StatsDisplay
@@ -190,7 +189,7 @@ def test_view_project_paths(project0, store0, client, request_users):
 
 @pytest.mark.pootle_memusage
 @pytest.mark.django_db
-def test_view_project_garbage(project0, client, request_users):
+def test_view_project_garbage(memusage, project0, client, request_users):
     url = reverse(
         "pootle-project-browse",
         kwargs=dict(
@@ -212,7 +211,7 @@ def test_view_project_garbage(project0, client, request_users):
 
 @pytest.mark.pootle_memusage
 @pytest.mark.django_db
-def test_view_project_subdir_garbage(subdir0, client, request_users):
+def test_view_project_subdir_garbage(memusage, subdir0, client, request_users):
     url = reverse(
         "pootle-project-browse",
         kwargs=dict(
@@ -235,7 +234,7 @@ def test_view_project_subdir_garbage(subdir0, client, request_users):
 
 @pytest.mark.pootle_memusage
 @pytest.mark.django_db
-def test_view_project_store_garbage(store0, client, request_users):
+def test_view_project_store_garbage(memusage, store0, client, request_users):
     url = reverse(
         "pootle-project-browse",
         kwargs=dict(

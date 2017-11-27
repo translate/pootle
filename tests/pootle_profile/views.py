@@ -10,7 +10,6 @@ import pytest
 
 from django.urls import reverse
 
-from pootle.core.debug import memusage
 from pootle_profile.utils import UserProfile
 from pootle_profile.views import UserDetailView
 
@@ -29,7 +28,7 @@ def test_view_user_detail(client, member, system):
 
 @pytest.mark.pootle_memusage
 @pytest.mark.django_db
-def test_view_user_detail_garbage(member, client, request_users):
+def test_view_user_detail_garbage(memusage, member, client, request_users):
     user = request_users["user"]
     client.login(
         username=user.username,

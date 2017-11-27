@@ -14,7 +14,6 @@ from django.utils.translation import get_language
 from django.urls import reverse
 
 from pootle.core.decorators import Http400
-from pootle.core.debug import memusage
 from pootle.core.delegate import revision
 from pootle_app.views.index.index import (
     COOKIE_NAME, IndexView, WelcomeView)
@@ -74,7 +73,7 @@ def test_view_welcome(client, member, system, project_set):
 
 @pytest.mark.pootle_memusage
 @pytest.mark.django_db
-def test_view_welcome_garbage(client):
+def test_view_welcome_garbage(memusage, client):
     url = reverse("pootle-home")
     response = client.get(url)
     response = client.get(url)

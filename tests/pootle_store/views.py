@@ -1,12 +1,12 @@
 import pytest
 
-from pootle.core.debug import memusage
 from pootle_store.constants import UNTRANSLATED
 
 
 @pytest.mark.pootle_memusage
 @pytest.mark.django_db
-def test_submit_unit_memusage(client, store0, admin, settings, system):
+def test_submit_unit_memusage(memusage, client, store0, admin,
+                              settings, system):
     settings.POOTLE_CAPTCHA_ENABLED = False
     user = admin
     unit = store0.units.filter(state=UNTRANSLATED).first()
@@ -35,7 +35,8 @@ def test_submit_unit_memusage(client, store0, admin, settings, system):
 
 @pytest.mark.pootle_memusage
 @pytest.mark.django_db
-def test_get_units_memusage(client, tp0, request_users, settings, system):
+def test_get_units_memusage(memusage, client, tp0, request_users,
+                            settings, system):
     user = request_users["user"]
     client.login(
         username=user.username,
@@ -57,7 +58,8 @@ def test_get_units_memusage(client, tp0, request_users, settings, system):
 
 @pytest.mark.pootle_memusage
 @pytest.mark.django_db
-def test_get_edit_unit_memusage(client, store0, request_users, settings, system):
+def test_get_edit_unit_memusage(memusage, client, store0,
+                                request_users, settings, system):
     user = request_users["user"]
     unit = store0.units.filter(state=UNTRANSLATED).first()
     client.login(

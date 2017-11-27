@@ -13,7 +13,6 @@ import pytest
 from django.core.urlresolvers import reverse
 
 from pootle.core.browser import make_directory_item, make_store_item
-from pootle.core.debug import memusage
 from pootle.core.forms import PathsSearchForm
 from pootle.core.signals import update_revisions
 from pootle.core.url_helpers import split_pootle_path
@@ -162,7 +161,7 @@ def test_view_tp_paths(tp0, store0, client, request_users):
 
 @pytest.mark.pootle_memusage
 @pytest.mark.django_db
-def test_view_tp_garbage(tp0, store0, client, request_users):
+def test_view_tp_garbage(memusage, tp0, store0, client, request_users):
     args = [tp0.language.code, tp0.project.code]
     url = reverse("pootle-tp-browse", args=args)
     user = request_users["user"]
@@ -185,7 +184,7 @@ def test_view_tp_garbage(tp0, store0, client, request_users):
 
 @pytest.mark.pootle_memusage
 @pytest.mark.django_db
-def test_view_tp_directory_garbage(subdir0, client, request_users):
+def test_view_tp_directory_garbage(memusage, subdir0, client, request_users):
     tp = subdir0.translation_project
     args = [tp.language.code, tp.project.code, "%s/" % subdir0.name]
     url = reverse("pootle-tp-browse", args=args)
@@ -204,7 +203,7 @@ def test_view_tp_directory_garbage(subdir0, client, request_users):
 
 @pytest.mark.pootle_memusage
 @pytest.mark.django_db
-def test_view_tp_store_garbage(store0, client, request_users):
+def test_view_tp_store_garbage(memusage, store0, client, request_users):
     tp = store0.translation_project
     args = [tp.language.code, tp.project.code, store0.name]
     url = reverse("pootle-tp-store-browse", args=args)
