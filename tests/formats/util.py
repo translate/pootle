@@ -56,9 +56,7 @@ def test_format_chooser(project0):
     project0.filetypes.add(po2)
     project0.filetypes.add(po3)
     filetype_tool = project0.filetype_tool
-    from pootle.core.debug import debug_sql
-    with debug_sql():
-        assert filetype_tool.choose_filetype("foo.po") == po
+    assert filetype_tool.choose_filetype("foo.po") == po
     assert filetype_tool.choose_filetype("foo.pot") == po
     assert filetype_tool.choose_filetype("foo.xliff") == xliff
 
