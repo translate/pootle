@@ -16,6 +16,8 @@ django-rq==0.9.6
 django-sortedm2m==1.5.0
 django-statici18n==1.4.0
 
+dj.subcommand==0.0.3
+
 # Libraries
 Babel==2.5.1
 cssmin==0.2.0
