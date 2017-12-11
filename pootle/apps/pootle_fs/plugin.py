@@ -11,7 +11,7 @@ import os
 import shutil
 import uuid
 
-from bulk_update.helper import bulk_update
+from django_bulk_update.helper import bulk_update
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
