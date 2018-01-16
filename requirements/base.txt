@@ -19,7 +19,7 @@ django-statici18n==1.6.0
 dj.subcommand==0.0.3
 
 # Libraries
-Babel==2.5.2
+Babel==2.5.3
 cssmin==0.2.0
 diff-match-patch==20121119
 dirsync==2.2.2
