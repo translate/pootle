@@ -92,7 +92,7 @@ class DBParser(BaseParser):
                     unit['change__submitted_by__username'])
 
         email_md5 = None
-        if unit['submitted_by__email']:
+        if unit['change__submitted_by__email']:
             email_md5 = md5(
                 force_bytes(unit['change__submitted_by__email'])).hexdigest()
 
@@ -166,16 +166,34 @@ class FileParser(BaseParser):
 
         return units, len(units)
 
+    # truncate to bytesize adapted from https://stackoverflow.com/a/13738452
+    def utf8_lead_byte(self, b):
+        '''A UTF-8 intermediate byte starts with the bits 10xxxxxx.'''
+        return (ord(b) & 0xC0) != 0x80
+
+    def utf8_byte_truncate(self, text, max_bytes):
+        '''If text[max_bytes] is not a lead byte, back up until a lead byte is
+        found and truncate before that character.'''
+        utf8 = text.encode('utf8')
+        if len(utf8) <= max_bytes:
+            return text
+        i = max_bytes
+        while i > 0 and not self.utf8_lead_byte(utf8[i]):
+            i -= 1
+        return utf8[:i].decode('utf8')
+
     def get_unit_data(self, unit):
         """Return dict with data to import for a single unit."""
         target_language = unit.gettargetlanguage()
         if target_language is None:
             target_language = self.target_language
 
+        # truncate to 512 since elasticsearch ids are limited to that size...
+        # simple [:512] won't do, as utf-8 encoding can create more bytes
         return {
             '_index': self.INDEX_NAME,
             '_type': target_language,
-            '_id': unit.getid(),
+            '_id': self.utf8_byte_truncate(unit.getid(), 512),
             'revision': 0,
             'project': self.project,
             'path': self.filename,
@@ -321,7 +339,7 @@ class Command(BaseCommand):
             self.parser = FileParser(stdout=self.stdout, index=self.INDEX_NAME,
                                      filenames=options['files'],
                                      language=options['target_language'],
-                                     project=options['project'])
+                                     project=options['project'].decode('utf8'))
         elif not self.is_local_tm:
             raise CommandError('You cannot add translations from database to '
                                'an external TM.')
