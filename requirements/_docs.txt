@@ -1,4 +1,4 @@
 # Documentation
 
 readme_renderer==17.2
-Sphinx==1.6.7
+Sphinx==1.7.0
