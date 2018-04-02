@@ -5,6 +5,6 @@
 -r _docs.txt
 -r _lint.txt
 
-django-extensions==1.9.1
+django-extensions==2.0.6
 glue==0.13
-ipython==5.4.1  # rq.filter: <6.0.0
+ipython==5.6.0  # rq.filter: <6.0.0
