@@ -59,7 +59,7 @@ docs:
 	git submodule update --init
 	# The following creates the HTML docs.
 	# NOTE: cd and make must be in the same line.
-	cd ${DOCS_DIR}; make SPHINXOPTS="-T -W -q -j 4" html ${TAIL}
+	cd ${DOCS_DIR}; make SPHINXOPTS="-T -W -q " html ${TAIL}
 
 docs-review: docs
 	python -mwebbrowser file://$(shell pwd)/${DOCS_DIR}/_build/html/index.html
@@ -118,11 +118,11 @@ help:
 	@echo "Help"
 	@echo "----"
 	@echo
-	@echo "  assets - collect and rebuild the static assets"
-	@echo "  build - create sdist with required prep"
-	@echo "  docs - build Sphinx docs"
-	@echo "  docs-review - launch webbrowser to review docs"
-	@echo "  sprite - create CSS sprite"
-	@echo "  pot - update the POT translations templates"
-	@echo "  get-translations - retrieve Pootle translations from server (requires ssh config for pootletranslations)"
-	@echo "  linguas - update the LINGUAS file with languages over 80% complete"
+	@echo "	 assets - collect and rebuild the static assets"
+	@echo "	 build - create sdist with required prep"
+	@echo "	 docs - build Sphinx docs"
+	@echo "	 docs-review - launch webbrowser to review docs"
+	@echo "	 sprite - create CSS sprite"
+	@echo "	 pot - update the POT translations templates"
+	@echo "	 get-translations - retrieve Pootle translations from server (requires ssh config for pootletranslations)"
+	@echo "	 linguas - update the LINGUAS file with languages over 80% complete"
