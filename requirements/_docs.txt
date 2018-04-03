@@ -2,3 +2,4 @@
 
 readme_renderer==17.2
 Sphinx==1.6.3
+sphinx-bootstrap-theme
