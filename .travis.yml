@@ -3,20 +3,20 @@ dist: trusty
 sudo: false
 language: python
 env:
-  - TOXENV=py27-django110-sqlite PYTHONPATH=$HOME/virtualenv/python2.7.13/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
-  - TOXENV=py27-django110-mysql PYTHONPATH=$HOME/virtualenv/python2.7.13/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
-  - TOXENV=py27-django110-postgres PYTHONPATH=$HOME/virtualenv/python2.7.13/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
+  - TOXENV=py27-django110-sqlite PYTHONPATH=$HOME/virtualenv/python2.7.14/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
+  - TOXENV=py27-django110-mysql PYTHONPATH=$HOME/virtualenv/python2.7.14/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
+  - TOXENV=py27-django110-postgres PYTHONPATH=$HOME/virtualenv/python2.7.14/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
   # Meta
-  - TOXENV=project PYTHONPATH=$HOME/virtualenv/python2.7.13/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
+  - TOXENV=project PYTHONPATH=$HOME/virtualenv/python2.7.14/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
 cache:
   directories:
     - pootle/static/js/node_modules
     - pootle/assets
-    - $HOME/virtualenv/python2.7.13/bin
-    - $HOME/virtualenv/python2.7.13/lib
+    - $HOME/virtualenv/python2.7.14/bin
+    - $HOME/virtualenv/python2.7.14/lib
     - $HOME/virtualenv/python2.7/bin
 before_install:
-    - cp -a $HOME/virtualenv/python2.7.13/lib/python2.7/site-packages/ $HOME/py-workaround/
+    - cp -a $HOME/virtualenv/python2.7.14/lib/python2.7/site-packages/ $HOME/py-workaround/
 install:
   - if [[ ( "$TRAVIS_BRANCH" == "master" || "$TRAVIS_BRANCH" == "stable/*" || "$TRAVIS_BRANCH" == "requires-io-master" ) && "$TRAVIS_PULL_REQUEST" == "false" ]]; then upgrade="--upgrade"; fi;
       pip install 'setuptools>=18.5';
@@ -52,8 +52,8 @@ before_cache:
   # travis is so dumb - https://github.com/travis-ci/travis-ci/issues/4873
   - pip uninstall py pytest -y
   - pip install py==1.4.26 pytest==2.6.4
-  - pyclean $HOME/virtualenv/python2.7.13/lib/python2.7/site-packages/
-  - cp -a $HOME/py-workaround/* $HOME/virtualenv/python2.7.13/lib/python2.7/site-packages/
+  - pyclean $HOME/virtualenv/python2.7.14/lib/python2.7/site-packages/
+  - cp -a $HOME/py-workaround/* $HOME/virtualenv/python2.7.14/lib/python2.7/site-packages/
   # Force rebuilds by removing cache for 'master' and 'stable/*' builds
   - if [[ ( "$TRAVIS_BRANCH" == "master" || "$TRAVIS_BRANCH" == "stable/*" ) && "$TRAVIS_PULL_REQUEST" == "false" ]]; then rm -rf pootle/static/js/node_modules/* pootle/assets/* pootle/assets/.webassets-cache;  fi
 services:
