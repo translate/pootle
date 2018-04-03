@@ -24,24 +24,3 @@ def test_view_user_detail(client, member, system):
     profile = response.context["profile"]
     assert isinstance(profile, UserProfile)
     assert profile.user == member
-
-
-@pytest.mark.pootle_memusage
-@pytest.mark.django_db
-def test_view_user_detail_garbage(memusage, member, client, request_users):
-    user = request_users["user"]
-    client.login(
-        username=user.username,
-        password=request_users["password"])
-    response = client.get(
-        reverse(
-            'pootle-user-profile',
-            kwargs=dict(username=member.username)))
-    assert response.status_code == 200
-    for i in xrange(0, 2):
-        with memusage() as usage:
-            client.get(
-                reverse(
-                    'pootle-user-profile',
-                    kwargs=dict(username=member.username)))
-        assert usage["used"] == 0

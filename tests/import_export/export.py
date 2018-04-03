@@ -13,35 +13,6 @@ from django.urls import reverse
 from import_export.utils import TPTMXExporter
 
 
-@pytest.mark.pootle_memusage
-@pytest.mark.django_db
-def test_view_tp_export_garbage(memusage, client,
-                                tp0, language1, request_users):
-    url = (
-        "%s?path=/%s/%s/"
-        % (reverse('pootle-export'),
-           tp0.language.code,
-           tp0.project.code))
-    user = request_users["user"]
-    client.login(
-        username=user.username,
-        password=request_users["password"])
-    client.get(url)
-    for i in xrange(0, 2):
-        with memusage() as usage:
-            client.get(url)
-        assert not usage["used"]
-    url = (
-        "%s?path=/%s/%s/"
-        % (reverse('pootle-export'),
-           language1.code,
-           tp0.project.code))
-    for i in xrange(0, 2):
-        with memusage() as usage:
-            client.get(url)
-        assert not usage["used"]
-
-
 @pytest.mark.django_db
 def test_download_exported_tmx(client, tp0):
     args = [tp0.language.code, tp0.project.code]

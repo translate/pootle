@@ -24,7 +24,7 @@ def memusage():
         dj_debug = importlib.import_module("dj.debug")
     except ImportError:
         return
-    return dj_debug.memusage
+    return getattr(dj_debug, 'memusage', None)
 
 
 @pytest.fixture(scope="session")

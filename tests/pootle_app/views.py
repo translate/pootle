@@ -71,19 +71,6 @@ def test_view_welcome(client, member, system, project_set):
                get_language())))
 
 
-@pytest.mark.pootle_memusage
-@pytest.mark.django_db
-def test_view_welcome_garbage(memusage, client):
-    url = reverse("pootle-home")
-    response = client.get(url)
-    response = client.get(url)
-    assert response.status_code == 200
-    for i in xrange(0, 2):
-        with memusage() as usage:
-            client.get(url)
-        assert not usage["used"]
-
-
 @pytest.mark.django_db
 def test_view_index_redirect(client, language0, project0, request_users):
     user = request_users["user"]

@@ -69,7 +69,7 @@ def pytest_runtest_setup(item):
     marker = item.get_marker("pootle_memusage")
     skip_memtests = (
         (marker is not None
-         and not item.config.getoption("--memusage"))
-        or not item._request.getfixturevalue("memusage"))
+         and not (item.config.getoption("--memusage")
+                  or not item._request.getfixturevalue("memusage"))))
     if skip_memtests:
         pytest.skip("test requires memusage flag and dj.debug.memusage")
