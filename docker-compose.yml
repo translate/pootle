@@ -1,0 +1,224 @@
+# docker-compose for Pootle development.
+#
+# Note: Requires docker-compose 1.10+.
+version: "2.1"
+services:
+  # Pootle base image
+  # This image handles user creation and permissions, so that code can be
+  # shared from your local folder into the docker container.
+  root:
+    build:
+      context: ./docker/root
+    image: translate/pootle:root
+
+  build:
+    build:
+      context: ./docker/build
+    image: translate/pootle:build
+
+  base:
+    build:
+      context: ./docker/base
+    image: translate/pootle:base
+
+  # Dev app (default: postgres)
+  dev-postgres:
+    build:
+      context: ./docker/dev-postgres
+    image: translate/pootle:dev-postgres
+    environment:
+      - LOCAL_USER_ID=$LOCAL_USER_ID
+    depends_on:
+      - postgres
+      - redis
+      - elasticsearch
+    command: ["/home/pootle/pootle_env/src/pootle/docker/bin/run_pootle", "server"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/home/pootle/pootle_env/src/pootle
+
+  # Dev app (mariadb)
+  dev-mariadb:
+    build:
+      context: ./docker/dev-mariadb
+    image: translate/pootle:dev-mariadb
+    environment:
+      - LOCAL_USER_ID=$LOCAL_USER_ID
+    depends_on:
+      - mariadb
+      - redis
+      - elasticsearch
+    command: ["/home/pootle/pootle_env/src/pootle/docker/bin/run_pootle", "server"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/home/pootle/pootle_env/src/pootle
+
+  # Dev app (sqlite)
+  dev-sqlite:
+    build:
+      context: ./docker/dev-sqlite
+    image: translate/pootle:dev-sqlite
+    environment:
+      - LOCAL_USER_ID=$LOCAL_USER_ID
+    depends_on:
+      - redis
+      - elasticsearch
+    command: ["/home/pootle/pootle_env/src/pootle/docker/bin/run_pootle", "server"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/home/pootle/pootle_env/src/pootle
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.3
+    restart: always
+    ports:
+      - 9200:9200
+    environment:
+      - cluster.name=docker-cluster
+      - transport.host=127.0.0.1
+      - transport.tcp.port=9300
+      - http.port=9200
+      - network.host=0.0.0.0
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+
+  mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=CHANGEME
+      - MYSQL_DATABASE=pootledb
+      - MYSQL_USER=pootle
+      - MYSQL_PASSWORD=CHANGEME
+
+  postgres:
+    image: postgres:9.4-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=pootle
+      - POSTGRES_PASSWORD=CHANGEME
+      - POSTGRES_DB=pootledb
+
+  redis:
+    image: redis:alpine
+    restart: always
+
+  elasticsearch-travis:
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.3
+    restart: always
+    ports:
+      - 9200:9200
+    environment:
+      - cluster.name=docker-cluster
+      - transport.host=127.0.0.1
+      - transport.tcp.port=9300
+      - http.port=9200
+      - network.host=0.0.0.0
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    tmpfs: /usr/share/elasticsearch/data
+
+  postgres-travis:
+    image: postgres:9.4-alpine
+    restart: always
+    environment:
+      - POSTGRES_USER=pootle
+      - POSTGRES_PASSWORD=CHANGEME
+      - POSTGRES_DB=pootledb
+    tmpfs: /var/lib/postgresql/data
+
+  mariadb-travis:
+    image: mariadb
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=CHANGEME
+      - MYSQL_DATABASE=pootledb
+      - MYSQL_USER=pootle
+      - MYSQL_PASSWORD=CHANGEME
+    tmpfs: /var/lib/mysql
+
+  redis-travis:
+    image: redis:alpine
+    restart: always
+    tmpfs: /data
+
+  dev-travis-mariadb:
+    image: translatetravis2/pootle:dev-mariadb
+    environment:
+      - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
+      - CI=${CI:-''}
+      - TRAVIS_BUILD_ID=${TRAVIS_BUILD_ID:-''}
+      - TRAVIS=${TRAVIS:-''}
+      - TRAVIS_BRANCH=${TRAVIS_BRANCH:-''}
+      - TRAVIS_JOB_NUMBER=${TRAVIS_JOB_NUMBER:-''}
+      - TRAVIS_PULL_REQUEST=${TRAVIS_PULL_REQUEST:-''}
+      - TRAVIS_JOB_ID=${TRAVIS_JOB_ID:-''}
+      - TRAVIS_REPO_SLUG=${TRAVIS_REPO_SLUG:-''}
+      - TRAVIS_COMMIT=${TRAVIS_COMMIT:-''}
+    depends_on:
+      - mariadb-travis
+      - redis-travis
+      - elasticsearch-travis
+    command: ["/home/pootle/pootle_env/src/pootle/docker/bin/run_pootle", "server"]
+    ports:
+      - "8000:8000"
+    links:
+      - "mariadb-travis:mariadb"
+      - "elasticsearch-travis:elasticsearch"
+      - "redis-travis:redis"
+    volumes:
+      - .:/home/pootle/pootle_env/src/pootle
+
+  dev-travis-postgres:
+    image: translatetravis2/pootle:dev-postgres
+    environment:
+      - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
+      - CI=${CI:-''}
+      - TRAVIS_BUILD_ID=${TRAVIS_BUILD_ID:-''}
+      - TRAVIS=${TRAVIS:-''}
+      - TRAVIS_BRANCH=${TRAVIS_BRANCH:-''}
+      - TRAVIS_JOB_NUMBER=${TRAVIS_JOB_NUMBER:-''}
+      - TRAVIS_PULL_REQUEST=${TRAVIS_PULL_REQUEST:-''}
+      - TRAVIS_JOB_ID=${TRAVIS_JOB_ID:-''}
+      - TRAVIS_REPO_SLUG=${TRAVIS_REPO_SLUG:-''}
+      - TRAVIS_COMMIT=${TRAVIS_COMMIT:-''}
+    depends_on:
+      - postgres-travis
+      - redis-travis
+      - elasticsearch-travis
+    command: ["/home/pootle/pootle_env/src/pootle/docker/bin/run_pootle", "server"]
+    ports:
+      - "8000:8000"
+    links:
+      - "postgres-travis:postgres"
+      - "elasticsearch-travis:elasticsearch"
+      - "redis-travis:redis"
+    volumes:
+      - .:/home/pootle/pootle_env/src/pootle
+
+  dev-travis-sqlite:
+    image: translatetravis2/pootle:dev-sqlite
+    environment:
+      - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
+      - CI=${CI:-''}
+      - TRAVIS_BUILD_ID=${TRAVIS_BUILD_ID:-''}
+      - TRAVIS=${TRAVIS:-''}
+      - TRAVIS_BRANCH=${TRAVIS_BRANCH:-''}
+      - TRAVIS_JOB_NUMBER=${TRAVIS_JOB_NUMBER:-''}
+      - TRAVIS_PULL_REQUEST=${TRAVIS_PULL_REQUEST:-''}
+      - TRAVIS_JOB_ID=${TRAVIS_JOB_ID:-''}
+      - TRAVIS_REPO_SLUG=${TRAVIS_REPO_SLUG:-''}
+      - TRAVIS_COMMIT=${TRAVIS_COMMIT:-''}
+    depends_on:
+      - redis-travis
+      - elasticsearch-travis
+    ports:
+      - "8000:8000"
+    links:
+      - "elasticsearch-travis:elasticsearch"
+      - "redis-travis:redis"
+    volumes:
+      - .:/home/pootle/pootle_env/src/pootle
