@@ -15,7 +15,6 @@ from pootle_fs.finder import TranslationMappingValidator
 from pootle_fs.localfs import LocalFSPlugin, LocalFSUrlValidator
 
 
-@pytest.mark.django_db
 def test_validator_localfs():
     validator = fs_url_validator.get(LocalFSPlugin)()
     assert isinstance(validator, LocalFSUrlValidator)
@@ -24,7 +23,6 @@ def test_validator_localfs():
     validator.validate("/foo/bar")
 
 
-@pytest.mark.django_db
 def test_validator_translation_mapping():
     validator = fs_translation_mapping_validator.get()("asdf")
     assert isinstance(validator, TranslationMappingValidator)
