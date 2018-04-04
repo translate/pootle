@@ -2,6 +2,9 @@
 dist: trusty
 sudo: false
 language: python
+addons:
+  hosts:
+    - redis
 env:
   - TOXENV=py27-django110-sqlite PYTHONPATH=$HOME/virtualenv/python2.7.14/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
   - TOXENV=py27-django110-mysql PYTHONPATH=$HOME/virtualenv/python2.7.14/lib/python2.7/site-packages  TOX_TESTENV_PASSENV="PYTHONPATH"
