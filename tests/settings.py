@@ -57,17 +57,17 @@ CACHES = {
     # place that will abort everything otherwise
     'default': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/13',
+        'LOCATION': 'redis://redis:6379/13',
         'TIMEOUT': 604800,  # 1 week
     },
     'redis': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/14',
+        'LOCATION': 'redis://redis:6379/14',
         'TIMEOUT': None,
     },
     'lru': {
         'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/15',
+        'LOCATION': 'redis://redis:6379/15',
         'TIMEOUT': 604800,  # 1 week
     },
     'exports': {

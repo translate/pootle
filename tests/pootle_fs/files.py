@@ -9,51 +9,62 @@
 
 import os
 
+from mock import PropertyMock, patch
+
 import pytest
 
 from translate.storage.factory import getclass
-from translate.storage.po import pofile
 
-from pootle_fs.models import StoreFS
+from django.contrib.auth import get_user_model
 
 from pootle_fs.files import FSFile
-from pootle_project.models import Project
 from pootle_statistics.models import SubmissionTypes
 from pootle_store.constants import POOTLE_WINS
 
 
-@pytest.mark.django_db
+class MockProject(object):
+    local_fs_path = "LOCAL_FS_PATH"
+    code = 'project0'
+
+
+class MockStoreFS(object):
+    pootle_path = "/language0/project0/example.po"
+    path = "/some/fs/example.po"
+    project = MockProject()
+    store = None
+    last_sync_hash = None
+    last_sync_revision = None
+
+
 def test_wrap_store_fs_bad(settings, tmpdir):
 
     with pytest.raises(TypeError):
         FSFile("NOT A STORE_FS")
 
 
-@pytest.mark.django_db
-def test_wrap_store_fs(settings, tmpdir):
+@patch("pootle_fs.files.FSFile._validate_store_fs")
+def test_wrap_store_fs(valid_mock, settings, tmpdir):
     """Add a store_fs for a store that doesnt exist yet"""
     settings.POOTLE_FS_WORKING_PATH = os.path.join(str(tmpdir), "fs_file_test")
-    project = Project.objects.get(code="project0")
-    pootle_path = "/language0/%s/example.po" % project.code
-    fs_path = "/some/fs/example.po"
-    store_fs = StoreFS.objects.create(
-        pootle_path=pootle_path,
-        path=fs_path)
+    valid_mock.side_effect = lambda x: x
+    store_fs = MockStoreFS()
     fs_file = FSFile(store_fs)
     assert (
         fs_file.file_path
         == os.path.join(
-            settings.POOTLE_FS_WORKING_PATH, project.code,
+            store_fs.project.local_fs_path,
             store_fs.path.strip("/")))
     assert fs_file.file_exists is False
     assert fs_file.latest_hash is None
     assert fs_file.pootle_changed is False
     assert fs_file.fs_changed is False
+
     assert fs_file.store is None
     assert fs_file.store_exists is False
+
     assert fs_file.deserialize() is None
     assert fs_file.serialize() is None
-    assert str(fs_file) == "<FSFile: %s::%s>" % (pootle_path, fs_path)
+    assert str(fs_file) == "<FSFile: %s::%s>" % (fs_file.pootle_path, fs_file.path)
     assert hash(fs_file) == hash(
         "%s::%s::%s::%s"
         % (fs_file.path,
@@ -68,53 +79,47 @@ def test_wrap_store_fs(settings, tmpdir):
     assert testdict.values()[0] == "bar"
 
 
-@pytest.mark.django_db
-def test_wrap_store_fs_with_store(settings, tmpdir, tp0_store):
-    settings.POOTLE_FS_WORKING_PATH = os.path.join(str(tmpdir), "fs_file_test")
-    fs_path = "/some/fs/example.po"
-    store_fs = StoreFS.objects.create(
-        path=fs_path,
-        store=tp0_store)
-    project = tp0_store.translation_project.project
+@patch("pootle_fs.files.FSFile._validate_store_fs")
+def test_wrap_store_fs_with_store(valid_mock):
+    valid_mock.side_effect = lambda x: x
+    store_mock = PropertyMock()
+    store_mock.configure_mock(
+        **{"data.max_unit_revision": 23,
+           "serialize.return_value": 73})
+    store_fs = MockStoreFS()
+    store_fs.store = store_mock
     fs_file = FSFile(store_fs)
+
     assert (
         fs_file.file_path
         == os.path.join(
-            settings.POOTLE_FS_WORKING_PATH, project.code,
+            store_fs.project.local_fs_path,
             store_fs.path.strip("/")))
     assert fs_file.file_exists is False
     assert fs_file.latest_hash is None
     assert fs_file.fs_changed is False
     assert fs_file.pootle_changed is True
-    assert fs_file.store == tp0_store
+    assert fs_file.store is store_mock
     assert fs_file.store_exists is True
-    serialized = fs_file.serialize()
-    assert serialized
-    assert serialized == tp0_store.serialize()
+    assert fs_file.serialize() == 73
     assert fs_file.deserialize() is None
 
 
-@pytest.mark.django_db
-def test_wrap_store_fs_with_file(settings, tmpdir, tp0_store, test_fs):
-    settings.POOTLE_FS_WORKING_PATH = os.path.join(str(tmpdir), "fs_file_test")
-    project = Project.objects.get(code="project0")
-    pootle_path = "/language0/%s/example.po" % project.code
-    fs_path = "/some/fs/example.po"
-    store_fs = StoreFS.objects.create(
-        path=fs_path,
-        pootle_path=pootle_path)
+@patch("pootle_fs.files.FSFile._validate_store_fs")
+@patch("pootle_fs.files.FSFile.latest_hash")
+@patch("pootle_fs.files.os.path.exists")
+def test_wrap_store_fs_with_file(path_mock, hash_mock, valid_mock):
+    valid_mock.side_effect = lambda x: x
+    path_mock.return_value = True
+    hash_mock.return_value = 23
+
+    store_fs = MockStoreFS()
+    store_fs.last_sync_hash = 73
     fs_file = FSFile(store_fs)
-    os.makedirs(os.path.dirname(fs_file.file_path))
-    with test_fs.open("data/po/complex.po") as src:
-        with open(fs_file.file_path, "w") as target:
-            data = src.read()
-            target.write(data)
+
     assert fs_file.pootle_changed is False
     assert fs_file.fs_changed is True
     assert fs_file.file_exists is True
-    assert fs_file.latest_hash == str(os.stat(fs_file.file_path).st_mtime)
-    assert isinstance(fs_file.deserialize(), pofile)
-    assert str(fs_file.deserialize()) == data
 
 
 @pytest.mark.django_db
@@ -346,42 +351,40 @@ def test_wrap_store_fs_pull_submission_type(store_fs_file_store):
         == SubmissionTypes.SYSTEM)
 
 
-@pytest.mark.django_db
-def test_fs_file_latest_author(system, member2):
+@patch("pootle_fs.files.FSFile.latest_author", new_callable=PropertyMock)
+@patch("pootle_fs.files.FSFile.plugin", new_callable=PropertyMock)
+@patch("pootle_fs.files.User.objects", new_callable=PropertyMock)
+def test_fs_file_latest_author(user_mock, plugin_mock, author_mock):
+    user_mock.configure_mock(
+        **{"return_value.get.return_value": 73})
+    author_mock.return_value = None, None
+    plugin_mock.configure_mock(
+        **{"return_value.pootle_user": 23})
 
-    member2.email = "member2@poot.le"
-    member2.save()
-
-    class DummyPlugin(object):
-        pootle_user = system
+    User = get_user_model()
 
     class DummyFile(FSFile):
-
-        _author_name = None
-        _author_email = None
-
         def __init__(self):
             pass
 
-        @property
-        def plugin(self):
-            return DummyPlugin()
-
-        @property
-        def latest_author(self):
-            return self._author_name, self._author_email
-
     myfile = DummyFile()
-    assert myfile.latest_user == system
-    myfile._author_name = "DOES NOT EXIST"
-    assert myfile.latest_user == system
-    myfile._author_email = member2.email
-    assert myfile.latest_user == member2
-    myfile._author_name = member2.username
-    assert myfile.latest_user == member2
-    myfile._author_email = None
-    assert myfile.latest_user == system
-    myfile._author_email = "DOESNT@EXIST.EMAIL"
-    assert myfile.latest_user == member2
-    myfile._author_name = "DOES NOT EXIST"
-    assert myfile.latest_user == system
+    assert myfile.latest_user == 23
+
+    author_mock.return_value = 7, None
+    assert myfile.latest_user == 23
+    author_mock.return_value = None, 7
+    assert myfile.latest_user == 23
+
+    author_mock.return_value = 7, 17
+    assert myfile.latest_user == 73
+    assert (
+        list(user_mock.return_value.get.call_args)
+        == [(), {'email': 17}])
+
+    user_mock.return_value.get.side_effect = User.DoesNotExist
+    assert myfile.latest_user == 23
+    assert (
+        [list(l) for l in user_mock.return_value.get.call_args_list]
+        == [[(), {'email': 17}],
+            [(), {'email': 17}],
+            [(), {'username': 7}]])
