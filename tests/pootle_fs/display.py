@@ -40,10 +40,8 @@ def test_fs_response_display_instance(localfs_pootle_untracked):
     assert str(display) == "%s\n" % result
 
 
-@pytest.mark.django_db
-def test_fs_response_display_no_change(localfs_pootle_untracked):
-    plugin = localfs_pootle_untracked
-    assert str(ResponseDisplay(plugin.sync())) == "No changes made\n"
+def test_fs_response_display_no_change():
+    assert str(ResponseDisplay([])) == "No changes made\n"
 
 
 @pytest.mark.django_db
