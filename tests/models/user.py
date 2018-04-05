@@ -425,25 +425,27 @@ def test_update_user_email_bad_invalid_email(member_with_email):
 
 
 @pytest.mark.django_db
-def test_update_user_email_bad_invalid_duplicate(member_with_email, member2):
+def test_update_user_email_bad_invalid_duplicate(member_with_email):
 
-    # Create 2 emails for member2
-    member2.email = "member2@this.test"
-    member2.save()
+    memberX = get_user_model().objects.create(username="memberX")
+
+    # Create 2 emails for memberX
+    memberX.email = "memberX@this.test"
+    memberX.save()
     (EmailAddress.objects
-                 .create(user=member2,
-                         email=member2.email,
+                 .create(user=memberX,
+                         email=memberX.email,
                          primary=True, verified=True)).save()
     (EmailAddress.objects
-                 .create(user=member2,
+                 .create(user=memberX,
                          email="alt_email@this.test",
                          primary=False,
                          verified=False)).save()
 
-    # Member cannot update with either of member2's emails
+    # Member cannot update with either of memberX's emails
     with pytest.raises(ValidationError):
         accounts.utils.update_user_email(member_with_email,
-                                         member2.email)
+                                         memberX.email)
     with pytest.raises(ValidationError):
         accounts.utils.update_user_email(member_with_email,
                                          "alt_email@this.test")
@@ -491,20 +493,21 @@ def test_user_has_manager_permissions(no_perms_user, administrate, tp0):
 
 
 @pytest.mark.django_db
-def test_get_users_with_permission(default, member, translate):
+def test_get_users_with_permission(default, translate):
     language = Language.objects.get(code='language0')
     project = Project.objects.get(code='project0')
     User = get_user_model()
+    memberX = User.objects.create(username="memberX")
 
     directory = TranslationProject.objects.get(
         project=project,
         language=language
     ).directory
 
-    member.email = "member@poot.le"
-    member.save()
-    accounts.utils.verify_user(member)
-    _require_permission_set(member, directory, [translate])
+    memberX.email = "memberX@poot.le"
+    memberX.save()
+    accounts.utils.verify_user(memberX)
+    _require_permission_set(memberX, directory, [translate])
 
     # remove "Can submit translation" permission for default user
     ps = PermissionSet.objects.filter(user=default,

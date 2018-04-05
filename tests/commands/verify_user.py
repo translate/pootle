@@ -8,6 +8,7 @@
 
 import pytest
 
+from django.contrib.auth import get_user_model
 from django.core.management import call_command
 from django.core.management.base import CommandError
 
@@ -38,8 +39,9 @@ def test_verify_user_unknownuser(capfd):
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_verify_user_noemail(capfd, member):
-    call_command('verify_user', 'member')
+def test_verify_user_noemail(capfd):
+    get_user_model().objects.create(username="memberX")
+    call_command('verify_user', 'memberX')
     out, err = capfd.readouterr()
     assert "You cannot verify an account with no email set" in err
 

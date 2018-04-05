@@ -8,6 +8,7 @@
 
 import pytest
 
+from django.contrib.auth import get_user_model
 from django.core.management import call_command
 
 
@@ -27,11 +28,14 @@ def test_find_duplicate_emails_nodups(capfd, no_extra_users):
 @pytest.mark.django_db
 def test_find_duplicate_emails_noemails(capfd, member, member2):
     """User have no email set."""
+    # this only works if there are more than one user with no email
+    get_user_model().objects.create(username="memberX")
+    get_user_model().objects.create(username="memberY")
     call_command('find_duplicate_emails')
     out, err = capfd.readouterr()
     assert "The following users have no email set" in out
-    assert "member " in out
-    assert "member2" in out
+    assert "memberX " in out
+    assert "memberY " in out
 
 
 @pytest.mark.cmd
