@@ -27,12 +27,16 @@ assets:
 	npm install && \
 	cd ${CWD}
 	cp ${JS_DIR}/node_modules/select2/dist/js/i18n/*.js ${JS_DIR}/select2_l10n/
-	${POOTLE_CMD} compilejsi18n
+	echo 'Compiling js i18n'
+	${POOTLE_CMD} compilejsi18n -v0
 	${POOTLE_CMD} webpack --extra=--display-error-details
 	mkdir -p ${ASSETS_DIR}
 
-	${POOTLE_CMD} collectstatic --noinput --clear -i node_modules -i .tox -i docs ${TAIL}
-	${POOTLE_CMD} assets build ${TAIL}
+	echo 'Collecting static'
+	${POOTLE_CMD} collectstatic -v0 --noinput --clear -i node_modules -i .tox -i docs ${TAIL}
+
+	echo 'Building assets'
+	${POOTLE_CMD} assets -v0 build ${TAIL}
 
 	chmod 664 ${ASSETS_DIR}.webassets-cache/*
 
@@ -46,11 +50,13 @@ travis-assets:
 		npm install && \
 		cd ${CWD}; \
 		cp ${JS_DIR}/node_modules/select2/dist/js/i18n/*.js ${JS_DIR}/select2_l10n/; \
-		${POOTLE_CMD} compilejsi18n; \
+		${POOTLE_CMD} compilejsi18n -v0; \
 		${POOTLE_CMD} webpack --dev --nowatch; \
 		mkdir -p ${ASSETS_DIR}; \
-		${POOTLE_CMD} collectstatic --noinput --clear -i node_modules -i .tox -i docs ${TAIL}; \
-		${POOTLE_CMD} assets build ${TAIL}; \
+		echo 'Collecting static'; \
+		${POOTLE_CMD} collectstatic -v0 --noinput --clear -i node_modules -i .tox -i docs ${TAIL}; \
+		echo 'Building assets'; \
+		${POOTLE_CMD} assets -v0 build ${TAIL}; \
 		chmod 664 ${ASSETS_DIR}.webassets-cache/*; \
 	fi
 
