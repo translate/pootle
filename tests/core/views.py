@@ -530,8 +530,8 @@ def test_widget_table_select_multiple_dict():
     rendered = widget.render("a-field", None)
     for i, (name, choice) in enumerate(choices):
         assert (
-            ('<td class="row-select"><input name="a-field" '
-             'type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input type="checkbox" '
+             'name="a-field" value="%s" /></td>'
              % name)
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) not in rendered
@@ -540,11 +540,11 @@ def test_widget_table_select_multiple_dict():
     for i, (name, choice) in enumerate(choices):
         checked = ""
         if i == 0:
-            checked = ' checked="checked"'
+            checked = ' checked'
         assert (
-            ('<td class="row-select"><input%s name="a-field" '
-             'type="checkbox" value="%s" /></td>'
-             % (checked, name))
+            ('<td class="row-select"><input type="checkbox" '
+             'name="a-field" value="%s"%s /></td>'
+             % (name, checked))
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) not in rendered
     widget = TableSelectMultiple(item_attrs=["id", "title"], choices=choices)
@@ -552,11 +552,11 @@ def test_widget_table_select_multiple_dict():
     for i, (name, choice) in enumerate(choices):
         checked = ""
         if i == 0:
-            checked = ' checked="checked"'
+            checked = ' checked'
         assert (
-            ('<td class="row-select"><input%s name="a-field" '
-             'type="checkbox" value="%s" /></td>'
-             % (checked, name))
+            ('<td class="row-select"><input type="checkbox" '
+             'name="a-field" value="%s"%s /></td>'
+             % (name, checked))
             in rendered)
         assert ('<td class="field-title">%s</td>' % choice["title"]) in rendered
 
@@ -579,9 +579,10 @@ def test_widget_table_select_multiple_objects():
     widget = TableSelectMultiple(item_attrs=["id"], choices=object_choices)
     rendered = widget.render("a-field", None)
     for i, (name, choice) in enumerate(choices):
+        # this test is way too brittle
         assert (
-            ('<td class="row-select"><input name="a-field" '
-             'type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input type="checkbox" '
+             'name="a-field" value="%s" /></td>'
              % name)
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) not in rendered
@@ -590,11 +591,12 @@ def test_widget_table_select_multiple_objects():
     for i, (name, choice) in enumerate(choices):
         checked = ""
         if i == 0:
-            checked = ' checked="checked"'
+            checked = ' checked'
+        # this test is way too brittle
         assert (
-            ('<td class="row-select"><input%s name="a-field" '
-             'type="checkbox" value="%s" /></td>'
-             % (checked, name))
+            ('<td class="row-select"><input type="checkbox" '
+             'name="a-field" value="%s"%s /></td>'
+             % (name, checked))
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) not in rendered
     widget = TableSelectMultiple(item_attrs=["id", "title"], choices=object_choices)
@@ -602,11 +604,12 @@ def test_widget_table_select_multiple_objects():
     for i, (name, choice) in enumerate(choices):
         checked = ""
         if i == 0:
-            checked = ' checked="checked"'
+            checked = ' checked'
+        # this test is way too brittle
         assert (
-            ('<td class="row-select"><input%s name="a-field" '
-             'type="checkbox" value="%s" /></td>'
-             % (checked, name))
+            ('<td class="row-select"><input type="checkbox" '
+             'name="a-field" value="%s"%s /></td>'
+             % (name, checked))
             in rendered)
         assert ('<td class="field-title">%s</td>' % choice["title"]) in rendered
 
@@ -628,8 +631,8 @@ def test_widget_table_select_multiple_callable():
     rendered = widget.render("a-field", None)
     for i, (name, choice) in enumerate(choices):
         assert (
-            ('<td class="row-select"><input name="a-field" '
-             'type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input type="checkbox" '
+             'name="a-field" value="%s" /></td>'
              % name)
             in rendered)
         assert ('<td class="field-get-id">xx%s</td>' % choice["id"]) in rendered
@@ -641,11 +644,11 @@ def test_widget_table_select_multiple_callable():
     for i, (name, choice) in enumerate(choices):
         checked = ""
         if i == 0:
-            checked = ' checked="checked"'
+            checked = ' checked'
         assert (
-            ('<td class="row-select"><input%s name="a-field" '
-             'type="checkbox" value="%s" /></td>'
-             % (checked, name))
+            ('<td class="row-select"><input type="checkbox" '
+             'name="a-field" value="%s"%s /></td>'
+             % (name, checked))
             in rendered)
         assert ('<td class="field-get-id">xx%s</td>' % choice["id"]) in rendered
         assert (
@@ -656,11 +659,11 @@ def test_widget_table_select_multiple_callable():
     for i, (name, choice) in enumerate(choices):
         checked = ""
         if i == 0:
-            checked = ' checked="checked"'
+            checked = ' checked'
         assert (
-            ('<td class="row-select"><input%s name="a-field" '
-             'type="checkbox" value="%s" /></td>'
-             % (checked, name))
+            ('<td class="row-select"><input type="checkbox" '
+             'name="a-field" value="%s"%s /></td>'
+             % (name, checked))
             in rendered)
         assert ('<td class="field-get-id">xx%s</td>' % choice["id"]) in rendered
         assert (
@@ -694,8 +697,8 @@ def test_widget_table_select_multiple_object_methods():
     rendered = widget.render("a-field", None)
     for i, (name, choice) in enumerate(choices):
         assert (
-            ('<td class="row-select"><input name="a-field" '
-             'type="checkbox" value="%s" /></td>'
+            ('<td class="row-select"><input type="checkbox" '
+             'name="a-field" value="%s" /></td>'
              % name)
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) not in rendered
@@ -704,11 +707,11 @@ def test_widget_table_select_multiple_object_methods():
     for i, (name, choice) in enumerate(choices):
         checked = ""
         if i == 0:
-            checked = ' checked="checked"'
+            checked = ' checked'
         assert (
-            ('<td class="row-select"><input%s name="a-field" '
-             'type="checkbox" value="%s" /></td>'
-             % (checked, name))
+            ('<td class="row-select"><input type="checkbox" '
+             'name="a-field" value="%s"%s /></td>'
+             % (name, checked))
             in rendered)
         assert ('<td>%s</td>' % choice["title"]) not in rendered
     widget = TableSelectMultiple(item_attrs=["id", "title"], choices=object_choices)
@@ -716,11 +719,11 @@ def test_widget_table_select_multiple_object_methods():
     for i, (name, choice) in enumerate(choices):
         checked = ""
         if i == 0:
-            checked = ' checked="checked"'
+            checked = ' checked'
         assert (
-            ('<td class="row-select"><input%s name="a-field" '
-             'type="checkbox" value="%s" /></td>'
-             % (checked, name))
+            ('<td class="row-select"><input type="checkbox" '
+             'name="a-field" value="%s"%s /></td>'
+             % (name, checked))
             in rendered)
         assert ('<td class="field-title">%s</td>' % choice["title"]) in rendered
 
@@ -735,9 +738,9 @@ def test_widget_table_select_id_attr():
     rendered = widget.render("a-field", None, attrs=dict(id="special-id"))
     for i, (name, choice) in enumerate(choices):
         assert (
-            ('<td class="row-select"><input id="special-id_%s" name="a-field" '
-             'type="checkbox" value="%s" /></td>'
-             % (i, name))
+            ('<td class="row-select"><input type="checkbox" '
+             'name="a-field" value="%s" id="special-id_%s" /></td>'
+             % (name, i))
             in rendered)
 
 
