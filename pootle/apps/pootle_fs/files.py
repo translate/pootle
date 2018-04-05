@@ -32,14 +32,17 @@ class FSFile(object):
         """
         :param store_fs: ``StoreFS`` object
         """
+        self.store_fs = self._validate_store_fs(store_fs)
+        self.pootle_path = store_fs.pootle_path
+        self.path = store_fs.path
+
+    def _validate_store_fs(self, store_fs):
         from .models import StoreFS
 
         if not isinstance(store_fs, StoreFS):
             raise TypeError(
                 "pootle_fs.FSFile expects a StoreFS")
-        self.store_fs = store_fs
-        self.pootle_path = store_fs.pootle_path
-        self.path = store_fs.path
+        return store_fs
 
     def __str__(self):
         return "<%s: %s::%s>" % (
