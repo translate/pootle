@@ -45,7 +45,7 @@ def log_exception(request, exception, tb):
 
         try:
             request_repr = repr(request)
-        except:
+        except Exception:
             request_repr = "Request repr() unavailable"
 
         msg_args = (unicode(exception.args[0]), tb,
@@ -64,32 +64,28 @@ def handle_exception(request, exception, template_name):
     if settings.DEBUG:
         return None
 
-    try:
-        log_exception(request, exception, tb)
+    log_exception(request, exception, tb)
 
-        msg = force_text(exception)
+    msg = force_text(exception)
 
-        if request.is_ajax():
-            return JsonResponseServerError({'msg': msg})
+    if request.is_ajax():
+        return JsonResponseServerError({'msg': msg})
 
-        ctx = {
-            'exception': msg,
+    ctx = {
+        'exception': msg,
+    }
+    if hasattr(exception, 'filename'):
+        msg_args = {
+            'filename': exception.filename,
+            'errormsg': exception.strerror,
         }
-        if hasattr(exception, 'filename'):
-            msg_args = {
-                'filename': exception.filename,
-                'errormsg': exception.strerror,
-            }
-            msg = _('Error accessing %(filename)s, Filesystem '
-                    'sent error: %(errormsg)s', msg_args)
-            ctx['fserror'] = msg
+        msg = _('Error accessing %(filename)s, Filesystem '
+                'sent error: %(errormsg)s', msg_args)
+        ctx['fserror'] = msg
 
-        return HttpResponseServerError(
-            render_to_string(template_name, context=ctx, request=request)
-        )
-    except:
-        # Let's not confuse things by throwing an exception here
-        pass
+    return HttpResponseServerError(
+        render_to_string(template_name, context=ctx, request=request)
+    )
 
 
 class ErrorPagesMiddleware(MiddlewareMixin):

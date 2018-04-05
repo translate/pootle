@@ -11,7 +11,7 @@
 from django.conf import settings
 
 
-def l(path):
+def link(path):
     """Filter URLs adding base_path prefix if required."""
     if path and path.startswith('/'):
         base_url = getattr(settings, "SCRIPT_NAME", "")

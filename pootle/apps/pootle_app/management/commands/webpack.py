@@ -14,7 +14,7 @@ from django.conf import settings
 from django.contrib.staticfiles.finders import AppDirectoriesFinder
 from django.core.management.base import BaseCommand, CommandError
 
-from pootle_misc.baseurl import l
+from pootle_misc.baseurl import link
 
 
 class Command(BaseCommand):
@@ -90,7 +90,7 @@ class Command(BaseCommand):
 
         webpack_args.extend(options['extra'])
 
-        static_base = l(settings.STATIC_URL)
+        static_base = link(settings.STATIC_URL)
         suffix = 'js/' if static_base.endswith('/') else '/js/'
         os.environ['WEBPACK_PUBLIC_PATH'] = static_base + suffix
 

@@ -147,10 +147,8 @@ class Command(PootleCommand):
         elif isinstance(item, Language):
             self.stdout.write(self.dumped(item.language))
         elif isinstance(item, TranslationProject):
-            try:
+            if hasattr(item, 'translationproject'):
                 self.stdout.write(self.dumped(item.translationproject))
-            except:
-                pass
         elif isinstance(item, Project):
             pass
             # self.stdout.write(self.dumped(item))

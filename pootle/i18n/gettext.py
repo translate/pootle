@@ -24,7 +24,7 @@ def _format_translation(message, variables=None):
     if variables is not None:
         try:
             return message % variables
-        except:
+        except Exception:
             pass
 
     return message
