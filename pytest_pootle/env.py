@@ -253,6 +253,7 @@ class PootleTestEnv(object):
             in get_user_model().objects.all()}
 
         for username, user_params in TEST_USERS.items():
+            user_params["email"] = "%s@email.test" % username
             TEST_USERS[username]["user"] = (
                 users.get(username)
                 or _require_user(username=username, **user_params))
