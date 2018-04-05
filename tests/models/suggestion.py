@@ -28,20 +28,20 @@ def test_hash(store0):
 
 
 @pytest.mark.django_db
-def test_accept_suggestion_with_comment_email_escaped(store0, mailoutbox):
+def test_accept_suggestion_with_comment_email_escaped(store0, mailoutbox, member2):
     """Tests that email sent on accept suggestions with comment is escaped."""
     unit = store0.units[0]
     suggestion_review_cls = review.get(Suggestion)
     review_instance = suggestion_review_cls()
 
-    suggestion, created_ = review_instance.add(unit, "gras")
+    suggestion, created_ = review_instance.add(unit, "gras", user=member2)
     comment = "Very nice"
     suggestion_review_cls([suggestion]).accept(comment=comment)
     assert len(mailoutbox) == 1
     message = mailoutbox[0]
     assert comment in message.body
 
-    suggestion, created_ = review_instance.add(unit, "gras++")
+    suggestion, created_ = review_instance.add(unit, "gras++", user=member2)
     comment = "Good job not translating <tag> tags"
     suggestion_review_cls([suggestion]).accept(comment=comment)
     assert len(mailoutbox) == 2
@@ -51,20 +51,20 @@ def test_accept_suggestion_with_comment_email_escaped(store0, mailoutbox):
 
 
 @pytest.mark.django_db
-def test_reject_suggestion_with_comment_email_escaped(store0, mailoutbox):
+def test_reject_suggestion_with_comment_email_escaped(store0, mailoutbox, member2):
     """Tests that email sent on reject suggestions with comment is escaped."""
     unit = store0.units[0]
     suggestion_review_cls = review.get(Suggestion)
     review_instance = suggestion_review_cls()
 
-    suggestion, created_ = review_instance.add(unit, "gras")
+    suggestion, created_ = review_instance.add(unit, "gras", user=member2)
     comment = "It is wrong"
     suggestion_review_cls([suggestion]).reject(comment=comment)
     assert len(mailoutbox) == 1
     message = mailoutbox[0]
     assert comment in message.body
 
-    suggestion, created_ = review_instance.add(unit, "gras++")
+    suggestion, created_ = review_instance.add(unit, "gras++", user=member2)
     comment = "The <tag> must not be translated"
     suggestion_review_cls([suggestion]).reject(comment=comment)
     assert len(mailoutbox) == 2
