@@ -6,6 +6,8 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from mock import PropertyMock, patch
+
 import pytest
 
 from django.urls import reverse
@@ -247,9 +249,13 @@ def test_form_language_suggestions_bad(language0, tp0, admin):
 
 
 @pytest.mark.django_db
-def test_form_language_suggestions_accept_comment(language0, tp0, admin,
-                                                  member2_with_email,
-                                                  mailoutbox):
+@patch(
+    'pootle_language.forms.LanguageSuggestionAdminForm.suggestions_review',
+    new_callable=PropertyMock)
+def test_form_language_suggestions_accept_comment(review_mock, language0,
+                                                  tp0, admin):
+    review_mock.configure_mock(**{'return_value.accept.return_value': 23})
+
     form = LanguageSuggestionAdminForm(
         language=language0,
         user=admin,
@@ -263,13 +269,10 @@ def test_form_language_suggestions_accept_comment(language0, tp0, admin,
         == list(
             form.language_team.suggestions.filter(
                 unit__store__translation_project=tp0)))
-    form.save()
-    for suggestion in form.suggestions_to_save:
-        assert suggestion.state.name == "accepted"
-    assert len(mailoutbox) == 1
-    for suggestion in form.suggestions_to_save:
-        assert ("#%s" % suggestion.id) in mailoutbox[0].body
-    assert "accept" in mailoutbox[0].subject.lower()
+    assert form.save() == 23
+    assert (
+        list(review_mock.return_value.accept.call_args)
+        == [(), {'comment': u'no thanks'}])
 
 
 @pytest.mark.django_db
