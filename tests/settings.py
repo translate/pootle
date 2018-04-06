@@ -105,8 +105,11 @@ SCRIPT_NAME = '/'
 SILENCED_SYSTEM_CHECKS = [
     'pootle.C005',  # Silence the RedisCache check as we use a dummy cache
     'pootle.C017',  # Distinct redis DB numbers for default, redis, stats
+    'pootle.W004',  # Pootle requires a working mail server
     'pootle.W005',  # DEBUG = True
+    'pootle.W010',  # DEFAULT_FROM_EMAIL has default setting
     'pootle.W011',  # POOTLE_CONTACT_EMAIL has default setting
+    'pootle.W020',  # POOTLE_CANONICAL_URL has default setting
 ]
 
 try:
@@ -114,3 +117,50 @@ try:
         INSTALLED_APPS = INSTALLED_APPS + ["pootle_fs"]
 except NameError:
     INSTALLED_APPS = ["pootle_fs"]
+
+POOTLE_TM_SERVER = {
+    'local': {
+        'ENGINE': 'pootle.core.search.backends.ElasticSearchBackend',
+        'HOST': 'elasticsearch',
+        'PORT': 9200,
+        # Every TM server must have its own unique index.
+        'INDEX_NAME': 'translations',
+        # Provides a weighting factor to alter the final score for TM results
+        # from this TM server. Valid values are between ``0.0`` and ``1.0``,
+        # both included. Defaults to ``1.0`` if not provided.
+        'WEIGHT': 1.0,
+    },
+    'external': {
+        'ENGINE': 'pootle.core.search.backends.ElasticSearchBackend',
+        'HOST': 'elasticsearch',
+        'PORT': 9200,
+        'INDEX_NAME': 'translations-external',
+        'WEIGHT': 0.9,
+    },
+}
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'USER': '',
+        'HOST': '',
+        'PORT': '',
+        'PASSWORD': 'CHANGEME',
+        'ATOMIC_REQUESTS': True,
+        'TEST': {
+            'NAME': '',
+            'CHARSET': 'utf8'}}}
+
+if os.environ.get("POOTLE_ENV") == 'mariadb':
+    DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
+    DATABASES['default']['NAME'] = 'pootledb'
+    DATABASES['default']['HOST'] = 'mariadb'
+    DATABASES['default']['USER'] = 'root'
+    DATABASES['default']['TEST']['COLLATION'] = 'utf8_general_ci'
+    DATABASES['default']['OPTIONS'] = {
+        'init_command': "SET sql_mode='STRICT_ALL_TABLES'"}
+elif os.environ.get("POOTLE_ENV") == 'postgres':
+    DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
+    DATABASES['default']['NAME'] = 'pootledb'
+    DATABASES['default']['USER'] = 'pootle'
+    DATABASES['default']['HOST'] = 'postgres'

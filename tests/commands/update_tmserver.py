@@ -17,8 +17,10 @@ from django.core.management.base import CommandError
 
 @pytest.mark.cmd
 @pytest.mark.django_db
-def test_update_tmserver_nosetting(capfd, po_directory, tp0):
+def test_update_tmserver_nosetting(capfd, po_directory, tp0, settings):
     """We need configured TM for anything to work"""
+    settings.POOTLE_TM_SERVER = None
+
     with pytest.raises(CommandError) as e:
         call_command('update_tmserver')
     assert "POOTLE_TM_SERVER setting is missing." in str(e)
@@ -39,7 +41,7 @@ def __test_update_tmserver_noargs(capfd, tp0, settings):
     settings.POOTLE_TM_SERVER = {
         'local': {
             'ENGINE': 'pootle.core.search.backends.ElasticSearchBackend',
-            'HOST': 'localhost',
+            'HOST': 'elasticsearch',
             'PORT': 9200,
             'INDEX_NAME': 'translations',
         }
@@ -58,7 +60,7 @@ def test_update_tmserver_bad_tm(capfd, settings):
     settings.POOTLE_TM_SERVER = {
         'local': {
             'ENGINE': 'pootle.core.search.backends.ElasticSearchBackend',
-            'HOST': 'localhost',
+            'HOST': 'elasticsearch',
             'PORT': 9200,
             'INDEX_NAME': 'translations',
         }
@@ -75,7 +77,7 @@ def test_update_tmserver_files_no_displayname(capfd, settings, tmpdir):
     settings.POOTLE_TM_SERVER = {
         'external': {
             'ENGINE': 'pootle.core.search.backends.ElasticSearchBackend',
-            'HOST': 'localhost',
+            'HOST': 'elasticsearch',
             'PORT': 9200,
             'INDEX_NAME': 'translations-external',
         }
@@ -94,7 +96,7 @@ def test_update_tmserver_files(capfd, settings, tmpdir):
     settings.POOTLE_TM_SERVER = {
         'external': {
             'ENGINE': 'pootle.core.search.backends.ElasticSearchBackend',
-            'HOST': 'localhost',
+            'HOST': 'elasticsearch',
             'PORT': 9200,
             'INDEX_NAME': 'translations-external',
         }
