@@ -3,4 +3,3 @@
 sphinx-bootstrap-theme
 readme-renderer==18.1
 Sphinx==1.7.2
-sphinx-bootstrap-theme
