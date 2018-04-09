@@ -26,6 +26,7 @@ dirsync==2.2.3
 jsonfield==2.0.2
 # Note: also adjust pootle/checks::LXML_MINIMUM_REQUIRED_VERSION
 lxml>=4.2,<4.3
+makeyfile==0.0.2
 pathlib==1.0.1
 python-dateutil==2.7.2
 python-levenshtein==0.12.0
