@@ -6,366 +6,392 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
+from mock import patch
+
 import pytest
 
-from django.contrib.auth import get_user_model
 from django.core.management import call_command
 
-from pootle.core.contextmanagers import keep_data
-from pootle.core.delegate import review, score_updater
+from pootle_app.management.commands.refresh_scores import Command
+from pootle_translationproject.models import TranslationProject
+
+
+DEFAULT_OPTIONS = {
+    'reset': False,
+    'users': None,
+    'settings': None,
+    'pythonpath': None,
+    'verbosity': 1,
+    'traceback': False,
+    u'skip_checks': True,
+    'no_rq': False,
+    'atomic': 'tp',
+    'noinput': False,
+    'no_color': False}
 
 
 @pytest.mark.cmd
-@pytest.mark.django_db
-def test_refresh_scores_recalculate(capfd, store0, member):
+@patch('pootle_app.management.commands.refresh_scores.get_user_model')
+@patch('pootle_app.management.commands.refresh_scores.Command.get_users')
+@patch('pootle_app.management.commands.refresh_scores.score_updater')
+def test_cmd_refresh_scores_recalculate(updater_mock, users_mock, user_mock):
     """Recalculate scores."""
-    # delete the 2 most prolific contribs to speed up
-    unit = store0.units.filter(suggestion__state__name="pending").first()
-    suggestion = unit.suggestion_set.filter(state__name="pending").first()
-    member_score = member.score
-    with keep_data():
-        review.get(suggestion.__class__)(
-            [suggestion], reviewer=member).accept()
-    member.refresh_from_db()
-    assert member.score == member_score
+    user_mock.return_value = 7
+    users_mock.return_value = 23
     call_command('refresh_scores')
-    member.refresh_from_db()
-    assert member.score > member_score
+    assert (
+        list(users_mock.call_args)
+        == [(), DEFAULT_OPTIONS])
+    assert (
+        list(updater_mock.get.call_args)
+        == [(7,), {}])
+    assert (
+        list(updater_mock.get.return_value.call_args)
+        == [(), {}])
+    assert (
+        list(updater_mock.get.return_value.return_value.refresh_scores.call_args)
+        == [(23,), {}])
 
 
 @pytest.mark.cmd
-@pytest.mark.django_db
-def test_refresh_scores_recalculate_user(capfd, member, admin):
+@patch('pootle_app.management.commands.refresh_scores.get_user_model')
+@patch('pootle_app.management.commands.refresh_scores.Command.get_users')
+@patch('pootle_app.management.commands.refresh_scores.score_updater')
+def test_cmd_refresh_scores_recalculate_user(updater_mock, users_mock, user_mock):
     """Recalculate scores for given users."""
-    call_command('refresh_scores', '--reset', '--user=member')
+    user_mock.return_value = 7
+    users_mock.return_value = 23
     call_command('refresh_scores', '--user=member')
-    member.refresh_from_db()
-    member_score = round(member.score, 2)
-    member.score = 777
-    admin.score = 999
-    member.save()
-    admin.save()
-    call_command('refresh_scores', '--user=member')
-    admin.refresh_from_db()
-    member.refresh_from_db()
-    assert round(member.score, 2) == member_score
-    assert admin.score == 999
+    options = DEFAULT_OPTIONS.copy()
+    options["users"] = ["member"]
+    assert (
+        list(users_mock.call_args)
+        == [(), options])
+    assert (
+        list(updater_mock.get.call_args)
+        == [(7,), {}])
+    assert (
+        list(updater_mock.get.return_value.call_args)
+        == [(), {}])
+    assert (
+        list(updater_mock.get.return_value.return_value.refresh_scores.call_args)
+        == [(23,), {}])
 
 
 @pytest.mark.cmd
-@pytest.mark.django_db
-def test_refresh_scores_reset_user(capfd, member, admin):
+@patch('pootle_app.management.commands.refresh_scores.get_user_model')
+@patch('pootle_app.management.commands.refresh_scores.Command.get_users')
+@patch('pootle_app.management.commands.refresh_scores.score_updater')
+def test_cmd_refresh_scores_reset_user(updater_mock, users_mock, user_mock):
     """Set scores to zero for given users."""
+    user_mock.return_value = 7
+    users_mock.return_value = 23
     call_command('refresh_scores', '--reset', '--user=member')
-    call_command('refresh_scores', '--user=member')
-    call_command('refresh_scores', '--reset', '--user=admin')
-    call_command('refresh_scores', '--user=admin')
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    admin_score = round(admin.score, 2)
-    member_score = round(member.score, 2)
-    call_command('refresh_scores', '--reset', '--user=member')
-    out, err = capfd.readouterr()
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    assert member.score == 0
-    assert member.scores.count() == 0
-    assert member.store_scores.count() == 0
-    assert admin_score == round(admin.score, 2)
-    call_command('refresh_scores', '--user=member')
-    member.refresh_from_db()
-    assert round(member.score, 2) == member_score
+    options = DEFAULT_OPTIONS.copy()
+    options["users"] = ["member"]
+    options["reset"] = True
+    assert (
+        list(users_mock.call_args)
+        == [(), options])
+    assert (
+        list(updater_mock.get.call_args)
+        == [(7,), {}])
+    assert (
+        list(updater_mock.get.return_value.call_args)
+        == [(), {'users': 23}])
+    assert (
+        list(updater_mock.get.return_value.return_value.clear.call_args)
+        == [(), {}])
 
 
 @pytest.mark.cmd
-@pytest.mark.django_db
-def test_refresh_scores_reset(capfd, admin, member):
+@patch('pootle_app.management.commands.refresh_scores.get_user_model')
+@patch('pootle_app.management.commands.refresh_scores.Command.get_users')
+@patch('pootle_app.management.commands.refresh_scores.score_updater')
+def test_cmd_refresh_scores_reset(updater_mock, users_mock, user_mock):
     """Set scores to zero."""
+    user_mock.return_value = 7
+    users_mock.return_value = 23
     call_command('refresh_scores', '--reset')
-    out, err = capfd.readouterr()
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    assert member.score == 0
-    assert member.scores.count() == 0
-    assert member.store_scores.count() == 0
-    assert admin.score == 0
-    assert admin.scores.count() == 0
-    assert admin.store_scores.count() == 0
+    options = DEFAULT_OPTIONS.copy()
+    options["reset"] = True
+    assert (
+        list(users_mock.call_args)
+        == [(), options])
+    assert (
+        list(updater_mock.get.call_args)
+        == [(7,), {}])
+    assert (
+        list(updater_mock.get.return_value.call_args)
+        == [(), {'users': 23}])
+    assert (
+        list(updater_mock.get.return_value.return_value.clear.call_args)
+        == [(), {}])
 
 
 @pytest.mark.cmd
-@pytest.mark.django_db
-def test_refresh_scores_project(capfd, admin, member, project0):
+@patch('pootle_app.management.commands.PootleCommand.handle_all')
+@patch('pootle_app.management.commands.refresh_scores.Command.check_projects')
+def test_cmd_refresh_scores_project(projects_mock, command_mock):
     """Reset and set again scores for a project."""
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    updater = score_updater.get(get_user_model())()
-    member_score = updater.calculate(users=[member]).first()[1]
-    admin_score = updater.calculate(users=[admin]).first()[1]
-    member_scores_count = member.scores.filter(tp__project=project0).count()
-    admin_scores_count = admin.scores.filter(tp__project=project0).count()
-    member_store_scores_count = member.store_scores.filter(
-        store__translation_project__project=project0).count()
-    admin_store_scores_count = admin.store_scores.filter(
-        store__translation_project__project=project0).count()
 
     call_command('refresh_scores', '--reset', '--project=project0')
-    out, err = capfd.readouterr()
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    assert member.score == 0
-    assert member.scores.filter(tp__project=project0).count() == 0
-    assert member.store_scores.filter(
-        store__translation_project__project=project0).count() == 0
-    assert admin.score == 0
-    assert admin.scores.filter(tp__project=project0).count() == 0
-    assert admin.store_scores.filter(
-        store__translation_project__project=project0).count() == 0
-
+    options = DEFAULT_OPTIONS.copy()
+    options["reset"] = True
+    assert (
+        list(projects_mock.call_args)
+        == [([u'project0'],), {}])
+    assert (
+        list(command_mock.call_args)
+        == [(), options])
+    projects_mock.reset_mock()
+    command_mock.reset_mock()
     call_command('refresh_scores', '--project=project0')
-    out, err = capfd.readouterr()
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    assert round(member.score, 2) == round(member_score, 2)
-    assert (member.scores.filter(tp__project=project0).count() ==
-            member_scores_count)
-    assert (member.store_scores.filter(
-        store__translation_project__project=project0).count() ==
-        member_store_scores_count)
-    assert round(admin.score, 2) == round(admin_score, 2)
-    assert (admin.scores.filter(tp__project=project0).count() ==
-            admin_scores_count)
-    assert (admin.store_scores.filter(
-        store__translation_project__project=project0).count() ==
-        admin_store_scores_count)
+    assert (
+        list(projects_mock.call_args)
+        == [([u'project0'],), {}])
+    assert (
+        list(command_mock.call_args)
+        == [(), DEFAULT_OPTIONS])
 
 
 @pytest.mark.cmd
-@pytest.mark.django_db
-def test_refresh_scores_language(capfd, admin, member, language0):
+@patch('pootle_app.management.commands.PootleCommand.handle_all')
+@patch('pootle_app.management.commands.refresh_scores.Command.check_languages')
+def test_cmd_refresh_scores_language(languages_mock, command_mock):
     """Reset and set again scores for a language."""
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    updater = score_updater.get(get_user_model())()
-    member_score = updater.calculate(users=[member]).first()[1]
-    admin_score = updater.calculate(users=[admin]).first()[1]
-    member_scores_count = member.scores.filter(tp__language=language0).count()
-    admin_scores_count = admin.scores.filter(tp__language=language0).count()
-    member_store_scores_count = member.store_scores.filter(
-        store__translation_project__language=language0).count()
-    admin_store_scores_count = admin.store_scores.filter(
-        store__translation_project__language=language0).count()
 
     call_command('refresh_scores', '--reset', '--language=language0')
-    out, err = capfd.readouterr()
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    assert member.score == 0
-    assert member.scores.filter(
-        tp__language=language0,
-        tp__project__disabled=False).count() == 0
-    assert member.store_scores.filter(
-        store__translation_project__language=language0,
-        store__translation_project__project__disabled=False).count() == 0
-    assert admin.score == 0
-    assert admin.scores.filter(
-        tp__language=language0,
-        tp__project__disabled=False).count() == 0
-    assert admin.store_scores.filter(
-        store__translation_project__language=language0,
-        store__translation_project__project__disabled=False).count() == 0
+    assert (
+        list(languages_mock.call_args)
+        == [([u'language0'],), {}])
+    options = DEFAULT_OPTIONS.copy()
+    options["reset"] = True
+    assert (
+        list(command_mock.call_args)
+        == [(), options])
 
+    languages_mock.reset_mock()
+    command_mock.reset_mock()
     call_command('refresh_scores', '--language=language0')
-    out, err = capfd.readouterr()
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    assert round(member.score, 2) == round(member_score, 2)
-    assert (member.scores.filter(tp__language=language0).count() ==
-            member_scores_count)
-    assert (member.store_scores.filter(
-        store__translation_project__language=language0).count() ==
-        member_store_scores_count)
-    assert round(admin.score, 2) == round(admin_score, 2)
-    assert (admin.scores.filter(tp__language=language0).count() ==
-            admin_scores_count)
-    assert (admin.store_scores.filter(
-        store__translation_project__language=language0).count() ==
-        admin_store_scores_count)
+    assert (
+        list(languages_mock.call_args)
+        == [([u'language0'],), {}])
+    assert (
+        list(command_mock.call_args)
+        == [(), DEFAULT_OPTIONS])
 
 
 @pytest.mark.cmd
-@pytest.mark.django_db
-def test_refresh_scores_reset_tp(capfd, admin, member, tp0):
+@patch('pootle_app.management.commands.PootleCommand.handle_all')
+@patch('pootle_app.management.commands.refresh_scores.Command.check_projects')
+@patch('pootle_app.management.commands.refresh_scores.Command.check_languages')
+def test_cmd_refresh_scores_reset_tp(languages_mock, projects_mock, command_mock):
     """Reset and set again scores for a TP."""
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    updater = score_updater.get(get_user_model())()
-    member_score = updater.calculate(users=[member]).first()[1]
-    admin_score = updater.calculate(users=[admin]).first()[1]
-    member_scores_count = member.scores.filter(tp=tp0).count()
-    admin_scores_count = admin.scores.filter(tp=tp0).count()
-    member_store_scores_count = member.store_scores.filter(
-        store__translation_project=tp0).count()
-    admin_store_scores_count = admin.store_scores.filter(
-        store__translation_project=tp0).count()
 
-    call_command('refresh_scores', '--reset', '--project=project0',
-                 '--language=language0')
-    out, err = capfd.readouterr()
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    assert member.score == 0
-    assert member.scores.filter(tp=tp0).count() == 0
-    assert member.store_scores.filter(
-        store__translation_project=tp0).count() == 0
-    assert admin.score == 0
-    assert admin.scores.filter(tp=tp0).count() == 0
-    assert admin.store_scores.filter(
-        store__translation_project=tp0).count() == 0
+    call_command(
+        'refresh_scores',
+        '--reset',
+        '--language=language0',
+        '--project=project0')
+    assert (
+        list(languages_mock.call_args)
+        == [([u'language0'],), {}])
+    assert (
+        list(projects_mock.call_args)
+        == [([u'project0'],), {}])
+    options = DEFAULT_OPTIONS.copy()
+    options["reset"] = True
+    assert (
+        list(command_mock.call_args)
+        == [(), options])
 
-    call_command('refresh_scores', '--project=project0',
-                 '--language=language0')
-    out, err = capfd.readouterr()
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    assert round(member.score, 2) == round(member_score, 2)
-    assert member.scores.filter(tp=tp0).count() == member_scores_count
-    assert (member.store_scores.filter(
-        store__translation_project=tp0).count() ==
-        member_store_scores_count)
-    assert round(admin.score, 2) == round(admin_score, 2)
-    assert admin.scores.filter(tp=tp0).count() == admin_scores_count
-    assert (admin.store_scores.filter(
-        store__translation_project=tp0).count() ==
-        admin_store_scores_count)
+    languages_mock.reset_mock()
+    projects_mock.reset_mock()
+    command_mock.reset_mock()
+    call_command(
+        'refresh_scores',
+        '--language=language0',
+        '--project=project0')
+    assert (
+        list(languages_mock.call_args)
+        == [([u'language0'],), {}])
+    assert (
+        list(projects_mock.call_args)
+        == [([u'project0'],), {}])
+    assert (
+        list(command_mock.call_args)
+        == [(), DEFAULT_OPTIONS])
 
 
 @pytest.mark.cmd
-@pytest.mark.django_db
-def test_refresh_scores_user_project(capfd, admin, member, project0):
-    """Reset and set again scores for particular user in project."""
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    updater = score_updater.get(get_user_model())()
-    member_score = updater.calculate(users=[member]).first()[1]
-    admin_score = admin.score
-    member_scores_count = member.scores.filter(tp__project=project0).count()
-    admin_scores_count = admin.scores.count()
-    member_store_scores_count = member.store_scores.filter(
-        store__translation_project__project=project0).count()
-    admin_store_scores_count = admin.store_scores.count()
-
-    call_command('refresh_scores', '--reset', '--user=member',
-                 '--project=project0')
-    out, err = capfd.readouterr()
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    assert member.score == 0
-    assert member.scores.filter(tp__project=project0).count() == 0
-    assert member.store_scores.filter(
-        store__translation_project__project=project0).count() == 0
-    assert admin.score == admin_score
-    assert admin.scores.count() == admin_scores_count
-    assert admin.store_scores.count() == admin_store_scores_count
-
-    call_command('refresh_scores', '--user=member', '--project=project0')
-    out, err = capfd.readouterr()
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    assert round(member.score, 2) == round(member_score, 2)
-    assert (member.scores.filter(tp__project=project0).count() ==
-            member_scores_count)
-    assert (member.store_scores.filter(
-        store__translation_project__project=project0).count() ==
-        member_store_scores_count)
-    assert round(admin.score, 2) == round(admin_score, 2)
-
-
-@pytest.mark.cmd
-@pytest.mark.django_db
-def test_refresh_scores_user_language(capfd, admin, member, language0):
+@patch('pootle_app.management.commands.PootleCommand.handle_all')
+@patch('pootle_app.management.commands.refresh_scores.Command.check_languages')
+def test_cmd_refresh_scores_user_language(languages_mock, command_mock):
     """Reset and set again scores for particular user in language."""
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    updater = score_updater.get(get_user_model())()
-    member_score = updater.calculate(users=[member]).first()[1]
-    admin_score = admin.score
-    member_scores_count = member.scores.filter(
-        tp__language=language0,
-        tp__project__disabled=False).count()
-    admin_scores_count = admin.scores.count()
-    member_store_scores_count = member.store_scores.filter(
-        store__translation_project__language=language0,
-        store__translation_project__project__disabled=False).count()
-    admin_store_scores_count = admin.store_scores.count()
-
-    call_command('refresh_scores', '--reset', '--user=member',
-                 '--language=language0')
-    out, err = capfd.readouterr()
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    assert member.score == 0
-    assert member.scores.filter(
-        tp__language=language0,
-        tp__project__disabled=False).count() == 0
-    assert member.store_scores.filter(
-        store__translation_project__language=language0,
-        store__translation_project__project__disabled=False).count() == 0
-    assert admin.score == admin_score
-    assert admin.scores.count() == admin_scores_count
-    assert admin.store_scores.count() == admin_store_scores_count
-
-    call_command('refresh_scores', '--user=member', '--language=language0')
-    out, err = capfd.readouterr()
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    assert round(member.score, 2) == round(member_score, 2)
-    assert (member.scores.filter(
-        tp__language=language0,
-        tp__project__disabled=False).count() == member_scores_count)
-    assert (member.store_scores.filter(
-        store__translation_project__language=language0,
-        store__translation_project__project__disabled=False).count() ==
-        member_store_scores_count)
-    assert round(admin.score, 2) == round(admin_score, 2)
+    call_command(
+        'refresh_scores',
+        '--user=member',
+        '--language=language0')
+    options = DEFAULT_OPTIONS.copy()
+    options["users"] = ["member"]
+    assert (
+        list(languages_mock.call_args)
+        == [([u'language0'],), {}])
+    assert (
+        list(command_mock.call_args)
+        == [(), options])
+    languages_mock.reset_mock()
+    command_mock.reset_mock()
+    call_command(
+        'refresh_scores',
+        '--reset',
+        '--user=member',
+        '--language=language0')
+    options["reset"] = True
+    assert (
+        list(languages_mock.call_args)
+        == [([u'language0'],), {}])
+    assert (
+        list(command_mock.call_args)
+        == [(), options])
 
 
 @pytest.mark.cmd
-@pytest.mark.django_db
-def test_refresh_scores_user_tp(capfd, admin, member, tp0):
-    """Reset and set again scores for particular user in TP."""
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    updater = score_updater.get(get_user_model())()
-    member_score = updater.calculate(users=[member]).first()[1]
-    admin_score = admin.score
-    member_scores_count = member.scores.filter(tp=tp0).count()
-    admin_scores_count = admin.scores.count()
-    member_store_scores_count = member.store_scores.filter(
-        store__translation_project=tp0).count()
-    admin_store_scores_count = admin.store_scores.count()
+@patch('pootle_app.management.commands.PootleCommand.handle_all')
+@patch('pootle_app.management.commands.refresh_scores.Command.check_projects')
+def test_cmd_refresh_scores_user_project(projects_mock, command_mock):
+    """Reset and set again scores for particular user in project."""
+    call_command(
+        'refresh_scores',
+        '--user=member',
+        '--project=project0')
+    options = DEFAULT_OPTIONS.copy()
+    options["users"] = ["member"]
+    assert (
+        list(projects_mock.call_args)
+        == [([u'project0'],), {}])
+    assert (
+        list(command_mock.call_args)
+        == [(), options])
+    projects_mock.reset_mock()
+    command_mock.reset_mock()
+    call_command(
+        'refresh_scores',
+        '--reset',
+        '--user=member',
+        '--project=project0')
+    options["reset"] = True
+    assert (
+        list(projects_mock.call_args)
+        == [([u'project0'],), {}])
+    assert (
+        list(command_mock.call_args)
+        == [(), options])
 
-    call_command('refresh_scores', '--reset', '--user=member',
-                 '--project=project0', '--language=language0')
-    out, err = capfd.readouterr()
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    assert member.score == 0
-    assert member.scores.filter(tp=tp0).count() == 0
-    assert member.store_scores.filter(
-        store__translation_project=tp0).count() == 0
-    assert admin.score == admin_score
-    assert admin.scores.count() == admin_scores_count
-    assert admin.store_scores.count() == admin_store_scores_count
 
-    call_command('refresh_scores', '--user=member', '--project=project0',
-                 '--language=language0')
-    out, err = capfd.readouterr()
-    member.refresh_from_db()
-    admin.refresh_from_db()
-    assert round(member.score, 2) == round(member_score, 2)
-    assert member.scores.filter(tp=tp0).count() == member_scores_count
-    assert (member.store_scores.filter(
-        store__translation_project=tp0).count() ==
-        member_store_scores_count)
-    assert round(admin.score, 2) == round(admin_score, 2)
+@pytest.mark.cmd
+@patch('pootle_app.management.commands.PootleCommand.handle_all')
+@patch('pootle_app.management.commands.refresh_scores.Command.check_languages')
+@patch('pootle_app.management.commands.refresh_scores.Command.check_projects')
+def test_cmd_refresh_scores_user_tp(projects_mock, languages_mock, command_mock):
+    """Reset and set again scores for particular user in project."""
+    call_command(
+        'refresh_scores',
+        '--user=member',
+        '--language=language0',
+        '--project=project0')
+    options = DEFAULT_OPTIONS.copy()
+    options["users"] = ["member"]
+    assert (
+        list(projects_mock.call_args)
+        == [([u'project0'],), {}])
+    assert (
+        list(languages_mock.call_args)
+        == [([u'language0'],), {}])
+    assert (
+        list(command_mock.call_args)
+        == [(), options])
+    languages_mock.reset_mock()
+    projects_mock.reset_mock()
+    command_mock.reset_mock()
+    call_command(
+        'refresh_scores',
+        '--reset',
+        '--user=member',
+        '--language=language0',
+        '--project=project0')
+    options["reset"] = True
+    assert (
+        list(projects_mock.call_args)
+        == [([u'project0'],), {}])
+    assert (
+        list(languages_mock.call_args)
+        == [([u'language0'],), {}])
+    assert (
+        list(command_mock.call_args)
+        == [(), options])
+
+
+@pytest.mark.cmd
+@patch('pootle_app.management.commands.refresh_scores.get_user_model')
+def test_cmd_refresh_scores_get_users(user_mock):
+    user_mock.configure_mock(
+        **{'return_value.objects.filter.return_value.values_list.return_value':
+           (1, 2, 3)})
+    command = Command()
+    assert command.get_users(users=None) is None
+    assert not user_mock.called
+
+    assert command.get_users(users="FOO") == [1, 2, 3]
+    assert (
+        list(user_mock.call_args)
+        == [(), {}])
+    user_filter = user_mock.return_value.objects.filter
+    assert (
+        list(user_filter.call_args)
+        == [(), {'username__in': 'FOO'}])
+    assert (
+        list(user_filter.return_value.values_list.call_args)
+        == [('pk',), {'flat': True}])
+
+
+@pytest.mark.cmd
+@patch('pootle_app.management.commands.refresh_scores.Command.get_users')
+@patch('pootle_app.management.commands.refresh_scores.score_updater')
+def test_cmd_refresh_scores_handle_all_stores(updater_mock, users_mock):
+    users_mock.return_value = 7
+    command = Command()
+    command.handle_all_stores("FOO", reset=False)
+    assert (
+        list(users_mock.call_args)
+        == [(), {'reset': False}])
+    assert (
+        list(updater_mock.get.call_args)
+        == [(TranslationProject,), {}])
+    assert (
+        list(updater_mock.get.return_value.call_args)
+        == [('FOO',), {}])
+    assert (
+        list(updater_mock.get.return_value.call_args)
+        == [('FOO',), {}])
+    assert (
+        list(updater_mock.get.return_value.return_value.refresh_scores.call_args)
+        == [(7,), {}])
+
+    command.handle_all_stores("FOO", reset=True)
+    assert (
+        list(users_mock.call_args)
+        == [(), {'reset': True}])
+    assert (
+        list(updater_mock.get.call_args)
+        == [(TranslationProject,), {}])
+    assert (
+        list(updater_mock.get.return_value.call_args)
+        == [('FOO',), {}])
+    assert (
+        list(updater_mock.get.return_value.call_args)
+        == [('FOO',), {}])
+    assert (
+        list(updater_mock.get.return_value.return_value.clear.call_args)
+        == [(7,), {}])
