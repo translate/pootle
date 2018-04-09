@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Prepares then runs the webapp.
+
+cd /home/pootle/pootle_env \
+      && /bin/bash -c "bash --rcfile <(echo \"\
+           cd $INSTALL_DIR \
+           && . bin/activate \
+           && cd src/pootle \
+           && pip install --no-cache-dir -qe . \
+           && pip install --no-cache-dir -qr requirements/dev.txt \
+           && pip install --no-cache-dir -qr requirements/_es_5.txt \
+           && . ~/.nvm/nvm.sh \
+           && nvm use node \
+           && (if [ ! -e "$INSTALL_DIR/src/pootle/pootle/static/js/node_modules" ]; \
+               then \
+                  cd $INSTALL_DIR/src/pootle/pootle/static/js/ \
+                  && npm install \
+                  && cd $INSTALL_DIR; \
+               fi) \")"
