@@ -59,6 +59,9 @@
         "shell-mariadb": "makey run-mariadb shell",
         "runserver-mariadb": "docker-compose run --service-ports --rm dev-mariadb /home/pootle/pootle_env/src/pootle/docker/bin/run_pootle",
 
+        "db-postgres": "makey run-postgres db",
+        "db-mariadb": "makey run-mariadb db",
+
         "makey": "makey makey-sqlite",
         "makey-sqlite": "makey run-sqlite bash makey",
         "makey-mariadb": "makey run-mariadb bash makey",

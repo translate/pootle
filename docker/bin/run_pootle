@@ -9,6 +9,9 @@ case "$1" in
     "shell")
         echo 'Running shell'
         /home/pootle/pootle_env/src/pootle/docker/bin/run_interactive;;
+    "db")
+        echo "Running db command: ${@:2}"
+        /home/pootle/pootle_env/src/pootle/docker/bin/run_db "${@:2}";;
     "pootle")
         echo "Running pootle command: pootle ${@:2}"
         /home/pootle/pootle_env/src/pootle/docker/bin/run_shell "${@:2}";;

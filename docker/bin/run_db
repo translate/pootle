@@ -1,0 +1,149 @@
+#!/bin/bash
+
+
+function run_in_env() {
+    cd /home/pootle/pootle_env \
+        && . bin/activate \
+        && cd src/pootle \
+        && pip install -qe . \
+        && pip install -qr requirements/dev.txt \
+        && pip install -qr requirements/_es_5.txt \
+        && $@
+}
+
+function pg_drop () {
+    psql -h $dbhost -w postgres -c "drop database $dbname";
+}
+
+
+function mariadb_drop () {
+    mysql -h $dbhost -se "drop database $dbname";
+}
+
+
+function drop () {
+    db_status
+    if [[ $dbstatus = 1 ]]; then
+        echo "Dropping database";
+        case "$dbtype" in
+            "django.db.backends.postgresql")
+                pg_drop;;
+            "django.db.backends.mysql")
+                mariadb_drop;;
+        esac
+    else
+        echo "Database does not exist";
+    fi
+}
+
+
+function create () {
+    dbinfo
+    db_status
+    if [[ $dbstatus = 1 ]]; then
+        echo "Database exists";
+    else
+        case "$dbtype" in
+            "django.db.backends.postgresql")
+                pg_create;;
+            "django.db.backends.mysql")
+                mariadb_create;;
+        esac
+    fi
+}
+
+
+function pg_create () {
+    psql -h $dbhost -w postgres -c "create database pootledb encoding 'utf8' lc_collate='en_US.utf8' lc_ctype='en_US.utf8' template template0 owner pootle"
+
+}
+
+
+function mariadb_create () {
+    mysql -h $dbhost -se "CREATE DATABASE $dbname CHARACTER SET utf8 DEFAULT COLLATE utf8_general_ci;";
+}
+
+
+function dbinfo () {
+    dbtype=$(pootle shell -c "from django.conf import settings; print settings.DATABASES['default']['ENGINE']");
+    dbuser=$(pootle shell -c "from django.conf import settings; print settings.DATABASES['default']['USER']");
+    dbname=$(pootle shell -c "from django.conf import settings; print settings.DATABASES['default']['NAME']");
+    dbhost=$(pootle shell -c "from django.conf import settings; print settings.DATABASES['default']['HOST']");
+    dbpassword=$(pootle shell -c "from django.conf import settings; print settings.DATABASES['default']['PASSWORD']");
+}
+
+
+function status () {
+    dbinfo
+    echo 'DB status...'
+    echo "host: $dbhost"
+    echo "type: $dbtype"
+    echo "name: $dbname"
+    db_status
+    [[ $dbstatus = 1 ]] && echo "Database exists" || echo "Database does not exist";
+}
+
+
+function install () {
+    echo 'Installing db' \
+        && pootle migrate \
+        && pootle initdb
+}
+
+
+function load () {
+    echo "Loading db from file: $1"
+    dbinfo
+    export MYSQL_PWD=$dbpassword
+    mysql -h mariadb -u root $dbname < "/home/pootle/pootle_env/src/pootle/$1"
+}
+
+
+function reload () {
+    drop
+    create
+    install
+}
+
+function pg_status () {
+    dbinfo;
+    export PGPASSWORD=$dbpassword
+    dbstatus=$(psql -h $dbhost -w $dbname -qtAX -c "SELECT 1 from pg_database WHERE datname='$dbname'");
+}
+
+function mariadb_status () {
+    dbinfo;
+    export MYSQL_PWD=$dbpassword
+    dbstatus=$(mysql -h $dbhost INFORMATION_SCHEMA -se "SELECT 1 FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = \"$dbname\"");
+}
+
+
+function db_status () {
+    dbinfo;
+    case "$dbtype" in
+        "django.db.backends.postgresql")
+            pg_status;;
+        "django.db.backends.mysql")
+            mariadb_status;;
+        *)
+            echo "Unrecognized db $dbtype"
+    esac
+}
+
+
+case "$1" in
+    "drop")
+        run_in_env drop;;
+    "create")
+        run_in_env create;;
+    "status")
+        run_in_env status;;
+    "install")
+        run_in_env install;;
+    "load")
+        run_in_env load "$2";;
+    "reload")
+        run_in_env reload "$2";;
+    *)
+        echo "db command not recognized";;
+esac
