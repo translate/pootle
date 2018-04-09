@@ -19,6 +19,18 @@ cache:
     - $HOME/virtualenv/python2.7.14/lib
     - $HOME/virtualenv/python2.7/bin
 
+stages:
+  - name: build
+    if: branch = master AND type = push
+  - name: test
+    # if: branch = DOESNOTEXIST
+  - name: publish
+    # we want this to only run on release
+    if: branch = DOESNOTEXIST
+  - name: data
+    # we want this to only run on release
+    if: branch = DOESNOTEXIST
+
 install:
   - pip install -qr requirements/host.txt
 
@@ -26,7 +38,6 @@ jobs:
   include:
     - stage: build
       env: POOTLE_ENV=build
-      if: branch = master AND type = push
       script:
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
       - makey build-travis-images
@@ -60,6 +71,15 @@ jobs:
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
       - docker-compose pull --parallel --include-deps dev-travis-mariadb
       - makey makey-mariadb-travis travis-test
+
+    - stage: publish
+      env: POOTLE_ENV=publish-demo
+      script:
+      - makey publish-demo-images
+    - stage: data
+      env: POOTLE_ENV=publish-demo-db
+      script:
+      - makey publish-demo-db
 
 notifications:
   email:
