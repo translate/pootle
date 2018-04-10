@@ -1,8 +1,8 @@
-# translate/pootle:base
+# translate/pootle:dev-build
 #
 # VERSION       0.0.1
 
-FROM translate/pootle:root
+FROM translate/pootle:dev-root
 
 MAINTAINER Ryan Northey <ryan@synca.io>
 

@@ -3,7 +3,7 @@
 # VERSION       0.0.1
 
 # Build stage
-FROM translate/pootle:build
+FROM translate/pootle:dev-build
 
 COPY ./settings.conf /tmp/
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \
@@ -21,7 +21,7 @@ RUN bash -c " \
                  /home/pootle/pootle_env/pootle.conf"
 
 # Postgres dev
-FROM translate/pootle:base
+FROM translate/pootle:dev-base
 
 ENV POOTLE_ENV=postgres
 RUN mkdir -p /usr/share/man/man1 /usr/share/man/man7 \

@@ -1,4 +1,4 @@
-# translate/pootle:root
+# translate/pootle:dev-root
 #
 # VERSION       0.0.1
 

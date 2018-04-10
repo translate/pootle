@@ -3,13 +3,13 @@
 # VERSION       0.0.1
 
 # Build stage
-FROM translate/pootle:build
+FROM translate/pootle:dev-build
 
 COPY ./settings.conf /tmp/
 RUN cp /tmp/settings.conf /home/pootle/pootle_env/pootle.conf
 
 # Sqlite dev
-FROM translate/pootle:base
+FROM translate/pootle:dev-base
 
 ENV POOTLE_ENV=sqlite
 RUN apt-get update -qq \
