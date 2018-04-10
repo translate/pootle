@@ -3,23 +3,23 @@
 # Note: Requires docker-compose 1.10+.
 version: "2.1"
 services:
-  # Pootle base image
+  # Pootle base dev image
   # This image handles user creation and permissions, so that code can be
   # shared from your local folder into the docker container.
-  root:
+  dev-root:
     build:
-      context: ./docker/root
-    image: translate/pootle:root
+      context: ./docker/dev-root
+    image: translate/pootle:dev-root
 
-  build:
+  dev-build:
     build:
-      context: ./docker/build
-    image: translate/pootle:build
+      context: ./docker/dev-build
+    image: translate/pootle:dev-build
 
-  base:
+  dev-base:
     build:
-      context: ./docker/base
-    image: translate/pootle:base
+      context: ./docker/dev-base
+    image: translate/pootle:dev-base
 
   # Dev app (default: postgres)
   dev-postgres:
