@@ -29,7 +29,7 @@ else
     makey build-all
 
     echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    tag_and_push root $MASTER
+    tag_and_push dev-root $MASTER
     tag_and_push dev-postgres dev-postgres
     tag_and_push dev-sqlite dev-sqlite
     tag_and_push dev-mariadb dev-mariadb
