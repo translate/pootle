@@ -342,6 +342,8 @@ class TPScoreUpdater(ScoreUpdater):
         tp_scores.delete()
         store_scores.delete()
         user_scores.update(score=0)
+        user_score_updater = score_updater.get(get_user_model())(users=users)
+        user_score_updater.update(users=users)
 
     def refresh_scores(self, users=None, existing=None, existing_tps=None):
         suppress_tp_scores = keep_data(
