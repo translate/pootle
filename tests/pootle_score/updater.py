@@ -6,11 +6,13 @@
 # or later license. See the LICENSE file for a copy of the license and the
 # AUTHORS file for copyright and authorship information.
 
-from datetime import datetime, timedelta
+from datetime import timedelta
+
+from mock import PropertyMock, patch
 
 import pytest
 
-from django.utils.functional import cached_property
+from django.db.models import Sum
 
 from pootle.core.delegate import event_score, score_updater
 from pootle.core.plugin import provider
@@ -23,6 +25,31 @@ from pootle_score.updater import (
 from pootle_score.utils import to_datetime
 from pootle_store.models import Store
 from pootle_translationproject.models import TranslationProject
+
+
+GET_EVENT_KWARGS = {
+    'end': None,
+    'users': None,
+    'event_sources': ('suggestion', 'submission'),
+    'include_meta': False,
+    'start': None,
+    'only': {
+        'submission': (
+            'unit__unit_source__source_wordcount',
+            'unit__unit_source__created_by_id',
+            'unit_id',
+            'submitter__id',
+            'old_value',
+            'new_value',
+            'creation_time',
+            'revision',
+            'field'),
+        'suggestion': (
+            'unit__unit_source__source_wordcount',
+            'user_id',
+            'reviewer_id',
+            'state_id')},
+    'ordered': False}
 
 
 @pytest.mark.django_db
@@ -39,101 +66,75 @@ def test_score_store_updater(store0, admin):
 
 
 @pytest.mark.django_db
-def test_score_store_updater_event(store0, admin, member):
+@patch('pootle_score.updater.StoreScoreUpdater.logs', new_callable=PropertyMock)
+def test_score_store_updater_event(logs_mock, store0, admin, member,
+                                   today, yesterday):
     unit0 = store0.units[0]
     unit1 = store0.units[1]
-    today = localdate()
-    yesterday = today - timedelta(days=1)
+    _events = [
+        LogEvent(unit0, admin, today, "action0", 0),
+        LogEvent(unit0, admin, yesterday, "action1", 1),
+        LogEvent(unit1, member, today, "action2", 2)]
 
-    class DummyLogs(object):
-        _start = None
-        _end = None
-        _user = None
+    def _get_events(start=None, end=None, **kwargs):
+        for event in _events:
+            yield event
 
-        @property
-        def _events(self):
-            return [
-                LogEvent(unit0, admin, today, "action0", 0),
-                LogEvent(unit0, admin, yesterday, "action1", 1),
-                LogEvent(unit1, member, today, "action2", 2)]
+    logs_mock.configure_mock(
+        **{'return_value.get_events.side_effect': _get_events})
 
-        def get_events(self, start=None, end=None, users=None, **kwargs):
-            self._start = start
-            self._end = end
-            self._users = users
-            for event in self._events:
-                yield event
-
-    class DummyScoreUpdater(StoreScoreUpdater):
-
-        @cached_property
-        def logs(self):
-            return DummyLogs()
-
-    updater = DummyScoreUpdater(store0)
+    updater = StoreScoreUpdater(store0)
     result = updater.calculate()
-    assert updater.logs._start is None
-    assert updater.logs._end is None
-    assert updater.logs._users is None
+    assert (
+        list(logs_mock.return_value.get_events.call_args)
+        == [(), GET_EVENT_KWARGS])
     # no score adapters
     assert result == {}
     result = updater.calculate(start=yesterday, end=today)
-    assert updater.logs._start == to_datetime(yesterday)
-    assert updater.logs._end == to_datetime(today)
+    kwargs = GET_EVENT_KWARGS.copy()
+    kwargs['start'] = to_datetime(yesterday)
+    kwargs['end'] = to_datetime(today)
+    assert (
+        list(logs_mock.return_value.get_events.call_args)
+        == [(), kwargs])
     assert result == {}
-    updater = DummyScoreUpdater(store0)
+    updater = StoreScoreUpdater(store0)
     updater.calculate(users=(admin, ))
-    assert updater.logs._users == (admin, )
+    kwargs = GET_EVENT_KWARGS.copy()
+    kwargs['users'] = (admin, )
+    assert (
+        list(logs_mock.return_value.get_events.call_args)
+        == [(), kwargs])
     updater.calculate(users=(admin, member))
-    assert updater.logs._users == (admin, member)
+    kwargs['users'] = (admin, member)
+    assert (
+        list(logs_mock.return_value.get_events.call_args)
+        == [(), kwargs])
 
 
 @pytest.mark.django_db
-def test_score_store_updater_event_score(store0, admin, member, member2):
+@patch('pootle_score.updater.StoreScoreUpdater.logs', new_callable=PropertyMock)
+def test_score_store_updater_event_score(logs_mock, store0,
+                                         admin, member, member2,
+                                         today, yesterday,
+                                         dt_today, dt_yesterday):
     unit0 = store0.units[0]
     unit1 = store0.units[1]
-    today = localdate()
-    import pytz
-    from pootle.core.utils.timezone import make_aware
-    dt_today = make_aware(
-        datetime.combine(
-            today,
-            datetime.min.time())).astimezone(
-                pytz.timezone("UTC"))
-    yesterday = today - timedelta(days=1)
-    dt_yesterday = make_aware(
-        datetime.combine(
-            yesterday,
-            datetime.min.time())).astimezone(
-                pytz.timezone("UTC"))
+    _events = [
+        LogEvent(unit0, admin, dt_yesterday, "action0", 0),
+        LogEvent(unit0, admin, dt_yesterday, "action1", 1),
+        LogEvent(unit0, admin, dt_today, "action0", 0),
+        LogEvent(unit0, member2, dt_today, "action1", 1),
+        LogEvent(unit0, member, dt_today, "action2", 2),
+        LogEvent(unit1, member, dt_today, "action2", 3)]
 
-    class DummyLogs(object):
-        _start = None
-        _end = None
+    def _get_events(start=None, end=None, **kwargs):
+        for event in _events:
+            yield event
 
-        @cached_property
-        def _events(self):
-            return [
-                LogEvent(unit0, admin, dt_yesterday, "action0", 0),
-                LogEvent(unit0, admin, dt_yesterday, "action1", 1),
-                LogEvent(unit0, admin, dt_today, "action0", 0),
-                LogEvent(unit0, member2, dt_today, "action1", 1),
-                LogEvent(unit0, member, dt_today, "action2", 2),
-                LogEvent(unit1, member, dt_today, "action2", 3)]
-
-        def get_events(self, start=None, end=None, **kwargs):
-            self._start = start
-            self._end = end
-            for event in self._events:
-                yield event
-
-    class DummyScoreUpdater(StoreScoreUpdater):
-
-        @cached_property
-        def logs(self):
-            return DummyLogs()
-
-    updater = DummyScoreUpdater(store0)
+    logs_mock.configure_mock(
+        **{'return_value.get_events.side_effect': _get_events})
+    updater = StoreScoreUpdater(store0)
     result = updater.calculate()
     assert result == {}
 
@@ -170,7 +171,7 @@ def test_score_store_updater_event_score(store0, admin, member, member2):
             action1=Action1Score,
             action2=Action2Score)
 
-    updater = DummyScoreUpdater(store0)
+    updater = StoreScoreUpdater(store0)
     result = updater.calculate()
     assert len(result) == 2
     assert len(result[today]) == 2
@@ -215,13 +216,8 @@ def test_score_tp_updater(tp0, admin, member, member2):
     assert isinstance(updater, TPScoreUpdater)
 
 
-@pytest.mark.django_db
-def test_score_tp_updater_update(store0, tp0, admin, member, member2):
-    today = localdate()
-    yesterday = today - timedelta(days=1)
-    updater = score_updater.get(TranslationProject)(tp0)
-    store1 = tp0.stores.exclude(id=store0.id).first()
-
+@pytest.fixture
+def create_score_data(today, yesterday, admin, member, member2):
     def _generate_data(store):
         data = {}
         data[today] = dict()
@@ -238,10 +234,19 @@ def test_score_tp_updater_update(store0, tp0, admin, member, member2):
                 translated=(7 * store.id * user.id),
                 reviewed=(8 * store.id * user.id))
         return data
+    return _generate_data
+
+
+@pytest.mark.django_db
+def test_score_tp_updater_update(store0, tp0, admin, member, member2,
+                                 today, yesterday, create_score_data):
+    updater = score_updater.get(TranslationProject)(tp0)
+    store1 = tp0.stores.exclude(id=store0.id).first()
+
     tp0.user_scores.all().delete()
     UserStoreScore.objects.filter(store__translation_project=tp0).delete()
-    score_updater.get(Store)(store0).set_scores(_generate_data(store0))
-    score_updater.get(Store)(store1).set_scores(_generate_data(store1))
+    score_updater.get(Store)(store0).set_scores(create_score_data(store0))
+    score_updater.get(Store)(store1).set_scores(create_score_data(store1))
     updater.update()
     for user in [admin, member, member2]:
         scores_today = tp0.user_scores.get(date=today, user=user)
@@ -273,7 +278,7 @@ def test_score_tp_updater_update(store0, tp0, admin, member, member2):
 
 
 @pytest.mark.django_db
-def test_score_user_updater(tp0, admin, member):
+def test_score_user_updater_calculate(tp0, admin, member):
     user_updater = score_updater.get(admin.__class__)
     admin.score = -999
     admin.save()
@@ -313,3 +318,71 @@ def test_score_user_updater(tp0, admin, member):
     updater.set_scores(result)
     admin.refresh_from_db()
     assert round(admin.score, 2) == admin_score
+
+
+@pytest.mark.django_db
+def test_score_user_updater_refresh(tp0, admin, member):
+    user_updater = score_updater.get(admin.__class__)
+    updater = user_updater((admin, ))
+    admin_score = admin.score
+    admin.score = 0
+    admin.save()
+    member_score = member.score
+    member.score = 0
+    member.save()
+
+    updater.refresh_scores()
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert admin.score == admin_score
+    assert member.score == member_score
+
+    admin.score = 0
+    admin.save()
+    member.score = 0
+    member.save()
+    updater.refresh_scores(users=[admin])
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert admin.score == admin_score
+    assert member.score == 0
+
+
+@pytest.mark.django_db
+def test_score_tp_updater_clear(tp0, admin, member):
+    tp_scores = tp0.user_scores.filter(
+        date__gte=localdate() - timedelta(days=30))
+    updater = TPScoreUpdater(tp0)
+    admin_score = admin.score
+    member_score = member.score
+    admin_tp_score = tp_scores.filter(
+        user=admin).aggregate(score=Sum('score'))['score']
+    member_tp_score = tp_scores.filter(
+        user=member).aggregate(score=Sum('score'))['score']
+    updater.clear()
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert (
+        round(admin.score, 2)
+        == round(admin_score - admin_tp_score, 2))
+    assert (
+        round(member.score, 2)
+        == round(member_score - member_tp_score, 2))
+
+
+@pytest.mark.django_db
+def test_score_tp_updater_clear_users(tp0, admin, member):
+    tp_scores = tp0.user_scores.filter(
+        date__gte=localdate() - timedelta(days=30))
+    updater = TPScoreUpdater(tp0)
+    admin_score = admin.score
+    member_score = member.score
+    member_tp_score = tp_scores.filter(
+        user=member).aggregate(score=Sum('score'))['score']
+    updater.clear(users=[member.id])
+    member.refresh_from_db()
+    admin.refresh_from_db()
+    assert admin.score == admin_score
+    assert (
+        round(member.score, 2)
+        == round(member_score - member_tp_score, 2))
