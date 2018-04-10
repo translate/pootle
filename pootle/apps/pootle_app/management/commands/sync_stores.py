@@ -21,6 +21,10 @@ class Command(PootleCommand):
     help = "Save new translations to disk manually."
     process_disabled_projects = True
 
+    def __init__(self, *args, **kwargs):
+        self.warn_on_conflict = []
+        super(Command, self).__init__(*args, **kwargs)
+
     def add_arguments(self, parser):
         super(Command, self).add_arguments(parser)
         parser.add_argument(
@@ -42,8 +46,6 @@ class Command(PootleCommand):
             dest='force',
             default=False,
             help="This option has been removed.")
-
-    warn_on_conflict = []
 
     def handle(self, **options):
         logger.warn(
