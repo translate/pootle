@@ -26,7 +26,7 @@ else
 
     pip install -qr requirements/host.txt
     export LOCAL_USER_ID=$UID
-    makey build-all
+    makey build-dev-all
 
     echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
     tag_and_push dev-root $MASTER
