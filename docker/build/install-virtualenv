@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+INSTALL_DIR=$(readlink -f --canonicalize $(eval echo $INSTALL_DIR))
+
+mkdir -p $INSTALL_DIR
+
+cd $INSTALL_DIR
+
+echo "Installing $POOTLE_PKG"
+
+virtualenv .
+. bin/activate \
+  && pip install \
+         -q \
+         --no-cache-dir \
+         --process-dependency-links \
+       $POOTLE_PKG \
+  && pyclean .
