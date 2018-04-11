@@ -3,6 +3,42 @@
 # Note: Requires docker-compose 1.10+.
 version: "2.1"
 services:
+  root:
+    build:
+      context: ./docker/root
+    image: translate/pootle:root
+
+  build:
+    build:
+      context: ./docker/build
+    image: translate/pootle:build
+
+  base:
+    build:
+      context: ./docker/base
+    image: translate/pootle:base
+
+  demo:
+    environment:
+      - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
+    build:
+      context: ./docker/demo-postgres
+    image: translate/pootle:demo
+    depends_on:
+      - db-demo
+      - redis
+      - elasticsearch
+    links:
+      - "db-demo:postgres"
+    ports:
+      - "8000:8000"
+
+  db-demo:
+    build:
+      context: ./docker/db-demo
+    image: translate/pootle:db-demo
+    restart: always
+
   # Pootle base dev image
   # This image handles user creation and permissions, so that code can be
   # shared from your local folder into the docker container.
@@ -27,7 +63,7 @@ services:
       context: ./docker/dev-postgres
     image: translate/pootle:dev-postgres
     environment:
-      - LOCAL_USER_ID=$LOCAL_USER_ID
+      - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
     depends_on:
       - postgres
       - redis
@@ -44,7 +80,7 @@ services:
       context: ./docker/dev-mariadb
     image: translate/pootle:dev-mariadb
     environment:
-      - LOCAL_USER_ID=$LOCAL_USER_ID
+      - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
     depends_on:
       - mariadb
       - redis
@@ -61,7 +97,7 @@ services:
       context: ./docker/dev-sqlite
     image: translate/pootle:dev-sqlite
     environment:
-      - LOCAL_USER_ID=$LOCAL_USER_ID
+      - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
     depends_on:
       - redis
       - elasticsearch
