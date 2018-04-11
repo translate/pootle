@@ -1,0 +1,39 @@
+#!/bin/bash
+
+set -e
+
+CMD="${@:2}";
+IMAGE=$1
+RUNNER=/home/pootle/pootle_env/src/pootle/docker/bin/run_in_container
+export LOCAL_USER_ID=${LOCAL_USER_ID:-$UID}
+
+function pull_images () {
+    docker-compose pull --include-deps --parallel $IMAGE
+}
+
+function image_exists() {
+    IMAGE_EXISTS=$(docker images -q translate/pootle:$IMAGE)
+}
+
+function run_in_container () {
+    COMPOSE="docker-compose run $FLAGS --rm $IMAGE"
+    $COMPOSE $RUNNER "${@:1}";
+}
+
+image_exists
+
+if [ ! -z $IMAGE_EXISTS ]; then
+    echo "$IMAGE image exists"
+else
+    echo "$IMAGE image does not exist, pulling..."
+    pull_images
+fi
+
+run_in_container bash /home/pootle/pootle_env/src/pootle/docker/bin/await-postgres
+
+if [ -z ${CMD:+x} ]; then
+    run_in_container pootle revision --restore
+    FLAGS=--service-ports run_in_container
+else
+    run_in_container $CMD;
+fi

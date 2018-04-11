@@ -1,0 +1,26 @@
+#!/bin/bash
+
+set -e
+
+export LOCAL_USER_ID=${LOCAL_USER_ID:-$UID}
+DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
+DOCKER_PUBLISH_NAME=${DOCKER_PUBLISH_NAME:-translate}
+
+docker-compose pull --parallel demo redis elasticsearch
+docker-compose build db-demo
+
+echo "Installing db"
+makey demo pootle migrate
+makey demo pootle initdb
+
+export DB_UUID=$(docker-compose ps -q db-demo)
+
+echo "Dumping db in $DB_UUID"
+docker exec -ti $DB_UUID bash -c "pg_dump -U pootle -Z9 pootledb > /docker-entrypoint-initdb.d/demo.sql.gz"
+
+echo "Commiting $DB_UUID -> $DOCKER_PUBLISH_NAME/pootle:db-demo"
+docker-compose stop
+docker commit $DB_UUID $DOCKER_PUBLISH_NAME/pootle:db-demo
+
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+docker push $DOCKER_PUBLISH_NAME/pootle:db-demo
