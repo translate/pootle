@@ -8,6 +8,5 @@ apt-get install \
    --no-install-recommends \
          gettext \
          gosu \
-         make \
-         python-dev
+         make
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
