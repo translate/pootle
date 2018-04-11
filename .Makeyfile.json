@@ -2,13 +2,18 @@
     "sequence": {
         "run-ci": ["test-all"],
         "test-all": ["test-py"],
-        "build-all": [
+        "build-dev-all": [
             "build-dev-root",
             "build-dev-build",
             "build-dev-base",
             "build-dev-postgres",
             "build-dev-mariadb",
             "build-dev-sqlite"],
+        "build-demo-all": [
+            "build-root",
+            "build-build",
+            "build-base",
+            "build-demo"],
         "bundle": ["bundle-webpack", "bundle-collectstatic"],
         "travis-lint": [
             "travis-assets",
@@ -36,6 +41,19 @@
         "run-postgres": "docker-compose run --rm dev-postgres /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
         "run-sqlite": "docker-compose run --rm dev-sqlite /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
         "run-mariadb": "docker-compose run --rm dev-mariadb /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
+
+        "demo": "./docker/bin/run demo",
+        "dev": "./docker/bin/run dev-sqlite",
+        "dev-mariadb": "./docker/bin/run dev-mariadb",
+        "dev-postgres": "./docker/bin/run dev-postgres",
+
+        "publish-demo-images": "./docker/bin/publish-demo-images",
+        "publish-demo-db": "./docker/bin/publish-demo-db",
+
+        "build-root": "docker-compose build root",
+        "build-build": "docker-compose build build",
+        "build-base": "docker-compose build base",
+        "build-demo": "docker-compose build demo",
 
         "build-dev-root": "docker-compose build dev-root",
         "build-dev-build": "docker-compose build dev-build",
