@@ -17,5 +17,5 @@ case "$1" in
         /home/pootle/pootle_env/src/pootle/docker/bin/run_shell "${@:2}";;
     *)
         echo 'Running server'
-        /home/pootle/pootle_env/src/pootle/docker/bin/run_shell "runserver 0.0.0.0:8000";;
+        /home/pootle/pootle_env/src/pootle/docker/bin/run_shell "runserver 0.0.0.0:8000 --insecure";;
 esac
