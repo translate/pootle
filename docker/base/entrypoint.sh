@@ -1,12 +1,13 @@
 #!/bin/bash
 
-# Add local user
-# Either use the LOCAL_USER_ID if passed in at runtime or
-# fallback
+# If local_user_id is set usermod to this user
 
-USER_ID=${LOCAL_USER_ID:$UID}
+POOTLE_ID=$(id -u pootle)
 
-echo "Starting with UID : $USER_ID"
-usermod -o -u $USER_ID pootle
+if [[ ( ! -z ${LOCAL_USER_ID:+x} ) && ( "$LOCAL_USER_ID" != "$POOTLE_ID" ) ]]; then
+    echo "Starting with UID : $LOCAL_USER_ID";
+    usermod -o -u $LOCAL_USER_ID pootle
+fi
+
 export HOME=/home/pootle
 exec gosu pootle "$@"
