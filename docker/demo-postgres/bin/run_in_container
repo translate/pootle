@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Runs commands in container
+
+case "$1" in
+    "bash")
+        echo "Running bash command: ${@:2}"
+        /home/pootle/pootle_env/src/pootle/docker/bin/run_bash "${@:2}";;
+    "shell")
+        echo 'Running shell'
+        /home/pootle/pootle_env/src/pootle/docker/bin/run_interactive;;
+    "db")
+        echo "Running db command: ${@:2}"
+        /home/pootle/pootle_env/src/pootle/docker/bin/run_db "${@:2}";;
+    "pootle")
+        echo "Running pootle command: pootle ${@:2}"
+        /home/pootle/pootle_env/src/pootle/docker/bin/run_shell "${@:2}";;
+    *)
+        echo 'Running server'
+        /home/pootle/pootle_env/src/pootle/docker/bin/run_shell "runserver 0.0.0.0:8000 --insecure";;
+esac
