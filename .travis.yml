@@ -10,6 +10,7 @@ env:
     # for this to work you also need to comment out build condition
     # as travis' conditions are currently broken
     - FORCE_REBUILD=false
+    - FORCE_REBUILD_DATA=false
 
 cache:
   directories:
@@ -25,10 +26,7 @@ stages:
   - name: test
     # if: branch = DOESNOTEXIST
   - name: publish
-    # we want this to only run on release
-    if: branch = DOESNOTEXIST
-  - name: data
-    # we want this to only run on release
+    # we want this to only run on ~release~, master?
     if: branch = DOESNOTEXIST
 
 install:
@@ -45,7 +43,6 @@ jobs:
     - stage: test
       env: TRAVIS_ENV=linting
       script:
-      - export APP_DB_ENV=sqlite
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
       - docker-compose -f docker-compose.travis.yml pull --include-deps travis-sqlite
@@ -54,7 +51,6 @@ jobs:
       if: type = cron
       env: TRAVIS_ENV=sqlite
       script:
-      - export APP_DB_ENV=sqlite
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
       - docker-compose -f docker-compose.travis.yml pull --include-deps travis-sqlite
@@ -62,7 +58,6 @@ jobs:
     -
       env: TRAVIS_ENV=postgres
       script:
-      - export APP_DB_ENV=postgres
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
       - docker-compose -f docker-compose.travis.yml pull --include-deps travis-postgres
@@ -70,7 +65,6 @@ jobs:
     -
       env: TRAVIS_ENV=mariadb
       script:
-      - export APP_DB_ENV=mariadb
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
       - docker-compose -f docker-compose.travis.yml pull --include-deps travis-mariadb
@@ -79,13 +73,7 @@ jobs:
     - stage: publish
       env: TRAVIS_ENV=publish-demo
       script:
-      - export APP_DB_ENV=postgres
-      - makey publish-demo-images
-    - stage: data
-      env: TRAVIS_ENV=publish-demo-db
-      script:
-      - export APP_DB_ENV=postgres
-      - makey publish-demo-db
+      - makey publish
 
 notifications:
   email:
