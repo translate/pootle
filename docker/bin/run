@@ -9,6 +9,7 @@ export LOCAL_USER_ID=${LOCAL_USER_ID:-$UID}
 
 function pull_images () {
     docker-compose pull --include-deps --parallel $IMAGE
+    run_in_container bash /home/pootle/pootle_env/src/pootle/docker/bin/await-db
 }
 
 function image_exists() {
@@ -28,8 +29,6 @@ else
     echo "$IMAGE image does not exist, pulling..."
     pull_images
 fi
-
-run_in_container bash /home/pootle/pootle_env/src/pootle/docker/bin/await-postgres
 
 if [ -z ${CMD:+x} ]; then
     run_in_container pootle revision --restore
