@@ -20,7 +20,7 @@ services:
 
   demo:
     environment:
-      - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
+      - LOCAL_USER_ID=${LOCAL_USER_ID:-}
     build:
       context: ./docker/demo-postgres
     image: translate/pootle:demo
