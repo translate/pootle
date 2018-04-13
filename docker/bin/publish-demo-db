@@ -6,12 +6,18 @@ export LOCAL_USER_ID=${LOCAL_USER_ID:-$UID}
 DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
 DOCKER_PUBLISH_NAME=${DOCKER_PUBLISH_NAME:-translate}
 
+# not sure if the in_container/run_pootle script could be improved to prevent
+# this crazy escaping 8/
+ADD_ADMIN='-c \"from django.contrib.auth import get_user_model; get_user_model().objects.create_superuser(\\\"admin\\\", \\\"admin@example.com\\\", \\\"admin\\\");\"'
+
 docker-compose pull --parallel demo redis elasticsearch
 docker-compose build db-demo
 
 echo "Installing db"
 makey demo pootle migrate
 makey demo pootle initdb
+makey demo pootle shell "\"$ADD_ADMIN\""
+makey demo pootle verify_user admin
 
 export DB_UUID=$(docker-compose ps -q db-demo)
 
