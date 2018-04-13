@@ -9,7 +9,7 @@ env:
   global:
     # for this to work you also need to comment out build condition
     # as travis' conditions are currently broken
-    - FORCE_REBUILD=false
+    - FORCE_REBUILD=true
 
 cache:
   directories:
