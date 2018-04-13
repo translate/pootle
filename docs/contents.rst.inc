@@ -7,6 +7,11 @@ perspectives, server administrator's, and developer's view.
 .. toctree::
    :maxdepth: 2
 
+   getting-started/index
+
+.. toctree::
+   :maxdepth: 2
+
    features/index
 
 .. toctree::
