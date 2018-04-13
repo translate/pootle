@@ -9,7 +9,7 @@ env:
   global:
     # for this to work you also need to comment out build condition
     # as travis' conditions are currently broken
-    - FORCE_REBUILD=false
+    - FORCE_REBUILD=true
 
 cache:
   directories:
@@ -21,15 +21,15 @@ cache:
 
 stages:
   - name: build
-    if: branch = master AND type = push
+    # if: branch = master AND type = push
   - name: test
     # if: branch = DOESNOTEXIST
   - name: publish
     # we want this to only run on release
-    if: branch = DOESNOTEXIST
+    # if: branch = DOESNOTEXIST
   - name: data
     # we want this to only run on release
-    if: branch = DOESNOTEXIST
+    # if: branch = DOESNOTEXIST
 
 install:
   - pip install -qr requirements/host.txt
