@@ -3,9 +3,9 @@
         "run-ci": ["test-all"],
         "test-all": ["test-py"],
         "build-dev-all": [
-            "build-dev-root",
+            "build-root",
             "build-dev-build",
-            "build-dev-base",
+            "build-base",
             "build-dev-postgres",
             "build-dev-mariadb",
             "build-dev-sqlite"],
@@ -55,9 +55,7 @@
         "build-base": "docker-compose build base",
         "build-demo": "docker-compose build demo",
 
-        "build-dev-root": "docker-compose build dev-root",
         "build-dev-build": "docker-compose build dev-build",
-        "build-dev-base": "docker-compose build dev-base",
         "build-dev-postgres": "docker-compose build dev-postgres",
         "build-dev-mariadb": "docker-compose build dev-mariadb",
         "build-dev-sqlite": "docker-compose build dev-sqlite",
