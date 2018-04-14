@@ -13,14 +13,12 @@ apt-get install \
      curl \
      git \
      locales \
-     python-pip \
-     sudo
+     virtualenv
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-rm -rf /var/cache/apt/archives
+apt-get clean
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 update-locale LANG=en_US.UTF-8
-pip install --no-cache-dir -q virtualenv
 groupadd -r pootle
 useradd \
     -m \
