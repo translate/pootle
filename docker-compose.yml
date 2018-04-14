@@ -39,28 +39,22 @@ services:
     image: translate/pootle:db-demo
     restart: always
 
-  # Pootle base dev image
-  # This image handles user creation and permissions, so that code can be
-  # shared from your local folder into the docker container.
-  dev-root:
-    build:
-      context: ./docker/dev-root
-    image: translate/pootle:dev-root
-
   dev-build:
     build:
       context: ./docker/dev-build
     image: translate/pootle:dev-build
 
-  dev-base:
-    build:
-      context: ./docker/dev-base
-    image: translate/pootle:dev-base
-
   # Dev app (default: postgres)
   dev-postgres:
     build:
-      context: ./docker/dev-postgres
+      args:
+        - POOTLE_ENV=postgres
+        - BUILD_INSTALL_PKGS=libpq-dev
+        - BUILD_INSTALL_EGGS=psycopg2-binary
+        - BUILD_INSTALL_SETTINGS=./settings.postgres.conf
+        - BASE_INSTALL_PRE=mkdir -p /usr/share/man/man1 /usr/share/man/man7
+        - BASE_INSTALL_PKGS=postgresql-client
+      context: ./docker/dev
     image: translate/pootle:dev-postgres
     environment:
       - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
@@ -77,7 +71,13 @@ services:
   # Dev app (mariadb)
   dev-mariadb:
     build:
-      context: ./docker/dev-mariadb
+      args:
+        - POOTLE_ENV=mariadb
+        - BUILD_INSTALL_PKGS=libmariadbclient-dev-compat
+        - BUILD_INSTALL_EGGS=MySQL-python
+        - BUILD_INSTALL_SETTINGS=./settings.mariadb.conf
+        - BASE_INSTALL_PKGS=libmariadbclient18 mariadb-client
+      context: ./docker/dev
     image: translate/pootle:dev-mariadb
     environment:
       - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
@@ -94,7 +94,10 @@ services:
   # Dev app (sqlite)
   dev-sqlite:
     build:
-      context: ./docker/dev-sqlite
+      args:
+        - POOTLE_ENV=sqlite
+        - BASE_INSTALL_PKGS=sqlite3
+      context: ./docker/dev
     image: translate/pootle:dev-sqlite
     environment:
       - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
