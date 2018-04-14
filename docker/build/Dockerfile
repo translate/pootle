@@ -6,6 +6,8 @@ FROM translate/pootle:root
 
 MAINTAINER Ryan Northey <ryan@synca.io>
 
+ARG POOTLE_PKG=Pootle==2.9rc1
+
 COPY ./install-build /usr/local/bin
 RUN ./usr/local/bin/install-build
 
