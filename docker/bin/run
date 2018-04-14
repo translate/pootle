@@ -12,7 +12,7 @@ if [ $IMAGE != 'demo' ]; then
 fi
 
 function pull_images () {
-    docker-compose pull --include-deps --parallel $IMAGE
+    docker-compose pull --include-deps $IMAGE
     run_in_container bash /home/pootle/pootle_env/src/pootle/docker/bin/await-db
 }
 

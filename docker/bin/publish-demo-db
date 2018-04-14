@@ -10,7 +10,7 @@ DOCKER_PUBLISH_NAME=${DOCKER_PUBLISH_NAME:-translate}
 # this crazy escaping 8/
 ADD_ADMIN='-c \"from django.contrib.auth import get_user_model; get_user_model().objects.create_superuser(\\\"admin\\\", \\\"admin@example.com\\\", \\\"admin\\\");\"'
 
-docker-compose pull --parallel demo redis elasticsearch
+docker-compose pull demo redis elasticsearch
 docker-compose build db-demo
 
 echo "Installing db"
