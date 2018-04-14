@@ -9,7 +9,7 @@ mkdir -p $INSTALL_DIR
 cd $INSTALL_DIR
 
 function get_requirement () {
-    curl -sO https://raw.githubusercontent.com/translate/pootle/master/requirements/$1.txt
+    curl -sO $POOTLE_REQUIREMENTS/$1.txt
 }
 
 mkdir requirements
