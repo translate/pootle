@@ -3,25 +3,53 @@
 # Note: Requires docker-compose 1.10+.
 version: "2.1"
 services:
+
+  # Installs packages shared by all images
   root:
     build:
       context: ./docker/root
     image: translate/pootle:root
 
+  # Build image with dev libs etc
   build:
     build:
       context: ./docker/build
     image: translate/pootle:build
 
+  # Minimal base image with no dev libs etc
   base:
     build:
       context: ./docker/base
     image: translate/pootle:base
 
+  # Postgres based image
+  base-postgres:
+    build:
+      args:
+        - POOTLE_ENV=postgres
+        - BUILD_INSTALL_PKGS=libpq-dev
+        - BUILD_INSTALL_EGGS=psycopg2-binary
+        - BUILD_INSTALL_SETTINGS=./settings.postgres.conf
+        - BASE_INSTALL_PRE=mkdir -p /usr/share/man/man1 /usr/share/man/man7
+        - BASE_INSTALL_PKGS=postgresql-client
+      context: ./docker/base
+    image: translate/pootle:base-postgres
+    depends_on:
+      - db-demo
+      - redis
+      - elasticsearch
+    links:
+      - "db-demo:postgres"
+    ports:
+      - "8000:8000"
+
+  # Postgres based demo image
   demo:
     environment:
       - LOCAL_USER_ID=${LOCAL_USER_ID:-}
     build:
+      args:
+        - BUILD_FROM=translate/pootle:base-postgres
       context: ./docker/demo-postgres
     image: translate/pootle:demo
     depends_on:
@@ -33,6 +61,7 @@ services:
     ports:
       - "8000:8000"
 
+  # Data volume with demo database
   db-demo:
     build:
       context: ./docker/db-demo
@@ -49,12 +78,13 @@ services:
     build:
       args:
         - POOTLE_ENV=postgres
+        - BUILD_FROM=translate/pootle:dev-build
         - BUILD_INSTALL_PKGS=libpq-dev
         - BUILD_INSTALL_EGGS=psycopg2-binary
         - BUILD_INSTALL_SETTINGS=./settings.postgres.conf
         - BASE_INSTALL_PRE=mkdir -p /usr/share/man/man1 /usr/share/man/man7
         - BASE_INSTALL_PKGS=postgresql-client
-      context: ./docker/dev
+      context: ./docker/base
     image: translate/pootle:dev-postgres
     environment:
       - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
@@ -73,11 +103,12 @@ services:
     build:
       args:
         - POOTLE_ENV=mariadb
+        - BUILD_FROM=translate/pootle:dev-build
         - BUILD_INSTALL_PKGS=libmariadbclient-dev-compat
         - BUILD_INSTALL_EGGS=MySQL-python
         - BUILD_INSTALL_SETTINGS=./settings.mariadb.conf
         - BASE_INSTALL_PKGS=libmariadbclient18 mariadb-client
-      context: ./docker/dev
+      context: ./docker/base
     image: translate/pootle:dev-mariadb
     environment:
       - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
@@ -96,8 +127,9 @@ services:
     build:
       args:
         - POOTLE_ENV=sqlite
+        - BUILD_FROM=translate/pootle:dev-build
         - BASE_INSTALL_PKGS=sqlite3
-      context: ./docker/dev
+      context: ./docker/base
     image: translate/pootle:dev-sqlite
     environment:
       - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
