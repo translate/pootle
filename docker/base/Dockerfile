@@ -13,31 +13,12 @@ ARG BUILD_INSTALL_PRE
 ARG BUILD_INSTALL_PKGS
 ARG BUILD_INSTALL_SETTINGS=./settings.conf
 
+COPY ./install-build /usr/local/bin
+COPY ./install-virtualenv /usr/local/bin
+RUN ./usr/local/bin/install-build
 COPY $BUILD_INSTALL_SETTINGS /tmp/settings.conf
-
-RUN (if [ ! -z "$BUILD_INSTALL_PRE" ]; \
-        then \
-          $BUILD_INSTALL_PRE; \
-     fi) \
-    && (if [ ! -z "$BUILD_INSTALL_PKGS" ]; \
-          then \
-              apt-get update -qq \
-              && apt-get install -qq -y \
-                      --no-install-recommends \
-                    $BUILD_INSTALL_PKGS; \
-        fi)
-
 USER pootle
-RUN bash -c " \
-    cd "$INSTALL_DIR" \
-      && (if [ ! -z "$BUILD_INSTALL_EGGS" ]; \
-          then \
-           . bin/activate \
-           && pip install -q \
-               $BUILD_INSTALL_EGGS; \
-          fi) \
-      && cp /tmp/settings.conf \
-         /home/pootle/pootle_env/pootle.conf"
+RUN ./usr/local/bin/install-virtualenv
 
 # Product stage
 FROM $BASE_FROM

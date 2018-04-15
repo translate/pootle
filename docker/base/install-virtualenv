@@ -1,0 +1,20 @@
+#!/bin/bash
+
+set -e
+
+INSTALL_DIR=$(readlink -f --canonicalize $(eval echo $INSTALL_DIR))
+
+cd "$INSTALL_DIR"
+
+if [ ! -z "$BUILD_INSTALL_EGGS" ];
+then
+      echo "Installing extra eggs: $BUILD_INSTALL_EGGS"
+    . bin/activate \
+        && pip install -q \
+               $BUILD_INSTALL_EGGS;
+fi
+
+ls /tmp
+
+cp /tmp/settings.conf /home/pootle/pootle_env/pootle.conf
+
