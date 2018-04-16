@@ -21,11 +21,9 @@ echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 update-locale LANG=en_US.UTF-8
 pip install --no-cache-dir -q virtualenv
-groupadd -r pootle
 useradd \
     -m \
     -d /home/pootle \
     -k /etc/skel \
     -s /bin/bash \
-    -g pootle \
   pootle
