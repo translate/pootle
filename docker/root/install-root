@@ -19,11 +19,9 @@ apt-get clean
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 locale-gen
 update-locale LANG=en_US.UTF-8
-groupadd -r pootle
 useradd \
     -m \
     -d /home/pootle \
     -k /etc/skel \
     -s /bin/bash \
-    -g pootle \
   pootle
