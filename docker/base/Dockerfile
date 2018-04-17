@@ -26,8 +26,10 @@ FROM $BASE_FROM
 ARG BASE_INSTALL_PRE
 ARG BASE_INSTALL_PKGS
 ARG POOTLE_ENV
+ARG BUILD_IMAGE
 
 ENV POOTLE_ENV=$POOTLE_ENV
+ENV BUILD_IMAGE=$BUILD_IMAGE
 
 COPY ./install-base /usr/local/bin
 COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
