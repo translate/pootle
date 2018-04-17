@@ -11,7 +11,6 @@
         "build-demo-all": [
             "build-root",
             "build-build",
-            "build-base-postgres",
             "build-demo"],
         "bundle": ["bundle-webpack", "bundle-collectstatic"],
         "travis-lint": [
@@ -51,7 +50,6 @@
 
         "build-root": "docker-compose build root",
         "build-build": "docker-compose build build",
-        "build-base-postgres": "docker-compose build base-postgres",
         "build-demo": "docker-compose build demo",
 
         "build-dev-build": "docker-compose build dev-build",
