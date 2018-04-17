@@ -206,7 +206,7 @@ services:
     restart: always
     tmpfs: /data
 
-  dev-travis-mariadb:
+  travis-mariadb:
     image: translatetravis2/pootle:dev-mariadb
     environment:
       - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
@@ -233,7 +233,7 @@ services:
     volumes:
       - .:/home/pootle/pootle_env/src/pootle
 
-  dev-travis-postgres:
+  travis-postgres:
     image: translatetravis2/pootle:dev-postgres
     environment:
       - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
@@ -260,7 +260,7 @@ services:
     volumes:
       - .:/home/pootle/pootle_env/src/pootle
 
-  dev-travis-sqlite:
+  travis-sqlite:
     image: translatetravis2/pootle:dev-sqlite
     environment:
       - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
