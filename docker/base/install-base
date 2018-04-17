@@ -7,6 +7,8 @@ if [ ! -z "$BASE_INSTALL_PRE" ];
      $BASE_INSTALL_PRE;
 fi
 
+mv /tmp/build/entrypoint.sh /usr/local/bin/entrypoint.sh
+
 apt-get update -qq
 apt-get install \
    -y -qq \
@@ -17,4 +19,4 @@ apt-get install \
          python-pip \
          $BASE_INSTALL_PKGS
 apt-get clean
-rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+rm -rf /var/lib/apt/lists/* /var/tmp/*

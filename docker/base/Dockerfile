@@ -31,10 +31,11 @@ ARG BUILD_IMAGE
 ENV POOTLE_ENV=$POOTLE_ENV
 ENV BUILD_IMAGE=$BUILD_IMAGE
 
-COPY ./install-base /usr/local/bin
-COPY ./entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY . /tmp/build
+
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 EXPOSE 8000
 
-RUN ./usr/local/bin/install-base
+RUN ./tmp/build/install-base
 COPY --chown=pootle:pootle --from=0 /home/pootle/ /home/pootle
+RUN ./tmp/build/post-install
