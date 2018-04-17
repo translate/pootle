@@ -22,8 +22,10 @@ services:
       context: ./docker/base
     image: translate/pootle:base
 
-  # Postgres based image
-  base-postgres:
+  # Postgres based demo image
+  demo:
+    environment:
+      - LOCAL_USER_ID=${LOCAL_USER_ID:-}
     build:
       args:
         - POOTLE_ENV=postgres
@@ -32,25 +34,8 @@ services:
         - BUILD_INSTALL_SETTINGS=./settings.postgres.conf
         - BASE_INSTALL_PRE=mkdir -p /usr/share/man/man1 /usr/share/man/man7
         - BASE_INSTALL_PKGS=postgresql-client
+        - BUILD_IMAGE=demo
       context: ./docker/base
-    image: translate/pootle:base-postgres
-    depends_on:
-      - db-demo
-      - redis
-      - elasticsearch
-    links:
-      - "db-demo:postgres"
-    ports:
-      - "8000:8000"
-
-  # Postgres based demo image
-  demo:
-    environment:
-      - LOCAL_USER_ID=${LOCAL_USER_ID:-}
-    build:
-      args:
-        - BUILD_FROM=translate/pootle:base-postgres
-      context: ./docker/demo-postgres
     image: translate/pootle:demo
     depends_on:
       - db-demo
@@ -84,6 +69,7 @@ services:
         - BUILD_INSTALL_SETTINGS=./settings.postgres.conf
         - BASE_INSTALL_PRE=mkdir -p /usr/share/man/man1 /usr/share/man/man7
         - BASE_INSTALL_PKGS=postgresql-client
+        - BUILD_IMAGE=dev
       context: ./docker/base
     image: translate/pootle:dev-postgres
     environment:
@@ -108,6 +94,7 @@ services:
         - BUILD_INSTALL_EGGS=MySQL-python
         - BUILD_INSTALL_SETTINGS=./settings.mariadb.conf
         - BASE_INSTALL_PKGS=libmariadbclient18 mariadb-client
+        - BUILD_IMAGE=dev
       context: ./docker/base
     image: translate/pootle:dev-mariadb
     environment:
@@ -129,6 +116,7 @@ services:
         - POOTLE_ENV=sqlite
         - BUILD_FROM=translate/pootle:dev-build
         - BASE_INSTALL_PKGS=sqlite3
+        - BUILD_IMAGE=dev
       context: ./docker/base
     image: translate/pootle:dev-sqlite
     environment:
