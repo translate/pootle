@@ -3,15 +3,9 @@
         "run-ci": ["test-all"],
         "test-all": ["test-py"],
         "build-dev-all": [
-            "build-root",
-            "build-dev-build",
             "build-dev-postgres",
             "build-dev-mariadb",
             "build-dev-sqlite"],
-        "build-demo-all": [
-            "build-root",
-            "build-build",
-            "build-demo"],
         "bundle": ["bundle-webpack", "bundle-collectstatic"],
         "travis-lint": [
             "travis-assets",

@@ -10,8 +10,8 @@ DOCKER_PUBLISH_NAME=${DOCKER_PUBLISH_NAME:-translate}
 # this crazy escaping 8/
 ADD_ADMIN='-c \"from django.contrib.auth import get_user_model; get_user_model().objects.create_superuser(\\\"admin\\\", \\\"admin@example.com\\\", \\\"admin\\\");\"'
 
-docker-compose pull demo redis elasticsearch
-docker-compose build db-demo
+docker-compose pull demo redis elasticsearch postgres
+docker tag postgres:9.4-alpine translate/pootle:db-demo
 
 echo "Installing db"
 makey demo pootle migrate

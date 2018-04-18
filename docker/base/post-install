@@ -12,3 +12,5 @@ if [ ! -d "$DOCKER_DIR" ]; then
     mkdir -p /home/pootle/pootle_env/src/pootle/docker/
     mv /tmp/build/bin $DOCKER_DIR/bin
 fi
+
+rm -rf /tmp/*

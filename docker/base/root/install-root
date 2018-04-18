@@ -13,7 +13,16 @@ apt-get install \
      curl \
      git \
      locales \
-     virtualenv
+     virtualenv \
+     libpython2.7 \
+     libjpeg62-turbo \
+     libfreetype6 \
+     liblcms2-2 \
+     libtiff5 \
+     libwebp6 \
+     libxml2 \
+     libxslt1.1 \
+     zlib1g
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 apt-get clean
 echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen

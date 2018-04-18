@@ -17,7 +17,7 @@ services:
     tmpfs: /data
 
   travis-mariadb:
-    image: translatetravis2/pootle:dev-mariadb
+    image: translatetravis2/pootle:travis-mariadb
     environment:
       - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
       - CI=${CI:-''}
@@ -40,7 +40,7 @@ services:
       - .:/home/pootle/pootle_env/src/pootle
 
   travis-postgres:
-    image: translatetravis2/pootle:dev-postgres
+    image: translatetravis2/pootle:travis-postgres
     environment:
       - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
       - CI=${CI:-''}
@@ -63,7 +63,7 @@ services:
       - .:/home/pootle/pootle_env/src/pootle
 
   travis-sqlite:
-    image: translatetravis2/pootle:dev-sqlite
+    image: translatetravis2/pootle:travis-sqlite
     environment:
       - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
       - CI=${CI:-''}

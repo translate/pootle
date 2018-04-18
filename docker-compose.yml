@@ -4,21 +4,8 @@
 version: "2.1"
 services:
 
-  # Installs packages shared by all images
-  root:
-    build:
-      context: ./docker/root
-    image: translate/pootle:root
-
-  # Build image with dev libs etc
-  build:
-    build:
-      context: ./docker/build
-    image: translate/pootle:build
-
   # Minimal base image with no dev libs etc
   base:
-    image: translate/pootle:base
     build:
       context: ./docker/base
 
@@ -55,24 +42,16 @@ services:
 
   # Data volume with demo database
   db-demo:
-    build:
-      context: ./docker/db-demo
     image: translate/pootle:db-demo
     restart: always
 
   ## Dev services
-
-  dev-build:
-    build:
-      context: ./docker/dev-build
-    image: translate/pootle:dev-build
 
   base-dev:
     image: translate/pootle:base-dev
     extends: base
     build:
       args:
-        - BUILD_FROM=translate/pootle:dev-build
         - BUILD_IMAGE=dev
     environment:
       - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
@@ -121,7 +100,6 @@ services:
     build:
       args:
         - POOTLE_ENV=sqlite
-        - BUILD_FROM=translate/pootle:dev-build
         - BASE_INSTALL_PKGS=sqlite3
     depends_on:
       - redis

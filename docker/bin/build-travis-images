@@ -2,36 +2,20 @@
 
 set -e
 
-MASTER=$(git ls-remote https://github.com/translate/pootle | grep HEAD | awk '{ print $1}')
-
-function docker_tag_exists() {
-    curl --silent -f -lSL https://index.docker.io/v1/repositories/$1/tags/$2 > /dev/null
-}
 
 function tag_and_push () {
     docker tag translate/pootle:$1 $DOCKER_USERNAME/pootle:$2
     docker push $DOCKER_USERNAME/pootle:$2
 }
 
-if [ "$FORCE_REBUILD" != true ] && docker_tag_exists $DOCKER_USERNAME/pootle $MASTER; then
-    echo 'Master image already exists'
-else
-    if [ "$FORCE_REBUILD" = true ]; then
-        echo 'Rebuilding due to FORCE_REBUILD'
-    else
-        echo 'Master image does not exist, building test images';
-    fi
 
-    # this should exit if DOCKER_PASSWORD is not set
+# this should exit if DOCKER_PASSWORD is not set
 
-    pip install -qr requirements/host.txt
-    export LOCAL_USER_ID=$UID
-    makey build-dev-all
+pip install -qr requirements/host.txt
+export LOCAL_USER_ID=$UID
+makey build-dev-all
 
-    echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-    tag_and_push root $MASTER
-    tag_and_push dev-postgres dev-postgres
-    tag_and_push dev-sqlite dev-sqlite
-    tag_and_push dev-mariadb dev-mariadb
-    echo 'Pushed images, now we should delete old images'
-fi
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+tag_and_push dev-postgres travis-postgres
+tag_and_push dev-sqlite travis-sqlite
+tag_and_push dev-mariadb travis-mariadb

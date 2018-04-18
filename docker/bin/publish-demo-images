@@ -6,7 +6,7 @@ export LOCAL_USER_ID=${LOCAL_USER_ID:-$UID}
 DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
 DOCKER_PUBLISH_NAME=${DOCKER_PUBLISH_NAME:-translate}
 
-makey build-demo-all
+makey build-demo
 
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
