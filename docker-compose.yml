@@ -18,25 +18,32 @@ services:
 
   # Minimal base image with no dev libs etc
   base:
+    image: translate/pootle:base
     build:
       context: ./docker/base
-    image: translate/pootle:base
 
-  # Postgres based demo image
-  demo:
-    environment:
-      - LOCAL_USER_ID=${LOCAL_USER_ID:-}
+  base-postgres:
+    extends: base
+    image: translate/pootle:base-postgres
     build:
       args:
+        - BUILD_IMAGE=demo
         - POOTLE_ENV=postgres
         - BUILD_INSTALL_PKGS=libpq-dev
         - BUILD_INSTALL_EGGS=psycopg2-binary
         - BUILD_INSTALL_SETTINGS=./settings.postgres.conf
         - BASE_INSTALL_PRE=mkdir -p /usr/share/man/man1 /usr/share/man/man7
         - BASE_INSTALL_PKGS=postgresql-client
-        - BUILD_IMAGE=demo
-      context: ./docker/base
+
+  # Postgres based demo image
+  demo:
     image: translate/pootle:demo
+    extends: base-postgres
+    environment:
+      - LOCAL_USER_ID=${LOCAL_USER_ID:-}
+    build:
+      args:
+        - BUILD_IMAGE=demo
     depends_on:
       - db-demo
       - redis
@@ -53,82 +60,74 @@ services:
     image: translate/pootle:db-demo
     restart: always
 
+  ## Dev services
+
   dev-build:
     build:
       context: ./docker/dev-build
     image: translate/pootle:dev-build
 
-  # Dev app (default: postgres)
+  base-dev:
+    image: translate/pootle:base-dev
+    extends: base
+    build:
+      args:
+        - BUILD_FROM=translate/pootle:dev-build
+        - BUILD_IMAGE=dev
+    environment:
+      - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/home/pootle/pootle_env/src/pootle
+
+  # Dev app (postgres)
   dev-postgres:
+    image: translate/pootle:dev-postgres
+    extends: base-dev
     build:
       args:
         - POOTLE_ENV=postgres
-        - BUILD_FROM=translate/pootle:dev-build
         - BUILD_INSTALL_PKGS=libpq-dev
         - BUILD_INSTALL_EGGS=psycopg2-binary
         - BUILD_INSTALL_SETTINGS=./settings.postgres.conf
         - BASE_INSTALL_PRE=mkdir -p /usr/share/man/man1 /usr/share/man/man7
         - BASE_INSTALL_PKGS=postgresql-client
-        - BUILD_IMAGE=dev
-      context: ./docker/base
-    image: translate/pootle:dev-postgres
-    environment:
-      - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
     depends_on:
       - postgres
       - redis
       - elasticsearch
-    command: ["/home/pootle/pootle_env/src/pootle/docker/bin/run_in_container", "server"]
-    ports:
-      - "8000:8000"
-    volumes:
-      - .:/home/pootle/pootle_env/src/pootle
 
   # Dev app (mariadb)
   dev-mariadb:
+    image: translate/pootle:dev-mariadb
+    extends: base-dev
     build:
       args:
         - POOTLE_ENV=mariadb
-        - BUILD_FROM=translate/pootle:dev-build
         - BUILD_INSTALL_PKGS=libmariadbclient-dev-compat
         - BUILD_INSTALL_EGGS=MySQL-python
         - BUILD_INSTALL_SETTINGS=./settings.mariadb.conf
         - BASE_INSTALL_PKGS=libmariadbclient18 mariadb-client
-        - BUILD_IMAGE=dev
-      context: ./docker/base
-    image: translate/pootle:dev-mariadb
-    environment:
-      - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
     depends_on:
       - mariadb
       - redis
       - elasticsearch
-    command: ["/home/pootle/pootle_env/src/pootle/docker/bin/run_in_container", "server"]
-    ports:
-      - "8000:8000"
-    volumes:
-      - .:/home/pootle/pootle_env/src/pootle
 
   # Dev app (sqlite)
   dev-sqlite:
+    image: translate/pootle:dev-sqlite
+    extends: base-dev
     build:
       args:
         - POOTLE_ENV=sqlite
         - BUILD_FROM=translate/pootle:dev-build
         - BASE_INSTALL_PKGS=sqlite3
-        - BUILD_IMAGE=dev
-      context: ./docker/base
-    image: translate/pootle:dev-sqlite
-    environment:
-      - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
     depends_on:
       - redis
       - elasticsearch
-    command: ["/home/pootle/pootle_env/src/pootle/docker/bin/run_in_container", "server"]
-    ports:
-      - "8000:8000"
-    volumes:
-      - .:/home/pootle/pootle_env/src/pootle
+
+  ## Other services
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.2.3
