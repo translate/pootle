@@ -85,9 +85,9 @@
         "makey-mariadb-travis": "makey run-mariadb-travis bash makey",
         "makey-postgres-travis": "makey run-postgres-travis bash makey",
 
-        "run-sqlite-travis": "docker-compose run --rm travis-sqlite /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
-        "run-mariadb-travis": "docker-compose run --rm travis-mariadb /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
-        "run-postgres-travis": "docker-compose run --rm travis-postgres /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
+        "run-sqlite-travis": "docker-compose -f docker-compose.yml -f docker-compose.travis.yml run --rm travis-sqlite /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
+        "run-mariadb-travis": "docker-compose -f docker-compose.yml -f docker-compose.travis.yml run --rm travis-mariadb /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
+        "run-postgres-travis": "docker-compose -f docker-compose.yml -f docker-compose.travis.yml run --rm travis-postgres /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
 
         "travis-assets": "make travis-assets",
         "travis-sdist": "python setup.py --quiet sdist",

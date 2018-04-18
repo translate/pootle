@@ -47,7 +47,7 @@ jobs:
       script:
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
-      - docker-compose pull --include-deps travis-sqlite
+      - docker-compose -f docker-compose.yml -f docker-compose.travis.yml pull --include-deps travis-sqlite
       - makey makey-sqlite-travis travis-lint
     -
       if: type = cron
@@ -55,21 +55,21 @@ jobs:
       script:
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
-      - docker-compose pull --include-deps travis-sqlite
+      - docker-compose -f docker-compose.yml -f docker-compose.travis.yml pull --include-deps travis-sqlite
       - makey makey-sqlite-travis travis-test
     -
       env: POOTLE_ENV=postgres
       script:
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
-      - docker-compose pull --include-deps travis-postgres
+      - docker-compose -f docker-compose.yml -f docker-compose.travis.yml pull --include-deps travis-postgres
       - makey makey-postgres-travis travis-test
     -
       env: POOTLE_ENV=mariadb
       script:
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
-      - docker-compose pull --include-deps travis-mariadb
+      - docker-compose -f docker-compose.yml -f docker-compose.travis.yml pull --include-deps travis-mariadb
       - makey makey-mariadb-travis travis-test
 
     - stage: publish
