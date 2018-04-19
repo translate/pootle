@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+
+cp -a /tmp/build/entrypoint.sh /usr/local/bin/entrypoint.sh
+
+apt-get update -qq
+apt-get install \
+   -y -qq \
+   --no-install-recommends \
+         gosu
+apt-get clean
+rm -rf /var/lib/apt/lists/* /var/tmp/*

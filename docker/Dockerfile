@@ -64,6 +64,8 @@ EXPOSE 8000
 
 COPY . /tmp/build
 
+RUN /tmp/build/install/install-base-common
+
 ARG BASE_INSTALL_PRE
 ARG BASE_INSTALL_PKGS
 

@@ -11,6 +11,7 @@ apt-get install \
    -qq \
    --no-install-recommends \
      curl \
+     gettext \
      git \
      locales \
      virtualenv \
@@ -22,6 +23,7 @@ apt-get install \
      libwebp6 \
      libxml2 \
      libxslt1.1 \
+     make \
      zlib1g
 rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 apt-get clean
