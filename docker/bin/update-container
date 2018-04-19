@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+if [ $BUILD_IMAGE = 'dev' ]; then
+    if [ -e $APP_SRC_DIR/dev.conf ]; then
+        echo "Linking dev.conf for this container..."
+        mv /app/pootle.conf /app/pootle.conf.orig
+        ln -sf $APP_SRC_DIR/dev.conf $APP_DIR/pootle.conf
+    fi
+fi

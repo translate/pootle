@@ -1,0 +1,16 @@
+#!/bin/bash
+
+set -e
+
+DOCKER_DIR=$APP_SRC_DIR/docker
+
+if [ $BUILD_IMAGE = production ]; then
+    mv /tmp/build/wsgi $APP_DIR/wsgi
+fi
+
+if [ ! -d "$DOCKER_DIR" ]; then
+    mkdir -p $DOCKER_DIR
+    mv /tmp/build/bin $DOCKER_DIR/bin
+fi
+
+rm -rf /tmp/*

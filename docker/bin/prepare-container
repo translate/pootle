@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+
+# If local_user_id is set usermod to this user
+
+APP_ID=$(id -u $APP_USERNAME)
+
+su -c " \
+   . $APP_DIR/bin/activate \
+   && cd $APP_SRC_DIR \
+   && ./docker/bin/update-container" $APP_USERNAME
+
+if [ $BUILD_IMAGE = 'dev' ]; then
+    if [[ ( ! -z ${LOCAL_USER_ID:+x} ) && ( $LOCAL_USER_ID != "''" ) && ( "$LOCAL_USER_ID" != "$APP_ID" ) ]]; then
+        echo "Starting with UID : $LOCAL_USER_ID";
+        usermod -o -u $LOCAL_USER_ID $APP_USERNAME
+        chown -R $APP_USERNAME:$APP_USERNAME $APP_DIR/lib $APP_DIR/bin $APP_DIR/share $APP_DIR/include
+    fi
+fi
+
+su -c " \
+   . $APP_DIR/bin/activate \
+   && cd $APP_SRC_DIR \
+   && ./docker/bin/update-container-after-usermod" $APP_USERNAME

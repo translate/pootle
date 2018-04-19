@@ -30,7 +30,12 @@ locale-gen
 update-locale LANG=en_US.UTF-8
 useradd \
     -m \
-    -d /home/pootle \
+    -u $APP_USER_ID \
+    -d /home/$APP_USERNAME \
     -k /etc/skel \
     -s /bin/bash \
-  pootle
+  $APP_USERNAME
+
+echo "creating app dir: $APP_DIR"
+mkdir -p "$APP_DIR"
+chown -R $APP_USERNAME:$APP_USERNAME "$APP_DIR"

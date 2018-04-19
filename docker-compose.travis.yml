@@ -33,11 +33,11 @@ services:
       - mariadb
       - redis
       - elasticsearch
-    command: ["/home/pootle/pootle_env/src/pootle/docker/bin/run_in_container", "server"]
+    command: ["/app/src/pootle/docker/bin/run_in_container", "server"]
     ports:
       - "8000:8000"
     volumes:
-      - .:/home/pootle/pootle_env/src/pootle
+      - .:/app/src/pootle
 
   travis-postgres:
     image: translatetravis2/pootle:travis-postgres
@@ -56,11 +56,11 @@ services:
       - postgres
       - redis
       - elasticsearch
-    command: ["/home/pootle/pootle_env/src/pootle/docker/bin/run_in_container", "server"]
+    command: ["/app/src/pootle/docker/bin/run_in_container", "server"]
     ports:
       - "8000:8000"
     volumes:
-      - .:/home/pootle/pootle_env/src/pootle
+      - .:/app/src/pootle
 
   travis-sqlite:
     image: translatetravis2/pootle:travis-sqlite
@@ -81,4 +81,4 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - .:/home/pootle/pootle_env/src/pootle
+      - .:/app/src/pootle

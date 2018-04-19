@@ -2,29 +2,22 @@
 
 # Runs commands in container
 
-INSTALL_DIR=$(readlink -f --canonicalize $(eval echo $INSTALL_DIR))
+APP_SCRIPTS_DIR=$(readlink -f --canonicalize $(eval echo $APP_SCRIPTS_DIR))
 
-if [ "$BUILD_IMAGE" = "dev" ]; then
-    if [ -e $INSTALL_DIR/src/pootle/dev.conf ]; then
-        echo "Linking dev.conf for this container..."
-        mv /home/pootle/pootle_env/pootle.conf /home/pootle/pootle_env/pootle.conf.orig
-        ln -sf $INSTALL_DIR/src/pootle/dev.conf /home/pootle/pootle_env/pootle.conf
-    fi
-fi
 
 case "$1" in
     "bash")
         echo "Running bash command: ${@:2}"
-        /home/pootle/pootle_env/src/pootle/docker/bin/run_bash "${@:2}";;
+        $APP_SCRIPTS_DIR/run_bash "${@:2}";;
     "shell")
         echo 'Running shell'
-        /home/pootle/pootle_env/src/pootle/docker/bin/run_interactive;;
+        $APP_SCRIPTS_DIR/run_interactive;;
     "db")
         echo "Running db command: ${@:2}"
-        /home/pootle/pootle_env/src/pootle/docker/bin/run_db "${@:2}";;
+        $APP_SCRIPTS_DIR/run_db "${@:2}";;
     "pootle")
         echo "Running pootle command: pootle ${@:2}"
-        /home/pootle/pootle_env/src/pootle/docker/bin/run_shell "${@:2}";;
+        $APP_SCRIPTS_DIR/run_shell "${@:2}";;
     "settings")
         PARTS=${@:2}
         PARTS=(${PARTS//// })
@@ -32,8 +25,8 @@ case "$1" in
             EXTRA=$(printf "['%s']" "${PARTS[@]:1}")
         fi
         CMD='"from django.conf import settings; print settings.'"${PARTS[0]}$EXTRA"'"'
-        /home/pootle/pootle_env/src/pootle/docker/bin/run_shell 'shell -c '$CMD;;
+        $APP_SCRIPTS_DIR/run_shell 'shell -c '$CMD;;
     *)
         echo 'Running server'
-        /home/pootle/pootle_env/src/pootle/docker/bin/run_shell "runserver 0.0.0.0:8000 --insecure";;
+        $APP_SCRIPTS_DIR/run_shell "runserver 0.0.0.0:8000 --insecure";;
 esac

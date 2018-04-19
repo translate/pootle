@@ -30,9 +30,9 @@
         "compose": "docker-compose",
         "git": "git",
 
-        "run-postgres": "docker-compose run --rm dev-postgres /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
-        "run-sqlite": "docker-compose run --rm dev-sqlite /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
-        "run-mariadb": "docker-compose run --rm dev-mariadb /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
+        "run-postgres": "docker-compose run --rm dev-postgres /app/src/pootle/docker/bin/run_in_container",
+        "run-sqlite": "docker-compose run --rm dev-sqlite /app/src/pootle/docker/bin/run_in_container",
+        "run-mariadb": "docker-compose run --rm dev-mariadb /app/src/pootle/docker/bin/run_in_container",
 
         "demo": "./docker/bin/run demo",
         "dev": "./docker/bin/run dev-sqlite",
@@ -56,15 +56,15 @@
 
         "pootle": "makey run-sqlite pootle",
         "shell": "makey run-sqlite shell",
-        "runserver": "docker-compose run-sqlite --service-ports --rm dev /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
+        "runserver": "docker-compose run-sqlite --service-ports --rm dev /app/src/pootle/docker/bin/run_in_container",
 
         "pootle-sqlite": "makey run-sqlite pootle",
         "shell-sqlite": "makey run-sqlite shell",
-        "runserver-sqlite": "docker-compose run --service-ports --rm dev-sqlite /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
+        "runserver-sqlite": "docker-compose run --service-ports --rm dev-sqlite /app/src/pootle/docker/bin/run_in_container",
 
         "pootle-mariadb": "makey run-mariadb pootle",
         "shell-mariadb": "makey run-mariadb shell",
-        "runserver-mariadb": "docker-compose run --service-ports --rm dev-mariadb /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
+        "runserver-mariadb": "docker-compose run --service-ports --rm dev-mariadb /app/src/pootle/docker/bin/run_in_container",
 
         "db-postgres": "makey run-postgres db",
         "db-mariadb": "makey run-mariadb db",
@@ -79,14 +79,14 @@
         "makey-mariadb-travis": "makey run-mariadb-travis bash makey",
         "makey-postgres-travis": "makey run-postgres-travis bash makey",
 
-        "run-sqlite-travis": "docker-compose -f docker-compose.yml -f docker-compose.travis.yml run --rm travis-sqlite /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
-        "run-mariadb-travis": "docker-compose -f docker-compose.yml -f docker-compose.travis.yml run --rm travis-mariadb /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
-        "run-postgres-travis": "docker-compose -f docker-compose.yml -f docker-compose.travis.yml run --rm travis-postgres /home/pootle/pootle_env/src/pootle/docker/bin/run_in_container",
+        "run-sqlite-travis": "docker-compose -f docker-compose.yml -f docker-compose.travis.yml run --rm travis-sqlite /app/src/pootle/docker/bin/run_in_container",
+        "run-mariadb-travis": "docker-compose -f docker-compose.yml -f docker-compose.travis.yml run --rm travis-mariadb /app/src/pootle/docker/bin/run_in_container",
+        "run-postgres-travis": "docker-compose -f docker-compose.yml -f docker-compose.travis.yml run --rm travis-postgres /app/src/pootle/docker/bin/run_in_container",
 
         "travis-assets": "make travis-assets",
         "travis-sdist": "python setup.py --quiet sdist",
         "travis-test-py": "py.test --force-migration --cov-report=term --cov=. -v --duration=25",
-        "travis-coverage": "codecov -n $POOTLE_ENV",
+        "travis-coverage": "codecov -n $APP_DB_ENV",
 
         "docs": "make docs",
         "build_check": "python setup.py check --restructuredtext --strict",

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+
+function requires_update () {
+    cmp -s $APP_DIR/requirements/dev.txt requirements/dev.txt;
+    if [ "$?" != 0 ]; then
+        echo "Requirements changed, updating..."
+        pip install --no-cache-dir -qr requirements/dev.txt
+        pip install --no-cache-dir -qr requirements/_es_5.txt
+    fi
+}
+
+if [ $BUILD_IMAGE = 'dev' ]; then
+    pip install --no-cache-dir -qe .
+    requires_update
+fi

@@ -37,48 +37,54 @@ install:
 jobs:
   include:
     - stage: build
-      env: POOTLE_ENV=build
+      env: TRAVIS_ENV=build
       script:
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
       - makey build-travis-images
 
     - stage: test
-      env: POOTLE_ENV=linting
+      env: TRAVIS_ENV=linting
       script:
+      - export APP_DB_ENV=sqlite
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
       - docker-compose -f docker-compose.yml -f docker-compose.travis.yml pull --include-deps travis-sqlite
       - makey makey-sqlite-travis travis-lint
     -
       if: type = cron
-      env: POOTLE_ENV=sqlite
+      env: TRAVIS_ENV=sqlite
       script:
+      - export APP_DB_ENV=sqlite
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
       - docker-compose -f docker-compose.yml -f docker-compose.travis.yml pull --include-deps travis-sqlite
       - makey makey-sqlite-travis travis-test
     -
-      env: POOTLE_ENV=postgres
+      env: TRAVIS_ENV=postgres
       script:
+      - export APP_DB_ENV=postgres
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
       - docker-compose -f docker-compose.yml -f docker-compose.travis.yml pull --include-deps travis-postgres
       - makey makey-postgres-travis travis-test
     -
-      env: POOTLE_ENV=mariadb
+      env: TRAVIS_ENV=mariadb
       script:
+      - export APP_DB_ENV=mariadb
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
       - docker-compose -f docker-compose.yml -f docker-compose.travis.yml pull --include-deps travis-mariadb
       - makey makey-mariadb-travis travis-test
 
     - stage: publish
-      env: POOTLE_ENV=publish-demo
+      env: TRAVIS_ENV=publish-demo
       script:
+      - export APP_DB_ENV=postgres
       - makey publish-demo-images
     - stage: data
-      env: POOTLE_ENV=publish-demo-db
+      env: TRAVIS_ENV=publish-demo-db
       script:
+      - export APP_DB_ENV=postgres
       - makey publish-demo-db
 
 notifications:

@@ -5,21 +5,10 @@
 CMD=$@
 
 
-cd /home/pootle/pootle_env \
-      && /bin/bash -c "
-           cd $INSTALL_DIR \
-           && . bin/activate \
-           && cd src/pootle \
+/bin/bash -c " \
+   . $APP_DIR/bin/activate \
+   && cd $APP_SRC_DIR \
            && export TEST_SETTINGS=/tmp/settings.conf \
-           && pip install -qe . \
-           && pip install -qr requirements/dev.txt \
-           && pip install -qr requirements/_es_5.txt \
-           && . ~/.nvm/nvm.sh \
+           && . $APP_DIR/nvm/nvm.sh \
            && nvm use node \
-           && (if [ ! -e "$INSTALL_DIR/src/pootle/pootle/static/js/node_modules" ]; \
-               then \
-                  cd $INSTALL_DIR/src/pootle/pootle/static/js/ \
-                  && npm install \
-                  && cd $INSTALL_DIR; \
-               fi) \
            && pootle $CMD "

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+
+cd /var/tmp
+export NVM_DIR="$APP_DIR/nvm"
+curl -s -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
+. $NVM_DIR/nvm.sh
+nvm install node

@@ -7,7 +7,7 @@ services:
   # Minimal base image with no dev libs etc
   base:
     build:
-      context: ./docker/base
+      context: ./docker
 
   base-postgres:
     extends: base
@@ -15,7 +15,7 @@ services:
     build:
       args:
         - BUILD_IMAGE=demo
-        - POOTLE_ENV=postgres
+        - APP_DB_ENV=postgres
         - BUILD_INSTALL_PKGS=libpq-dev
         - BUILD_INSTALL_EGGS=psycopg2-binary
         - BUILD_INSTALL_SETTINGS=./settings.postgres.conf
@@ -44,6 +44,10 @@ services:
   db-demo:
     image: translate/pootle:db-demo
     restart: always
+    environment:
+      - POSTGRES_USER=pootle
+      - POSTGRES_PASSWORD=CHANGEME
+      - POSTGRES_DB=pootledb
 
   ## Dev services
 
@@ -58,7 +62,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - .:/home/pootle/pootle_env/src/pootle
+      - .:/app/src/pootle
 
   # Dev app (postgres)
   dev-postgres:
@@ -66,7 +70,7 @@ services:
     extends: base-dev
     build:
       args:
-        - POOTLE_ENV=postgres
+        - APP_DB_ENV=postgres
         - BUILD_INSTALL_PKGS=libpq-dev
         - BUILD_INSTALL_EGGS=psycopg2-binary
         - BUILD_INSTALL_SETTINGS=./settings.postgres.conf
@@ -83,7 +87,7 @@ services:
     extends: base-dev
     build:
       args:
-        - POOTLE_ENV=mariadb
+        - APP_DB_ENV=mariadb
         - BUILD_INSTALL_PKGS=libmariadbclient-dev-compat
         - BUILD_INSTALL_EGGS=MySQL-python
         - BUILD_INSTALL_SETTINGS=./settings.mariadb.conf
@@ -99,7 +103,7 @@ services:
     extends: base-dev
     build:
       args:
-        - POOTLE_ENV=sqlite
+        - APP_DB_ENV=sqlite
         - BASE_INSTALL_PKGS=sqlite3
     depends_on:
       - redis

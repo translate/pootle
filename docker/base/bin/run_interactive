@@ -1,9 +1,0 @@
-#!/bin/bash
-
-# Prepares then runs the webapp.
-
-cd /home/pootle/pootle_env \
-      && /bin/bash -c "bash --rcfile <(echo \"\
-           cd $INSTALL_DIR \
-           && . bin/activate \
-           && cd src/pootle \")"

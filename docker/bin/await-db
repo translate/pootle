@@ -14,7 +14,7 @@ function await_postgres () {
     done
 }
 
-case "$POOTLE_ENV" in
+case "$APP_DB_ENV" in
     "postgres")
         await_postgres;;
 esac

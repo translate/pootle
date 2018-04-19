@@ -2,9 +2,8 @@
 
 
 function run_in_env() {
-    cd /home/pootle/pootle_env \
-        && . bin/activate \
-        && cd src/pootle \
+   . $APP_DIR/bin/activate \
+   && cd $APP_SRC_DIR \
         && pip install -qe . \
         && pip install -qr requirements/dev.txt \
         && pip install -qr requirements/_es_5.txt \
@@ -95,7 +94,7 @@ function load () {
     echo "Loading db from file: $1"
     dbinfo
     export MYSQL_PWD=$dbpassword
-    mysql -h mariadb -u root $dbname < "/home/pootle/pootle_env/src/pootle/$1"
+    mysql -h mariadb -u root $dbname < "/app/src/pootle/$1"
 }
 
 

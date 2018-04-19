@@ -2,20 +2,19 @@
 
 set -e
 
-INSTALL_DIR=$(readlink -f --canonicalize $(eval echo $INSTALL_DIR))
+APP_DIR=$(readlink -f --canonicalize $(eval echo $APP_DIR))
 
-mkdir -p "$INSTALL_DIR"
-cd "$INSTALL_DIR"
+cd $APP_DIR
 
 
 function get_requirement () {
-    curl -sO $POOTLE_REQUIREMENTS/$1.txt
+    curl -sO $APP_REQUIREMENTS/$1.txt
 }
 
 
-if [ $BUILD_IMAGE == 'dev' ];
+if [ "$BUILD_IMAGE" == 'dev' ];
 then
-    echo "Installing dev env with: $POOTLE_REQUIREMENTS"
+    echo "Installing dev env with: $APP_REQUIREMENTS"
     mkdir requirements
     cd requirements
     declare -a requirements=("_es_5" "base" "dev" "tests" "_docs" "_lint")
@@ -33,31 +32,14 @@ then
                coverage==4.5.1 \
                coveralls==1.3.0 \
         && pyclean .
-    cd /var/tmp
-    curl -s -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.8/install.sh | bash
-    . ~/.nvm/nvm.sh
-
-    nvm install node
 else
-    echo "Installing package: $POOTLE_PKG"
+    echo "Installing package: $APP_PKG"
     virtualenv .
     . bin/activate \
         && pip install \
                -q \
                --no-cache-dir \
                --process-dependency-links \
-               $POOTLE_PKG \
+               $APP_PKG \
         && pyclean .
 fi
-
-
-if [ ! -z "$BUILD_INSTALL_EGGS" ];
-then
-      echo "Installing extra eggs: $BUILD_INSTALL_EGGS"
-      cd "$INSTALL_DIR"
-    . bin/activate \
-        && pip install -q \
-               $BUILD_INSTALL_EGGS;
-fi
-
-cp /tmp/settings.conf /home/pootle/pootle_env/pootle.conf

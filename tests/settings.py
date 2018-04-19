@@ -151,7 +151,7 @@ DATABASES = {
             'NAME': '',
             'CHARSET': 'utf8'}}}
 
-if os.environ.get("POOTLE_ENV") == 'mariadb':
+if os.environ.get("APP_DB_ENV") == 'mariadb':
     DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
     DATABASES['default']['NAME'] = 'pootledb'
     DATABASES['default']['HOST'] = 'mariadb'
@@ -159,7 +159,7 @@ if os.environ.get("POOTLE_ENV") == 'mariadb':
     DATABASES['default']['TEST']['COLLATION'] = 'utf8_general_ci'
     DATABASES['default']['OPTIONS'] = {
         'init_command': "SET sql_mode='STRICT_ALL_TABLES'"}
-elif os.environ.get("POOTLE_ENV") == 'postgres':
+elif os.environ.get("APP_DB_ENV") == 'postgres':
     DATABASES['default']['ENGINE'] = 'django.db.backends.postgresql'
     DATABASES['default']['NAME'] = 'pootledb'
     DATABASES['default']['USER'] = 'pootle'
