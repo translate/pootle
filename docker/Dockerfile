@@ -51,10 +51,6 @@ ARG BUILD_INSTALL_SETTINGS=./settings.conf
 COPY $BUILD_INSTALL_SETTINGS /tmp/settings.conf
 RUN su -c "bash /tmp/build/install-eggs" $APP_USERNAME
 
-ARG APP_DB_ENV
-ENV APP_DB_ENV=$APP_DB_ENV \
-    BUILD_IMAGE=$BUILD_IMAGE
-
 
 # App stage
 FROM root
