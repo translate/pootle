@@ -58,14 +58,15 @@ FROM root
 ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
 EXPOSE 8000
 
-COPY . /tmp/build
+COPY ./app /tmp/build
+COPY ./bin /tmp/build/bin
 
-RUN /tmp/build/app/install-app-common
+RUN /tmp/build/install-app-common
 
 ARG BASE_INSTALL_PRE
 ARG BASE_INSTALL_PKGS
 
-RUN /tmp/build/app/install-app
+RUN /tmp/build/install-app
 
 # the chown flag has to be hardcoded for now
 COPY --chown=pootle:pootle --from=builder "$APP_DIR" "$APP_DIR"
@@ -75,4 +76,4 @@ ARG BUILD_IMAGE
 ENV APP_DB_ENV=$APP_DB_ENV \
     BUILD_IMAGE=$BUILD_IMAGE
 
-RUN /tmp/build/app/post-install
+RUN /tmp/build/post-install
