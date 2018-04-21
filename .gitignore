@@ -111,3 +111,6 @@ store0.po
 __pycache__/
 *.py[cod]
 *$py.class
+
+.env
+docker-compose.override.yml
