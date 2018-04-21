@@ -4,7 +4,6 @@
 version: "2.4"
 services:
 
-  # Minimal base image with no dev libs etc
   base:
     build:
       context: ./docker
@@ -21,6 +20,41 @@ services:
         - BUILD_INSTALL_SETTINGS=./settings.postgres.conf
         - BASE_INSTALL_PRE=mkdir -p /usr/share/man/man1 /usr/share/man/man7
         - BASE_INSTALL_PKGS=postgresql-client
+
+  base-production:
+    extends: base-postgres
+    build:
+      args:
+        - APP_PKG=Pootle
+        - BUILD_IMAGE=production
+        - BUILD_INSTALL_EGGS=psycopg2-binary uwsgi
+        - BASE_INSTALL_PKGS=postgresql-client libpython2.7
+    command: ["/app/src/pootle/docker/bin/run_in_container", "bash", "uwsgi", "--ini", "/app/wsgi/pootle-uwsgi.ini"]
+    volumes:
+      - production-assets:/app/lib/python2.7/site-packages/pootle/assets
+      - production-run:/var/run/pootle
+      - production-logs:/app/log
+
+  # Postgres based production image
+  production:
+    image: translate/pootle:production
+    extends: base-production
+    depends_on:
+      - postgres
+      - redis
+      - elasticsearch
+
+  # Postgres based production image using current pre-release
+  production-pre:
+    image: translate/pootle:production-pre
+    extends: base-production
+    build:
+      args:
+        - APP_PKG=Pootle --pre
+    depends_on:
+      - postgres
+      - redis
+      - elasticsearch
 
   ## Other services
 
@@ -54,7 +88,37 @@ services:
     volumes:
       - redis-data:/data
 
+  web:
+    image: translate/pootle:web-nginx
+    build:
+      context: ./docker/nginx
+    depends_on:
+      - "${POOTLE_PRODUCTION_IMAGE:-production}"
+    ports:
+      - "80:80"
+      - "443:443"
+    command: /usr/local/bin/start_nginx
+    restart: always
+    volumes:
+      - production-ssl:/etc/letsencrypt
+      - production-assets:/var/www/assets
+      - production-run:/var/run/pootle
+      - web-logs:/var/log/nginx/pootle
+    environment:
+      - POOTLE_SERVER_NAME=${POOTLE_SERVER_NAME:-localhost}
+
+  certbot:
+    image: certbot/certbot
+    volumes:
+      - production-ssl:/etc/letsencrypt
 
 volumes:
+  postgres-data:
+  redis-data:
+  production-assets:
+  production-run:
+  production-logs:
+  production-ssl:
+  web-logs:
   postgres-data:
   redis-data:
