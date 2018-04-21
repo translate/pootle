@@ -30,6 +30,9 @@
         "compose": "docker-compose",
         "git": "git",
 
+        "pull": "./docker/bin/pull",
+        "exec": "./docker/bin/exec",
+
         "run-postgres": "docker-compose run --rm dev-postgres /app/src/pootle/docker/bin/run_in_container",
         "run-sqlite": "docker-compose run --rm dev-sqlite /app/src/pootle/docker/bin/run_in_container",
         "run-mariadb": "docker-compose run --rm dev-mariadb /app/src/pootle/docker/bin/run_in_container",

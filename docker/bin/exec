@@ -1,0 +1,40 @@
+#!/bin/bash
+
+set -e
+
+CMD="${@:2}";
+CMD=${CMD:-bash};
+IMAGE=$1
+# this may/not be a docker command
+
+RUNNER=/app/src/pootle/docker/bin/run_in_container
+
+if [ -f .env ]; then
+    . .env
+fi
+
+POOTLE_DEV_IMAGE=${POOTLE_DEV_IMAGE:-dev-sqlite}
+POOTLE_PRODUCTION_IMAGE=${POOTLE_PRODUCTION_IMAGE:-production}
+IMAGE_TO_RUN=$IMAGE
+
+if [ "$IMAGE" = 'dev' ]; then
+    IMAGE_TO_RUN=$POOTLE_DEV_IMAGE
+fi
+
+
+if [ "$IMAGE" = 'production' ]; then
+    IMAGE_TO_RUN=$POOTLE_PRODUCTION_IMAGE
+fi
+
+function image_exists() {
+    IMAGE_EXISTS=$(docker-compose images -q $IMAGE_TO_RUN)
+}
+
+image_exists
+SERVICE=$(docker-compose ps -q $IMAGE_TO_RUN)
+
+if [[ -z $IMAGE_EXISTS || -z $SERVICE ]]; then
+    echo "Service not running: $IMAGE_TO_RUN"
+else
+    docker-compose exec $IMAGE_TO_RUN $CMD
+fi

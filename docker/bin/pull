@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -e
+
+IMAGE=$1
+POOTLE_DEV_IMAGE=${POOTLE_DEV_IMAGE:-dev-sqlite}
+POOTLE_PRODUCTION_IMAGE=${POOTLE_PRODUCTION_IMAGE:-production}
+IMAGE_TO_RUN=$IMAGE
+
+if [ -f .env ]; then
+    . .env
+fi
+
+if [ "$IMAGE" = 'dev' ]; then
+    COMPOSE_FLAGS="-f docker-compose.dev.yml"
+    IMAGE_TO_RUN=$POOTLE_DEV_IMAGE
+fi
+
+if [ "$IMAGE" = 'demo' ]; then
+    COMPOSE_FLAGS="-f docker-compose.demo.yml"
+fi
+
+if [ "$IMAGE" = 'production' ]; then
+    IMAGE_TO_RUN=$POOTLE_PRODUCTION_IMAGE
+fi
+
+function pull_images () {
+    echo $COMPOSE_FLAGS
+    docker-compose $COMPOSE_FLAGS pull --include-deps $IMAGE_TO_RUN
+    # if image is demo only perhaps
+    # run_in_container bash /app/src/pootle/docker/bin/await-db
+}
+
+pull_images
