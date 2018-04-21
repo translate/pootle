@@ -4,34 +4,59 @@ set -e
 
 CMD="${@:2}";
 IMAGE=$1
+# this may/not be a docker command
+
 RUNNER=/app/src/pootle/docker/bin/run_in_container
 
-if [ $IMAGE != 'demo' ]; then
-    export LOCAL_USER_ID=${LOCAL_USER_ID:-$UID}
-    echo "Setting container user to $LOCAL_USER_ID"
+if [ -f .env ]; then
+    . .env
 fi
 
+POOTLE_DEV_IMAGE=${POOTLE_DEV_IMAGE:-dev-sqlite}
+POOTLE_PRODUCTION_IMAGE=${POOTLE_PRODUCTION_IMAGE:-production}
+IMAGE_TO_RUN=$IMAGE
+
+if [ "$IMAGE" = 'dev' ]; then
+    COMPOSE_FLAGS="-f docker-compose.dev.yml"
+    IMAGE_TO_RUN=$POOTLE_DEV_IMAGE
+fi
+
+if [[ "$IMAGE" == dev-* ]]; then
+    COMPOSE_FLAGS="-f docker-compose.dev.yml"
+    export LOCAL_USER_ID=${LOCAL_USER_ID:-$UID}
+    echo "Setting container $IMAGE_TO_RUN user to $LOCAL_USER_ID"
+fi
+
+if [ "$IMAGE" = 'demo' ]; then
+    COMPOSE_FLAGS="-f docker-compose.demo.yml"
+fi
+
+if [ "$IMAGE" = 'production' ]; then
+    IMAGE_TO_RUN=$POOTLE_PRODUCTION_IMAGE
+fi
+
+COMPOSE_CMD="docker-compose $COMPOSE_FLAGS"
+
 function pull_images () {
-    docker-compose pull --include-deps $IMAGE
+    $COMPOSE_CMD pull --include-deps $IMAGE_TO_RUN
     run_in_container bash /app/src/pootle/docker/bin/await-db
 }
 
 function image_exists() {
-    IMAGE_EXISTS=$(docker images -q translate/pootle:$IMAGE)
+    IMAGE_EXISTS=$($COMPOSE_CMD images -q $IMAGE_TO_RUN)
 }
 
 function run_in_container () {
-    COMPOSE="docker-compose run $FLAGS --rm $IMAGE"
+    COMPOSE="$COMPOSE_CMD run $FLAGS --rm $IMAGE_TO_RUN"
     $COMPOSE $RUNNER "${@:1}";
 }
 
 image_exists
 
-if [ -z $IMAGE_EXISTS ]; then
-    echo "$IMAGE image does not exist, pulling..."
+if [[ -z $IMAGE_EXISTS && $IMAGE != 'demo' ]]; then
+    echo "Pulling $IMAGE_TO_RUN"
     pull_images
 fi
-
 
 if [ -z ${CMD:+x} ]; then
     run_in_container pootle revision --restore

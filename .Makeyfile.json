@@ -42,7 +42,7 @@
         "production-pre": "./docker/bin/run production-pre",
         "web": "./docker/bin/web",
 
-        "publish-demo-images": "./docker/bin/publish-demo-images",
+        "publish": "./docker/bin/publish",
         "publish-demo-db": "./docker/bin/publish-demo-db",
 
         "build-root": "docker-compose build root",

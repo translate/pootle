@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+export LOCAL_USER_ID=${LOCAL_USER_ID:-$UID}
+DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
+DOCKER_PUBLISH_NAME=${DOCKER_PUBLISH_NAME:-translate}
+
+docker-compose -f docker-compose.dev.yml build dev-sqlite dev-mariadb dev-postgres
+docker-compose -f docker-compose.demo.yml build demo
+
+echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+docker push $DOCKER_PUBLISH_NAME/pootle:demo
+docker push $DOCKER_PUBLISH_NAME/pootle:dev-sqlite
+docker push $DOCKER_PUBLISH_NAME/pootle:dev-mariadb
+docker push $DOCKER_PUBLISH_NAME/pootle:dev-postgres
+
+# TODO: if this is a release then we should rebuild data
+if [ "$FORCE_REBUILD_DATA" != false ]; then
+    makey publish-demo-db
+fi

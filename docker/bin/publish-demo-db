@@ -10,22 +10,29 @@ DOCKER_PUBLISH_NAME=${DOCKER_PUBLISH_NAME:-translate}
 # this crazy escaping 8/
 ADD_ADMIN='-c \"from django.contrib.auth import get_user_model; get_user_model().objects.create_superuser(\\\"admin\\\", \\\"admin@example.com\\\", \\\"admin\\\");\"'
 
-docker-compose pull demo redis elasticsearch postgres
-docker tag postgres:9.4-alpine translate/pootle:db-demo
+COMPOSE_CMD="docker-compose -f docker-compose.demo.yml"
 
-echo "Installing db"
+$COMPOSE_CMD down -v
+$COMPOSE_CMD pull demo redis elasticsearch postgres
+
+DB_IMAGE_EXISTS=$(docker images -q translate/pootle:db-demo)
+
+if [ ! -z $DB_IMAGE_EXISTS ]; then
+    docker rmi translate/pootle:db-demo
+fi
+docker tag postgres:9.4-alpine translate/pootle:db-demo
 makey demo pootle migrate
 makey demo pootle initdb
 makey demo pootle shell "\"$ADD_ADMIN\""
 makey demo pootle verify_user admin
 
-export DB_UUID=$(docker-compose ps -q db-demo)
+export DB_UUID=$($COMPOSE_CMD ps -q db-demo)
 
 echo "Dumping db in $DB_UUID"
 docker exec -ti $DB_UUID bash -c "pg_dump -U pootle -Z9 pootledb > /docker-entrypoint-initdb.d/demo.sql.gz"
 
 echo "Commiting $DB_UUID -> $DOCKER_PUBLISH_NAME/pootle:db-demo"
-docker-compose stop
+$COMPOSE_CMD stop
 docker commit $DB_UUID $DOCKER_PUBLISH_NAME/pootle:db-demo
 
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
