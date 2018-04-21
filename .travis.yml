@@ -48,7 +48,7 @@ jobs:
       - export APP_DB_ENV=sqlite
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
-      - docker-compose -f docker-compose.yml -f docker-compose.travis.yml pull --include-deps travis-sqlite
+      - docker-compose -f docker-compose.travis.yml pull --include-deps travis-sqlite
       - makey makey-sqlite-travis travis-lint
     -
       if: type = cron
@@ -57,7 +57,7 @@ jobs:
       - export APP_DB_ENV=sqlite
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
-      - docker-compose -f docker-compose.yml -f docker-compose.travis.yml pull --include-deps travis-sqlite
+      - docker-compose -f docker-compose.travis.yml pull --include-deps travis-sqlite
       - makey makey-sqlite-travis travis-test
     -
       env: TRAVIS_ENV=postgres
@@ -65,7 +65,7 @@ jobs:
       - export APP_DB_ENV=postgres
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
-      - docker-compose -f docker-compose.yml -f docker-compose.travis.yml pull --include-deps travis-postgres
+      - docker-compose -f docker-compose.travis.yml pull --include-deps travis-postgres
       - makey makey-postgres-travis travis-test
     -
       env: TRAVIS_ENV=mariadb
@@ -73,7 +73,7 @@ jobs:
       - export APP_DB_ENV=mariadb
       - export LOCAL_USER_ID=$UID
       - export DOCKER_USERNAME=${DOCKER_USERNAME:-translatetravis2}
-      - docker-compose -f docker-compose.yml -f docker-compose.travis.yml pull --include-deps travis-mariadb
+      - docker-compose -f docker-compose.travis.yml pull --include-deps travis-mariadb
       - makey makey-mariadb-travis travis-test
 
     - stage: publish
