@@ -1,0 +1,22 @@
+#!/bin/bash
+
+set -e
+
+IMAGE='web'
+DOCKER_CMD=$1
+
+
+function image_exists() {
+    IMAGE_EXISTS=$(docker-compose images -q $IMAGE)
+}
+
+image_exists
+
+if [[ -z $IMAGE_EXISTS || $DOCKER_CMD = 'pull' ]]; then
+    echo "Pulling $IMAGE"
+    docker-compose pull --include-deps $IMAGE
+fi
+
+
+echo "Running web stack"
+docker-compose up $IMAGE
