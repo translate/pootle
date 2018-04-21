@@ -1,0 +1,113 @@
+server {
+    server_name $POOTLE_SERVER_NAME;
+    listen 80;
+
+    location /.well-known/ {
+        alias /var/www/le/.well-known/;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+server {
+    server_name $POOTLE_SERVER_NAME;
+    listen 443 ssl http2;
+    ssl_certificate /etc/letsencrypt/live/$POOTLE_SERVER_NAME/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/$POOTLE_SERVER_NAME/privkey.pem;
+
+    # See https://weakdh.org/sysadmin.html
+    #    ssl_dhparam /etc/ssl/certs/dhparams.pem;
+
+    # HTTPS optimisations
+    # - https://bjornjohansen.no/optimizing-https-nginx
+    # Connection credential caching 20MB for 180min
+    ssl_session_cache shared:SSL:20m;
+    ssl_session_timeout 180m;
+
+    # Disable SSL
+    # - SSL protocol is buggy and obsolete use TLS instead
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+
+    # Optimise cypher suite
+    ssl_ciphers 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:CAMELLIA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA';
+    ssl_prefer_server_ciphers  on;
+
+    # Strict Transport Security
+    add_header Strict-Transport-Security "max-age=31536000" always;
+
+    # https://github.com/h5bp/server-configs-nginx/blob/master/h5bp/location/expires.conf
+    # Expire rules for static content
+
+    # No default expire rule. This config mirrors that of apache as outlined in the
+    # html5-boilerplate .htaccess file. However, nginx applies rules by location,
+    # the apache rules are defined by type. A consequence of this difference is that
+    # if you use no file extension in the url and serve html, with apache you get an
+    # expire time of 0s, with nginx you'd get an expire header of one month in the
+    # future (if the default expire rule is 1 month). Therefore, do not use a
+    # default expire rule with nginx unless your site is completely static
+
+    # cache.appcache, your document html and data
+    location ~* \.(?:manifest|appcache|html?|xml|json)$ {
+      expires -1;
+      #access_log logs/static.log;
+    }
+
+    # Feed
+    location ~* \.(?:rss|atom)$ {
+      expires 1h;
+      add_header Cache-Control "public";
+    }
+
+    # WebFonts
+    # If you are NOT using cross-domain-fonts.conf, uncomment the following directive
+    # location ~* \.(?:ttf|ttc|otf|eot|woff|woff2)$ {
+    #  expires 1M;
+    #  access_log off;
+    #  add_header Cache-Control "public";
+    # }
+
+    error_log /var/log/nginx/pootle/nginx-error.log info;
+
+    root /var/www;
+
+    # rest of the server section is optional, but helpful
+    # maintenance page if it exists
+    error_page 503 @maintenance;
+    if (-f $document_root/maintenance.html ) {
+        return 503;
+    }
+    location @maintenance {
+        try_files /maintenance.html =503;
+    }
+
+    location /media {
+        alias /app/media;
+    }
+
+    location /assets {
+        try_files $uri =404;
+    }
+    # redirect credits URL to static page with copy of old credits
+    location /about/contributors/ {
+    return 301 https://$host/pages/contributors/;
+    }
+    location /downloads/ {
+        autoindex on;
+    }
+
+    location ~ /assets(?<path_info>/.*$) {
+        alias /var/www/assets/$path_info;
+    }
+
+    location / {
+        include uwsgi_params;
+        uwsgi_param UWSGI_FASTROUTER_KEY $host;
+        uwsgi_pass unix:/var/run/pootle/pootle.sock;
+        # uploading files can be around 15MB, so give some slack...
+        client_max_body_size 20m;
+        # for files, pootle needs to sync to disk first, that takes a while
+        uwsgi_read_timeout 300;
+    }
+}

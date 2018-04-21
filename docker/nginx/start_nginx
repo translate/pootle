@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+echo "Starting nginx for: $POOTLE_SERVER_NAME"
+
+LETSENCRYPT=/etc/letsencrypt/live/$POOTLE_SERVER_NAME
+
+if [ ! -d "${LETSENCRYPT}" ];then
+   echo "No keys present, generating self-signed keys to get started"
+   mkdir -p $LETSENCRYPT
+   openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+            -keyout $LETSENCRYPT/privkey.pem \
+            -out $LETSENCRYPT/fullchain.pem \
+            -subj /CN=$POOTLE_SERVER_NAME
+   echo "You should update your keys using certbot!"
+fi
+
+envsubst '$POOTLE_SERVER_NAME' < /etc/nginx/conf.d/pootle.template > /etc/nginx/conf.d/default.conf
+
+nginx -g 'daemon off;'
