@@ -2,10 +2,6 @@
     "sequence": {
         "run-ci": ["test-all"],
         "test-all": ["test-py"],
-        "build-dev-all": [
-            "build-dev-postgres",
-            "build-dev-mariadb",
-            "build-dev-sqlite"],
         "bundle": ["bundle-webpack", "bundle-collectstatic"],
         "travis-lint": [
             "travis-assets",
@@ -38,21 +34,26 @@
         "run-mariadb": "docker-compose run --rm dev-mariadb /app/src/pootle/docker/bin/run_in_container",
 
         "demo": "./docker/bin/run demo",
-        "dev": "./docker/bin/run dev-sqlite",
+        "dev": "./docker/bin/run dev",
+        "dev-sqlite": "./docker/bin/run dev-sqlite",
         "dev-mariadb": "./docker/bin/run dev-mariadb",
         "dev-postgres": "./docker/bin/run dev-postgres",
+        "production": "./docker/bin/run production",
+        "production-pre": "./docker/bin/run production-pre",
+        "web": "./docker/bin/web",
 
         "publish-demo-images": "./docker/bin/publish-demo-images",
         "publish-demo-db": "./docker/bin/publish-demo-db",
 
         "build-root": "docker-compose build root",
         "build-build": "docker-compose build build",
-        "build-demo": "docker-compose build demo",
+        "build-demo": "docker-compose -f docker-compose.demo.yml build demo",
 
         "build-dev-build": "docker-compose build dev-build",
         "build-dev-postgres": "docker-compose build dev-postgres",
         "build-dev-mariadb": "docker-compose build dev-mariadb",
         "build-dev-sqlite": "docker-compose build dev-sqlite",
+        "build-dev-all": "docker-compose -f docker-compose.dev.yml build dev-sqlite dev-mariadb dev-postgres",
 
         "bundle-webpack": "makey pootle webpack",
         "bundle-collectstatic": "makey pootle collectstatic -v0 --no-input",
@@ -82,9 +83,9 @@
         "makey-mariadb-travis": "makey run-mariadb-travis bash makey",
         "makey-postgres-travis": "makey run-postgres-travis bash makey",
 
-        "run-sqlite-travis": "docker-compose -f docker-compose.yml -f docker-compose.travis.yml run --rm travis-sqlite /app/src/pootle/docker/bin/run_in_container",
-        "run-mariadb-travis": "docker-compose -f docker-compose.yml -f docker-compose.travis.yml run --rm travis-mariadb /app/src/pootle/docker/bin/run_in_container",
-        "run-postgres-travis": "docker-compose -f docker-compose.yml -f docker-compose.travis.yml run --rm travis-postgres /app/src/pootle/docker/bin/run_in_container",
+        "run-sqlite-travis": "docker-compose -f docker-compose.travis.yml run --rm travis-sqlite /app/src/pootle/docker/bin/run_in_container",
+        "run-mariadb-travis": "docker-compose -f docker-compose.travis.yml run --rm travis-mariadb /app/src/pootle/docker/bin/run_in_container",
+        "run-postgres-travis": "docker-compose -f docker-compose.travis.yml run --rm travis-postgres /app/src/pootle/docker/bin/run_in_container",
 
         "travis-assets": "make travis-assets",
         "travis-sdist": "python setup.py --quiet sdist",
