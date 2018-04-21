@@ -22,6 +22,23 @@ services:
         - BASE_INSTALL_PRE=mkdir -p /usr/share/man/man1 /usr/share/man/man7
         - BASE_INSTALL_PKGS=postgresql-client
 
+  # Postgres based production image
+  production:
+    image: translate/pootle:production
+    extends: base-postgres
+    build:
+      args:
+        - BUILD_IMAGE=production
+        - BUILD_INSTALL_EGGS=psycopg2-binary uwsgi
+        - BASE_INSTALL_PKGS=postgresql-client libpython2.7
+    depends_on:
+      - postgres
+    command: ["/app/src/pootle/docker/bin/run_in_container", "bash", "uwsgi", "--ini", "/app/wsgi/pootle-uwsgi.ini"]
+    volumes:
+      - production-assets:/app/lib/python2.7/site-packages/pootle/assets
+      - production-run:/var/run/pootle
+      - production-logs:/app/log
+
   # Postgres based demo image
   demo:
     image: translate/pootle:demo
@@ -146,3 +163,23 @@ services:
   redis:
     image: redis:alpine
     restart: always
+
+  web:
+    image: nginx
+    depends_on:
+      - production
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    volumes:
+      - production-assets:/var/www/assets
+      - production-run:/var/run/pootle
+      - web-logs:/var/log/nginx/pootle
+      - ./docker/configs/nginx/:/etc/nginx/conf.d/
+
+volumes:
+  production-assets:
+  production-run:
+  production-logs:
+  web-logs:

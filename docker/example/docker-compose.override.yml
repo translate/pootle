@@ -1,0 +1,27 @@
+# docker-compose for Pootle development.
+#
+# Note: Requires docker-compose 1.10+.
+version: "2.1"
+services:
+
+  production:
+    volumes:
+      # Add a custom config for pootle
+      - /apps/pootle/pootle.conf:/app/pootle.conf
+
+  postgres:
+    environment:
+      # Change the password that postgres is initialized with
+      - POSTGRES_PASSWORD=HACKME
+    volumes:
+      # Persist postgres data to a directory on host filesystem
+      - /apps/postgres/data:/var/lib/postgresql/data
+
+  redis:
+    volumes:
+      # Persist redis data to a directory on host filesystem
+      - /apps/redis/data:/data
+
+volumes:
+  production-logs:/apps/pootle/logs
+  web-logs:/apps/nginx/logs
