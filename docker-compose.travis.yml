@@ -1,20 +1,38 @@
 # docker-compose for Pootle development.
 #
 # Note: Requires docker-compose 1.10+.
-version: "2.1"
+version: "2.4"
 services:
 
   elasticsearch:
+    extends:
+        file: docker-compose.yml
+        service: elasticsearch
     tmpfs: /usr/share/elasticsearch/data
 
   postgres:
-    tmpfs: /var/lib/postgresql/data
-
-  mariadb:
-    tmpfs: /var/lib/mysql
+    extends:
+        file: docker-compose.yml
+        service: postgres
+    volumes:
+      - type: tmpfs
+        target: /var/lib/postgresql/data
 
   redis:
-    tmpfs: /data
+    extends:
+        file: docker-compose.yml
+        service: redis
+    volumes:
+      - type: tmpfs
+        target: /data
+
+  mariadb:
+    extends:
+        file: docker-compose.dev.yml
+        service: mariadb
+    volumes:
+      - type: tmpfs
+        target: /var/lib/mysql
 
   travis-mariadb:
     image: translatetravis2/pootle:travis-mariadb

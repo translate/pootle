@@ -1,0 +1,102 @@
+# docker-compose for Pootle development.
+#
+# Note: Requires docker-compose 1.10+.
+version: "2.4"
+services:
+
+  ## Dev services
+
+  base:
+    build:
+      context: ./docker
+
+  base-dev:
+    image: translate/pootle:base-dev
+    extends: base
+    build:
+      args:
+        - BUILD_IMAGE=dev
+    environment:
+      - LOCAL_USER_ID=${LOCAL_USER_ID:-''}
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app/src/pootle
+
+  # Dev app (postgres)
+  dev-postgres:
+    image: translate/pootle:dev-postgres
+    extends: base-dev
+    build:
+      args:
+        - APP_DB_ENV=postgres
+        - BUILD_INSTALL_PKGS=libpq-dev
+        - BUILD_INSTALL_EGGS=psycopg2-binary
+        - BUILD_INSTALL_SETTINGS=./settings.postgres.conf
+        - BASE_INSTALL_PRE=mkdir -p /usr/share/man/man1 /usr/share/man/man7
+        - BASE_INSTALL_PKGS=postgresql-client
+    depends_on:
+      - postgres
+      - redis
+      - elasticsearch
+
+  # Dev app (mariadb)
+  dev-mariadb:
+    image: translate/pootle:dev-mariadb
+    extends: base-dev
+    build:
+      args:
+        - APP_DB_ENV=mariadb
+        - BUILD_INSTALL_PKGS=libmariadbclient-dev-compat
+        - BUILD_INSTALL_EGGS=MySQL-python
+        - BUILD_INSTALL_SETTINGS=./settings.mariadb.conf
+        - BASE_INSTALL_PKGS=libmariadbclient18 mariadb-client
+    depends_on:
+      - mariadb
+      - redis
+      - elasticsearch
+
+  # Dev app (sqlite)
+  dev-sqlite:
+    image: translate/pootle:dev-sqlite
+    extends: base-dev
+    build:
+      args:
+        - APP_DB_ENV=sqlite
+        - BASE_INSTALL_PKGS=sqlite3
+    depends_on:
+      - redis
+      - elasticsearch
+
+  elasticsearch:
+    extends:
+        file: docker-compose.yml
+        service: elasticsearch
+
+  postgres:
+    extends:
+        file: docker-compose.yml
+        service: postgres
+    volumes:
+      - postgres-dev-data:/var/lib/postgresql/data
+
+  redis:
+    extends:
+        file: docker-compose.yml
+        service: redis
+    volumes:
+      - redis-dev-data:/data
+
+  mariadb:
+    image: mariadb
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=CHANGEME
+      - MYSQL_DATABASE=pootledb
+      - MYSQL_USER=pootle
+      - MYSQL_PASSWORD=CHANGEME
+
+volumes:
+  postgres-dev-data:
+  redis-dev-data:

@@ -1,0 +1,57 @@
+# docker-compose for Pootle development.
+#
+# Note: Requires docker-compose 1.10+.
+version: "2.4"
+services:
+
+  # Postgres based demo image
+  demo:
+    image: translate/pootle:demo
+    extends:
+        file: docker-compose.yml
+        service: base-postgres
+    environment:
+      - LOCAL_USER_ID=${LOCAL_USER_ID:-}
+    build:
+      args:
+        - BUILD_IMAGE=demo
+    depends_on:
+      - db-demo
+      - redis
+      - elasticsearch
+    links:
+      - "db-demo:postgres"
+    ports:
+      - "8000:8000"
+
+  # Data volume with demo database
+  db-demo:
+    image: translate/pootle:db-demo
+    restart: always
+    environment:
+      - POSTGRES_USER=pootle
+      - POSTGRES_PASSWORD=CHANGEME
+      - POSTGRES_DB=pootledb
+
+  elasticsearch:
+    extends:
+        file: docker-compose.yml
+        service: elasticsearch
+
+  postgres:
+    extends:
+        file: docker-compose.yml
+        service: postgres
+    volumes:
+      - postgres-demo-data:/var/lib/postgresql/data
+
+  redis:
+    extends:
+        file: docker-compose.yml
+        service: redis
+    volumes:
+      - redis-demo-data:/data
+
+volumes:
+  postgres-demo-data:
+  redis-demo-data:
