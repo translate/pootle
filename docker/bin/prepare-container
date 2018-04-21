@@ -19,6 +19,14 @@ if [ $BUILD_IMAGE = 'dev' ]; then
     fi
 fi
 
+
+if [ $BUILD_IMAGE = 'production' ]; then
+    chown -R $APP_USERNAME:$APP_USERNAME /var/run/pootle
+    mkdir -p $APP_DIR/log
+    chown -R $APP_USERNAME:$APP_USERNAME $APP_DIR/log
+fi
+
+
 su -c " \
    . $APP_DIR/bin/activate \
    && cd $APP_SRC_DIR \
