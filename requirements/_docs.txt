@@ -1,5 +1,5 @@
 # Documentation
 
 sphinx-bootstrap-theme
-readme-renderer==21.0
+readme-renderer==22.0
 Sphinx==1.8.0
