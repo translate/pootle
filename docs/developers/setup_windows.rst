@@ -10,7 +10,7 @@ Install prerequisites
 ^^^^^^^^^^^^^^^^^^^^^
 
 Download the latest Redis installer from:
-    https://github.com/MSOpenTech/redis/releases
+    https://github.com/MicrosoftArchive/redis/releases
 
 During the installation you will be asked to set what port Redis should listen
 on; leave it at the default (6379).
