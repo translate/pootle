@@ -36,7 +36,7 @@ alternative WSGI servers that might better suit your environment.
   Apache web server.
 
 `Nginx <http://nginx.org/>`_
-  Ngninx web server.
+  Nginx web server.
 
 `gunicorn <http://gunicorn.org/>`_
   Python WSGI HTTP server.
