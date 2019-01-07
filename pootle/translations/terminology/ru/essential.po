@@ -1,0 +1,3024 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-01-07 21:37+0000\n"
+"PO-Revision-Date: 2019-01-07 22:45+0100\n"
+"Last-Translator: Juri Grabowski <translate-ru@jugra.de>\n"
+"Language-Team: RU-Trans <translate-ru@jugra.de>\n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Translate Toolkit 2.2.5\n"
+"X-Pootle-Path: /ru/terminology/essential.po\n"
+"X-Pootle-Revision: 1599\n"
+
+msgid "abort"
+msgstr "прекратить"
+
+msgid "absolute"
+msgstr "абсолютная"
+
+msgid "abstract"
+msgstr "абстрактный"
+
+msgid "accelerator"
+msgstr "ускоритель"
+
+msgid "accent"
+msgstr "акцент"
+
+msgid "accept"
+msgstr "принять"
+
+msgid "access"
+msgstr "доступ"
+
+msgid "accessibility"
+msgstr "доступность"
+
+msgid "accessory"
+msgstr "оборудование"
+
+msgid "account"
+msgstr "аккаунт"
+
+msgid "accuracy"
+msgstr "точность"
+
+msgid "acquire"
+msgstr "приобрести"
+
+msgid "acronym"
+msgstr "сокращение"
+
+msgid "action"
+msgstr "акция"
+
+msgid "activate"
+msgstr "активировать"
+
+msgid "active"
+msgstr "активный"
+
+msgid "activity"
+msgstr "активность"
+
+msgid "adapter"
+msgstr "адаптер"
+
+msgid "add"
+msgstr "добавить"
+
+msgid "address"
+msgstr "адрес"
+
+msgid "adjust"
+msgstr "отрегулировать"
+
+msgid "administration"
+msgstr "администрация"
+
+msgid "administrator"
+msgstr "администратор"
+
+msgid "advanced"
+msgstr "продвинутый"
+
+msgid "agent"
+msgstr "агент"
+
+msgid "agree"
+msgstr "соглашаться"
+
+msgid "agreement"
+msgstr "соглашение"
+
+msgid "alarm"
+msgstr "сигнал тревоги"
+
+msgid "alert"
+msgstr "предупреждение"
+
+msgid "algorithm"
+msgstr "алгоритм"
+
+msgid "alias"
+msgstr "псевдоним"
+
+msgid "aliasing"
+msgstr "алиасинг"
+
+msgid "align"
+msgstr "выровнять"
+
+msgid "alignment"
+msgstr "выравнивание"
+
+msgid "allow"
+msgstr "разрешить"
+
+msgid "alphanumeric"
+msgstr "цифробуквенный"
+
+msgid "alternative"
+msgstr "альтернатива"
+
+msgid "amount"
+msgstr "сумма"
+
+msgid "analysis"
+msgstr "анализ"
+
+msgid "anchor"
+msgstr "якорь"
+
+msgid "angle"
+msgstr "угол"
+
+msgid "animate"
+msgstr "анимировать"
+
+msgid "animation"
+msgstr "анимация"
+
+msgid "announce"
+msgstr "объявить"
+
+msgid "announcement"
+msgstr "объявление"
+
+msgid "anonymous"
+msgstr "анонимный"
+
+msgid "anti-aliasing"
+msgstr "анти-алиасинг"
+
+msgid "anti virus"
+msgstr "антивирус"
+
+msgid "appear"
+msgstr "появляются"
+
+msgid "append"
+msgstr "конкатенировать, присоединять"
+
+msgid "applet"
+msgstr "апплет"
+
+msgid "application"
+msgstr "приложение"
+
+msgid "apply"
+msgstr "применить"
+
+msgid "approval"
+msgstr "согласие"
+
+msgid "approve"
+msgstr "утвердить"
+
+msgid "approximate"
+msgstr "приблизительные"
+
+msgid "arbitrary"
+msgstr "случайный"
+
+msgid "archive"
+msgstr "архив"
+
+msgid "area"
+msgstr "область"
+
+msgid "argument"
+msgstr "аргумент"
+
+msgid "arrangement"
+msgstr "расположение"
+
+msgid "arrow"
+msgstr "стрелка"
+
+msgid "article"
+msgstr "статья"
+
+msgid "ascending"
+msgstr "по возрастанию"
+
+msgid "aspect"
+msgstr "аспект"
+
+msgid "assign"
+msgstr "назначить"
+
+msgid "assignment"
+msgstr "назначение"
+
+msgid "asynchronous"
+msgstr "асинхронный"
+
+msgid "attach"
+msgstr "прикрепить"
+
+msgid "attachment"
+msgstr "вложение"
+
+msgid "attempt"
+msgstr "попытка"
+
+msgid "attribute"
+msgstr "атрибут"
+
+msgid "audio"
+msgstr "аудио"
+
+msgid "authenticate"
+msgstr "аутентифицировать"
+
+msgid "authentication"
+msgstr "проверка подлинности"
+
+msgid "authorization"
+msgstr "авторизация"
+
+msgid "authorize"
+msgstr "авторизовать"
+
+msgid "auto"
+msgstr "авто"
+
+msgid "automatic"
+msgstr "автоматическая"
+
+msgid "availability"
+msgstr "доступность"
+
+msgid "available"
+msgstr "доступен"
+
+msgid "average"
+msgstr "средняя"
+
+msgid "axis"
+msgstr "оси"
+
+msgid "backbone"
+msgstr "основа"
+
+msgid "back-end"
+msgstr "задняя часть"
+
+msgid "background"
+msgstr "фон"
+
+msgid "backup"
+msgstr "резервное копирование"
+
+msgid "bandwidth"
+msgstr "пропускная способность"
+
+msgid "banner"
+msgstr "баннер"
+
+msgid "bar"
+msgstr "планка"
+
+msgid "base"
+msgstr "основа"
+
+msgid "beep"
+msgstr "звуковой сигнал"
+
+msgid "begin"
+msgstr "начать"
+
+msgid "behavior"
+msgstr "поведение"
+
+msgid "binary"
+msgstr "бинарные"
+
+msgid "bind"
+msgstr "связать"
+
+msgid "bit"
+msgstr "бит"
+
+msgid "bitmap"
+msgstr "растровое"
+
+msgid "blank"
+msgstr "пустой"
+
+msgid "blink"
+msgstr "моргать"
+
+msgid "block (unit)"
+msgstr "блок (единица измерения)"
+
+msgid "block (verb)"
+msgstr "заблокировать"
+
+msgid "blog"
+msgstr "блог"
+
+msgid "blur"
+msgstr "размытость"
+
+msgid "board"
+msgstr "доска"
+
+msgid "body"
+msgstr "тело"
+
+msgid "bold"
+msgstr "жирный шрифт"
+
+msgid "bookmarks"
+msgstr "закладки"
+
+msgid "boot"
+msgstr "загрузка"
+
+msgid "border"
+msgstr "граница"
+
+msgid "box"
+msgstr "поле"
+
+msgid "bracket"
+msgstr "скобка"
+
+msgid "branch"
+msgstr "ветка"
+
+msgid "break"
+msgstr "перерыв"
+
+msgid "break (program)"
+msgstr "точка остановки программы"
+
+msgid "break point"
+msgstr "точка остановки"
+
+msgid "bridge (verb)"
+msgstr "соединить"
+
+msgid "bridge (noun)"
+msgstr "мост"
+
+msgid "broken"
+msgstr "сломан"
+
+msgid "browse"
+msgstr "обзор"
+
+msgid "browser"
+msgstr "браузер"
+
+msgid "buffer"
+msgstr "буфер"
+
+msgid "bug"
+msgstr "ошибка в программе"
+
+msgid "build"
+msgstr "создать"
+
+msgid "built-in"
+msgstr "встроенный"
+
+msgid "bullet"
+msgstr "пункт перечисления"
+
+msgid "bus"
+msgstr "автобус, шина"
+
+msgid "button"
+msgstr "кнопка"
+
+msgid "byte"
+msgstr "байт"
+
+msgid "cable"
+msgstr "кабель"
+
+msgid "cache"
+msgstr "кэш"
+
+msgid "calculate"
+msgstr "вычислять"
+
+msgid "calculator"
+msgstr "калькулятор"
+
+msgid "calendar"
+msgstr "календарь"
+
+msgid "call"
+msgstr "вызывать"
+
+msgid "camera"
+msgstr "камера"
+
+msgid "cancel"
+msgstr "отменить"
+
+msgid "capability"
+msgstr "возможность"
+
+msgid "capacity"
+msgstr "ёмкость"
+
+msgid "caption"
+msgstr "подпись"
+
+msgid "capture"
+msgstr "захват"
+
+msgid "card"
+msgstr "карта"
+
+msgid "case"
+msgstr "случай"
+
+msgid "case (font)"
+msgstr "случай (шрифт)"
+
+msgid "catalog"
+msgstr "каталог"
+
+msgid "category"
+msgstr "категория"
+
+msgid "cell"
+msgstr "клетка"
+
+msgid "certificate"
+msgstr "сертификат"
+
+msgid "certify"
+msgstr "подтверждаю"
+
+msgid "change"
+msgstr "менять"
+
+msgid "channel"
+msgstr "канал"
+
+msgid "character"
+msgstr "знак"
+
+msgid "charset"
+msgstr "кодировка"
+
+msgid "chart"
+msgstr "диаграмма"
+
+msgid "chat"
+msgstr "болтать"
+
+msgid "check"
+msgstr "проверить"
+
+msgid "check box"
+msgstr "флажок"
+
+msgid "child"
+msgstr "ребёнок"
+
+msgid "choice"
+msgstr "выбор"
+
+msgid "choose"
+msgstr "выбирать"
+
+msgid "class"
+msgstr "класс"
+
+msgid "classic"
+msgstr "классический"
+
+msgid "classify"
+msgstr "классифицировать"
+
+msgid "clean"
+msgstr "чистить"
+
+msgid "clear"
+msgstr "удалить"
+
+msgid "click (noun)"
+msgstr "щелчок (существительное)"
+
+msgid "click (verb)"
+msgstr "нажмите (глагол)"
+
+msgid "client"
+msgstr "клиент"
+
+msgid "clip art"
+msgstr "картинки"
+
+msgid "clip board"
+msgstr "буфер обмена"
+
+msgid "clock"
+msgstr "часы"
+
+msgid "close"
+msgstr "закрыть"
+
+msgid "code (program)"
+msgstr "код (программа)"
+
+msgid "code (symbol)"
+msgstr "код (символ)"
+
+msgid "codec"
+msgstr "кодек"
+
+msgid "collapse"
+msgstr "скрыть"
+
+msgid "collect"
+msgstr "собрать"
+
+msgid "column"
+msgstr "колонка"
+
+msgid "combination"
+msgstr "комбинация"
+
+msgid "comma"
+msgstr "запятая"
+
+msgid "command"
+msgstr "команда"
+
+msgid "comment"
+msgstr "комментарий"
+
+msgid "common"
+msgstr "обычно, общий"
+
+msgid "communication"
+msgstr "общение"
+
+msgid "compact"
+msgstr "компактный"
+
+msgid "compare"
+msgstr "сравнить"
+
+msgid "compatibility"
+msgstr "совместимость"
+
+msgid "compatible"
+msgstr "совместимые"
+
+msgid "compilation"
+msgstr "компиляция"
+
+msgid "compile"
+msgstr "компилировать"
+
+msgid "compiler"
+msgstr "компилятор"
+
+msgid "complete"
+msgstr "полностью"
+
+msgid "component"
+msgstr "компонент"
+
+msgid "compose"
+msgstr "собрать"
+
+msgid "composition"
+msgstr "композиция"
+
+msgid "compress"
+msgstr "сжимать"
+
+msgid "compression"
+msgstr "сжатие"
+
+msgid "computer"
+msgstr "компьютер"
+
+msgid "computing"
+msgstr "электронная обработка данных"
+
+msgid "concatenate"
+msgstr "объединить"
+
+msgid "concurrent"
+msgstr "одновременный, параллельный"
+
+msgid "condense"
+msgstr "уплотняться"
+
+msgid "condition"
+msgstr "условие"
+
+msgid "configuration"
+msgstr "конфигурация"
+
+msgid "configure"
+msgstr "настроить"
+
+msgid "confirm"
+msgstr "подтвердить"
+
+msgid "confirmation"
+msgstr "подтверждение"
+
+msgid "conflict"
+msgstr "конфликт"
+
+msgid "connect"
+msgstr "подключить"
+
+msgid "connection"
+msgstr "подключение"
+
+msgid "console"
+msgstr "консоль"
+
+msgid "contact (noun)"
+msgstr "контакт"
+
+msgid "contact (verb)"
+msgstr "связаться"
+
+msgid "content"
+msgstr "содержание"
+
+msgid "context"
+msgstr "контекст"
+
+msgid "continue"
+msgstr "продолжить"
+
+msgid "contrast"
+msgstr "контраст"
+
+msgid "contributor"
+msgstr "автор"
+
+msgid "control"
+msgstr "контролировать"
+
+msgid "conversion"
+msgstr "преобразование"
+
+msgid "convert"
+msgstr "конвертировать"
+
+msgid "cookie"
+msgstr "куки"
+
+msgid "cooperative"
+msgstr "кооперативный"
+
+msgid "coordinate"
+msgstr "координировать"
+
+msgid "copy (noun)"
+msgstr "копия"
+
+msgid "copy (verb)"
+msgstr "копирование"
+
+msgid "copy left"
+msgstr "право на передачу"
+
+msgid "copy right"
+msgstr "авторское право"
+
+msgid "correct"
+msgstr "исправить"
+
+msgid "correspondence"
+msgstr "переписка"
+
+msgid "correspondent"
+msgstr "корреспондент"
+
+msgid "corrupt"
+msgstr "повреждён"
+
+msgid "count"
+msgstr "считать"
+
+msgid "countable"
+msgstr "счетное"
+
+msgid "crash"
+msgstr "крушение"
+
+msgid "create"
+msgstr "создать"
+
+msgid "creation"
+msgstr "создание"
+
+msgid "criteria"
+msgstr "критерий"
+
+msgid "crop"
+msgstr "обрезать"
+
+msgid "cross-platform"
+msgstr "кросс-платформенный"
+
+msgid "crypt"
+msgstr "зашифровать"
+
+msgid "cryptology"
+msgstr "криптология"
+
+msgid "current"
+msgstr "текущий"
+
+msgid "cursor"
+msgstr "курсор"
+
+msgid "curve"
+msgstr "кривая"
+
+msgid "custom"
+msgstr "настроенный"
+
+msgid "customization"
+msgstr "кастомизация"
+
+msgid "customize"
+msgstr "настроить"
+
+msgid "cut"
+msgstr "вырезать"
+
+msgid "cycle"
+msgstr "цикл"
+
+msgid "daemon"
+msgstr "служба"
+
+msgid "damage"
+msgstr "повреждения"
+
+msgid "data"
+msgstr "данные"
+
+msgid "database"
+msgstr "база данных"
+
+msgid "debug"
+msgstr "отлаживать"
+
+msgid "debugger"
+msgstr "отладчик"
+
+msgid "decimal"
+msgstr "десятичные"
+
+msgid "decode"
+msgstr "декодировать"
+
+msgid "decompress"
+msgstr "распаковать"
+
+msgid "decrease"
+msgstr "уменьшить"
+
+msgid "decrypt"
+msgstr "расшифровать"
+
+msgid "decryption"
+msgstr "расшифровка"
+
+msgid "default"
+msgstr "по умолчанию"
+
+msgid "defect"
+msgstr "дефект"
+
+msgid "define"
+msgstr "определить"
+
+msgid "definition"
+msgstr "определение"
+
+msgid "degree"
+msgstr "степень"
+
+msgid "delay"
+msgstr "задержка"
+
+msgid "delete"
+msgstr "удалить"
+
+msgid "deletion"
+msgstr "удаление"
+
+msgid "delimiter"
+msgstr "разделитель"
+
+msgid "demo"
+msgstr "демо"
+
+msgid "deny"
+msgstr "отказать"
+
+msgid "dependence"
+msgstr "зависимость"
+
+msgid "dependency"
+msgstr "зависимость"
+
+msgid "depth"
+msgstr "глубина"
+
+msgid "derived"
+msgstr "производные"
+
+msgid "descending"
+msgstr "по убыванию"
+
+msgid "description"
+msgstr "описание"
+
+msgid "deselect"
+msgstr "снять"
+
+msgid "design"
+msgstr "дизайн"
+
+msgid "desktop"
+msgstr "рабочий стол"
+
+msgid "destination"
+msgstr "цель"
+
+msgid "destroy"
+msgstr "уничтожить"
+
+msgid "detach"
+msgstr "отсоединить"
+
+msgid "detect"
+msgstr "обнаружить"
+
+msgid "develop"
+msgstr "разрабатывать"
+
+msgid "development"
+msgstr "разработка"
+
+msgid "developer"
+msgstr "разработчик"
+
+msgid "device"
+msgstr "устройство"
+
+msgid "diagram"
+msgstr "диаграмма"
+
+msgid "dial"
+msgstr "набрать"
+
+msgid "dialog"
+msgstr "диалог"
+
+msgid "dialup"
+msgstr "дозвон"
+
+msgid "difference"
+msgstr "разница"
+
+msgid "digit"
+msgstr "цифра"
+
+msgid "digital"
+msgstr "цифровой"
+
+msgid "dimension"
+msgstr "измерение"
+
+msgid "directory"
+msgstr "каталог"
+
+msgid "disable"
+msgstr "отключить"
+
+msgid "disc"
+msgstr "диск"
+
+msgid "discard"
+msgstr "сбросить"
+
+msgid "disconnect"
+msgstr "отсоединить"
+
+msgid "discussion"
+msgstr "обсуждение"
+
+msgid "disk"
+msgstr "диск"
+
+msgid "dispatch"
+msgstr "отсылать"
+
+msgid "display"
+msgstr "показывать"
+
+msgid "distort"
+msgstr "искажать"
+
+msgid "distribute"
+msgstr "распространять"
+
+msgid "distribution"
+msgstr "дистрибуция"
+
+msgid "distributor"
+msgstr "дистрибьютор"
+
+msgid "dock"
+msgstr "состыковаться"
+
+msgid "document"
+msgstr "документ"
+
+msgid "documentation"
+msgstr "документация"
+
+msgid "domain"
+msgstr "домен"
+
+msgid "double click"
+msgstr "двойной щелчок"
+
+msgid "download"
+msgstr "скачать"
+
+msgid "drag"
+msgstr "перетащите"
+
+msgid "draw"
+msgstr "рисовать"
+
+msgid "driver"
+msgstr "драйвер"
+
+msgid "dual"
+msgstr "двойной"
+
+msgid "dump"
+msgstr "дамп"
+
+msgid "duplicate"
+msgstr "дублировать"
+
+msgid "dynamic"
+msgstr "динамические"
+
+msgid "echo"
+msgstr "эхо"
+
+msgid "edit"
+msgstr "редактировать"
+
+msgid "edition"
+msgstr "издание"
+
+msgid "editor"
+msgstr "редактор"
+
+msgid "effect"
+msgstr "эффект"
+
+msgid "eject"
+msgstr "извлечь"
+
+msgid "electronic"
+msgstr "электронные"
+
+msgid "element"
+msgstr "элемент"
+
+msgid "email"
+msgstr "электронная почта"
+
+msgid "embed"
+msgstr "встроенная"
+
+msgid "emoticon"
+msgstr "смайлик"
+
+msgid "empty"
+msgstr "пустой"
+
+msgid "emulate"
+msgstr "эмулировать"
+
+msgid "emulation"
+msgstr "эмуляция"
+
+msgid "emulator"
+msgstr "эмулятор"
+
+msgid "enable"
+msgstr "включить"
+
+msgid "enabled"
+msgstr "включен"
+
+msgid "encode"
+msgstr "кодировать"
+
+msgid "encoding"
+msgstr "кодирование"
+
+msgid "encrypt"
+msgstr "шифровать"
+
+msgid "encrypted"
+msgstr "зашифрован"
+
+msgid "encryption"
+msgstr "шифрование"
+
+msgid "engine"
+msgstr "движок"
+
+msgid "enhancement"
+msgstr "улучшение"
+
+msgid "enlarge"
+msgstr "увеличить"
+
+msgid "enlargement"
+msgstr "увеличение"
+
+msgid "enter"
+msgstr "введите"
+
+msgid "entertainment"
+msgstr "развлечение"
+
+msgid "entry"
+msgstr "запись"
+
+msgid "environment"
+msgstr "среда"
+
+msgid "equalizer"
+msgstr "эквалайзер"
+
+msgid "erase"
+msgstr "стереть"
+
+msgid "error"
+msgstr "ошибка"
+
+msgid "escape"
+msgstr "выход"
+
+msgid "evaluation"
+msgstr "пробный"
+
+msgid "event"
+msgstr "событие"
+
+msgid "exception"
+msgstr "исключение"
+
+msgid "executable"
+msgstr "исполняемый"
+
+msgid "execute"
+msgstr "выполнить"
+
+msgid "existing"
+msgstr "существовать, быть"
+
+msgid "exit"
+msgstr "выход"
+
+msgid "expand"
+msgstr "расширять"
+
+msgid "expansion"
+msgstr "расширение"
+
+msgid "explore"
+msgstr "поиск"
+
+msgid "export"
+msgstr "экспорт"
+
+msgid "expression"
+msgstr "выражение"
+
+msgid "extend"
+msgstr "расширить"
+
+msgid "extensible"
+msgstr "расширяемый"
+
+msgid "extension"
+msgstr "расширение"
+
+msgid "external"
+msgstr "внешние"
+
+msgid "extra"
+msgstr "дополнительные"
+
+msgid "extract"
+msgstr "распаковать"
+
+msgid "fail"
+msgstr "не удалось"
+
+msgid "fatal"
+msgstr "роковой"
+
+msgid "fault"
+msgstr "вина, ошибка"
+
+msgid "favorite"
+msgstr "фаворит"
+
+msgid "feature"
+msgstr "функция"
+
+msgid "feed"
+msgstr "канал"
+
+msgid "feedback"
+msgstr "отзывы"
+
+msgid "fetch"
+msgstr "забрать"
+
+msgid "field"
+msgstr "поле"
+
+msgid "figure"
+msgstr "рисунок"
+
+msgid "file"
+msgstr "файл"
+
+msgid "fill"
+msgstr "заполнить"
+
+msgid "filter"
+msgstr "фильтр"
+
+msgid "find"
+msgstr "найти"
+
+msgid "firewall"
+msgstr "брандмауэр"
+
+msgid "firmware"
+msgstr "прошивка"
+
+msgid "fit"
+msgstr "подходит"
+
+msgid "fix"
+msgstr "исправить"
+
+msgid "flag"
+msgstr "флаг"
+
+msgid "flash"
+msgstr "вспышка"
+
+msgid "flat"
+msgstr "плоский"
+
+msgid "flip"
+msgstr "перевернуть"
+
+msgid "float (verb)"
+msgstr "скользить"
+
+msgid "flood"
+msgstr "затопить"
+
+msgid "floppy"
+msgstr "дискета"
+
+msgid "folder"
+msgstr "папка"
+
+msgid "font"
+msgstr "шрифт"
+
+msgid "footer"
+msgstr "нижний колонтитул"
+
+msgid "form"
+msgstr "форма"
+
+msgid "format (noun)"
+msgstr "формат"
+
+msgid "format (verb)"
+msgstr "отформатировать"
+
+msgid "formatted"
+msgstr "отформатирован"
+
+msgid "formula"
+msgstr "формула"
+
+msgid "forum"
+msgstr "форум"
+
+msgid "fragment"
+msgstr "фрагмент"
+
+msgid "frame"
+msgstr "кадр"
+
+msgid "frame set"
+msgstr "набор кадров"
+
+msgid "framework"
+msgstr "фреймворк"
+
+msgid "free software"
+msgstr "свободное программное обеспечение"
+
+msgid "freeze"
+msgstr "заморозить"
+
+msgid "frequency"
+msgstr "частота"
+
+msgid "front end"
+msgstr "интерфейс"
+
+msgid "function"
+msgstr "функция"
+
+msgid "gallery"
+msgstr "галерея"
+
+msgid "game"
+msgstr "игра"
+
+msgid "gateway"
+msgstr "шлюз"
+
+msgid "generate"
+msgstr "генерировать"
+
+msgid "generation"
+msgstr "генерация"
+
+msgid "generator"
+msgstr "генератор"
+
+msgid "generic"
+msgstr "универсальный"
+
+msgid "geometric"
+msgstr "геометрические"
+
+msgid "geometry"
+msgstr "геометрия"
+
+msgid "grab"
+msgstr "захватить"
+
+msgid "gradient"
+msgstr "градиент"
+
+msgid "grain"
+msgstr "зерна"
+
+msgid "graph"
+msgstr "граф"
+
+msgid "graphic"
+msgstr "график"
+
+msgid "graphical"
+msgstr "графический"
+
+msgid "graphics"
+msgstr "графика"
+
+msgid "gray-scale"
+msgstr "полутоновой"
+
+msgid "grid"
+msgstr "сетка"
+
+msgid "group"
+msgstr "группа"
+
+msgid "guess"
+msgstr "предположение"
+
+msgid "guest"
+msgstr "гость"
+
+msgid "handle (noun)"
+msgstr "ручка"
+
+msgid "handle (verb)"
+msgstr "обрабатывать"
+
+msgid "handler"
+msgstr "обработчик"
+
+msgid "hardware"
+msgstr "оборудование"
+
+msgid "hash"
+msgstr "хэш"
+
+msgid "head"
+msgstr "глава"
+
+msgid "header"
+msgstr "заголовок"
+
+msgid "height"
+msgstr "высота"
+
+msgid "help"
+msgstr "помощь"
+
+msgid "hide"
+msgstr "скрыть"
+
+msgid "hierarchy"
+msgstr "иерархия"
+
+msgid "high light"
+msgstr "выделять"
+
+msgid "history"
+msgstr "история"
+
+msgid "host"
+msgstr "хост"
+
+msgid "hostname"
+msgstr "имя хоста"
+
+msgid "hyperlink"
+msgstr "ссылка"
+
+msgid "hypertext"
+msgstr "гипертекст"
+
+msgid "icon"
+msgstr "значок"
+
+msgid "identify"
+msgstr "идентифицировать"
+
+msgid "idle"
+msgstr "вхолостую"
+
+msgid "ignore"
+msgstr "игнорировать"
+
+msgid "image"
+msgstr "изображение"
+
+msgid "implement"
+msgstr "имплементировать"
+
+msgid "import"
+msgstr "импортировать"
+
+msgid "inactive"
+msgstr "неактивный"
+
+msgid "inbox"
+msgstr "почтовый ящик"
+
+msgid "inch"
+msgstr "дюйм"
+
+msgid "include"
+msgstr "включить"
+
+msgid "incoming"
+msgstr "входящие"
+
+msgid "incompatible"
+msgstr "несовместимые"
+
+msgid "increase"
+msgstr "увеличение"
+
+msgid "increment"
+msgstr "инкремент"
+
+msgid "indent"
+msgstr "отступ"
+
+msgid "index"
+msgstr "индекс"
+
+msgid "indice"
+msgstr "индексы"
+
+msgid "infect"
+msgstr "заразить"
+
+msgid "infinite"
+msgstr "бесконечное"
+
+msgid "information"
+msgstr "информация"
+
+msgid "infrared"
+msgstr "инфракрасный"
+
+msgid "initial"
+msgstr "инициалы"
+
+msgid "initialize"
+msgstr "инициализировать"
+
+msgid "input"
+msgstr "ввод"
+
+msgid "insert"
+msgstr "вставить"
+
+msgid "install"
+msgstr "установить"
+
+msgid "installer"
+msgstr "установщик"
+
+msgid "instance"
+msgstr "инстанция"
+
+msgid "instruction"
+msgstr "инструкция"
+
+msgid "integer"
+msgstr "целое число"
+
+msgid "integral"
+msgstr "интеграл"
+
+msgid "integrate"
+msgstr "интегрировать"
+
+msgid "integration"
+msgstr "интеграция"
+
+msgid "integrity"
+msgstr "целостность"
+
+msgid "intensity"
+msgstr "интенсивность"
+
+msgid "interactivity"
+msgstr "интерактивность"
+
+msgid "interface"
+msgstr "интерфейс"
+
+msgid "internal"
+msgstr "внутренний"
+
+msgid "internet"
+msgstr "интернет"
+
+msgid "interrupt"
+msgstr "прервать"
+
+msgid "invalid"
+msgstr "инвалид"
+
+msgid "inverse"
+msgstr "наоборот"
+
+msgid "invert"
+msgstr "инвертировать"
+
+msgid "invoke"
+msgstr "запускать"
+
+msgid "italic"
+msgstr "курсивный"
+
+msgid "item"
+msgstr "пункт"
+
+msgid "iteration"
+msgstr "итерация"
+
+msgid "jag"
+msgstr "зубец"
+
+msgid "jam"
+msgstr "затор"
+
+msgid "job"
+msgstr "работа"
+
+msgid "join"
+msgstr "присоединиться"
+
+msgid "joy stick"
+msgstr "джойстик"
+
+msgid "jump"
+msgstr "прыгать"
+
+msgid "junk"
+msgstr "хлам"
+
+msgid "justify"
+msgstr "обосновывать"
+
+msgid "keep"
+msgstr "хранить"
+
+msgid "kernel"
+msgstr "ядро"
+
+msgid "key"
+msgstr "кнопка"
+
+msgid "keyboard"
+msgstr "клавиатура"
+
+msgid "key stroke"
+msgstr "нажатие клавиши"
+
+msgid "key word"
+msgstr "ключевое слово"
+
+msgid "label"
+msgstr "метка"
+
+msgid "landscape"
+msgstr "ландшафт"
+
+msgid "language"
+msgstr "язык"
+
+msgid "laptop"
+msgstr "ноутбук"
+
+msgid "launch"
+msgstr "запуск"
+
+msgid "layer"
+msgstr "слой"
+
+msgid "layout"
+msgstr "расположение"
+
+msgid "length"
+msgstr "длина"
+
+msgid "license"
+msgstr "лицензия"
+
+msgid "line"
+msgstr "линия"
+
+msgid "link"
+msgstr "ссылка"
+
+msgid "list"
+msgstr "список"
+
+msgid "load"
+msgstr "загрузить"
+
+msgid "local"
+msgstr "локально"
+
+msgid "localization"
+msgstr "локализация"
+
+msgid "location"
+msgstr "место"
+
+msgid "log"
+msgstr "журнал"
+
+msgid "lookup"
+msgstr "искать"
+
+msgid "lower-case"
+msgstr "нижний регистр"
+
+msgid "machine"
+msgstr "машина"
+
+msgid "main board"
+msgstr "материнская плата"
+
+msgid "maintainer"
+msgstr "мэйнтейнер"
+
+msgid "maintenance"
+msgstr "обслуживание"
+
+msgid "manage"
+msgstr "управлять"
+
+msgid "management"
+msgstr "управление"
+
+msgid "manager"
+msgstr "менеджер"
+
+msgid "manual"
+msgstr "руководство"
+
+msgid "margin"
+msgstr "край, поле"
+
+msgid "mark"
+msgstr "выделить"
+
+msgid "master"
+msgstr "мастер"
+
+msgid "match"
+msgstr "совпадают"
+
+msgid "maximize"
+msgstr "развернуть"
+
+msgid "memory"
+msgstr "память"
+
+msgid "menu"
+msgstr "меню"
+
+msgid "merge"
+msgstr "объединить"
+
+msgid "message"
+msgstr "сообщение"
+
+msgid "method"
+msgstr "способ"
+
+msgid "minimize"
+msgstr "минимизировать"
+
+msgid "mode"
+msgstr "режим"
+
+msgid "modem"
+msgstr "модем"
+
+msgid "moderator"
+msgstr "модератор"
+
+msgid "modify"
+msgstr "изменить"
+
+msgid "module"
+msgstr "модуль"
+
+msgid "monitor"
+msgstr "монитор"
+
+msgid "mosaic"
+msgstr "мозайка"
+
+msgid "motion"
+msgstr "движения"
+
+msgid "mouse"
+msgstr "мышь"
+
+msgid "move"
+msgstr "двигать"
+
+msgid "multimedia"
+msgstr "мультимедийный"
+
+msgid "multitasking"
+msgstr "многозадачность"
+
+msgid "name"
+msgstr "имя"
+
+msgid "navigation"
+msgstr "навигация"
+
+msgid "navigator"
+msgstr "навигатор"
+
+msgid "network"
+msgstr "сеть"
+
+msgid "news group"
+msgstr "новостная группа"
+
+msgid "next"
+msgstr "далее"
+
+msgid "nick name"
+msgstr "прозвище"
+
+msgid "no"
+msgstr "нет"
+
+msgid "node"
+msgstr "узел"
+
+msgid "notation"
+msgstr "нотация"
+
+msgid "note"
+msgstr "заметка"
+
+msgid "notebook"
+msgstr "ноутбук"
+
+msgid "notification"
+msgstr "уведомление"
+
+msgid "notify"
+msgstr "уведомить"
+
+msgid "null"
+msgstr "нуль"
+
+msgid "number"
+msgstr "число"
+
+msgid "numbering"
+msgstr "нумерация"
+
+msgid "object"
+msgstr "объект"
+
+msgid "occurrence"
+msgstr "возникновение"
+
+msgid "octet"
+msgstr "октет"
+
+msgid "offline"
+msgstr "оффлайновый"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "online"
+msgstr "онлайн"
+
+msgid "ongoing"
+msgstr "постоянно"
+
+msgid "opacity"
+msgstr "прозрачность"
+
+msgid "opaque"
+msgstr "непрозрачный"
+
+msgid "open"
+msgstr "открыть"
+
+msgid "operation"
+msgstr "операция"
+
+msgid "option"
+msgstr "опция"
+
+msgid "optional"
+msgstr "необязательно"
+
+msgid "order"
+msgstr "порядок"
+
+msgid "organize"
+msgstr "организовать"
+
+msgid "orientation"
+msgstr "ориентация"
+
+msgid "original"
+msgstr "оригинал"
+
+msgid "outgoing"
+msgstr "исходящие"
+
+msgid "output"
+msgstr "выход"
+
+msgid "overflow"
+msgstr "переполнение"
+
+msgid "override"
+msgstr "переопределение"
+
+msgid "overwrite"
+msgstr "перезапись"
+
+msgid "owner"
+msgstr "владелец"
+
+msgid "pack"
+msgstr "упаковать"
+
+msgid "package"
+msgstr "пакет"
+
+msgid "packet"
+msgstr "пакет"
+
+msgid "padding"
+msgstr "набивка, расстояние до края"
+
+msgid "page"
+msgstr "страница"
+
+msgid "paint"
+msgstr "краска"
+
+msgid "pair"
+msgstr "пара"
+
+msgid "palette"
+msgstr "палитра"
+
+msgid "panel"
+msgstr "панель"
+
+msgid "parallel"
+msgstr "параллельные"
+
+msgid "parameter"
+msgstr "параметр"
+
+msgid "parcel"
+msgstr "посылка, пакет"
+
+msgid "parent"
+msgstr "предшественник"
+
+msgid "parity"
+msgstr "паритет"
+
+msgid "parse"
+msgstr "разбор"
+
+msgid "partition"
+msgstr "раздел"
+
+msgid "pass"
+msgstr "пройти"
+
+msgid "password"
+msgstr "пароль"
+
+msgid "paste"
+msgstr "вставить"
+
+msgid "patch (noun)"
+msgstr "патч"
+
+msgid "patch (verb)"
+msgstr "латать, патчить"
+
+msgid "path"
+msgstr "путь"
+
+msgid "pattern"
+msgstr "шаблон"
+
+msgid "pause"
+msgstr "пауза"
+
+msgid "peripheral"
+msgstr "периферийные устройства"
+
+msgid "permanent"
+msgstr "постоянный"
+
+msgid "permission"
+msgstr "права"
+
+msgid "permutation"
+msgstr "перестановка"
+
+msgid "physical"
+msgstr "физические"
+
+msgid "picture"
+msgstr "картинка"
+
+msgid "pipe"
+msgstr "перенаправление, труба"
+
+msgid "pixel"
+msgstr "пиксель"
+
+msgid "placement"
+msgstr "размещение"
+
+msgid "plain"
+msgstr "просто"
+
+msgid "plot (verb)"
+msgstr "чертить"
+
+msgid "plotter"
+msgstr "плоттер"
+
+msgid "plugin"
+msgstr "плагин"
+
+msgid "pop up"
+msgstr "всплывающий"
+
+msgid "port"
+msgstr "порт"
+
+msgid "position"
+msgstr "положение"
+
+msgid "post"
+msgstr "опубликовать"
+
+msgid "preferences"
+msgstr "предпочтения"
+
+msgid "prepare"
+msgstr "подготовить"
+
+msgid "presentation"
+msgstr "презентация"
+
+msgid "press"
+msgstr "нажмите"
+
+msgid "prevent"
+msgstr "предотвратить"
+
+msgid "preview"
+msgstr "предварительный просмотр"
+
+msgid "primary"
+msgstr "основной"
+
+msgid "principal"
+msgstr "заказчик"
+
+msgid "print"
+msgstr "печать"
+
+msgid "printer"
+msgstr "принтер"
+
+msgid "priority"
+msgstr "приоритет"
+
+msgid "privacy"
+msgstr "конфиденциальность"
+
+msgid "private"
+msgstr "частная"
+
+msgid "privilege"
+msgstr "привилегия"
+
+msgid "procedure"
+msgstr "процедура"
+
+msgid "process"
+msgstr "процесс"
+
+msgid "processor"
+msgstr "процессор"
+
+msgid "product"
+msgstr "продукт"
+
+msgid "profile"
+msgstr "профиль"
+
+msgid "program"
+msgstr "программа"
+
+msgid "programmer"
+msgstr "программист"
+
+msgid "project"
+msgstr "проект"
+
+msgid "prompt"
+msgstr "коммандная строка"
+
+msgid "property"
+msgstr "свойство"
+
+msgid "proprietary"
+msgstr "проприетарный"
+
+msgid "protect"
+msgstr "защитить"
+
+msgid "protection"
+msgstr "защита"
+
+msgid "protocol"
+msgstr "протокол"
+
+msgid "provide"
+msgstr "предоставить"
+
+msgid "provider"
+msgstr "провайдер"
+
+msgid "proxy"
+msgstr "прокси"
+
+msgid "public"
+msgstr "публично"
+
+msgid "publish"
+msgstr "опубликовать"
+
+msgid "pull"
+msgstr "тянуть"
+
+msgid "push"
+msgstr "толкать"
+
+msgid "quality"
+msgstr "качество"
+
+msgid "quantity"
+msgstr "количество"
+
+msgid "quarantine"
+msgstr "карантин"
+
+msgid "query"
+msgstr "запрос"
+
+msgid "queue"
+msgstr "очередь"
+
+msgid "quit"
+msgstr "закончить"
+
+msgid "quota"
+msgstr "квота"
+
+msgid "quotation"
+msgstr "цитата"
+
+msgid "quote"
+msgstr "цитата"
+
+msgid "raise"
+msgstr "увеличение"
+
+msgid "random"
+msgstr "случайный"
+
+msgid "range"
+msgstr "диапазон"
+
+msgid "rate"
+msgstr "темп"
+
+msgid "ratio"
+msgstr "соотношение"
+
+msgid "raw"
+msgstr "сырье"
+
+msgid "ray"
+msgstr "луч"
+
+msgid "read"
+msgstr "читать"
+
+msgid "read only"
+msgstr "только для чтения"
+
+msgid "ready"
+msgstr "готов"
+
+msgid "real"
+msgstr "реал"
+
+msgid "reboot"
+msgstr "перезагрузить"
+
+msgid "receipt"
+msgstr "квитанция"
+
+msgid "receive"
+msgstr "получать"
+
+msgid "recognition"
+msgstr "распознавание"
+
+msgid "reconnect"
+msgstr "заново соединить"
+
+msgid "record"
+msgstr "запись"
+
+msgid "record (verb)"
+msgstr "запись"
+
+msgid "recover"
+msgstr "восстановить"
+
+msgid "recovery"
+msgstr "восстановление"
+
+msgid "recursion"
+msgstr "рекурсия"
+
+msgid "recursive"
+msgstr "рекурсивный"
+
+msgid "redirect"
+msgstr "перенаправить"
+
+msgid "redo"
+msgstr "переделывать"
+
+msgid "reduce"
+msgstr "уменьшить"
+
+msgid "reduction"
+msgstr "сокращение"
+
+msgid "redundant"
+msgstr "с резервированием"
+
+msgid "reference"
+msgstr "сноска"
+
+msgid "referer"
+msgstr "реферер"
+
+msgid "referral"
+msgstr "реферал"
+
+msgid "reflexive"
+msgstr "рефлексивный"
+
+msgid "refresh"
+msgstr "обновить"
+
+msgid "refuse"
+msgstr "отказать"
+
+msgid "regenerate"
+msgstr "регенерировать"
+
+msgid "register"
+msgstr "зарегистрироваться"
+
+msgid "registration"
+msgstr "регистрация"
+
+msgid "registry"
+msgstr "реестр"
+
+msgid "regular"
+msgstr "регулярные"
+
+msgid "regulate"
+msgstr "регулировать"
+
+msgid "relay"
+msgstr "реле"
+
+msgid "release"
+msgstr "релиз"
+
+msgid "remaining"
+msgstr "оставшийся"
+
+msgid "remind"
+msgstr "напомнить"
+
+msgid "remote"
+msgstr "дистанционное"
+
+msgid "removable"
+msgstr "съемный"
+
+msgid "remove"
+msgstr "удалить"
+
+msgid "rename"
+msgstr "переименовать"
+
+msgid "render"
+msgstr "рендеринг"
+
+msgid "renew"
+msgstr "возобновить"
+
+msgid "repair"
+msgstr "ремонт"
+
+msgid "repeat"
+msgstr "повторить"
+
+msgid "replace"
+msgstr "заменить"
+
+msgid "replicate"
+msgstr "делать реплику"
+
+msgid "replication"
+msgstr "репликация"
+
+msgid "reply"
+msgstr "ответ"
+
+msgid "report"
+msgstr "отчет"
+
+msgid "repository"
+msgstr "репозиторий"
+
+msgid "request"
+msgstr "запрос"
+
+msgid "require"
+msgstr "требует"
+
+msgid "requirement"
+msgstr "требование"
+
+msgid "reset"
+msgstr "сброс"
+
+msgid "resize"
+msgstr "масштабировать"
+
+msgid "resolution"
+msgstr "разрешение"
+
+msgid "resolver"
+msgstr "резольвер"
+
+msgid "resource"
+msgstr "ресурс"
+
+msgid "response"
+msgstr "ответ"
+
+msgid "restart"
+msgstr "перезагрузка"
+
+msgid "restore"
+msgstr "восстановить"
+
+msgid "restrict"
+msgstr "ограничить"
+
+msgid "restriction"
+msgstr "ограничение"
+
+msgid "result"
+msgstr "результат"
+
+msgid "resume"
+msgstr "возобновить"
+
+msgid "retrieve"
+msgstr "получить"
+
+msgid "retry"
+msgstr "повторить"
+
+msgid "return"
+msgstr "вернуться"
+
+msgid "reverse"
+msgstr "реверсировать"
+
+msgid "revert"
+msgstr "вернуться"
+
+msgid "revocation"
+msgstr "отзыв"
+
+msgid "revoke"
+msgstr "аннулировать"
+
+msgid "root"
+msgstr "корень"
+
+msgid "rotate"
+msgstr "повернуть"
+
+msgid "route"
+msgstr "маршрут"
+
+msgid "router"
+msgstr "маршрутизатор"
+
+msgid "routine"
+msgstr "рутина"
+
+msgid "row"
+msgstr "строка"
+
+msgid "rule"
+msgstr "правило"
+
+msgid "run"
+msgstr "запустить"
+
+msgid "runtime"
+msgstr "во время выполнения"
+
+msgid "safe"
+msgstr "безопасно"
+
+msgid "sample"
+msgstr "образец"
+
+msgid "sans"
+msgstr "без"
+
+msgid "save"
+msgstr "сохранить"
+
+msgid "scalable"
+msgstr "масштабируемые"
+
+msgid "scale"
+msgstr "масштабировать"
+
+msgid "scan"
+msgstr "сканирование"
+
+msgid "scanner"
+msgstr "сканер"
+
+msgid "schedule"
+msgstr "расписание"
+
+msgid "scheme"
+msgstr "схема"
+
+msgid "scratch"
+msgstr "с нуля"
+
+msgid "screen"
+msgstr "экран"
+
+msgid "screw"
+msgstr "винт"
+
+msgid "script"
+msgstr "сценарий"
+
+msgid "scroll"
+msgstr "прокрутка"
+
+msgid "search"
+msgstr "поиск"
+
+msgid "section"
+msgstr "раздел"
+
+msgid "sector"
+msgstr "сектор"
+
+msgid "secure"
+msgstr "безопасно"
+
+msgid "security"
+msgstr "безопасность"
+
+msgid "seek"
+msgstr "искать"
+
+msgid "segment"
+msgstr "сегмент"
+
+msgid "segmentation"
+msgstr "сегментация"
+
+msgid "select"
+msgstr "выбрать"
+
+msgid "selection"
+msgstr "выбор"
+
+msgid "semantic"
+msgstr "семантика"
+
+msgid "send"
+msgstr "отправить"
+
+msgid "sender"
+msgstr "отправитель"
+
+msgid "sensitive"
+msgstr "чувствительный"
+
+msgid "sensor"
+msgstr "датчик"
+
+msgid "serif"
+msgstr "шрифт с засечками"
+
+msgid "server"
+msgstr "сервер"
+
+msgid "session"
+msgstr "сессия"
+
+msgid "set"
+msgstr "сет"
+
+msgid "settings"
+msgstr "параметры"
+
+msgid "setup"
+msgstr "установки"
+
+msgid "shading"
+msgstr "затенение"
+
+msgid "shadow"
+msgstr "тень"
+
+msgid "shape"
+msgstr "форма"
+
+msgid "share"
+msgstr "поделиться"
+
+msgid "sharp"
+msgstr "острый"
+
+msgid "sheet"
+msgstr "лист"
+
+msgid "shell"
+msgstr "оболочка"
+
+msgid "shift"
+msgstr "shift"
+
+msgid "shortcut"
+msgstr "горячие клавиши"
+
+msgid "show"
+msgstr "показать"
+
+msgid "shrink"
+msgstr "уменьшить"
+
+msgid "shut down"
+msgstr "выключение"
+
+msgid "side bar"
+msgstr "боковая панель"
+
+msgid "sign"
+msgstr "подписать"
+
+msgid "signal"
+msgstr "сигнал"
+
+msgid "signature"
+msgstr "подпись"
+
+msgid "site"
+msgstr "сайт"
+
+msgid "size"
+msgstr "размер"
+
+msgid "skew"
+msgstr "наклон"
+
+msgid "skip"
+msgstr "пропустить"
+
+msgid "slave"
+msgstr "раб"
+
+msgid "sleep"
+msgstr "ждать"
+
+msgid "slide"
+msgstr "слайд"
+
+msgid "slot"
+msgstr "слот"
+
+msgid "smart"
+msgstr "умный"
+
+msgid "smiley"
+msgstr "смайл"
+
+msgid "smooth"
+msgstr "плавный"
+
+msgid "socket"
+msgstr "сокет"
+
+msgid "software"
+msgstr "программное обеспечение"
+
+msgid "solid"
+msgstr "твердые"
+
+msgid "sort"
+msgstr "сортировать"
+
+msgid "source"
+msgstr "источник"
+
+msgid "space"
+msgstr "пробел"
+
+msgid "spacing"
+msgstr "зазоры"
+
+msgid "spam"
+msgstr "спам"
+
+msgid "span"
+msgstr "пролет"
+
+msgid "spawn"
+msgstr "вызвать"
+
+msgid "specify"
+msgstr "указать"
+
+msgid "speed"
+msgstr "скорость"
+
+msgid "spelling"
+msgstr "правописание"
+
+msgid "splash"
+msgstr "заставка"
+
+msgid "split"
+msgstr "разбивать"
+
+msgid "spool"
+msgstr "буферные"
+
+msgid "spread sheet"
+msgstr "таблицы"
+
+msgid "stack"
+msgstr "стек"
+
+msgid "stand alone"
+msgstr "одинок"
+
+msgid "standard"
+msgstr "стандарт"
+
+msgid "start"
+msgstr "начать"
+
+msgid "state"
+msgstr "состояние, статус"
+
+msgid "static"
+msgstr "статический"
+
+msgid "statistics"
+msgstr "статистика"
+
+msgid "step"
+msgstr "шаг"
+
+msgid "stop"
+msgstr "остановка"
+
+msgid "storage"
+msgstr "хранилище"
+
+msgid "store"
+msgstr "склад, магазин"
+
+msgid "stream"
+msgstr "поток"
+
+msgid "stretch"
+msgstr "стрейч"
+
+msgid "strict"
+msgstr "строгий"
+
+msgid "string"
+msgstr "строка"
+
+msgid "strip"
+msgstr "полоса"
+
+msgid "stroke"
+msgstr "ход, удар"
+
+msgid "structure"
+msgstr "структура"
+
+msgid "stub"
+msgstr "тупиковый"
+
+msgid "style"
+msgstr "стиль"
+
+msgid "sub directory"
+msgstr "подкаталог"
+
+msgid "sub folder"
+msgstr "вложенные папки"
+
+msgid "submission"
+msgstr "отправка"
+
+msgid "submit"
+msgstr "отправить"
+
+msgid "subscribe"
+msgstr "подписаться"
+
+msgid "subscription"
+msgstr "подписка"
+
+msgid "subtract"
+msgstr "вычитать"
+
+msgid "succeed"
+msgstr "иметь успех"
+
+msgid "suggest"
+msgstr "предложить"
+
+msgid "suggestion"
+msgstr "предложение"
+
+msgid "sum (noun)"
+msgstr "сумма"
+
+msgid "sum (verb)"
+msgstr "складывать"
+
+msgid "summary"
+msgstr "сводка"
+
+msgid "support"
+msgstr "поддержка"
+
+msgid "surface"
+msgstr "поверхность"
+
+msgid "suspend"
+msgstr "приостановить"
+
+msgid "suspicious"
+msgstr "подозрительно"
+
+msgid "swap"
+msgstr "своп"
+
+msgid "switch"
+msgstr "переключатель, коммутатор"
+
+msgid "symbol"
+msgstr "символ"
+
+msgid "synchronize"
+msgstr "синхронизировать"
+
+msgid "syntax"
+msgstr "синтаксис"
+
+msgid "system"
+msgstr "система"
+
+msgid "tab"
+msgstr "вкладка"
+
+msgid "table"
+msgstr "таблица"
+
+msgid "tag"
+msgstr "тег"
+
+msgid "target"
+msgstr "цель"
+
+msgid "template"
+msgstr "шаблон"
+
+msgid "temporary"
+msgstr "временное"
+
+msgid "terminal"
+msgstr "терминал"
+
+msgid "test"
+msgstr "тест"
+
+msgid "text"
+msgstr "текст"
+
+msgid "texture"
+msgstr "текстура"
+
+msgid "theme"
+msgstr "тема"
+
+msgid "thread"
+msgstr "поток"
+
+msgid "thumbnail"
+msgstr "миниатюра"
+
+msgid "tick"
+msgstr "отметить"
+
+msgid "tile"
+msgstr "плитка"
+
+msgid "time"
+msgstr "время"
+
+msgid "time out"
+msgstr "тайм-аут"
+
+msgid "tip"
+msgstr "совет"
+
+msgid "title"
+msgstr "название"
+
+msgid "toggle"
+msgstr "тумблер"
+
+msgid "token"
+msgstr "маркер"
+
+msgid "tool"
+msgstr "инструмент"
+
+msgid "tool bar"
+msgstr "панель инструментов"
+
+msgid "tool box"
+msgstr "ящик для инструмента"
+
+msgid "topic"
+msgstr "тема"
+
+msgid "trace"
+msgstr "след"
+
+msgid "track"
+msgstr "трек"
+
+msgid "traffic"
+msgstr "трафик"
+
+msgid "transfer"
+msgstr "трансфер"
+
+msgid "transform"
+msgstr "преобразование"
+
+msgid "transformation"
+msgstr "трансформация"
+
+msgid "trap"
+msgstr "ловушка"
+
+msgid "trash"
+msgstr "мусорное ведро"
+
+msgid "trigger"
+msgstr "триггер"
+
+msgid "trouble shoot"
+msgstr "устранение неполадок"
+
+msgid "tune"
+msgstr "налаживать"
+
+msgid "tweak"
+msgstr "твик"
+
+msgid "type (noun)"
+msgstr "печать"
+
+msgid "type (verb)"
+msgstr "печатать"
+
+msgid "type face"
+msgstr "гарнитура"
+
+msgid "unavailable"
+msgstr "недоступен"
+
+msgid "undelete"
+msgstr "восстановить"
+
+msgid "under line"
+msgstr "подчеркивание, подчеркивать"
+
+msgid "undo"
+msgstr "отменить"
+
+msgid "uninstall"
+msgstr "деинсталляция"
+
+msgid "unit"
+msgstr "блок, часть, единица измерения"
+
+msgid "unknown"
+msgstr "неизвестно"
+
+msgid "unload"
+msgstr "выгрузить"
+
+msgid "named"
+msgstr "назван"
+
+msgid "reachable"
+msgstr "доступен"
+
+msgid "readable"
+msgstr "читабельно"
+
+msgid "unspecified"
+msgstr "неуказанные"
+
+msgid "unsubscribe"
+msgstr "отписать"
+
+msgid "unsupported"
+msgstr "не поддерживается"
+
+msgid "update"
+msgstr "обновление"
+
+msgid "upgrade"
+msgstr "обновление"
+
+msgid "upload"
+msgstr "загрузить"
+
+msgid "upper case"
+msgstr "верхний регистр"
+
+msgid "usage"
+msgstr "использование"
+
+msgid "user"
+msgstr "пользователь"
+
+msgid "user name"
+msgstr "имя пользователя"
+
+msgid "utility"
+msgstr "утилита"
+
+msgid "valid"
+msgstr "действует"
+
+msgid "validation"
+msgstr "проверка"
+
+msgid "validity"
+msgstr "действительность"
+
+msgid "value"
+msgstr "значение"
+
+msgid "variable"
+msgstr "переменная"
+
+msgid "vector"
+msgstr "вектор"
+
+msgid "verbose"
+msgstr "подробные"
+
+msgid "verify"
+msgstr "проверить"
+
+msgid "version"
+msgstr "версия"
+
+msgid "video"
+msgstr "видео"
+
+msgid "view"
+msgstr "вид"
+
+msgid "viewer"
+msgstr "простотрщик"
+
+msgid "virtual"
+msgstr "виртуальный"
+
+msgid "virus"
+msgstr "вирус"
+
+msgid "visual"
+msgstr "визуальный"
+
+msgid "volume"
+msgstr "громкость"
+
+msgid "wallpaper"
+msgstr "обои"
+
+msgid "warn"
+msgstr "предупредить"
+
+msgid "web"
+msgstr "веб"
+
+msgid "web cam"
+msgstr "веб-камера"
+
+msgid "web master"
+msgstr "веб-мастер"
+
+msgid "web page"
+msgstr "веб-страница"
+
+msgid "widget"
+msgstr "виджет"
+
+msgid "width"
+msgstr "ширина"
+
+msgid "wi fi"
+msgstr "wi fi"
+
+msgid "wild card"
+msgstr "символ подстановки"
+
+msgid "window"
+msgstr "окно"
+
+msgid "wizard"
+msgstr "маг"
+
+msgid "word processor"
+msgstr "текстовый процессор"
+
+msgid "work around"
+msgstr "обходной путь, обойти"
+
+msgid "work group"
+msgstr "рабочая группа"
+
+msgid "work station"
+msgstr "рабочая станция"
+
+msgid "wrap"
+msgstr "обертка"
+
+msgid "yes"
+msgstr "да"
+
+msgid "zone"
+msgstr "зона"
+
+msgid "zoom"
+msgstr "зум"
