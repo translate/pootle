@@ -125,15 +125,13 @@ Use :command:`pip` to install Pootle into the virtual environment:
 .. highlight:: console
 .. parsed-literal::
 
-  (env) $ pip install |--process-dependency-links --pre| Pootle
+  (env) $ pip install --pre Pootle
 
 
 This will also fetch and install Pootle's dependencies.
 
 .. note:: pip requires :ref:`--pre <pip:install_--pre>` to install pre-release
-   versions of Pootle, i.e. alpha, beta and rc versions. You may require
-   :ref:`--process-dependency-links <pip:--process-dependency-links>` if Pootle
-   depends on unreleased versions of third-party software.
+   versions of Pootle, i.e. alpha, beta and rc versions.
 
 To verify that everything installed correctly, you should be able to access the
 :command:`pootle` command line tool within your environment.
