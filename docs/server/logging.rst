@@ -47,7 +47,7 @@ Current action types are as follows:
 +----------+--------------+-------------------------------------------------+
 |  UO      | Unit         | An existing unit was made obsolete              |
 +----------+--------------+-------------------------------------------------+
-|  UR      | Unit         | An obsolete unit was resurected i.e. reinstated |
+|  UR      | Unit         | An obsolete unit was resurrected i.e. reinstated|
 +----------+--------------+-------------------------------------------------+
 |  UD      | Unit         | An existing unit was deleted                    |
 +----------+--------------+-------------------------------------------------+

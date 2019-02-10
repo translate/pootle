@@ -35,7 +35,7 @@ The advantage of this monodirectional mode is that you can add scripts to adapt
 files after synchronising or before loading into Pootle.  Your scripts changing
 files on disk will likely mess with direct Pootle FS change detection.
 
-You may want to look at the format adaptors for future massaging or formats.
+You may want to look at the format adapters for future massaging or formats.
 
 
 .. _migrate_to_pootle_fs#replacing-update_stores-and-sync_stores:

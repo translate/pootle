@@ -63,8 +63,8 @@ The final step is to synchronise Pootle and your filesystem. This operation
 takes your staged actions and executes them.
 
 
-What is a filesystem
---------------------
+What is a filesystem ?
+----------------------
 
 A filesystem is actually itself a Pootle FS plugin. Currently two exist:
 

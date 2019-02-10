@@ -169,7 +169,7 @@ recalculate only the ``date_format`` quality checks, run:
 
     (env) $ pootle calculate_checks --check=date_format
 
-Multiple checks can be specifed in one run as well:
+Multiple checks can be specified in one run as well:
 
 .. code-block:: console
 
@@ -825,7 +825,7 @@ Download a file for offline translation.
    purpose is to test the operation of downloads from the command line.
 
 A file or a .zip of files is provided as output.  The file headers include a
-revision counter to assist Pootle to detetmine how to handle subsequent uploads
+revision counter to assist Pootle to determine how to handle subsequent uploads
 of the file.
 
 Available options:
@@ -908,7 +908,7 @@ Available options:
 
   .. versionadded:: 2.7.1
 
-  The database name or path to database file if you are using sqlite.
+  The database name or path to database file if you are using SQLite.
 
   Default for sqlite: ``dbs/pootle.db``.
   Default for mysql/postgresql: ``pootledb``.
@@ -917,7 +917,7 @@ Available options:
 
   .. versionadded:: 2.7.1
 
-  Name of the database user. Not used with sqlite.
+  Name of the database user. Not used with SQLite.
 
   Default: ``pootle``.
 
@@ -925,7 +925,7 @@ Available options:
 
   .. versionadded:: 2.7.1
 
-  Database host to connect to. Not used with sqlite.
+  Database host to connect to. Not used with SQLite.
 
   Default: ``localhost``.
 
@@ -934,7 +934,7 @@ Available options:
   .. versionadded:: 2.7.1
 
   Port to connect to database on. Defaults to database backend's default port.
-  Not used with sqlite.
+  Not used with SQLite.
 
 .. django-admin-option:: --dev
 
@@ -1420,8 +1420,8 @@ Running WSGI servers
 --------------------
 
 There are multiple ways to run Pootle, and some of them rely on running WSGI
-servers that can be reverse proxied to a proper HTTP web server such as nginx
-or lighttpd.
+servers that can be reverse proxied to a proper HTTP web server such as Nginx
+or :ighttpd.
 
 There are many more options such as `uWSGI
 <https://uwsgi-docs.readthedocs.io/en/latest/WSGIquickstart.html>`_, `Gunicorn

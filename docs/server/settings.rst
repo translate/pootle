@@ -66,7 +66,7 @@ This file contains base configuration settings.
   .. versionadded:: 2.8
 
   Some migrations have been optimized by using SQL directly and bypassing
-  the Django ORM (Currently only for mysql migrations).
+  the Django ORM (Currently only for MySQL migrations).
 
   This could cause problems if, for example, you have developed custom models with
   foreign keys to Pootle models.
@@ -331,7 +331,7 @@ Configuration settings for applications used by Pootle.
 
   The default score is based on the wordcount of the source text.  The values
   of the various parameters are used as a multiplier to arrive at the score
-  atributed to the translators and reviewers.
+  attributed to the translators and reviewers.
 
   Thus::
 
@@ -401,7 +401,7 @@ Translation environment configuration settings.
   .. versionchanged:: 2.7
 
   On POSIX systems, files synchronized to disk will be assigned this
-  permission.  Use ``0o644`` for publically-readable files or ``0o600`` if you
+  permission.  Use ``0o644`` for publicly-readable files or ``0o600`` if you
   want only the Pootle user to be able to read them.
 
 
