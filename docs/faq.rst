@@ -51,9 +51,8 @@ locale.Error: unsupported locale setting
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Pootle assumes that you have the ``en_US.utf8`` locale installed on your
-server.  If for some reason your server does not include this (you're not
-American or you are using a very minimal server) then you need to install that
-locale.
+server.  If for some reason your server does not include this (viz. on minimal
+server installs) then you need to install that locale.
 
 On a Debian based server simply run:
 
@@ -89,7 +88,7 @@ size or shape of the database, available system resources, the database
 configuration and the activity on the site.
 
 What is helpful to be aware of is that Pootle does work on a file level.  So
-really large translation files might become unwealdy to process, and queries to
+really large translation files might become unwieldy to process, and queries to
 find untranslated units in the file may take longer then expected.
 
 Our general advice is to keep related translations in the same file and this
