@@ -29,7 +29,7 @@ plugin. For example for Git:
   .. highlight:: console
   .. parsed-literal::
 
-    (env) $ pip install |--process-dependency-links --pre| Pootle[git]
+    (env) $ pip install --pre Pootle[git]
 
 
 - Add the plugin to :setting:`INSTALLED_APPS` in your custom Pootle settings:

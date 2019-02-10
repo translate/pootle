@@ -143,7 +143,7 @@ Upgrade to the latest Pootle version:
 .. highlight:: console
 .. parsed-literal::
 
-   (env) $ pip install |--process-dependency-links --pre| --upgrade Pootle
+   (env) $ pip install --pre --upgrade Pootle
 
 
 .. _upgrading#check-settings:

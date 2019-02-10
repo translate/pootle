@@ -32,7 +32,7 @@ As the ``postgres`` user you must create a database and database user:
 System software requirements
 ----------------------------
 
-In addition to the 
+In addition to the
 :ref:`system packages <requirements#packages>` set out in the general
 installation requirements you will also require the PostgreSQL client
 development headers in order to build the Python bindings, e.g. on Debian
@@ -57,7 +57,7 @@ You can do so as follows:
 .. highlight:: console
 .. parsed-literal::
 
-  (env) $ pip install |--process-dependency-links --pre| Pootle[postgresql]
+  (env) $ pip install --pre Pootle[postgresql]
 
 
 .. _postgresql_installation#init-config:
