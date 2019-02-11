@@ -91,9 +91,9 @@ use the commands in the next note block.
    folder which may not allow access in all circumstances. By downloading the
    packages to a folder with no special permissions and building and installing
    them from there we can circumvent these problems:
-    
+
    .. code-block:: console
-    
+
         (pootle_venv)> pip download -d C:\temp -r requirements\dev.txt -b C:\temp
         (pootle_venv)> pip install -r requirements\dev.txt -b C:\temp -t C:\pootle_venv\Lib\site-packages\ --no-index --find-links="C:\temp"
         (pootle_venv)> cd C:\git\pootle
@@ -125,7 +125,7 @@ venv.
     C:\git\pootle> cd pootle\static\js
     C:\git\pootle\pootle\static\js> npm install
 
-Once NPM install has completed, the actual javascript bundles can be compiled:
+Once NPM install has completed, the actual JavaScript bundles can be compiled:
 
 .. code-block:: console
 
@@ -133,12 +133,12 @@ Once NPM install has completed, the actual javascript bundles can be compiled:
     (pootle_venv)> pootle webpack --dev
 
 The :djadmin:`webpack` command will keep running after it's completed, to
-monitor your javascript files for changes so that it can auto-recompile as you
+monitor your JavaScript files for changes so that it can auto-recompile as you
 work. You'll need to either exit it with ``Ctrl+C`` once it has settled down,
 or else open up a new command prompt and activate your virtual environment
 there too.
 
-One last javascript pack needs to be compiled to complete the client-side
+One last JavaScript pack needs to be compiled to complete the client-side
 preparations:
 
 .. code-block:: console
