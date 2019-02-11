@@ -85,7 +85,7 @@ changes. It also ensures that someone else could replicate your process.
 Create a working branch
 -----------------------
 
-It is extremely advisable to create a Pull Request with the changes necessary
+It is highly advisable to create a Pull Request with the changes necessary
 for the release. This means that it is best to create a working branch to
 clearly separate those changes from `master` branch, which can be altered while
 doing the release, and ease rebasing if needed.
@@ -318,7 +318,7 @@ checkout run:
 This will create a tarball in :file:`dist/` which you can use for further
 testing.
 
-.. note:: We use a clean checkout just to make sure that no inadvertant changes
+.. note:: We use a clean checkout just to make sure that no inadvertent changes
    make it into the release.
 
 

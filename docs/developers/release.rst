@@ -94,7 +94,7 @@ Time-based release ``2.6.1`` is released six months after ``2.6.0``
 The Release Train: Point Releases Every Six Months
 --------------------------------------------------
 
-Within the priciple that *master* is always deployable we aim to ensure a
+Within the principle that *master* is always deployable we aim to ensure a
 period of stability to allow easier release in the month prior to a time-based
 release.
 
@@ -119,7 +119,7 @@ The next Pootle version is always baked in the *master* branch. Exceptions are
 security fixes which are committed in *master* and cherry-picked to the
 currently supported time-based release branches.
 
-A new time-based release is made off of *master*, incrementing the point
+A new time-based release is made off of *master*, increments the point
 version.  Every time a new release happens, a new branch is created. These
 branches are named after their version numbers: if *master* is to become
 version ``2.6.2``, then the new branch will be named *stable/2.6.2*. The actual
