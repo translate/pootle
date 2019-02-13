@@ -13,7 +13,7 @@ deprecate and manage backward compatibility within the following guidelines:
    2. We won't maintain backward compatibility if that prevents or impacts the
       needs of the new feature, refactoring, etc.
    3. We won't maintain backward compatibility if the cost of that far
-      outweights the effort of reconfiguring Pootle.
+      outweighs the effort of reconfiguring Pootle.
 
 2. We don't want there to be major disruptions that we can avoid with point
    release.  That is it shouldn't be painful as we shift features.

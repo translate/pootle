@@ -74,7 +74,7 @@ Install the required Python libraries:
 .. highlight:: console
 .. parsed-literal::
 
-    (env) $ pip install |--process-dependency-links --pre| Pootle[es5]
+    (env) $ pip install --pre Pootle[es5]
 
 .. note:: Elasticsearch TM should work with any version of Elasticsearch, our
    tests run against Elasticsearch 5.x.  For support for Elasticsearch 1.x and

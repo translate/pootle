@@ -21,7 +21,7 @@ Adding or altering special characters
 Anyone with admin rights for Pootle or for a specific language can adjust the
 special characters.
 
-To adjust the characters open the Special characters page accesssed via the
+To adjust the characters open the Special characters page accessed via the
 admin dropdown in the navigation bar.
 
 .. image:: ../_static/special_chars_access.png

@@ -35,7 +35,7 @@ Installation
 
 ::
 
-  pip install --process-dependency-links --pre Pootle
+  pip install --pre Pootle
 
 Don't forget to read the `installation guide
 <http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html>`_

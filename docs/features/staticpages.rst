@@ -57,8 +57,8 @@ Other slug names may be used:
 - ``$lang/$project`` - for an announcement page that is specific to the
   ``$project`` project in the ``$lang`` language.
 
-The prefered model though is to use the ``projects/$project`` convention for a
-single easy-to-maintian page.
+The preferred model though is to use the ``projects/$project`` convention for a
+single easy-to-maintain page.
 
 
 Language link rewriting in Announcement pages

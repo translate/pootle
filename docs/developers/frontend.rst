@@ -9,7 +9,7 @@ developing or building Pootle.
 Setting Things Up
 -----------------
 
-In order to setup the front-end development enviroment, it's necessary to have
+In order to setup the front-end development environment, it's necessary to have
 Node.js installed. Please check the `installation instructions for your
 OS <https://nodejs.org/download/>`_.
 

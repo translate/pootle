@@ -58,7 +58,7 @@ You can do so as follows:
 .. highlight:: console
 .. parsed-literal::
 
-  (env) $ pip install |--process-dependency-links --pre| Pootle[mysql]
+  (env) $ pip install --pre Pootle[mysql]
 
 
 .. _mysql_installation#init-config:
