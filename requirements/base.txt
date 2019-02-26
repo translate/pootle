@@ -5,7 +5,7 @@
 Django~=1.11.12  # rq.filter: <1.12
 
 # Django apps
-django-allauth==0.38.0
+django-allauth==0.39.0
 django-assets==0.12
 django-bulk-update==2.2.0
 django-contact-form==1.6
