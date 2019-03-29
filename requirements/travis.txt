@@ -4,7 +4,7 @@
 -r _docs.txt
 -r _lint.txt
 
-tox==3.8.2
+tox==3.8.3
 
 # Databases
 -r _db_mysql.txt
