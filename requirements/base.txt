@@ -14,7 +14,7 @@ django-overextends==0.4.3
 django-redis==4.10.0
 django-rq==2.0
 django-sortedm2m==1.5.0
-django-statici18n==1.8.2
+django-statici18n==1.8.3
 
 dj.subcommand==0.0.3
 
