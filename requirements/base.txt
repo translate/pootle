@@ -34,7 +34,7 @@ pytz==2019.1
 rq==1.0
 scandir==1.10.0
 stemming==1.0.1
-pycountry==18.12.8
+pycountry==19.7.15
 
 # Markup: Markdown filter for POOTLE_MARKUP_FILTER
 bleach==3.1.0
