@@ -33,6 +33,8 @@ on-line.  Files can be downloaded for offline translation.
 Installation
 ------------
 
+⚠️ Only works with Python2
+
 ::
 
   pip install --pre Pootle
