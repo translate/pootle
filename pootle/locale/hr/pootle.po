@@ -9,33 +9,37 @@ msgstr ""
 "Project-Id-Version: Pootle 2.7.0\n"
 "Report-Msgid-Bugs-To: https://github.com/translate/pootle/issues/new\n"
 "POT-Creation-Date: 2017-07-12 11:39+0100\n"
-"PO-Revision-Date: 2014-10-15 05:17+0000\n"
-"Last-Translator: Ivica  <ikoli@yahoo.com>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2019-12-21 15:18+0100\n"
+"Last-Translator: Milo Ivir <mail@milotype.de>\n"
 "Language: hr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Pootle 2.5.1-rc1\n"
+"X-Generator: Poedit 2.2.4\n"
 "X-POOTLE-MTIME: 1413350235.000000\n"
+"Language-Team: \n"
 
 #: apps/accounts/adapter.py:68
 msgid ""
 "Some problem happened when tried to send the confirmation email. Please try "
 "again later."
 msgstr ""
+"Došlo je do nekih problema prilikom pokušaja slanja e-pošte za potvrđivanje. "
+"Pokušaj kasnije ponovo."
 
 #: apps/accounts/forms.py:32
 msgid ""
 "An error occurred logging you in. Please contact your system administrator"
 msgstr ""
+"Došlo je do greške prilikom tvoje prijave. Obrati se administratoru sustava"
 
 #: apps/accounts/forms.py:59
 msgid ""
 "Your user seems to have disappeared. Please report this to the site owners."
 msgstr ""
+"Izgleda da je tvoj korisnik nestao. Obavijesti o ovome vlasnika web mjesta."
 
 #: apps/accounts/models.py:55 apps/pootle_app/views/admin/permissions.py:83
 msgid "Username"
@@ -44,15 +48,15 @@ msgstr "Korisničko ime"
 #: apps/accounts/models.py:56
 msgid ""
 "Required. 30 characters or fewer. Letters, numbers and @/./+/-/_ characters"
-msgstr ""
+msgstr "Nužno je. 30 znakova ili manje. Slova, brojke i @/./+/-/_ znakovi"
 
 #: apps/accounts/models.py:60
 msgid "Enter a valid username."
-msgstr ""
+msgstr "Upiši valjano korisničko ime."
 
 #: apps/accounts/models.py:64
 msgid "A user with that username already exists."
-msgstr ""
+msgstr "Korisnik s tim korisničkim imenom već postoji."
 
 #: apps/accounts/models.py:67
 msgid "Email Address"
@@ -65,30 +69,31 @@ msgstr "Puno ime"
 
 #: apps/accounts/models.py:71 apps/staticpages/models.py:30
 #: templates/admin/staticpages/_table.html:6
-#, fuzzy
 msgid "Active"
-msgstr "aktivan"
+msgstr "Aktivno"
 
 #: apps/accounts/models.py:74
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
+"Označava, je li ovog korisnika treba smatrati aktivnim. Odznači ovo umjesto "
+"brisanja računa."
 
 #: apps/accounts/models.py:77
-#, fuzzy
 msgid "Superuser Status"
-msgstr "status super korisnika"
+msgstr "Stanje super korisnika"
 
 #: apps/accounts/models.py:80
 msgid ""
 "Designates that this user has all permissions without explicitly assigning "
 "them."
 msgstr ""
+"Označava, da ovaj korisnik ima sve dozvole bez izričitog dodjeljivanja."
 
 #: apps/accounts/models.py:83
 msgid "date joined"
-msgstr ""
+msgstr "datum pridruživanja"
 
 #: apps/accounts/models.py:87
 msgid "Number of Rows"
@@ -100,40 +105,39 @@ msgstr "Alternativni Izvorni jezici"
 
 #: apps/accounts/models.py:94
 msgid "Score"
-msgstr ""
+msgstr "Rezultat"
 
 #: apps/accounts/models.py:95
 msgid "Is employee?"
-msgstr ""
+msgstr "Je suradnik?"
 
 #: apps/accounts/models.py:96
 msgid "Twitter"
-msgstr ""
+msgstr "Twitter"
 
 #: apps/accounts/models.py:98
 msgid "Website"
-msgstr ""
+msgstr "Web stranica"
 
 #: apps/accounts/models.py:99
 msgid "LinkedIn"
-msgstr ""
+msgstr "LinkedIn"
 
 #: apps/accounts/models.py:100
 msgid "Short Bio"
-msgstr ""
+msgstr "Kratka biografija"
 
 #: apps/accounts/models.py:240
 msgid "This email address already exists."
-msgstr ""
+msgstr "Ova e-adresa već postoji."
 
 #: apps/contact/forms.py:26
-#, fuzzy
 msgid "Subject"
-msgstr "Odbacite"
+msgstr "Predmet"
 
 #: apps/contact/forms.py:28
 msgid "Please enter a message subject"
-msgstr ""
+msgstr "Upiši predmet za poruku"
 
 #: apps/contact/forms.py:35 apps/virtualfolder/models.py:27 core/browser.py:16
 msgid "Name"
@@ -141,15 +145,15 @@ msgstr "Ime"
 
 #: apps/contact/forms.py:36
 msgid "Please enter your name"
-msgstr ""
+msgstr "Upiši tvoje ime"
 
 #: apps/contact/forms.py:39
 msgid "Email address"
-msgstr "Email adresa"
+msgstr "E-adresa"
 
 #: apps/contact/forms.py:40
 msgid "Please enter your email address"
-msgstr ""
+msgstr "Upiši tvoju e-adresu"
 
 #: apps/contact/forms.py:43
 msgid "Message"
@@ -157,99 +161,89 @@ msgstr "Poruka"
 
 #: apps/contact/forms.py:44
 msgid "Please enter your message"
-msgstr ""
+msgstr "Upiši tvoju poruku"
 
 #: apps/contact/forms.py:81
 msgid "String context"
-msgstr ""
+msgstr "Kontekst znakovnog niza"
 
 #: apps/contact/forms.py:91
-#, fuzzy
 msgid "Question or comment"
-msgstr "Komentari prevoditelja"
+msgstr "Pitanje ili komentar"
 
 #: apps/contact/forms.py:92
-#, fuzzy
 msgid "Please enter your question or comment"
-msgstr "Molim vas unesite vaše registracijske detalje"
+msgstr "Upiši tvoje pitanje ili komentar"
 
 #: apps/contact/views.py:35 templates/layout.html:120
 msgid "Contact Us"
-msgstr "Kontaktirajte nas"
+msgstr "Kontaktiraj nas"
 
 #: apps/contact/views.py:92
 msgid "Report problem with string"
-msgstr ""
+msgstr "Javi problem sa znakovnim nizom"
 
 #: apps/import_export/templates/browser/index.html:11
-#, fuzzy
 msgid "Download translation files for offline translation"
-msgstr "Skinite XLIFF datoteku za izvanmrežni prijevod"
+msgstr "Preuzmi prevodilačku datoteku za izvanmrežni prijevod"
 
 #: apps/import_export/templates/browser/index.html:12
-#, fuzzy
 msgid "Download for offline translation"
-msgstr "Skinite XLIFF datoteku za izvanmrežni prijevod"
+msgstr "Preuzmi za izvanmrežni prijevod"
 
 #: apps/import_export/templates/browser/index.html:16
-#, fuzzy
 msgid "Download translation files for backup"
-msgstr "Skinite XLIFF datoteku za izvanmrežni prijevod"
+msgstr "Preuzmi prevodilačku datoteku za sigurnosnu kopiju"
 
 #: apps/import_export/templates/browser/index.html:17
-#, fuzzy
 msgid "Download for backup"
-msgstr "Preuzmite datoteku"
+msgstr "Preuzmi za sigurnosnu kopiju"
 
 #: apps/import_export/templates/browser/index.html:26
-#, fuzzy
 msgid "Upload translation files or archives in .zip format"
-msgstr "Svi prijevodi su sada uvezeni."
+msgstr "Prenesi prevodilačke datoteke ili arhive u .zip formatu"
 
 #: apps/import_export/templates/browser/index.html:27
-#, fuzzy
 msgid "Upload translations"
-msgstr "Izvezi prijevode"
+msgstr "Prenesi prijevode"
 
 #: apps/import_export/templates/browser/index.html:36
 #, python-format
 msgid "Upload as %(user)s"
-msgstr ""
+msgstr "Prenesi kao %(user)s"
 
 #: apps/import_export/templates/browser/index.html:54
-#, fuzzy
 msgid "Download offline TM for the translation project"
-msgstr "Skinite XLIFF datoteku za izvanmrežni prijevod"
+msgstr "Preuzmi izvanmrežno spremište prijevoda za prevodilački projekt"
 
 #: apps/import_export/templates/browser/index.html:55
-#, fuzzy
 msgid "Download offline TM"
-msgstr "Skinite XLIFF datoteku za izvanmrežni prijevod"
+msgstr "Preuzmi izvanmrežno spremište prijevoda"
 
 #: apps/import_export/utils.py:38
 #, python-format
 msgid "Unsupported filetype '%s', only PO files are supported at this time\n"
-msgstr ""
+msgstr "Nepodržana vrsta datoteke „%s“, za sada su podržane samo PO datoteke\n"
 
 #: apps/import_export/utils.py:44
 #, python-format
 msgid "File '%s' missing X-Pootle-Path header\n"
-msgstr ""
+msgstr "Datoteci „%s“ nedostaje zaglavlje „X-Pootle-Path“\n"
 
 #: apps/import_export/utils.py:49
 #, python-format
 msgid "File '%s' missing or invalid X-Pootle-Revision header\n"
 msgstr ""
+"Datoteci „%s“ nedostaje ili je neispravno zaglavlje „X-Pootle-Revision“\n"
 
 #: apps/import_export/utils.py:57
 #, python-format
 msgid "Could not create '%s'. Missing Project/Language? (%s)"
-msgstr ""
+msgstr "Nije bilo moguće stvoriti „%s“. Nedostaje projekt/jezik? (%s)"
 
 #: apps/import_export/utils.py:74
-#, fuzzy
 msgid "There was an error uploading your file"
-msgstr "Možete pisati preko prijevoda na uploadanim datotekama"
+msgstr "Došlo je do greške prilikom prijenosa tvoje datoteke"
 
 #: apps/pootle_app/forms.py:39
 msgid "Language code does not follow the ISO convention"
@@ -265,6 +259,8 @@ msgid ""
 "You cannot remove a file type from a Project, if there are files of that "
 "file type ('%s')"
 msgstr ""
+"Ne možeš ukloniti vrstu datoteke iz Projekta, ako postoje datoteke te vrste "
+"(„%s”)"
 
 #: apps/pootle_app/forms.py:108
 msgid "Password"
@@ -272,39 +268,38 @@ msgstr "Lozinka"
 
 #: apps/pootle_app/forms.py:143 apps/pootle_profile/forms.py:28
 msgid "Please enter a valid LinkedIn user profile URL."
-msgstr ""
+msgstr "Upiši ispravnu URL adresu profila LinkedIn korisnika."
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:58
 #, python-format
 msgid "Running (%d worker)"
 msgid_plural "Running (%d workers)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Pokreće se (%d radnik)"
+msgstr[1] "Pokreće se (%d radnika)"
+msgstr[2] "Pokreće se (%d radnika)"
 
 #. Translators: this refers to the status of the background job worker
 #: apps/pootle_app/views/admin/dashboard.py:62
 msgid "Stopped"
-msgstr ""
+msgstr "Zaustavljeno"
 
 #: apps/pootle_app/views/admin/permissions.py:65
 msgid "All Users"
 msgstr "Svi korisnici"
 
 #: apps/pootle_app/views/admin/permissions.py:92
-#, fuzzy
 msgid "Add Permissions"
-msgstr "Dopuštenja korisnika"
+msgstr "Dodaj dozvole"
 
 #: apps/pootle_app/views/admin/permissions.py:97
 #: apps/pootle_app/views/admin/permissions.py:106
 msgid "Select one or more permissions"
-msgstr ""
+msgstr "Odaberi jednu ili više dozvola"
 
 #: apps/pootle_app/views/admin/permissions.py:101
 msgid "Revoke Permissions"
-msgstr ""
+msgstr "Opozovi dozvole"
 
 #: apps/pootle_app/views/admin/util.py:126
 msgid "No files in this project."
@@ -312,7 +307,7 @@ msgstr "Nema datoteka u ovom projektu."
 
 #: apps/pootle_app/views/admin/util.py:160 apps/pootle_project/views.py:207
 msgid "There are errors in the form. Please review the problems below."
-msgstr "Postoje pogreške u formi. Molimo pregledajte probleme u nastavku."
+msgstr "Postoje greške u obrascu. Pregledaj probleme niže dolje."
 
 #: apps/pootle_checks/constants.py:24 core/browser.py:47
 msgid "Critical"
@@ -320,7 +315,7 @@ msgstr "Kritično"
 
 #: apps/pootle_checks/constants.py:25
 msgid "Cosmetic"
-msgstr "Kozmetički"
+msgstr "Kozmetičko"
 
 #: apps/pootle_checks/constants.py:26
 msgid "Functional"
@@ -328,11 +323,11 @@ msgstr "Funkcionalno"
 
 #: apps/pootle_checks/constants.py:27
 msgid "Extraction"
-msgstr "Raspakiravanje"
+msgstr "Izdvajanje"
 
 #: apps/pootle_checks/constants.py:28
 msgid "Other"
-msgstr ""
+msgstr "Ostalo"
 
 #: apps/pootle_checks/constants.py:31
 msgid "Accelerators"
@@ -348,23 +343,23 @@ msgstr "Prazno"
 
 #: apps/pootle_checks/constants.py:34
 msgid "Brackets"
-msgstr ""
+msgstr "Zagrade"
 
 #: apps/pootle_checks/constants.py:35
 msgid "Compendium conflict"
-msgstr ""
+msgstr "Konflikt u priručniku"
 
 #: apps/pootle_checks/constants.py:36
 msgid "Translator credits"
-msgstr ""
+msgstr "Zasluge prevodilaca"
 
 #: apps/pootle_checks/constants.py:37
 msgid "Dialog sizes"
-msgstr ""
+msgstr "Veličine dijaloga"
 
 #: apps/pootle_checks/constants.py:38
 msgid "Double quotes"
-msgstr "Dvostruki navodnici"
+msgstr "Navodnici"
 
 #: apps/pootle_checks/constants.py:39
 msgid "Double spaces"
@@ -372,24 +367,23 @@ msgstr "Dvostruki razmak"
 
 #: apps/pootle_checks/constants.py:40
 msgid "Repeated word"
-msgstr ""
+msgstr "Ponavljajuće riječi"
 
 #: apps/pootle_checks/constants.py:41
-#, fuzzy
 msgid "E-mail"
 msgstr "E-pošta"
 
 #: apps/pootle_checks/constants.py:42
 msgid "Ending punctuation"
-msgstr ""
+msgstr "Završna interpunkcija"
 
 #: apps/pootle_checks/constants.py:43
 msgid "Ending whitespace"
-msgstr ""
+msgstr "Završna bjelina"
 
 #: apps/pootle_checks/constants.py:44
 msgid "Escapes"
-msgstr ""
+msgstr "Kontrolni znakovi"
 
 #: apps/pootle_checks/constants.py:45
 msgid "File paths"
@@ -417,7 +411,7 @@ msgstr "Dugo"
 
 #: apps/pootle_checks/constants.py:51
 msgid "Must translate words"
-msgstr ""
+msgstr "Moraš prevesti riječi"
 
 #: apps/pootle_checks/constants.py:52
 msgid "Newlines"
@@ -429,7 +423,7 @@ msgstr "Broj množina"
 
 #: apps/pootle_checks/constants.py:54
 msgid "Don't translate words"
-msgstr ""
+msgstr "Ne prevodi riječi"
 
 #: apps/pootle_checks/constants.py:55
 msgid "Numbers"
@@ -441,19 +435,19 @@ msgstr "Opcije"
 
 #: apps/pootle_checks/constants.py:57
 msgid "printf()"
-msgstr ""
+msgstr "printf()"
 
 #: apps/pootle_checks/constants.py:58
 msgid "Punctuation spacing"
-msgstr ""
+msgstr "Razmak interpunkcije"
 
 #: apps/pootle_checks/constants.py:59
 msgid "Pure punctuation"
-msgstr ""
+msgstr "Obična interpunkcija"
 
 #: apps/pootle_checks/constants.py:60
 msgid "Python brace placeholders"
-msgstr ""
+msgstr "Rezervirana mjesta za Python zagrade"
 
 #: apps/pootle_checks/constants.py:61
 msgid "Number of sentences"
@@ -465,27 +459,27 @@ msgstr "Kratko"
 
 #: apps/pootle_checks/constants.py:63
 msgid "Simple capitalization"
-msgstr ""
+msgstr "Jednostavna upotreba velikih slova"
 
 #: apps/pootle_checks/constants.py:64
 msgid "Simple plural(s)"
-msgstr ""
+msgstr "Jednostavni oblici množine"
 
 #: apps/pootle_checks/constants.py:65
 msgid "Single quotes"
-msgstr "Jednostruki navodnici"
+msgstr "Polunavodnici"
 
 #: apps/pootle_checks/constants.py:66
 msgid "Starting capitalization"
-msgstr ""
+msgstr "Početna velika slova"
 
 #: apps/pootle_checks/constants.py:67
 msgid "Starting punctuation"
-msgstr ""
+msgstr "Početna interpunkcija"
 
 #: apps/pootle_checks/constants.py:68
 msgid "Starting whitespace"
-msgstr ""
+msgstr "Početna bjelina"
 
 #. Translators: This refers to tabulation characters
 #: apps/pootle_checks/constants.py:70
@@ -499,195 +493,179 @@ msgstr "Neizmjenjeno"
 #: apps/pootle_checks/constants.py:72 apps/pootle_store/constants.py:66
 #: core/utils/stats.py:30 templates/editor/_filters.html:9
 msgid "Untranslated"
-msgstr "Nije prevedeno"
+msgstr "Neprevedeno"
 
 #: apps/pootle_checks/constants.py:73
 msgid "URLs"
-msgstr "URLovi:"
+msgstr "URL-ovi"
 
 #: apps/pootle_checks/constants.py:74
 msgid "Valid characters"
-msgstr ""
+msgstr "Valjani znakovi"
 
 #: apps/pootle_checks/constants.py:75
 msgid "Placeholders"
-msgstr ""
+msgstr "Rezervirana mjesta"
 
 #: apps/pootle_checks/constants.py:76
 msgid "Valid XML"
-msgstr ""
+msgstr "Valjani XML"
 
 #: apps/pootle_checks/constants.py:77
 msgid "XML tags"
-msgstr ""
+msgstr "XML oznake"
 
 #: apps/pootle_checks/constants.py:80
-#, fuzzy
 msgid "ftl format"
-msgstr "Oblik u množini %d"
+msgstr "ftl format"
 
 #: apps/pootle_checks/constants.py:83
 msgid "Romanian: Avoid cedilla diacritics"
-msgstr ""
+msgstr "Rumunjski: Izbjegni dijakritički znak cedilla"
 
 #: apps/pootle_checks/constants.py:84
 msgid "Romanian: Use \"niciun\"/\"nicio\""
-msgstr ""
+msgstr "Rumunjski: Koristi „niciun”/„nicio”"
 
 #: apps/pootle_format/abstracts.py:36
-#, fuzzy
 msgid "Format name"
-msgstr "Ime"
+msgstr "Ime formata"
 
 #: apps/pootle_format/abstracts.py:41
 msgid "Format title"
-msgstr ""
+msgstr "Naslov formata"
 
 #: apps/pootle_format/abstracts.py:45
 msgid "Enabled"
-msgstr ""
+msgstr "Aktivirano"
 
 #: apps/pootle_format/abstracts.py:47
-#, fuzzy
 msgid "Monolingual format"
-msgstr "Oblik u množini %d"
+msgstr "Jednojezični format"
 
 #: apps/pootle_fs/forms.py:24
 msgid "GNU-style"
-msgstr ""
+msgstr "GNU stil"
 
 #: apps/pootle_fs/forms.py:26
 msgid "non GNU-style"
-msgstr ""
+msgstr "ne-GNU stil"
 
 #: apps/pootle_fs/forms.py:29
 msgid "Django-style"
-msgstr ""
+msgstr "Django-stil"
 
 #: apps/pootle_fs/forms.py:31
 msgid "Custom"
-msgstr ""
+msgstr "Prilagođeno"
 
 #: apps/pootle_fs/forms.py:37
 msgid "Filesystem backend"
-msgstr ""
+msgstr "Pozadinski datotečni sustav"
 
 #: apps/pootle_fs/forms.py:38
-#, fuzzy
 msgid "Select a filesystem backend"
-msgstr "Odaberite datoteku za slanje"
+msgstr "Odaberi pozadinski datotečni sustav"
 
 #: apps/pootle_fs/forms.py:43
 msgid "Backend URL or path"
-msgstr ""
+msgstr "Pozadinski URL ili putanja"
 
 #: apps/pootle_fs/forms.py:45
 msgid "The URL or path to your translation files"
-msgstr ""
+msgstr "URL ili putanja do tvoje prevodilačke datoteke"
 
 #: apps/pootle_fs/forms.py:47
-#, fuzzy
 msgid "Translation mapping presets"
-msgstr "Postavke prevođenja"
+msgstr "Predodređeno mapiranje za prijevode"
 
 #: apps/pootle_fs/forms.py:55
-#, fuzzy
 msgid "Translation path mapping"
-msgstr "Postavke prevođenja"
+msgstr "Mapiranje putanje prijevoda"
 
 #: apps/pootle_fs/forms.py:56
 msgid ""
 "Translation path mapping that maps the localisation files on the filesystem "
 "to files on Pootle."
 msgstr ""
+"Mapiranje putanje prijevoda koje mapira datoteke prijevoda na datotečnom "
+"sustavu u datoteke na Pootlu."
 
 #: apps/pootle_fs/forms.py:182
 msgid "Filesystem language codes must be unique"
-msgstr ""
+msgstr "Kodovi jezika datotečnog sustava moraju biti jedinstveni"
 
 #: apps/pootle_fs/forms.py:186
-#, fuzzy
 msgid "Pootle language mappings must be unique"
-msgstr "Pootle administratorska stranica jezika"
+msgstr "Pootle mapiranje prijevoda mora biti jedinstveno"
 
 #: apps/pootle_language/forms.py:27
-#, fuzzy
 msgid "Member"
-msgstr "Brojevi"
+msgstr "Član"
 
 #: apps/pootle_language/forms.py:28
-#, fuzzy
 msgid "Submitter"
-msgstr "Pošalji"
+msgstr "Podnositelj"
 
 #: apps/pootle_language/forms.py:29 apps/pootle_profile/utils.py:98
-#, fuzzy
 msgid "Reviewer"
-msgstr "Provjeri"
+msgstr "Recenzent"
 
 #: apps/pootle_language/forms.py:30
-#, fuzzy
 msgid "Administrator"
-msgstr "Administriranje"
+msgstr "Administrator"
 
 #: apps/pootle_language/forms.py:76
-#, fuzzy
 msgid "Administrators"
-msgstr "Administriranje"
+msgstr "Administratori"
 
 #: apps/pootle_language/forms.py:82
-#, fuzzy
 msgid "Reviewers"
-msgstr "Provjere"
+msgstr "Recenzenti"
 
 #: apps/pootle_language/forms.py:87
-#, fuzzy
 msgid "Submitters"
-msgstr "Pošalji"
+msgstr "Podnositelji"
 
 #: apps/pootle_language/forms.py:92
-#, fuzzy
 msgid "Members"
-msgstr "Brojevi"
+msgstr "Članovi"
 
 #: apps/pootle_language/forms.py:96
-#, fuzzy
 msgid "New member"
-msgstr "Brojevi"
+msgstr "Novi član"
 
 #: apps/pootle_language/forms.py:97
 msgid "Add a user to this team"
-msgstr ""
+msgstr "Dodaj korisnika ovom timu"
 
 #: apps/pootle_language/forms.py:103
 msgid "Search for users to add"
-msgstr ""
+msgstr "Traži korisnike koje želiš dodati"
 
 #: apps/pootle_language/forms.py:106
 msgid "Role"
-msgstr ""
+msgstr "Uloga"
 
 #: apps/pootle_language/forms.py:137
 msgid "Role is required when adding a new member"
-msgstr ""
+msgstr "Uloga je neophodna za dodavanje novog člana"
 
 #: apps/pootle_language/forms.py:163 core/forms.py:218
 msgid "Reject"
-msgstr "Odbacite"
+msgstr "Odbaci"
 
 #: apps/pootle_language/forms.py:164 core/forms.py:219
 msgid "Accept"
-msgstr "Prihvatite"
+msgstr "Prihvati"
 
 #: apps/pootle_language/forms.py:166
-#, fuzzy
 msgid "Filter by suggester"
-msgstr "Pregledaj prijedloge"
+msgstr "Filtriraj prema predlagatelju"
 
 #: apps/pootle_language/forms.py:172
-#, fuzzy
 msgid "Filter by state"
-msgstr "Pregledaj prijedloge"
+msgstr "Filtriraj prema stanju"
 
 #: apps/pootle_language/forms.py:182 apps/pootle_language/views.py:218
 #: core/browser.py:26
@@ -696,7 +674,7 @@ msgstr "Projekt"
 
 #: apps/pootle_language/models.py:32 apps/pootle_project/models.py:201
 msgid "Code"
-msgstr "Kod"
+msgstr "Kȏd"
 
 #: apps/pootle_language/models.py:33
 msgid ""
@@ -704,9 +682,9 @@ msgid ""
 "(_) and an ISO 3166 country code. <a href=\"http://www.w3.org/International/"
 "articles/language-tags/\">More information</a>"
 msgstr ""
-"ISO 639 jezični kod za jezik, nakon čega moguće slijedi povlaka (_) i ISO "
-"3166 kod države. <a href=\"http://www.w3.org/International/articles/language-"
-"tags/\">Više informacija</a>"
+"Jezični kȏd ISO 639 za jezik, kojem moguće slijedi povlaka (_) i kȏd države "
+"ISO 3166. <a href=\"http://www.w3.org/International/articles/language-tags/"
+"\">Daljnje informacije</a>"
 
 #: apps/pootle_language/models.py:42 templates/languages/_nav.html:35
 #: templates/languages/admin/characters.html:5
@@ -717,8 +695,8 @@ msgstr "Posebni znakovi"
 #: apps/pootle_language/models.py:43
 msgid "Enter any special characters that users might find difficult to type"
 msgstr ""
-"Upišite bilo koji poseban znak zbog kojeg korisnici mogu imati poteškoća u "
-"pisanju"
+"Upiši bilo koji posebni znak s kojim korisnici mogu imati poteškoća pri "
+"tipkanju"
 
 #: apps/pootle_language/models.py:47
 msgid ""
@@ -726,6 +704,9 @@ msgid ""
 "projects/localization-guide/en/latest/l10n/pluralforms.html\">our page</a> "
 "on plural forms."
 msgstr ""
+"Za daljnje informacije, posjeti <a href=\"http://docs.translatehouse.org/"
+"projects/localization-guide/en/latest/l10n/pluralforms.html\">našu stranicu</"
+"a> o oblicima množine."
 
 #: apps/pootle_language/models.py:53
 msgid "Unknown"
@@ -741,62 +722,64 @@ msgstr "Jednadžba množine"
 
 #: apps/pootle_language/views.py:212
 msgid "Unit"
-msgstr ""
+msgstr "Jedinica"
 
 #: apps/pootle_language/views.py:213 apps/pootle_statistics/models.py:58
 msgid "State"
-msgstr ""
+msgstr "Pokrajina/Savezna država"
 
 #: apps/pootle_language/views.py:214 apps/pootle_statistics/models.py:56
 msgid "Source"
-msgstr ""
+msgstr "Izvor"
 
 #: apps/pootle_language/views.py:215
-#, fuzzy
 msgid "Suggestion"
-msgstr "Prijedlozi"
+msgstr "Prijedlog"
 
 #: apps/pootle_language/views.py:216
-#, fuzzy
 msgid "Suggested by"
-msgstr "Predloži"
+msgstr "Prijedlog od"
 
 #: apps/pootle_language/views.py:217
-#, fuzzy
 msgid "Suggested at"
-msgstr "Predloži"
+msgstr "Prijedloženo u"
 
 #: apps/pootle_language/views.py:239
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion with comment. User will be notified"
 msgid_plural "Rejected %s suggestions with comment. Users will be notified"
-msgstr[0] "Odbačen prijedlog"
-msgstr[1] "Odbačen prijedlog"
-msgstr[2] "Odbačen prijedlog"
+msgstr[0] "Odbačen je %s prijedlog s komentarom. Korisnik će biti obaviješten"
+msgstr[1] ""
+"Odbačena su %s prijedloga s komentarom. Korisnici će biti obaviješteni"
+msgstr[2] ""
+"Odbačeno je %s prijedloga s komentarom. Korisnici će biti obaviješteni"
 
 #: apps/pootle_language/views.py:244
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion with comment. User will be notified"
 msgid_plural "Accepted %s suggestions with comment. Users will be notified"
-msgstr[0] "Prihvaćen prijedlog"
-msgstr[1] "Prihvaćen prijedlog"
-msgstr[2] "Prihvaćen prijedlog"
+msgstr[0] ""
+"Prihvaćen je %s prijedlog s komentarom. Korisnik će biti obaviješteni"
+msgstr[1] ""
+"Prihvaćena su %s prijedloga s komentarom. Korisnici će biti obaviješteni"
+msgstr[2] ""
+"Prihvaćeno je %s prijedloga s komentarom. Korisnici će biti obaviješteni"
 
 #: apps/pootle_language/views.py:249
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected %s suggestion"
 msgid_plural "Rejected %s suggestions"
-msgstr[0] "Odbačen prijedlog"
-msgstr[1] "Odbačen prijedlog"
-msgstr[2] "Odbačen prijedlog"
+msgstr[0] "Odbačen je %s prijedlog"
+msgstr[1] "Odbačena su %s prijedloga"
+msgstr[2] "Odbačeno je %s prijedloga"
 
 #: apps/pootle_language/views.py:254
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted %s suggestion"
 msgid_plural "Accepted %s suggestions"
-msgstr[0] "Prihvaćen prijedlog"
-msgstr[1] "Prihvaćen prijedlog"
-msgstr[2] "Prihvaćen prijedlog"
+msgstr[0] "Prihvaćen je %s prijedlog"
+msgstr[1] "Prihvaćena su %s prijedloga"
+msgstr[2] "Prihvaćeno je %s prijedloga"
 
 #: apps/pootle_misc/forms.py:102
 msgid "Search"
@@ -805,14 +788,15 @@ msgstr "Traži"
 #: apps/pootle_misc/forms.py:103
 msgid "Search (Ctrl+Shift+S)<br/>Type and press Enter to search"
 msgstr ""
+"Traži (Ctrl+Shift+S)<br/>Tipkaj i pritisni Enter za pokretanje pretrage"
 
 #: apps/pootle_misc/forms.py:111 apps/pootle_store/forms.py:369
 msgid "Phrase match"
-msgstr ""
+msgstr "Poklapanje izraza"
 
 #: apps/pootle_misc/forms.py:112 apps/pootle_store/forms.py:370
 msgid "Case-sensitive match"
-msgstr ""
+msgstr "Poklapanje velikih i malih slova"
 
 #: apps/pootle_misc/forms.py:117 apps/pootle_store/forms.py:376
 msgid "Source Text"
@@ -831,19 +815,19 @@ msgid "Locations"
 msgstr "Lokacije"
 
 #: apps/pootle_misc/templatetags/common_tags.py:53
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} untranslated"
-msgstr "%d riječ je neprevedena"
+msgstr "{percentage} neprevedeno"
 
 #: apps/pootle_misc/templatetags/common_tags.py:55
 #, python-brace-format
 msgid "{percentage} needs work"
-msgstr ""
+msgstr "{percentage} treba doraditi"
 
 #: apps/pootle_misc/templatetags/common_tags.py:57
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{percentage} translated"
-msgstr "Nije prevedeno"
+msgstr "{percentage} prevedeno"
 
 #: apps/pootle_misc/templatetags/render_pager.py:23
 msgid "First"
@@ -864,95 +848,98 @@ msgstr "Zadnji (%d)"
 
 #: apps/pootle_misc/templatetags/search.py:28
 msgid "Search unavailable"
-msgstr ""
+msgstr "Pretraga nedostupna"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:35
 #, python-format
 msgid "My current score at %s is %s"
-msgstr ""
+msgstr "Moj trenutačni rezultat pri %s je %s"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:38
 #: apps/pootle_profile/templatetags/profile_tags.py:63
 msgid "Tweet this!"
-msgstr ""
+msgstr "Pošalji tweet o ovome!"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "#%s contributor in %s in the last 30 days"
-msgstr "Najveći pridonositelji"
+msgstr "%s. doprinositelj u %s u zadnjih 30 dana"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:56
-#, fuzzy, python-format
+#, python-format
 msgid "I am #%s contributor in %s in the last 30 days at %s!"
-msgstr "Najveći pridonositelji"
+msgstr "Ja sam %s. doprinositelj u %s u zadnjih 30 dana pri %s!"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:65
-#, fuzzy
 msgid "No contributions in the last 30 days"
-msgstr "Najveći pridonositelji"
+msgstr "Nema doprinosa u zadnjih 30 dana"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:76
 msgid "My Website"
-msgstr ""
+msgstr "Moje web mjesto"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:86
 msgid "My LinkedIn Profile"
-msgstr ""
+msgstr "Moj LinkedIn profil"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:95
-#, fuzzy
 msgid "Site administrator"
-msgstr "Administriranje"
+msgstr "Administrator stranice"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:101
-#, fuzzy, python-format
+#, python-format
 msgid "%s's language teams"
-msgstr "Ime jezika"
+msgstr "Timovi za %s jezik"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:104
 #, python-format
 msgid "%s is not a member of any language teams"
-msgstr ""
+msgstr "%s nije član niti jednog jezičnog tima"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:121
 msgid ""
 "Some translations are provided by anonymous volunteers. These are registered "
 "under this special meta-account."
 msgstr ""
+"Neke prijevode su dostavili anonimni dobrovoljci. Oni su registrirani pod "
+"ovim posebnim meta-računom."
 
 #: apps/pootle_profile/templatetags/profile_tags.py:125
 msgid ""
 "Some translations are imported from external files. These are registered "
 "under this special meta-account."
 msgstr ""
+"Neki prijevodi su uvezeni iz vanjskih datoteka. Oni su registrirani pod ovim "
+"posebnim meta-računom."
 
 #: apps/pootle_profile/templatetags/profile_tags.py:135
 msgid ""
 "Show others who you are, tell about yourself<br/>and make your public "
 "profile look gorgeous!"
 msgstr ""
+"Pokaži drugima tko si, reci nešto o sebi<br/>i prikaži svoj javni profil u "
+"najboljem svjetlu!"
 
 #: apps/pootle_profile/templatetags/profile_tags.py:138
 msgid "You can set or change your avatar image at www.gravatar.com"
 msgstr ""
+"Sliku svog avatara možeš postaviti ili promijeniti na „www.gravatar.com“"
 
 #: apps/pootle_profile/utils.py:50
-#, fuzzy
 msgid "Anonymous User"
-msgstr "anonimni korisnici"
+msgstr "Anonimni korisnik"
 
 #: apps/pootle_profile/utils.py:96 templates/layout.html:134
 msgid "Admin"
 msgstr "Administrator"
 
 #: apps/pootle_profile/utils.py:100
-#, fuzzy
 msgid "Translator"
-msgstr "Prijevod"
+msgstr "Prevodilac"
 
 #: apps/pootle_profile/views.py:61
 msgid "Select one or more languages"
-msgstr ""
+msgstr "Odaberi jedan ili više jezika"
 
 #: apps/pootle_project/forms.py:58 core/browser.py:31
 msgid "Language"
@@ -961,13 +948,13 @@ msgstr "Jezik"
 #: apps/pootle_project/models.py:179
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project code"
-msgstr ""
+msgstr "„%(code)s“ se ne može koristiti kao kȏd projekta"
 
 #. Translators: this refers to the project quality checker
 #: apps/pootle_project/models.py:188
 #, python-format
 msgid "\"%(code)s\" cannot be used as a project checker"
-msgstr ""
+msgstr "„%(code)s“ se ne može koristiti kao provjera projekta"
 
 # rVc2Ym  <a href="http://wfqqwyxsmrjk.com/">wfqqwyxsmrjk</a>, [url=http://cgxrttbgnlmv.com/]cgxrttbgnlmv[/url], [link=http://jdnbvgjwhhyn.com/]jdnbvgjwhhyn[/link], http://vjftjpvytqsd.com/
 #: apps/pootle_project/models.py:195
@@ -983,9 +970,8 @@ msgid "Quality Checks"
 msgstr "Provjera kakvoće"
 
 #: apps/pootle_project/models.py:219
-#, fuzzy
 msgid "Automatic detection of GNU/non-GNU file layouts (slower)"
-msgstr "Automatsko prepoznavanje (sporije)"
+msgstr "Automatsko prepoznavanje rasporeda GNU/ne-GNU datoteka (sporije)"
 
 #: apps/pootle_project/models.py:220
 msgid "GNU style: files named by language code"
@@ -998,31 +984,33 @@ msgstr "Non-GNU: Svaki jezik u svom vlastitom direktoriju"
 #: apps/pootle_project/models.py:222
 msgid "Allow Pootle FS to manage filesystems (Experimental)"
 msgstr ""
+"Dozvoli Pootlovom datotečnom sustavu da upravlja datotečnim sustavima "
+"(eksperimentalno)"
 
 #: apps/pootle_project/models.py:226
 msgid "Project Tree Style"
-msgstr "Projekt stablo stila"
+msgstr "Stil stabla projekta"
 
 #: apps/pootle_project/models.py:234
 msgid "Ignore Files"
-msgstr "Ignoriraj datoteku"
+msgstr "Zanemari datoteke"
 
 #: apps/pootle_project/models.py:240
 msgid "Errors Report Email"
-msgstr ""
+msgstr "E-poruka s izvještajem o greškama"
 
 #: apps/pootle_project/models.py:241
 msgid "An email address where issues with the source text can be reported."
-msgstr ""
+msgstr "Adresa e-pošte na koju se mogu prijaviti problemi s izvornim tekstom."
 
 #. Translators: This is the URL prefix to search for context screenshots
 #: apps/pootle_project/models.py:246
 msgid "Screenshot Search Prefix"
-msgstr ""
+msgstr "Prefiks za pretragu snimke ekrana"
 
 #: apps/pootle_project/models.py:251
 msgid "Disabled"
-msgstr ""
+msgstr "Deaktivirano"
 
 #: apps/pootle_project/views.py:297
 #, python-format
@@ -1030,25 +1018,25 @@ msgid ""
 "Translation project (%s) has been created. We are now updating its files "
 "from file templates."
 msgstr ""
+"Prevodilački projekt (%s) je stvoren. Sada aktualiziramo njegove datoteke iz "
+"predložaka datoteka."
 
 #: apps/pootle_project/views.py:304
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) has been deleted"
-msgstr "Prijevod projekt glavne stranice"
+msgstr "Prevodilački projekt (%s) je izbrisan"
 
 #: apps/pootle_statistics/models.py:57
 msgid "Target"
-msgstr ""
+msgstr "Cilj"
 
 #: apps/pootle_statistics/models.py:59
-#, fuzzy
 msgid "Comment"
-msgstr "Komentari"
+msgstr "Komentar"
 
 #: apps/pootle_statistics/models.py:60
-#, fuzzy
 msgid "Check"
-msgstr "Sakrij provjere"
+msgstr "Provjeri"
 
 #: apps/pootle_store/abstracts.py:221 apps/pootle_store/abstracts.py:228
 msgid "Path"
@@ -1056,12 +1044,12 @@ msgstr "Putanja"
 
 #: apps/pootle_store/constants.py:65
 msgid "Obsolete"
-msgstr ""
+msgstr "Zastarjelo"
 
 #: apps/pootle_store/constants.py:67 apps/pootle_store/forms.py:189
 #: apps/pootle_store/forms.py:597 templates/editor/_filters.html:10
 msgid "Needs work"
-msgstr "Zahtjeva rad"
+msgstr "Treba doraditi"
 
 #: apps/pootle_store/constants.py:68 core/utils/stats.py:28
 #: templates/editor/_filters.html:7
@@ -1070,19 +1058,19 @@ msgstr "Prevedeno"
 
 #: apps/pootle_store/decorators.py:25
 msgid "Insufficient rights to access this directory."
-msgstr ""
+msgstr "Nedovoljna prava za pristup ovom direktoriju."
 
 #: apps/pootle_store/decorators.py:28
 msgid "Insufficient rights to access suggestion mode."
-msgstr ""
+msgstr "Nedovoljna prava za pristup modusu prijedloga."
 
 #: apps/pootle_store/decorators.py:29
 msgid "Insufficient rights to access translation mode."
-msgstr ""
+msgstr "Nedovoljna prava za pristup modusu prijevoda."
 
 #: apps/pootle_store/decorators.py:30
 msgid "Insufficient rights to access review mode."
-msgstr ""
+msgstr "Nedovoljna prava za pristup modusu pregleda."
 
 #: apps/pootle_store/forms.py:101
 #: apps/pootle_store/templatetags/store_tags.py:46
@@ -1090,11 +1078,11 @@ msgstr ""
 #: apps/pootle_store/templatetags/store_tags.py:70
 #, python-format
 msgid "Plural Form %d"
-msgstr "Oblik u množini %d"
+msgstr "Oblik množine %d"
 
 #: apps/pootle_store/forms.py:247
 msgid "Needs work flag must be cleared"
-msgstr ""
+msgstr "Oznaka „Treba doraditi” ne smije biti označena"
 
 #: apps/pootle_store/forms.py:302
 msgid "Translator comment"
@@ -1103,22 +1091,22 @@ msgstr "Komentari prevoditelja"
 #: apps/pootle_store/forms.py:483
 #, python-format
 msgid "Suggestion '%s' has already been accepted or rejected."
-msgstr ""
+msgstr "Prijedlog „%s” je već prihvaćen ili odbijen."
 
 #: apps/pootle_store/forms.py:501 core/decorators.py:146
 #: core/views/decorators.py:70
 msgid "Insufficient rights to access this page."
-msgstr ""
+msgstr "Nedovoljna prava za pristup ovoj stranici."
 
 #: apps/pootle_store/forms.py:571
-#, fuzzy, python-format
+#, python-format
 msgid "Suggestion '%s' already exists."
-msgstr "Prijedlog %d sa %s:"
+msgstr "Prijedlog „%s” već postoji."
 
 #: apps/pootle_store/forms.py:577
 #, python-format
 msgid "Suggestion '%s' equals to current unit target value."
-msgstr ""
+msgstr "Prijedlog „%s” je jednak trenutačnoj jedinici vrijednosti cilja."
 
 #: apps/pootle_store/templatetags/store_tags.py:37
 #: apps/pootle_store/templatetags/store_tags.py:41
@@ -1131,93 +1119,89 @@ msgid "Plural"
 msgstr "Množina"
 
 #: apps/pootle_store/unit/timeline.py:74
-#, fuzzy
 msgid "Added suggestion"
-msgstr "Prihvaćen prijedlog"
+msgstr "Dodan je prijedlog"
 
 #: apps/pootle_store/unit/timeline.py:86
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s"
-msgstr "Prihvaćen prijedlog"
+msgstr "Dodan je prijedlog od autora %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:94
-#, fuzzy, python-format
+#, python-format
 msgid "Accepted suggestion from %(author)s with comment: %(comment)s"
-msgstr "Prihvaćen prijedlog"
+msgstr "Dodan je prijedlog od autora %(author)s s komentarom: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:115
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s"
-msgstr "Odbačen prijedlog"
+msgstr "Odbačen je prijedlog od autora %(author)s"
 
 #: apps/pootle_store/unit/timeline.py:123
-#, fuzzy, python-format
+#, python-format
 msgid "Rejected suggestion from %(author)s with comment: %(comment)s"
-msgstr "Odbačen prijedlog"
+msgstr "Odbačen je prijedlog od autora %(author)s s komentarom: %(comment)s"
 
 #: apps/pootle_store/unit/timeline.py:157
 msgid "Unit created"
-msgstr ""
+msgstr "Jedinica stvorena"
 
 #: apps/pootle_store/unit/timeline.py:188
-#, fuzzy
 msgid "Comment:"
-msgstr "Komentari"
+msgstr "Komentar:"
 
 #: apps/pootle_store/unit/timeline.py:191
-#, fuzzy
 msgid "Removed comment"
-msgstr "Dodaj komentar"
+msgstr "Komentar je uklonjen"
 
 #: apps/pootle_store/unit/timeline.py:216
 #, python-format
 msgid "Muted %(check_name)s check"
-msgstr ""
+msgstr "Isključena %(check_name)s provjera"
 
 #: apps/pootle_store/unit/timeline.py:225
 #, python-format
 msgid "Unmuted %(check_name)s check"
-msgstr ""
+msgstr "Uključena %(check_name)s provjera"
 
 #: apps/pootle_store/utils.py:137
-#, fuzzy
 msgid "Suggestion accepted with comment"
-msgstr "Prihvaćenih prijedloga"
+msgstr "Prijedlog prihvaćen s komentarom"
 
 #: apps/pootle_store/utils.py:139
 msgid "Suggestion rejected with comment"
-msgstr ""
+msgstr "Prijedlog odbaćen s komentarom"
 
 #: apps/pootle_store/views.py:180 apps/virtualfolder/views.py:105
 msgid "Path too long."
-msgstr ""
+msgstr "Putanja predugačka."
 
 #: apps/pootle_store/views.py:182 apps/virtualfolder/views.py:107
 #: core/decorators.py:47
 msgid "Arguments missing."
-msgstr ""
+msgstr "Argumenti nedostaju."
 
 #: apps/pootle_store/views.py:237
 msgid "Failed to remove comment."
-msgstr ""
+msgstr "Neuspjelo uklanjanje komentara."
 
 #: apps/pootle_store/views.py:269
 msgid "Comment submission failed."
-msgstr ""
+msgstr "Neuspjela prijava komentara."
 
 #: apps/pootle_terminology/forms.py:47
 msgid "This term already exists in this file."
-msgstr ""
+msgstr "Ovaj pojam već postoji u ovoj datoteci."
 
 #: apps/pootle_translationproject/receivers.py:38
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) created"
-msgstr "Prijevod projekt glavne stranice"
+msgstr "Prevodilački projekt (%s) je stvoren"
 
 #: apps/pootle_translationproject/receivers.py:52
-#, fuzzy, python-format
+#, python-format
 msgid "Translation project (%s) creation failed"
-msgstr "Prijevod projekt glavne stranice"
+msgstr "Neuspjelo stvaranje prevodilačkog projekta (%s)"
 
 #: apps/staticpages/forms.py:59
 #, python-format
@@ -1225,14 +1209,16 @@ msgid ""
 "I have read and accept: <a href=\"%(url)s\" class=\"%(classes)s\">%(title)s</"
 "a>"
 msgstr ""
+"Pročitao/pročitala sam i prihvaćam: <a href=\"%(url)s\" class=\"%(classes)s"
+"\">%(title)s</a>"
 
 #: apps/staticpages/models.py:32
 msgid "Whether this page is active or not."
-msgstr ""
+msgstr "Je li ova stranica aktivna ili nije."
 
 #: apps/staticpages/models.py:35 templates/admin/staticpages/_table.html:7
 msgid "Virtual Path"
-msgstr ""
+msgstr "Virtualni putanja"
 
 #: apps/staticpages/models.py:42 apps/virtualfolder/models.py:32
 msgid "Title"
@@ -1241,77 +1227,80 @@ msgstr "Naslov"
 #. Translators: Content that will be used to display this static page
 #: apps/staticpages/models.py:45
 msgid "Display Content"
-msgstr ""
+msgstr "Prikaži sadržaj"
 
 #: apps/staticpages/models.py:47
 #, python-format
 msgid "Allowed markup: %s"
-msgstr ""
+msgstr "Dozvoljeno označavanje: %s"
 
 #: apps/staticpages/models.py:50 templates/admin/staticpages/_table.html:9
 msgid "Redirect to URL"
-msgstr ""
+msgstr "Preusmjeri na URL"
 
 #: apps/staticpages/models.py:52
 msgid "If set, this page will redirect to this URL"
-msgstr ""
+msgstr "Ako je postavljeno, ova stranica će se preusmjeriti na ovaj URL"
 
 #. Translators: 'URL' and 'content' refer to form fields.
 #: apps/staticpages/models.py:97
 msgid "URL or content must be provided."
-msgstr ""
+msgstr "URL ili sadržaj moraju biti zadani."
 
 #: apps/staticpages/models.py:103
 msgid "Virtual path already in use."
-msgstr ""
+msgstr "Virtualna putanja se već kosristi."
 
 #: apps/staticpages/models.py:113
 msgid "Legal Page"
-msgstr ""
+msgstr "Pravna stranica"
 
 #: apps/staticpages/models.py:124
 msgid "Regular Page"
-msgstr ""
+msgstr "Obična stranica"
 
 #: apps/staticpages/views.py:118 templates/admin/staticpages/_table.html:8
 msgid "Page Title"
-msgstr ""
+msgstr "Naslov stranice"
 
 #. Translators: 'projects' must not be translated.
 #: apps/staticpages/views.py:135
 msgid ""
 "projects/<project_code> or <language_code> or <language_code>/<project_code>"
 msgstr ""
+"projekti/<project_code> ili <language_code> ili <language_code>/"
+"<project_code>"
 
 #: apps/staticpages/views.py:230
 msgid "Text is missing"
-msgstr ""
+msgstr "Tekst nedostaje"
 
 #. Translators: This is a noun.
 #: apps/virtualfolder/models.py:39
 msgid "Filter"
-msgstr ""
+msgstr "Filtar"
 
 #: apps/virtualfolder/models.py:41
 msgid "Filtering rules that tell which files this virtual folder comprises."
 msgstr ""
+"Pravila filtriranja koja određuju datoteke, koje ova virtualna mapa sadrži."
 
 #: apps/virtualfolder/models.py:45 core/browser.py:21
 msgid "Priority"
-msgstr ""
+msgstr "Prioritet"
 
 #: apps/virtualfolder/models.py:47
 msgid ""
 "Number specifying importance. Greater priority means it is more important."
-msgstr ""
+msgstr "Broj koji određuje važnost. Veći prioritet znači da je važnije."
 
 #: apps/virtualfolder/models.py:51
 msgid "Is public?"
-msgstr ""
+msgstr "Je javno?"
 
 #: apps/virtualfolder/models.py:53
 msgid "Whether this virtual folder is public or not."
-msgstr ""
+msgstr "Naznačuje, je li virtualna mapa javna ili ne."
 
 #: apps/virtualfolder/models.py:56
 msgid "Description"
@@ -1322,12 +1311,16 @@ msgstr "Opis"
 msgid ""
 "Use this to provide more information or instructions. Allowed markup: %s"
 msgstr ""
+"Upotrijebi ovo za pružanje više informacija ili uputa. Dopušteno "
+"označavanje: %s"
 
 #: checks.py:74
 msgid ""
 "There are user accounts with duplicate emails. This will not be allowed in "
 "Pootle 2.8."
 msgstr ""
+"Postoje korisnički računi s istim e-adresama. To nije dozvoljeno u Pootlu "
+"2.8."
 
 #: checks.py:76
 msgid ""
@@ -1335,65 +1328,67 @@ msgid ""
 "'pootle update_user_email username email'. You might also want to consider "
 "using pootle merge_user or purge_user commands"
 msgstr ""
+"Pokušaj koristiti „pootle find_duplicate_emails“, a zatim aktualiziraj "
+"korisničku e-poštu s „pootle update_user_email username email“. Možeš "
+"koristiti i Pootlove naredbe „merge_user“ ili „purge_user“"
 
 #: checks.py:100
 msgid "Your version of Django is too old."
-msgstr ""
+msgstr "Tvoja Django verzija je prestara."
 
 #: checks.py:101
 #, python-format
 msgid "Try pip install --upgrade 'Django==%s'"
-msgstr ""
+msgstr "Pokušaj pip install --upgrade 'Django==%s'"
 
 #: checks.py:108
 msgid "Your version of lxml is too old."
-msgstr ""
+msgstr "Tvoja lxml verzija je prestara."
 
 #: checks.py:109
 msgid "Try pip install --upgrade lxml"
-msgstr ""
+msgstr "Pokušaj pip install --upgrade lxml"
 
 #: checks.py:115
 msgid "Your version of Translate Toolkit is too old."
-msgstr ""
+msgstr "Tvoja Translate Toolkit verzija je prestara."
 
 #: checks.py:116
 msgid "Try pip install --upgrade translate-toolkit"
-msgstr ""
+msgstr "Pokušaj pip install --upgrade translate-toolkit"
 
 #: checks.py:136
 #, python-format
 msgid "Could not connect to Redis (%s)"
-msgstr ""
+msgstr "Nije bilo moguće povezati se s Redisom (%s)"
 
 #: checks.py:137
 #, python-format
 msgid "Make sure Redis is running on %(host)s:%(port)s"
-msgstr ""
+msgstr "Uvjeri se da je Redis pokrenut na %(host)s:%(port)s"
 
 #: checks.py:147
-#, fuzzy
 msgid "Your version of Redis is too old."
-msgstr "Django verzija %s je instalirana."
+msgstr "Tvoja Redis verzija je prestara."
 
 #: checks.py:148
 #, python-format
 msgid "Update your system's Redis server package to at least version %s"
-msgstr ""
+msgstr "Aktualiziraj paket svog Redis poslužitelja barem na verziju %s"
 
 #. Translators: a worker processes background tasks
 #: checks.py:159
 msgid "No worker running."
-msgstr ""
+msgstr "Nije pokrenut nijedan radnik."
 
 #. Translators: a worker processes background tasks
 #: checks.py:161
 msgid "Run new workers with 'pootle rqworker'"
-msgstr ""
+msgstr "Pokreni nove radnike s „pootle rqworker”"
 
 #: checks.py:176
 msgid "Cache backend is not set to Redis."
-msgstr ""
+msgstr "Pozadinski sustav predmemorije nije postavljen na Redis."
 
 #: checks.py:177
 #, python-format
@@ -1401,40 +1396,45 @@ msgid ""
 "Set default cache backend to django_redis.cache.RedisCache\n"
 "Current settings: %r"
 msgstr ""
+"Postavi standardni pozadinski sustav predmemorije na django_redis.cache."
+"RedisCache\n"
+"Trenutačne postavke: %r"
 
 #: checks.py:187
 msgid "Could not initiate a Redis cache connection"
-msgstr ""
+msgstr "Nije moguće pokrenuti vezu Redis predmemorije"
 
 #: checks.py:188 checks.py:202
 msgid "Double-check your CACHES settings"
-msgstr ""
+msgstr "Provjeri svoje CACHES postavke"
 
 #: checks.py:200
 msgid ""
 "Distinct django_redis.cache.RedisCache configurations are required for "
 "`default`, `redis` and `lru`."
 msgstr ""
+"Potrebne su posebne django_redis.cache.RedisCache konfiguracije za "
+"„default”, „redis” i „lru”."
 
 #: checks.py:208
 msgid "DEBUG mode is on. Do not do this in production!"
-msgstr ""
+msgstr "DEBUG modus je uključen. Ne čini to u proizvodnji!"
 
 #: checks.py:209
 msgid "Set DEBUG = False in Pootle settings"
-msgstr ""
+msgstr "Postavi DEBUG = False u Pootle postavkama"
 
 #: checks.py:215
 msgid "The sqlite database backend is unsupported"
-msgstr ""
+msgstr "Pozadinski sustav sqlite baze podataka nije podržan"
 
 #: checks.py:216
 msgid "Set your default database engine to postgresql or mysql"
-msgstr ""
+msgstr "Postavi standardni pogon baze podataka na postgresql ili na mysql"
 
 #: checks.py:223
 msgid "Not using cached_db as session engine"
-msgstr ""
+msgstr "cached_db se ne koristi kao pogon sesije"
 
 #: checks.py:224
 #, python-format
@@ -1442,146 +1442,154 @@ msgid ""
 "Set SESSION_ENGINE to django.contrib.sessions.backend.cached_db\n"
 "Current settings: %r"
 msgstr ""
+"Postavi SESSION_ENGINE na django.contrib.sessions.backend.cached_db\n"
+"Trenutačne postavke: %r"
 
 #: checks.py:232
 msgid "POOTLE_CONTACT_EMAIL is not set."
-msgstr ""
+msgstr "POOTLE_CONTACT_EMAIL nije postavljeno."
 
 #: checks.py:233
 msgid ""
 "Set POOTLE_CONTACT_EMAIL to allow users to contact administrators through "
 "the Pootle contact form."
 msgstr ""
+"Postavi POOTLE_CONTACT_EMAIL kako bi korisnici mogli kontaktirati "
+"administratore putem Pootleovog obrasca za kontaktiranje."
 
 #: checks.py:241
 #, python-format
 msgid "POOTLE_CONTACT_EMAIL is using the following default setting %r."
-msgstr ""
+msgstr "POOTLE_CONTACT_EMAIL koristi sljedeću standardnu postavku %r."
 
 #: checks.py:243
 msgid ""
 "POOTLE_CONTACT_EMAIL is the address that will receive messages sent by the "
 "contact form."
 msgstr ""
+"POOTLE_CONTACT_EMAIL je adresa koja će primati poruke poslane putem obrasca "
+"za kontaktiranje."
 
 #: checks.py:250
 msgid "DEFAULT_FROM_EMAIL is not set."
-msgstr ""
+msgstr "DEFAULT_FROM_EMAIL nije postavljeno."
 
 #: checks.py:251 checks.py:261
 msgid ""
 "DEFAULT_FROM_EMAIL is used in all outgoing Pootle email.\n"
 "Don't forget to review your mail server settings."
 msgstr ""
+"DEFAULT_FROM_EMAIL se koristi u svim odlaznim Pootle e-porukama.\n"
+"Pregledaj postavke svog poslužitelja za e-poštu."
 
 #: checks.py:259
 #, python-format
 msgid "DEFAULT_FROM_EMAIL is using the following default setting %r."
-msgstr ""
+msgstr "DEFAULT_FROM_EMAIL koristi sljedeću standardnu postavku %r."
 
 #: checks.py:272
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no INDEX_NAME."
-msgstr ""
+msgstr "POOTLE_TM_SERVER[„%s”] nema INDEX_NAME."
 
 #: checks.py:273
 #, python-format
 msgid "Set an INDEX_NAME for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Postavi INDEX_NAME za POOTLE_TM_SERVER[„%s”]."
 
 #: checks.py:279
 #, python-format
 msgid "Duplicate '%s' INDEX_NAME in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "Duplicciraj „%s” INDEX_NAME u POOTLE_TM_SERVER."
 
 #: checks.py:281
 msgid "Set different INDEX_NAME for all servers in POOTLE_TM_SERVER."
-msgstr ""
+msgstr "Postavi različite INDEX_NAME za sve poslužitelje u POOTLE_TM_SERVER."
 
 #: checks.py:291
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no ENGINE."
-msgstr ""
+msgstr "POOTLE_TM_SERVER[„%s”] nema ENGINE."
 
 #: checks.py:292
 #, python-format
 msgid "Set a ENGINE for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Postavi ENGINE za POOTLE_TM_SERVER[„%s”]."
 
 #: checks.py:299
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no HOST."
-msgstr ""
+msgstr "POOTLE_TM_SERVER[„%s”] nema HOST."
 
 #: checks.py:300
 #, python-format
 msgid "Set a HOST for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Postavi HOST za POOTLE_TM_SERVER[„%s”]."
 
 #: checks.py:307
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has no PORT."
-msgstr ""
+msgstr "POOTLE_TM_SERVER[„%s”] nema PORT."
 
 #: checks.py:308
 #, python-format
 msgid "Set a PORT for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Postavi PORT za POOTLE_TM_SERVER[„%s”]."
 
 #: checks.py:317
 #, python-format
 msgid "POOTLE_TM_SERVER['%s'] has a WEIGHT less than 0.0 or greater than 1.0"
-msgstr ""
+msgstr "POOTLE_TM_SERVER[„%s”] sadrži WEIGHT manje od 0,0 ili veće od 1,0"
 
 #: checks.py:319
 #, python-format
 msgid ""
 "Set a WEIGHT between 0.0 and 1.0 (both included) for POOTLE_TM_SERVER['%s']."
-msgstr ""
+msgstr "Postavi WEIGHT između 0,0 i 1,0 (uključivo) za POOTLE_TM_SERVER[„%s”]."
 
 #: checks.py:327
 #, python-format
 msgid "POOTLE_SCORES has no %s."
-msgstr ""
+msgstr "POOTLE_SCORES nema %s."
 
 #: checks.py:328
 #, python-format
 msgid "Set %s in POOTLE_SCORES."
-msgstr ""
+msgstr "Postavi %s u POOTLE_SCORES."
 
 #: checks.py:336
 #, python-format
 msgid "Invalid value for %s in POOTLE_SCORES."
-msgstr ""
+msgstr "Neispravna vrijednost za %s u POOTLE_SCORES."
 
 #: checks.py:339
 #, python-format
 msgid "Set a valid value for %s in POOTLE_SCORES."
-msgstr ""
+msgstr "Postavi ispravnu vrijednost za %s u POOTLE_SCORES."
 
 #: checks.py:355
 msgid "POOTLE_MARKUP_FILTER is missing."
-msgstr ""
+msgstr "POOTLE_MARKUP_FILTER nedostaje."
 
 #: checks.py:356
 msgid "Set POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Postavi POOTLE_MARKUP_FILTER."
 
 #: checks.py:361
 msgid "Invalid value in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Neispravna vrijednost u POOTLE_MARKUP_FILTER."
 
 #: checks.py:362
 msgid "Set a valid value for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Postavi ispravnu vrijednost za POOTLE_MARKUP_FILTER."
 
 #: checks.py:378
 msgid "Invalid markup in POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Neispravno označavanje u POOTLE_MARKUP_FILTER."
 
 #: checks.py:379
 msgid "Set a valid markup for POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Postavi ispravno označavanje za POOTLE_MARKUP_FILTER."
 
 #: checks.py:384
 #, python-format
@@ -1589,18 +1597,20 @@ msgid ""
 "POOTLE_MARKUP_FILTER is set to '%s' markup, but the package that provides "
 "can't be found."
 msgstr ""
+"POOTLE_MARKUP_FILTER je postavljen na „%s” označavanje, međutim nije "
+"pronađen paket koji ga pruža."
 
 #: checks.py:386
 msgid "Install the package or change POOTLE_MARKUP_FILTER."
-msgstr ""
+msgstr "Instaliraj paket ili promijeni POOTLE_MARKUP_FILTER."
 
 #: checks.py:392
 msgid "POOTLE_MARKUP_FILTER set to 'None' is deprecated."
-msgstr ""
+msgstr "POOTLE_MARKUP_FILTER postavljen na „None” je zastarjelo."
 
 #: checks.py:393
 msgid "Set your markup to 'html' explicitly."
-msgstr ""
+msgstr "Postavi označavanje izričito na „html”."
 
 #: checks.py:398
 #, python-format
@@ -1608,107 +1618,125 @@ msgid ""
 "POOTLE_MARKUP_FILTER is using '%s' markup, which is deprecated and will be "
 "removed in future."
 msgstr ""
+"POOTLE_MARKUP_FILTER koristi „%s” označavanje, koje je zastarjelo i ubuduće "
+"će se ukloniti."
 
 #: checks.py:401
 msgid "Convert your staticpages to Markdown and set your markup to 'markdown'."
 msgstr ""
+"Pretvori svoje staticpages u Markdown i postavi svoje označavanje na "
+"„markdown”."
 
 #: checks.py:422
 msgid "The default 'admin' user still has a password set to 'admin'."
-msgstr ""
+msgstr "Standardni „admin” korisnik još uvijek sadrži lozinku „admin”."
 
 #: checks.py:424
 msgid "Remove the 'admin' user or change its password."
-msgstr ""
+msgstr "Ukloni „admin” korisnika ili promijeni lozinku."
 
 #: checks.py:438
 msgid "Database connection uses transaction_hooks."
-msgstr ""
+msgstr "Veza baze podataka koristi transaction_hooks."
 
 #: checks.py:439
 msgid ""
 "Set the DATABASES['default']['ENGINE'] to use a Django backend from django."
 "db.backends."
 msgstr ""
+"Postavi DATABASES['default']['ENGINE'] tako, da koristi pozadinski sustav "
+"Django od django.db.backends."
 
 #: checks.py:459
 msgid "Email server is not available."
-msgstr ""
+msgstr "Poslužitelj za e-poštu nije dostupan."
 
 #: checks.py:460
 msgid "Review your email settings and make sure your email server is working."
 msgstr ""
+"Pregledaj postavke e-pošte i provjeri radi li tvoj poslužitelj za e-poštu."
 
 #: checks.py:487
 msgid "Revision is missing or has an incorrect value."
-msgstr ""
+msgstr "Revizija nedostaje ili sadrži neispravnu vrijednost."
 
 #: checks.py:488
 msgid "Run `revision --restore` to reset the revision counter."
-msgstr ""
+msgstr "Pokreni „revision --restore” za resetiranje brojača revizija."
 
 #: checks.py:502
 msgid "No canonical URL provided and default site set to example.com."
 msgstr ""
+"Kanonski URL nije naveden i standardno web mjesto je postavljeno na example."
+"com."
 
 #: checks.py:504
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` in settings or update the default site if you "
 "are using django.contrib.sites."
 msgstr ""
+"Postavi „POOTLE_CANONICAL_URL” u postavkama ili aktualiziraj standardno web "
+"mjesto, ako koristiš django.contrib.sites."
 
 #: checks.py:508
 msgid "Canonical URL is set to http://localhost."
-msgstr ""
+msgstr "Kanonska URL adresa je postavljena na http://localhost."
 
 #: checks.py:510
 msgid ""
 "Set the `POOTLE_CANONICAL_URL` to an appropriate value for your site or "
 "leave it empty if you are using `django.contrib.sites`."
 msgstr ""
+"Postavi „POOTLE_CANONICAL_URL” na odgovarajuću vrijednost za svoje web "
+"mjesto ili je ostavi praznom, ako koristiš „django.contrib.sites”."
 
 #: checks.py:540
 msgid "POOTLE_FS_WORKING_PATH setting is not set."
-msgstr ""
+msgstr "Postavka POOTLE_FS_WORKING_PATH nije postavljena."
 
 #: checks.py:544
 #, python-format
 msgid "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH doesn't exist."
-msgstr ""
+msgstr "Putanja („%s”) na koju ukazuje POOTLE_FS_WORKING_PATH ne postoji."
 
 #: checks.py:546
 msgid ""
 "Create the directory pointed to by `POOTLE_FS_WORKING_PATH`, or change the "
 "setting."
 msgstr ""
+"Stvori putanju na koju ukazuje „POOTLE_FS_WORKING_PATH” ili promijeni "
+"postavku."
 
 #: checks.py:551
 #, python-format
 msgid ""
 "Path ('%s') pointed to by POOTLE_FS_WORKING_PATH is not writable by Pootle."
 msgstr ""
+"Pootle ne može pisati u putanji („%s”) na koju ukazuje "
+"POOTLE_FS_WORKING_PATH."
 
 #: checks.py:554
 msgid ""
 "Add the write permission to the `POOTLE_FS_WORKING_PATH` or change the "
 "setting."
 msgstr ""
+"Za „POOTLE_FS_WORKING_PATH” dodaj dozvolu za pisanje ili promijeni postavku."
 
 #: checks.py:573
 msgid "MySQL requires time zone settings."
-msgstr ""
+msgstr "MySQL zahtijeva postavke vremesnke zone."
 
 #: checks.py:593
 msgid "Pootle does not yet support Python 3."
-msgstr ""
+msgstr "Pootle još ne podržava Python 3."
 
 #: checks.py:594 checks.py:600
 msgid "Use a Python 2.7 virtualenv."
-msgstr ""
+msgstr "Koristi jedan Python 2.7 virtualenv."
 
 #: checks.py:599
 msgid "Pootle no longer supports Python versions older than 2.7"
-msgstr ""
+msgstr "Pootle više ne podržava Python verzije starije od 2.7"
 
 #. Translators: noun. The graphical representation of translation status
 #: core/browser.py:37
@@ -1730,7 +1758,7 @@ msgstr "Prijedlozi"
 #: core/browser.py:58 templates/browser/_actions.html:43
 #: templates/editor/_filters.html:8
 msgid "Incomplete"
-msgstr ""
+msgstr "Nepotpuno"
 
 #. Translators: Heading representing the total number of words of a file
 #. or directory
@@ -1740,20 +1768,19 @@ msgstr "Ukupno"
 
 #: core/browser.py:70
 msgid "Last updated"
-msgstr ""
+msgstr "Zadnje aktualiziranje"
 
 #: core/browser.py:119
-#, fuzzy
 msgid "Back to language"
-msgstr "Povratak na glavnu stranicu"
+msgstr "Vrati se na jezik"
 
 #: core/browser.py:121
 msgid "Back to parent folder"
-msgstr ""
+msgstr "Vrati se na nadređenu mapu"
 
 #: core/decorators.py:159 core/views/mixins.py:26
 msgid "You do not have rights to administer Pootle."
-msgstr "Nemate prava za administriranje Pootle-a."
+msgstr "Nemaš prava za administriranje Pootle-a."
 
 #: core/forms.py:151
 msgid "Time to answer has expired"
@@ -1761,128 +1788,126 @@ msgstr "Vrijeme je za odgovor je isteklo"
 
 #: core/forms.py:170
 msgid "Enter a number"
-msgstr "Upišite broj"
+msgstr "Upiši broj"
 
 #: core/forms.py:185
 msgid "Incorrect"
-msgstr "Netočan"
+msgstr "Netočno"
 
 #: core/forms.py:214
 msgid "With selected"
-msgstr ""
+msgstr "S odabranim"
 
 #: core/forms.py:221
-#, fuzzy
 msgid "Add comment"
 msgstr "Dodaj komentar"
 
 #: core/forms.py:227
 msgid "Select all items matching filter criteria, including those not shown"
 msgstr ""
+"Odaberi sve stavke koje odgovaraju kriteriju filtra, uključujući one koje "
+"nisu prikazani"
 
 #: core/forms.py:247
 msgid "You must specify an action to take"
-msgstr ""
+msgstr "Moraš zadati radnju za uzimanje"
 
 #: core/forms.py:248
 msgid "A valid search field must be specified"
-msgstr ""
+msgstr "Mora se odrediti valjano polje pretrage"
 
 #: core/initdb.py:135
 msgid "Can access a project"
-msgstr ""
+msgstr "Može pristupiti projektu"
 
 #: core/initdb.py:139
 msgid "Cannot access a project"
-msgstr ""
+msgstr "Ne može pristupiti projektu"
 
 #: core/initdb.py:143
 msgid "Can make a suggestion for a translation"
-msgstr "Možete dati prijedlog za prijevod"
+msgstr "Može predložiti prijevod"
 
 #: core/initdb.py:147
 msgid "Can submit a translation"
-msgstr "Možete poslati prijevod"
+msgstr "Može poslati prijevod"
 
 #: core/initdb.py:151
-#, fuzzy
 msgid "Can review suggestions"
-msgstr "Provjeri prijedloge"
+msgstr "Može pregledati prijedloge"
 
 #: core/initdb.py:155
-#, fuzzy
 msgid "Can perform administrative tasks"
-msgstr "Django administracija"
+msgstr "Može vršiti administracijske zadatke"
 
 #: core/views/base.py:122
-#, fuzzy
 msgid "Entire Project"
-msgstr "Aktivni projekti"
+msgstr "Cijeli projekt"
 
 #: core/views/display.py:103 core/views/display.py:125
 #, python-format
 msgid "%(user)s removed translation for %(source)s"
-msgstr ""
+msgstr "%(user)s je uklonio/uklonila prijevod za %(source)s"
 
 #: core/views/display.py:105
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s accepted suggestion for %(source)s"
-msgstr "Prihvaćen prijedlog"
+msgstr "%(user)s je prihvatio/prihvatila prijedlog za %(source)s"
 
 #: core/views/display.py:107
 #, python-format
 msgid "%(user)s uploaded file"
-msgstr ""
+msgstr "Datoteku je poslao/poslala %(user)s"
 
 #: core/views/display.py:109
 #, python-format
 msgid "%(user)s muted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(user)s je isključio/isključila %(check)s za %(source)s"
 
 #: core/views/display.py:111
 #, python-format
 msgid "%(user)s unmuted %(check)s for %(source)s"
-msgstr ""
+msgstr "%(user)s je uključio/uključila %(check)s za %(source)s"
 
 #: core/views/display.py:113
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s added suggestion for %(source)s"
-msgstr "Prihvaćen prijedlog"
+msgstr "%(user)s je dodao/dodala prijedlog za %(source)s"
 
 #: core/views/display.py:115
-#, fuzzy, python-format
+#, python-format
 msgid "%(user)s rejected suggestion for %(source)s"
-msgstr "Odbačen prijedlog"
+msgstr "%(user)s je odbacio/odbacila prijedlog za %(source)s"
 
 #: core/views/display.py:118
 #, python-format
 msgid "%(user)s translated %(source)s"
-msgstr ""
+msgstr "%(user)s je preveo/prevela %(source)s"
 
 #: core/views/display.py:120
 #, python-format
 msgid "%(user)s edited %(source)s"
-msgstr ""
+msgstr "%(user)s je uredio/uredila %(source)s"
 
 #. Translators: pre-translate is translating with first 100% TM match
 #: core/views/display.py:123
 #, python-format
 msgid "%(user)s pre-translated %(source)s"
-msgstr ""
+msgstr "%(user)s je predpreveo/predprevela %(source)s"
 
 #: core/views/display.py:127
 #, python-format
 msgid "%(user)s reviewed %(source)s"
-msgstr ""
+msgstr "%(user)s je pregledao/pregledala %(source)s"
 
 #: core/views/display.py:129
 #, python-format
 msgid "%(user)s marked as needs work %(source)s"
-msgstr ""
+msgstr "%(user)s je označio/označila da treba doraditi %(source)s"
 
 #: core/views/mixins.py:66
 msgid "You cannot access this page."
-msgstr ""
+msgstr "Ne možeš pristup ovoj stranici."
 
 #: middleware/errorpages.py:83
 #, python-format
@@ -1892,13 +1917,13 @@ msgstr ""
 "%(errormsg)s"
 
 #: middleware/errorpages.py:119
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You need to <a class=\"js-login\" href=\"%(login_link)s\">login</a> to "
 "access this page."
 msgstr ""
-"Potrebno je <a href=\"%(login_link)s\">prijaviti se</ a> da biste pristupili "
-"ovoj stranici."
+"Za pristup ovoj stranici se moraš <a class=\"js-login\" href=\"%(login_link)s"
+"\">prijaviti</a>."
 
 #. Translators: Label that refers to the site's privacy policy
 #: strings.py:39
@@ -1916,7 +1941,7 @@ msgstr "Pravno"
 #. such as Austria and Switzerland. See https://en.wikipedia.org/wiki/Impressum
 #: strings.py:46
 msgid "Imprint"
-msgstr ""
+msgstr "Impressum"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:48
@@ -1925,14 +1950,13 @@ msgstr "Licenca"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:50
-#, fuzzy
 msgid "License Statement"
-msgstr "Licenca"
+msgstr "Izjava o licenziranju"
 
 #. Translators: Label that refers to the site's license requirements
 #: strings.py:52
 msgid "Contributor License"
-msgstr ""
+msgstr "Licenca za doprinositelja"
 
 #. Translators: Label that refers to the site's terms of use
 #: strings.py:54
@@ -1947,16 +1971,15 @@ msgstr "Uvjeti pružanja usluge"
 #. Translators: Label that refers to the site's getting started guide
 #: strings.py:58
 msgid "Getting Started"
-msgstr ""
+msgstr "Kako započeti"
 
 #: templates/about.html:7 templates/layout.html:188
 msgid "About"
-msgstr "O programu"
+msgstr "Informacije"
 
 #: templates/about.html:13
-#, fuzzy
 msgid "About This Pootle Server"
-msgstr "O Pootle-ovom serveru"
+msgstr "Informacije o Pootle poslužitelju"
 
 #: templates/about.html:16
 msgid ""
@@ -1966,6 +1989,11 @@ msgid ""
 "Read more on the <a href=\"http://pootle.translatehouse.org/\">project "
 "website</a>."
 msgstr ""
+"Ovo web mjesto pokreće Pootle – moćan web softver koji timovima omogućava "
+"prevoditi i upravljati prijevodima. Ovaj alat zajednice je slobodan softver "
+"i bilo koji tim ga može koristiti i doprinijeti Pootle zajednici. Pročitaj "
+"više na <a href=\"http://pootle.translatehouse.org/\">web stranicama "
+"projekta</a>."
 
 #: templates/about.html:25
 #, python-format
@@ -1973,67 +2001,64 @@ msgid ""
 "Pootle %(pootle_version)s is powered by Translate Toolkit "
 "%(toolkit_version)s."
 msgstr ""
+"Pootle %(pootle_version)s pokreće Translate Toolkit %(toolkit_version)s."
 
 #: templates/account/email/email_confirmation_message.txt:2
 msgid "A Pootle account has been created for you using this email address."
-msgstr ""
-"Korisnički račun na Pootle-u stvoren je za vas korištenjem ove e-mail adrese."
+msgstr "Korisnički račun za Pootle je stvoren za tebe upotrebom ove e-adrese."
 
 #: templates/account/email/email_confirmation_message.txt:3
 msgid "To activate your account, follow this link:"
-msgstr "Kako biste aktivirali Vaš korisnički račun, slijedite ovaj link:"
+msgstr "Za aktiviranje tvog korisničkog računa, slijedi ovu poveznicu:"
 
 #: templates/account/email/email_confirmation_message.txt:6
 msgid ""
 "This message is sent to verify that the email address is in fact correct. If "
 "you did not want to register an account, you may simply ignore the message."
 msgstr ""
-"Ova je poruka poslana kako bi potvrdili točnost adrese e-pošte. Ako ne "
-"želite registrirati račun, možete jednostavno ignorirati poruku."
+"Ova je poruka poslana kako bismo potvrdili točnost e-adrese. Ako ne želiš "
+"registrirati račun, jednostavno zanemari poruku."
 
 #: templates/account/email/email_confirmation_subject.txt:2
-#, fuzzy
 msgid "Pootle e-mail confirmation"
-msgstr "Pootle registracija"
+msgstr "Pootle e-poruka s potvrdom"
 
 #: templates/account/email/password_reset_key_message.txt:2
 msgid "We have received a request to reset your password."
-msgstr ""
+msgstr "Primili smo zahtjev za ponovnim postavljanjem tvoje lozinke."
 
 #: templates/account/email/password_reset_key_message.txt:3
-#, fuzzy
 msgid "To reset your password, follow this link:"
-msgstr "Kako biste aktivirali Vaš korisnički račun, slijedite ovaj link:"
+msgstr "Za ponovno postavljanje lozinke, slijedi ovu poveznicu:"
 
 #: templates/account/email/password_reset_key_message.txt:6
 msgid ""
 "If you do not want to reset your password, you may simply ignore the message."
 msgstr ""
+"Ako ne želiš ponovo postaviti svoju lozinku, jednostavno zanemari ovu poruku."
 
 #: templates/account/email/password_reset_key_subject.txt:2
-#, fuzzy
 msgid "Pootle password reset e-mail"
-msgstr "Neuspješno resetiranje lozinke."
+msgstr "Pootle e-poruka za ponovno postavljanje lozinke"
 
 #: templates/account/signup_closed.html:5
 #: templates/account/signup_closed.html:8
 #: templates/account/signup_closed.html:13
-#, fuzzy
 msgid "Registration Disabled"
-msgstr "registracijski profil"
+msgstr "Registracija deaktivirana"
 
 #: templates/account/signup_closed.html:14
 msgid "Registration is currently disabled. Please try again later."
-msgstr ""
+msgstr "Registracija je trenutačno deaktivirana. Pokušaj kasnije ponovo."
 
 #: templates/admin/_generic_formset.html:22
 #: templates/translation_projects/terminology/manage.html:54
 msgid "Save Changes"
-msgstr "Spremite promjene"
+msgstr "Spremi promjene"
 
 #: templates/admin/_tabs.html:6
 msgid "Info"
-msgstr "Info"
+msgstr "Informacije"
 
 #: templates/admin/_tabs.html:11 templates/admin/dashboard.html:21
 #: templates/admin/users.html:4 templates/admin/users.html:7
@@ -2068,7 +2093,7 @@ msgstr "Dozvole"
 #: templates/admin/_tabs.html:31 templates/admin/staticpages/base.html:4
 #: templates/admin/staticpages/base.html:8
 msgid "Static Pages"
-msgstr ""
+msgstr "Statičke stranice"
 
 #: templates/admin/base.html:4 templates/admin/base.html:7
 msgid "Administration"
@@ -2076,11 +2101,11 @@ msgstr "Administriranje"
 
 #: templates/admin/dashboard.html:7
 msgid "Server Statistics"
-msgstr "Statistika korisnika"
+msgstr "Statistika o poslužitelju"
 
 #: templates/admin/dashboard.html:13
 msgid "Submissions"
-msgstr "Podnositelji"
+msgstr "Prijave"
 
 #: templates/admin/dashboard.html:17
 msgid "Pending suggestions"
@@ -2088,36 +2113,35 @@ msgstr "Prijedlozi u tijeku"
 
 #: templates/admin/dashboard.html:29
 msgid "Background Jobs"
-msgstr ""
+msgstr "Poslovi u pozadini"
 
 #: templates/admin/dashboard.html:35
 msgid "Status"
-msgstr ""
+msgstr "Stanje"
 
 #: templates/admin/dashboard.html:42
 msgid "Pending jobs"
-msgstr ""
+msgstr "Poslovi u tijeku"
 
 #: templates/admin/dashboard.html:46
 msgid "Failed jobs"
-msgstr ""
+msgstr "Neuspjeli poslovi"
 
 #: templates/admin/dashboard.html:56
-#, fuzzy
 msgid "System Checks"
-msgstr "Prikaži provjere"
+msgstr "Provjere sustava"
 
 #: templates/admin/dashboard.html:66
 msgid "No issues have been detected. All is good!"
-msgstr ""
+msgstr "Problemi nisu otkriveni. Sve je u redu!"
 
 #: templates/admin/permissions.html:10
 msgid ""
 "Here you can add, edit, and delete the default permissions in this Pootle "
 "server."
 msgstr ""
-"Ovdje možete dodavati, uređivati i brisati zadane ovlasti u ovom Pootle "
-"serveru."
+"Ovdje možeš dodati, urediti i izbrisati standardne dozvole u ovom Pootle "
+"poslužitelju."
 
 #: templates/admin/permissions.html:14
 #: templates/projects/admin/permissions.html:13
@@ -2128,15 +2152,15 @@ msgid ""
 "in users will have by default, unless other specific rights were assigned to "
 "them."
 msgstr ""
-"Korisnik \"nitko\" odnosi se na bilo kojeg korisnika koji nije prijavljen "
-"(anoniman, nepoznati korisnik). Korisnik \"default\" se odnosi na prava "
-"prijavljenih korisnika koja imaju po defaultu, osim ako im nisu dodijeljena "
-"posebna prava."
+"Korisnik „nitko” se odnosi na bilo kojeg korisnika koji nije prijavljen "
+"(anoniman, nepoznati korisnik). Korisnik „standardno” se odnosi na prava, "
+"koja će standardno imati svi prijavljenih korisnici, osim ako im nisu "
+"dodijeljena posebna prava."
 
 #: templates/admin/project_fs.html:26
 #, python-format
 msgid "Filesystem configuration: %(project_code)s"
-msgstr ""
+msgstr "Konfiguracija datotečnog sustava: %(project_code)s"
 
 #: templates/admin/project_fs.html:28
 msgid ""
@@ -2144,55 +2168,60 @@ msgid ""
 "require a level of expertise in localisation, Python and Pootle in case "
 "anything goes wrong."
 msgstr ""
+"Pootlov datotečni sustav je još uvijek u razvoju, voljeli bismo ga "
+"koristiti, ali zahtijeva razinu stručnosti lokalizacije, Python i Pootle u "
+"slučaju da nešto pođe naopako."
 
 #: templates/admin/project_fs.html:37
 msgid "Backend configuration"
-msgstr ""
+msgstr "Konfiguracija pozadinskog sustava"
 
 #: templates/admin/project_fs.html:48
 msgid "Update filesystem configuration"
-msgstr ""
+msgstr "Aktualiziraj konfiguraciju datotečnog sustava"
 
 #: templates/admin/project_fs.html:51
-#, fuzzy
 msgid "Translation path mapping should be of the format:"
-msgstr "Postavke prevođenja"
+msgstr "Mapiranje putanje prijevoda treba biti u formatu:"
 
 #: templates/admin/project_fs.html:59
 msgid ""
 "Only `&lt;language_code&gt;` is required, although it must end with `.&lt;"
 "ext&gt;`"
 msgstr ""
+"Potrebno je samo `&lt;language_code&gt;`, mada mora završiti s `.&lt;ext&gt;`"
 
 #: templates/admin/project_fs.html:65
 msgid ""
 "If you are using the localfs backend the translation path mapping will be "
 "combined with the path specified in backend URL"
 msgstr ""
+"Ako koristi pozadinski sustav „localfs“, mapiranje putanje prijevoda će se "
+"kombinirati s putanjom navedenom u URL adresi pozadinskog sustava"
 
 #: templates/admin/project_fs.html:71
 msgid ""
 "For other backends the translation path mapping will be relative to the root "
 "of the repository."
 msgstr ""
+"Za druge pozadinske sustave mapiranje putanje prijevoda bit će relativne na "
+"korijen spremišta."
 
 #: templates/admin/project_fs.html:81
-#, fuzzy
 msgid "Language mapping configuration"
-msgstr "Glavna stranica jezika"
+msgstr "Konfiguracija za mapiranje jezika"
 
 #: templates/admin/project_fs.html:91
 msgid "Remove"
 msgstr "Ukloni"
 
 #: templates/admin/project_fs.html:92
-#, fuzzy
 msgid "Pootle code"
-msgstr "Pootle Demo"
+msgstr "Kȏd Pootla"
 
 #: templates/admin/project_fs.html:93
 msgid "Filesystem code"
-msgstr ""
+msgstr "Kȏd datotečnog sustava"
 
 #: templates/admin/project_fs.html:97
 #: templates/admin/staticpages/page_create.html:4
@@ -2200,44 +2229,42 @@ msgid "Add"
 msgstr "Dodaj"
 
 #: templates/admin/project_fs.html:104
-#, fuzzy
 msgid "Update"
-msgstr "Ažuriraj"
+msgstr "Aktualiziraj"
 
 #: templates/admin/reports/header.html:5
-#, fuzzy
 msgid "User"
-msgstr "Korisnici"
+msgstr "Korisnik"
 
 #: templates/admin/reports/header.html:12
 msgid "Previous month"
-msgstr ""
+msgstr "Prethodni mjesec"
 
 #: templates/admin/reports/header.html:16
 msgid "Next month"
-msgstr ""
+msgstr "Sljedeći mjesec"
 
 #: templates/admin/reports/header.html:24
 msgid "Detailed Report"
-msgstr ""
+msgstr "Detaljni izvještaj"
 
 #: templates/admin/reports/header.html:26
 msgid "Detailed Statistics"
-msgstr ""
+msgstr "Detaljna statistika"
 
 #: templates/admin/staticpages/_form.html:7
 #: templates/translation_projects/terminology/manage.html:41
 msgid "Delete"
-msgstr "Obrišite"
+msgstr "Obriši"
 
 #: templates/admin/staticpages/_form.html:21
 msgid "or"
-msgstr ""
+msgstr "ili"
 
 #: templates/admin/staticpages/_form.html:34
 #: templates/languages/admin/characters.html:20 templates/user/settings.html:39
 msgid "Save"
-msgstr "Spremiti"
+msgstr "Spremi"
 
 #: templates/admin/staticpages/_form.html:37
 msgid ""
@@ -2245,270 +2272,268 @@ msgid ""
 "</code> code to provide links between static pages. Such links will be "
 "rewritten with full paths to static pages."
 msgstr ""
+"Provjeri kȏd <code>&lt;a href=\"<strong>#/page-slug</strong>\"&gt;tekst "
+"poveznice&lt;/a&gt;</code> za navođenje poveznica između statičkih stranica. "
+"Takve poveznice će biti prepisane s punim putanjama do statičkih stranica."
 
 #: templates/admin/staticpages/_form.html:44
 msgid ""
 "In Announcement pages use <code><strong>/xx/</strong></code> within URLs for "
 "a dynamic language code."
 msgstr ""
+"Na stranicama objava koristi <code><strong>/xx/</strong></code> unutar URL "
+"adresa za dinamički jezični kȏd."
 
 #: templates/admin/staticpages/_table.html:10
 msgid "Last Edited"
-msgstr ""
+msgstr "Zadnje uređivanje"
 
 #: templates/admin/staticpages/_table.html:16
 msgid "Yes"
-msgstr ""
+msgstr "Da"
 
 #: templates/admin/staticpages/_table.html:16
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: templates/admin/staticpages/_table.html:19
 #: templates/staticpages/_body.html:16
-#, fuzzy
 msgid "edit"
-msgstr "Uredi"
+msgstr "uredi"
 
 #: templates/admin/staticpages/_table.html:24
-#, fuzzy
 msgid "view"
-msgstr "Pogledaj"
+msgstr "pogledaj"
 
 #: templates/admin/staticpages/_table.html:37
 msgid "No pages yet."
-msgstr ""
+msgstr "Još nema stranica."
 
 #: templates/admin/staticpages/page_list.html:7
 msgid "Legal Pages"
-msgstr ""
+msgstr "Pravne stranice"
 
 #: templates/admin/staticpages/page_list.html:11
 msgid "Add Legal Page"
-msgstr ""
+msgstr "Dodaj pravnu stranicu"
 
 #: templates/admin/staticpages/page_list.html:14
 msgid "Regular Pages"
-msgstr ""
+msgstr "Obične stranice"
 
 #: templates/admin/staticpages/page_list.html:18
 msgid "Add Regular Page"
-msgstr ""
+msgstr "Dodaj običnu stranicu"
 
 #: templates/admin/staticpages/page_list.html:21
 msgid "Announcements"
-msgstr ""
+msgstr "Objave"
 
 #: templates/admin/staticpages/page_list.html:25
 msgid "Add Announcement"
-msgstr ""
+msgstr "Dodaj objavu"
 
 #: templates/browser/_actions.html:8
 msgid "Fix critical errors"
-msgstr ""
+msgstr "Ispravi kritične greške"
 
 #: templates/browser/_actions.html:13
-#, fuzzy
 msgid "Critical errors"
-msgstr "Kritično"
+msgstr "Kritične greške"
 
 #: templates/browser/_actions.html:23
-#, fuzzy
 msgid "Review suggestions"
-msgstr "Provjeri prijedloge"
+msgstr "Pregledaj prijedloge"
 
 #: templates/browser/_actions.html:38
-#, fuzzy
 msgid "Continue translation"
-msgstr "Kopiraj u prijevod"
+msgstr "Nastavi prijevod"
 
 #: templates/browser/_actions.html:53
 msgid "View all"
-msgstr ""
+msgstr "Prikaži sve"
 
 #. Translators: This refers to "All strings"
 #: templates/browser/_actions.html:58 templates/editor/_filters.html:6
 msgid "All"
-msgstr ""
+msgstr "Sve"
 
 #: templates/browser/index.html:17
 msgid "Expand details"
-msgstr "Proširi pojedinosti"
+msgstr "Rasklopi detalje"
 
 #: templates/browser/index.html:24
 msgid "Translation Statistics"
-msgstr ""
+msgstr "Statistika prevođenja"
 
 #: templates/browser/index.html:46
 msgid "Failing Checks"
-msgstr "Greška u provjeri"
+msgstr "Neuspjele provjere"
 
 #: templates/browser/index.html:65
 msgid "More..."
-msgstr "Više..."
+msgstr "Više …"
 
 #: templates/browser/index.html:66
 msgid "Less..."
-msgstr ""
+msgstr "Manje …"
 
 #: templates/browser/index.html:77
-#, fuzzy
 msgid "Updates"
-msgstr "Ažuriraj"
+msgstr "Aktualiziranja"
 
 #: templates/browser/index.html:82
-#, fuzzy
 msgid "Last updated:"
-msgstr "Posljednja aktivnost"
+msgstr "Zadnje aktualiziranje:"
 
 #: templates/browser/index.html:97
-#, fuzzy
 msgid "Translations"
-msgstr "Prijevod"
+msgstr "Prijevodi"
 
 #: templates/browser/index.html:101
-#, fuzzy
 msgid "Last action:"
-msgstr "Posljednja aktivnost"
+msgstr "Zadnja radnja:"
 
 #: templates/browser/index.html:148
 msgid "This project is disabled and visible to administrators only."
-msgstr ""
+msgstr "Ovaj projekt je deaktiviran i vidljiv je samo za administratore."
 
 #: templates/contact_form/xhr_contact_form.html:8
 msgid "Please fill in all the fields."
-msgstr ""
+msgstr "Popuni sva polja."
 
 #: templates/contact_form/xhr_contact_form.html:19
 msgid "Send Message"
-msgstr ""
+msgstr "Pošalji poruku"
 
 #: templates/contact_form/xhr_contact_form.html:24
 msgid "Thanks!"
-msgstr ""
+msgstr "Hvala!"
 
 #: templates/contact_form/xhr_contact_form.html:26
 msgid ""
 "We have received your message and will try to respond as soon as possible."
-msgstr ""
+msgstr "Primili smo tvoju poruku i pokušat ćemo odgovoriti u najkraćem roku."
 
 #: templates/core/_top_scorers.html:9
 msgid "score"
-msgstr ""
+msgstr "rezultat"
 
 #: templates/core/_top_scorers.html:16 templates/core/_top_scorers_as_ul.html:8
 #, python-format
 msgid "#%(position)s"
-msgstr ""
+msgstr "br. %(position)s"
 
 #: templates/core/_top_scorers.html:33
 msgid "No user contributions yet."
-msgstr ""
+msgstr "Još nema korisničkih doprinosa."
 
 #: templates/core/_top_scorers_as_ul.html:3
-#, fuzzy
 msgid "Top contributors:"
-msgstr "Najveći pridonositelji"
+msgstr "Naj-doprinositelji:"
 
 #: templates/core/captcha.html:4 templates/core/captcha.html:7
 #: templates/core/xhr_captcha.html:14
 msgid "Are You Human?"
-msgstr "Da li si čovjek?"
+msgstr "Jesi li čovjek?"
 
 #: templates/core/xhr_captcha.html:15
 msgid ""
 "To protect the server against attacks we have to verify that submissions are "
 "made by human users."
 msgstr ""
-"Da bi zaštitili poslužitelja od napada, moramo potvrditi da su podnesci "
-"napravljeni od strane ljudskog korisnika."
+"Kako bismo zaštitili poslužitelja od napada, moramo potvrditi da su prijave "
+"napravljene od strane ljudskog korisnika."
 
 #: templates/core/xhr_captcha.html:16
 msgid "Please answer this question:"
-msgstr "Odgovorite na ovo pitanje:"
+msgstr "Odgovori na ovo pitanje:"
 
 #: templates/core/xhr_captcha.html:19
 msgid "Confirm"
-msgstr "Potvrditi"
+msgstr "Potvrdi"
 
 #: templates/editor/_actions.html:5
 msgid "Go back to browsing"
-msgstr ""
+msgstr "Vrati se na pregledavanje"
 
 #: templates/editor/_filters.html:12
-#, fuzzy
 msgid "My suggestions"
-msgstr "Prijedlozi"
+msgstr "Moji prijedlozi"
 
 #: templates/editor/_filters.html:13
 msgid "My submissions"
-msgstr ""
+msgstr "Moje prijave"
 
 #. Translators: This is a type of filtering criterion that
 #. selects the strings that have been submitted by me at some point
 #. in time but have been overwritten by other users.
 #: templates/editor/_filters.html:17
 msgid "My overwritten submissions"
-msgstr ""
+msgstr "Moje prepisane prijave"
 
 #: templates/editor/_filters.html:18
 msgid "Checks"
-msgstr ""
+msgstr "Provjere"
 
 #: templates/editor/_filters.html:23
 msgid "Select type"
-msgstr ""
+msgstr "Odaberi vrstu"
 
 #: templates/editor/_toolbar.html:6
 msgid "Default order"
-msgstr ""
+msgstr "Standardni raspored"
 
 #: templates/editor/_toolbar.html:8
 msgid "Important first"
-msgstr ""
+msgstr "Najprije važne"
 
 #: templates/editor/_toolbar.html:10
 msgid "Newest first"
-msgstr ""
+msgstr "Najprije najnovije"
 
 #: templates/editor/_toolbar.html:11
 msgid "Oldest first"
-msgstr ""
+msgstr "Najprije najstarije"
 
 #: templates/editor/_toolbar.html:17
 msgid "Go to the previous string (Ctrl+Up)"
-msgstr ""
+msgstr "Prijeđi na prethodni znakovni niz (Ctrl+Up)"
 
 #: templates/editor/_toolbar.html:20
 msgid ""
 "Current string number (Ctrl+Shift+U)<br/><br/>Type in the number and press "
 "Enter<br/>to go to any position"
 msgstr ""
+"Broj trenutačnog znakovnog niza (Ctrl+Shift+U)<br/><br/>Utipkaj broj i "
+"pritisni Enter<br/>za prelaženje na bilo koju poziciju"
 
 #: templates/editor/_toolbar.html:22
 msgid "Total strings"
-msgstr ""
+msgstr "Ukupni broj znakovnih nizovova"
 
 #: templates/editor/_toolbar.html:25
 msgid "Go to the next string (Ctrl+Down)"
-msgstr ""
+msgstr "Prijeđi na sljedeći znakovni niz (Ctrl+Down)"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:2
 msgid ""
 "The following suggestions submitted by you have been accepted with the "
 "comment:"
-msgstr ""
+msgstr "Tvoji prijavljeni prijedlozi su prihvaćeni s komentarom:"
 
 #: templates/editor/email/suggestions_accepted_with_comment.txt:10
 #: templates/editor/email/suggestions_rejected_with_comment.txt:10
 msgid "We hope this feedback will help you improve your future contributions."
 msgstr ""
+"Nadamo se da će ti ove povratne informacije pomoći poboljšati tvoje buduće "
+"doprinose."
 
 #: templates/editor/email/suggestions_rejected_with_comment.txt:2
 msgid ""
 "The following suggestions submitted by you have been rejected with the "
 "comment:"
-msgstr ""
+msgstr "Tvoji prijavljeni prijedlozi su odbijeni s komentarom:"
 
 #: templates/editor/main.html:4 templates/languages/_nav.html:12
 #: templates/projects/_nav.html:13 templates/projects/all/_nav.html:11
@@ -2519,42 +2544,39 @@ msgstr "Prevedi"
 #: templates/editor/units/edit.html:12
 #, python-format
 msgid "<a href=\"%(url)s\">Unit #%(id)s</a>"
-msgstr ""
+msgstr "<a href=\"%(url)s\">Jedinica br, %(id)s</a>"
 
 #: templates/editor/units/edit.html:19
 msgid "Priority:"
-msgstr ""
+msgstr "Prioritet:"
 
 #: templates/editor/units/edit.html:26
 msgid "Context:"
-msgstr ""
+msgstr "Kontekst:"
 
 #: templates/editor/units/edit.html:36
-#, fuzzy
 msgid "Locations:"
-msgstr "Lokacije"
+msgstr "Lokacije:"
 
 #: templates/editor/units/edit.html:55
-#, fuzzy
 msgid "Terminology:"
-msgstr "Terminologija"
+msgstr "Terminologija:"
 
 #: templates/editor/units/edit.html:58
 msgid "Insert the translated term into the editor"
-msgstr ""
+msgstr "Umetni prevedeni pojam u uređivač"
 
 #: templates/editor/units/edit.html:70
-#, fuzzy
 msgid "Comments:"
-msgstr "Komentari"
+msgstr "Komentari:"
 
 #: templates/editor/units/edit.html:80
 msgid "Click to open the image in a popup"
-msgstr ""
+msgstr "Klikni za otvaranje slike u skočnom prozoru"
 
 #: templates/editor/units/edit.html:94
 msgid "Screenshots..."
-msgstr ""
+msgstr "Snimke ekrana …"
 
 #: templates/editor/units/edit.html:118 templates/editor/units/edit.html:140
 msgid "Copy into translation"
@@ -2562,7 +2584,7 @@ msgstr "Kopiraj u prijevod"
 
 #: templates/editor/units/edit.html:134
 msgid "Report a problem with this string"
-msgstr ""
+msgstr "Izvijesti o problemu s ovim znakovnim nizom"
 
 #: templates/editor/units/edit.html:152 templates/editor/units/edit.html:163
 #: templates/editor/units/edit.html:257
@@ -2571,7 +2593,7 @@ msgstr "Pošalji"
 
 #: templates/editor/units/edit.html:153
 msgid "Submit translation and go to the next string (Ctrl+Enter)"
-msgstr ""
+msgstr "Pošalji prijevod i prijeđi na sljedeći izraz (Ctrl+Enter)"
 
 #: templates/editor/units/edit.html:158 templates/editor/units/edit.html:164
 msgid "Suggest"
@@ -2579,27 +2601,27 @@ msgstr "Predloži"
 
 #: templates/editor/units/edit.html:159
 msgid "Suggest translation and go to the next string (Ctrl+Enter)"
-msgstr ""
+msgstr "Predloži prijevod i prijeđi na sljedeći izraz (Ctrl+Enter)"
 
 #: templates/editor/units/edit.html:163
 msgid "Switch to translation mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Prebaci na modus prevođenja (Ctrl+Shift+Space)"
 
 #: templates/editor/units/edit.html:164
 msgid "Switch to suggestion mode (Ctrl+Shift+Space)"
-msgstr ""
+msgstr "Prebaci na modus predlaganja (Ctrl+Shift+Space)"
 
 #: templates/editor/units/edit.html:169
 msgid "Mark this string as needing further work (Ctrl+Space)"
-msgstr ""
+msgstr "Označi ovaj izraz da ga treba doraditi (Ctrl+Space)"
 
 #: templates/editor/units/edit.html:189
 msgid "Showing match from similar translations"
-msgstr ""
+msgstr "Prikaz poklapanja sličnih prijevoda"
 
 #: templates/editor/units/edit.html:212
 msgid "Show Timeline"
-msgstr ""
+msgstr "Prikaži kronologiju"
 
 #: templates/editor/units/edit.html:214
 msgid "Add Comment"
@@ -2607,76 +2629,70 @@ msgstr "Dodaj komentar"
 
 #: templates/editor/units/edit.html:216
 msgid "Raw View"
-msgstr ""
+msgstr "Raw prikaz"
 
 #: templates/editor/units/edit.html:227
 #, python-format
 msgid "reviewed by <a href=\"%(profile_url)s\">%(reviewer)s</a>"
-msgstr ""
+msgstr "recenzent <a href=\"%(profile_url)s\">%(reviewer)s</a>"
 
 #: templates/editor/units/edit.html:238
 #, python-format
 msgid ""
 "Insert %(character_name)s (Unicode value %(character_code)s) into the editor"
 msgstr ""
+"Umetni %(character_name)s (Unicode vrijednost %(character_code)s) u uređivač"
 
 #: templates/editor/units/edit.html:276
-#, fuzzy
 msgid "User suggestions"
-msgstr "Pregledaj prijedloge"
+msgstr "Prijedlozi korisnika"
 
 #: templates/editor/units/edit.html:296
-#, fuzzy
 msgid "More options"
-msgstr "Promijeni opcije"
+msgstr "Više opcija"
 
 #: templates/editor/units/edit.html:298
-#, fuzzy
 msgid "Less options"
-msgstr "Promijeni opcije"
+msgstr "Manje opcija"
 
 #: templates/editor/units/edit.html:303
 msgid "Accept suggestion"
-msgstr "Prihvaćen prijedlog"
+msgstr "Prihvati prijedlog"
 
 #: templates/editor/units/edit.html:308
 msgid "Reject suggestion"
-msgstr "Odbačen prijedlog"
+msgstr "Odbaci prijedlog"
 
 #: templates/editor/units/edit.html:314
 msgid "Remove suggestion"
-msgstr "Odbačen prijedlog"
+msgstr "Ukloni prijedlog"
 
 #: templates/editor/units/edit.html:326
 msgid "A long time ago"
-msgstr ""
+msgstr "Davno"
 
 #: templates/editor/units/term_edit.html:9
 msgid "Comment: "
-msgstr "Komentari "
+msgstr "Komentar: "
 
 #: templates/editor/units/xhr_checks.html:4
-#, fuzzy
 msgid "Critical issues with the translation"
-msgstr "Mogući problemi s prijevodom"
+msgstr "Kritični problemi s prijevodom"
 
 #: templates/editor/units/xhr_checks.html:4
 #: templates/languages/admin/language_team.html:123
-#, fuzzy
 msgid "Critical errors:"
-msgstr "Kritično"
+msgstr "Kritične greške:"
 
 #: templates/editor/units/xhr_checks.html:11
 #: templates/editor/units/xhr_checks.html:29
-#, fuzzy
 msgid "Mute quality check"
-msgstr "Ukloni provjeru kvalitete"
+msgstr "Isključi provjeru kvalitete"
 
 #: templates/editor/units/xhr_checks.html:12
 #: templates/editor/units/xhr_checks.html:30
-#, fuzzy
 msgid "Unmute quality check"
-msgstr "Ukloni provjeru kvalitete"
+msgstr "Uključi provjeru kvalitete"
 
 #: templates/editor/units/xhr_checks.html:22
 msgid "Possible issues with the translation"
@@ -2684,41 +2700,39 @@ msgstr "Mogući problemi s prijevodom"
 
 #: templates/editor/units/xhr_checks.html:22
 msgid "Watch out for:"
-msgstr ""
+msgstr "Prati:"
 
 #: templates/editor/units/xhr_comment.html:16
 msgid "Remove comment"
-msgstr ""
+msgstr "Ukloni komentar"
 
 #: templates/editor/units/xhr_comment.html:19
-#, fuzzy
 msgid "Сomment:"
-msgstr "Komentari"
+msgstr "Komentar:"
 
 #: templates/editor/units/xhr_timeline.html:3
 msgid "Timeline"
-msgstr ""
+msgstr "Kronologija"
 
 #: templates/errors/400.html:4 templates/errors/400.html:11
 msgid "Bad Request"
-msgstr ""
+msgstr "Neispravan zahtjev"
 
 #: templates/errors/400.html:12
 msgid "Error 400"
-msgstr ""
+msgstr "Greška 400"
 
 #: templates/errors/400.html:14
 msgid "The operation is not permitted."
-msgstr ""
+msgstr "Operacija nije dozvoljena."
 
 #: templates/errors/403.html:4 templates/errors/403.html:8
 msgid "Permission Denied"
-msgstr "Odbijena dozvola"
+msgstr "Dozvola odbijena"
 
 #: templates/errors/403.html:13
-#, fuzzy
 msgid "You don't seem to have permissions to access this page."
-msgstr "Nemate dozvolu pristupa ovoj stranici."
+msgstr "Čini se da nemaš dozvolu za pristup ovoj stranici."
 
 #: templates/errors/404.html:4 templates/errors/404.html:8
 msgid "Page Not Found"
@@ -2726,20 +2740,19 @@ msgstr "Stranica nije pronađena"
 
 #: templates/errors/404.html:10
 msgid "We're sorry, but the requested page could not be found."
-msgstr "Žao nam je, ali tražena stranica se ne može pronaći."
+msgstr "Žao nam je, ali nismo našli traženu stranicu."
 
 #: templates/errors/500.html:4 templates/errors/500.html:8
 msgid "Server Error"
-msgstr "Pogreška na serveru"
+msgstr "Greška na poslužitelju"
 
 #: templates/errors/500.html:10
-#, fuzzy
 msgid "A server error has occurred. Thank you for your patience."
-msgstr "Došlo je do pogreške. Hvala vam za strpljenje."
+msgstr "Došlo je do greške na poslužitelju. Zahvaljujemo na strpljenju."
 
 #: templates/errors/500.html:16
 msgid "Exception:"
-msgstr ""
+msgstr "Iznimka:"
 
 #: templates/errors/500.html:21
 #, python-format
@@ -2747,16 +2760,20 @@ msgid ""
 "If you need assistance, you may refer to this error as <strong>%(ref)s</"
 "strong>."
 msgstr ""
+"Ako trebaš pomoć, možeš se referencirati na ovu grešku kao <strong>%(ref)s</"
+"strong>."
 
 #: templates/errors/db.html:4 templates/errors/db.html:8
 msgid "Database Error"
-msgstr ""
+msgstr "Greška u bazi podataka"
 
 #: templates/errors/db.html:11
 msgid ""
 "Pootle can't connect to the database, the database is not initialized yet, "
 "or a schema upgrade is needed before continuing."
 msgstr ""
+"Pootle se ne može povezati s bazom podataka, baza podataka još nije "
+"inicijalizirana ili je potrebna nadogradnja sheme prije daljnjeg rada."
 
 #: templates/errors/db.html:18
 #, python-format
@@ -2765,101 +2782,95 @@ msgid ""
 "installation and upgrade instructions. Contact the server administrator if "
 "you feel this is a mistake."
 msgstr ""
+"Pročitaj <a href=\"%(url)s\">Pootle dokumentaciju</a> za upute o "
+"instaliranju i aktualiziranju. Ako smatraš da je to greška, obrati se "
+"administratoru poslužitelja."
 
 #: templates/errors/db.html:26
 msgid "The reported error was:"
-msgstr ""
+msgstr "Javljena greška je:"
 
 #: templates/includes/formtable.html:22
 #, python-format
 msgid "Page %(page_number)s of %(page_count)s."
-msgstr ""
+msgstr "%(page_number)s. stranica od %(page_count)s."
 
 #: templates/includes/formtable.html:27
 #, python-format
 msgid "Results per page: %(n)s"
-msgstr ""
+msgstr "Broj rezultata po stranici: %(n)s"
 
 #: templates/includes/formtable.html:85
-#, fuzzy
 msgid "Select all"
-msgstr "Višestruki odabir"
+msgstr "Odaberi sve"
 
 #: templates/includes/formtable.html:98
-#, fuzzy
 msgid "Go"
-msgstr "Povećaj"
+msgstr "Kreni"
 
 #: templates/languages/_nav.html:6 templates/projects/_nav.html:6
 #: templates/projects/all/_nav.html:5
 #: templates/translation_projects/_nav.html:6
 msgid "Browse"
-msgstr ""
+msgstr "Pregledaj"
 
 #: templates/languages/_nav.html:21
 msgid "Team"
-msgstr ""
+msgstr "Tim"
 
 #: templates/languages/admin/includes/suggestions_header.html:14
-#, fuzzy
 msgid "Filter suggestions"
-msgstr "Pregledaj prijedloge"
+msgstr "Filtriraj prijedloge"
 
 #: templates/languages/admin/language_team.html:5
-#, fuzzy
 msgid "Language team"
-msgstr "Ime jezika"
+msgstr "Tim jezika"
 
 #. Translators: This refers to the management of language team members
 #: templates/languages/admin/language_team.html:31
 msgid "Member admin"
-msgstr ""
+msgstr "Administratorski član"
 
 #: templates/languages/admin/language_team.html:45
 msgid "Add team member"
-msgstr ""
+msgstr "Dodaj člana tima"
 
 #: templates/languages/admin/language_team.html:58
 #: templates/languages/admin/language_team.html:71
 #: templates/languages/admin/language_team.html:84
 #: templates/languages/admin/language_team.html:97
-#, fuzzy
 msgid "Remove selected"
-msgstr "Ukloni korisnika"
+msgstr "Ukloni odabrano"
 
 #: templates/languages/admin/language_team.html:118
-#, fuzzy
 msgid "Unit and suggestions admin"
-msgstr "Prijedlog %d:"
+msgstr "Administrator jedinice i prijedloga"
 
 #: templates/languages/admin/language_team.html:133
-#, fuzzy
 msgid "Pending suggestions:"
-msgstr "Prijedlozi u tijeku"
+msgstr "Prijedlozi u tijeku:"
 
 #: templates/languages/admin/language_team.html:143
-#, fuzzy
 msgid "Total words:"
-msgstr "Ukupno riječi"
+msgstr "Ukupni broj riječi:"
 
 #: templates/languages/admin/language_team.html:147
-#, fuzzy
 msgid "Translated:"
-msgstr "Prevedeno"
+msgstr "Prevedeno:"
 
 #: templates/languages/admin/language_team.html:155
-#, fuzzy
 msgid "Needs work:"
-msgstr "Zahtjeva rad"
+msgstr "Treba doraditi:"
 
 #: templates/layout.html:88
 msgid "Pootle requires JavaScript"
-msgstr ""
+msgstr "Pootle zahtijeva JavaScript"
 
 #: templates/layout.html:89
 msgid ""
 "Please enable JavaScript in your browser preferences and reload the page."
 msgstr ""
+"Aktiviraj JavaScript u postavkama preglednika i ponovo učitaj stranicu."
 
 #: templates/layout.html:98
 msgid "skip to navigation"
@@ -2867,7 +2878,7 @@ msgstr "preskoči na navigaciju"
 
 #: templates/layout.html:131
 msgid "Public Profile"
-msgstr ""
+msgstr "Javni profil"
 
 #: templates/layout.html:132 templates/user/settings.html:4
 #: templates/user/settings.html:7
@@ -2876,11 +2887,11 @@ msgstr "Postavke"
 
 #: templates/layout.html:137
 msgid "Sign out"
-msgstr ""
+msgstr "Odjavi se"
 
 #: templates/layout.html:141
 msgid "Sign In"
-msgstr ""
+msgstr "Prijavi se"
 
 #: templates/projects/admin/email/translation_project_created.txt:2
 #, python-format
@@ -2888,6 +2899,8 @@ msgid ""
 "A Translation project (%(tp)s) has been created at %(url)s, and has updated "
 "successfully."
 msgstr ""
+"Prevodilački projekt (%(tp)s) je stvoren u %(url)s i uspješno je "
+"aktualiziran."
 
 #: templates/projects/admin/email/translation_project_creation_failed.txt:2
 #, python-format
@@ -2895,26 +2908,32 @@ msgid ""
 "An error occurred creating Translation project (%(tp)s). Please contact your "
 "system administrator."
 msgstr ""
+"Došlo je do greške prilikom stvaranja prevodilačkog projekta (%(tp)s). "
+"Kontaktiraj svog administratora sustava."
 
 #: templates/projects/admin/languages.html:11
 msgid "Here you can add, edit, or delete the languages for this project."
-msgstr "Ovdje možete dodati, urediti, ili obrisati jezik ovog projekta."
+msgstr "Ovdje možeš dodati, urediti ili izbrisati jezik za ovaj projekt."
 
 #: templates/projects/admin/languages.html:15
 msgid ""
 "Adding new languages from this screen is disabled. You will need to update "
 "your sources directly, and update Pootle from there."
 msgstr ""
+"Dodavanje novih jezika s ovog ekrana je deaktivirano. Morat ćeš izravno "
+"aktualizirati svoje izvore i odatle aktualizirati Pootle."
 
 #: templates/projects/admin/languages.html:17
 msgid ""
 "There are no templates for this project, so adding new languages from this "
 "screen is disabled."
 msgstr ""
+"Za ovaj projekt nema predložaka, stoga je dodavanje novih jezika s ovog "
+"ekrana deaktivirano."
 
 #: templates/projects/admin/permissions.html:11
 msgid "Below you can add, edit, and delete the permissions for this project."
-msgstr "Ovdje možete dodati, urediti, ili obrisati jezik ovog projekta."
+msgstr "Ovdje možeš dodati, urediti ili izbrisati jezik za ovaj projekt."
 
 #: templates/staticpages/_body.html:6
 #, python-format
@@ -2922,22 +2941,25 @@ msgid ""
 "This static page is inactive and visible to administrators only. You can "
 "activate it by <a href=\"%(edit_url)s\">editing its properties</a>"
 msgstr ""
+"Ova statička stranica je neaktivna i vidljiva je samo administratorima. "
+"Možeš je aktivirati <a href=\"%(edit_url)s\">uređivanjem njenih svojstava</a>"
 
 #: templates/staticpages/agreement.html:3
 msgid "Action Required"
-msgstr ""
+msgstr "Radnja je obavezna"
 
 #: templates/staticpages/agreement.html:4
 msgid "Before continuing, you must read and accept the following documents."
 msgstr ""
+"Prije nego što nastaviš, moraš pročitati i prihvatiti sljedeće dokumente."
 
 #: templates/staticpages/agreement.html:17
 msgid "No thanks. Sign out"
-msgstr ""
+msgstr "Ne hvala. Odjavi me"
 
 #: templates/staticpages/agreement.html:20
 msgid "Continue"
-msgstr ""
+msgstr "Nastavi"
 
 #: templates/translation_projects/_nav.html:22
 msgid "Terminology"
@@ -2948,15 +2970,16 @@ msgid ""
 "Below you can add, edit, and delete the permissions for this translation "
 "project."
 msgstr ""
-"Ispod možete dodavti, mjenjatti i brisati odobrenja za projket prevođenja."
+"Dolje možeš dodati, mjenjati i izbrisati dozvole za ovaj prevodilački "
+"projekt."
 
 #: templates/translation_projects/terminology/_term_edit.html:11
 msgid "Description..."
-msgstr "Opis..."
+msgstr "Opis …"
 
 #: templates/translation_projects/terminology/_term_edit.html:18
 msgid "Details..."
-msgstr "Detalji..."
+msgstr "Detalji …"
 
 #: templates/translation_projects/terminology/_term_edit.html:32
 msgid "Translator Comments"
@@ -2977,7 +3000,7 @@ msgstr "Prijevod"
 
 #: templates/translation_projects/terminology/manage.html:63
 msgid "No terminology file has been found"
-msgstr ""
+msgstr "Nijedna datoteka za terminologiju nije pronađena"
 
 #. Translators: 'pootle-terminology' and 'Terminology' are not
 #. translated
@@ -2989,10 +3012,15 @@ msgid ""
 "project files.  This custom terminology will be used in addition to any "
 "terminology suggestions provided by the 'Terminology' project."
 msgstr ""
+"Za upotrebu funkcije terminologije, dodaj terminološku datoteku u svoj "
+"prevodilački projekt. Terminološku datoteku moraš nazvati „pootle-"
+"terminology” i koristiti isti datotečni nastavak (format) kao i ostale "
+"datoteke projekta. Ova prilagođena terminologija će se koristiti uz sve "
+"terminološke prijedloge iz projekta „Terminologija”."
 
 #: templates/translation_projects/terminology/stores.html:7
 msgid "Here you can manage the terms in the terminology files."
-msgstr ""
+msgstr "Ovdje možeš upravljati pojmovima u datotekama za terminologiju."
 
 #: templates/translation_projects/terminology/stores.html:14
 msgid "File"
@@ -3000,1929 +3028,60 @@ msgstr "Datoteka"
 
 #: templates/translation_projects/terminology/stores.html:28
 msgid "Once you upload files, you will be able to add, edit and delete terms."
-msgstr ""
+msgstr "Kad preneseš datoteke, moći ćeš dodati, urediti i brisati pojmove."
 
 #: templates/user/includes/profile_activity.html:5
-#, fuzzy
 msgid "Latest activity:"
-msgstr "Posljednja aktivnost"
+msgstr "Zadnja aktivnost:"
 
 #: templates/user/includes/profile_score.html:3
-#, fuzzy
 msgid "Total score:"
-msgstr "Ukupno riječi"
+msgstr "Ukupni rezultat:"
 
 #: templates/user/settings.html:12
-#, fuzzy
 msgid "User Account"
-msgstr "Aktiviraj račun"
+msgstr "Korisnički račun"
 
 #: templates/user/settings.html:14
 msgid ""
 "Do you want to change your password? Click the 'Reset Password' button which "
 "will initiate the process of setting a new password."
 msgstr ""
+"Želiš li promijeniti lozinku? Klikni na gumb „Ponovo postavi lozinku“, čime "
+"će započeti postupak postavljanja nove lozinke."
 
 #: templates/user/settings.html:25
 msgid "Reset Password"
-msgstr "Reset lozinke"
+msgstr "Ponovo postavi lozinku"
 
 #: templates/user/stats.html:13 templates/user/stats.html:17
 msgid "Statistics"
-msgstr ""
+msgstr "Statistika"
 
 #: templates/user/stats.html:27
 msgid "Daily activity"
-msgstr ""
+msgstr "Dnevna aktivnost"
 
 #: templates/welcome.html:4
 msgid "Welcome"
-msgstr ""
+msgstr "Dobro došao, dobro došla"
 
 #: templates/welcome.html:13
 msgid "Welcome to Pootle"
-msgstr ""
+msgstr "Dobro došao, dobro došla u Pootle"
 
 #: templates/welcome.html:14
 msgid "Come and join us!"
-msgstr ""
+msgstr "Pridruži nam se!"
 
 #: templates/welcome.html:19
-#, fuzzy
 msgid "Sign in"
-msgstr "Dodijeli radnju"
+msgstr "Prijavi se"
 
 #: templates/welcome.html:32
-#, fuzzy
 msgid "Top Contributors for the Last 30 Days"
-msgstr "Najveći pridonositelji"
+msgstr "Naj-doprinositelji u zadnjih 30 dana"
 
 #: settings/10-base.conf:7
-#, fuzzy
 msgid "Pootle Translation Server"
-msgstr "Potreban prijevod"
-
-#, fuzzy
-#~ msgid "#%(pos)s contributor in %(lang_name)s in the last 30 days"
-#~ msgstr "Najveći pridonositelji"
-
-#~ msgid "Summary"
-#~ msgstr "Kratak pregled"
-
-#, fuzzy
-#~ msgid "Previous page"
-#~ msgstr "Prethodni"
-
-#, fuzzy
-#~ msgid "Next page"
-#~ msgstr "Početna stranica"
-
-#, fuzzy
-#~ msgid "Source words"
-#~ msgstr "Izvorni tekst"
-
-#, fuzzy
-#~ msgid "Subactions"
-#~ msgstr "Funkcije"
-
-#, fuzzy
-#~ msgid "Raw Translation"
-#~ msgstr "Prijevod"
-
-#~ msgid "Review"
-#~ msgstr "Provjeri"
-
-#, fuzzy
-#~ msgid "Suggestion (subtotal)"
-#~ msgstr "Prijedlozi"
-
-#~ msgid "Pending"
-#~ msgstr "U tijeku"
-
-#~ msgid "Accepted"
-#~ msgstr "Prihvaćeno"
-
-#~ msgid "Rejected"
-#~ msgstr "Odbijeno"
-
-#, fuzzy
-#~ msgid "Showing"
-#~ msgstr "Prikaži dodjele"
-
-#, fuzzy
-#~ msgid "Plurr format"
-#~ msgstr "Oblik u množini %d"
-
-#, fuzzy
-#~ msgid "Critical:"
-#~ msgstr "Kritično"
-
-#, fuzzy
-#~ msgid "Admins"
-#~ msgstr "Administrator"
-
-#, fuzzy
-#~ msgid "All Projects"
-#~ msgstr "Moji projekti"
-
-#, fuzzy
-#~ msgid "All Languages"
-#~ msgstr "Svi jezici"
-
-#~ msgid ""
-#~ "Below you can add, edit, and delete the permissions for this language."
-#~ msgstr ""
-#~ "Ispod možete dodati, promijeniti i obrisati odobrenja za ovoj jezik."
-
-#, fuzzy
-#~ msgid "Location"
-#~ msgstr "Lokacije"
-
-#~ msgid "Files"
-#~ msgstr "Datoteke"
-
-#~ msgid "Active languages"
-#~ msgstr "Aktivni jezici"
-
-#~ msgid "Translated strings"
-#~ msgstr "Prevedi moje stringove"
-
-#~ msgid "Translated words"
-#~ msgstr "Prevedene riječi"
-
-#~ msgid "Active users"
-#~ msgstr "Aktivni korisnici"
-
-#~ msgid "File Type"
-#~ msgstr "Tip datoteke"
-
-#~ msgid "Gettext PO"
-#~ msgstr "Gettext PO"
-
-#, fuzzy
-#~ msgid "XLIFF (.xlf)"
-#~ msgstr "XLIFF datoteka"
-
-#~ msgid "Qt ts"
-#~ msgstr "Qt ts"
-
-#~ msgid "TMX"
-#~ msgstr "TMX"
-
-#~ msgid "TBX"
-#~ msgstr "TBX"
-
-#, fuzzy
-#~ msgid "Needs translation"
-#~ msgstr "Potreban prijevod"
-
-#, fuzzy
-#~ msgid "more..."
-#~ msgstr "Više..."
-
-#~ msgid "Can administrate a translation project"
-#~ msgstr "Možete administrirati projektom prevođenja"
-
-#~ msgid "Source Terms"
-#~ msgstr "Izvorni tekst"
-
-#~ msgid "Target Terms"
-#~ msgstr "Ciljani tekst"
-
-#~ msgid "Definitions"
-#~ msgstr "Definicije"
-
-#~ msgid "XLIFF"
-#~ msgstr "XLIFF"
-
-#, fuzzy
-#~ msgid ""
-#~ "Can't find python-levenshtein package. Updating against templates is "
-#~ "faster with python-levenshtein."
-#~ msgstr ""
-#~ "Ne mogu naći python-levenshtein paket. Ažuriranje od predloška je brže s "
-#~ "python-levenshtein paketom."
-
-#, fuzzy
-#~ msgid "Failing checks:"
-#~ msgstr "Greška u provjeri"
-
-#~ msgid "Regenerate Glossary"
-#~ msgstr "Obnavljanje rječnika"
-
-#~ msgid ""
-#~ "Are you sure you want to regenerate the glossary? Any existing terms and "
-#~ "their translations will be deleted."
-#~ msgstr ""
-#~ "Jeste li sigurni da želite obnoviti rječnik? Postojeći pojmovi i njihovi "
-#~ "prijevodi biti će izbrisani."
-
-#~ msgid "Extract"
-#~ msgstr "Izvući"
-
-#~ msgid "You can regenerate the glossary from scratch."
-#~ msgstr "Možete obnoviti rječnik od početka."
-
-#~ msgid "Glossary is Empty"
-#~ msgstr "Rječnik je prazan"
-
-#~ msgid "Generate Glossary"
-#~ msgstr "Kreiraj rječnik"
-
-#~ msgid "Translate Toolkit version %s installed."
-#~ msgstr "Prevedena Toolkit verzija %s instalirana."
-
-#~ msgid "lxml version %s is installed."
-#~ msgstr "Instalirana je %s lxml verzja."
-
-#~ msgid ""
-#~ "Can't find the ISO codes package. Pootle uses ISO codes to translate "
-#~ "language names."
-#~ msgstr ""
-#~ "Ne mogu naći paket ISO kodova. Pootle koristi ISO-kodove za prevođenje "
-#~ "jezik imena."
-
-#~ msgid "For optimal performance, use Apache as the webserver."
-#~ msgstr "a optimalnu performansu, koristite Apache kao web server."
-
-#~ msgid "Added"
-#~ msgstr "Dodan"
-
-#~ msgid "Can review translations"
-#~ msgstr "Možete pregledavati prijevode"
-
-#~ msgid "Dependency Checks"
-#~ msgstr "Provjera ovisnosti"
-
-#~ msgid "Optional"
-#~ msgstr "Prema odabiru"
-
-#~ msgid "Optimizations"
-#~ msgstr "Optimizacija"
-
-#~ msgid "Overview"
-#~ msgstr "Pregled"
-
-#~ msgid "Log In"
-#~ msgstr "Prijava"
-
-#~ msgid "Login to Pootle"
-#~ msgstr "Prijavite se na Pootle"
-
-#~ msgid "Your username and password didn't match. Please try again."
-#~ msgstr ""
-#~ "Vaše korisničko ime i lozinka ne odgovaraju. Molimo pokušajte ponovo."
-
-#~ msgid "Login"
-#~ msgstr "Prijava"
-
-#~ msgid "Lost your Password?"
-#~ msgstr "Izgubili ste lozinku?"
-
-#~ msgid "No news yet."
-#~ msgstr "Još nema novosti."
-
-#~ msgid "My Account"
-#~ msgstr "Moj korisnički račun"
-
-#~ msgid "Profile"
-#~ msgstr "Profil"
-
-#~ msgid "Password Changed"
-#~ msgstr "Lozinka je promijenjena"
-
-#~ msgid "Your password was changed successfully."
-#~ msgstr "Vaša lozinka je uspješno izmjenjena."
-
-#~ msgid "Change Password"
-#~ msgstr "Promijeni lozinku"
-
-#~ msgid ""
-#~ "Please enter your old password, for security's sake, and then enter your "
-#~ "new password twice so we can verify you typed it in correctly."
-#~ msgstr ""
-#~ "Molimo, zbog sigurnosti unesite vašu staru lozinku, a onda unesite vašu "
-#~ "novu lozinku dva puta tako da možemo provjeriti da li ste ju ispravno "
-#~ "upisali."
-
-#~ msgid "Old password"
-#~ msgstr "Stara lozinka"
-
-#~ msgid "New password"
-#~ msgstr "Nova lozinka"
-
-#~ msgid "Confirm password"
-#~ msgstr "Potvrdite lozinku"
-
-#~ msgid "Change My Password"
-#~ msgstr "Promijeni moju lozinku"
-
-#~ msgid "Password Reset"
-#~ msgstr "Reset lozinke"
-
-#~ msgid "Password Reset Complete."
-#~ msgstr "Neuspješno resetiranje lozinke."
-
-#, fuzzy
-#~ msgid ""
-#~ "Your password has been set. You may go ahead and <a href=\"%(login_url)s"
-#~ "\">sign in</a> now."
-#~ msgstr ""
-#~ "Vaša lozinka je postavljena. Možete nastaviti i <a href=\"%(login_url)s"
-#~ "\">prijaviti se</a>sada."
-
-#~ msgid "Enter New Password."
-#~ msgstr "Unesite novu lozinkku."
-
-#~ msgid ""
-#~ "Please enter your new password twice so we can verify you typed it in "
-#~ "correctly."
-#~ msgstr ""
-#~ "Molimo unesite novu lozinku dvaput kako bismo potvrdili da ste je točno "
-#~ "unijeli."
-
-#~ msgid "New Password"
-#~ msgstr "Nova lozinka"
-
-#~ msgid "Confirm Password"
-#~ msgstr "Potvrdite lozinku"
-
-#~ msgid "Reset My Password"
-#~ msgstr "Resetiraj moju lozinku"
-
-#~ msgid ""
-#~ "The password reset link was invalid, possibly because it has already been "
-#~ "used. Please request a new password reset."
-#~ msgstr ""
-#~ "Veza za resetiranje lozinke nije valjano, moguće zato što je već "
-#~ "iskorištena. Molimo zatražite novo resetiranje lozinke."
-
-#~ msgid ""
-#~ "We've e-mailed you instructions for setting your password to the e-mail "
-#~ "address you submitted. You should receive it shortly."
-#~ msgstr ""
-#~ "Uputu za postavljanje lozinke smo vam poslali na adresu e-pošte koju ste "
-#~ "prijavili. Trebala bi vam stići uskoro."
-
-#~ msgid ""
-#~ "You're receiving this e-mail because you requested a password reset for "
-#~ "your user account at %(site_name)s."
-#~ msgstr ""
-#~ "Ovu poruku ste primili jer ste zatražili resetiranje lozinke za svoj "
-#~ "račun na %(site_name)s."
-
-#~ msgid "Please go to the following page and choose a new password:"
-#~ msgstr "Molimo posjetite sljedeću stranicu i izaberite novu lozinku:"
-
-#~ msgid "Your username is %(user)s."
-#~ msgstr "Vaše korisničko ime je %(user)s."
-
-#~ msgid "Thank you for using Pootle!"
-#~ msgstr "Hvala što koristite Pootle!"
-
-#~ msgid ""
-#~ "Forgotten your password? Enter your e-mail address below, and we'll e-"
-#~ "mail instructions for setting a new one."
-#~ msgstr ""
-#~ "Zaboravili ste lozinku? Unesite svoju e-mail adresu i poslat ćemo vam "
-#~ "uputu kako postaviti novu."
-
-#~ msgid ""
-#~ "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
-#~ msgstr ""
-#~ "Držite \"Control\", ili \"Command\" na Mac-u, kako biste odabrali više od "
-#~ "jedne opcije."
-
-#~ msgid "Enter a valid e-mail address."
-#~ msgstr "Unesite valjanu e-mail adresu."
-
-#~ msgid ""
-#~ "That e-mail address doesn't have an associated user account. Are you sure "
-#~ "you've registered?"
-#~ msgstr ""
-#~ "Navedena e-mail adresa nema pridruženi korisnički račun. Jeste li sigurni "
-#~ "da ste se već registrirali?"
-
-#~ msgid "This field is required."
-#~ msgstr "Ovo polje je obavezno."
-
-#~ msgid ""
-#~ "Ensure this value has at most %(max)d characters (it has %(length)d)."
-#~ msgstr ""
-#~ "Osigurajte da ova vrijednost ima najmanje %(max)d karaktera (sada ima "
-#~ "%(length)d)."
-
-#~ msgid "Save and add another"
-#~ msgstr "Spremiti i dodati drugi"
-
-#~ msgid "Save and continue editing"
-#~ msgstr "Spremi i nastavi editirati"
-
-#~ msgid "Change"
-#~ msgstr "Promijeni"
-
-#~ msgid "Add %(name)s"
-#~ msgstr "Dodajte %(name)s"
-
-#~ msgid "View on site"
-#~ msgstr "Pogledajte na stranici"
-
-#~ msgid "first name"
-#~ msgstr "ime"
-
-#~ msgid "last name"
-#~ msgstr "prezime"
-
-#~ msgid "e-mail address"
-#~ msgstr "e-mail adresa"
-
-#~ msgid "active"
-#~ msgstr "aktivan"
-
-#~ msgid "Android strings"
-#~ msgstr "Android linija"
-
-#~ msgid "Your name"
-#~ msgstr "Vaše ime"
-
-#~ msgid "Your email address"
-#~ msgstr "Vaša e-mail adresa"
-
-#~ msgid "Your message"
-#~ msgstr "Vaša poruka"
-
-#~ msgid "Akismet thinks this message is spam"
-#~ msgstr "Akismet misli da je ova poruka spam"
-
-#~ msgid "Please correct the error below."
-#~ msgid_plural "Please correct the errors below."
-#~ msgstr[0] "Molimo ispravite grešku ispod"
-#~ msgstr[1] "Molimo ispravite greške ispod"
-#~ msgstr[2] "Molimo ispravite greške ispod"
-
-#~ msgid "The settings have been saved."
-#~ msgstr "Postavke su spremljene."
-
-#~ msgid "Project code may only contain letters, numbers and _"
-#~ msgstr "Projektni kod može samo sadržavati slova, brojeve i _"
-
-#~ msgid "Advanced Options"
-#~ msgstr "Napredne opcije"
-
-#~ msgid "The name for this Pootle server"
-#~ msgstr "Ime ovog Pootle servera"
-
-#~ msgid ""
-#~ "The description and instructions shown on the front page and about page. "
-#~ "Be sure to use valid HTML."
-#~ msgstr ""
-#~ "Opis i upute prikazane na prednjoj stranici i na stranici o projektu. "
-#~ "Uvjerite se da koristite ispravan HTML."
-
-#~ msgid ""
-#~ "Here you can add, edit, and delete all the available languages in this "
-#~ "Pootle server."
-#~ msgstr ""
-#~ "Ovdje možete dodavati, uređivati i brisati sve dostupne jezike u ovom "
-#~ "Pootle serveru."
-
-#~ msgid ""
-#~ "Here you can add, edit, and delete all the available projects in this "
-#~ "Pootle server."
-#~ msgstr ""
-#~ "Ovdje možete dodavati, uređivati i brisati sve dostupne projekte u ovom "
-#~ "Pootle serveru."
-
-#~ msgid "General Settings"
-#~ msgstr "Opće postavke"
-
-#~ msgid "Configure here the general settings for your site."
-#~ msgstr "Konfiguriraj opće postavke za svoju stranicu."
-
-#~ msgid ""
-#~ "Here you can add, edit, and delete all the available users in this Pootle "
-#~ "server."
-#~ msgstr ""
-#~ "Ovdje možete dodavati, uređivati i brisati sve dostupne jezike u ovom "
-#~ "Pootle serveru."
-
-#~ msgid "Support"
-#~ msgstr "Podrška"
-
-#~ msgid ""
-#~ "Pootle is developed by Translate.org.za and a community of passionate "
-#~ "localization experts. We want Pootle to help your localization work reach "
-#~ "its full potential."
-#~ msgstr ""
-#~ "Pootle je razvijen od strane Translate.org.za i zajednice strastvenih "
-#~ "stručnjaka za lokalizaciju. Želimo da Pootle bude od pomoći vašem radu "
-#~ "lokalizacije da dostigne puni potencijal."
-
-#~ msgid "You will find the following helpful for support:"
-#~ msgstr "Naći ćete slijedeće korisne za podršku:"
-
-#~ msgid "The Pootle documentation"
-#~ msgstr "Pootle dokumentacija"
-
-#~ msgid "The Pootle mailing list"
-#~ msgstr "Pootleov popis e-pošte"
-
-#~ msgid "(commercial support)"
-#~ msgstr "(komercijalna podrška)"
-
-#~ msgid "Cancel"
-#~ msgstr "Otkaži"
-
-#~ msgid "Pootle Alerts"
-#~ msgstr "Pootle upozorenja"
-
-#~ msgid "Latest News"
-#~ msgstr "Posljednje vijesti"
-
-#~ msgid "Subscribe to the RSS feed."
-#~ msgstr "Pretplatite se na RSS feed."
-
-#~ msgid "Don't have an account yet?"
-#~ msgstr "Nemate još korisnički račun?"
-
-#~ msgid "Register."
-#~ msgstr "Registrirajte se."
-
-#~ msgid ""
-#~ "Django version %s is installed, but a higher version is highly "
-#~ "recommended."
-#~ msgstr ""
-#~ "Django verzija %s je instalirana, ali više se preporuča veća verzija."
-
-#~ msgid ""
-#~ "Can't find the unzip command. Uploading archives is faster if \"unzip\" "
-#~ "is available."
-#~ msgstr ""
-#~ "Ne mogu naćii naredbu unzip. Učitavanje arhiva brže je ako je \"unzip\" "
-#~ "naredba dostupna."
-
-#~ msgid ""
-#~ "Can't find the aeidon package. Pootle requires Gaupol or aeidon to "
-#~ "support subtitle formats."
-#~ msgstr ""
-#~ "Ne mogu naći paket aeidon. Pootle zahtijeva Gaupol ili aeidon za podršku "
-#~ "formata podnaslova."
-
-#~ msgid ""
-#~ "Pootle is configured to use memcached as caching backend, but Python "
-#~ "support for memcached is not installed. Caching is currently disabled."
-#~ msgstr ""
-#~ "Pootle je konfiguriran da koristi memcached kao pozadinsku predmemoriju, "
-#~ "ali Python podrška za memcached nije instalirana. Predmemoriranje "
-#~ "trenutno je onemogućeno."
-
-#, fuzzy
-#~ msgid "For optimal performance, use memcached as the caching backend."
-#~ msgstr ""
-#~ "Za optimalnu performansu, koristite memcached kao pozadinsku predmemoriju."
-
-#~ msgid "Translation Project Contributors"
-#~ msgstr "Doprinositelji projektu prevođenja"
-
-#~ msgid "Project Contributors"
-#~ msgstr "Doprinositelji projektu"
-
-#~ msgid "%(percentage)d%% complete"
-#~ msgstr "%(percentage)d%% završen"
-
-#~ msgid ""
-#~ "For more information, visit <a href=\"http://translate.sourceforge.net/"
-#~ "wiki/l10n/pluralforms\">our wiki page</a> on plural forms."
-#~ msgstr ""
-#~ "Za više informacija, posjetite <a href=\"http://translate.sourceforge.net/"
-#~ "wiki/l10n/pluralforms\">našu wiki stranicu</a> o oblicima množine."
-
-#~ msgid "Error reading %d file"
-#~ msgid_plural "Error reading %d files"
-#~ msgstr[0] "Pogreška pri čitanju %d datoteke"
-#~ msgstr[1] "Pogreška pri čitanju %d datoteke"
-#~ msgstr[2] "Pogreška pri čitanju %d datoteka"
-
-#~ msgid "%(projects)d project, %(average)d%% translated"
-#~ msgid_plural "%(projects)d projects, %(average)d%% translated"
-#~ msgstr[0] "%(projects)d projekt, %(average)d%% prevedeno"
-#~ msgstr[1] "%(projects)d projekta, %(average)d%% prevedeno"
-#~ msgstr[2] "%(projects)d projekata, %(average)d%% prevedeno"
-
-#~ msgid "No description yet."
-#~ msgstr "Još nema opisa."
-
-#, fuzzy
-#~ msgid "Translation is complete"
-#~ msgstr "Prijevod je završen"
-
-#~ msgid "%d word needs attention"
-#~ msgid_plural "%d words need attention"
-#~ msgstr[0] "%d riječ treba tvoju pozornost"
-#~ msgstr[1] "%d riječi treba tvoju pozornost"
-#~ msgstr[2] "%d riječi treba tvoju pozornost"
-
-#~ msgid "%d word needs review"
-#~ msgid_plural "%d words need review"
-#~ msgstr[0] "%d riječ treba pregledati"
-#~ msgstr[1] "%d riječi treba pregledati"
-#~ msgstr[2] "%d riječi treba pregledati"
-
-#~ msgid "%(percent)s%% complete"
-#~ msgstr "%(percentage)d%% završen"
-
-#~ msgid "News for %(language)s"
-#~ msgstr "Vijesti za %(language)s"
-
-#~ msgid "News for %(project)s"
-#~ msgstr "Vijesti za %(project)s"
-
-#~ msgid "News for %(path)s"
-#~ msgstr "Vijesti za %(path)s"
-
-#~ msgid "View News Item"
-#~ msgstr "Pogledaj vijesti predmeta"
-
-#~ msgid "News"
-#~ msgstr "Novosti"
-
-#~ msgid "Publish"
-#~ msgstr "Objaviti"
-
-#~ msgid "Default"
-#~ msgstr "Zadano"
-
-#~ msgid "Interface Language"
-#~ msgstr "Jezik sučelja"
-
-#~ msgid "Administrate"
-#~ msgstr "Administriraj"
-
-#~ msgid "Java Properties"
-#~ msgstr "Java svojstva"
-
-#~ msgid "OS X Strings"
-#~ msgstr "OS X izrazi"
-
-#~ msgid "PHP arrays"
-#~ msgstr "PHP matrica"
-
-#~ msgid "Subtitles: srt"
-#~ msgstr "Titlovi: srt"
-
-#~ msgid "Subtitles: sub"
-#~ msgstr "Titlovi: sub"
-
-#~ msgid "Subtitles: ssa"
-#~ msgstr "Titlovi: ssa"
-
-#~ msgid "Subtitles: ass"
-#~ msgstr "Titlovi: magarac"
-
-#~ msgid "You do not have rights to access translation mode."
-#~ msgstr "Nemate prava pristupa modu za prevođenje."
-
-#~ msgid "You do not have rights to access review mode."
-#~ msgstr "Nemate prava pristupa modu za pregledavanje."
-
-#~ msgid "You do not have rights to remove tags."
-#~ msgstr "Nemate prava za administriranje %s."
-
-#~ msgid "You do not have rights to add tags."
-#~ msgstr "Nemate prava za administriranje %s."
-
-#~ msgid "Download XLIFF"
-#~ msgstr "Skini XLIFF"
-
-#~ msgid "Export"
-#~ msgstr "Izvoz"
-
-#~ msgid "Download"
-#~ msgstr "Skidanje"
-
-#~ msgid "Upload"
-#~ msgstr "Postavi na Internet"
-
-#~ msgid "Update from VCS"
-#~ msgstr "Ažuriranje iz VCS"
-
-#~ msgid "Commit to VCS"
-#~ msgstr "Obvezati se na VCS"
-
-#, fuzzy
-#~ msgid "Update all from VCS"
-#~ msgstr "Ažuriranje iz VCS"
-
-#, fuzzy
-#~ msgid "Commit all to VCS"
-#~ msgstr "Obvezati se na VCS"
-
-#~ msgid "Rescan project files"
-#~ msgstr "Ponovno pregledaj datoteke projekta"
-
-#~ msgid "Translate offline"
-#~ msgstr "Prevedi izvanmrežno"
-
-#~ msgid "Overwrite the current file if it exists"
-#~ msgstr "Prebriši trenutnu datoteku ako postoji"
-
-#~ msgid ""
-#~ "Merge the file with the current file and turn conflicts into suggestions"
-#~ msgstr ""
-#~ "Spoji datoteku s trenutnom datotekom i pretvori konflikte u prijedloge "
-#~ "prijevoda"
-
-#~ msgid "Add all new translations as suggestions"
-#~ msgstr "Dodaj sve nove prijevode kao prijedloge"
-
-#~ msgid "Upload to"
-#~ msgstr "Pošalji na"
-
-#~ msgid ""
-#~ "Optionally select the file you want to merge with. If not specified, the "
-#~ "uploaded file's name is used."
-#~ msgstr ""
-#~ "Po želji odaberite daoteku koju želite spojiti. Ako nije odabrana, bit će "
-#~ "primjenjeno ime posalne datoteke."
-
-#~ msgid "Error while extracting archive"
-#~ msgstr "Greška prilikom vađenja arhive"
-
-#~ msgid "You do not have rights to overwrite files here."
-#~ msgstr "Nemate prava prebrisati datoteke ovdje."
-
-#~ msgid "You do not have rights to upload new files here."
-#~ msgstr "Nemate prava za prijenos novih datoteka ovdje."
-
-#~ msgid "You do not have rights to upload files here."
-#~ msgstr "Nemate prava za prijenos datoteka ovdje."
-
-#, fuzzy
-#~ msgid "Administrate your project goals"
-#~ msgstr "Upravljanje vašim projektiom"
-
-#~ msgid "Upload File"
-#~ msgstr "Pošalji datoteku"
-
-#~ msgid "username"
-#~ msgstr "korisničko ime"
-
-#~ msgid "email address"
-#~ msgstr "adresa e-pošte"
-
-#~ msgid "password"
-#~ msgstr "lozinka"
-
-#~ msgid "password (again)"
-#~ msgstr "lozinka (ponovite)"
-
-#~ msgid "This username is already taken. Please choose another."
-#~ msgstr "To korisničko ime je već zauzeto. Molimo izaberite drugo."
-
-#~ msgid "You must type the same password each time"
-#~ msgstr "Morate oba puta unijeti istu lozinku"
-
-#~ msgid "I have read and agree to the Terms of Service"
-#~ msgstr "Pročitao sam i slažem se sa uvjetima"
-
-#~ msgid ""
-#~ "This email address is already in use. Please supply a different email "
-#~ "address."
-#~ msgstr ""
-#~ "Ta e-mail adresa je već zauzeta. Molimo unesite drugu e-mail adresu."
-
-#~ msgid ""
-#~ "Registration using free email addresses is prohibited. Please supply a "
-#~ "different email address."
-#~ msgstr ""
-#~ "Registracija koristeći besplatne e-mail adrese je zabranjena. Molimo "
-#~ "unesite drugačiju e-mail adresu."
-
-#~ msgid "user"
-#~ msgstr "korisnik"
-
-#~ msgid "activation key"
-#~ msgstr "aktivacijski ključ"
-
-#~ msgid "registration profiles"
-#~ msgstr "registracijski profili"
-
-#~ msgid "Can view a translation project"
-#~ msgstr "Možete pregledati projekt prevođenja"
-
-#~ msgid "Can download archives of translation projects"
-#~ msgstr "Možete preuzimati iz arhiva projekata prevođenja"
-
-#~ msgid "Can commit to version control"
-#~ msgstr "Možete se posvetiti kontroli verzije"
-
-#~ msgid "Information and statistics about this Pootle server"
-#~ msgstr "Informacije i statistika o ovom Pootle serveru"
-
-#~ msgid "Configure the general settings for your site"
-#~ msgstr "Konfiguriraj opće postavke za vašu stranicu"
-
-#~ msgid "General"
-#~ msgstr "Opće"
-
-#~ msgid "Manage the users"
-#~ msgstr "Upravljanje korisnicima"
-
-#~ msgid "Manage the languages"
-#~ msgstr "Upravljanje jezicima"
-
-#~ msgid "Manage the projects"
-#~ msgstr "Upravljanje projektima"
-
-#~ msgid "Manage the default permissions"
-#~ msgstr "Upravljanje zadanim ovlastima"
-
-#~ msgid "Log Out"
-#~ msgstr "Odjava"
-
-#~ msgid "Register"
-#~ msgstr "Registriraj se"
-
-#~ msgid "Help"
-#~ msgstr "Pomoć"
-
-#, fuzzy
-#~ msgid "Contributors"
-#~ msgstr "Najveći pridonositelji"
-
-#~ msgid "Language news"
-#~ msgstr "Novosti o jezicima"
-
-#~ msgid "Administrate your language permissions"
-#~ msgstr "Upravljanje dozvolama vašeg jezika"
-
-#~ msgid "Project main page"
-#~ msgstr "Početna stranica projekta"
-
-#~ msgid "Project news"
-#~ msgstr "Novosti projekta"
-
-#~ msgid "Translate this project"
-#~ msgstr "Prevedi ovaj projekt"
-
-#~ msgid "Administrate your project"
-#~ msgstr "Upravljanje vašim projektiom"
-
-#~ msgid "Manage project permissions"
-#~ msgstr "Upravljanje dozvolama projekta"
-
-#~ msgid "Translation project news"
-#~ msgstr "Vijesti prevedenog projekta"
-
-#, fuzzy
-#~ msgid "Manage terminology"
-#~ msgstr "Upravljanje stručnim izrazima"
-
-#~ msgid "Administrate your project permissions"
-#~ msgstr "Upravljanje dozvolama vašeg projekta"
-
-#~ msgid "Overview of your account"
-#~ msgstr "Pregled vašeg korisničkog računa"
-
-#~ msgid "Dashboard"
-#~ msgstr "Korisnička ploča"
-
-#~ msgid "Configure your translation preferences"
-#~ msgstr "Podesite postavke vašeg prijevoda"
-
-#~ msgid "Change your personal information"
-#~ msgstr "Promijeni svoje osobne informacije"
-
-#~ msgid "Change your password"
-#~ msgstr "Promijeni svoju lozinku"
-
-#~ msgid "Send"
-#~ msgstr "Pošalji"
-
-#~ msgid "Message Sent"
-#~ msgstr "Poruka je poslana"
-
-#~ msgid " message by %(name)s"
-#~ msgstr "poruka od %(name)s"
-
-#~ msgid ""
-#~ "Here you can change your personal details. This information will be used "
-#~ "in the header of the translation files."
-#~ msgstr ""
-#~ "Ovdje možete mijenjati Vaše osobne podatke. Ova informacija biti će "
-#~ "korištena u zaglavlju datoteka za prevođenje."
-
-#~ msgid "First Name"
-#~ msgstr "Ime"
-
-#~ msgid "Last Name"
-#~ msgstr "Prezime"
-
-#~ msgid ""
-#~ "Here you can configure the settings related to the translation interface "
-#~ "as well as your language preferences."
-#~ msgstr ""
-#~ "Ovdje možete podesiti postavke koje se tiču sučelja prevođenja i Vaših "
-#~ "jezičnih postavki."
-
-#, fuzzy
-#~ msgid "Contributions"
-#~ msgstr "Najveći pridonositelji"
-
-#~ msgid "Suggestions Pending"
-#~ msgstr "Prijedloga na čekanju"
-
-#~ msgid "Profiles list"
-#~ msgstr "Popis profila"
-
-#~ msgid "Last name"
-#~ msgstr "Prezime"
-
-#~ msgid "Account Activated"
-#~ msgstr "Račun aktiviran"
-
-#~ msgid ""
-#~ "The account has been activated for username \"%(account)s\". You can now "
-#~ "proceed to log in."
-#~ msgstr ""
-#~ "Aktiviran je račun za korisničko ime \"%(account)s\". Sada se možete ići "
-#~ "prijaviti."
-
-#~ msgid "Your activation code is:"
-#~ msgstr "Vaš aktivacijski kod je:"
-
-#~ msgid "Registration Complete"
-#~ msgstr "Registracija je gotova"
-
-#~ msgid "Please check your email to activate your account."
-#~ msgstr "Molimo provjerite svoju e-poštu kako biste aktivirali račun."
-
-#~ msgid "Register a New Pootle Account"
-#~ msgstr "Registrirajte novi Pootle korisnički račun"
-
-#~ msgid "Fill in the following form to get started translating."
-#~ msgstr "Ispunite sljedeći obrazac kako biste počeli prevoditi."
-
-#~ msgid "Password (again)"
-#~ msgstr "Lozinka (ponovo)"
-
-#~ msgid "Already have an account?"
-#~ msgstr "Već imate korisnički račun?"
-
-#~ msgid "Log In."
-#~ msgstr "Prijava."
-
-#~ msgid "Project Members"
-#~ msgstr "Članovi projekta"
-
-#~ msgid "Language Members"
-#~ msgstr "Članovi za jezik"
-
-#~ msgid "You do not have rights to administer %s."
-#~ msgstr "Nemate prava za administriranje %s."
-
-#~ msgid "You do not have rights to access this translation project."
-#~ msgstr "Nemate prava pristupa ovom projektu prevođenja."
-
-#~ msgid "You do not have rights to commit files here"
-#~ msgstr "Nemate prava za predaju datoteka ovdje"
-
-#~ msgid "You do not have rights to update files here"
-#~ msgstr "Ovdje nemate pravo ažuriranja datoteka"
-
-#~ msgid "You do not have rights to administer this language."
-#~ msgstr "Nemate prava administrirati ovaj jezik."
-
-#~ msgid "Pootle: Install"
-#~ msgstr "Pootle: Instaliraj"
-
-#~ msgid ""
-#~ "Error: \"%s\" while attempting to access the Pootle database, will try to "
-#~ "initialize database."
-#~ msgstr ""
-#~ "Greška: \"%s\" prilikom pokušaja pristupanja Pootle bazi podataka, "
-#~ "pokušat ćemo inicijalizirati bazu podataka."
-
-#~ msgid "Creating database tables..."
-#~ msgstr "Stvaranje tabele za bazu podataka..."
-
-#~ msgid "Creating default languages, projects and admin user"
-#~ msgstr "Stvaranje zadanog jezika, projekti i administrator"
-
-#~ msgid "Calculating translation statistics, this will take a few minutes"
-#~ msgstr "Izračunavanje statistike prijevoda, ovo će trajati nekoliko minuta "
-
-#~ msgid "%(language)s is %(percent)d%% complete"
-#~ msgstr "%(jezik)ci je %(posto)%% gotov"
-
-#~ msgid "Project %(project)s is %(percent)d%% complete"
-#~ msgstr "Projekt %(projekt)i je %(postotak)%% gotov"
-
-#~ msgid "Done calculating statistics for default languages and projects"
-#~ msgstr "Završen je proračun zadanog jezika i projekta"
-
-#~ msgid ""
-#~ "Initialized database, you will be redirected to the front page in 10 "
-#~ "seconds"
-#~ msgstr ""
-#~ "Baza je inicijalizirana, biti će te preusmjereni na početnu stranicu za "
-#~ "10 sekundi "
-
-#~ msgid "Pootle: Update"
-#~ msgstr "Pootle: Ažuriran"
-
-#~ msgid ""
-#~ "Database tables are currently at build version %d. Pootle will now update "
-#~ "the database."
-#~ msgstr ""
-#~ "Baza podataka je trenutno na verziji %d. Pootle će sada ažurirati bazu "
-#~ "podataka."
-
-#~ msgid "Creating missing database tables..."
-#~ msgstr "Stvaranje tabela  koje nedostaju u bazi podataka..."
-
-#~ msgid "Fixing permission table..."
-#~ msgstr "Popravljanje tabela dopuštenja..."
-
-#~ msgid "Updating existing database tables..."
-#~ msgstr "Ažuriranje postojeće baze podataka..."
-
-#~ msgid ""
-#~ "Pootle will now import all the translations into the database. It could "
-#~ "take a long time."
-#~ msgstr ""
-#~ "Pootle će sada unjeti sve prijevode u bazu podataka. To bi moglo "
-#~ "potrajati dugo."
-
-#~ msgid "Failed to import suggestions from %s"
-#~ msgstr "Nije uspio unos prijedloga iz %s"
-
-#~ msgid ""
-#~ "Pootle initialized the database. You will be redirected to the front page "
-#~ "in 10 seconds."
-#~ msgstr ""
-#~ "Pootle je inicijalizirao bazu podataka. Bit ćete preusmjereni na "
-#~ "naslovnicu u 10 sekundi."
-
-#~ msgid "Advanced search"
-#~ msgstr "Napredna pretraga"
-
-#~ msgid "Suggestions Reviewed"
-#~ msgstr "Pregledanih prijedloga"
-
-#~ msgid "Submissions Made"
-#~ msgstr "Podnesenih prijedloga"
-
-#~ msgid "You do not have rights to administer this project."
-#~ msgstr "Nemate prava administrirati ovaj jezik."
-
-#~ msgid "You do not have the right to create ZIP archives."
-#~ msgstr "Nemate prava stvoriti ZIP arhivu."
-
-#~ msgid "Quick Links"
-#~ msgstr "Brzi linkovi"
-
-#~ msgid "No languages or projects selected. Choose yours now."
-#~ msgstr "Nema odabranih jezika i projekata. Odaberite svoj sada."
-
-#~ msgid "This user has not selected languages or projects yet."
-#~ msgstr "Ovaj korisnik trenutno nije odabrao jezike ili projekte."
-
-#~ msgid "User Statistics"
-#~ msgstr "Statistika korisnika"
-
-#~ msgid "Overall Completion"
-#~ msgstr "Ukupno dovršeno"
-
-#~ msgid "%(translated)d/%(total)d words (%(translatedpercent)d%%) translated"
-#~ msgstr "%(translated)d/%(total)d riječi (%(translatedpercent)d%%) prevedeno"
-
-#~ msgid "%(translated)d/%(total)d strings"
-#~ msgstr "%(translated)d/%(total)d redova"
-
-#~ msgid "%d file"
-#~ msgid_plural "%d files"
-#~ msgstr[0] "%d datoteka"
-#~ msgstr[1] "%d datoteke"
-#~ msgstr[2] "%d datoteka"
-
-#~ msgid "Needs review"
-#~ msgstr "Zahtjeva pregled"
-
-#~ msgid "Translations are complete"
-#~ msgstr "Prijevod je završen"
-
-#~ msgid "Translated percentage"
-#~ msgstr "Postotak prevedenog"
-
-#~ msgid "Fuzzy percentage"
-#~ msgstr "Postotak nejasnog"
-
-#~ msgid "Fuzzy words"
-#~ msgstr "Nejasne riječi"
-
-#~ msgid "Untranslated percentage"
-#~ msgstr "Postotak neprevedenog"
-
-#~ msgid "Untranslated words"
-#~ msgstr "Neprevedene riječi"
-
-#~ msgid "Failed to import units from %s"
-#~ msgstr "Nije uspio unos jedinica iz %s"
-
-#~ msgid "Update from templates"
-#~ msgstr "Ažuriraj iz predložaka"
-
-#~ msgid "You do not have rights to update from version control here"
-#~ msgstr "Nemate prava ažurirati verziju koja se upravlja ovdje."
-
-#~ msgid "Update all from version control"
-#~ msgstr "Ažuriraj sve iz kontrolne verzije"
-
-#~ msgid "About Pootle"
-#~ msgstr "O Pootleu"
-
-#~ msgid "Error"
-#~ msgstr "Pogreška"
-
-#~ msgid "Complete"
-#~ msgstr "Završeno"
-
-#~ msgid "lxml is not installed. Pootle requires lxml for XML format support."
-#~ msgstr "lxml nije instaliran. Pootle zahtijeva lxml za podršku XML formata."
-
-#~ msgid "Home"
-#~ msgstr "Početna stranica"
-
-#, fuzzy
-#~ msgid "%(checks)d string (%(checkspercent)d%%) failed"
-#~ msgid_plural "%(checks)d strings (%(checkspercent)d%%) failed"
-#~ msgstr[0] "%(checks)d string (%(checkspercent)d%%) neuspjeli"
-#~ msgstr[1] "%(checks)d stringovi (%(checkspercent)d%%) neuspjeli"
-#~ msgstr[2] ""
-
-#~ msgid "View Suggestions"
-#~ msgstr "Pregledaj prijedloge"
-
-#~ msgid "Quick Translate"
-#~ msgstr "Brzo prevedi"
-
-#~ msgid "View Untranslated"
-#~ msgstr "Pregledaj neprevedeno"
-
-#~ msgid "Translate All"
-#~ msgstr "Prevedi sve"
-
-#~ msgid "Manage Glossary"
-#~ msgstr "Upravljaj pojmovnikom"
-
-#~ msgid "ZIP of directory"
-#~ msgstr "Direktorij u ZIP-u"
-
-#~ msgid ""
-#~ "A description of this project. This is useful to give more information or "
-#~ "instructions. This field should be valid HTML."
-#~ msgstr ""
-#~ "Opis ovog projekta. Korisno dati više informacija ili uputa. Ovo polje "
-#~ "mora biti valjanog HTML."
-
-#~ msgid "Initialize"
-#~ msgstr "Postavljanje"
-
-#~ msgid "No more matching strings to review."
-#~ msgstr "Nema više odgovarajućeg izraza za pregled."
-
-#~ msgid "No more matching strings to translate."
-#~ msgstr "Nema više odgovarajučeg izraza za prijevod."
-
-#~ msgid "No matching strings to review."
-#~ msgstr "Nema odgovarajućeg izraza za pregled."
-
-#~ msgid "No matching strings to translate."
-#~ msgstr "Nema odgovarajučeg izraza za prijevod."
-
-#~ msgid "checking %s"
-#~ msgstr "provjeravam %s"
-
-#~ msgid "Original"
-#~ msgstr "Izvorni"
-
-#~ msgid "Edit translation"
-#~ msgstr "Uredi prijevod"
-
-#~ msgid "Go to the previous unit"
-#~ msgstr "Idi na prethodnu jedinicu"
-
-#~ msgid "Go to the next unit"
-#~ msgstr "Idi na sljedeću jedinicu"
-
-#~ msgid "Suggestion by %(user)s"
-#~ msgstr "Prijedlog od %(user)s"
-
-#~ msgid "Here you can manage the files in this translation project."
-#~ msgstr "Ovdje možete upravljati datotekama u ovom prevoditeljskom projektu."
-
-#~ msgid "Update files from templates"
-#~ msgstr "Ažuriraj iz predložaka"
-
-#~ msgid ""
-#~ "<div dir=\"ltr\" lang=\"en\">\n"
-#~ "<h2 class=\"title\">This is a demo installation of Pootle.</h2>\n"
-#~ "<p class=\"about\">You can also visit the official <a href=\"http://"
-#~ "pootle.locamotion.org\">Pootle server</a>. The server administrator has "
-#~ "not provided contact information or a description of this server. If you "
-#~ "are the administrator for this server, edit this description in your "
-#~ "preference file or in the administration interface.</p>\n"
-#~ "</div>"
-#~ msgstr ""
-#~ "<div dir=\"ltr\" lang=\"hr\">\n"
-#~ "<h2 class=\"title\">Ovo je demo instalacije Pootle.</ h2>\n"
-#~ "<p class=\"about\">Također možete posjetiti službeni<a href=\"http://"
-#~ "pootle.locamotion.org\">Pootle server</ a>. Administrator servera nije "
-#~ "dostavio podatke za kontakt ili opis o ovom serveru. Ako ste "
-#~ "administrator na ovom serveru, uredite ovaj opis u vašoj datoteki za "
-#~ "postavke ili u administrativnom sučelju.</p>\n"
-#~ "</div>"
-
-#~ msgid "Quality checks and review suggestions"
-#~ msgstr "Kvalitetna provjera i pregledani prijedlozi"
-
-#~ msgid "Administrate your project files"
-#~ msgstr "Upravljanje datoteka vašeg projekta"
-
-#~ msgid "You do not have rights to suggest changes here"
-#~ msgstr "Nemate prava za predlaganje promjena ovdje"
-
-#~ msgid "You do not have rights to change translations here"
-#~ msgstr "Nemate prava za promijenu prijevoda ovdje"
-
-#~ msgid "You do not have rights to review suggestions here"
-#~ msgstr "Nemate prava za ispitivanje prijedloga ovdje"
-
-#~ msgid "Update Rights"
-#~ msgstr "Ažuriraj prava"
-
-#~ msgid "Update Permissions"
-#~ msgstr "Ažuriranje dozvola"
-
-#~ msgid "Copy"
-#~ msgstr "Kopiraj"
-
-#~ msgid "Skip"
-#~ msgstr "Preskoči"
-
-#~ msgid "Back"
-#~ msgstr "Nazad"
-
-#~ msgid "This is a standard style project (one directory per language)."
-#~ msgstr "Ovo je projekt u standardnom stilu (jedan direktorij po jeziku)."
-
-#~ msgid "(select to add user)"
-#~ msgstr "(odaberi kako bi dodao korisnika)"
-
-#~ msgid "Download PO"
-#~ msgstr "Skini PO"
-
-#~ msgid "Start"
-#~ msgstr "Početak"
-
-#~ msgid "Previous %d"
-#~ msgstr "Prethodnih %d"
-
-#~ msgid "Next %d"
-#~ msgstr "Sljedećih %d"
-
-#~ msgid "End"
-#~ msgstr "Kraj"
-
-#~ msgid ""
-#~ "Translation not possible because plural information for your language is "
-#~ "not available. Please contact the site administrator."
-#~ msgstr ""
-#~ "Prevođenje nije moguće jer informacije o množini za vaš jezik nisu "
-#~ "dostupne.Molim vas da kontaktirate administratora stranica."
-
-#~ msgid "Current Translation:"
-#~ msgstr "Trenutni prijevod:"
-
-#~ msgid "Suggestion by %s:"
-#~ msgstr "Prijedlog sa %s:"
-
-#~ msgid "Suggestion:"
-#~ msgstr "Prijedlog:"
-
-#~ msgid "No file matched your query."
-#~ msgstr "Niti jedan unos ne odgovara Vašem upitu."
-
-#~ msgid "End of results."
-#~ msgstr "Završetak pretrage."
-
-#~ msgid "You do not have rights to access view mode."
-#~ msgstr "Nemate pravo pristupa modu za gledanje."
-
-#~ msgid "Developer Comments"
-#~ msgstr "Komentari programera"
-
-#~ msgid "Related"
-#~ msgstr "Srodno"
-
-#~ msgid "Last"
-#~ msgstr "Posljednji"
-
-#~ msgid "Input Height"
-#~ msgstr "Visina unosa"
-
-#~ msgid "My Languages"
-#~ msgstr "Moji jezici"
-
-#~ msgid "My Projects"
-#~ msgstr "Moji projekti"
-
-#~ msgid "General options"
-#~ msgstr "Opće opcije"
-
-#~ msgid "Current value"
-#~ msgstr "Trenutna vrijednost"
-
-#~ msgid "Base URL"
-#~ msgstr "Osnovni URL"
-
-#~ msgid "Home Page"
-#~ msgstr "Početna stranica"
-
-#~ msgid "Main admin page"
-#~ msgstr "Glavna administratorska stranica"
-
-#~ msgid "ISO Code"
-#~ msgstr "ISO šifra"
-
-#~ msgid "(add language here)"
-#~ msgstr "(dodaj jezik ovdje)"
-
-#~ msgid "Special Chars"
-#~ msgstr "Posebni znakovi"
-
-#~ msgid "(number of plurals)"
-#~ msgstr "(broj množina)"
-
-#~ msgid "(plural equation)"
-#~ msgstr "(jednadžba množine)"
-
-#~ msgid "Remove Language"
-#~ msgstr "Ukloni jezik"
-
-#~ msgid "Remove %s"
-#~ msgstr "Ukloni %s"
-
-#~ msgid "Standard"
-#~ msgstr "Standardno"
-
-#~ msgid "Pootle Projects Admin Page"
-#~ msgstr "Pootle administratorska stranica projekata"
-
-#~ msgid "Project Code"
-#~ msgstr "Šifra projekta"
-
-#~ msgid "(add project here)"
-#~ msgstr "(dodaj projekt ovdje)"
-
-#~ msgid "Project Description"
-#~ msgstr "Opis projekta"
-
-#~ msgid "(project description)"
-#~ msgstr "(opis projekta)"
-
-#~ msgid "Create MO Files"
-#~ msgstr "Stvori MO datoteke"
-
-#~ msgid "Remove Project"
-#~ msgstr "Ukloni projekt"
-
-#~ msgid "Pootle User Admin Page"
-#~ msgstr "Pootle administratorska stranica korisnika"
-
-#~ msgid "(add full name here)"
-#~ msgstr "(dodaj puno ime ovdje)"
-
-#~ msgid "(add email here)"
-#~ msgstr "(dodaj e-poštu ovdje)"
-
-#~ msgid "(add password here)"
-#~ msgstr "(dodaj zaporku ovdje)"
-
-#~ msgid "Activated"
-#~ msgstr "Aktivirano"
-
-#~ msgid "Activate New User"
-#~ msgstr "Aktiviraj novog korisnika"
-
-#~ msgid "Existing languages"
-#~ msgstr "Postojeći jezici"
-
-#~ msgid "Update Languages"
-#~ msgstr "Ažuriraj jezike"
-
-#~ msgid "Pootle Admin: %s"
-#~ msgstr "Pootle administrator: %s"
-
-#~ msgid "Add Language"
-#~ msgstr "Dodaj jezik"
-
-#~ msgid "Pootle Admin: %s %s"
-#~ msgstr "Pootle administrator: %s %s"
-
-#~ msgid "Cannot set rights for username %s - user does not exist"
-#~ msgstr "Nemogu postaviti prava za korisnika %s - korisnik ne postoji"
-
-#~ msgid ""
-#~ "This is a GNU-style project (one directory, files named per language)."
-#~ msgstr ""
-#~ "Ovo je projekt u GNU-stilu (jedan direktorij, datoteke imenovane po "
-#~ "jeziku)."
-
-#~ msgid "Rights"
-#~ msgstr "Prava"
-
-#~ msgid ""
-#~ "<strong>Pootle</strong> is a simple web portal that should allow you to "
-#~ "<strong>translate</strong>! Since Pootle is <strong>Free Software</"
-#~ "strong>, you can download it and run your own copy if you like. You can "
-#~ "also help participate in the development in many ways (you don't have to "
-#~ "be able to program)."
-#~ msgstr ""
-#~ "<strong>Pootle</strong> je jednostavan web portal koji bi vam trebao "
-#~ "omogućiti da <strong>prevodite</strong>! Kako je Pootle <strong>Slobodan "
-#~ "softver</strong>, možete ga preuzeti i pokrenuti vlastitu kopiju ako "
-#~ "želite. Također možete sudjelovati u razvoju na više načina (ne morate "
-#~ "znati programirati)."
-
-#~ msgid ""
-#~ "The Pootle project itself is hosted at <a href=\"http://translate."
-#~ "sourceforge.net/\">translate.sourceforge.net</a> where you can find the "
-#~ "details about source code, mailing lists etc."
-#~ msgstr ""
-#~ "Pootle projekt se nalazi na <a href=\"http://translate.sourceforge.net/"
-#~ "\">translate.sourceforge.net</a> gdje možete pronaći detalje o izvornom "
-#~ "kodu, dopisnim listama itd."
-
-#~ msgid ""
-#~ "The name stands for <b>PO</b>-based <b>O</b>nline <b>T</b>ranslation / "
-#~ "<b>L</b>ocalization <b>E</b>ngine, but you may need to read <a href="
-#~ "\"http://www.thechestnut.com/flumps.htm\">this</a>."
-#~ msgstr ""
-#~ "Naziv ima sljedeće značenje <b>PO</b>-temeljen <b>O</b>nline <b>T</"
-#~ "b>ranslation / <b>L</b>ocalization <b>E</b>ngine, ali možda bi bilo dobro "
-#~ "pročitati <a href=\"http://www.thechestnut.com/flumps.htm\">ovo</a>."
-
-#~ msgid "Versions"
-#~ msgstr "Inačice"
-
-#~ msgid ""
-#~ "This site is running:<br />Pootle %s<br />Translate Toolkit %s<br /"
-#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (on %s/%s)"
-#~ msgstr ""
-#~ "Ove stranice pokreće:<br />Pootle %s<br />Translate Toolkit %s<br /"
-#~ ">jToolkit %s<br />Kid %s<br />ElementTree %s<br />Python %s (na %s/%s)"
-
-#~ msgid "User Page for: %s"
-#~ msgstr "Korisnička stranica za: %s"
-
-#~ msgid "Admin page"
-#~ msgstr "Administratorska stranica"
-
-#~ msgid ""
-#~ "Please click on 'Change options' and select some languages and projects"
-#~ msgstr ""
-#~ "Molim vas kliknite na 'Promijeni opcije' te odaberite neke jezike i "
-#~ "projekte"
-
-#~ msgid "%d project, average %d%% translated"
-#~ msgid_plural "%d projects, average %d%% translated"
-#~ msgstr[0] "%d projekt, prosječno %d%% prevedeno"
-#~ msgstr[1] "%d projekta, prosječno %d%% prevedeno"
-#~ msgstr[2] "%d projekata, prosječno %d%% prevedeno"
-
-#~ msgid "%s: %s"
-#~ msgstr "%s %s"
-
-#~ msgid "Language Code"
-#~ msgstr "Šifra jezika"
-
-#~ msgid "%d language, average %d%% translated"
-#~ msgid_plural "%d languages, average %d%% translated"
-#~ msgstr[0] "%d jezik, prosječno %d%% prevedeno"
-#~ msgstr[1] "%d jezika, prosječno %d%% prevedeno"
-#~ msgstr[2] "%d jezika, prosječno %d%% prevedeno"
-
-#~ msgid "%s: Project %s, Language %s"
-#~ msgstr "%s: Projekt %s, Jezik %s"
-
-#~ msgid "Cannot upload file, no file attached"
-#~ msgstr "Nemogu poslati datoteku, niti jedna datoteka nije u privitku"
-
-#~ msgid "Can only upload PO files and zips of PO files"
-#~ msgstr "Mogu se samo poslati PO datoteke i ZIP datoteke PO datoteka"
-
-#~ msgid "Assign Strings"
-#~ msgstr "Dodijeli stringove"
-
-#~ msgid "Assign to User"
-#~ msgstr "Dodijeli korisniku"
-
-#~ msgid "goals"
-#~ msgstr "ciljevi"
-
-#~ msgid "Enter goal name"
-#~ msgstr "Unesite naziv cilja"
-
-#~ msgid "Add Goal"
-#~ msgstr "Dodaj cilj"
-
-#~ msgid "Overwrite"
-#~ msgstr "Prepiši"
-
-#~ msgid "Merge"
-#~ msgstr "Spoji"
-
-#~ msgid "Not in a goal"
-#~ msgstr "Nema u cilju"
-
-#~ msgid "Add User"
-#~ msgstr "Dodaj korisnika"
-
-#~ msgid "PO file"
-#~ msgstr "PO datoteka"
-
-#~ msgid "Qt .ts file"
-#~ msgstr "Qt .ts datoteka"
-
-#~ msgid "CSV file"
-#~ msgstr "CSV datoteka"
-
-#~ msgid "MO file"
-#~ msgstr "MO datoteka"
-
-#~ msgid "Commit"
-#~ msgstr "Predaj"
-
-#~ msgid "All Strings"
-#~ msgstr "Svi stringovi"
-
-#~ msgid "Unassigned"
-#~ msgstr "Nije dodijeljeno"
-
-#~ msgid "Unassigned and Untranslated"
-#~ msgstr "nije dodijeljeno niti prevedeno"
-
-#~ msgid "Set Goal"
-#~ msgstr "Postavi cilj"
-
-#~ msgid "Assign To"
-#~ msgstr "Dodijeli"
-
-#~ msgid "Show Editing Functions"
-#~ msgstr "Prikaži funkcije uređivanja"
-
-#~ msgid "Show Statistics"
-#~ msgstr "Prikaži statistiku"
-
-#~ msgid "Show Tracks"
-#~ msgstr "Prikaži staze"
-
-#~ msgid "Hide Tracks"
-#~ msgstr "Sakrij staze"
-
-#~ msgid "Show Goals"
-#~ msgstr "Prikaži ciljeve"
-
-#~ msgid "Hide Goals"
-#~ msgstr "Sakrij ciljeve"
-
-#~ msgid "Hide Assigns"
-#~ msgstr "Sakrij dodjele"
-
-#~ msgid "All Goals: %s"
-#~ msgstr "Svi ciljevi: %s"
-
-#~ msgid "View My Strings"
-#~ msgstr "Pregledaj moje stringove"
-
-#~ msgid "No strings assigned to you"
-#~ msgstr "Nemate dodijeljenih stringova"
-
-#~ msgid "Quick Translate My Strings"
-#~ msgstr "Brzo prevedi moje stringove"
-
-#~ msgid "No untranslated strings assigned to you"
-#~ msgstr "Nemate dodijeljenih neprevedenih stringova"
-
-#~ msgid "No untranslated items"
-#~ msgstr "Nema neprevedenih stavki"
-
-#~ msgid "ZIP of goal"
-#~ msgstr "ZIP cilja"
-
-#~ msgid "ZIP of folder"
-#~ msgstr "ZIP mape"
-
-#~ msgid "Generate SDF"
-#~ msgstr "Generiraj SDF"
-
-#~ msgid "%d string (%d%%) failed"
-#~ msgid_plural "%d strings (%d%%) failed"
-#~ msgstr[0] "%d string (%d%%) nije prihvatljiv"
-#~ msgstr[1] "%d stringa (%d%%) nisu prihvatljiva"
-#~ msgstr[2] "%d stringova (%d%%) nije prihvatljivo"
-
-#~ msgid "%d/%d words (%d%%) assigned"
-#~ msgstr "%d/%d riječi (%d%%) je dodijeljeno"
-
-#~ msgid "[%d/%d strings]"
-#~ msgstr "[%d/%d stringova]"
-
-#~ msgid "%d/%d words (%d%%) translated"
-#~ msgstr "%d/%d riječi (%d%%) prevedeno"
-
-#~ msgid "All languages"
-#~ msgstr "Svi jezici"
-
-#~ msgid "Docs & help"
-#~ msgstr "Dokumentacija & pomoć"
-
-#~ msgid "Log in"
-#~ msgstr "Prijava"
-
-#~ msgid "Activate"
-#~ msgstr "Aktiviraj se"
-
-#~ msgid "Pootle Logo"
-#~ msgstr "Pootle logo"
-
-#~ msgid "All goals"
-#~ msgstr "Svi ciljevi"
-
-#~ msgid "%d/%d files"
-#~ msgstr "%d/%d datoteka"
-
-#~ msgid "%d/%d strings"
-#~ msgstr "[%d/%d stringova]"
-
-#~ msgid "Graph"
-#~ msgstr "Graf"
-
-#~ msgid "Login failed"
-#~ msgstr "Neuspjela prijava"
-
-#~ msgid "Redirecting to login..."
-#~ msgstr "Preusmjeravanje na prijavu..."
-
-#~ msgid "Need to log in to access home page"
-#~ msgstr "Potrebno se prijaviti kako bi se pristupilo početnoj stranici"
-
-#~ msgid "Personal details updated"
-#~ msgstr "Osobni detalji su ažurirani"
-
-#~ msgid "Need to log in to access admin page"
-#~ msgstr ""
-#~ "Potrebno se prijaviti kako bi se pristupilo administratorskoj stranici"
-
-#~ msgid "Redirecting to home..."
-#~ msgstr "Preusmjeravanje na početnu..."
-
-#~ msgid "Archive"
-#~ msgstr "Arhiva"
-
-#~ msgid "Compile PO files"
-#~ msgstr "Prevedi PO datoteke"
-
-#~ msgid "Assign"
-#~ msgstr "Dodijeli"
-
-#~ msgid "You cannot remove the \"nobody\" or \"default\" user"
-#~ msgstr "Ne možete maknuti korisnika \"nobody\" ili \"default\""
-
-#~ msgid "You do not have rights to alter goals here"
-#~ msgstr "Nemate prava za izmjenu ciljeva"
-
-#~ msgid "You do not have rights to alter assignments here"
-#~ msgstr "Nemate prava za izmjenu dodijela ovdje"
-
-#~ msgid ""
-#~ "%d/%d translated\n"
-#~ "(%d untranslated, %d fuzzy)"
-#~ msgstr ""
-#~ "%d/%d prevedeno\n"
-#~ "(%d neprevedeno, %d nejasno)"
-
-#~ msgid "%s: translating %s into %s: %s"
-#~ msgstr "%s: prevođenje %s u %s: %s"
-
-#~ msgid "Working..."
-#~ msgstr "U radu..."
-
-#~ msgid "Error: Something went wrong."
-#~ msgstr "Pogreška: nešto je pošlo krivo"
-
-#~ msgid "Click here to return to the index"
-#~ msgstr "Kliknite ovdje kako bi se vratili na indeks"
-
-#~ msgid "Items %d to %d of %d"
-#~ msgstr "Stavki %d do %d od %d"
-
-#~ msgid "There are no items matching that search ('%s')"
-#~ msgstr "Nema stavki koje odgovaraju pretraživanju ('%s')"
-
-#~ msgid "You have finished going through the items you selected"
-#~ msgstr "Završili ste sa stavkama koje ste odabrali"
-
-#~ msgid "Shrink"
-#~ msgstr "Smanji"
-
-#~ msgid "You must supply a valid password of at least %d characters."
-#~ msgstr "Morate priložiti ispravnu zaporku s najmanje %d znakova."
-
-#~ msgid "The password is not the same as the confirmation."
-#~ msgstr "Zaporka nije ista kao potvrda."
-
-#~ msgid "Username:"
-#~ msgstr "Korisničko ime:"
-
-#~ msgid "Password:"
-#~ msgstr "Zaporka:"
-
-#~ msgid "Language:"
-#~ msgstr "Jezik:"
-
-#~ msgid "Your requested username"
-#~ msgstr "Vaše traženo korisničko ime"
-
-#~ msgid "You must supply a valid email address"
-#~ msgstr "Morate priložiti valjanu adresu e-pošte"
-
-#~ msgid "Your full name"
-#~ msgstr "Vaše ime i prezime"
-
-#~ msgid "Your desired password"
-#~ msgstr "Vaša željena zaporka"
-
-#~ msgid "Type your password again to ensure it is entered correctly"
-#~ msgstr ""
-#~ "Utipkajte vašu zaporku ponovno kako bi se uvjerili da ste je točno unijeli"
-
-#~ msgid "Please enter your activation details"
-#~ msgstr "Molim vas unesite vaše detalje o aktivaciji"
-
-#~ msgid "Pootle Account Activation"
-#~ msgstr "Pootle aktivacija računa"
-
-#~ msgid "Activation Code"
-#~ msgstr "Aktivacijska šifra"
-
-#~ msgid "The activation code you received"
-#~ msgstr "Aktivacijska šifra koju ste primili"
-
-#~ msgid "Activate Account"
-#~ msgstr "Aktiviraj račun"
-
-#~ msgid "Options for: %s"
-#~ msgstr "Opcije za: %s"
-
-#~ msgid "Personal Details"
-#~ msgstr "Osobni detalji"
-
-#~ msgid "Email"
-#~ msgstr "E-pošta"
-
-#~ msgid "Translation Interface Configuration"
-#~ msgstr "Konfiguracija sučelja za prevođenje"
-
-#~ msgid "User Interface language"
-#~ msgstr "Jezik korisničkog sučelja"
-
-#~ msgid "None"
-#~ msgstr "Ni jedan"
-
-#~ msgid "Input Height (in lines)"
-#~ msgstr "Visina polja za unos (u linijama)"
-
-#~ msgid "Number of rows in view mode"
-#~ msgstr "Broj redova u načinu rada za pregled"
-
-#~ msgid "Number of rows in translate mode"
-#~ msgstr "Broj redova u načinu rada za prevođenje"
-
-#~ msgid "You need to be siteadmin to change users"
-#~ msgstr "Morate biti administrator stranica kako bi promijenili korisnike"
-
-#~ msgid ""
-#~ "Username must be alphanumeric, and must start with an alphabetic "
-#~ "character."
-#~ msgstr ""
-#~ "Korisničko ime mora se sastojati od alfanumeričkih znakova i mora početi "
-#~ "sa slovom."
-
-#~ msgid ""
-#~ "You (or someone else) attempted to register an account with your "
-#~ "username.\n"
-#~ msgstr ""
-#~ "Vi (ili netko drugi) pokušava(te) registrirati račun s vašim korisničkim "
-#~ "imenom.\n"
-
-#~ msgid "We don't store your actual password but only a hash of it.\n"
-#~ msgstr "Vi zapravo ne spremate vašu zaporku, već samo njezin hash.\n"
-
-#~ msgid "If you have a problem with registration, please contact %s.\n"
-#~ msgstr "Ako imate problema s registracijom, molim vas kontaktirajte %s.\n"
-
-#~ msgid ""
-#~ "If you have a problem with registration, please contact the site "
-#~ "administrator.\n"
-#~ msgstr ""
-#~ "Ako imate problema s registracijom, molim vas kontaktirajte "
-#~ "administratora stranica.\n"
-
-#~ msgid ""
-#~ "That username already exists. An email will be sent to the registered "
-#~ "email address.\n"
-#~ msgstr ""
-#~ "Korisničko ime već postoji. E-pošta će biti poslana na već registriranu "
-#~ "adresu e-pošte.\n"
-
-#~ msgid "Proceeding to <a href='%s'>login</a>\n"
-#~ msgstr "Nastavljanje na <a href='%s'>prijavu</a>\n"
-
-#~ msgid ""
-#~ "If you are unable to follow the link, please enter the above code at the "
-#~ "activation page.\n"
-#~ msgstr ""
-#~ "Ako niste u mogućnosti slijediti link, molim vas da unesete gornju šifru "
-#~ "na aktivacijskoj stranici.\n"
-
-#~ msgid "(Or simply click on the activation link in the email)"
-#~ msgstr "(Ili jednostavno kliknite na aktivacijski link u e-pošti)"
-
-#~ msgid "Your user name is: %s\n"
-#~ msgstr "Vaše korisničko ime je: %s\n"
-
-#~ msgid "Your password is: %s\n"
-#~ msgstr "Vaša zaporka je: %s\n"
-
-#~ msgid "Your registered email address is: %s\n"
-#~ msgstr "Vaša registrirana adresa e-pošte je: %s\n"
-
-#~ msgid "Redirecting to Registration Page..."
-#~ msgstr "Preusmjeravanje na registracijsku stranicu..."
-
-#~ msgid "Redirecting to login Page..."
-#~ msgstr "Preusmjeravanje na stranicu za prijavu..."
-
-#~ msgid "Your account has been activated! Redirecting to login..."
-#~ msgstr "Vaš račun je aktiviran! Preusmjeravanje na prijavu..."
-
-#~ msgid "The activation information was not valid."
-#~ msgstr "Aktivacijske infomracije nisu ispravne."
-
-#~ msgid "Activation Failed"
-#~ msgstr "Aktivacija nije uspjela"
-
-#~ msgid "Input height must be numeric"
-#~ msgstr "Visina polja za unos mora biti broj"
-
-#~ msgid "Input width must be numeric"
-#~ msgstr "Širina polja za unos mora biti broj"
-
-#~ msgid "The number of rows displayed in view mode must be numeric"
-#~ msgstr "Broj prikazanih redova u načinu rada za pregled mora biti broj"
-
-#~ msgid "The number of rows displayed in translate mode must be numeric"
-#~ msgstr "Broj prikazanih redova u načinu rada za prevođenje mora biti broj"
-
-#~ msgid "Broaden"
-#~ msgstr "Proširi"
-
-#~ msgid "Narrow"
-#~ msgstr "Suzi"
-
-#~ msgid "Reset"
-#~ msgstr "Reset"
-
-#~ msgid "Must be a valid email address"
-#~ msgstr "Mora biti valjana email adresa"
-
-#~ msgid "Pootle"
-#~ msgstr "Pootle"
-
-#~ msgid "Pootle: %s"
-#~ msgstr "Pootle: %s"
-
-#~ msgid "Pootle Admin Page"
-#~ msgstr "Pootle administratorska stranica"
-
-#~ msgid "not logged in"
-#~ msgstr "Niste prijavljeni"
-
-#~ msgid "suggest"
-#~ msgstr "predloži"
-
-#~ msgid "Input Width"
-#~ msgstr "Širina polja za unos"
+msgstr "Pootleov poslužitelj za prijevode"
