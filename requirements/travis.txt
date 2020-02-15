@@ -16,4 +16,4 @@ tox==3.14.4
 # Test coverage
 codecov==2.0.15
 coverage==5.0.3
-coveralls==1.11.0
+coveralls==1.11.1
