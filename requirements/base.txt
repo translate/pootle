@@ -23,7 +23,7 @@ Babel==2.8.0
 cssmin==0.2.0
 diff-match-patch==20181111
 dirsync==2.2.4
-jsonfield==3.0.0
+jsonfield==3.1.0
 # Note: also adjust pootle/checks::LXML_MINIMUM_REQUIRED_VERSION
 lxml>=4.5,<4.6
 makeyfile==0.0.2
