@@ -14,6 +14,6 @@ tox==3.14.5
 -r _es_5.txt
 
 # Test coverage
-codecov==2.0.20
+codecov==2.0.21
 coverage==5.0.4
 coveralls==1.11.1
