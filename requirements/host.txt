@@ -1,2 +1,2 @@
 makeyfile==0.0.2
-docker-compose==1.26.1
+docker-compose==1.26.2
