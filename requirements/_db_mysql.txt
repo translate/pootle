@@ -4,4 +4,4 @@
 # Ref https://docs.djangoproject.com/en/1.10/ref/databases/#mysql-db-api-drivers
 
 # Recommended versions https://docs.djangoproject.com/en/1.10/ref/databases/#id9
-mysqlclient>=1.4,<1.5
+mysqlclient>=2.0,<2.1
