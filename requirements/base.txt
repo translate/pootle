@@ -25,7 +25,7 @@ diff-match-patch==20200713
 dirsync==2.2.5
 jsonfield==3.1.0
 # Note: also adjust pootle/checks::LXML_MINIMUM_REQUIRED_VERSION
-lxml>=4.5,<4.6
+lxml>=4.6,<4.7
 makeyfile==0.0.2
 pathlib==1.0.1
 python-dateutil==2.8.1
