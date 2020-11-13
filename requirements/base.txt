@@ -12,14 +12,14 @@ django-contact-form==1.8.2
 django-contrib-comments==1.7.3,!=1.8.0  # rq.filter: !=1.8.0
 django-overextends==0.4.3
 django-redis==4.12.1
-django-rq==2.3.2
+django-rq==2.4.0
 django-sortedm2m==3.0.2
 django-statici18n==2.0.1
 
 dj.subcommand==0.0.3
 
 # Libraries
-Babel==2.8.0
+Babel==2.9.0
 cssmin==0.2.0
 diff-match-patch==20200713
 dirsync==2.2.5
@@ -31,7 +31,7 @@ pathlib==1.0.1
 python-dateutil==2.8.1
 python-levenshtein==0.12.0
 pytz==2020.4
-rq==1.5.2
+rq==1.6.1
 scandir==1.10.0
 stemming==1.0.1
 pycountry==20.7.3
