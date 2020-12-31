@@ -159,7 +159,7 @@ class StoreDataUpdater(DataUpdater):
             return None
 
     def get_pending_suggestions(self, **kwargs):
-        """Return the count of pending suggetions for the store"""
+        """Return the count of pending suggestions for the store"""
         return (
             self.units.filter(suggestion__state__name="pending")
                       .values_list("suggestion").count())
