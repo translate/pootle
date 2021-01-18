@@ -2,7 +2,7 @@
 
 factory-boy==3.2.0
 pytest==6.2.1
-pytest-cov==2.10.1
+pytest-cov==2.11.0
 pytest-django==4.1.0
 
 pytest-mock
