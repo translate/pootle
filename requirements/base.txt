@@ -37,7 +37,7 @@ stemming==1.0.1
 pycountry==20.7.3
 
 # Markup: Markdown filter for POOTLE_MARKUP_FILTER
-bleach==3.2.3
+bleach==3.3.0
 Markdown==3.3.3
 
 # Translate Toolkit
