@@ -2,4 +2,4 @@
 
 sphinx-bootstrap-theme
 readme-renderer==29.0
-Sphinx==3.5.2
+Sphinx==3.5.3
