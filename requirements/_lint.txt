@@ -1,6 +1,6 @@
 # Linting tools
 
-flake8==3.9.1
+flake8==3.9.2
 isort==5.8.0
 pycodestyle==2.7.0
 pydocstyle==6.0.0
