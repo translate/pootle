@@ -3,5 +3,5 @@
 flake8==3.9.2
 isort==5.8.0
 pycodestyle==2.7.0
-pydocstyle==6.0.0
+pydocstyle==6.1.0
 pylint==2.8.2
