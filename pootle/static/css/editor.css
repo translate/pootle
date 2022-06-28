@@ -158,6 +158,20 @@ textarea.translation,
     margin: 180px auto;
 }
 
+.editor-progress-container
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+}
+
+.editor-progress
+{
+    height: 5px;
+}
+
 .editor-overlay
 {
     background-color: rgba(255, 255, 255, 0.8);
