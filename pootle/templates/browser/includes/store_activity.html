@@ -1,0 +1,26 @@
+{% load log_events %}
+
+<div>
+  <div style="width: 50%; float: left; box-sizing: border-box; padding: 0 .5em 1em 1em">
+    <h3>Contributors</h3>
+    <ul>
+      {% for contributor in contributors %}
+      <li>
+	{{ contributor.avatar }}
+	{{ contributor.display_name }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div style="width: 50%; float: left; box-sizing: border-box; padding: 0 1em 1em .5em">
+    <h3>Recent activity</h3>
+    <ul>
+      {% for event in events %}
+      <li style="padding: .3em; background: rgba(204, 204, 204, 0.3)">
+	{% log_event event %}
+	<div style="clear: both"> </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

@@ -218,7 +218,6 @@ class TPStoreMixin(TPMixin):
     browse_url_path = "pootle-tp-store-browse"
     translate_url_path = "pootle-tp-store-translate"
     is_store = True
-    panels = ()
 
     @property
     def permission_context(self):
@@ -307,10 +306,11 @@ class TPBrowseBaseView(PootleBrowseView):
 class TPBrowseStoreView(TPStoreMixin, TPBrowseBaseView):
 
     disabled_items = False
+    panel_names = ("activity", )
 
     @property
     def cache_key(self):
-        return ""
+        return self.object.pootle_path
 
 
 class TPBrowseView(TPDirectoryMixin, TPBrowseBaseView):

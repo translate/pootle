@@ -29,11 +29,12 @@ def time_since(timestamp):
 
 
 @register.inclusion_tag('includes/avatar.html')
-def avatar(username, email_hash, size):
+def avatar(username, email_hash, size, css_class=""):
     # TODO: return sprite if its a system user
     if username == "system":
-        return dict(icon="icon-pootle")
+        return dict(icon="icon-pootle", css_class=css_class)
     return dict(
+        css_class=css_class,
         avatar_url=(
             'https://secure.gravatar.com/avatar/%s?s=%d&d=mm'
             % (email_hash, size)))

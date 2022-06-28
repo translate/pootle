@@ -2068,7 +2068,7 @@ html[dir="rtl"] #tabs li
 {
     display: inline-block;
     overflow: hidden;
-    border-radius: 50%;
+    border-radius: 10%;
 }
 
 .avatar-system
@@ -2624,4 +2624,11 @@ form.formtable tfoot .formtable-actions td
 {
     float: right;
     color: #c30;
+}
+
+.evt-state-changed
+{
+    font-style: italic;
+    color: #777;
+    font-size: 0.9em;
 }

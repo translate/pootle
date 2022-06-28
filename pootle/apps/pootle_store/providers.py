@@ -7,13 +7,17 @@
 # AUTHORS file for copyright and authorship information.
 
 from pootle.core.delegate import (
-    event_formatters, format_diffs, format_syncers, format_updaters, unitid)
+    event_formatters, format_diffs, format_syncers, format_updaters,
+    panels, unitid)
 from pootle.core.plugin import provider
+from pootle_log.formatters import base_formatters
 from pootle_log.utils import LogEvent
 from pootle_store.unit import timeline
+from pootle_translationproject.views import TPBrowseStoreView
 
 from .diff import DiffableStore
-from .models import Unit
+from .models import Store, Unit
+from .panels import StoreActivityPanel
 from .syncer import StoreSyncer
 from .updater import StoreUpdater
 from .utils import DefaultUnitid
@@ -52,3 +56,13 @@ def gather_event_formatters(**kwargs_):
         comment_updated=timeline.CommentUpdatedEvent,
         check_muted=timeline.CheckMutedEvent,
         check_unmuted=timeline.CheckUnmutedEvent)
+
+
+@provider(panels, sender=TPBrowseStoreView)
+def activity_panel_provider(**kwargs_):
+    return dict(activity=StoreActivityPanel)
+
+
+@provider(event_formatters, sender=Store)
+def gather_stores_event_formatters(**kwargs_):
+    return base_formatters

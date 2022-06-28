@@ -1,0 +1,24 @@
+<div style="width: 10%; float: left; text-align: right; padding-right: .3em; box-sizing: border-box">
+  {{ event.avatar }}
+  {% if event.committer %}
+  <span style="position: relative; left: -13px">{{ event.committer_avatar }}</span>
+  {% endif %}
+</div>
+<div style="width: 90%; float: left">
+  <div>
+    {% if event.timestamp %}{{ event.timestamp }}{% endif %}
+    <span style="float: right">{{ event.method }}</span>
+  </div>
+  {% for message, change in event.changes %}
+  <div>
+    <div style="color: #777">
+      {{ message }}
+    </div>
+    {% if change %}
+    <div class="{{ event.css_class }}" style="background: #fefefe; border: solid #ddd 1px; padding: .2em">
+      {{ change }}
+    </div>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
