@@ -78,7 +78,7 @@ class Batch(object):
             in self.iterate_qs(qs, offset)]
 
     def batched_update(self, qs, update_method=None, reduces=True,
-                       update_fields=None):
+                       update_fields=None, updates=None):
         complete = 0
         offset = 0
         if isinstance(qs, (list, tuple)):
@@ -92,12 +92,16 @@ class Batch(object):
             else 0)
         while True:
             complete += self.batch_size
-            objects_to_update = self.objects_to_update(qs, offset, update_method)
-            if not objects_to_update:
-                break
-            result = self.bulk_update(
-                objects=objects_to_update,
-                update_fields=update_fields)
+            if updates is not None:
+                result = self.iterate_qs(qs, offset).update(**updates)[0]
+            else:
+                objects_to_update = self.objects_to_update(
+                    qs, offset, update_method)
+                if not objects_to_update:
+                    break
+                result = self.bulk_update(
+                    objects=objects_to_update,
+                    update_fields=update_fields)
             logger.debug(
                 "updated %s/%s in %s seconds",
                 min(complete, total),
@@ -108,10 +112,12 @@ class Batch(object):
                 break
             offset = offset + step
 
-    def update(self, qs, update_method=None, reduces=True, update_fields=None):
+    def update(self, qs, update_method=None, reduces=True, update_fields=None,
+               updates=None):
         return sum(
             self.batched_update(
                 qs,
                 update_method,
                 reduces,
-                update_fields))
+                update_fields,
+                updates))
