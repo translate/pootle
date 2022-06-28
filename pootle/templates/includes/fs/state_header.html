@@ -1,0 +1,98 @@
+{% load core i18n %}
+
+<div class="hd">
+  <h2>{% blocktrans %}Filesystem configuration: {{ project_code }}{% endblocktrans %}</h2>
+</div>
+<div>
+<div style="border: solid #ccc 1px; background: #eee; padded: 1em; margin: 1em">
+  <div  style="width: 33.33%; float: left">
+    <dl class="horizontal" style="margin: 0 0 0 0">
+      <dt>
+	{{ fs_type }}
+      </dt>
+      <dd>
+	{% if upstream_url %}
+	<a href="{{ upstream_url }}/commit/{{ latest_hash }}">{{ latest_hash|slice:"10" }}</a>
+	{% else %}
+	{{ latest_hash|slice:"10" }}
+	{% endif %}
+      </dd>
+      <dt>
+	pootle
+      </dt>
+      <dd>
+	<a href="{{ project_url }}">{{ pootle_revision|slice:"10" }}</a>
+      </dd>
+      <dt>
+	sync
+      </dt>
+      <dd>
+	{{ sync_revision|slice:"10" }}
+      </dd>
+    </dl>
+  </div>
+  <div  style="width: 33.33%; float: left">
+    <div class="padded big align-centered">
+      {% if upstream_url %}
+      <a href="{{ upstream_url }}">{{ fs_url }}</a>
+      {% else %}
+      {{ fs_url }}
+      {% endif %}
+    </div>
+    <div class="padded align-centered">
+      <form
+	 action="{% url 'pootle-admin-project-fs-fetch' project_code=project_code %}"
+         method="post">
+        {% csrf_token %}
+        {{ fetch_form }}
+        <button class="btn">
+          {% trans 'Fetch fs now' %}
+        </button>
+      </form>
+    </div>
+  </div>
+  <div  style="width: 33.33%; float: left">
+    <dl class="horizontal"  style="margin: 0; width: 100%">
+      {% for k, v in state.items %}
+      <dt>{{ k }}</dt>
+      <dd>{{ v }}</dd>
+      {% endfor %}
+    </dl>
+  </div>
+  <div style="clear: both" />
+</div>
+</div>
+<div class="align-centered" style="clear: both">
+  {% if untracked or page_name == "untracked" %}
+  <span class="padded">
+    <a href="{% url 'pootle-admin-project-fs-state-untracked' project_code=project_code %}"
+       class="btn{% if page_name == 'untracked' %} btn-disabled{% endif %}">
+      {% trans 'Untracked' %} ({{ untracked }})
+    </a>
+  </span>
+  {% endif %}
+  {% if conflicting or page_name == "conflicting" %}
+  <span class="padded">
+    <a href="{% url 'pootle-admin-project-fs-state-conflicting' project_code=project_code %}"
+       class="btn{% if page_name == 'conflicting' %} btn-disabled{% endif %}">
+      {% trans 'Conflicting' %} ({{ conflicting }})
+    </a>
+  </span>
+  {% endif %}
+  {% if tracked or page_name == "tracked" %}
+  <span class="padded">
+    <a href="{% url 'pootle-admin-project-fs-state-tracked' project_code=project_code %}"
+       class="btn{% if page_name == 'tracked' %} btn-disabled{% endif %}">
+      {% trans 'Tracked' %} ({{ tracked }})
+    </a>
+  </span>
+  {% endif %}
+  {% if unsynced or page_name == "unsynced" %}
+  <span class="padded">
+    <a href="{% url 'pootle-admin-project-fs-state-unsynced' project_code=project_code %}"
+       class="btn{% if page_name == 'unsynced' %} btn-disabled{% endif %}">
+      {% trans 'Unsynced' %}  ({{ unsynced }})
+    </a>
+  </span>
+  {% endif %}
+</div>
