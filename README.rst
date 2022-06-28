@@ -30,16 +30,45 @@ Pootle.  Teams can manage their files, permissions, projects, and translate
 on-line.  Files can be downloaded for offline translation.
 
 
-Installation
+Getting started
+---------------
+
+The easiest way to get started is by using the docker demo. You will need docker
+installed on your system, and to be running as a user with permissions to manage
+docker.
+
+As the docker compose configuration is stored in the pootle directory, you will
+need ``git`` installed and ``pip`` for some minimal python dependencies to get
+set up.
+
+
+Virtualenv
+----------
+
+You can optionally use a virtualenv to install the python requirements. This
+will make it easier to install and run as a user other than ``root``
+
+
+Demo install
 ------------
+
+First install the requirements
 
 ::
 
-  pip install --pre Pootle
+  git clone https://github.com/translate/pootle
+  cd pootle
+  pip install -r requirements/host.txt
 
-Don't forget to read the `installation guide
-<http://docs.translatehouse.org/projects/pootle/en/latest/server/installation.html>`_
-for important details.
+You can now run the demo, using the ``makey`` command runner
+
+::
+
+  makey demo
+
+This will take a few moments to pull the required docker images, and
+once up you should be able to browse to your pootle server on
+http://localhost:8000
 
 
 Copying
