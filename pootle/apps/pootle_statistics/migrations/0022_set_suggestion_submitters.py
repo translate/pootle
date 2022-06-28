@@ -3,15 +3,6 @@
 from __future__ import unicode_literals
 
 from django.db import migrations
-from django.db.models import F
-
-
-def set_suggestion_submitters(apps, schema_editor):
-    subs = apps.get_model("pootle_statistics.Submission").objects
-    accepted_subs = subs.filter(suggestion__state__name="accepted").values_list(
-        "pk", "suggestion__user_id")
-    for pk, user in accepted_subs.iterator():
-        subs.filter(pk=pk).update(submitter_id=user)
 
 
 class Migration(migrations.Migration):
@@ -21,5 +12,4 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RunPython(set_suggestion_submitters),
     ]
