@@ -167,7 +167,7 @@ PTL.editor = {
     this.isUnitDirty = false;
 
     this.isLoading = true;
-    this.showActivity();
+    // this.showActivity();
 
     this.fetchingOffsets = [];
 
