@@ -574,7 +574,7 @@ class AddSuggestionForm(SubmitFormMixin, forms.Form):
             self.add_error(
                 "target_f",
                 forms.ValidationError(
-                    _("Suggestion '%s' equals to current unit target value.",
+                    _("Suggestion '%s' equals to current string translation.",
                       target)))
         else:
             return self.cleaned_data["target_f"]

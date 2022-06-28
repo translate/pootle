@@ -154,7 +154,7 @@ class UnitCreatedEvent(object):
 
     @property
     def context(self):
-        ctx = dict(description=_(u"Unit created"))
+        ctx = dict(description=_(u"String created"))
         if self.target_event is not None:
             if self.target_event.value.old_value != '':
                 ctx['value'] = self.target_event.value.old_value
