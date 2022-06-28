@@ -259,6 +259,7 @@ class StoreSyncer(object):
                     in old_ids & new_ids),
                 last_revision,
                 conservative))
+        self.update_store_header(disk_store)
         return bool(file_changed or any(changes.values())), changes
 
     def get_revision_filters(self, last_revision):
