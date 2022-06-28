@@ -291,7 +291,9 @@ update the template translations in the Pootle database.
 
 .. code-block:: console
 
-    (env) $ pootle update_stores --project=my-project --language=templates
+    (env) $ pootle fs fetch my-project --fs-path=my-project/templates/*
+    (env) $ pootle fs resolve my-project --overwrite --fs-path=my-project/templates/*
+    (env) $ pootle fs sync my-project --update=pootle --fs-path=my-project/templates/*
 
 
 This command will ensure that new strings are added to the project and any
@@ -303,7 +305,9 @@ language. The first step is to save all the Pootle translations to disk:
 
 .. code-block:: console
 
-    (env) $ pootle sync_stores --project=my-project
+    (env) $ pootle fs fetch my-project
+    (env) $ pootle fs resolve my-project --overwrite --pootle-wins
+    (env) $ pootle fs sync my-project --update=fs
 
 
 Then update all those translations on disk against the newer templates. We
@@ -326,7 +330,9 @@ to Pootle:
 
 .. code-block:: console
 
-    (env) $ pootle update_stores --project=my-project
+    (env) $ pootle fs fetch my-project
+    (env) $ pootle fs resolve my-project --overwrite
+    (env) $ pootle fs sync my-project --update=pootle
 
 
 .. note:: If your project languages contain many translations you might want to
