@@ -13,8 +13,8 @@
     </a>
     {% else %}
     <a href="{% url 'pootle-export' %}?path={{ pootle_path }}"
-      title="{% trans 'Download translation files for backup' %}">
-      <i class="icon-download"></i> <span>{% trans 'Download for backup' %}</span>
+      title="{% trans 'Download a backup of the translation files' %}">
+      <i class="icon-download"></i> <span>{% trans 'Download a backup' %}</span>
     </a>
     {% endif %}
   </p>
@@ -51,7 +51,7 @@
 <div class="sidebar-group">
   <p class="sidebar-action">
     <a href="{% url 'pootle-offline-tm-tp' language.code project.code %}"
-      title="{% trans 'Download offline TM for the translation project' %}">
+      title="{% trans 'Download strings from translation memory matching those of the the translated project' %}">
       <i class="icon-download"></i> <span>{% trans 'Download offline TM' %}</span>
     </a>
   </p>
