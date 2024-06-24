@@ -120,5 +120,3 @@ volumes:
   production-logs:
   production-ssl:
   web-logs:
-  postgres-data:
-  redis-data:
