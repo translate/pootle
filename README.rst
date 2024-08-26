@@ -1,6 +1,14 @@
 |logo| Pootle
 =============
 
+Maintainers needed
+------------------
+
+Pootle is in the process of looking for potential maintainers to take over.
+If you are interested in maintaining Pootle please open an issue at `Pootle Issues <https://github.com/translate/pootle/issues>`_.
+
+Until then, users can use `Weblate <https://github.com/WeblateOrg/weblate>`_ as an alternative.
+
 |chat| |build| |health| |coverage| |requirements|
 
 
