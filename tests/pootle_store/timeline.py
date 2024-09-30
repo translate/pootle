@@ -271,7 +271,7 @@ def test_timeline_translated_unit_creation(store0, member):
     assert len(group['events']) == 1
     assert group['events'][0]['value'] == unit.target
     assert group['events'][0]['translation']
-    assert group['events'][0]['description'] == u"Unit created"
+    assert group['events'][0]['description'] == u"String created"
     assert group['via_upload'] is False
     assert group['datetime'] == unit.creation_time
     assert group['user'].username == member.username
@@ -287,7 +287,7 @@ def test_timeline_untranslated_unit_creation(store0, member):
     assert len(group['events']) == 1
     assert 'value' not in group['events'][0]
     assert 'translation' not in group['events'][0]
-    assert group['events'][0]['description'] == u"Unit created"
+    assert group['events'][0]['description'] == u"String created"
     assert group['via_upload'] is False
     assert group['datetime'] == unit.creation_time
     assert group['user'].username == member.username
@@ -306,7 +306,7 @@ def test_timeline_untranslated_unit_creation_with_updates(store0, member):
     assert len(group['events']) == 1
     assert 'value' not in group['events'][0]
     assert 'translation' not in group['events'][0]
-    assert group['events'][0]['description'] == u"Unit created"
+    assert group['events'][0]['description'] == u"String created"
     assert group['via_upload'] is False
     assert group['datetime'] == unit.creation_time
     assert group['user'].username == member.username
@@ -327,7 +327,7 @@ def test_timeline_translated_unit_creation_with_updates(store0, member):
     assert len(group['events']) == 1
     assert group['events'][0]['value'] == "Bar"
     assert group['events'][0]['translation']
-    assert group['events'][0]['description'] == u"Unit created"
+    assert group['events'][0]['description'] == u"String created"
     assert group['via_upload'] is False
     assert group['datetime'] == unit.creation_time
     assert group['user'].username == member.username

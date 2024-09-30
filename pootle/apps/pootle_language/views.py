@@ -209,7 +209,7 @@ class LanguageSuggestionAdminView(PootleLanguageAdminFormView):
     form_class = LanguageSuggestionAdminForm
     success_url_pattern = "pootle-language-admin-suggestions"
     formtable_columns = (
-        _("Unit"),
+        _("String"),
         _("State"),
         _("Source"),
         _("Suggestion"),
