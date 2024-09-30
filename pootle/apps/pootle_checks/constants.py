@@ -77,7 +77,7 @@ CHECK_NAMES = {
     'xmltags': _(u"XML tags"),
 
     # FIXME: make checks customisable
-    'ftl_format': _(u'ftl format'),
+    'ftl_format': _(u'FTL format'),
 
     # Romanian-specific checks
     'cedillas': _(u'Romanian: Avoid cedilla diacritics'),
