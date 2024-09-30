@@ -7,12 +7,13 @@
 # AUTHORS file for copyright and authorship information.
 
 from datetime import timedelta
+from itertools import groupby
 
 from django.utils import timezone
 from django.utils.functional import cached_property
 
 from pootle.core.delegate import (
-    comparable_event, log, membership, scores, site_languages)
+    comparable_event, event_formatters, log, membership, scores, site_languages)
 from pootle.core.utils.templates import render_as_template
 from pootle.i18n.gettext import ugettext_lazy as _
 
@@ -26,6 +27,14 @@ class UserProfile(object):
     def avatar(self):
         return render_as_template(
             "{% load common_tags %}{% avatar username email_hash 20 %}",
+            context=dict(
+                username=self.user.username,
+                email_hash=self.user.email_hash))
+
+    @cached_property
+    def tiny_avatar(self):
+        return render_as_template(
+            "{% load common_tags %}{% avatar username email_hash 13 %}",
             context=dict(
                 username=self.user.username,
                 email_hash=self.user.email_hash))
@@ -52,13 +61,23 @@ class UserProfile(object):
     def get_events(self, start=None, n=None):
         sortable = comparable_event.get(self.log.__class__)
         start = start or (timezone.now() - timedelta(days=30))
-        events = sorted(
-            sortable(ev)
-            for ev
-            in self.log.get_events(start=start))
+        events = groupby(
+            sorted(
+                sortable(ev)
+                for ev
+                in self.log.get_events(start=start)),
+            lambda event: event.timestamp.replace(second=0))
+        _events = []
+        formatters = event_formatters.gather(self.user.__class__)
+        for timestamp, evts in events:
+            evs = list(evts)
+            if len(evs) == 1:
+                _events.append(formatters.get(evs[0].action)(evs[0]))
+            else:
+                _events.append(formatters.get("group")(self.user, evs))
         if n is not None:
-            events = events[-n:]
-        return reversed(events)
+            _events = _events[-n:]
+        return reversed(_events)
 
 
 class UserMembership(object):
