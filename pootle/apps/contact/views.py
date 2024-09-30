@@ -8,12 +8,15 @@
 
 from django.template.loader import render_to_string
 from django.urls import reverse
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_control
 from django.views.generic import TemplateView
 
 from contact_form.views import ContactFormView as OriginalContactFormView
 
 from pootle.core.views.mixins import AjaxResponseMixin
 from pootle.i18n.gettext import ugettext_lazy as _
+from pootle_misc.util import ajax_required
 from pootle_store.models import Unit
 
 from .forms import ContactForm, ReportForm
@@ -26,6 +29,11 @@ class ContactFormTemplateView(TemplateView):
 class ContactFormView(AjaxResponseMixin, OriginalContactFormView):
     form_class = ContactForm
     template_name = 'contact_form/xhr_contact_form.html'
+
+    @cache_control(max_age=0)
+    @method_decorator(ajax_required)
+    def get(self, *args, **kwargs):
+        return super(ContactFormView, self).get(*args, **kwargs)
 
     def get_context_data(self, **kwargs):
         ctx = super(ContactFormView, self).get_context_data(**kwargs)
