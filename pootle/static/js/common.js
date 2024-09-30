@@ -83,7 +83,6 @@ PTL.common = {
 
     if (opts.hasSidebar) {
       helpers.fixSidebarHeight();
-      $(window).on('resize', helpers.fixSidebarHeight);
     }
 
     // Tipsy setup
@@ -197,6 +196,7 @@ PTL.common = {
       const openClass = 'sidebar-open';
       const cookieName = 'pootle-browser-sidebar';
 
+      helpers.fixSidebarHeight();
       $sidebar.toggleClass(openClass);
 
       const isOpen = $sidebar.hasClass(openClass) ? 1 : 0;
