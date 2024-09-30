@@ -114,7 +114,7 @@ msgstr "Vista generala"
 
 #: static/js/admin/components/Language/LanguageForm.js:102
 msgid "Team"
-msgstr ""
+msgstr "Còla"
 
 #: static/js/admin/components/Project/ProjectAdd.js:28
 #: static/js/admin/components/Project/ProjectEdit.js:33
@@ -142,7 +142,7 @@ msgstr "Cercar de projèctes"
 
 #: static/js/admin/components/Project/ProjectController.js:80
 msgid "Find project by name, code"
-msgstr ""
+msgstr "Trobar de projècte per nom, còdi"
 
 #: static/js/admin/components/Project/ProjectEdit.js:28
 msgid "Edit Project"
@@ -233,11 +233,11 @@ msgstr "Cercar d'utilizaires"
 
 #: static/js/admin/components/User/UserController.js:80
 msgid "Find user by name, email, properties"
-msgstr ""
+msgstr "Trobar un utilizaire per nom, corrièl, proprietats"
 
 #: static/js/admin/components/User/UserEdit.js:28
 msgid "Edit User"
-msgstr ""
+msgstr "Modificar l'utilizaire"
 
 #: static/js/admin/components/User/UserEdit.js:38
 msgid "Use the search form to find the user, then click on a user to edit."
@@ -269,12 +269,12 @@ msgstr "Senhal"
 
 #: static/js/admin/components/User/UserForm.js:82
 msgid "Set a new password"
-msgstr ""
+msgstr "Picatz un nòu senhal"
 
 #: static/js/admin/components/User/UserForm.js:98
 #: static/js/auth/components/SignUpForm.js:92
 msgid "Email"
-msgstr "Corrièr electronic"
+msgstr "Corrièl"
 
 #: static/js/admin/components/User/UserForm.js:108
 msgid "Administrator"
@@ -412,7 +412,7 @@ msgstr ""
 
 #: static/js/auth/components/RequestPasswordResetSent.js:67
 msgid "Resend Email"
-msgstr ""
+msgstr "Tornar mandar lo corrièl"
 
 #: static/js/auth/components/SignInForm.js:83
 #: static/js/auth/components/RequestPasswordResetForm.js:122
@@ -422,7 +422,7 @@ msgstr ""
 #: static/js/auth/components/SignInForm.js:113
 #: static/js/auth/components/SocialVerification.js:107
 msgid "I forgot my password"
-msgstr ""
+msgstr "I doblidat mon senhal"
 
 #: static/js/auth/components/SignInForm.js:124
 #: static/js/auth/components/SocialVerification.js:118
@@ -463,12 +463,12 @@ msgstr ""
 
 #: static/js/auth/components/SocialAuthError.js:52
 msgid "Try again"
-msgstr ""
+msgstr "Tornatz ensajar"
 
 #: static/js/auth/components/SocialSignInForm.js:38
 #, python-format, javascript-format
 msgid "Sign In With %s"
-msgstr ""
+msgstr "Se connectar amb %s"
 
 #: static/js/auth/components/SocialSignInForm.js:45
 msgid ""
@@ -986,7 +986,7 @@ msgstr ""
 #~ msgid "%(count)s hour ago"
 #~ msgid_plural "%(count)s hours ago"
 #~ msgstr[0] "Fa una ora"
-#~ msgstr[1] "%s ora i a"
+#~ msgstr[1] "Fa %s oras"
 
 #, fuzzy
 #~ msgid "A minute ago"
@@ -999,7 +999,7 @@ msgstr ""
 #~ msgstr[1] "Fa %s minutas"
 
 #~ msgid "A few seconds ago"
-#~ msgstr "I a qualques segondas"
+#~ msgstr "Fa qualques segondas"
 
 #, fuzzy
 #~ msgid "Nov"
