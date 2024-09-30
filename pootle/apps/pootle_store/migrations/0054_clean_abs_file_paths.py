@@ -6,7 +6,7 @@ import os
 
 from django.db import migrations
 
-from bulk_update.helper import bulk_update
+from django_bulk_update.helper import bulk_update
 from pootle.core.url_helpers import split_pootle_path
 
 
