@@ -11,6 +11,7 @@ from pootle_app.panels import ChildrenPanel
 
 class VFolderPanel(ChildrenPanel):
     panel_name = "vfolder"
+    template_name = "browser/includes/vfolder_panel.html"
 
     @property
     def children(self):
