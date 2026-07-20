@@ -15,7 +15,7 @@ from pootle.core.delegate import url_patterns
 
 urlpatterns = []
 
-# Allow url handlers to be overriden by plugins
+# Allow url handlers to be overridden by plugins
 for delegate_urls in url_patterns.gather().values():
     urlpatterns += delegate_urls
 
