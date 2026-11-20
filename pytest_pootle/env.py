@@ -207,6 +207,10 @@ class PootleTestEnv(object):
             'administrate',
             'Can administrate a TP',
             pootle_content_type)
+        _require_permission(
+            'create_project',
+            'Can create projects',
+            pootle_content_type)
 
     def _setup_project_fs(self, project):
         from pootle_fs.utils import FSPlugin

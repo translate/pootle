@@ -27,7 +27,8 @@ from pootle_misc.forms import GroupedModelChoiceField
 User = get_user_model()
 
 PERMISSIONS = {
-    'positive': ['view', 'suggest', 'translate', 'review', 'administrate'],
+    'positive': ['view', 'suggest', 'translate', 'review', 'administrate',
+                 'create_project'],
     'negative': ['hide'],
 }
 
@@ -51,6 +52,12 @@ def admin_permissions(request, current_directory, template, ctx):
         access_permissions = ['view', 'hide']
         negative_permissions_excl.extend(access_permissions)
         positive_permissions_excl.extend(access_permissions)
+
+    # `create_project` is a server-wide permission, so it can only be set
+    # for the root directory
+    if current_directory.pootle_path != '/':
+        negative_permissions_excl.append('create_project')
+        positive_permissions_excl.append('create_project')
 
     content_type = get_permission_contenttype()
 

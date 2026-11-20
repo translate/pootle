@@ -4,7 +4,7 @@
 {% block title %}{% trans "Administration" %} | {{ block.super }}{% endblock %}
 
 {% block breadcrumbs %}
-{{ block.super }}<li><a class="admin" href="{% url 'pootle-admin' %}">{% trans "Administration" %}</a></li>
+{{ block.super }}{% if user.is_superuser %}<li><a class="admin" href="{% url 'pootle-admin' %}">{% trans "Administration" %}</a></li>{% else %}<li>{% trans "Administration" %}</li>{% endif %}
 {% endblock %}
 
 {% block css %}

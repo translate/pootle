@@ -30,6 +30,18 @@ class SuperuserRequiredMixin(object):
                                                             **kwargs)
 
 
+class CanCreateProjectsRequiredMixin(object):
+    """Require users to be allowed to create projects."""
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.can_create_projects():
+            msg = _('You do not have rights to administer Pootle.')
+            raise PermissionDenied(msg)
+
+        return super(CanCreateProjectsRequiredMixin, self).dispatch(
+            request, *args, **kwargs)
+
+
 class UserObjectMixin(object):
     """Generic field definitions to be reused across user views."""
 

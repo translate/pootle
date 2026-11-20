@@ -1,5 +1,6 @@
 {% load i18n %}
 <ul id="tabs" class="admin">
+  {% if user.is_superuser %}
   <li>
     <a href="{% url 'pootle-admin' %}"
        class="{% if page == 'admin-dashboard' %}active{% endif %}"
@@ -15,11 +16,13 @@
        class="{% if page == 'admin-languages' %}active{% endif %}"
        >{% trans "Languages" %}</a>
   </li>
+  {% endif %}
   <li>
     <a href="{% url 'pootle-admin-projects' %}"
        class="{% if page == 'admin-projects' %}active{% endif %}"
        >{% trans "Projects" %}</a>
   </li>
+  {% if user.is_superuser %}
   <li>
     <a href="{% url 'pootle-admin-permissions' %}"
        class="{% if page == 'admin-permissions' %}active{% endif %}"
@@ -30,4 +33,5 @@
        class="{% if page == 'admin-pages' %}active{% endif %}"
        >{% trans "Static Pages" %}</a>
   </li>
+  {% endif %}
 </ul>
