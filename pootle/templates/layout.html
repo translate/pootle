@@ -139,6 +139,8 @@
               <li><a href="{% url 'pootle-user-settings' user.username %}">{% trans 'Settings' %}</a></li>
               {% if user.is_superuser %}
               <li><a class="admin" href="{% url 'pootle-admin' %}">{% trans 'Admin' %}</a></li>
+              {% elif user.can_create_projects %}
+              <li><a class="admin" href="{% url 'pootle-admin-projects' %}">{% trans 'Admin' %}</a></li>
               {% endif %}
               <li class="menu-divider"></li>
               <li><a href="{% url 'account_logout' %}">{% trans 'Sign out' %}</a></li>

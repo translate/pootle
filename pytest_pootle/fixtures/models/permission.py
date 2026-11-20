@@ -56,6 +56,13 @@ def administrate(pootle_content_type):
                                pootle_content_type)
 
 
+@pytest.fixture(scope="session")
+def create_project(pootle_content_type):
+    """Require the `create_project` permission."""
+    return _require_permission('create_project', 'Can create projects',
+                               pootle_content_type)
+
+
 @pytest.fixture
 def translate():
     """Require the `translate` permission."""
